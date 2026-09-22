@@ -1,0 +1,82 @@
+{
+  "reviewedAt": "2026-09-22T15:31:51.688671+00:00",
+  "reviewer": "/root/danish_scope_evidence",
+  "verdict": "PASS_WITH_LIMITS__PRERELEASE_ONLY",
+  "reviewed_manifest_sha256": "3fee424a43bf82c9ea1560b785d398d3ba14a35d29268108e15c01597f3a35ae",
+  "reviewed_diff_sha256": "9575e4af891b053bab9e1909ffee56fa292c05713c2ecfacc2af5ed6a4dfa37d",
+  "phase": 3,
+  "themeId": "gid://shopify/OnlineStoreTheme/137888792673",
+  "files": [
+    {
+      "filename": "assets/daddy-me-collection-filter.js",
+      "sourceSha256": "a10d7f7c57f291009d0a87425147c6c9b3a860ad9535615797c5d29702d5c07e",
+      "candidateSha256": "55ab653e339c5814cb6fab354bbd0d57a99e2ecbaef408d0c80fcf47777c931e",
+      "tests": {
+        "source_sha256_exact": true,
+        "source_md5_exact": true,
+        "candidate_sha256_exact": true,
+        "candidate_md5_exact": true,
+        "current_manifest_source_md5_exact": true,
+        "fresh_direct_source_md5_exact": true,
+        "fresh_direct_source_body_exact": true
+      }
+    },
+    {
+      "filename": "locales/da.json",
+      "sourceSha256": "2539797d91b91ca7525290e02037c3b61d5bc460c0f88cd4d620b84b6304656c",
+      "candidateSha256": "ad2065612fa602b1cbdd1a76fe04ab17c8778473b57f446514a197d34cbb0085",
+      "tests": {
+        "source_sha256_exact": true,
+        "source_md5_exact": true,
+        "candidate_sha256_exact": true,
+        "candidate_md5_exact": true,
+        "current_manifest_source_md5_exact": true
+      }
+    }
+  ],
+  "source_receipt_sha256": "37b47cc32a01a78770800b95dc27805f6491683ce19418aa6b5237fee6d59c08",
+  "rendered_title_fixture_sha256": "885cc99ae5fb039d99f4ef6cd54ea07b097320825d273bfbdc884ed08943df73",
+  "independence": "Reviewer did not author repair or execute external writes. Independently read full actual candidate script/diff, checked source and candidate hashes, executed both full script IIFEs in a minimal DOM harness, and wrote only this review.",
+  "mechanism_review": [
+    "Only da or da-* language forms gain recognition of Danish compound skjorte/skjorter/skjortesaet titles. Original English shirt recognition remains.",
+    "Original t shirt/t shirts/tee/tees exclusions remain before final acceptance; mixed Skjorte og T-shirt fixture remains excluded from shirts.",
+    "Tees retain existing complement behavior; this is not a new semantic tee classifier.",
+    "Danish visible count text handles0/1/multiple; all other tested locale outputs and collection-handle behavior equal baseline.",
+    "Speculative two zero plural additions removed; entire candidate da.json byte-equals phase1 reviewed version.",
+    "MutationObserver, URL query/history behavior, other handlers and navigation code remain unchanged."
+  ],
+  "independent_regressions": {
+    "result": "PASS",
+    "checks": 56,
+    "execution": "Actual full before/candidate IIFEs via Node vm with minimal DOM, not a reimplementation of classifier.",
+    "sample": {
+      "source": "Parent rendered DOM title fixture; not independently recollected",
+      "titles": 23,
+      "baseline_visible": 0,
+      "candidate_visible": 23,
+      "candidate_count": "23 produkter"
+    },
+    "cases": [
+      "da, da-DK, DA-dk",
+      "Compound bomuldsskjorte, hawaiiskjorter, Skjortesæt",
+      "T-shirt/T shirts/Tee/Tees and mixed Skjorte og T-shirt exclusion",
+      "Shirts/tees inverse selections",
+      "Parent all and parent button-downs query",
+      "Danish0/1/23counts",
+      "Seven non-Danish language contexts over four collection handles byte-equivalent to baseline result",
+      "Syntax compilation"
+    ],
+    "runtime": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "initial_environment_failure": "Homebrew node exited134 before test execution because libsimdjson.29.dylib was missing. Bundled Node then ran56checks successfully; no environment repair.",
+    "review_harness_correction": "First locale object-parse attempt rejected Shopify leading comment; subsequently stripped only leading comment for semantic object comparison while full-file byte/hash comparison stayed exact."
+  },
+  "rollback": "Two exact before bodies are hash-bound. Rollback after successful upload only these same2files in unchanged draft with expected after hashes. No rollback executed.",
+  "limits": [
+    "No live save or actual browser acceptance by reviewer. Root must verify all23cards visible on Danish desktop and narrow preview plus tees and non-Danish holdout.",
+    "Title-based classification is existing architecture; Danish shirt wording does not establish every garment is a button-down or validate unrelated catalog titles.",
+    "Other locales retain existing behavior, including prior localization gaps.",
+    "True zero-card grid behavior unchanged: existing applyFilter returns early without cards. Tested0count has cards that all fail the shirt filter.",
+    "Prior final-theme saved-source receipt did not establish rendered buyer acceptance; new browser failure requires this repair and after verification.",
+    "Live51translation acceptance unaffected. No Microsoft negatives or ads changed."
+  ]
+}

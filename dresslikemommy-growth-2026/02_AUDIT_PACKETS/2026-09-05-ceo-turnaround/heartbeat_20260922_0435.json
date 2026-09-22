@@ -1,0 +1,93 @@
+{
+  "wake_id": "2026-09-22T04:35:13.842Z",
+  "recorded_at_utc": "2026-09-22T04:37:44Z",
+  "canonical_anchor": "2026-09-22-ceo-canada-cpc-and-copy-source",
+  "status": "EXISTING_MICROSOFT_OWNER_ACTIVE__NO_DUPLICATE_DISPATCH",
+  "owner_status_readbacks": [
+    {
+      "lane": "Microsoft",
+      "thread_id": "01a08703-644f-7940-8f67-9a2fa63722bb",
+      "cursor": "cfd7b15a-a359-4966-9f61-20f8ec65187b:5",
+      "status": "active",
+      "changed": true,
+      "latest_turn_id": "01a0c758-3c7e-7c30-8107-75a87a77d2a4",
+      "latest_turn_status": "inProgress"
+    },
+    {
+      "lane": "Merchant",
+      "thread_id": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+      "cursor": "b0c58a2a-e988-41b5-9c51-29b12a05b775:5",
+      "status": "notLoaded",
+      "changed": false,
+      "latest_turn_id": "01a0c5f5-71eb-7512-b7a7-ad742218f36d",
+      "latest_turn_status": "completed"
+    },
+    {
+      "lane": "Google Ads",
+      "thread_id": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+      "cursor": "062efd45-7da0-4861-b863-814c232cdb1e:2",
+      "status": "idle",
+      "changed": false,
+      "latest_turn_id": "01a0c737-4675-7353-ac19-e893f4637764",
+      "latest_turn_status": "completed"
+    },
+    {
+      "lane": "UX",
+      "thread_id": "01a088c3-c890-71a1-98ee-f19b6905af55",
+      "cursor": "f2fa1555-7a89-4d8b-8fbf-6312866a8a76:6",
+      "status": "notLoaded",
+      "changed": false,
+      "latest_turn_id": "01a0c620-300d-74f2-bb0c-4d337f604dc3",
+      "latest_turn_status": "completed"
+    },
+    {
+      "lane": "Organic",
+      "thread_id": "01a0870a-e632-7773-ac5d-8ee2616b31bc",
+      "cursor": "5e232928-46d4-44d4-91ae-c47619fed43e:4",
+      "status": "notLoaded",
+      "changed": false,
+      "latest_turn_id": "01a0c5a9-c958-73e3-88c1-320180635a7d",
+      "latest_turn_status": "completed"
+    },
+    {
+      "lane": "Pinterest",
+      "thread_id": "01a08704-8176-7171-b6f5-928a09d7c3f9",
+      "cursor": "dca2fa1e-ed12-4a7a-9998-414724761bb3:3",
+      "status": "notLoaded",
+      "changed": false,
+      "latest_turn_id": "01a0c5c0-6e69-7a81-84d9-6035348576f4",
+      "latest_turn_status": "completed"
+    },
+    {
+      "lane": "X",
+      "thread_id": "01a0915d-9105-7833-9d4b-eb467ab0ebbd",
+      "cursor": "433ef3d2-02f6-4441-9551-79692bb8a992:1",
+      "status": "systemError",
+      "changed": false,
+      "latest_turn_id": "01a0c58f-d13c-7800-972f-3e5f5314294b",
+      "latest_turn_status": "failed"
+    }
+  ],
+  "bounded_microsoft_wait": {
+    "timeout_ms": 60000,
+    "timed_out": true,
+    "cursor": "cfd7b15a-a359-4966-9f61-20f8ec65187b:5",
+    "turn_id": "01a0c758-3c7e-7c30-8107-75a87a77d2a4",
+    "turn_status": "inProgress",
+    "task_status": "active"
+  },
+  "observed_progress": "Existing Microsoft owner has a new active turn. No completion or changed native result was returned by the bounded wait. Other six owner cursors and current canonical queue/claims remain unchanged.",
+  "decision": "Preserve the running Microsoft task's account ownership and await its execution receipt; no duplicate follow-up or parallel account action. Other lanes retain existing dependency and due-time holds.",
+  "next_executable_action": "On changed Microsoft completion/source evidence, verify the requested operational result and integrate only its supported outcome. Otherwise preserve the next sales full-read at2026-09-22T08:32:03Z and Organic/Ads routine review gates at09:00America/New_York.",
+  "dispatch_count": 0,
+  "distinct_owner_tasks_resumed": 0,
+  "dispatches": [],
+  "root_business_writes": 0,
+  "new_goal_task_model_permission_automation": false,
+  "reference_for_unchanged_dependencies": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/heartbeat_20260922_0400.json",
+  "notification": "DONT_NOTIFY",
+  "evidence_limits": [
+    "A running task is pending execution, not completed work or business progress.",
+    "No new account/native result, user approval, publication, sales or profit is asserted."
+  ]
+}

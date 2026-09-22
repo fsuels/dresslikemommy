@@ -1,0 +1,253 @@
+{
+  "schema": "dlm.parent.organic_order_route_saved_source_review.v1",
+  "recorded_at_utc": "2026-09-22T09:05:32.213532+00:00",
+  "action_id": "TA20-GOOGLE-ORGANIC-ORDER-ROUTE-20260922",
+  "reviewer": "/root/cockpit_current_metrics_source",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "status": "PASS_WITH_LIMITS",
+  "verdict": "PASS_WITH_LIMITS",
+  "manifest_binding": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/organic-order-route-20260922/FINAL_MANIFEST.json",
+    "sha256": "3e7a09b8853a42882f2d6d1c17b4f49caf3e09b541ed9b08c077af6bb1c090a4"
+  },
+  "source_sha256": {
+    "ADMIN_SOURCE_RECEIPT.json": "b09a6dd450e24212b88040203c3aa875195032afce88cb700e609b5bad56f227",
+    "BROWSER_RECEIPT.json": "73438c7b29c5e8059925bfa60231347b18c5988506bcf812506577c951f0e8ea",
+    "EXECUTION_CHECKPOINT.json": "1582a3989a30673d06dc3aeb4b14434c7c8f7279683a7c97badb973adf5c06be",
+    "INDEPENDENT_REVIEW.json": "88551ebc595693b0864a90d99808f6630cf751c795be937518d5547fbe7db23b",
+    "PARENT_SOURCE_BINDINGS.json": "f8c109fb0cb87070ea0e92043c426fdb665471af4ea3c30aa9339f50eaa47e08",
+    "PUBLIC_HTTP_RECEIPT.json": "30e3d8a3a78a2cd6706ba0a4f7860ef61db1d1ff82ed5ee18f29bcd15561b898",
+    "READBACK.md": "93e87fafee799278b9139518e09b047568e51760615786c066bf2dfc9d748559",
+    "source_query.graphql": "1f6d8605d75658e3fc2939ae830287d685c69c87d576c712298712dbf18467b0"
+  },
+  "parent_source_bindings": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/new_order_attribution_20260922_0838.json": "1bca47c8611079c0249307cd9f68616c2ca35075033d898dd521729856c8612c",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/new_order_attribution_review_20260922_0838.json": "559d12f96c04935507b5a6a6b8ff7fb4d4367775029fb133e62cbae60a0c4c03",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/new_order_organic_route_20260922_0843.json": "07a5d24729e3bbede269c5ab43b7be88a48e170319006d2e883607b0e4a2227f"
+  },
+  "consumed_owner_independent_review": {
+    "sha256": "88551ebc595693b0864a90d99808f6630cf751c795be937518d5547fbe7db23b",
+    "checks": 23,
+    "input_bindings": 9,
+    "native_replay": "NOT RUN",
+    "checks_not_added_to_parent_count": true
+  },
+  "checks_passed": 35,
+  "checks_total": 35,
+  "checks": [
+    {
+      "check": "final_manifest_exact_hash",
+      "status": "PASS",
+      "detail": "3e7a09b8853a42882f2d6d1c17b4f49caf3e09b541ed9b08c077af6bb1c090a4"
+    },
+    {
+      "check": "eight_manifest_files",
+      "status": "PASS",
+      "detail": "All eight exact SHA256 and byte-size bindings match."
+    },
+    {
+      "check": "action_identity",
+      "status": "PASS",
+      "detail": "Exact completed Organic action across frozen records."
+    },
+    {
+      "check": "owner_boundaries",
+      "status": "PASS",
+      "detail": "Existing Organic owner and parent integration identities agree."
+    },
+    {
+      "check": "three_parent_bindings",
+      "status": "PASS",
+      "detail": "Exact attribution source, accepted attribution review and parent route source match."
+    },
+    {
+      "check": "owner_independent_nine_bindings",
+      "status": "PASS",
+      "detail": "Consumed all nine independent-review input bindings; no native replay."
+    },
+    {
+      "check": "owner_independent23checks",
+      "status": "PASS",
+      "detail": "Owner independent23 checks consumed, not added to parent check count."
+    },
+    {
+      "check": "checkpoint_review_binding",
+      "status": "PASS",
+      "detail": "Final checkpoint binds the exact final independent review."
+    },
+    {
+      "check": "accepted_attribution_source_match",
+      "status": "PASS",
+      "detail": "Prior attribution review remains bound; no repeat of native/account checks."
+    },
+    {
+      "check": "shop_and_declared_window",
+      "status": "PASS",
+      "detail": "Exact store and same declared new-order creation window."
+    },
+    {
+      "check": "one_qualified_order_usd6820",
+      "status": "PASS",
+      "detail": "One qualified USD68.20 order summary, not a per-product price or retained-profit result."
+    },
+    {
+      "check": "google_seo_attribution_bounded",
+      "status": "PASS",
+      "detail": "Shopify Google/SEO first and last visit; null UTM alone is not the attribution basis."
+    },
+    {
+      "check": "transient_join_declarations",
+      "status": "PASS",
+      "detail": "Exact-ID joins and order/line completeness are owner declarations; raw IDs not persisted."
+    },
+    {
+      "check": "parent_first_last_landing",
+      "status": "PASS",
+      "detail": "Both saved parent landing summaries point to the exact public route."
+    },
+    {
+      "check": "two_purchased_lines",
+      "status": "PASS",
+      "detail": "Two quantity-one lines map to the same purchased product ID."
+    },
+    {
+      "check": "admin_query_exact_read_only",
+      "status": "PASS",
+      "detail": "Exact validated source query and variables; only source identity/product/redirect reads."
+    },
+    {
+      "check": "authenticated_purchased_identity",
+      "status": "PASS",
+      "detail": "Authenticated current Admin source confirms ACTIVE purchased product and distinct route."
+    },
+    {
+      "check": "empty_exact_path_redirect_page",
+      "status": "PASS",
+      "detail": "Exact-path filter has zero nodes and terminal pagination; supplemental evidence only, not universal/historical redirect absence."
+    },
+    {
+      "check": "direct_public_http200",
+      "status": "PASS",
+      "detail": "Saved direct200, no Location and no observed HTTP redirect hop."
+    },
+    {
+      "check": "http_final_canonical_og",
+      "status": "PASS",
+      "detail": "Saved HTTP final URL/canonical/og:url preserve landing route."
+    },
+    {
+      "check": "rendered_final_canonical",
+      "status": "PASS",
+      "detail": "Native saved DOM final/canonical/H1 agrees; no native replay."
+    },
+    {
+      "check": "page_defined_primary_identity",
+      "status": "PASS",
+      "detail": "Landing7533404291169 differs from purchased7533081133153; primary identity from page-defined current-product response."
+    },
+    {
+      "check": "incidental_html_id_not_primary",
+      "status": "PASS",
+      "detail": "Purchased ID elsewhere in broad HTML is not a redirect or landing-primary-product finding."
+    },
+    {
+      "check": "same_observed_route_not_historical_alias",
+      "status": "PASS",
+      "detail": "Current bounded observations justify preserving both routes; no alias or redirect repair inference."
+    },
+    {
+      "check": "no_intervening_click_trace",
+      "status": "PASS",
+      "detail": "Shopify summary interpretation does not establish recommendation clicks or full intervening journey."
+    },
+    {
+      "check": "owned_background_tab_closed",
+      "status": "PASS",
+      "detail": "Owned background tab4 closed; no peer surface modification claimed."
+    },
+    {
+      "check": "no_business_or_cart_mutations",
+      "status": "PASS",
+      "detail": "Zero recorded business/cart/checkout/form/consent/product/redirect/tracking/shared changes."
+    },
+    {
+      "check": "operator_qa_not_acquisition",
+      "status": "PASS",
+      "detail": "Verification traffic is operatorQA; zero business writes does not imply zero analytics events."
+    },
+    {
+      "check": "single_context_partial_buyer_flow",
+      "status": "PASS",
+      "detail": "One current EnglishUS/USD route; no size/cart/checkout or all-market certification."
+    },
+    {
+      "check": "no_crossplatform_causal_profit_claim",
+      "status": "PASS",
+      "detail": "No GA4/GSC/Ads transaction acceptance, recentSEO causality, uplift, costs or profit claim."
+    },
+    {
+      "check": "sizing_assessment_separate",
+      "status": "PASS",
+      "detail": "Existing September22 09:00NewYork sizing review for September15-21 preserved; no schedule read/rewrite by parent reviewer."
+    },
+    {
+      "check": "authority_unchanged",
+      "status": "PASS",
+      "detail": "Read-only acceptance confers no release or paid authority."
+    },
+    {
+      "check": "observation_chronology",
+      "status": "PASS",
+      "detail": "Source/public checks follow parent route summary; no historic customer-session replay."
+    },
+    {
+      "check": "http_body_and_native_screenshot_limits",
+      "status": "PASS",
+      "detail": "Raw HTTP checksum is recorded, not independently rehashed; screenshot remains in owner tool transcript, not locally replayed."
+    },
+    {
+      "check": "no_customer_identifier_or_credentials",
+      "status": "PASS",
+      "detail": "Reviewed packet contains public product/store identity and deidentified order summary; no customer/order identifiers, contacts or detected authentication material."
+    }
+  ],
+  "accepted_facts": {
+    "requested_landing_url": "https://www.dresslikemommy.com/products/little-pear-mommy-and-me-pajamas",
+    "http_status": 200,
+    "http_location": null,
+    "observed_http_redirect_hops": 0,
+    "http_and_dom_final_canonical": "https://www.dresslikemommy.com/products/little-pear-mommy-and-me-pajamas",
+    "current_landing_product_id": "gid://shopify/Product/7533404291169",
+    "authenticated_purchased_product_id": "gid://shopify/Product/7533081133153",
+    "purchased_product_status": "ACTIVE",
+    "current_purchased_product_url": "https://www.dresslikemommy.com/products/vintage-cottage-floral-mommy-and-me-pajama-set",
+    "exact_path_admin_redirect_nodes": 0,
+    "redirect_pagination_terminal": true,
+    "current_route_blocker": "NOT_DEMONSTRATED",
+    "repair_dependency": "NONE_FOR_THIS_ROUTE",
+    "owned_tab_closed": true
+  },
+  "safe_parent_wording": "The recorded Little Pear landing currently works as a distinct product page: saved direct HTTP200/noLocation and unchanged HTTP/DOM final/canonical identify the route; page-defined current product7533404291169 differs from authenticated ACTIVE purchased product7533081133153. The Shopify summary supports a qualified cross-product order journey, not an obsolete alias, redirect repair, intervening click trace, recentSEO causal credit or cross-platform/profit result. Preserve both routes and the separate September22 09:00NewYork sizing assessment.",
+  "limits": [
+    "Saved-source review only: no native/browser/network/API/account replay. Current public HTTP/DOM responses and authenticated Admin fields are accepted as frozen owner observations.",
+    "Raw HTTP body is not retained for independent body-hash recomputation; screenshot exists only in owner tool transcript. Manifest hashes prove saved receipt integrity, not independent live rendering.",
+    "Page-defined landing product ID7533404291169 and authenticated purchased ID7533081133153 are distinct. The purchased ID elsewhere in broad HTML is incidental and does not establish primary identity or a redirect.",
+    "Exact-path empty redirect search with terminal pagination is supplementary. Direct200/noLocation, unchanged final URL and matching HTTP/DOM canonical establish the saved current route observation, not universal or historical redirect absence.",
+    "Parent exact-ID and pagination joins remain deidentified owner declarations. Shopify landing/purchased fields support a qualified cross-product interpretation, not an intervening click trail, recommendation use or historical legacy alias.",
+    "One current EnglishUS/USD route check does not certify all markets, size/cart/checkout flow, garment claims or complete buyer acceptance. No current route repair is supported.",
+    "Operator verification visits are excluded from acquisition claims; instrumentation ingestion is unknown. No GA4/GSC/Ads acceptance, recent SEO causality, incremental sales, costs, settlement or profit result follows.",
+    "Existing September22 09:00America/New_York sizing review covering September15-21 remains a separately scheduled action per owner source; this review neither modifies schedules nor proves execution."
+  ],
+  "required_corrections": [],
+  "material_issues": [],
+  "confidence": "H for frozen saved-source bindings and product distinction; M for qualified Shopify journey interpretation with no native or historical replay.",
+  "independent_native_replay": "NOT RUN",
+  "writes": {
+    "owned_review_only": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_route_parent_source_review_20260922.json",
+    "earlier_reviews": 0,
+    "shared_canonical": 0,
+    "git": 0,
+    "accounts": 0,
+    "schedules": 0
+  }
+}

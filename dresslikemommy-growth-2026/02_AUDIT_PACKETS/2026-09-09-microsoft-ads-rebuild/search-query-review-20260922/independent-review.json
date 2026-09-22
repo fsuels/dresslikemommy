@@ -1,0 +1,148 @@
+{
+  "schema": "dlm.microsoft.search_query_independent_review.v1",
+  "action_id": "TA15-SEARCH-QUERY-REVIEW-20260922",
+  "recorded_at_utc": "2026-09-22T12:41:02.722305+00:00",
+  "verifier": "/root/support_followup_review",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "review_kind": "SAVED_SOURCE_REVIEW_ONLY",
+  "independent_native_replay": "NOT_RUN",
+  "verdict": "PASS_WITH_LIMITS",
+  "source_sha256": {
+    "source.json": "eed8cc8f6530df2b5999098f3748031823376d89571cd97054fd727fcc889274",
+    "native-settings.json": "e41ad41889fe5d7f7de85755027a8503a74591ba2996e2c99d821a867f33b4ad",
+    "analysis.json": "058fa7eeef6a9d89baeb5e32521e5a1307d783a915bcc5d4da1879f50b6fbafa",
+    "root-verification.json": "90e11dbdac48916a76e3d811c0f00433e15f5382869d358d7c970bdc8509eb75"
+  },
+  "machine_checks_passed": 18,
+  "machine_checks_total": 18,
+  "manual_checks_passed_with_limits": 6,
+  "focused_checks_total": 24,
+  "machine_checks": [
+    {
+      "name": "identity_and_action",
+      "result": "PASS",
+      "evidence": "Four artifacts bind one action and exact Microsoft account/customer."
+    },
+    {
+      "name": "single_report_date_currency",
+      "result": "PASS",
+      "evidence": "September21 native Eastern report/USD; no partialToday or earlier-period merge."
+    },
+    {
+      "name": "twenty_unique_single_click_rows",
+      "result": "PASS",
+      "evidence": "20 complete unique observed rows, each1click; query spelling retained."
+    },
+    {
+      "name": "clicked_rows_arithmetic",
+      "result": "PASS",
+      "evidence": "Filtered rows reconcile20clicks/USD2.97/23impressions; Search aggregate clicks/spend equal."
+    },
+    {
+      "name": "query_coverage_and_report_filter",
+      "result": "PASS",
+      "evidence": "23clicked-row impressions are not617Search impressions; native92term aggregate is a separate scope."
+    },
+    {
+      "name": "match_types",
+      "result": "PASS",
+      "evidence": "19Phrase-close-variant clicks and1Exact-close-variant click."
+    },
+    {
+      "name": "above_ceiling_rows",
+      "result": "PASS",
+      "evidence": "12single-click rows have displayed cost aboveUSD0.15, totalingUSD2.21; exactly0.15 excluded."
+    },
+    {
+      "name": "mean_and_share_arithmetic",
+      "result": "PASS",
+      "evidence": "MeanUSD0.1485; above-ceiling clickshare60%, spendshare74.41%."
+    },
+    {
+      "name": "campaign_aggregates",
+      "result": "PASS",
+      "evidence": "US13/USD2.08; GB4/USD0.58; AU1/USD0.09; CA1/USD0.19; EUR1/USD0.03; above-ceiling subtotals reconcile."
+    },
+    {
+      "name": "all_twenty_dispositions_bound",
+      "result": "PASS",
+      "evidence": "Each source row receives exactly one reasoned disposition; all20live actionsNONE."
+    },
+    {
+      "name": "two_candidate_literal_native_bindings",
+      "result": "PASS",
+      "evidence": "GB/US literal query candidates bind current native IDs and1click each; totalUSD0.29 is historical cost, not savings."
+    },
+    {
+      "name": "candidates_conditional_not_applied",
+      "result": "PASS",
+      "evidence": "Each remains a local Exact ad-group hypothesis; selected live behavior is retaining both pending fit/association/authority checks."
+    },
+    {
+      "name": "current_gb_cap_difference",
+      "result": "PASS",
+      "evidence": "Current checkedGBUSD0.20 exceeds retainedUSD0.15 byUSD0.05; correction target is not entered/saved."
+    },
+    {
+      "name": "settings_date_not_historical_cause",
+      "result": "PASS",
+      "evidence": "CurrentSept22 setting does not prove Sept21 setting or sole cause of above-ceiling clicks; country/presence not read here."
+    },
+    {
+      "name": "cancel_warning_declined_no_write",
+      "result": "PASS",
+      "evidence": "Unexpected Cancel warning declined withNo; settledAX clears dialog, staleDOM discrepancy retained; form held with noSave/discard."
+    },
+    {
+      "name": "authority_outcomes_and_mutations",
+      "result": "PASS",
+      "evidence": "Numeric authority/outcomes remain unknown; pending questions not repeated; no external/shared mutation."
+    },
+    {
+      "name": "reported_conversion_zeros_only",
+      "result": "PASS",
+      "evidence": "Reported conversion/revenue zero andAdded/ExcludedNone faithfully recorded; not actual-order or inherited-negative proof."
+    },
+    {
+      "name": "builder_hash_and_check_count",
+      "result": "PASS",
+      "evidence": "Root25self-checks and source bindings consistent; not independently captured native evidence."
+    }
+  ],
+  "manual_checks": [
+    {
+      "name": "commercial_candidate_challenge",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "Neither candidate is presently justified for a live exclusion. Celebrity-event wording can describe product shopping; top10costume wording can describe purchase research. One click and zero reported conversions do not prove waste or low conversion probability. Packet correctly labels them conditional hypotheses, requires actual ad/destination/cohort mismatch evidence, and selects retaining both in live state."
+    },
+    {
+      "name": "all_twenty_dispositions_quality",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "All20 dispositions preserve relevant core intent and isolate actual unknowns: baby sizing, red variants, Disney-specific offer/rights, costumes, nightgowns, button-down pajamas, bikini design, Christmas availability/delivery and broad mum/one-mother wording. No unverified stock, rights infringement, catalog absence, seasonal mismatch or country conclusion is asserted."
+    },
+    {
+      "name": "coverage_and_negative_association_limits",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "20clicked rows reconcile observedSearch clicks/spend only;23vs617impressions and92reported terms preserve incomplete text coverage. Audience delivery is excluded. NativeAdded/ExcludedNone does not enumerate inherited/shared/account exclusions. Both candidates require fresh association checks."
+    },
+    {
+      "name": "cap_and_unexpected_form_state",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "GB cap finding is currentSept22 configuration, not Sept21 historical causal proof. ClickingNo retained the form instead of approving discard; root reported no field edits. Warning cause remains unknown. Do not use this retained surface for a write until warning state, authority, before-state and native cap availability are resolved."
+    },
+    {
+      "name": "matching_prediction_and_rollback_limits",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "Any future Exact exclusion must follow native matching rules and remains limited to its reviewed ad group. It cannot promise savings or lowerCPA, cover all synonyms or substitute for offer-fit proof. Required association/conflict review, exact authority, before/after review and newly-created-ID-only rollback are retained."
+    },
+    {
+      "name": "independence_and_scope",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "DID_NOT_BUILD_OR_EXECUTE. Only four named saved sources reviewed; no browser/API/support/contact/product/order/canonical action. Native replay and separate public-documentation verification NOT_RUN. Root native excerpts and reported transient recovery were not independently replayed."
+    }
+  ],
+  "required_corrections": [],
+  "recommendation_boundary": "Both Exact candidates are local hypotheses only, not currently justified live exclusions. Current behavior remains retain both; live optimization stays blocked under recorded authority and form-state boundaries.",
+  "preservation": "Only independent-review.json created; the four frozen sources and concurrent root README/handoff, other owners and shared records remain untouched.",
+  "next_action": "Root may hand back this completed source review. Qualify actual ad/destination/product fit in a separately bounded action before considering either candidate; do not repeat this extraction or infer approval."
+}

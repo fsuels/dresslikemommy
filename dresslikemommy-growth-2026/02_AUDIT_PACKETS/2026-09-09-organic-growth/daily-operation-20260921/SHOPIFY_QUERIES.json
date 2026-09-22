@@ -1,0 +1,252 @@
+{
+  "captured_date": "2026-09-21",
+  "reports": [
+    {
+      "key": "sunshine_7d",
+      "queried_at_utc": "2026-09-21 20:36:31 UTC",
+      "result": {
+        "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'pinterest' AND utm_medium = 'social' AND utm_campaign = 'dlm_sunshine_organic_20260907' AND utm_content = 'product_detail_01' SINCE 2026-09-11 UNTIL 2026-09-17",
+        "columns": [
+          {
+            "name": "sessions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_with_cart_additions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_reached_checkout",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_completed_checkout",
+            "dataType": "INTEGER"
+          }
+        ],
+        "rows": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "rowCount": 1,
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      }
+    },
+    {
+      "key": "p1_7d",
+      "queried_at_utc": "2026-09-21 20:36:31 UTC",
+      "result": {
+        "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'pinterest' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' AND utm_content = 'p1' SINCE 2026-09-14 UNTIL 2026-09-20",
+        "columns": [
+          {
+            "name": "sessions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_with_cart_additions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_reached_checkout",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_completed_checkout",
+            "dataType": "INTEGER"
+          }
+        ],
+        "rows": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "rowCount": 1,
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      }
+    },
+    {
+      "key": "article_7d",
+      "queried_at_utc": "2026-09-21 20:37:07 UTC",
+      "result": {
+        "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout GROUP BY landing_page_path HAVING landing_page_path CONTAINS '/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas' SINCE 2026-09-10 UNTIL 2026-09-16 ORDER BY sessions DESC LIMIT 100",
+        "columns": [
+          {
+            "name": "landing_page_path",
+            "dataType": "STRING"
+          },
+          {
+            "name": "sessions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_with_cart_additions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_reached_checkout",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_completed_checkout",
+            "dataType": "INTEGER"
+          }
+        ],
+        "rows": [
+          [
+            "/ko/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "/ja/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas",
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "rowCount": 2,
+        "chartHint": {
+          "type": "bar",
+          "xAxisColumnIndex": 0,
+          "yAxisColumnIndices": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "yAxisFormat": "number"
+        },
+        "summaryMetric": {
+          "label": "sessions",
+          "value": "2"
+        },
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      }
+    },
+    {
+      "key": "pinterest_referrer_11d",
+      "queried_at_utc": "2026-09-21 20:37:07 UTC",
+      "result": {
+        "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE referrer_name = 'pinterest' GROUP BY referrer_source, utm_source, utm_medium, utm_campaign, utm_content SINCE 2026-09-10 UNTIL 2026-09-20 ORDER BY sessions DESC LIMIT 100",
+        "columns": [],
+        "rows": [],
+        "rowCount": 0,
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      }
+    },
+    {
+      "key": "article_7d_diagnostic",
+      "queried_at_utc": "2026-09-21 20:37:35 UTC",
+      "result": {
+        "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout GROUP BY landing_page_path, referrer_source, referrer_name, utm_source, utm_medium, utm_campaign, utm_content HAVING landing_page_path CONTAINS '/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas' TIMESERIES day SINCE 2026-09-10 UNTIL 2026-09-16 ORDER BY sessions DESC LIMIT 100",
+        "columns": [
+          {
+            "name": "day",
+            "dataType": "DAY_TIMESTAMP"
+          },
+          {
+            "name": "landing_page_path",
+            "dataType": "STRING"
+          },
+          {
+            "name": "referrer_source",
+            "dataType": "STRING"
+          },
+          {
+            "name": "referrer_name",
+            "dataType": "STRING"
+          },
+          {
+            "name": "utm_source",
+            "dataType": "STRING"
+          },
+          {
+            "name": "utm_medium",
+            "dataType": "STRING"
+          },
+          {
+            "name": "utm_campaign",
+            "dataType": "STRING"
+          },
+          {
+            "name": "utm_content",
+            "dataType": "STRING"
+          },
+          {
+            "name": "sessions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_with_cart_additions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_reached_checkout",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_completed_checkout",
+            "dataType": "INTEGER"
+          }
+        ],
+        "rows": [
+          [
+            "2026-09-13",
+            "/ko/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas",
+            "search",
+            "google",
+            "",
+            "",
+            "",
+            "",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "2026-09-16",
+            "/ja/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas",
+            "search",
+            "google",
+            "",
+            "",
+            "",
+            "",
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "rowCount": 2,
+        "chartHint": {
+          "type": "line",
+          "xAxisColumnIndex": 0,
+          "yAxisColumnIndices": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "yAxisFormat": "number"
+        },
+        "summaryMetric": {
+          "label": "sessions",
+          "value": "2"
+        },
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      }
+    }
+  ]
+}

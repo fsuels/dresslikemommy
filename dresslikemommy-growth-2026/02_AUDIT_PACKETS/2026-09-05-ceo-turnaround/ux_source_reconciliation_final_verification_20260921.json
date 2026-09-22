@@ -1,0 +1,51 @@
+{
+  "at_utc": "2026-09-21T23:27:27.616764+00:00",
+  "status": "VERIFIED_WITH_LIMITS",
+  "action_id": "TA06-CURRENT-THEME-SOURCE-RECONCILIATION-20260921",
+  "anchor": "2026-09-21-ceo-current-theme-source-reconciled",
+  "source_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ux_source_reconciliation_source_review_20260921.json",
+    "sha256": "a3d3ee167b126f3a75f3549335930cfe9208343c9bcd6b47956af3f9d435d1eb",
+    "passed": 40
+  },
+  "canonical_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ux_source_reconciliation_canonical_review_20260921.json",
+    "sha256": "65c1ff839d80cb0eb9772856ab715a7d39087a89c2492e780930c4fd84279a84",
+    "passed": 41
+  },
+  "standard_checks": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ux_source_reconciliation_standard_checks_20260921.json",
+    "sha256": "5b486c0850232344ce8deb15c748a63997349196be79dc47649001e683debd2e"
+  },
+  "reviewed_manifest": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ux_source_reconciliation_integration_manifest_20260921.json",
+    "sha256": "c53c062d3bf7f7fa7a579ef76c94a0b034b9d7d80172ba3091b38a3e4342d68a"
+  },
+  "final_checkpoint_metadata": {
+    "reviewed_before_sha256": "89d586c01415cad6c9f252b23b296e86d6d1ace6ffc833525e90bc4b5065f3bb",
+    "final_after_sha256": "6a74df9f7a022f69a4c5f2d81bfd081367acd26e9dc424ecac39f4655003a90c",
+    "allowed_fields": [
+      "status",
+      "verified_at_utc",
+      "verification_path",
+      "independent_review_path",
+      "source_review_path"
+    ],
+    "inverse_reconstructs_exact_reviewed_bytes": true,
+    "business_source_authority_or_wake_change": false
+  },
+  "final_strict_continuity": {
+    "exit_code": 0,
+    "stdout": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 52510 lines; latest anchor 2026-09-21-ceo-current-theme-source-reconciled\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-21-ceo-current-theme-source-reconciled\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n",
+    "stderr": ""
+  },
+  "final_checkpoint_diff_check": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "accepted_owner_records": 82,
+  "recorded_wakes": 66,
+  "root_external_or_git_writes": 0,
+  "outcome": "Current theme-source prerequisite verified with limits; owner Admin publication, full remote theme sync and published buyer acceptance remain incomplete. Overall TA-06 and profitable-growth goal remain PARTIAL."
+}

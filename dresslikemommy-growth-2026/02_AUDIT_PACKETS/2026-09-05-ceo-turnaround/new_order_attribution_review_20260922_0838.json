@@ -1,0 +1,186 @@
+{
+  "schema": "dlm.independent.new_order_attribution_saved_source_review.v1",
+  "recorded_at_utc": "2026-09-22T08:41:49.542160+00:00",
+  "action_id": "TA16-NEW-ORDER-ATTRIBUTION-20260922",
+  "reviewer": "/root/cockpit_current_metrics_source",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "status": "PASS_WITH_LIMITS",
+  "verdict": "PASS_WITH_LIMITS",
+  "checks_passed": 23,
+  "checks_total": 23,
+  "checks": [
+    {
+      "check": "attribution_source_hash",
+      "status": "PASS",
+      "detail": "1bca47c8611079c0249307cd9f68616c2ca35075033d898dd521729856c8612c"
+    },
+    {
+      "check": "accepted_sales_review_frozen",
+      "status": "PASS",
+      "detail": "Accepted 35-check review remains byte-identical."
+    },
+    {
+      "check": "sales_source_checkpoint_bindings",
+      "status": "PASS",
+      "detail": "All three accepted sales source/checkpoint hashes still match; no historical audit repeated."
+    },
+    {
+      "check": "action_shop_identity",
+      "status": "PASS",
+      "detail": "Exact supplemental action and verified saved Shop15571635 identity."
+    },
+    {
+      "check": "one_complete_saved_record",
+      "status": "PASS",
+      "detail": "One normalized record and explicit pagination-complete declaration; raw pageInfo is not retained."
+    },
+    {
+      "check": "qualification_recomputed",
+      "status": "PASS",
+      "detail": "PAID, non-test, noncancelled web order independently qualifies from saved attributes."
+    },
+    {
+      "check": "new_cohort_count_value",
+      "status": "PASS",
+      "detail": "One qualified USD68.20 row agrees with reviewed new cohort; value equality alone does not prove identity."
+    },
+    {
+      "check": "currency",
+      "status": "PASS",
+      "detail": "Currency matches reviewed source and explicit current-total USD."
+    },
+    {
+      "check": "declared_exact_order_join",
+      "status": "PASS",
+      "detail": "Owner explicitly declares transient exact-ID comparison; reviewer cannot reproduce it without retained IDs."
+    },
+    {
+      "check": "window_endpoints",
+      "status": "PASS",
+      "detail": "Declared [September21 20:32:03, September22 08:33:21) UTC window matches reviewed new-creation cohort."
+    },
+    {
+      "check": "supplemental_observation_timing",
+      "status": "PASS",
+      "detail": "Separate saved read08:38:02.266-08:38:02.889 UTC follows sales query; does not extend creation cutoff."
+    },
+    {
+      "check": "query_read_only_fields",
+      "status": "PASS",
+      "detail": "Saved query requests identity, qualification, money, completeness and both journey/UTM surfaces; no mutation."
+    },
+    {
+      "check": "query_validation_declared",
+      "status": "PASS",
+      "detail": "Owner validation declaration retained; no connector/native validator replay."
+    },
+    {
+      "check": "journey_ready",
+      "status": "PASS",
+      "detail": "Shopify customerJourneySummary ready=true in saved row."
+    },
+    {
+      "check": "firstVisit_google_seo",
+      "status": "PASS",
+      "detail": "firstVisit reports source Google and sourceType SEO."
+    },
+    {
+      "check": "firstVisit_utm_null",
+      "status": "PASS",
+      "detail": "firstVisit UTM object is null, not an omitted or reconstructed value."
+    },
+    {
+      "check": "lastVisit_google_seo",
+      "status": "PASS",
+      "detail": "lastVisit reports source Google and sourceType SEO."
+    },
+    {
+      "check": "lastVisit_utm_null",
+      "status": "PASS",
+      "detail": "lastVisit UTM object is null, not an omitted or reconstructed value."
+    },
+    {
+      "check": "summary_matches_row",
+      "status": "PASS",
+      "detail": "Attribution summary equals source row and preserves cross-platform/causality limits."
+    },
+    {
+      "check": "platform_limited_classification",
+      "status": "PASS",
+      "detail": "Supports Shopify-reported Google organic sale, not Google Ads acceptance or paid conversion credit."
+    },
+    {
+      "check": "cost_profit_and_causality_limits",
+      "status": "PASS",
+      "detail": "Costs/profit remain unknown; no GA4/Ads transaction, consent, deduplication or recent-SEO causal proof."
+    },
+    {
+      "check": "source_no_live_writes",
+      "status": "PASS",
+      "detail": "Source owner records read-only operation; no new external action by reviewer."
+    },
+    {
+      "check": "deidentified_privacy",
+      "status": "PASS",
+      "detail": "No persisted order/customer IDs, exact creation timestamps, names, contacts, addresses or source URLs in row."
+    }
+  ],
+  "attribution_source_binding": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/new_order_attribution_20260922_0838.json",
+    "sha256": "1bca47c8611079c0249307cd9f68616c2ca35075033d898dd521729856c8612c"
+  },
+  "accepted_sales_review_binding": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_review_20260922_0833.json",
+    "sha256": "e283604c59df87be2b54c1488007e3a4b93db3e589347e872af5e7128c8163b5",
+    "preserved_frozen": true
+  },
+  "sales_source_sha256": {
+    "order_fulfillment_source_20260922_0833.json": "0a1a9c8afdf78a72569eace2678143b6e7223e1337d42f935d29e4f299141a93",
+    "order_fulfillment_checkpoint_20260922_0833.json": "b5fc4becc45517da8d9b3e711189053097c16c650a40e79cf0a03067d1f220a7",
+    "order_fulfillment_checkpoint_20260921_2032.json": "870094bbf9bcc192596bec94b9e6ec4cc2b74e3f56db7e565b02ecef139ef8df"
+  },
+  "source_observed_between": [
+    "2026-09-22T08:38:02.266Z",
+    "2026-09-22T08:38:02.889Z"
+  ],
+  "creation_window_utc": {
+    "from_inclusive": "2026-09-21T20:32:03Z",
+    "to_exclusive": "2026-09-22T08:33:21Z"
+  },
+  "accepted_attribution": {
+    "qualified_orders": 1,
+    "order_total_usd": "68.20",
+    "platform": "Shopify",
+    "classification": "SHOPIFY_REPORTED_GOOGLE_ORGANIC",
+    "journey_ready": true,
+    "first_visit": {
+      "source": "Google",
+      "sourceType": "SEO",
+      "utmParameters": null
+    },
+    "last_visit": {
+      "source": "Google",
+      "sourceType": "SEO",
+      "utmParameters": null
+    },
+    "exact_order_join": "DECLARED_TRANSIENT_OWNER_JOIN__NOT_INDEPENDENTLY_REPRODUCIBLE"
+  },
+  "safe_parent_wording": "The new USD68.20 qualifying order is one Shopify-reported Google organic sale: its ready customer journey reports Google/SEO for both first and last visits, with both UTM objects null. The exact order join was checked transiently by the source owner and was not persisted. This does not establish Google Ads results, GA4/Ads transaction acceptance, recent SEO-change causality, costs, settlement or retained profit.",
+  "limits": [
+    "Saved-source consistency review only; no native/browser/network/API replay.",
+    "Exact-ID equality is an explicit transient owner assertion, not independently reproducible from the deidentified records. Matching qualification, amount and window corroborate the reviewed cohort but do not replace the ID join.",
+    "Actual query-variable predicate, exact creation timestamps and raw pageInfo/cursors are not retained. Window endpoints and completeness declarations are consistent, but raw filter execution and per-record inclusion cannot be independently rederived.",
+    "Both first/last Google plus SEO support Shopify-reported organic attribution only. Null UTM values alone do not prove organic origin; the sourceType supplies that platform classification.",
+    "No cross-platform GA4/Ads transaction acceptance, paid conversion credit, consent/deduplication proof, recent SEO-change causality, actual cost, settlement or retained-profit result is established."
+  ],
+  "required_corrections": [],
+  "confidence": "H for bound saved-field consistency; exact-ID/window execution and native completeness remain owner-source declarations.",
+  "independent_native_replay": "NOT RUN",
+  "writes": {
+    "owned_artifact_only": "new_order_attribution_review_20260922_0838.json",
+    "accepted_sales_review": 0,
+    "shared_or_execution_records": 0,
+    "git": 0,
+    "external": 0
+  }
+}

@@ -1,0 +1,391 @@
+{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'section-main-blog.css' | asset_url | stylesheet_tag }}
+
+{%- capture default_blog_intro -%}
+  <p>Practical shopping guides for mommy and me outfits, daddy and me shirts, family matching swimsuits, vacation looks, and photo-ready matching family outfits.</p>
+{%- endcapture -%}
+
+{%- liquid
+  assign display_eyebrow = section.settings.eyebrow
+  assign display_title = section.settings.title_override | default: blog.title
+  assign display_intro = section.settings.intro
+
+  if blog.handle == 'news'
+    if display_eyebrow == blank
+      assign display_eyebrow = 'Style Journal'
+    endif
+
+    if section.settings.title_override == blank
+      assign display_title = 'Family Style Journal'
+    endif
+
+    if display_intro == blank
+      assign display_intro = default_blog_intro
+    endif
+  endif
+-%}
+
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+{%- paginate blog.articles by 7 -%}
+  {%- liquid
+    assign featured_article = blank
+    if section.settings.show_featured_post and paginate.current_page == 1 and blog.articles_count > 0
+      assign featured_article = blog.articles.first
+    endif
+  -%}
+  <div class="main-blog page-width section-{{ section.id }}-padding">
+    <header class="main-blog__header{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+      <div class="main-blog__header-copy">
+        {%- if display_eyebrow != blank -%}
+          <p class="main-blog__eyebrow">{{ display_eyebrow | escape }}</p>
+        {%- endif -%}
+        <div class="main-blog__heading-group">
+          <h1 class="main-blog__title title--primary">
+            {{ display_title | escape }}
+          </h1>
+          {%- if display_intro != blank -%}
+            <div class="main-blog__intro rte">
+              {{ display_intro }}
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+      {%- if blog.handle == 'news' -%}
+        <div class="main-blog__header-media" aria-hidden="true">
+          <img
+            src="{{ 'hero-family-boardwalk-premium.jpg' | asset_url }}"
+            alt=""
+            loading="eager"
+            width="2400"
+            height="1000"
+          >
+        </div>
+      {%- endif -%}
+    </header>
+
+    {%- if blog.handle == 'news' -%}
+      <section class="main-blog__spotlight{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        <div class="main-blog__spotlight-card">
+          <div class="main-blog__spotlight-media" aria-hidden="true">
+            <img
+              src="{{ 'home-cat-swimsuits.jpg' | asset_url }}"
+              alt=""
+              loading="lazy"
+              width="1200"
+              height="1500"
+            >
+          </div>
+          <div class="main-blog__spotlight-copy">
+            <p class="main-blog__spotlight-eyebrow">{% if request.locale.iso_code == 'da' %}Populært lige nu{% else %}Trending now{% endif %}</p>
+            <h2 class="main-blog__spotlight-title">{% if request.locale.iso_code == 'da' %}Familiebadetøj, der ser flot ud på billeder{% else %}Family swimwear that looks polished in photos{% endif %}</h2>
+            <p class="main-blog__spotlight-text">{% if request.locale.iso_code == 'da' %}Brug badetøjsguiderne til at sammenligne badedragter til mor og datter, matchende badedragter til familien og strandtøj, før du handler.{% else %}Use the swim guides to compare mother-daughter swimsuits, matching family bathing suits, and beach outfits before you shop.{% endif %}</p>
+          </div>
+          <div class="main-blog__spotlight-actions">
+            <a href="{{ routes.collections_url }}/swimsuits" class="button">{% if request.locale.iso_code == 'da' %}Se badedragter{% else %}Shop swimsuits{% endif %}</a>
+            <a href="{{ routes.collections_url }}/family-swimsuits" class="button button--secondary">{% if request.locale.iso_code == 'da' %}Se familiebadetøj{% else %}Shop family swim{% endif %}</a>
+          </div>
+        </div>
+      </section>
+    {%- endif -%}
+
+    {%- if featured_article != blank -%}
+      {%- liquid
+        assign featured_excerpt = featured_article.excerpt | strip_html
+        if featured_excerpt == blank
+          assign featured_excerpt = featured_article.content | strip_html
+        endif
+      -%}
+      <article class="main-blog__featured{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+        {%- if section.settings.show_image -%}
+          <a href="{{ featured_article.url }}" class="main-blog__featured-media">
+            {%- if blog.handle == 'news' or featured_article.image == blank -%}
+              {%- capture featured_fallback_image_url -%}{% render 'article-featured-image-fallback', article: featured_article, field: 'url' %}{%- endcapture -%}
+              {%- capture featured_fallback_image_width -%}{% render 'article-featured-image-fallback', article: featured_article, field: 'width' %}{%- endcapture -%}
+              {%- capture featured_fallback_image_height -%}{% render 'article-featured-image-fallback', article: featured_article, field: 'height' %}{%- endcapture -%}
+              {%- capture featured_fallback_image_alt -%}{% render 'article-featured-image-fallback', article: featured_article, field: 'alt' %}{%- endcapture -%}
+              {% comment %}theme-check-disable RemoteAsset{% endcomment %}
+              <img
+                src="{{ featured_fallback_image_url | strip }}"
+                alt="{{ featured_fallback_image_alt | strip | default: featured_article.title | escape }}"
+                class="main-blog__featured-image main-blog__featured-image--fallback"
+                loading="eager"
+                fetchpriority="high"
+                width="{{ featured_fallback_image_width | strip | default: 1200 }}"
+                height="{{ featured_fallback_image_height | strip | default: 1500 }}"
+              >
+              {% comment %}theme-check-enable RemoteAsset{% endcomment %}
+            {%- else -%}
+              {{
+                featured_article.image
+                | image_url: width: 1600
+                | image_tag:
+                  class: 'main-blog__featured-image',
+                  widths: '533, 720, 960, 1200, 1600',
+                  sizes: '(min-width: 990px) calc((100vw - 14rem) * 0.58), calc(100vw - 3rem)',
+                  loading: 'eager',
+                  alt: featured_article.image.alt | default: featured_article.title
+              }}
+            {%- endif -%}
+          </a>
+        {%- endif -%}
+        <div class="main-blog__featured-content">
+          <p class="main-blog__featured-kicker">{% if request.locale.iso_code == 'da' %}Udvalgt artikel{% else %}Featured article{% endif %}</p>
+          <h2 class="main-blog__featured-title">
+            <a href="{{ featured_article.url }}">{{ featured_article.title | escape }}</a>
+          </h2>
+          {%- if section.settings.show_date -%}
+            <div class="main-blog__featured-meta caption-with-letter-spacing">
+              {{ featured_article.published_at | time_tag: format: 'date' }}
+            </div>
+            <span class="main-blog__featured-read-time">
+              {{ featured_article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} {% if request.locale.iso_code == 'da' %}minutters læsetid{% else %}min read{% endif %}
+            </span>
+          {%- endif -%}
+          {%- if featured_excerpt != blank -%}
+            <p class="main-blog__featured-excerpt">
+              {{ featured_excerpt | truncatewords: 42 }}
+            </p>
+          {%- endif -%}
+          <a href="{{ featured_article.url }}" class="main-blog__featured-link button button--secondary">
+            {% if request.locale.iso_code == 'da' %}Læs artiklen{% else %}Read article{% endif %}
+          </a>
+        </div>
+      </article>
+    {%- endif -%}
+
+    <div class="blog-articles {% if section.settings.layout == 'collage' %}blog-articles--collage{% endif %}">
+      {%- for article in blog.articles -%}
+        {%- if featured_article != blank and forloop.first -%}
+          {% continue %}
+        {%- endif -%}
+        <div
+          class="blog-articles__article article{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {% if settings.animations_reveal_on_scroll %}
+            data-cascade
+            style="--animation-order: {{ forloop.index | plus: 1 }};"
+          {% endif %}
+        >
+          {%- render 'article-card',
+            blog: blog,
+            article: article,
+            media_height: section.settings.image_height,
+            media_aspect_ratio: article.image.aspect_ratio,
+            show_image: section.settings.show_image,
+            show_date: section.settings.show_date,
+            show_author: section.settings.show_author,
+            show_excerpt: true,
+            lazy_load: false
+          -%}
+        </div>
+      {%- endfor -%}
+    </div>
+
+    {%- if paginate.pages > 1 -%}
+      {%- render 'pagination', paginate: paginate -%}
+    {%- endif -%}
+
+    <section class="main-blog__about{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="main-blog__about-card">
+        <p class="main-blog__about-eyebrow">{% if request.locale.iso_code == 'da' %}Sådan bruger du stiljournalen{% else %}How to use the Style Journal{% endif %}</p>
+        <h2 class="main-blog__about-title">{% if request.locale.iso_code == 'da' %}Find guiden, og køb det matchende look{% else %}Find the guide, then shop the matching look{% endif %}</h2>
+        <div class="main-blog__about-content">
+          <p>{% if request.locale.iso_code == 'da' %}Hver artikel tager udgangspunkt i en konkret anledning: familiebilleder, strandferier, fars dag, mors dag, højtider og matchende hverdagstøj. Start med den guide, der passer til din anledning, og brug derefter links til kollektionerne til at sammenligne det relevante tøj.{% else %}Every article is organized around a real shopping moment: family photos, beach vacations, Father's Day, Mother's Day, holidays, and everyday matching. Start with the guide that matches your occasion, then use the collection links to compare the pieces that fit.{% endif %}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="main-blog__newsletter" id="newsletter-blog">
+      <div class="main-blog__newsletter-card">
+        <p class="main-blog__newsletter-eyebrow">{% if request.locale.iso_code == 'da' %}Hold dig opdateret{% else %}Stay in the loop{% endif %}</p>
+        <h2 class="main-blog__newsletter-title">{% if request.locale.iso_code == 'da' %}Få stylingtips + 10% rabat{% else %}Get styling tips + 10% off{% endif %}</h2>
+        <p class="main-blog__newsletter-text">{% if request.locale.iso_code == 'da' %}Tilmeld dig stiljournalens nyhedsbrev, og få inspiration til matchende tøj, nyheder og en eksklusiv velkomstrabat.{% else %}Join our Style Journal newsletter for matching outfit inspiration, new arrivals, and an exclusive welcome discount.{% endif %}</p>
+        {% form 'customer', id: 'NewsletterBlog', class: 'main-blog__newsletter-form' %}
+          <input type="hidden" name="contact[tags]" value="newsletter,blog-signup">
+          <div class="main-blog__newsletter-field">
+            <input
+              id="NewsletterBlog-email"
+              type="email"
+              name="contact[email]"
+              placeholder="{% if request.locale.iso_code == 'da' %}Din e-mailadresse{% else %}Your email address{% endif %}"
+              required
+              class="main-blog__newsletter-input field__input"
+              aria-label="{% if request.locale.iso_code == 'da' %}E-mailadresse{% else %}Email address{% endif %}"
+              value="{{ form.email }}"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="email"
+              {% if form.errors %}
+                autofocus
+                aria-invalid="true"
+                aria-describedby="NewsletterBlog-error"
+              {% elsif form.posted_successfully? %}
+                aria-describedby="NewsletterBlog-success"
+              {% endif %}
+            >
+            <button type="submit" class="main-blog__newsletter-button button">{% if request.locale.iso_code == 'da' %}Tilmeld dig{% else %}Subscribe{% endif %}</button>
+          </div>
+          {% if form.errors %}
+            <p
+              class="main-blog__newsletter-message main-blog__newsletter-message--error"
+              id="NewsletterBlog-error"
+              data-analytics-newsletter-state="error"
+            >
+              {{ form.errors.translated_fields.email | capitalize }} {{ form.errors.messages.email }}
+            </p>
+          {% endif %}
+          {% if form.posted_successfully? %}
+            <p
+              class="main-blog__newsletter-message main-blog__newsletter-message--success"
+              id="NewsletterBlog-success"
+              tabindex="-1"
+              autofocus
+              data-analytics-newsletter-state="success"
+            >
+              {{ 'newsletter.success' | t }}
+            </p>
+          {% endif %}
+        {% endform %}
+      </div>
+    </section>
+  </div>
+{%- endpaginate -%}
+
+{% schema %}
+{
+  "name": "t:sections.main-blog.name",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.main-blog.settings.header.content"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "default": "Style Journal",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "text",
+      "id": "title_override",
+      "default": "Family Style Journal",
+      "label": "Display title"
+    },
+    {
+      "type": "richtext",
+      "id": "intro",
+      "default": "<p>Outfit guides, styling ideas, and practical shopping advice for mommy and me, daddy and me, and full family matching looks.</p>",
+      "label": "Intro copy"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_featured_post",
+      "default": true,
+      "label": "Show featured first post"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "options": [
+        {
+          "value": "grid",
+          "label": "t:sections.main-blog.settings.layout.options__1.label"
+        },
+        {
+          "value": "collage",
+          "label": "t:sections.main-blog.settings.layout.options__2.label"
+        }
+      ],
+      "default": "collage",
+      "label": "t:sections.main-blog.settings.layout.label",
+      "info": "t:sections.main-blog.settings.layout.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_image",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_image.label"
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "options": [
+        {
+          "value": "adapt",
+          "label": "t:sections.main-blog.settings.image_height.options__1.label"
+        },
+        {
+          "value": "small",
+          "label": "t:sections.main-blog.settings.image_height.options__2.label"
+        },
+        {
+          "value": "medium",
+          "label": "t:sections.main-blog.settings.image_height.options__3.label"
+        },
+        {
+          "value": "large",
+          "label": "t:sections.main-blog.settings.image_height.options__4.label"
+        }
+      ],
+      "default": "medium",
+      "label": "t:sections.main-blog.settings.image_height.label",
+      "info": "t:sections.main-blog.settings.image_height.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_date",
+      "default": true,
+      "label": "t:sections.main-blog.settings.show_date.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_author",
+      "default": false,
+      "label": "t:sections.main-blog.settings.show_author.label"
+    },
+    {
+      "type": "paragraph",
+      "content": "t:sections.main-blog.settings.paragraph.content"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ]
+}
+{% endschema %}

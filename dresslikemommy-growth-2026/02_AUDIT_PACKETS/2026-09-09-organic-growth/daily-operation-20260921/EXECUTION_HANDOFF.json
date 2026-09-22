@@ -1,0 +1,111 @@
+{
+  "schema": "dlm.daily_organic_execution_handoff.v1",
+  "created_at_utc": "2026-09-21T20:59:47.647145+00:00",
+  "task_id": "01a0870a-e632-7773-ac5d-8ee2616b31bc",
+  "automation_id": "review-organic-article-and-sunshine-results",
+  "overall": "IMPLEMENTED_AND_VERIFIED_WITH_LIMITS",
+  "result": "Three overdue or due fixed-window organic outcomes assessed from current website and native-discovery sources. Published P2-P4 receipts consumed without duplicate release. Business lift remains unproven.",
+  "assessment": "ASSESSMENT.json",
+  "readable_result": "READBACK.md",
+  "completed_windows": [
+    {
+      "key": "article_week1",
+      "entity_id": "559471919201",
+      "start": "2026-09-10",
+      "end": "2026-09-16",
+      "original_due": "2026-09-17"
+    },
+    {
+      "key": "sunshine_week1",
+      "entity_id": "343118065387544334",
+      "start": "2026-09-11",
+      "end": "2026-09-17",
+      "original_due": "2026-09-18"
+    },
+    {
+      "key": "p1_week1",
+      "entity_id": "343118065387567020",
+      "start": "2026-09-14",
+      "end": "2026-09-20",
+      "original_due": "2026-09-21"
+    }
+  ],
+  "source_readback_status": "LIVE_VERIFIED_WITH_REPORTING_AND_ATTRIBUTION_LIMITS",
+  "independent_review": {
+    "status": "PASS",
+    "path": "INDEPENDENT_DATA_REVIEW.json",
+    "reviewer": "/root/daily_operation_review",
+    "independence": "DID_NOT_BUILD_OR_EXECUTE",
+    "sha256": "d16dd4209e4fab481b62a6f229ca5c5f3ede00f5ac3bc6903c4c453b97666d63",
+    "checks": 51,
+    "input_hashes_verified": 13,
+    "failed_checks": 0
+  },
+  "verification": [
+    "FINAL_DATA_CHECKS.json",
+    "CONTINUITY_READBACK.json",
+    "RECEIPTS_AND_QA_REVIEW.json",
+    "PINTEREST_RECEIPT_ACCEPTANCE.json"
+  ],
+  "automation": {
+    "status": "ACTIVE",
+    "cadence": "Daily09:00 America/New_York; weekendsincluded; untiluserstop",
+    "receipt": "AUTOMATION_READBACK.json",
+    "schedule_mutations_this_run": 0
+  },
+  "business_result": {
+    "measured_traffic_lift": "NOT_CLAIMED",
+    "measured_sales_lift": "NOT_CLAIMED",
+    "causal_incrementality": "NOT_CLAIMED",
+    "retained_profit": "UNKNOWN",
+    "distinct_paid_order_attribution": "UNAVAILABLE"
+  },
+  "external_writes": 0,
+  "storefront_QA_visits": 0,
+  "browser_cleanup": "BROWSER_CLEANUP.json",
+  "canonical_integration": {
+    "owner_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+    "status": "READY_FOR_PARENT_INTEGRATION",
+    "shared_files_changed_by_this_task": 0,
+    "requested_updates": [
+      "TA-20: ArticleSep10\u201316, SunshineSep11\u201317, P1Sep14\u201320 reviewedSep21 with lowreach and no buyer/liftclaim; preserve originaldue17/18/21 aslatewhereapplicable.",
+      "Datedscorecard: preserve distinct Shopify/GA4/GSC/nativeUTCdefinitions and nullmatchedpaidorders; no summingchannels orcohorts.",
+      "Accept nativeP2/P3/P4publicIDs fromsource, exactpublicationtimesunknown; preserveP5/P6/N2queue, cap, owners andschedules.",
+      "Keep same daily9amoperation; firstnextdue sizingSep22, giftSep23, article14daySep24, Sunshine14daySep25.",
+      "Append one dated outcome/decision anchor and regenerate existingcockpit under parentserializedwriter; runstrictcontinuity."
+    ],
+    "receipt_precedence": "HistoricalRECEIPTS_AND_QA_REVIEW pending-native fields were superseded by newer PINTEREST_RECEIPT_ACCEPTANCE; historical source file preserved."
+  },
+  "single_next_action": {
+    "owner": "existingdailyorganic task",
+    "when": "2026-09-22 09:00 America/New_York",
+    "action": "Assess sizing guide559700574305 September15\u201321 completedweek; consume existingP5publicationreceipt after its native scheduledtime through Pinterestowner.",
+    "why_first": "It is the next matured owned-content window; no need to repeat alreadycompleted releases or these three assessments."
+  },
+  "internal_lanes": [
+    "TA-20 sizingSep22 then giftSep23 due-window review",
+    "Pinterestowner P5 actualpublicationreceipt after Sep22native01:30PM",
+    "Parent canonicalintegration and separate full-order lifecycle"
+  ],
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-06-01",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "NOT_MATERIAL",
+    "decision_changing_evidence": "Later comparable native reach/outbound-click data, fixed due-window qualified product events and matched paid orders; present native counts already confirm very low observed distribution.",
+    "if_evidence_supports_recommendation": "Keep existing page and paced distribution while low sample accumulates.",
+    "if_evidence_opposes_recommendation": "Use a verified native failure or observed buyer drop-off to prepare and execute the smallest in-scope correction through its owner.",
+    "independent_verifier": "/root/daily_operation_review",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+    "autonomous_action_ready": false,
+    "canonical_control_source": "ops/marketing/current_marketing_state.md:204",
+    "organic_observation_date": "2026-09-21",
+    "narrow_task_authority": "Current user standing daily routine zero-ad-spend organic mandate; this run exercised read-only analytics and local packet writing only. No external mutation or expansion of paid/account authority."
+  },
+  "canonical_continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "continuation_prompt": "Resume TA-20 from daily-operation-20260921 and the current canonical queue. Preserve three completed assessments and native UTC limitations. Perform the next due sizing reviewSeptember22, then giftguideSeptember23; consume channel-owner receipts, keep dailyautomationactive and never request repeatapproval for routineownedorganicwork.",
+  "finalized_at_utc": "2026-09-21T21:00:47.479049+00:00",
+  "final_manifest": "FINAL_MANIFEST.json"
+}

@@ -1,0 +1,110 @@
+{
+  "action_id": "TA15-SQ22-CANDIDATE-DESTINATION-FIT-20260922",
+  "recorded_at_utc": "2026-09-22T13:18:25.574660+00:00",
+  "canonical_anchor": "2026-09-22-ceo-halloween-link-and-pinterest-state",
+  "status": "SOURCE_ACCEPTED_WITH_LIMITS__READ_ONLY_DESTINATION_CLASSIFICATION_COMPLETE",
+  "evidence_label": "REPO_KNOWN",
+  "owner_thread": "01a08703-644f-7940-8f67-9a2fa63722bb",
+  "source": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/candidate-destination-fit-20260922/handoff.json",
+    "sha256": "b0ff312e7ba21ad0b7ce5e97526ce105dce21a96d258bfbc666f516e33d9099a"
+  },
+  "source_members": {
+    "source.json": "7bcde1cb53f181b45aec0ef398ae08d1f5cda346e9a03cd07cd538dcf35b388e",
+    "analysis.json": "1273fe0353d5d9d2ed691aee19c207f2978da72e3b7c6b93719e37971951d9ff",
+    "READBACK.md": "cdcbdb1920b600ef4ae806e3bce8eacb3507607e08771f3d7ea9b5ffc18658c0",
+    "root-verification.json": "2273ee16039904343d2879d0462138cb1125211257833e669d87c184ffd8cc2d",
+    "independent-review.json": "84401f335a037618b4fb65c4b8d616e177dcd9609a544d04bba9a26df3fa2b77"
+  },
+  "parent_source_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_sq22_destination_source_review_20260922.json",
+    "sha256": "5150c9f897875c7d5d4797e502490390e843611dfbd0807bd57d178049db76c1"
+  },
+  "source_live_evidence_as_of": "2026-09-22T12:59:49.216Z",
+  "outcomes": [
+    {
+      "query": "celebrity family event outfits",
+      "campaign_id": "506255081",
+      "ad_group_id": "1275435292356142",
+      "ad_id": "79714816628874",
+      "classification": "RETAIN",
+      "confidence": "M",
+      "negative_readiness": "NOT_JUSTIFIED_BY_CURRENT_EVIDENCE"
+    },
+    {
+      "query": "top 10 family costumes",
+      "campaign_id": "506254907",
+      "ad_group_id": "1275435291895118",
+      "ad_id": "79714816594315",
+      "classification": "UNKNOWN",
+      "confidence": "M",
+      "negative_readiness": "NOT_READY"
+    }
+  ],
+  "common_current_native_destination": "https://www.dresslikemommy.com/collections/new-women-outfits",
+  "native_binding_limits": "Current native ad headline hrefs opened directly and rendered Family Matching Outfits. The historical click redirect/served combination and any mobile/tracking override were not joined.",
+  "new_public_finding": {
+    "finding_id": "TA15-SQ22-HALLOWEEN-GUIDE-404-20260922",
+    "source_page": "https://www.dresslikemommy.com/blogs/news/halloween-family-matching-costume-ideas",
+    "broken_target": "https://www.dresslikemommy.com/products/matching-mommy-me-plaid-flannel-shirts-cozy-button-up-jackets-for-fall",
+    "observation": "The guide's first product recommendation opens a rendered 404 page at 12:58:34.770 UTC on September22.",
+    "relationship": "Indirectly relevant site-content defect. Both current paid ad final destinations rendered normally. No historical click or lost-sale attribution to this broken link is established.",
+    "available_evidence_for_owner": "A separate current red-plaid-family-matching-tops page renders a plaid shirt offer present on the paid collection. It is not proven to be the same product, flannel fabric, an equivalent replacement, or a suitable direct substitution for the old article copy.",
+    "focused_tracker_lookup": "Exact old product path/article handle/red-plaid handle had no matches in PROBLEM_TRACKER, action_queue or blocker_board at lookup; this does not prove the defect is globally unknown.",
+    "proposed_owner_action": "Parent routes this exact broken article link to the existing content owner for canonical product/route identification and a minimal copy-link correction through its established authority. Verify replacement wording and public target before any write.",
+    "root_action": "READ_ONLY_EVIDENCE_AND_HANDOFF_ONLY"
+  },
+  "additional_parent_exact_product_source": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/halloween_archived_product_source_20260922.json",
+    "sha256": "54988f196857e3cb3b461a6397417f28bede14b90a96bde95f92d5dcd2715ffb"
+  },
+  "original_dispatch": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_sq22_destination_dispatch_20260922.json",
+    "sha256": "07bf49a7b9e3539fbf195b80fcf14fc83137eb796f5a08f557570256b22af03a"
+  },
+  "observed_completion": {
+    "turn_id": "01a0c92b-9d1b-7bc0-ae83-b1454117d6ff",
+    "status": "completed",
+    "completed_at_unix": 1790082705,
+    "runtime_status": "idle",
+    "cursor": "cfd7b15a-a359-4966-9f61-20f8ec65187b:14"
+  },
+  "association_conflict_status": {
+    "status": "NOT_RUN",
+    "reason": "No candidate advanced to justified conditional Exact exclusion. Readiness was not claimed, so the conditional association/conflict dependency was not triggered. The prior Added/Excluded None cells do not prove inherited exclusion absence."
+  },
+  "business_mutations": 0,
+  "cart_or_checkout_actions": 0,
+  "stopped_settings_tab6_ui_interactions": 0,
+  "overall_TA15": "PARTIAL__PAID_CONTROL_MEASUREMENT_ECONOMICS_OPEN",
+  "live_state_mode": "STALE_READBACK_REQUIRED",
+  "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+  "approved_external_scope": "NONE",
+  "decision_depends_on_uncertain_state": true,
+  "material_decision": true,
+  "decision_changing_evidence": [
+    "Exact native campaign/group/ad identity and shared working destination",
+    "Complete union of 19 observed ad assets: 15 headlines and four descriptions",
+    "Current collection offers coordinated family clothing and contains a live holiday-plaid product",
+    "Current costume-ideas article supplies relevant research context but one checked product link renders 404",
+    "No mature attributed conversion, retained revenue or actual-cost cohort for either query"
+  ],
+  "if_evidence_supports_recommendation": "Keep both literal queries out of the ready negative batch, preserve their distinct RETAIN/UNKNOWN classifications, and address the proved article-link defect through its owner. No new audience, budget, campaign or tracking action.",
+  "if_evidence_opposes_recommendation": "If later exact offer/search-intent evidence or sufficiently mature attributed economics establishes a mismatch, propose only the reviewed literal Exact exclusion after current association/conflict, authority, before-state and rollback checks. If the old article path resolves correctly later, supersede only that dated 404 finding.",
+  "independent_verifier": "/root/cockpit_current_metrics_source",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "limits": [
+    "Current native/public evidence, not an exact historical click-to-ad attribution join.",
+    "Public offering read in English/United States/USD; no UK delivery, GBP pricing or checkout acceptance.",
+    "Only the first collection page and one of three article product links were rendered; store-search results are not exhaustive.",
+    "Red Plaid is a live related offer, not the proven same product or an exact replacement for the broken article target.",
+    "Neither one click nor zero reported conversions establishes waste; no purchases, CPA, ROAS, savings or contribution profit improvements claimed.",
+    "Asset policy labels and public marketing claims were observed, not independently certified.",
+    "Parent verified exact historicProduct7227260797025 ascurrentlyARCHIVED via supportedget_product. Archivecause and fullAPI/liveproduct/handlehistory remainunqualified.",
+    "Article correction remains UNIMPLEMENTED; existing contentowner currently active on a distinctdueassessment, not messaged/overlapped."
+  ],
+  "native_replay_by_parent": "NOT_RUN forMicrosoft/publicbrowser; oneadditionalShopifyexactproductread explicitlyseparate.",
+  "root_dispatches_for_this_completed_step": 1,
+  "new_root_dispatches_for_acceptance": 0,
+  "source_reviews_separate": "Owner23 root +24independent; parent24saved-source; not added as disjoint native coverage."
+}

@@ -1,0 +1,122 @@
+{
+  "schema_version": 1,
+  "observed_on_utc": "2026-09-22",
+  "recorded_at_utc": "2026-09-22T13:06:29.211357+00:00",
+  "owner_thread": "01a08704-8176-7171-b6f5-928a09d7c3f9",
+  "classification": "LIVE_VERIFIED",
+  "status": "VERIFIED_QUEUE_WITH_SOURCE_HOLD",
+  "authority": {
+    "organic_source": "Current daily-operation user request and heartbeat; existing TA-25 sole-publisher claim",
+    "paid_control": {
+      "source_live_evidence_as_of": "2026-06-01",
+      "live_state_mode": "STALE_READBACK_REQUIRED",
+      "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+      "approved_external_scope": "NONE"
+    },
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "NOT_MATERIAL",
+    "decision_changing_evidence": "A current source-qualified comparison supporting N3 and fresh cadence bounds",
+    "if_evidence_supports_recommendation": "Review one distinct source-matched asset and native submission under existing organic scope",
+    "if_evidence_opposes_recommendation": "Retain N3 source hold and existing schedules"
+  },
+  "native_queue": {
+    "account": "Dress Like Mommy | Matching Family Outfits",
+    "profile": "dresslikemommy",
+    "browser": "Codex In-App Browser",
+    "browser_id": "2",
+    "tab_id": "1",
+    "url": "https://www.pinterest.com/dresslikemommy/scheduled-pins/",
+    "count": 3,
+    "rows": [
+      {
+        "content_key": "P5",
+        "scheduled_record_id": "3849566935843924928",
+        "title": "Matching Mother-Daughter Dresses: Choose Each Size",
+        "date": "2026-09-22",
+        "time_ui": "01:30 PM",
+        "board": "Mommy & Me Matching Outfits"
+      },
+      {
+        "content_key": "P6",
+        "scheduled_record_id": "3849568157896098688",
+        "title": "Pastel Mother-Daughter Photo Outfits: Build Your Look",
+        "date": "2026-09-24",
+        "time_ui": "01:30 PM",
+        "board": "Mommy & Me Matching Outfits"
+      },
+      {
+        "content_key": "N2",
+        "scheduled_record_id": "3858290826238337152",
+        "title": "Matching Pajamas Gift Checklist: Plan Each Person's Size",
+        "date": "2026-09-27",
+        "time_ui": "02:00 PM",
+        "board": "Family Matching Pajamas"
+      }
+    ],
+    "timezone": null,
+    "changed_since_20260921": false,
+    "publication_claim": "P5 remains in the scheduled list at the morning readback; no public P5 receipt was claimed or queried prematurely"
+  },
+  "source_qualification": {
+    "content_key": "N3",
+    "title": "Matching tops or dresses for family photos",
+    "status": "SOURCE_AND_DESTINATION_GATE_RETAINED",
+    "public_source_url": "https://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas",
+    "operator_qa_url": "https://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas?utm_source=codex_qa&utm_medium=qa&utm_campaign=pinterest_n3_source_20260922",
+    "browser_id": "2",
+    "tab_id": "4",
+    "evidence": "Fresh task-owned public browser view plus screenshot of buyer-planning section; earlier web result was cached and was not used alone as current proof",
+    "observations": [
+      "Buyer guidance discusses selecting dresses or shirts, sizes, quantities and coordinating owned pieces.",
+      "The guide links two specific mother-daughter dress examples and states each dress is sold separately.",
+      "There is a tops collection link and seasonal styling advice.",
+      "The inspected guide does not establish the promised comparison of specific source-qualified purchasable shirt and dress options."
+    ],
+    "qualification_result": "Do not depict or promise a tops-versus-dresses product comparison from this source. No renamed graphic, invented comparison, or duplicate replacement Pin.",
+    "provisional_candidate_date": "2026-10-01",
+    "candidate_date_is_schedule": false,
+    "cadence_limit": "Date is only a buffered planning candidate. Actual publication bounds, native timezone and fresh queue must be reconciled before scheduling.",
+    "independent_review": "N3_ELIGIBILITY_REVIEW_20260922.md",
+    "independent_review_sha256": "e8e255da42aa87953716572cc46836d5b04c641ea04361f0b9f5e0c6e8c30c72"
+  },
+  "operator_qa": {
+    "exclude_utm_source": "codex_qa",
+    "exclude_utm_medium": "qa",
+    "exclude_utm_campaign": "pinterest_n3_source_20260922",
+    "actions": "One article visit and in-page buyer-section anchor; no product, cart, checkout or consent interaction",
+    "attributable_customer_visit": false
+  },
+  "changes": {
+    "external_business_writes": 0,
+    "native_submissions": 0,
+    "new_assets": 0,
+    "shopify_writes": 0,
+    "paid_or_tracking_or_privacy_changes": 0,
+    "shared_canonical_writes_by_this_task": 0,
+    "local_register_reconciliation": "P2-P4 public identities from accepted Sep21 receipt; actual timestamps remain null; current queue count and P5/P6/N2 readback links updated"
+  },
+  "measurement": {
+    "prior_mature_reviews_repeated": false,
+    "new_business_metrics": null,
+    "sales_or_profit_improvement_proven": false,
+    "source_coverage_limit": "Current queue ends September27, about five calendar days ahead. Seven-to-fourteen-day planning objective is presently short; accuracy gate takes priority over a quota."
+  },
+  "preserved_holds": [
+    "N1, V1 and V2 product/source gates",
+    "N3 exact destination/source promise",
+    "TA-12 catalog ID, consent-test rejection and real purchase acceptance",
+    "All paid launch, budget, bid, billing and Shopify publication gates"
+  ],
+  "evidence_files": {
+    "accepted_public_receipt": "PUBLICATION_AND_COHORT_RECEIPT_20260921.json",
+    "accepted_public_receipt_sha256": "c531281d09b716ea65dcb1274e641d593a08ca477fd885251339c30d3ce66052",
+    "register_before_snapshot": "REGISTER_RECONCILIATION_BEFORE_20260922.json"
+  },
+  "handoff": {
+    "shared_canonical_integrator": "01a08223-036e-7fa3-8961-ecd297163fb5",
+    "canonical_continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+    "next_action": "Existing afternoon run verifies P5 once its scheduled native time has passed; obtain the actual public ID without resubmitting. Preserve P6 and N2.",
+    "source_unblock": "Existing organic destination owner may qualify an actual comparison and underlying purchasable options within separate current authority; this receipt authorizes no Shopify publication.",
+    "rollback": "No external rollback needed. Register rollback may restore the exact before snapshot only if no later register changes depend on this reconciliation."
+  }
+}

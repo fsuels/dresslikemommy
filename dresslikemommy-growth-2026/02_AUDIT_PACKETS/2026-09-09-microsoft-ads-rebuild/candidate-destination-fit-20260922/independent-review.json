@@ -1,0 +1,153 @@
+{
+  "schema": "dlm.microsoft.candidate_destination_fit_independent_review.v1",
+  "action_id": "TA15-SQ22-CANDIDATE-DESTINATION-FIT-20260922",
+  "recorded_at_utc": "2026-09-22T13:08:57.594907+00:00",
+  "verifier": "/root/support_followup_review",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "review_kind": "SAVED_SOURCE_REVIEW_ONLY",
+  "independent_native_replay": "NOT_RUN",
+  "verdict": "PASS_WITH_LIMITS",
+  "source_sha256": {
+    "source.json": "7bcde1cb53f181b45aec0ef398ae08d1f5cda346e9a03cd07cd538dcf35b388e",
+    "analysis.json": "1273fe0353d5d9d2ed691aee19c207f2978da72e3b7c6b93719e37971951d9ff",
+    "READBACK.md": "cdcbdb1920b600ef4ae806e3bce8eacb3507607e08771f3d7ea9b5ffc18658c0",
+    "root-verification.json": "2273ee16039904343d2879d0462138cb1125211257833e669d87c184ffd8cc2d"
+  },
+  "machine_checks_passed": 18,
+  "machine_checks_total": 18,
+  "manual_checks_passed_with_limits": 6,
+  "focused_checks_total": 24,
+  "machine_checks": [
+    {
+      "name": "action_and_account_identity",
+      "result": "PASS",
+      "evidence": "Exact action/account/customer in current source."
+    },
+    {
+      "name": "root_hash_bindings_and_builder_count",
+      "result": "PASS",
+      "evidence": "23root self-checks and frozen digest bindings consistent; not independent native verification."
+    },
+    {
+      "name": "two_exact_current_target_tuples",
+      "result": "PASS",
+      "evidence": "Two exact GB/US campaign/group/RSA tuples; one current ad reported per group."
+    },
+    {
+      "name": "native_asset_url_binding",
+      "result": "PASS",
+      "evidence": "Asset URLs expose matching account/customer/campaign/group/ad/type identities."
+    },
+    {
+      "name": "common_working_destination",
+      "result": "PASS",
+      "evidence": "Same current native href resolves as family collection; display path and keyword dash are not final-override proof."
+    },
+    {
+      "name": "current_vs_historical_dates",
+      "result": "PASS",
+      "evidence": "Sept22current ads are separated from Sept21query observations; no historical click-level served-ad join."
+    },
+    {
+      "name": "asset_union_count_unique",
+      "result": "PASS",
+      "evidence": "Recorded common asset union has19distinctIDs. Per-group pre/post-scroll snapshots are not saved separately for independent reconstruction."
+    },
+    {
+      "name": "asset_type_counts",
+      "result": "PASS",
+      "evidence": "15headlines+4descriptions=19assets; native policy labels are not commercial/whole-account acceptance."
+    },
+    {
+      "name": "first_page_scope",
+      "result": "PASS",
+      "evidence": "36unique first-page product handles; later pages remain unread."
+    },
+    {
+      "name": "offer_samples_in_actual_collection",
+      "result": "PASS",
+      "evidence": "Ivory and RedPlaid examples occur on observed paid-collection page; no catalog-wide qualification."
+    },
+    {
+      "name": "limited_ivory_options",
+      "result": "PASS",
+      "evidence": "Returned optionsShirt/Vest do not verify title-implied shorts or a complete outfit."
+    },
+    {
+      "name": "bounded_costume_search",
+      "result": "PASS",
+      "evidence": "Mixed limited search yields4products/3collections/3articles/0pages; not full-costume absence proof."
+    },
+    {
+      "name": "one_checked_guide_link",
+      "result": "PASS",
+      "evidence": "Only first guide product link tested; other2remainNOT_RUN."
+    },
+    {
+      "name": "rendered404_distinct_from_paid_href",
+      "result": "PASS",
+      "evidence": "One dated rendered404, not instrumentedHTTP status, paid-destination failure or deletion diagnosis."
+    },
+    {
+      "name": "red_plaid_not_replacement_or_buyer_pass",
+      "result": "PASS",
+      "evidence": "Separate liveRedPlaid offer and fuzzy results do not establish replacement equivalence, selected variants or fulfillment."
+    },
+    {
+      "name": "two_decisions_bound_no_ready_negative",
+      "result": "PASS",
+      "evidence": "GBRETAIN/USUNKNOWN; neither exclusion ready or applied."
+    },
+    {
+      "name": "associations_honestly_not_run",
+      "result": "PASS",
+      "evidence": "Association/conflict review skipped because no candidate advanced; priorNonecells not treated as inherited-negative inventory."
+    },
+    {
+      "name": "authority_zero_actions_and_end_timestamp",
+      "result": "PASS",
+      "evidence": "No external/canonical/cart/settings6/editor action or repeated question; source window kept separate from untimestamped preceding keyword reads."
+    }
+  ],
+  "manual_checks": [
+    {
+      "name": "semantic_query_fit_challenge",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "GBRETAIN is defensible because coordinated event clothing is plausible shopping intent; celebrity wording alone does not prove incompatibility. USUNKNOWN correctly preserves full-costume/ranked-list uncertainty while recognizing costume-inspired content and clothing. Neither one click nor zero reported conversions establishes waste or conversion probability."
+    },
+    {
+      "name": "historical_current_and_market_limits",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "Current native RSA and working common href do not identify the exact historical served asset combination, paid click redirect chain, tracking/mobile overrides or searcher intent. EnglishUS/USD readback is not UK/GBP/shipping or all-market acceptance. Campaign names/display paths are not substitute evidence."
+    },
+    {
+      "name": "asset_and_catalog_capture_limits",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "Common19asset rows are internally consistent with root-reported virtualized union and equality. Separate raw snapshots for each group are not available here; root union/equality is not independently replayed.36products are first-page-only, and WebMCP samples/availability flags do not certify full catalog, garments, stock, variants or checkout."
+    },
+    {
+      "name": "one_indirect_404_and_replacement_limit",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "Dated rendered404 is a concrete one-link observation in an indirectly related guide. It is not either paid final destination, instrumentedHTTP status, a permanent deletion or a lost-sale cause. Two other links remain untested. LiveRedPlaid shirt is not established as the same product, flannel fabric or suitable direct copy/link substitute."
+    },
+    {
+      "name": "honest_skipped_dependency_and_owner_routing",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "Association/conflict reviewNOT_RUN is appropriate because no exclusion advanced and readiness is not claimed. Retaining a query grants no campaign-spend authority or resolution of pending pause/budget decisions. Routing the exact guide defect to the existing content owner for fresh canonical identification is proportionate; no duplicate rewrite or blind replacement is authorized."
+    },
+    {
+      "name": "review_independence_and_out_of_scope",
+      "result": "PASS_WITH_LIMITS",
+      "finding": "DID_NOT_BUILD_OR_EXECUTE. Independent native replayNOT_RUN. Only four named frozen sources reviewed; no browser/API/performance re-extraction, support/question, cart/checkout, source edits or stopped-tab6 interaction. Root-reported prior-handoff integrity and focused tracker lookup were not separately replayed."
+    }
+  ],
+  "required_corrections": [],
+  "decision_acceptance": {
+    "GB_celebrity_family_event_outfits": "RETAIN__NO_NEGATIVE_JUSTIFIED",
+    "US_top_10_family_costumes": "UNKNOWN__NO_NEGATIVE_READY",
+    "guide_first_product_link": "DATED_RENDERED_404__INDIRECT_SITE_CONTENT_DEFECT",
+    "red_plaid_replacement": "NOT_ESTABLISHED"
+  },
+  "preservation": "Only independent-review.json created. Frozen source/analysis/README/root verification and concurrent parent-owned handoff/checkpoint/canonical work remain unchanged by reviewer.",
+  "next_action": "Parent may route the exact guide first-product-link defect to the existing content owner for canonical target and wording qualification, preserving RETAIN/UNKNOWN decisions and all pending paid-control questions."
+}

@@ -1,0 +1,293 @@
+{
+  "schema": "dlm.microsoft.receiver_day_independent_review.v1",
+  "action_id": "TA15-RECEIVER-AND-DAY-20260922",
+  "recorded_at_utc": "2026-09-22T08:44:50.320778+00:00",
+  "verifier": "/root/support_followup_review",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "review_kind": "SAVED_SOURCE_REVIEW_ONLY",
+  "independent_native_replay": "NOT RUN",
+  "verdict": "PASS_WITH_LIMITS",
+  "source_sha256": {
+    "source.json": "a222ee209c195b5f3bb2844a7940dce4706ecc03e2264eb6cb024922414a463c",
+    "readback.json": "a23a99a0e6786fe0467b6d0236d5ff747791c6c799ba2d3176ab1186c13975ca",
+    "root-verification.json": "ff1f014eae8eb914512dbbab20cc2753f9c7b8e1b2eb3e7570b05bf9e1d2ee83",
+    "READBACK.md": "4fb1065fd56332b120511ac984ed710409d196c407bb68fbb9235d0bc387b128",
+    "support-addendum.md": "5f37d0ab4252fea85a522ff87ac5a8d4fcc6e93b934bd36c2fd753d5d1e7cdea"
+  },
+  "prior_configuration_reference": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/support-followup-20260921/account-drift-readback.json",
+    "sha256": "50827af4fb1e237fda0eeaf9c7e78d0f535a5fa0a388e48610b7d41766ef1899",
+    "use": "DATED ID/STATUS/BUDGET COMPARISON ONLY"
+  },
+  "machine_checks_passed": 43,
+  "machine_checks_total": 43,
+  "machine_checks": [
+    {
+      "name": "account_customer_uet",
+      "result": "PASS",
+      "evidence": "Exact account/customer/UET IDs agree."
+    },
+    {
+      "name": "source_and_builder_bindings",
+      "result": "PASS",
+      "evidence": "Source and readback digest bindings agree."
+    },
+    {
+      "name": "builder_count_not_independence",
+      "result": "PASS",
+      "evidence": "Builder27/27 is explicitly self-check evidence."
+    },
+    {
+      "name": "selected_grid_shape",
+      "result": "PASS",
+      "evidence": "14 rows of17 selected cells; source states first17of34, not a raw export."
+    },
+    {
+      "name": "unique_current_campaigns",
+      "result": "PASS",
+      "evidence": "Nine distinct current campaign bindings."
+    },
+    {
+      "name": "six_enabled_three_paused",
+      "result": "PASS",
+      "evidence": "Current6 Enabled/3 Paused; not historical hourly statuses."
+    },
+    {
+      "name": "status_lists_match",
+      "result": "PASS",
+      "evidence": "Readback status lists match source."
+    },
+    {
+      "name": "prior_tuple_binding",
+      "result": "PASS",
+      "evidence": "Prior file used only for exact dated ID/status/budget equality."
+    },
+    {
+      "name": "enabled_budget_120",
+      "result": "PASS",
+      "evidence": "Six enabledUSD20 allocations totalUSD120."
+    },
+    {
+      "name": "all_budget_163",
+      "result": "PASS",
+      "evidence": "USD163 includesUSD43 paused allocations; not spend, authority or hard cap."
+    },
+    {
+      "name": "campaign_spend_usd_sum",
+      "result": "PASS",
+      "evidence": "Nine campaign cells reconcile spend_usd."
+    },
+    {
+      "name": "network_spend_usd_sum",
+      "result": "PASS",
+      "evidence": "Search + Audience = displayed overall spend_usd."
+    },
+    {
+      "name": "campaign_clicks_sum",
+      "result": "PASS",
+      "evidence": "Nine campaign cells reconcile clicks."
+    },
+    {
+      "name": "network_clicks_sum",
+      "result": "PASS",
+      "evidence": "Search + Audience = displayed overall clicks."
+    },
+    {
+      "name": "campaign_impressions_sum",
+      "result": "PASS",
+      "evidence": "Nine campaign cells reconcile impressions."
+    },
+    {
+      "name": "network_impressions_sum",
+      "result": "PASS",
+      "evidence": "Search + Audience = displayed overall impressions."
+    },
+    {
+      "name": "search_readback_values",
+      "result": "PASS",
+      "evidence": "Search normalized values match selected source cells."
+    },
+    {
+      "name": "audience_readback_values",
+      "result": "PASS",
+      "evidence": "Audience normalized values match selected source cells."
+    },
+    {
+      "name": "reported_zero_cells",
+      "result": "PASS",
+      "evidence": "Reported conversion/revenue zeros; no no-order inference."
+    },
+    {
+      "name": "average_cpc",
+      "result": "PASS",
+      "evidence": "Recorded0.156383 agrees with spend/click arithmetic."
+    },
+    {
+      "name": "audience_share",
+      "result": "PASS",
+      "evidence": "Recorded59.5918% agrees with source."
+    },
+    {
+      "name": "completed_vs_partial_dates",
+      "result": "PASS",
+      "evidence": "CompletedSeptember21 is separate from partialSeptember22."
+    },
+    {
+      "name": "receiver_today_normalized_table",
+      "result": "PASS",
+      "evidence": "Selected TSV agrees with normalized event counts."
+    },
+    {
+      "name": "receiver_today_chart_table_sum",
+      "result": "PASS",
+      "evidence": "Table and24hour chart total165events, not distinct orders."
+    },
+    {
+      "name": "receiver_yesterday_normalized_table",
+      "result": "PASS",
+      "evidence": "Selected TSV agrees with normalized event counts."
+    },
+    {
+      "name": "receiver_yesterday_chart_table_sum",
+      "result": "PASS",
+      "evidence": "Table and24hour chart total776events, not distinct orders."
+    },
+    {
+      "name": "today_purchase_one",
+      "result": "PASS",
+      "evidence": "One Custom purchase event, no attribution or distinct-order proof."
+    },
+    {
+      "name": "yesterday_no_rendered_purchase",
+      "result": "PASS",
+      "evidence": "Absence limited to rendered table."
+    },
+    {
+      "name": "parameter_names_only",
+      "result": "PASS",
+      "evidence": "Four names without parameter values or order identity."
+    },
+    {
+      "name": "regional_page_signal25",
+      "result": "PASS",
+      "evidence": "Page25% is rolling regional signal presence."
+    },
+    {
+      "name": "regional_shopping_signal0",
+      "result": "PASS",
+      "evidence": "Three checked shopping types report0% in the same regional diagnostic."
+    },
+    {
+      "name": "unknown_consent_denominators",
+      "result": "PASS",
+      "evidence": "Unknown denominators; no selected-day or granted-consent inference."
+    },
+    {
+      "name": "purchase_healthy_no_regional_sample",
+      "result": "PASS",
+      "evidence": "Healthy means no regional purchase sample, not a passing consent test."
+    },
+    {
+      "name": "goal_event_tag_value",
+      "result": "PASS",
+      "evidence": "Matching event/tag, variable value andUSD0 fallback; not value receipt."
+    },
+    {
+      "name": "goal_windows_attribution",
+      "result": "PASS",
+      "evidence": "CountAll/30dayclick/1dayview/Lastclick/optimizationYes consistent."
+    },
+    {
+      "name": "goal_cancel_report",
+      "result": "PASS",
+      "evidence": "Root reports runtime innerText equality andCancel; raw after text is not independently available."
+    },
+    {
+      "name": "goal_dash_unavailable",
+      "result": "PASS",
+      "evidence": "Unavailable goal dash is not campaign-reported numeric zero."
+    },
+    {
+      "name": "measurement_metrics_not_claimed",
+      "result": "PASS",
+      "evidence": "No verified sender/order attribution/value/dedup/repair/CPA/profit."
+    },
+    {
+      "name": "authority_mutation_boundaries",
+      "result": "PASS",
+      "evidence": "Pending owner decisions, no business mutation or shared interval."
+    },
+    {
+      "name": "same_case_addendum_local_unsent",
+      "result": "PASS",
+      "evidence": "Same existing case; no new send, reply or support repair."
+    },
+    {
+      "name": "addendum_timestamp_correction",
+      "result": "PASS",
+      "evidence": "Corrected draft window includes saved08:27:56NeedAttention header."
+    },
+    {
+      "name": "cpc_dates_preserved",
+      "result": "PASS",
+      "evidence": "Prior cap evidence retains its date; no fresh cap repair inferred."
+    },
+    {
+      "name": "capture_recording_order",
+      "result": "PASS",
+      "evidence": "Source capture, cleanup and record creation are distinct and ordered."
+    }
+  ],
+  "manual_checks": [
+    {
+      "name": "selected_source_not_raw_export",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Selected DOM/tooltips and first17of34 cells only; not a raw export or independent screenshot verification. Status/ID linkage is root-observed accessible-row/link evidence."
+    },
+    {
+      "name": "configuration_comparison_scope",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Prior receipt used only for9 dated ID/status/budget tuples. Current statuses are not each historical hour or authorization;120vs163 are configured allocations, not spend or hard ceilings."
+    },
+    {
+      "name": "event_order_date_grain",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "165/776chart-table totals are event counts across traffic sources, not distinct orders or Microsoft attribution. Today is partial; Yesterday lacks a rendered purchase row. Relative last-received strings are not exact selected-day timestamps."
+    },
+    {
+      "name": "consent_population_and_cause",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "25%page and0%shopping reflect7day EEA/UK/Switzerland signal presence with unknown denominators. Not selected-day consent, granted-consent rate, legal compliance or isolated app/publisher causal proof. PurchaseHealthy has no regional sample."
+    },
+    {
+      "name": "goal_preservation_limit",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Root tested before/after equality on runtime innerText. Only normalized before rows and equality assertion are saved; reviewer did not independently reproduce after equality. Configuration andUSD0fallback do not prove received order value or repair."
+    },
+    {
+      "name": "support_privacy_and_authority",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Draft contains necessary account/UET/case identifiers and aggregates, without customer/order PII or credentials. It remains local/unsent, preserves case7108824779 and grants no account/app/tracking/consent/campaign change. No new engineering acceptance or support outcome verified."
+    },
+    {
+      "name": "financial_false_zero_limits",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Reported zero conversions/revenue and UI CPA0.00 do not establish no real sales or true acquisition cost. Goal dash is unavailable. No CPA/ROAS/profit/savings or event-order join is inferred."
+    },
+    {
+      "name": "independent_review_boundary",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Reviewer did not build or execute capture. No browser/API/email/support/order action; independent native replay NOT RUN. Only independent-review.json created."
+    }
+  ],
+  "resolved_findings": [
+    {
+      "finding": "Draft initially associated NeedAttention with08:25–08:26, while saved header is08:27:56.110.",
+      "resolution": "Root broadened the draft observation window to08:25–08:28UTC and normalized prose spacing. Final version reread and hash-bound; source data unchanged.",
+      "status": "RESOLVED"
+    }
+  ],
+  "required_corrections": [],
+  "verification_execution_note": "Initial local validation command had a Python syntax error before any code executed or file was written. Corrected command completed all checks below.",
+  "next_action": "Root may hand back this reviewed dated receipt; preserve pending account decisions, existing support case and exact authority boundaries."
+}

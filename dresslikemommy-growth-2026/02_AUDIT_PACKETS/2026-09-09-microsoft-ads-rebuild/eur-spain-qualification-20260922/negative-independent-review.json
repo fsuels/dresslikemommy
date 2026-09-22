@@ -1,0 +1,89 @@
+{
+  "schema": "dlm.microsoft.negative_sample_independent_review.v1",
+  "recorded_at_utc": "2026-09-22T04:42:09.933171+00:00",
+  "verifier": "/root/support_followup_review",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "review_kind": "SAVED_EVIDENCE_REVIEW_ONLY",
+  "independent_native_replay": "NOT_RUN",
+  "source": "negative-readback.json",
+  "source_sha256": "eba8b62b096ddad4f8e15bcada929ada96482df07581ffae5ccfc2ed8d1e3d49",
+  "verdict": "PASS_WITH_LIMITS",
+  "machine_checks_passed": 11,
+  "machine_checks_total": 11,
+  "checks": [
+    {
+      "name": "identity_fields",
+      "result": "PASS",
+      "evidence": "Exact Microsoft account/customer/EUR campaign."
+    },
+    {
+      "name": "native_url_identity",
+      "result": "PASS",
+      "evidence": "Native URL IDs agree with fields."
+    },
+    {
+      "name": "observed_count",
+      "result": "PASS",
+      "evidence": "20 listed observed terms."
+    },
+    {
+      "name": "unique_terms",
+      "result": "PASS",
+      "evidence": "All20 terms distinct; singular/plural entries retained."
+    },
+    {
+      "name": "campaign_phrase_sample",
+      "result": "PASS",
+      "evidence": "Recorded scope is Campaign/Phrase."
+    },
+    {
+      "name": "rendered_vs_page_size",
+      "result": "PASS",
+      "evidence": "20 rendered rows are distinguished from the200-row page-size control."
+    },
+    {
+      "name": "full_count_unknown",
+      "result": "PASS",
+      "evidence": "No full-list total inferred."
+    },
+    {
+      "name": "zero_changes",
+      "result": "PASS",
+      "evidence": "No negative mutations claimed."
+    },
+    {
+      "name": "unexamined_coverage_flags",
+      "result": "PASS",
+      "evidence": "Shared-list and ad-group coverage remain unexamined."
+    },
+    {
+      "name": "later_supplement_timestamp",
+      "result": "PASS",
+      "evidence": "Supplement04:40:21.786UTC is later than previously reviewed main source04:31:59.902UTC; main file was not reopened or changed."
+    },
+    {
+      "name": "sample_status_not_complete",
+      "result": "PASS",
+      "evidence": "Status explicitly preserves full-coverage uncertainty."
+    }
+  ],
+  "manual_checks": [
+    {
+      "name": "language_and_sample_description",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Listed20 English craft/pattern/tutorial terms support the observed sample description; not a complete multilingual negative inventory."
+    },
+    {
+      "name": "no_presence_absence_or_savings_overclaim",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Packet explicitly leaves negatives outside the rendered sample unverified and does not infer ideas/Pakistan/polos presence or absence. No savings, quality or conversion efficacy is claimed."
+    },
+    {
+      "name": "independent_evidence_boundary",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Native state was observed by root. This review checks only the supplemental saved JSON, not an independent browser replay."
+    }
+  ],
+  "required_corrections": [],
+  "preservation": "Only negative-independent-review.json created. Frozen main receipt, README, main independent review and supplemental source remain unchanged. No external or canonical action."
+}

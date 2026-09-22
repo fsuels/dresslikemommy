@@ -1,0 +1,1 @@
+mutation HalloweenArticleBodyUpdate($id: ID!, $article: ArticleUpdateInput!) { articleUpdate(id:$id,article:$article) { article { id handle body title publishedAt isPublished updatedAt } userErrors { field message code } } }

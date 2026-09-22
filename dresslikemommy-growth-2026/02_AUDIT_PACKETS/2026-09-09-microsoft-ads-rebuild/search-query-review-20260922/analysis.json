@@ -1,0 +1,311 @@
+{
+  "action_id": "TA15-SEARCH-QUERY-REVIEW-20260922",
+  "prepared_at": "2026-09-22T12:37:09.497331+00:00",
+  "status": "LOCAL_QUERY_REVIEW_COMPLETE__LIVE_OPTIMIZATION_BLOCKED",
+  "report_date": "2026-09-21",
+  "report_timezone_label": "(GMT-05:00) Eastern Time (U.S. & Canada)",
+  "source_live_evidence_as_of": "2026-09-22T12:33:42.616Z",
+  "live_state_mode": "READ_ONLY_MARKETING_RECONCILIATION",
+  "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+  "approved_external_scope": "NONE",
+  "numeric_total_daily_budget_authorized": null,
+  "maximum_30_day_test_loss_authorized": null,
+  "retained_owner_cpc_ceiling_usd": "0.15",
+  "metrics": {
+    "clicked_query_rows": 20,
+    "clicks": 20,
+    "search_spend_usd": "2.97",
+    "clicked_row_impressions": 23,
+    "all_reported_search_impressions": 617,
+    "unrounded_mean_search_cpc_usd": "0.1485",
+    "above_ceiling_clicks": 12,
+    "above_ceiling_spend_usd": "2.21",
+    "above_ceiling_click_share_pct": "60.00",
+    "above_ceiling_spend_share_pct": "74.41",
+    "phrase_close_variant_clicks": 19,
+    "exact_close_variant_clicks": 1,
+    "reported_conversions": "0.00",
+    "reported_revenue_usd": "0.00",
+    "verified_attributed_purchases": null,
+    "verified_cpa_usd": null,
+    "verified_contribution_profit_usd": null,
+    "expected_savings_usd": null,
+    "by_campaign": {
+      "GB": {
+        "clicks": 4,
+        "above_ceiling_clicks": 2,
+        "spend_usd": "0.58",
+        "above_ceiling_spend_usd": "0.36"
+      },
+      "US": {
+        "clicks": 13,
+        "above_ceiling_clicks": 9,
+        "spend_usd": "2.08",
+        "above_ceiling_spend_usd": "1.66"
+      },
+      "AU": {
+        "clicks": 1,
+        "above_ceiling_clicks": 0,
+        "spend_usd": "0.09",
+        "above_ceiling_spend_usd": "0"
+      },
+      "CA": {
+        "clicks": 1,
+        "above_ceiling_clicks": 1,
+        "spend_usd": "0.19",
+        "above_ceiling_spend_usd": "0.19"
+      },
+      "EUR": {
+        "clicks": 1,
+        "above_ceiling_clicks": 0,
+        "spend_usd": "0.03",
+        "above_ceiling_spend_usd": "0"
+      }
+    }
+  },
+  "confirmed_finding": {
+    "campaign_id": "506255081",
+    "field": "Max. CPC",
+    "observed_usd": "0.20",
+    "retained_owner_ceiling_usd": "0.15",
+    "relationship": "Current checked native setting exceeds the retained owner ceiling by USD0.05. September21 had two GB Search clicks above USD0.15. These separately dated observations do not establish the exact historical bid setting or sole causal mechanism.",
+    "supported_correction_candidate": {
+      "target_usd": "0.15",
+      "status": "NOT_ENTERED_NOT_SAVED",
+      "conditions": "Exact current authority, resolved settings exit warning, fresh native before-state and bid-cap availability at Save, independent review, after-state. Do not change budget, strategy, status, other campaigns or tracking as part of this correction."
+    }
+  },
+  "row_reviews": [
+    {
+      "source_row": 1,
+      "query": "celebrity family event outfits",
+      "campaign_id": "506255081",
+      "disposition": "CONDITIONAL_EXACT_REVIEW",
+      "reason": "Celebrity-event wording may indicate editorial inspiration. Product-shopping intent remains possible; confirm offer mismatch before excluding.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 2,
+      "query": "adult and baby matching outfits",
+      "campaign_id": "506254907",
+      "disposition": "RETAIN_QUALIFY_SIZES",
+      "reason": "Matching adult/baby intent is commercially relevant in principle. Verify offered baby sizes and compatible adult pieces.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 3,
+      "query": "top 10 family costumes",
+      "campaign_id": "506254907",
+      "disposition": "CONDITIONAL_EXACT_REVIEW",
+      "reason": "Top-10 wording suggests list/research intent. One click is not evidence of unprofitable traffic; confirm costume/destination fit before excluding.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 4,
+      "query": "matching mother daughter dresses",
+      "campaign_id": "506254907",
+      "disposition": "RETAIN_ROUTING_REVIEW",
+      "reason": "Relevant mother/daughter dress intent reached Family Matching Outfits. Review actual ad and landing-page alignment before any routing change; do not exclude a core buying term.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 5,
+      "query": "mum outfits",
+      "campaign_id": "506255081",
+      "disposition": "RETAIN_AMBIGUOUS",
+      "reason": "Mum outfits is generic and omits matching/daughter. Inspect offer fit; do not block mum or mother across the account.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 6,
+      "query": "mother and baby matching pyjamas",
+      "campaign_id": "506255081",
+      "disposition": "RETAIN_QUALIFY_SIZES",
+      "reason": "Mother/baby pyjama intent may fit if compatible baby sizes exist. Preserve British spelling; no automatic baby exclusion.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 7,
+      "query": "family picture outfits spring",
+      "campaign_id": "506255076",
+      "disposition": "RETAIN_QUALIFY_OFFER",
+      "reason": "Family-photo outfit intent may fit. September is not evidence against spring wording for Australian shoppers; country name alone is not user-location proof.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 8,
+      "query": "red dress for mother and daughter",
+      "campaign_id": "506254907",
+      "disposition": "RETAIN_QUALIFY_OFFER",
+      "reason": "Matching red mother/daughter dresses is specific shopping intent; verify red variants and paired sizes before targeting expansion.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 9,
+      "query": "matching mom and daughter disney dresses",
+      "campaign_id": "506254907",
+      "disposition": "RETAIN_QUALIFY_OFFER",
+      "reason": "Disney-specific offer fit and rights are unverified. No claim of catalog absence or infringement; no blanket Disney exclusion.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 10,
+      "query": "mommy and me matching dresses",
+      "campaign_id": "506254907",
+      "disposition": "RETAIN_SEMANTIC_FIT",
+      "reason": "Core matching mother/daughter dress intent. Report marks Exact close variant. Do not remove on a single zero-reported-conversion click.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 11,
+      "query": "one mother dress",
+      "campaign_id": "506254907",
+      "disposition": "RETAIN_AMBIGUOUS",
+      "reason": "One mother dress may be generic or differently worded shopping intent. No intent conclusion strong enough for a live exclusion.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 12,
+      "query": "matching mother daughter costume",
+      "campaign_id": "506254907",
+      "disposition": "RETAIN_QUALIFY_OFFER",
+      "reason": "Mother/daughter costume offer fit unverified. Do not broadly block costume or matching mother/daughter intent.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 13,
+      "query": "matching mom a d daughter disney outfits",
+      "campaign_id": "506254907",
+      "disposition": "RETAIN_QUALIFY_OFFER",
+      "reason": "Misspelled Disney-specific query; offer fit and rights unverified. Keep literal spelling in diagnostics and do not generalize to all Disney variants.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 14,
+      "query": "mommy and me nightgowns",
+      "campaign_id": "506254907",
+      "disposition": "RETAIN_QUALIFY_OFFER",
+      "reason": "Matching nightgown cut is a product-type question. No inventory check this run; retain until offer fit is known.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 15,
+      "query": "button down matching pjs mama and me",
+      "campaign_id": "506254907",
+      "disposition": "RETAIN_QUALIFY_OFFER",
+      "reason": "Specific matching button-down pyjama intent; verify style and sizes. No category exclusion.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 16,
+      "query": "bikini mom and daughter",
+      "campaign_id": "506254907",
+      "disposition": "RETAIN_QUALIFY_OFFER",
+      "reason": "Matching bikini intent can fit swimwear; verify actual design and sizes rather than infer from category name.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 17,
+      "query": "clothes to wear for fall family pictures",
+      "campaign_id": "506255071",
+      "disposition": "RETAIN_QUALIFY_OFFER",
+      "reason": "Fall-family-photo clothing may fit. Wording can be research or purchase oriented; no blanket pictures/fall exclusion.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 18,
+      "query": "dad and son matching shirts button up",
+      "campaign_id": "506254907",
+      "disposition": "RETAIN_SEMANTIC_FIT",
+      "reason": "Father/son button-up shirt intent aligns with the separately reviewed offer cohort; prior product-source dates remain separate. No new product read or negative proposed.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 19,
+      "query": "matching christmas tshirts",
+      "campaign_id": "506255081",
+      "disposition": "RETAIN_QUALIFY_OFFER",
+      "reason": "Matching Christmas T-shirts may be valid seasonal shopping. Verify actual style and delivery evidence before claims or expansion.",
+      "live_action": "NONE"
+    },
+    {
+      "source_row": 20,
+      "query": "mother daughter coordinated clothing",
+      "campaign_id": "506255284",
+      "disposition": "RETAIN_SEMANTIC_FIT",
+      "reason": "Coordinated mother/daughter clothing is relevant in principle. English query and EUR campaign label do not establish language demand or user country.",
+      "live_action": "NONE"
+    }
+  ],
+  "conditional_exact_candidates": [
+    {
+      "candidate_id": "TA15-SQ22-GB",
+      "text": "celebrity family event outfits",
+      "match_type": "Exact",
+      "scope": "AdGroup",
+      "campaign_id": "506255081",
+      "ad_group_id": "1275435292356142",
+      "ad_group_name": "Family Matching Outfits",
+      "observed_clicks": 1,
+      "observed_spend_usd": "0.09",
+      "status": "LOCAL_CONDITIONAL_REVIEW_ONLY",
+      "reason": "Celebrity-event wording may indicate editorial inspiration. Product-shopping intent remains possible; confirm offer mismatch before excluding.",
+      "activation_conditions": [
+        "Confirm the actual ad/destination and offered product cohort do not serve this specific query intent.",
+        "Read current ad-group, campaign, shared and account-level negatives; check duplication and conflicts.",
+        "Obtain current exact external-write authority; preserve the existing pending owner questions.",
+        "Re-read exact campaign/group IDs and capture before-state; apply only the individually reviewed literal Exact candidate, if still justified."
+      ],
+      "rollback_if_ever_authorized": "Remove only the newly created negative ID from this exact ad group; preserve pre-existing exclusions and other campaigns. No rollback needed now because nothing was applied."
+    },
+    {
+      "candidate_id": "TA15-SQ22-US",
+      "text": "top 10 family costumes",
+      "match_type": "Exact",
+      "scope": "AdGroup",
+      "campaign_id": "506254907",
+      "ad_group_id": "1275435291895118",
+      "ad_group_name": "Family Matching Outfits",
+      "observed_clicks": 1,
+      "observed_spend_usd": "0.20",
+      "status": "LOCAL_CONDITIONAL_REVIEW_ONLY",
+      "reason": "Top-10 wording suggests list/research intent. One click is not evidence of unprofitable traffic; confirm costume/destination fit before excluding.",
+      "activation_conditions": [
+        "Confirm the actual ad/destination and offered product cohort do not serve this specific query intent.",
+        "Read current ad-group, campaign, shared and account-level negatives; check duplication and conflicts.",
+        "Obtain current exact external-write authority; preserve the existing pending owner questions.",
+        "Re-read exact campaign/group IDs and capture before-state; apply only the individually reviewed literal Exact candidate, if still justified."
+      ],
+      "rollback_if_ever_authorized": "Remove only the newly created negative ID from this exact ad group; preserve pre-existing exclusions and other campaigns. No rollback needed now because nothing was applied."
+    }
+  ],
+  "candidate_limit": "The two candidates total two historical clicks and USD0.29, not demonstrated waste or forecast savings. They are narrower review options, not approved negatives or an upload/import file.",
+  "credible_alternative": "Retain both candidate queries while collecting exact offer/landing evidence. This is the selected live behavior until that evidence and authority change. Broad informational/category negatives risk suppressing relevant shoppers.",
+  "prediction": "If a candidate is later justified and authorized, an Exact ad-group negative should prevent only its literal matching query in the bound ad group under native matching rules; it cannot establish lower CPA/profit and will not exclude all synonyms or other groups.",
+  "success_and_kill": "A future change passes only if the native exact negative ID/scope/match reads back and no relevant offering/keyword conflict is found. Kill on relevant-offer evidence, uncertain binding, inherited conflict, new authority mismatch, or another unexpected unsaved-change prompt. Evaluate business outcomes only after valid attribution and actual costs exist.",
+  "priority": "Resolve the existing paid-control decision before expanding or optimizing active campaigns; the pending six-campaign pause question and daily-budget/max30-day-loss question remain unanswered and are not repeated.",
+  "limits": [
+    "One completed reporting day and one click per query, not statistically mature conversion cohorts.",
+    "Unresolved measurement makes zero reported conversions inadequate evidence of no orders.",
+    "Audience USD4.38/27clicks from the separately accepted Sep21 network report is outside this Search-query review. No placements inferred.",
+    "All observed clicked query text is English; no other-language demand conclusion.",
+    "Added/Excluded None does not enumerate inherited negatives.",
+    "No live ad or landing destination was inspected for these two candidates this run.",
+    "No margins, retained revenue, refunds, or actual fulfillment/payment costs reconciled.",
+    "No general rule promotion, broad exclusions, shared-list edits, new campaigns, support retry, order read, or production write."
+  ],
+  "public_method_source": {
+    "url": "https://learn.microsoft.com/en-us/advertising/guides/negative-keywords?view=bingads-13",
+    "retrieved_on": "2026-09-22",
+    "application": "Microsoft documents Exact and Phrase negatives, assignment to campaigns/ad groups, inherited exclusions, and a conflict report. Use explicit Exact for these local candidates; broad scope is not assumed.",
+    "limit": "Documentation supports matching/assignment method, not the commercial merit of either candidate."
+  },
+  "business_mutations": 0,
+  "shared_canonical_mutations": 0,
+  "pending_owner_questions_repeated": false,
+  "next_independent_action": "Review the actual ad/destination and relevant product cohort for only these two literal candidate queries when a new bounded buyer-path cycle is useful. Do not repeat this completed query extraction. Support follow-up requires a changed authenticated channel premise; next parent full sales read remains no earlier than2026-09-22T20:33:21Z unless material lifecycle/cost evidence changes.",
+  "source_sha256": {
+    "source.json": "eed8cc8f6530df2b5999098f3748031823376d89571cd97054fd727fcc889274",
+    "native-settings.json": "e41ad41889fe5d7f7de85755027a8503a74591ba2996e2c99d821a867f33b4ad"
+  }
+}

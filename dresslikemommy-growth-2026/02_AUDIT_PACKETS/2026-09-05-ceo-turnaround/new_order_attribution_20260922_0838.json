@@ -1,0 +1,61 @@
+{
+  "schema": "dlm.new_order_attribution_readback.v1",
+  "action_id": "TA16-NEW-ORDER-ATTRIBUTION-20260922",
+  "query_started_at": "2026-09-22T08:38:02.266Z",
+  "query_completed_at": "2026-09-22T08:38:02.889Z",
+  "shop_id": "gid://shopify/Shop/15571635",
+  "window": {
+    "from_inclusive": "2026-09-21T20:32:03Z",
+    "to_exclusive": "2026-09-22T08:33:21Z"
+  },
+  "query": "query DLMNewOrderAttribution($query: String!) {\n  shop { id }\n  orders(first: 10, sortKey: CREATED_AT, query: $query) {\n    pageInfo { hasNextPage endCursor }\n    nodes {\n      id test cancelledAt sourceName displayFinancialStatus\n      currentTotalPriceSet { shopMoney { amount currencyCode } }\n      customerJourneySummary {\n        ready\n        firstVisit { source sourceType utmParameters { source medium campaign } }\n        lastVisit { source sourceType utmParameters { source medium campaign } }\n      }\n    }\n  }\n}",
+  "validator_artifact": "dlm-new-order-attribution-20260922-0833",
+  "validator_revision": 1,
+  "validation": "VALID_CONNECTOR_AND_SKILL",
+  "same_exact_order_ids_as_new_sales_cohort": true,
+  "order_id_persisted": false,
+  "pagination_complete": true,
+  "records": [
+    {
+      "qualified": true,
+      "test": false,
+      "cancelled": false,
+      "source": "web",
+      "financial_status": "PAID",
+      "current_total": {
+        "amount": "68.2",
+        "currencyCode": "USD"
+      },
+      "journey": {
+        "ready": true,
+        "firstVisit": {
+          "source": "Google",
+          "sourceType": "SEO",
+          "utmParameters": null
+        },
+        "lastVisit": {
+          "source": "Google",
+          "sourceType": "SEO",
+          "utmParameters": null
+        }
+      }
+    }
+  ],
+  "live_writes": 0,
+  "attributed_paid_or_organic_purchase": "SHOPIFY_REPORTED_GOOGLE_ORGANIC",
+  "actual_costs_retained_profit": "UNKNOWN",
+  "limitation": "Shopify attribution summary only; exact GA4/Ads transaction receipt, consent, deduplication and causality remain unverified.",
+  "attribution_evidence": {
+    "platform": "Shopify",
+    "first_visit_source": "Google",
+    "first_visit_tactic": "SEO",
+    "last_visit_source": "Google",
+    "last_visit_tactic": "SEO",
+    "journey_ready": true,
+    "utm_parameters_present": false,
+    "qualifying_orders": 1,
+    "recorded_order_total_usd": "68.20",
+    "cross_platform_transaction_match": "NOT_VERIFIED",
+    "specific_recent_SEO_change_causality": "NOT_ESTABLISHED"
+  }
+}

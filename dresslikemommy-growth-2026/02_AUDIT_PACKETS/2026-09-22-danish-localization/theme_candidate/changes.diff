@@ -1,0 +1,573 @@
+--- before/layout/theme.liquid
++++ theme/layout/theme.liquid
+@@ -152,6 +152,10 @@
+     if request.page_type == 'index'
+       assign resolved_page_title = 'Mommy and Me Dresses | Family Matching Outfits'
+       assign resolved_page_description = 'Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.'
++      if request.locale.iso_code == 'da'
++        assign resolved_page_title = 'Kjoler til mor og datter | Matchende familietøj'
++        assign resolved_page_description = 'Find kjoler til mor og datter, matchende tøj til mor og barn og matchende familietøj til billeder, ferier og hverdagens øjeblikke.'
++      endif
+       assign append_shop_name_to_title = false
+     elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
+       assign resolved_page_title = 'Style Journal'
+--- before/locales/da.json
++++ theme/locales/da.json
+@@ -201,7 +201,7 @@
+         "error": "Kan ikke tilføje de valgte stykker. Prøv venligst igen."
+       },
+       "occasions": {
+-        "title": "Perfect for"
++        "title": "Perfekt til"
+       },
+       "social_proof": {
+         "new_arrival": "Nyhed",
+@@ -583,7 +583,7 @@
+       "step_error": "Du kan kun tilføje denne vare i intervaller på {{ step }}"
+     },
+     "related_products": {
+-      "you_may_also_like": "You may also like"
++      "you_may_also_like": "Du kan også lide"
+     },
+     "footer_headings": {
+       "company_info": "Virksomhedsoplysninger",
+@@ -603,14 +603,14 @@
+       "label_sweaters": "Sweatre & Jakker",
+       "label_pajamas": "Pyjamas",
+       "label_tshirts": "T-shirts",
+-      "label_trunks": "Underbukser",
++      "label_trunks": "Badebukser",
+       "label_daddy_tshirts": "Far & Mig T-shirts",
+       "prefix_mother_daughter": "Mor Datter",
+       "prefix_mommy_me": "Mor og mig",
+       "prefix_matching": "Matcher",
+       "prefix_daddy_me": "Far og mig",
+       "prefix_family_matching": "Familie Matchning",
+-      "label_button_downs": "Button-downs",
++      "label_button_downs": "Skjorter med knapper",
+       "label_tees": "T-shirts",
+       "label_dresses": "Kjoler",
+       "label_hawaiian_outfits": "Hawaii outfits",
+@@ -639,8 +639,8 @@
+       "collection_categories": "Indsamlingskategorier",
+       "main_collections": "Hovedsamlinger",
+       "within_mommy_me": "Inden for mor & mig",
+-      "within_family_matching": "Inden for Family Matching",
+-      "within_daddy_me": "Inden for Daddy & Me",
++      "within_family_matching": "I matchende familietøj",
++      "within_daddy_me": "I tøj til far og barn",
+       "within_couples": "Inden for par",
+       "within_maternity": "Inden for barsel"
+     },
+@@ -650,18 +650,18 @@
+       "display_titles": {
+         "all": "Alle matchende outfits",
+         "swimsuits": "Familiematchende badedragter",
+-        "mommy_and_me": "Mommy and Me Outfits",
++        "mommy_and_me": "Matchende tøj til mor og barn",
+         "dresses": "Mommy and Me kjoler",
+         "family_swimsuits": "Familie badetøj",
+         "family_sets": "Familieferietøj",
+         "new_women_outfits": "Matchende familietøj",
+         "family_matching": "Matchende familietøj",
+-        "daddy_me": "Daddy and Me Outfits",
++        "daddy_me": "Matchende tøj til far og barn",
+         "daddy_me_tshirts": "Far og mig T-shirts",
+         "daddy_me_shirts": "Far og søn skjorter",
+         "couples": "Matchende tøj til par",
+         "couples_tshirts": "Matchende t-shirts til par",
+-        "spring_matching": "Mommy and Me Easter Dresses and Spring Matching Outfits",
++        "spring_matching": "Påskekjoler til mor og barn og matchende forårstøj",
+         "tops": "Matchende toppe og t-shirts",
+         "pajamas": "Matchende familiepyjamas",
+         "sweaters": "Matchende trøjer og jakker",
+@@ -710,41 +710,41 @@
+       },
+       "meta_descriptions": {
+         "all": "Shop all matching outfits in one place, including mommy and me, daddy and me, couples, and family sets. Komfortable stilarter med hurtig forsendelse.",
+-        "mommy_and_me": "Shop mommy and me outfits, dresses, swimsuits, and matching sets for birthdays, family photos, vacations, and everyday twinning moments.",
+-        "spring_matching": "Shop mommy and me Easter dresses and spring matching outfits for church, brunch, egg hunts, family photos, and other seasonal celebrations.",
++        "mommy_and_me": "Find matchende tøj, kjoler, badedragter og sæt til mor og barn til fødselsdage, familiebilleder, ferier og matchende hverdagslooks.",
++        "spring_matching": "Find påskekjoler til mor og barn og matchende forårstøj til kirke, brunch, æggejagt, familiebilleder og sæsonens øvrige fester.",
+         "dresses": "Find matchende kjoler til mor og datter. Se styles til familiebilleder, fester og ferier, og tjek størrelser og mål på produktsiden, før du vælger.",
+-        "maxi_dresses": "Shop mommy and me maxi dresses and matching maxi dresses for photos, travel, celebrations, and easy polished everyday wear.",
+-        "swimsuits": "Shop matching family swimsuits and mom and daughter matching swimsuits for beach trips, pool days, cruises, and coordinated summer photos.",
+-        "family_swimsuits": "Shop matching family bathing suits and family swimwear for beach vacations, pool days, cruises, and coordinated summer photos.",
+-        "family_sets": "Shop matching family vacation outfits and beach sets for cruises, resort trips, family photos, and coordinated summer travel looks.",
++        "maxi_dresses": "Find maxikjoler til mor og barn og matchende maxikjoler til billeder, rejser, fester og velklædte hverdagslooks.",
++        "swimsuits": "Find matchende badedragter til familien og til mor og datter til strandture, pooldage, krydstogter og matchende sommerbilleder.",
++        "family_swimsuits": "Find matchende badedragter og badetøj til familien til strandferier, pooldage, krydstogter og matchende sommerbilleder.",
++        "family_sets": "Find matchende ferietøj og strandsæt til familien til krydstogter, ophold på feriesteder, familiebilleder og sommerrejser.",
+         "new_women_outfits": "Shop matchende familietøj til kjoler, badetøj, mor- og mig-looks og rejseklare sæt på ét sted, og indsnævre den kollektion, der passer til din rejse, sæson eller lejlighed.",
+-        "family_matching": "Shop matching family outfits and mommy and me outfits for photos, vacations, holidays, and easy coordinated looks for every season.",
+-        "daddy_me": "Shop daddy and me shirts, t-shirts, tees, and matching outfits for family photos, Father's Day, vacations, and easy everyday coordination.",
+-        "daddy_me_tshirts": "Shop daddy and me shirts and matching tees for Father's Day, vacations, birthdays, photos, and easy everyday outfits for dads and kids.",
++        "family_matching": "Find matchende familietøj og tøj til mor og barn til billeder, ferier, højtider og koordinerede looks til alle sæsoner.",
++        "daddy_me": "Find skjorter, t-shirts og matchende tøj til far og barn til familiebilleder, fars dag, ferier og matchende hverdagslooks.",
++        "daddy_me_tshirts": "Find skjorter og matchende t-shirts til far og barn til fars dag, ferier, fødselsdage, billeder og hverdagstøj til fædre og børn.",
+         "daddy_me_shirts": "Køb matchende skjorter til far og søn, inklusive knapper, skjorter og Hawaii-stile til ferier, billeder, fester og poleret familietøj.",
+-        "couples": "Shop couples matching outfits with coordinated sets, tops, pajamas, and vacation-ready looks for date nights, gifts, trips, and everyday wear.",
+-        "couples_tshirts": "Shop couples matching shirts and couple t-shirts for date nights, trips, concerts, holidays, gifts, and easy everyday coordinated looks."
++        "couples": "Find matchende tøj til par med koordinerede sæt, toppe, pyjamasser og ferielooks til dates, gaver, rejser og hverdag.",
++        "couples_tshirts": "Find matchende skjorter og t-shirts til par til dates, rejser, koncerter, højtider, gaver og koordinerede hverdagslooks."
+       },
+       "swimsuits": {
+         "eyebrow": "Guide til badetøj",
+-        "title": "Coordinated swimwear for moms, daughters, and full-family plans",
+-        "copy_1": "Start here when you want the broadest swim assortment first. Denne side samler mor-og-datter-stile, matchende familiebadedragter og ferieklare muligheder uden at sende dig gennem flere svømmekollektioner.",
+-        "copy_2": "Once you know who needs to match, move into the dedicated family swimwear or trunks collections for a tighter edit. For sizing, the fastest path is always the product page and size chart on the style you like best.",
++        "title": "Matchende badetøj til mødre, døtre og hele familien",
++        "copy_1": "Start her, hvis du først vil se det brede udvalg af badetøj. Denne side samler modeller til mor og datter, matchende badedragter til familien og badetøj til ferien, så du kan sammenligne dem uden at skifte mellem flere kollektioner.",
++        "copy_2": "Når du ved, hvem der skal matche, kan du gå videre til kollektionerne med familiebadetøj eller badebukser for et mere afgrænset udvalg. Find størrelsesoplysningerne på produktsiden og i størrelsesguiden til den model, du bedst kan lide.",
+         "related_aria": "Relaterede svømmesamlinger",
+         "related_label": "Udforsk relaterede svømmesamlinger",
+         "family_swimwear_title": "Familie badetøj",
+-        "family_swimwear_caption": "Go straight to the full-family swim edit when everyone needs to coordinate.",
+-        "trunks_title": "Matchende kufferter",
+-        "trunks_caption": "Add dad-and-boy swim pieces when you want a complete beach-day set.",
+-        "mommy_me_caption": "Keep the coordinated look going beyond swimwear with matching outfits for other occasions.",
++        "family_swimwear_caption": "Gå direkte til kollektionen med badetøj til hele familien, når alle skal matche.",
++        "trunks_title": "Matchende badebukser",
++        "trunks_caption": "Tilføj badetøj til far og dreng, når du vil sammensætte et komplet strandsæt.",
++        "mommy_me_caption": "Fortsæt det koordinerede look ud over badetøj med matchende tøj til andre anledninger.",
+         "faq_eyebrow": "Ofte stillede spørgsmål om badetøj",
+         "faq_title": "Hurtige svar inden du bestiller",
+         "faq_question_1": "Hvilke størrelser kommer dine matchende badedragter i?",
+-        "faq_answer_1": "Sizing varies by style, so review the available variants and use the size chart on each product page before checkout. This collection covers coordinated swim options for moms and daughters, and some styles also connect you to broader family swim looks.",
++        "faq_answer_1": "Størrelserne varierer efter model, så se de tilgængelige varianter, og brug størrelsesguiden på hver produktside, før du går til kassen. Denne kollektion rummer matchende badetøj til mor og datter, og nogle modeller indgår også i et bredere matchende familielook.",
+         "faq_question_2": "Tilbyder du også familiesæt til far?",
+         "faq_answer_2": "Ja. Hvis du vil have det fulde familielook, kan du shoppe den matchende familiebadetøjskollektion og trunks-kollektionen for at tilføje koordinerede stykker til fædre og drenge sammen med de vigtigste svømmestile til mor og mig.",
+-        "faq_question_3": "What is the difference between mommy and me swimsuits and matching family swimwear?",
+-        "faq_answer_3": "Mommy and me swimsuits usually focus on mom-and-daughter pairings. Matchende familiebadetøj udvider denne idé, så du kan bygge et koordineret look på tværs af flere familiemedlemmer, inklusive far og drenge, når disse stilarter er tilgængelige.",
++        "faq_question_3": "Hvad er forskellen på badedragter til mor og barn og matchende familiebadetøj?",
++        "faq_answer_3": "Badedragter til mor og barn fokuserer som regel på matchende modeller til mor og datter. Matchende familiebadetøj udvider idéen, så du kan sammensætte et koordineret look til flere familiemedlemmer, herunder far og drenge, når modellerne findes til dem.",
+         "faq_question_4": "Hvor skal jeg starte, hvis jeg også vil have drengestykker?",
+         "faq_answer_4": "Begynd på denne badedragtside, hvis du først vil have det bredeste svømmesortiment, og brug derefter de relaterede familiebadedragter og trunks-kollektioner til at indsnævre til familieudseende eller far-og-dreng-tilføjelser.",
+         "faq_answer_2_rich_html": "Ja. Hvis du vil have det fulde familielook, så shop <a href=\"{{ family_swim_url }}\">Matchende familiebadedragter</a> indsamling og <a href=\"{{ trunks_url }}\">Trunks</a> samling for at tilføje koordinerede stykker til fædre og drenge sammen med de vigtigste svømmestile til mor og mig.",
+@@ -755,11 +755,11 @@
+         "spring_matching_html": "<p>Gennemse {{ title }} med pastelpaletter, forårsblomster og looks, der er klar til lejligheder, bygget til kirke, brunch, æggejagt, familiebilleder og andre sæsonbestemte fester.</p><p>Disse styles er designet til shoppere, der allerede kender det øjeblik, de klæder sig på, og som gerne vil have matchende outfits, der føles poleret, behageligt og nemt at have på igen gennem resten af ​​foråret.</p>",
+         "dresses_html": "<p>Gennemse {{ title }} for familiebilleder, festligheder og polerede hverdagsøjeblikke. Denne redigering holder de stærkeste kjolestile sammen på ét sted med et koordineret udseende, der føles smukt, bærbart og nemt at shoppe.</p>",
+         "maxi_dresses_html": "<p>Gennemse {{ title }} for flydende matchende stilarter, der føles yndefulde, nemme at have på og klar til billeder, rejser, festligheder og polerede hverdagsøjeblikke.</p>",
+-        "swimsuits_html": "<p>Gennemse {{ title }} for strandture, pooldage, krydstogter og solrige familiebilleder. Denne kollektion hjælper shoppere med at sammenligne matchende familiebadedragter, matchende mor og datter badedragter og familiematchende badedragter uden at hoppe mellem separate svømmekategorier.</p><p>Brug først denne side som det brede svømmenav, og gren derefter ind i den dedikerede familiebadekollektion eller matchende kufferter, når hele familien skal koordinere sig omkring én print eller farvehistorie.</p>",
+-        "family_swimsuits_html": "<p>Oplev {{ title }} til strandferier, pooldage, krydstogter og sommerbilleder. Dette er den klareste landingsside for matchende familiebadedragter, når mødre, fædre, piger og drenge alle skal koordinere sig omkring én print, palet eller ferieklar farvehistorie.</p><p>Brug denne side, når hele familien vil have matchende badetøj først, og rund derefter looket af med kufferter, cover-ups og relaterede mor-og-mig svømmemuligheder for en fyldigere turgarderobe.</p>",
++        "swimsuits_html": "<p>Gennemse {{ title }} for strandture, pooldage, krydstogter og solrige familiebilleder. Denne kollektion hjælper shoppere med at sammenligne matchende familiebadedragter, matchende mor og datter badedragter og familiematchende badedragter uden at hoppe mellem separate svømmekategorier.</p><p>Brug først denne side som det brede svømmenav, og gren derefter ind i den dedikerede familiebadekollektion eller matchende badebukser, når hele familien skal koordinere sig omkring én print eller farvehistorie.</p>",
++        "family_swimsuits_html": "<p>Oplev {{ title }} til strandferier, pooldage, krydstogter og sommerbilleder. Dette er den klareste landingsside for matchende familiebadedragter, når mødre, fædre, piger og drenge alle skal koordinere sig omkring én print, palet eller ferieklar farvehistorie.</p><p>Brug denne side, når hele familien vil have matchende badetøj først, og rund derefter looket af med badebukser, cover-ups og relaterede mor-og-mig svømmemuligheder for en fyldigere turgarderobe.</p>",
+         "family_sets_html": "<p>Udforsk {{ title }} med et koordineret udseende designet til familieferier, strandture, krydstogter, rejsebilleder og udflugter i varmt vejr. Disse sæt hjælper dig med at skabe en klar familiepalette uden at tvinge hver person til nøjagtig det samme stykke.</p><p>Brug denne side til at matche familieferie-outfits og matchende familie-strandoutfits, og forgren dig derefter til bredere familiematchende kollektioner, når du har brug for flere sæsonbestemte eller ikke-rejsespecifikke muligheder.</p>",
+         "new_women_outfits_html": "<p>Udforsk {{ title }} som det brede Family Matching Outfits-hub, når du vil sammenligne koordinerede outfits, før du indsnævrer til en bestemt kategori. Denne side er beregnet til at hjælpe kunder med at flytte fra en generel browse til kjoler, badetøj, feriesæt, mor og mig looks eller andre matchende styles uden at starte forfra.</p><p>Brug nedenstående links til at springe ind i de kollektioner, der passer bedst til lejligheden, uanset om du shopper efter familiebilleder, en tur, en sæsonbestemt opfriskning eller en mere specifik matchende outfitstil.</p>",
+-        "family_matching_html": "<p>Gennemse {{ title }} for familiebilleder, rejser, fødselsdage, helligdage og nem hverdagslige venskabsbyer. Det er det bedste sted at starte, når du vil sammenligne koordinerede udseende på tværs af familien, før du indsnævrer kjoler, badetøj eller feriesæt.</p>",
++        "family_matching_html": "<p>Se {{ title }} til familiebilleder, rejser, fødselsdage, højtider og matchende hverdagslooks. Start her, når du vil sammenligne koordineret tøj til familien, før du vælger en mere afgrænset kollektion med kjoler, badetøj eller feriesæt.</p>",
+         "daddy_me_html": "<p>Udforsk {{ title }} for familiebilleder, ferier, fars dags gaver og hverdagskoordination. Denne landingsside er bygget op omkring den stærkeste far-og-barn søgehensigt med matchende t-shirts, afslappede toppe og mere dressede skjorter på ét sted.</p><p>Brug denne kollektion, når du vil have bred dækning på tværs af far og mig skjorter, t-shirts og outfits, og indsnævre dig derefter til knap-op, hawaiiansk eller t-shirt stiler baseret på lejligheden.</p>",
+         "daddy_me_tshirts_html": "<p>Køb {{ title }}, når du vil have afslappede, gavevenlige matchende toppe til fædre og børn. Denne side er bygget op omkring far og mig-skjorter, matchende t-shirts og nemme hverdagslooks, der fungerer til fars dag, fødselsdage, familierejser og hurtige fotoøjeblikke.</p><p>Start her for slogan-t-shirts og nemme grafiske stilarter, og bevæg dig derefter til skjorter eller Hawaii-sæt, hvis lejligheden kræver et skarpere look eller et mere ferieklart outfit.</p>",
+         "daddy_me_shirts_html": "<p>Gennemse {{ title }} for shoppere, der specifikt leder efter knap-op, skjorte og far-søn-outfits i hawaiiansk stil. Denne kollektion fokuserer på looks med krave, der fungerer til portrætter, middage, strandture, bryllupper og andre polerede lejligheder.</p><p>Sammenlignet med casual t-shirts, er disse styles mere strukturerede og fotoklare, hvilket gør dem til en stærkere pasform, når du vil have matchende outfits, der stadig ser forhøjede ud.</p>",
+@@ -784,7 +784,7 @@
+           "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related family collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Køb mor datter bryllup gæste kjoler</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Gennemse matchende strandbadedragter</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Køb matchende familieferietøj</a><a class=\"collection-seo-rich__link\" href=\"{{ daddy_me_shirts_url }}\">Køb far og mig skjorter</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Udforsk den bredere Mommy and Me-samling</a></div>"
+         },
+         "dresses": {
+-          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Samlingsnotat</p><h2>Kjoledrevne styles til fotos, festligheder og venskabsbyer til hverdag</h2></div>",
++          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Samlingsnotat</p><h2>Kjoledrevne styles til fotos, festligheder og matchende looks til hverdag</h2></div>",
+           "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Denne redigering er bygget til de øjeblikke, hvor kjolen sætter tonen. Fokus er på silhuetter, der føles polerede på kameraet, behagelige at have på og lette at nå igen efter begivenheden.</p><p>Start her, når du allerede ved, at du vil have et kjoledrevet look, og forgren dig derefter til bredere familiekollektioner, hvis du har brug for at koordinere ud over mor og datter.</p></div>",
+           "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ matching_outfits_url }}\">Gennemse Family Matching-hubben</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Se alle Mommy and Me-outfits</a></div>"
+         },
+@@ -794,7 +794,7 @@
+           "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related maxi dress collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Gennemse alle kjoler</a><a class=\"collection-seo-rich__link\" href=\"{{ mommy_and_me_url }}\">Se alle mor og mig</a></div>"
+         },
+         "mommy_and_me": {
+-          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Samlingsnotat</p><h2>Den brede mor-og-mig-redigering til billeder, rejser og hverdagens venskabsbyer</h2></div>",
++          "part_1_html": "<div class=\"collection-seo-rich__intro\"><p class=\"collection-seo-rich__eyebrow\">Samlingsnotat</p><h2>Den brede mor-og-mig-redigering til billeder, rejser og hverdagens matchende looks</h2></div>",
+           "part_2_html": "<div class=\"collection-seo-rich__copy\"><p>Dette er det nemmeste sted at starte, når du vil have koordinerede styles til mødre og døtre uden først at beslutte dig for én produkttype.</p><p>Begynd her med kjoler, badetøj og matchende sæt, og indsnæv derefter den kategori, der passer bedst til lejligheden, når du kender det look, du ønsker.</p></div>",
+           "part_3_html": "<div class=\"collection-seo-rich__links\" aria-label=\"Related mommy and me collections\"><a class=\"collection-seo-rich__link\" href=\"{{ dresses_url }}\">Køb mor datter bryllup gæste kjoler</a><a class=\"collection-seo-rich__link\" href=\"{{ family_swimsuits_url }}\">Gennemse matchende strandbadedragter</a><a class=\"collection-seo-rich__link\" href=\"{{ family_sets_url }}\">Se matchende familieferietøj</a></div>"
+         },
+@@ -802,8 +802,8 @@
+           "part_1_html": "<h2>Matchende familiebadedragter til strandferier, pooldage, krydstogter og koordinerede sommerbilleder</h2>",
+           "part_2_html": "<p>Denne side er bygget op omkring de stærkeste familiesvømmetermer: matchende familiebadedragter, matchende familiebadedragter og koordineret familiebadetøj til ferier og fotos i varmt vejr. Det fungerer bedst, når hele familien skal matche en print eller farvehistorie uden at sammensætte separate svømmekategorier én efter én.</p>",
+           "part_3_html": "<h3>Hvorfor denne side adskiller sig fra en generel badetøjskollektion</h3>",
+-          "part_4_html": "<ul><li>Det er centreret om koordinering af hele familien i stedet for kun mor-og-datters svømmeudseende.</li><li>Det taler direkte til hensigten med ferie, krydstogt og strandfoto, hvor matchende familiebadedragter er hovedmålet.</li><li>Det giver kunderne en renere vej til familiebadetøj, før de forgrener sig til kufferter eller bredere matchende kollektioner.</li></ul>",
+-          "part_5_html": "<p><a href=\"{{ trunks_url }}\">Tilføj matchende kufferter</a> når du har brug for badetøj til far og dreng for at fuldende stranddagsættet.</p>",
++          "part_4_html": "<ul><li>Det er centreret om koordinering af hele familien i stedet for kun mor-og-datters svømmeudseende.</li><li>Det taler direkte til hensigten med ferie, krydstogt og strandfoto, hvor matchende familiebadedragter er hovedmålet.</li><li>Det giver kunderne en renere vej til familiebadetøj, før de forgrener sig til badebukser eller bredere matchende kollektioner.</li></ul>",
++          "part_5_html": "<p><a href=\"{{ trunks_url }}\">Tilføj matchende badebukser</a> når du har brug for badetøj til far og dreng for at fuldende stranddagsættet.</p>",
+           "part_6_html": "<p><a href=\"{{ swimsuits_url }}\">Se mor og datter matchende badedragter</a> hvis indkøbshensigten er snævrere end koordinering af hele familien.</p>",
+           "part_7_html": "<p><a href=\"{{ mommy_and_me_url }}\">Gennemse Mommy and Me-outfits</a> hvis hovedbehovet er mor-og-datter-koordination ud over badetøj.</p>",
+           "part_8_html": "<p><a href=\"{{ family_sets_url }}\">Køb familieferietøj</a> når det koordinerede look har brug for tildækning, rejse eller strand-middagsstøtte ud over poolen.</p>"
+@@ -822,7 +822,7 @@
+           "part_6_html": "<p>Start med tees, hvis målet er let hverdagskoordination. Hvis lejligheden har brug for en renere, mere poleret finish, så gå over til skjorter, hawaiiskjorter eller andre kravestile med mere struktur.</p>",
+           "part_7_html": "<p><a href=\"{{ daddy_me_tshirts_url }}\">Køb far og mig skjorter</a> til casual matchende toppe og gaveidelige hverdagsstyles.</p>",
+           "part_8_html": "<p><a href=\"{{ daddy_me_shirts_url }}\">Køb far og mig skjorter til mere påklædte lejligheder</a> til button-up, skjorte og hawaiiansk look bygget op omkring skjortesøgninger med højere hensigter.</p>",
+-          "part_9_html": "<p><a href=\"{{ trunks_url }}\">Gennemse matchende kufferter</a> når outfittet trænger til en strand- eller poolvenlig tilføjelse.</p>"
++          "part_9_html": "<p><a href=\"{{ trunks_url }}\">Gennemse matchende badebukser</a> når outfittet trænger til en strand- eller poolvenlig tilføjelse.</p>"
+         },
+         "daddy_me_tshirts": {
+           "part_1_html": "<h2>Far og mig skjorter og matchende t-shirts til afslappet, gaveidelig koordination</h2>",
+--- before/sections/footer.liquid
++++ theme/sections/footer.liquid
+@@ -256,6 +256,9 @@
+             if footer_locale contains 'es'
+               assign footer_journal_summary = 'Consejos de moda familiar, ideas de conjuntos a juego y guías de estilo de temporada.'
+               assign footer_journal_cta_prefix = 'Leer el '
++            elsif request.locale.iso_code == 'da'
++              assign footer_journal_summary = 'Tips til familiemode, idéer til matchende tøj og sæsonens stilguider.'
++              assign footer_journal_cta_prefix = 'Læs '
+             endif
+           -%}
+           <div class="footer-block grid__item footer-block--journal{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+--- before/sections/main-blog.liquid
++++ theme/sections/main-blog.liquid
+@@ -90,13 +90,13 @@
+             >
+           </div>
+           <div class="main-blog__spotlight-copy">
+-            <p class="main-blog__spotlight-eyebrow">Trending now</p>
+-            <h2 class="main-blog__spotlight-title">Family swimwear that looks polished in photos</h2>
+-            <p class="main-blog__spotlight-text">Use the swim guides to compare mother-daughter swimsuits, matching family bathing suits, and beach outfits before you shop.</p>
++            <p class="main-blog__spotlight-eyebrow">{% if request.locale.iso_code == 'da' %}Populært lige nu{% else %}Trending now{% endif %}</p>
++            <h2 class="main-blog__spotlight-title">{% if request.locale.iso_code == 'da' %}Familiebadetøj, der ser flot ud på billeder{% else %}Family swimwear that looks polished in photos{% endif %}</h2>
++            <p class="main-blog__spotlight-text">{% if request.locale.iso_code == 'da' %}Brug badetøjsguiderne til at sammenligne badedragter til mor og datter, matchende badedragter til familien og strandtøj, før du handler.{% else %}Use the swim guides to compare mother-daughter swimsuits, matching family bathing suits, and beach outfits before you shop.{% endif %}</p>
+           </div>
+           <div class="main-blog__spotlight-actions">
+-            <a href="{{ routes.collections_url }}/swimsuits" class="button">Shop swimsuits</a>
+-            <a href="{{ routes.collections_url }}/family-swimsuits" class="button button--secondary">Shop family swim</a>
++            <a href="{{ routes.collections_url }}/swimsuits" class="button">{% if request.locale.iso_code == 'da' %}Se badedragter{% else %}Shop swimsuits{% endif %}</a>
++            <a href="{{ routes.collections_url }}/family-swimsuits" class="button button--secondary">{% if request.locale.iso_code == 'da' %}Se familiebadetøj{% else %}Shop family swim{% endif %}</a>
+           </div>
+         </div>
+       </section>
+@@ -143,7 +143,7 @@
+           </a>
+         {%- endif -%}
+         <div class="main-blog__featured-content">
+-          <p class="main-blog__featured-kicker">Featured article</p>
++          <p class="main-blog__featured-kicker">{% if request.locale.iso_code == 'da' %}Udvalgt artikel{% else %}Featured article{% endif %}</p>
+           <h2 class="main-blog__featured-title">
+             <a href="{{ featured_article.url }}">{{ featured_article.title | escape }}</a>
+           </h2>
+@@ -152,7 +152,7 @@
+               {{ featured_article.published_at | time_tag: format: 'date' }}
+             </div>
+             <span class="main-blog__featured-read-time">
+-              {{ featured_article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min read
++              {{ featured_article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} {% if request.locale.iso_code == 'da' %}minutters læsetid{% else %}min read{% endif %}
+             </span>
+           {%- endif -%}
+           {%- if featured_excerpt != blank -%}
+@@ -161,7 +161,7 @@
+             </p>
+           {%- endif -%}
+           <a href="{{ featured_article.url }}" class="main-blog__featured-link button button--secondary">
+-            Read article
++            {% if request.locale.iso_code == 'da' %}Læs artiklen{% else %}Read article{% endif %}
+           </a>
+         </div>
+       </article>
+@@ -200,19 +200,19 @@
+ 
+     <section class="main-blog__about{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+       <div class="main-blog__about-card">
+-        <p class="main-blog__about-eyebrow">How to use the Style Journal</p>
+-        <h2 class="main-blog__about-title">Find the guide, then shop the matching look</h2>
++        <p class="main-blog__about-eyebrow">{% if request.locale.iso_code == 'da' %}Sådan bruger du stiljournalen{% else %}How to use the Style Journal{% endif %}</p>
++        <h2 class="main-blog__about-title">{% if request.locale.iso_code == 'da' %}Find guiden, og køb det matchende look{% else %}Find the guide, then shop the matching look{% endif %}</h2>
+         <div class="main-blog__about-content">
+-          <p>Every article is organized around a real shopping moment: family photos, beach vacations, Father's Day, Mother's Day, holidays, and everyday matching. Start with the guide that matches your occasion, then use the collection links to compare the pieces that fit.</p>
++          <p>{% if request.locale.iso_code == 'da' %}Hver artikel tager udgangspunkt i en konkret anledning: familiebilleder, strandferier, fars dag, mors dag, højtider og matchende hverdagstøj. Start med den guide, der passer til din anledning, og brug derefter links til kollektionerne til at sammenligne det relevante tøj.{% else %}Every article is organized around a real shopping moment: family photos, beach vacations, Father's Day, Mother's Day, holidays, and everyday matching. Start with the guide that matches your occasion, then use the collection links to compare the pieces that fit.{% endif %}</p>
+         </div>
+       </div>
+     </section>
+ 
+     <section class="main-blog__newsletter" id="newsletter-blog">
+       <div class="main-blog__newsletter-card">
+-        <p class="main-blog__newsletter-eyebrow">Stay in the loop</p>
+-        <h2 class="main-blog__newsletter-title">Get styling tips + 10% off</h2>
+-        <p class="main-blog__newsletter-text">Join our Style Journal newsletter for matching outfit inspiration, new arrivals, and an exclusive welcome discount.</p>
++        <p class="main-blog__newsletter-eyebrow">{% if request.locale.iso_code == 'da' %}Hold dig opdateret{% else %}Stay in the loop{% endif %}</p>
++        <h2 class="main-blog__newsletter-title">{% if request.locale.iso_code == 'da' %}Få stylingtips + 10% rabat{% else %}Get styling tips + 10% off{% endif %}</h2>
++        <p class="main-blog__newsletter-text">{% if request.locale.iso_code == 'da' %}Tilmeld dig stiljournalens nyhedsbrev, og få inspiration til matchende tøj, nyheder og en eksklusiv velkomstrabat.{% else %}Join our Style Journal newsletter for matching outfit inspiration, new arrivals, and an exclusive welcome discount.{% endif %}</p>
+         {% form 'customer', id: 'NewsletterBlog', class: 'main-blog__newsletter-form' %}
+           <input type="hidden" name="contact[tags]" value="newsletter,blog-signup">
+           <div class="main-blog__newsletter-field">
+@@ -220,10 +220,10 @@
+               id="NewsletterBlog-email"
+               type="email"
+               name="contact[email]"
+-              placeholder="Your email address"
++              placeholder="{% if request.locale.iso_code == 'da' %}Din e-mailadresse{% else %}Your email address{% endif %}"
+               required
+               class="main-blog__newsletter-input field__input"
+-              aria-label="Email address"
++              aria-label="{% if request.locale.iso_code == 'da' %}E-mailadresse{% else %}Email address{% endif %}"
+               value="{{ form.email }}"
+               autocorrect="off"
+               autocapitalize="off"
+@@ -236,7 +236,7 @@
+                 aria-describedby="NewsletterBlog-success"
+               {% endif %}
+             >
+-            <button type="submit" class="main-blog__newsletter-button button">Subscribe</button>
++            <button type="submit" class="main-blog__newsletter-button button">{% if request.locale.iso_code == 'da' %}Tilmeld dig{% else %}Subscribe{% endif %}</button>
+           </div>
+           {% if form.errors %}
+             <p
+--- before/snippets/collection-merchandising-callout.liquid
++++ theme/snippets/collection-merchandising-callout.liquid
+@@ -78,6 +78,57 @@
+       assign secondary_url = '/collections/mommy-and-me'
+   endcase
+ 
++  if request.locale.iso_code == 'da'
++    assign primary_label = 'Se kollektionen'
++    case collection_handle
++      when 'matching-couples-t-shirts'
++        assign callout_eyebrow = 'Find hurtigere det rette'
++        assign callout_title = 'Sammenlign matchende t-shirts til par, og udforsk derefter flere matchende looks'
++        assign callout_body = 'Sammenlign motiverne på t-shirts til par her på siden. Udforsk derefter matchende familietøj, hvis du ønsker mere end t-shirts.'
++        assign primary_label = 'Se t-shirts nedenfor'
++        assign secondary_label = 'Se matchende familietøj'
++      when 'mommy-and-me'
++        assign callout_eyebrow = 'Find hurtigere det rette'
++        assign callout_title = 'Se hele kollektionen til mor og barn, og gå videre til de nyeste pyjamasser'
++        assign callout_body = 'Start med det brede udvalg af matchende tøj her. Hvis du leder efter nattøj, kan du gå videre til kollektionen med nye pyjamasser.'
++        assign primary_label = 'Se denne kollektion'
++        assign secondary_label = 'Se nye pyjamasser'
++        assign tertiary_label = 'Se alle pyjamasser'
++      when 'matching-outfits', 'family-matching-outfits', 'new-women-outfits'
++        assign callout_eyebrow = 'Find hurtigere det rette'
++        assign callout_title = 'Start med familietøjet, og gå videre til de nyeste pyjamasser'
++        assign callout_body = 'Sammenlign det brede udvalg af matchende familietøj her. Hvis du leder efter det nyeste nattøj, kan du gå videre til kollektionen med nye pyjamasser.'
++        assign primary_label = 'Se denne kollektion'
++        assign secondary_label = 'Se nye pyjamasser'
++        assign tertiary_label = 'Se alle pyjamasser'
++      when 'pajamas'
++        assign callout_eyebrow = 'Find hurtigere det rette'
++        assign callout_title = 'Se alle pyjamasser først, og gå derefter videre til nyhederne'
++        assign callout_body = 'Sammenlign alle pyjamasmodellerne her. Gå videre til nyhederne, hvis du vil se de nyeste mønstre først.'
++        assign primary_label = 'Se pyjamasser nedenfor'
++        assign secondary_label = 'Se de seneste nyheder'
++        assign tertiary_label = 'Se tøj til mor og barn'
++      when 'new-pajama-drop'
++        assign callout_eyebrow = 'Netop tilføjet'
++        assign callout_title = 'Nye matchende pyjamasser samlet ét sted'
++        assign callout_body = 'Se de nyeste mønstre samlet her. Gå videre til hele pyjamaskollektionen, hvis du vil sammenligne alle modellerne.'
++        assign primary_label = 'Se nyhederne'
++        assign secondary_label = 'Se alle pyjamasser'
++      when 'new-matching-outfits'
++        assign callout_eyebrow = 'Nye varer'
++        assign callout_title = 'Se de nyeste matchende looks samlet her'
++        assign callout_body = 'Start med nyhederne her, og udforsk derefter den bredere kollektion til mor og barn, hvis du vil se flere muligheder.'
++        assign primary_label = 'Se nyhederne'
++        assign secondary_label = 'Se tøj til mor og barn'
++    endcase
++    if secondary_url != blank
++      assign secondary_url = routes.root_url | append: secondary_url
++    endif
++    if tertiary_url != blank
++      assign tertiary_url = routes.root_url | append: tertiary_url
++    endif
++  endif
++
+   if collection.image != blank
+     assign callout_media = collection.image
+   elsif collection.products_count > 0 and collection.products.first.featured_media != blank
+@@ -104,9 +155,15 @@
+       </div>
+       <div class="collection-merchandising-callout__utility">
+         <ul class="collection-merchandising-callout__meta" role="list">
+-          <li>{{ collection_live_count }} live styles</li>
+-          <li>Standard shipping included</li>
+-          <li>30-day return window</li>
++          {%- if request.locale.iso_code == 'da' -%}
++            <li>Modeller i kollektionen: {{ collection_live_count }}</li>
++            <li>Standardfragt inkluderet</li>
++            <li>30 dages returfrist</li>
++          {%- else -%}
++            <li>{{ collection_live_count }} live styles</li>
++            <li>Standard shipping included</li>
++            <li>30-day return window</li>
++          {%- endif -%}
+         </ul>
+         <div class="collection-merchandising-callout__actions">
+           <a href="{{ primary_url }}" class="button">{{ primary_label }}</a>
+--- before/snippets/collection-seo-fallback.liquid
++++ theme/snippets/collection-seo-fallback.liquid
+@@ -374,6 +374,10 @@
+   capture generated_meta_description
+     if meta_description_key != blank
+       echo meta_description_key | t
++    elsif request.locale.iso_code == 'da'
++      echo 'Se '
++      echo effective_display_title
++      echo ' hos Dress Like Mommy. Sammenlign modellerne, og se størrelser og produktdetaljer på hver produktside.'
+     elsif collection_handle == 'all'
+       echo 'Shop all matching outfits in one place, including mommy and me, daddy and me, couples, and family sets. Comfortable styles with fast shipping.'
+     elsif collection_handle == 'mommy-and-me'
+@@ -419,6 +423,11 @@
+       endcapture
+       assign translated_body_description = translated_body_description | replace: '&lt;', '<' | replace: '&gt;', '>' | replace: '&quot;', '"' | replace: '&#39;', "'" | replace: '&amp;', '&'
+       echo translated_body_description
++    elsif request.locale.iso_code == 'da'
++      echo '<p>Se udvalget af '
++      echo effective_display_title | escape
++      echo ', og sammenlign modellerne i kollektionen.</p>'
++      echo '<p>Åbn den enkelte produktside for at se de tilgængelige varianter, størrelsesguiden og produktdetaljerne, før du vælger.</p>'
+     elsif collection_handle == 'mommy-and-me'
+       echo '<p>Shop our '
+       echo effective_display_title | escape
+--- before/snippets/facets.liquid
++++ theme/snippets/facets.liquid
+@@ -32,6 +32,9 @@
+ 
+   if results.handle == 'new-women-outfits' or results.handle == 'family-matching-outfits' or results.handle == 'family-matching' or results.handle == 'matching-outfits'
+     assign collection_filter_hint = 'Start with size, color, and price. Product type is already organized through the collection tabs.'
++    if request.locale.iso_code == 'da'
++      assign collection_filter_hint = 'Start med størrelse, farve og pris. Produkttyperne er allerede inddelt under kollektionens faner.'
++    endif
+     assign hide_product_type_active_filters = true
+   endif
+ -%}
+--- before/snippets/header-drawer.liquid
++++ theme/snippets/header-drawer.liquid
+@@ -48,6 +48,9 @@
+                   endif
+                   if link.handle == 'family-matching' or link.handle == 'matching-outfits' or link.handle == 'family-matching-outfits' or normalized_link_title == 'family matching' or normalized_link_title == 'family matching outfits'
+                     assign nav_link_title = 'Family Matching'
++                    if request.locale.iso_code == 'da'
++                      assign nav_link_title = 'Matchende familietøj'
++                    endif
+                     assign use_family_direct_link = true
+                     assign family_hub_collection = collections['new-women-outfits']
+                     if family_hub_collection == blank
+--- before/snippets/header-mega-menu-feature-card.liquid
++++ theme/snippets/header-mega-menu-feature-card.liquid
+@@ -75,6 +75,38 @@
+     endif
+     assign menu_link_display_title = 'Family Matching'
+     assign card_description = 'Start with family matching outfits, then branch into matching family vacation outfits, matching beach swimsuits, or daddy and me shirts.'
++    if request.locale.iso_code == 'da'
++      assign menu_link_display_title = 'Matchende familietøj'
++      assign card_description = 'Start med matchende familietøj, og udforsk derefter matchende ferietøj til familien, badetøj til stranden eller skjorter til far og barn.'
++    endif
++  endif
++
++  if request.locale.iso_code == 'da'
++    if card_cta == 'Shop the edit'
++      assign card_cta = 'Se udvalget'
++    else
++      assign card_cta = 'Se mere'
++    endif
++    case card_label
++      when 'Trending now'
++        assign card_label = 'Populært lige nu'
++      when 'Best-selling family looks'
++        assign card_label = 'Mest solgte familielooks'
++      when 'Resort favorite'
++        assign card_label = 'Feriefavorit'
++      when 'Getaway edit'
++        assign card_label = 'Udvalgt til ferien'
++      when 'Dress best sellers'
++        assign card_label = 'Mest solgte kjoler'
++      when 'Easy sets'
++        assign card_label = 'Nemme sæt'
++      when 'Cold-weather pick'
++        assign card_label = 'Udvalgt til koldt vejr'
++      when 'Pool-day favorite'
++        assign card_label = 'Favorit til pooldage'
++      when 'New pajama styles'
++        assign card_label = 'Nye pyjamasmodeller'
++    endcase
+   endif
+ 
+   if custom_product_handle != blank
+--- before/snippets/header-mega-menu.liquid
++++ theme/snippets/header-mega-menu.liquid
+@@ -35,6 +35,9 @@
+         if link.handle == 'family-matching' or link.handle == 'matching-outfits' or link.handle == 'family-matching-outfits' or normalized_link_title == 'family matching' or normalized_link_title == 'family matching outfits'
+           assign use_family_visual_mega_menu = true
+           assign nav_link_title = 'Family Matching'
++          if request.locale.iso_code == 'da'
++            assign nav_link_title = 'Matchende familietøj'
++          endif
+           assign family_hub_collection = collections['new-women-outfits']
+           if family_hub_collection == blank
+             assign family_hub_collection = collections['matching-outfits']
+--- before/snippets/home-category-localized-copy.liquid
++++ theme/snippets/home-category-localized-copy.liquid
+@@ -290,13 +290,13 @@
+         when 'heading-occasion'
+           assign localized_text = 'Shop efter anledning'
+         when 'trust-free-shipping'
+-          assign localized_text = 'Gratis fragt pa alle ordrer'
++          assign localized_text = 'Gratis fragt på alle ordrer'
+         when 'trust-matching-moments'
+           assign localized_text = 'Matchende looks til familiestunder'
+         when 'trust-easy-outfits'
+           assign localized_text = 'Nemme outfits til billeder, rejser og fejringer'
+         when 'trust-sizing-support'
+-          assign localized_text = 'Hjaelp til storrelser'
++          assign localized_text = 'Hjælp til størrelser'
+         when 'trust-family-matching'
+           assign localized_text = 'Familielooks gjort nemt'
+         when 'trust-family-support'
+@@ -304,13 +304,13 @@
+         when 'mommy-me'
+           assign localized_text = 'Mor og mig'
+         when 'family-matching'
+-          assign localized_text = 'Matchende familietoj'
++          assign localized_text = 'Matchende familietøj'
+         when 'pajamas'
+           assign localized_text = 'Pyjamasser'
+         when 'matching-dresses'
+           assign localized_text = 'Matchende kjoler'
+         when 'swimsuits'
+-          assign localized_text = 'Badetoj'
++          assign localized_text = 'Badetøj'
+         when 'daddy-me'
+           assign localized_text = 'Far og mig'
+         when 'vacation'
+@@ -318,7 +318,7 @@
+         when 'photo-days'
+           assign localized_text = 'Fotodage'
+         when 'birthdays'
+-          assign localized_text = 'Fodselsdage'
++          assign localized_text = 'Fødselsdage'
+         when 'beach-days'
+           assign localized_text = 'Stranddage'
+         when 'caption-mommy-me'
+@@ -326,19 +326,19 @@
+         when 'caption-family-matching'
+           assign localized_text = 'Koordinerede looks til alle'
+         when 'caption-pajamas'
+-          assign localized_text = 'Blode saet til hyggelige aftener'
++          assign localized_text = 'Bløde sæt til hyggelige aftener'
+         when 'caption-matching-dresses'
+           assign localized_text = 'Kjoler klar til billeder'
+         when 'caption-swimsuits'
+           assign localized_text = 'Strandklare badelooks'
+         when 'caption-daddy-me'
+-          assign localized_text = 'Matchende far-barn-ojeblikke'
++          assign localized_text = 'Matchende far-barn-øjeblikke'
+         when 'caption-vacation'
+           assign localized_text = 'Resortlooks til hele turen'
+         when 'caption-photo-days'
+-          assign localized_text = 'Lavet til familieportraetter'
++          assign localized_text = 'Lavet til familieportrætter'
+         when 'caption-birthdays'
+-          assign localized_text = 'Sode outfits til fejring'
++          assign localized_text = 'Søde outfits til fejring'
+         when 'caption-beach-days'
+           assign localized_text = 'Solklare matchende styles'
+         when 'badge-most-loved'
+@@ -346,7 +346,7 @@
+         when 'badge-vacation-favorite'
+           assign localized_text = 'Feriefavorit'
+         when 'badge-spring-event-pick'
+-          assign localized_text = 'Valg til forarsbegivenheder'
++          assign localized_text = 'Valg til forårsbegivenheder'
+         when 'badge-new-pajama-drop'
+           assign localized_text = 'Nye pyjamasser'
+         when 'cta-shop-this-look'
+@@ -358,7 +358,7 @@
+         when 'link-family-vacation'
+           assign localized_text = 'Shop familieoutfits til ferie'
+         when 'link-spring-dresses'
+-          assign localized_text = 'Se matchende kjoler til foraret'
++          assign localized_text = 'Se matchende kjoler til foråret'
+         when 'link-new-pajamas'
+           assign localized_text = 'Se de nye pyjamasser'
+       endcase

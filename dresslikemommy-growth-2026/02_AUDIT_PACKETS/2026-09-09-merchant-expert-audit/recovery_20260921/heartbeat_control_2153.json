@@ -1,0 +1,29 @@
+{
+  "at_utc": "2026-09-21T21:54:54.746068+00:00",
+  "automation_id": "google-merchant-all-market-free-listings",
+  "heartbeat_trigger_at_utc": "2026-09-21T21:53:12.169Z",
+  "status": "QUIET_UNCHANGED_USAGE_LIMITED_GOAL__FRESH_COMPLETED_RELEASES_REUSED",
+  "runtime_goal_status": "usageLimited",
+  "goal_status_changed": false,
+  "prior_goal_status_evidence": "latest_continuation_control_20260915",
+  "source_age_minutes": {
+    "US": 32.33,
+    "AU": 24.04
+  },
+  "refresh_due": false,
+  "prior_US_AU_submissions_repeated": false,
+  "new_source_scans": 0,
+  "external_writes": 0,
+  "cloud_activation_or_permission_changes": 0,
+  "parent_acceptance_anchor": "2026-09-21-ceo-us-au-refresh-received",
+  "parent_acceptance_observed_in": [
+    "ops/AGENT_COORDINATION.md",
+    "ops/marketing/current_marketing_state.md",
+    "ops/marketing/action_queue.md"
+  ],
+  "context_compiler": "Broad Canada/UK lookup returned AMBIGUOUS_RELEVANT_ANCHOR; exact existing-source maintenance and goal-control keys were read directly. No write authority inferred.",
+  "hold_reason": "This scheduled heartbeat cannot override the saved usage-limited continuous-run goal. Existing receipts remain current and need no duplicate refresh.",
+  "next_action_when_runtime_goal_allows": "Resume fresh Canada/UK qualification; retain existing US/AU proactive freshness targets.",
+  "notification_decision": "DONT_NOTIFY",
+  "notification_reason": "Same usage gate was already recorded; operational progress was reported in the preceding user turn. Parent bookkeeping acceptance is not new business progress."
+}

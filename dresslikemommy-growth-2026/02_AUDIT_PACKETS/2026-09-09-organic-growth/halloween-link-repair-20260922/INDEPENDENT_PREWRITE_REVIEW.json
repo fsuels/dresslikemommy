@@ -1,0 +1,432 @@
+{
+  "schema": "dlm.halloween_link_repair_independent_prewrite_review.v1",
+  "action_id": "TA20-HALLOWEEN-ARCHIVED-PRODUCT-LINK-20260922",
+  "reviewed_at_utc": "2026-09-22T13:38:51.519172+00:00",
+  "reviewer": "/root/daily_operation_review",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "status": "PASS_WITH_LIMITS",
+  "review_scope": "Exact frozen deletion candidate, saved current route/product evidence, mutation bounds, inventory preservation and reversibility; prewrite only. Reviewer acquires no live-write authority.",
+  "input_sha256": {
+    "PREWRITE_MANIFEST.json": "05ec6f9bbc64fa9147b6989b1564efb058ad742c0d8eb0ea75fddb01612bc647",
+    "article-before.json": "0654d5eb4fff8c4aab7c2814ea5fc22839d366fc601f165d362d37ed3d261d47",
+    "translations-before.json": "136d830c0792a42ad2cef5f04088c3621770d9a165819a3bd99d1099b66a1660",
+    "market-translations-before.json": "a3cc492bca14b43526b486437ff24c2c7ddad01c653ef2444b21cb62b1714144",
+    "other-products-before.json": "b2385fa15006caa30da3ff267b4738b75f8b2055cfa4372f108a4ca5849a2710",
+    "hoodie-before.json": "9b7d6137f8564bdce1d2455602b11fd6768025a8a7fdf7e54564ff1e653470cf",
+    "PRODUCT_HTTP_BEFORE.json": "beafcffb11575af17660328a85e02903ab037fe4bf9b43a60f179f8d04605082",
+    "candidates.json": "27f34e3aea161af27f84eb8b788036fd58232643f2281104480784a9676664ed",
+    "rollback.json": "4935c4dffa677baa39c6eb9c94dbc7acd581af01ce100c59c4bb3298da0b7178",
+    "LOCAL_CHECKS.json": "f2f682b4550e4fb4933f5005fe9643f5204b258d528a9f6087933658d39f7b0c",
+    "article-update.graphql": "4b4b9c8a389853e25e3ec266eddab83a811f1fd555b0ed932f965da2ecf7921d",
+    "translations-register.graphql": "2b2345f7f5509bc191021801beece3e7f1964f9083706ad5947fc6bcdad3b852",
+    "write-validation.json": "73e19cda120fcd9a34cc4380fdc58288be4750921bacf1839723d947016e92ac",
+    "article-variables.json": "c3f5fc4b4da2ec7f34d0b0b2e5c2e7dbd81b9618197e25102c698f4efecfb907",
+    "translation-variables-template.json": "217885f155c5cfe86415a8dae59fb16a7e5c0af6775b46c22e4adbd6b7912dba",
+    "PUBLIC_BEFORE.json": "7a9944f82f210df94ccc0b3d825fbe2790afdddc39e2775ed0f8a7d0bbd1f6be",
+    "CHANGE_PLAN.json": "304ff5bb2634b0f03e1fe2532c99259a7793ab1cd133f154b1835bd7e75a5bec",
+    "archived-7227260797025.json": "7dfcc39d96dd719b212cbda12f56f188b6547fbbd5559aebfd589cead6ce6d38",
+    "archived-548423041054.json": "e8d4885ed0d270fbe5fa10829e52a4b7abc4771c404725071993d541fbf321f1"
+  },
+  "checks_passed": 36,
+  "checks_total": 36,
+  "checks": [
+    {
+      "check": "manifest16_inputs",
+      "status": "PASS",
+      "detail": "All16frozen manifest input hashes match. Manifest and two authorized supplemental status receipts are also independently hashed."
+    },
+    {
+      "check": "exact_article_identity",
+      "status": "PASS",
+      "detail": "All inventory, candidate, rollback and mutation targets agree with the existing published article/store."
+    },
+    {
+      "check": "english_source_consistency",
+      "status": "PASS",
+      "detail": "Authenticated article body agrees byte-for-byte with translatable source body; final post-write digest must still come from fresh readback."
+    },
+    {
+      "check": "affected_locale_set",
+      "status": "PASS",
+      "detail": "Exact English plus16existing global bodies; no locale substitution or new body registration."
+    },
+    {
+      "check": "exact_removal_and_rollback_en",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_ar",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_cs",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_da",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_el",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_es",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_fi",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_fr",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_hi",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_it",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_ja",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_ko",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_nl",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_no",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_pl",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_pt-BR",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "exact_removal_and_rollback_ro",
+      "status": "PASS",
+      "detail": "Two complete target li spans removed; all other UTF-8 bytes/non-target links retained,3to1list items, balanced markup, hashes and exact original rollback agree."
+    },
+    {
+      "check": "existing_global_inventory",
+      "status": "PASS",
+      "detail": "51existing global records include17body values;16affected body rows match their original outdated metadata.35other translation rows omitted from mutation."
+    },
+    {
+      "check": "old_german_preserved",
+      "status": "PASS",
+      "detail": "Different preexisting German body/title remain untouched and outdated; never falsely refresh them with the new source digest."
+    },
+    {
+      "check": "missing_bodies_preserved",
+      "status": "PASS",
+      "detail": "Three missing locale bodies remain missing; no synthetic translation or new locale/key row."
+    },
+    {
+      "check": "market_inventory_and_exclusion",
+      "status": "PASS",
+      "detail": "Six markets x20nonprimary locales yield120saved empty override arrays; template is global only and creates no market row."
+    },
+    {
+      "check": "archived_source_7227260797025",
+      "status": "PASS",
+      "detail": "Fresh supplemental authenticated identity/status receipt resolves archived-product premise; bound directly without altering16-input manifest."
+    },
+    {
+      "check": "archived_source_548423041054",
+      "status": "PASS",
+      "detail": "Fresh supplemental authenticated identity/status receipt resolves archived-product premise; bound directly without altering16-input manifest."
+    },
+    {
+      "check": "target_routes_404",
+      "status": "PASS",
+      "detail": "Both exact linked public paths return404 in saved cookie-free GET receipts; removal is independently justified by broken routes."
+    },
+    {
+      "check": "retained_product_source",
+      "status": "PASS",
+      "detail": "Existing retained product ID/handle/ACTIVE status and exact public200canonical agree."
+    },
+    {
+      "check": "retained_actual_link_receipt",
+      "status": "PASS",
+      "detail": "Owner saved an actual English article-to-PDP arrival with separate-piece disclosure. Source-level acceptance only; no independent native replay/checkout proof."
+    },
+    {
+      "check": "article_mutation_body_only",
+      "status": "PASS",
+      "detail": "Prepared ArticleUpdate variables can alter only this exact body; returned title/handle/status fields are readback selection, not mutation fields."
+    },
+    {
+      "check": "translation_template_scope",
+      "status": "PASS",
+      "detail": "Only16reviewed existing global body_html rows. Placeholder is deliberately non-executable until exact fresh English-after body_html digest is read; no inferred/local hash substitution."
+    },
+    {
+      "check": "saved_schema_validation",
+      "status": "PASS",
+      "detail": "Saved connector validation confirms both operation schemas. LOCAL_CHECKS pending-write wording is historical and superseded by this bound receipt; no new validator replay."
+    },
+    {
+      "check": "guarded_forward_and_reverse_sequence",
+      "status": "PASS",
+      "detail": "Before-state drift guard, one English write/readback, fresh digest binding, one translation batch and after-read/public QA are explicit. Rollback values are exact but require current-after equality and fresh source digest."
+    },
+    {
+      "check": "local_summary_recomputed",
+      "status": "PASS",
+      "detail": "Independent span/byte checks reproduce the narrow local summary; no successful live write implied."
+    },
+    {
+      "check": "input_stability",
+      "status": "PASS",
+      "detail": "Nineteen inspected files remain unchanged:16manifest inputs, manifest itself, two supplemental status receipts. No checkpoint binding."
+    }
+  ],
+  "blocking_issues": [],
+  "candidate_bindings": [
+    {
+      "locale": "en",
+      "before_sha256": "a415f6c364b4b2df5b7021c6a7c5071da350af7eec0abb8e5e96d0aee82cc6c5",
+      "candidate_sha256": "0f1ab806f2cabe7ea2f56224fe8f7f3aca8043b01507f937884711e61e37e6c0",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "ar",
+      "before_sha256": "b3c711e0fb42791814411724829dc421acffc896f89bbcd61e5523a9aa19902d",
+      "candidate_sha256": "a6d3822cd866a1d0ddc98f4d0573d58723079f41434220618cd6c17c38bebad4",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "cs",
+      "before_sha256": "0412506618bedaa9613f8e95a6b63bc620cbbc627ac355a0d237c1fd88d1ce3e",
+      "candidate_sha256": "3c16950727697fda38ec37a93de4e5f1e9a9a3bdb6aaf6225709a3417a1770b4",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "da",
+      "before_sha256": "38f32f2c0a116a4024f1410dcf3c1c07114aca6c6735e7d40cedf0bb2bdcef30",
+      "candidate_sha256": "d576898d77316be539a0178b728729e9e4b9b06bf43ab26a6d6d2215839f24e9",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "el",
+      "before_sha256": "0794734190a50a92bbb6a3ea4db5c50742fc5cd2fce1985193d5273eba199a33",
+      "candidate_sha256": "63eb213e39b8215e38e9b5436f2658912786ca3fa453d9f8fd459666026447b7",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "es",
+      "before_sha256": "dc44cb8f6fc157ace14b2bc60bde2ed1d6bb721d60bc7cb5bbf49775bfe9f24d",
+      "candidate_sha256": "8c0f2574aa4d00467aef1faf8782a12ad88e7b3351d26b7cf08406d05174ba66",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "fi",
+      "before_sha256": "8634bf24d31c033f78df39737d012e8abae067cb57d74331923fd3d575ff6612",
+      "candidate_sha256": "b1e763893440595f8cd7aebd1b6e83111fa93ea7623ce94de2938b2ead0d3681",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "fr",
+      "before_sha256": "a42c67116b8fe69c51cb46d489699916ad6c15e612c4f5f2d9d19e80c9bd85a4",
+      "candidate_sha256": "c173a17df59309991b3ce1defe905a7ff77f78d8679c5841491c1c985fe4ba4f",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "hi",
+      "before_sha256": "ddd33769945493ef22f57ad5a95566f75d317c3651de03c32db1b4a53312528a",
+      "candidate_sha256": "2da42b2d05ca35c245663528a72a275c9c212618da62976c87842363293ef4c0",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "it",
+      "before_sha256": "65c8c402d86f37a5e8f8175a6afc294d8c281916e7fe450d1d084ac78df2b6c7",
+      "candidate_sha256": "11e37ae018de923526eed344abc4e1746953744b55242a60b7baf32bf6626c0e",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "ja",
+      "before_sha256": "1025e673f520a5c3532d65d0a930b4f11d70d090914365d3825739266f3e7bba",
+      "candidate_sha256": "29d71fb6ef9791e1470973edc75e986e06355d58657fb03289910b3590e38978",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "ko",
+      "before_sha256": "6f32d1582ee64a79d3b38232a3d4c17163fe765c5380af24d988ef645b48d90b",
+      "candidate_sha256": "360de773bfbc079318823cdce0539aa706f29598145103ddd1e41f2f9a28355b",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "nl",
+      "before_sha256": "3546ef6fd8ed0316f6961f582e545aad8e35470e69a992be50d29746326b7c6e",
+      "candidate_sha256": "579b6589ede8ac6fed6306e5b5965be08501c29e55e05e96a823bc2c39eb916a",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "no",
+      "before_sha256": "1d764debaf64622005e26315ddd06bddf8a042ebcdf186367f17dee638ab061a",
+      "candidate_sha256": "3bd213a9f0a2867f672a29a73c10c811d2a96052794354befcb8b742af83f166",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "pl",
+      "before_sha256": "4562e0e7c4c301cbef22252b1eacf573fc341aab575b3dd60b73554c742242d7",
+      "candidate_sha256": "ad9e3e084c6587fe793fc5b50e16d928e186870dff3fedfa3950a73feb32fa28",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "pt-BR",
+      "before_sha256": "d70522054c4f859ea4971159e1c568bfe1619d4f006bb971f3c97d611630e4f0",
+      "candidate_sha256": "41f92c0db3823c58f1fd0f2ec79c797a7d9295b492b83baf04e6082cbc8f5671",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    },
+    {
+      "locale": "ro",
+      "before_sha256": "c8dfdfb6493d7798bd9867548f4004d987ad34fdb6259b1d98602692ddba5b44",
+      "candidate_sha256": "a7ea09ed8d04135ae725eb9dd98f623f5551ef2142779b7ff930d0cc93f8add6",
+      "removed_complete_li": 2,
+      "remaining_li": 1,
+      "retained_product_href_count": 1,
+      "checks_passed": true
+    }
+  ],
+  "expected_preservation": {
+    "captured_article_nonbody_fields_untouched_by_inputs": [
+      "id",
+      "handle",
+      "title",
+      "summary",
+      "tags",
+      "isPublished",
+      "publishedAt",
+      "templateSuffix",
+      "blog"
+    ],
+    "nonbody_source_keys_untouched": [
+      "title",
+      "summary_html",
+      "handle"
+    ],
+    "global_translation_identity_count": 51,
+    "changed_existing_global_body_rows": 16,
+    "other_translation_rows_not_written": 35,
+    "old_german_body_and_title_outdated": true,
+    "missing_body_locales": [
+      "he",
+      "ru",
+      "sv"
+    ],
+    "empty_market_override_arrays": 120,
+    "automatic_metadata_changes_expected": [
+      "article updatedAt",
+      "English body_html digest",
+      "affected body translation updatedAt/outdated lifecycle"
+    ]
+  },
+  "content_judgment": {
+    "deletion_coherent": true,
+    "rationale": "Removing the two complete unavailable recommendations leaves one intact hoodie recommendation and the existing broader collection/styling routes. No remaining sentence depends on those exact two product links or a promised count of three; the ordered list remains valid. Generic plaid/dress styling references and plural section heading do not require substituting an unqualified product. No new bundle or equivalence claim is introduced.",
+    "buyer_harm_introduced_by_deletion": "None identified in this bounded change. It removes two404paths and retains existing alternatives; it does not certify the full article or product."
+  },
+  "resolved_source_gap": {
+    "initial_gap": "First archived-product status was asserted but absent from original16manifest inputs.",
+    "resolution": "Root supplied two fresh authenticated identity/status receipts, independently hashed above; both ARCHIVED. Original manifest and all candidates unchanged.",
+    "first_id_handle_limit": "First supplemental receipt persists identity/title/status without handle. Exact target URL404 is independently evidenced; direct handle-to-ID association remains the owner mapping and is not needed to justify deleting that broken URL."
+  },
+  "limits": [
+    "Saved-source consistency, not independent live/API/browser replay. HTTP raw bodies and native screenshot are not independently re-fetched or inspected; parent must perform guarded execution and final public desktop/mobile verification.",
+    "This narrow deletion preserves preexisting generic upsizing, care, comfort/thermal, material and catalog-superiority wording. Those claims, physical stock, suitability, child safety, sizing charts, fulfillment and checkout are not certified or newly authored by this review.",
+    "Model semantic/structure review is not human native-language certification or a full audit of all retained localized prose. All unchanged language bytes and RTL/markup attributes are retained.",
+    "Nine article fields are captured and omitted from write inputs; author/media were not explicitly captured in article-before and cannot be independently before/after-certified here. No prepared variable writes them.",
+    "German outdated content and missing he/ru/sv bodies are deliberately preserved, not accepted as correct/current.120market arrays are saved empty inputs; after-state preservation still requires live readback.",
+    "Translation template must never be submitted as-is. Bind only the freshly returned body_html digest after exact English-after verification. A serialization/source difference requires qualified review rather than assuming the candidate SHA is an authoritative live digest.",
+    "Rollback restores exact original body values only under a current-state guard. Historical updatedAt metadata cannot be restored, and source-driven outdated status must be read back. No automatic retry or rollback.",
+    "No measured traffic, sales, retained-profit, causal lift or complete buyer-flow result follows from this prewrite acceptance."
+  ],
+  "verdict": "Accept the exact17-body/34-li deletion for parent-controlled guarded release, subject to current-source equality and the documented fresh-digest/after-state/public checks. No blocking candidate correction identified.",
+  "write_boundaries": {
+    "owned_file": "INDEPENDENT_PREWRITE_REVIEW.json",
+    "source_or_candidate_edits": 0,
+    "shared_canonical_edits": 0,
+    "external_actions": 0,
+    "no_new_authority_granted": true
+  },
+  "confidence": "High for exact scope, byte preservation and saved-source consistency; rendered after-state and business effect not yet verified."
+}

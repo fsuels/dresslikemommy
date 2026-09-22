@@ -1,0 +1,23 @@
+{
+  "at_utc": "2026-09-21T21:46:27.238643+00:00",
+  "initial_after_review_sha256": "eb50e3e3684edfa3c41bbadf1b73f65c45a7f34b9ce15b52a4a512ed5e28e98d",
+  "initial_failed_check": "review_to_guard_to_action_order",
+  "cause": "Reviewer predicate incorrectly required the native identity before-state record to occur after the final release review. No such ordering requirement exists. Both exact approved review and bound native identity record precede the action-time guard and upload.",
+  "reviewed_at_utc": "2026-09-21T21:39:28.037438+00:00",
+  "identity_recorded_at_utc": "2026-09-21T21:39:01.333738+00:00",
+  "guard_at_utc": "2026-09-21T21:40:16.189023+00:00",
+  "upload_at_utc": "2026-09-21T21:40:34.857Z",
+  "corrected_checks": [
+    {
+      "check": "review_before_guard_before_action",
+      "passed": true
+    },
+    {
+      "check": "identity_record_before_guard_before_action",
+      "passed": true
+    }
+  ],
+  "source_release_action_receipt_or_sample_changes": 0,
+  "all_original_bound_artifacts_still_match": true,
+  "limit": "Identity is root-recorded from preceding native observations; actual AX event times are not independently embedded. No direct live re-observation by this reviewer."
+}

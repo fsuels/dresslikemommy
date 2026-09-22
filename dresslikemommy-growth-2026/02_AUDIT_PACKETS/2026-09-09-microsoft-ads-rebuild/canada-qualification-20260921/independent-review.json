@@ -1,0 +1,163 @@
+{
+  "schema": "dlm.microsoft.canada_qualification_independent_review.v1",
+  "recorded_at_utc": "2026-09-22T00:34:54.040115+00:00",
+  "verifier": "/root/support_followup_review",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "review_kind": "SAVED_EVIDENCE_REVIEW_ONLY",
+  "native_independent_replay": false,
+  "scope": "Only readback.json, copy-correction-candidate.json and READBACK.md in this packet. No browser, connectors, shared canonical files, source modifications, or external actions. Reviewer owns this independent-review.json only.",
+  "verdict": "PASS_WITH_LIMITS",
+  "source_sha256": {
+    "readback.json": "f0f12fc2bc432e807663d2b22a209bab265eca11f0c145224ac000b0c7a44f17",
+    "copy-correction-candidate.json": "41518ebdcc37ef3ad2c5556ccfa6ac901a6de80ad9b8952d1e42eb0ba84af1cc",
+    "READBACK.md": "03b85bb7ef464a40c84f2addf989ebfb2b4cdabf23e3ac8983774fbf85850b79"
+  },
+  "machine_checks_passed": 21,
+  "machine_checks_total": 21,
+  "machine_checks": [
+    {
+      "name": "account_customer_campaign_identity",
+      "result": "PASS",
+      "evidence": "Exact IDs agree with READBACK.md and recorded Microsoft URLs."
+    },
+    {
+      "name": "operating_date_timezone",
+      "result": "PASS",
+      "evidence": "September22 00:20UTC is September21 Eastern."
+    },
+    {
+      "name": "completed_report_window",
+      "result": "PASS",
+      "evidence": "Completed dates are separate from current configuration/readback."
+    },
+    {
+      "name": "campaign_click_network_sum",
+      "result": "PASS",
+      "evidence": "Search0 + Audience3 = campaign3 clicks."
+    },
+    {
+      "name": "campaign_impression_network_sum",
+      "result": "PASS",
+      "evidence": "Search6 + Audience307 = campaign313 impressions."
+    },
+    {
+      "name": "campaign_spend_network_sum",
+      "result": "PASS",
+      "evidence": "SearchUSD0 + AudienceUSD0.45 = campaignUSD0.45."
+    },
+    {
+      "name": "audience_spend_share",
+      "result": "PASS",
+      "evidence": "Audience accounts for100% of the recorded spend, without a causal quality conclusion."
+    },
+    {
+      "name": "seven_unique_ad_groups",
+      "result": "PASS",
+      "evidence": "Seven distinct ad-group IDs in destination map."
+    },
+    {
+      "name": "seven_ad_group_impression_sum",
+      "result": "PASS",
+      "evidence": "22+69+20+182+3+16+1=313."
+    },
+    {
+      "name": "swimwear_row_identity_and_impressions",
+      "result": "PASS",
+      "evidence": "Recorded swimsuit group1267738711006631 matches destination map."
+    },
+    {
+      "name": "swimwear_click_spend_totals",
+      "result": "PASS",
+      "evidence": "Recorded swimsuit group accounts for campaign clicks/spend; native row identity not independently replayed."
+    },
+    {
+      "name": "negative_sample_count_unique",
+      "result": "PASS",
+      "evidence": "20 unique rendered sample terms: seven German expressions, language-neutral svg, and 12 English entries."
+    },
+    {
+      "name": "negative_match_and_no_mutation",
+      "result": "PASS",
+      "evidence": "Saved sample is Phrase; no additions/removals."
+    },
+    {
+      "name": "canada_presence_configuration",
+      "result": "PASS",
+      "evidence": "Configuration only; no visitor-location or shipping proof."
+    },
+    {
+      "name": "current_cpc_conflict_preserved",
+      "result": "PASS",
+      "evidence": "USD0.20 saved cap exceeds retainedUSD0.15; no authorization inferred."
+    },
+    {
+      "name": "authority_questions_and_writes",
+      "result": "PASS",
+      "evidence": "Both prior owner decisions remain pending; no production writes reported."
+    },
+    {
+      "name": "copy_candidate_product_identity",
+      "result": "PASS",
+      "evidence": "Recorded candidate identity agrees with public link context; fresh Shopify source binding remains required."
+    },
+    {
+      "name": "one_sentence_no_numeric_values",
+      "result": "PASS",
+      "evidence": "One sentence replacement; no measurements, prices or shipping facts added."
+    },
+    {
+      "name": "candidate_not_implemented",
+      "result": "PASS",
+      "evidence": "Local preparation only; no new owner question or release."
+    },
+    {
+      "name": "buyer_path_no_checkout_purchase",
+      "result": "PASS",
+      "evidence": "Role selection only; cart remains empty and no order/payment test performed."
+    },
+    {
+      "name": "pajama_url_defect_rejected",
+      "result": "PASS",
+      "evidence": "Saved candidate defect rejected; transient cause remains unknown and no URL repair claimed."
+    }
+  ],
+  "manual_checks": [
+    {
+      "name": "copy_factual_scope",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Replacement removes internal vendor-evidence/dash instructions while retaining the existing height/weight comparison guidance; adds no supported-or-unsupported product facts. Existing guidance still needs fresh source confirmation at release."
+    },
+    {
+      "name": "copy_release_authority_and_rollback",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Fresh exact source sentence, before body/digest, owner authority, protected content, localization handling, independent after-readback and concurrent-edit-safe rollback are explicit."
+    },
+    {
+      "name": "negative_coverage_limit",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Rendered20-row sample is not described as exhaustive; virtualized, ad-group and shared-list coverage remain open. Audience clicks do not establish new search-negative evidence."
+    },
+    {
+      "name": "destination_scope_and_url_false_positive",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Seven saved destination routes are distinguished from one tested buyer path. Pajama link anomaly is rejected as a saved-URL defect after the root-reported native editor readback; its cause is not invented."
+    },
+    {
+      "name": "shipping_variant_purchase_profit_limits",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Storefront Canada/CAD promises and enabled size controls are observations only. Numeric variant identity, inventory, checkout shipping, actual delivery, consent, purchase/deduplication and profit remain explicitly unverified."
+    },
+    {
+      "name": "evidence_independence",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Native configuration, zero reported conversions and public-page observations were captured by root. This reviewer checked saved evidence and arithmetic only, with no independent native replay."
+    }
+  ],
+  "required_corrections": [],
+  "residual_gates": [
+    "Pending exact six-campaign status-only pause decision and numeric total daily budget/maximum30-day test loss remain unanswered.",
+    "No authority is conferred to change campaigns, CPC, budgets, tracking, Shopify content or shipping.",
+    "Storefront owner must bind exact product/source/authority before any one-sentence correction; current packet remains prepared only."
+  ],
+  "next_action": "Root may integrate this reviewed saved-evidence packet through the owning handoff process; preserve existing owner decisions and production boundaries."
+}

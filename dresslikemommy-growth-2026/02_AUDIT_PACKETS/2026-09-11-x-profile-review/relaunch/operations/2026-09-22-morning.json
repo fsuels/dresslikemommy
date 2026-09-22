@@ -1,0 +1,682 @@
+{
+  "schema_version": 1,
+  "automation_id": "run-dress-like-mommy-x-organic-pilot",
+  "trigger_utc": "2026-09-22T13:01:15.746Z",
+  "started_at_utc": "2026-09-22T13:05:03Z",
+  "source_frozen_at_utc": "2026-09-22T13:15:12.180899+00:00",
+  "task_stage": "VERIFY",
+  "status": "LATE_CHECKPOINT_SOURCE__NO_SUPPORTED_X_ACQUISITION__PUBLICATION_HOLD",
+  "scope": {
+    "owner_thread": "01a0915d-9105-7833-9d4b-eb467ab0ebbd",
+    "target": "@dresslikemommy",
+    "authoritative_task": "TA-24",
+    "claim": "ops/AGENT_COORDINATION.md:67",
+    "shared_writer": "01a08223-036e-7fa3-8961-ecd297163fb5; no shared file edits in this run",
+    "latest_exact_x_anchor": "2026-09-14-ceo-x-publisher-proposal-and-n2-receipt",
+    "canonical_runtime_evidence": "TA-24 September22 01:40 parent readback retains September21 usage-limit failure; last accepted X execution September15.",
+    "changed_runtime_evidence": "This actual September22 read-only execution; it does not prove future availability or successful intervening wakes."
+  },
+  "missed_execution": {
+    "last_completed_receipt": "operations/2026-09-15-morning.json",
+    "later_completed_receipts_found": 0,
+    "missing_checkpoint_date": "2026-09-19",
+    "catchup_performed_on": "2026-09-22",
+    "historical_execution_backfilled": false,
+    "meaning": "Trigger arrival is not completed work; no run or historical publication is fabricated."
+  },
+  "shop_context": {
+    "key": "shop",
+    "isError": false,
+    "data": {
+      "domain": "www.dresslikemommy.com",
+      "name": "Dress Like Mommy",
+      "timezone": "EDT",
+      "currencyCode": "USD"
+    }
+  },
+  "reports": {
+    "missing_completed_days": {
+      "key": "gap",
+      "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'x' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' GROUP BY utm_content SINCE 2026-09-15 UNTIL 2026-09-21",
+      "isError": false,
+      "data": {
+        "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'x' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' GROUP BY utm_content SINCE 2026-09-15 UNTIL 2026-09-21",
+        "columns": [],
+        "rows": [],
+        "rowCount": 0,
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      },
+      "receipt_at": "2026-09-22T13:06:19.574Z"
+    },
+    "retrospective_checkpoint": {
+      "key": "checkpoint",
+      "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'x' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' GROUP BY utm_content SINCE 2026-09-12 UNTIL 2026-09-19",
+      "isError": false,
+      "data": {
+        "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'x' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' GROUP BY utm_content SINCE 2026-09-12 UNTIL 2026-09-19",
+        "columns": [],
+        "rows": [],
+        "rowCount": 0,
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      },
+      "receipt_at": "2026-09-22T13:06:19.928Z"
+    },
+    "referrer_comparison": {
+      "key": "referrers",
+      "query": "FROM sessions SHOW sessions GROUP BY referrer_source, referrer_name SINCE 2026-09-15 UNTIL 2026-09-21 ORDER BY sessions DESC LIMIT 100",
+      "isError": false,
+      "data": {
+        "query": "FROM sessions SHOW sessions GROUP BY referrer_source, referrer_name SINCE 2026-09-15 UNTIL 2026-09-21 ORDER BY sessions DESC LIMIT 100",
+        "columns": [
+          {
+            "name": "referrer_source",
+            "dataType": "STRING"
+          },
+          {
+            "name": "referrer_name",
+            "dataType": "STRING"
+          },
+          {
+            "name": "sessions",
+            "dataType": "INTEGER"
+          }
+        ],
+        "rows": [
+          [
+            "direct",
+            "",
+            "1523"
+          ],
+          [
+            "search",
+            "google",
+            "271"
+          ],
+          [
+            "unknown",
+            "msn",
+            "62"
+          ],
+          [
+            "search",
+            "duckduckgo",
+            "29"
+          ],
+          [
+            "unknown",
+            "themediatrust",
+            "24"
+          ],
+          [
+            "search",
+            "bing",
+            "21"
+          ],
+          [
+            "search",
+            "yahoo!",
+            "17"
+          ],
+          [
+            "unknown",
+            "imdb",
+            "11"
+          ],
+          [
+            "unknown",
+            "chatgpt",
+            "6"
+          ],
+          [
+            "unknown",
+            "amazon-adsystem",
+            "3"
+          ],
+          [
+            "unknown",
+            "microsoft",
+            "3"
+          ],
+          [
+            "search",
+            "ecosia",
+            "2"
+          ],
+          [
+            "social",
+            "facebook",
+            "2"
+          ],
+          [
+            "unknown",
+            "fashiontopchoice",
+            "2"
+          ],
+          [
+            "unknown",
+            "similarsearch",
+            "2"
+          ],
+          [
+            "unknown",
+            "goldprice",
+            "1"
+          ],
+          [
+            "unknown",
+            "aviationa2z",
+            "1"
+          ],
+          [
+            "unknown",
+            "buzzfeed",
+            "1"
+          ],
+          [
+            "unknown",
+            "dailymail",
+            "1"
+          ],
+          [
+            "unknown",
+            "eurogamer",
+            "1"
+          ],
+          [
+            "unknown",
+            "get-moment",
+            "1"
+          ],
+          [
+            "unknown",
+            "justjared",
+            "1"
+          ],
+          [
+            "unknown",
+            "storage",
+            "1"
+          ],
+          [
+            "unknown",
+            "mensjournal",
+            "1"
+          ],
+          [
+            "paid",
+            "outbrain",
+            "1"
+          ],
+          [
+            "search",
+            "yandex",
+            "1"
+          ],
+          [
+            "unknown",
+            "kagi",
+            "1"
+          ],
+          [
+            "unknown",
+            "ssl-images-amazon",
+            "1"
+          ]
+        ],
+        "rowCount": 28,
+        "chartHint": {
+          "type": "bar",
+          "xAxisColumnIndex": 0,
+          "yAxisColumnIndices": [
+            2
+          ],
+          "yAxisFormat": "number"
+        },
+        "summaryMetric": {
+          "label": "sessions",
+          "value": "1,991"
+        },
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      },
+      "receipt_at": "2026-09-22T13:06:19.582Z"
+    }
+  },
+  "analytics_validation": [
+    {
+      "report": "gap",
+      "checks": {
+        "no_error": true,
+        "shop": true,
+        "exact_query": true,
+        "row_count": true
+      },
+      "pass": true
+    },
+    {
+      "report": "checkpoint",
+      "checks": {
+        "no_error": true,
+        "shop": true,
+        "exact_query": true,
+        "row_count": true
+      },
+      "pass": true
+    },
+    {
+      "report": "referrers",
+      "checks": {
+        "no_error": true,
+        "shop": true,
+        "exact_query": true,
+        "row_count": true,
+        "sum_matches_summary": true,
+        "below_limit": true
+      },
+      "pass": true
+    }
+  ],
+  "order_attribution": {
+    "schema_version": 1,
+    "observed_at_utc": "2026-09-22T13:10:00.976Z",
+    "shopDomain": "dresslikemommy-com.myshopify.com",
+    "query": "query XOrderAttribution($first: Int!, $after: String, $search: String!) {\n  shop { myshopifyDomain }\n  orders(first: $first, after: $after, query: $search) {\n    nodes {\n      id createdAt test cancelledAt displayFinancialStatus sourceName\n      customerJourneySummary {\n        ready\n        firstVisit { ...XVisit }\n        lastVisit { ...XVisit }\n        moments(first: 50) {\n          nodes { __typename ... on CustomerVisit { ...XVisit } }\n          pageInfo { hasNextPage endCursor }\n        }\n      }\n    }\n    pageInfo { hasNextPage endCursor }\n  }\n}\nfragment XVisit on CustomerVisit {\n  occurredAt source referrerUrl landingPage\n  utmParameters { source medium campaign content }\n}",
+    "variables": {
+      "first": 50,
+      "after": null,
+      "search": "created_at:>='2026-09-11T18:41:00Z' created_at:<'2026-09-22T04:00:00Z'"
+    },
+    "validation": "VALID; x-order-attribution-20260922 revision1",
+    "isError": false,
+    "graphql_errors": null,
+    "row_count": 4,
+    "distinct_ids": true,
+    "orders_complete": true,
+    "all_in_bounds": true,
+    "all_moments_complete": true,
+    "rows": [
+      {
+        "row": 1,
+        "in_requested_time_range": true,
+        "in_september19_checkpoint": true,
+        "eligible_paid_non_test_noncancelled": true,
+        "financial_status": "PAID",
+        "test": false,
+        "cancelled": false,
+        "order_source": "web",
+        "journey_ready": true,
+        "first": {
+          "occurred_in_campaign_window": true,
+          "source_class": "direct",
+          "referrer": {
+            "parse_status": "ABSENT",
+            "host_x": false,
+            "utm": null
+          },
+          "utm": null,
+          "landing": {
+            "parse_status": "PARSED",
+            "host_x": false,
+            "utm": {
+              "source_x": false,
+              "campaign_exact": false,
+              "content_present": false
+            }
+          }
+        },
+        "last": {
+          "occurred_in_campaign_window": true,
+          "source_class": "direct",
+          "referrer": {
+            "parse_status": "ABSENT",
+            "host_x": false,
+            "utm": null
+          },
+          "utm": null,
+          "landing": {
+            "parse_status": "PARSED",
+            "host_x": false,
+            "utm": {
+              "source_x": false,
+              "campaign_exact": false,
+              "content_present": false
+            }
+          }
+        },
+        "moments_count": 1,
+        "moments_complete": true,
+        "moment_visits": [
+          {
+            "occurred_in_campaign_window": true,
+            "source_class": "direct",
+            "referrer": {
+              "parse_status": "ABSENT",
+              "host_x": false,
+              "utm": null
+            },
+            "utm": null,
+            "landing": {
+              "parse_status": "PARSED",
+              "host_x": false,
+              "utm": {
+                "source_x": false,
+                "campaign_exact": false,
+                "content_present": false
+              }
+            }
+          }
+        ],
+        "supports_x": false,
+        "unparseable_visit_url": false
+      },
+      {
+        "row": 2,
+        "in_requested_time_range": true,
+        "in_september19_checkpoint": true,
+        "eligible_paid_non_test_noncancelled": true,
+        "financial_status": "PAID",
+        "test": false,
+        "cancelled": false,
+        "order_source": "web",
+        "journey_ready": true,
+        "first": null,
+        "last": null,
+        "moments_count": 0,
+        "moments_complete": true,
+        "moment_visits": [],
+        "supports_x": false,
+        "unparseable_visit_url": false
+      },
+      {
+        "row": 3,
+        "in_requested_time_range": true,
+        "in_september19_checkpoint": true,
+        "eligible_paid_non_test_noncancelled": true,
+        "financial_status": "PAID",
+        "test": false,
+        "cancelled": false,
+        "order_source": "web",
+        "journey_ready": true,
+        "first": {
+          "occurred_in_campaign_window": true,
+          "source_class": "direct",
+          "referrer": {
+            "parse_status": "ABSENT",
+            "host_x": false,
+            "utm": null
+          },
+          "utm": null,
+          "landing": {
+            "parse_status": "PARSED",
+            "host_x": false,
+            "utm": {
+              "source_x": false,
+              "campaign_exact": false,
+              "content_present": false
+            }
+          }
+        },
+        "last": {
+          "occurred_in_campaign_window": true,
+          "source_class": "direct",
+          "referrer": {
+            "parse_status": "ABSENT",
+            "host_x": false,
+            "utm": null
+          },
+          "utm": null,
+          "landing": {
+            "parse_status": "PARSED",
+            "host_x": false,
+            "utm": {
+              "source_x": false,
+              "campaign_exact": false,
+              "content_present": false
+            }
+          }
+        },
+        "moments_count": 1,
+        "moments_complete": true,
+        "moment_visits": [
+          {
+            "occurred_in_campaign_window": true,
+            "source_class": "direct",
+            "referrer": {
+              "parse_status": "ABSENT",
+              "host_x": false,
+              "utm": null
+            },
+            "utm": null,
+            "landing": {
+              "parse_status": "PARSED",
+              "host_x": false,
+              "utm": {
+                "source_x": false,
+                "campaign_exact": false,
+                "content_present": false
+              }
+            }
+          }
+        ],
+        "supports_x": false,
+        "unparseable_visit_url": false
+      },
+      {
+        "row": 4,
+        "in_requested_time_range": true,
+        "in_september19_checkpoint": true,
+        "eligible_paid_non_test_noncancelled": true,
+        "financial_status": "PAID",
+        "test": false,
+        "cancelled": false,
+        "order_source": "web",
+        "journey_ready": true,
+        "first": {
+          "occurred_in_campaign_window": true,
+          "source_class": "direct",
+          "referrer": {
+            "parse_status": "ABSENT",
+            "host_x": false,
+            "utm": null
+          },
+          "utm": null,
+          "landing": {
+            "parse_status": "PARSED",
+            "host_x": false,
+            "utm": {
+              "source_x": false,
+              "campaign_exact": false,
+              "content_present": false
+            }
+          }
+        },
+        "last": {
+          "occurred_in_campaign_window": true,
+          "source_class": "direct",
+          "referrer": {
+            "parse_status": "ABSENT",
+            "host_x": false,
+            "utm": null
+          },
+          "utm": null,
+          "landing": {
+            "parse_status": "PARSED",
+            "host_x": false,
+            "utm": {
+              "source_x": false,
+              "campaign_exact": false,
+              "content_present": false
+            }
+          }
+        },
+        "moments_count": 1,
+        "moments_complete": true,
+        "moment_visits": [
+          {
+            "occurred_in_campaign_window": true,
+            "source_class": "direct",
+            "referrer": {
+              "parse_status": "ABSENT",
+              "host_x": false,
+              "utm": null
+            },
+            "utm": null,
+            "landing": {
+              "parse_status": "PARSED",
+              "host_x": false,
+              "utm": {
+                "source_x": false,
+                "campaign_exact": false,
+                "content_present": false
+              }
+            }
+          }
+        ],
+        "supports_x": false,
+        "unparseable_visit_url": false
+      }
+    ],
+    "summary": {
+      "eligible_orders": 4,
+      "eligible_checkpoint_orders": 4,
+      "orders_with_supported_x": 0,
+      "costs": null,
+      "contribution": null
+    },
+    "privacy": "Order IDs and exact timestamps used only transiently for deduplication/window checks. Names, contacts, addresses, line items and amounts not requested. Full visit URLs and raw order IDs are not persisted.",
+    "limits": "Read on September22, not a historical as-of-September19 snapshot. September19 cohort uses createdAt before September20 04:00UTC and current payment/cancellation status. Missing attribution is not proof X had no role; first/last may duplicate moment visits and are never summed as independent visits. No money or profits credited to X.",
+    "parser_checks": [
+      {
+        "raw": "https://t.co/abc",
+        "host": true,
+        "exact": false,
+        "pass": true
+      },
+      {
+        "raw": "https://mobile.twitter.com/user/status/1",
+        "host": true,
+        "exact": false,
+        "pass": true
+      },
+      {
+        "raw": "https://x.com.evil.example/path",
+        "host": false,
+        "exact": false,
+        "pass": true
+      },
+      {
+        "raw": "https://www.dresslikemommy.com/?utm_source=x&utm_medium=social&utm_campaign=organic_202609&utm_content=x_r007",
+        "host": false,
+        "exact": true,
+        "pass": true
+      },
+      {
+        "raw": "https://www.dresslikemommy.com/?utm_source=%78&utm_medium=social&utm_campaign=organic_202609",
+        "host": false,
+        "exact": true,
+        "pass": true
+      },
+      {
+        "raw": "https://example.com/?a=x.com",
+        "host": false,
+        "exact": false,
+        "pass": true
+      },
+      {
+        "raw": null,
+        "host": false,
+        "exact": false,
+        "pass": true
+      }
+    ],
+    "parser_recovery": "First transient reduction discarded after detecting unavailable URL constructor. Repeated same validated read once; purpose-built URL reduction passed7fixtures. No first-reduction result was persisted or used as attribution evidence."
+  },
+  "interpretation": {
+    "campaign_evidence": "Both accepted X campaign queries returned zero rows. The September12-19 checkpoint window overlaps the September15-21 catch-up window; they are not added.",
+    "referrer_evidence": "28 returned referrer rows sum to1991 store sessions; no named X/Twitter/t.co row. These total store sessions are not credited to X.",
+    "qualified_sessions": null,
+    "product_progression": null,
+    "genuine_questions": null,
+    "distinct_orders_with_observed_x_evidence": 0,
+    "actual_x_orders": null,
+    "contribution": null,
+    "orders": "Four distinct paid, non-test, noncancelled web orders in the exact launch-through-completed-September21 creation window. All four also precede the September19 checkpoint cutoff. Three ready journeys each show one Direct moment, and one ready journey has no moments. None provides observed X attribution. No totals from other parent or channel cohorts are imported.",
+    "limits": "Current status read September22 is not payment/cancellation state as of September19. No rows or attribution markers does not prove all X clicks/orders absent. Costs unqueried because no order supports X credit; contribution unknown. No buyer-facing QA request in this run.",
+    "cohort_rule": "Article, Pinterest, Sunshine Pin and parent full-sales windows remain separate. A guide visit from X is not counted as an additional independent article acquisition.",
+    "original_seven_full_day_cohort": "September12-18 inclusive; first full reporting day September12 and original review scheduled September19.",
+    "retrospective_extension": "The current September12-19 query covers8completed days, including the planned review date itself. The order cutoff September20 04:00UTC likewise includes September19. This is a broader retrospective read September22, not an exact reconstruction of the original7day cohort or information available on September19. The conservative no-credit/publication-hold decision does not require another query."
+  },
+  "publication_reconciliation": {
+    "as_of_utc": "2026-09-22T13:11:10.044Z",
+    "verified_historical_r001_url": "https://x.com/dresslikemommy/status/2098481955721380021",
+    "historical_native_submissions": 7,
+    "current_pending_count": null,
+    "elapsed_planned_ids": [
+      "DLM-X-202609-R002",
+      "DLM-X-202609-R003",
+      "DLM-X-202609-R004",
+      "DLM-X-202609-R005",
+      "DLM-X-202609-R006"
+    ],
+    "elapsed_status": "DUE__PUBLICATION_UNVERIFIED",
+    "today": "DLM-X-202609-R007 plannedSeptember22 12:15EDT/16:15UTC; not due at this morning review, live state unverified",
+    "next": "DLM-X-202609-R008 plannedSeptember23 12:15EDT/16:15UTC; live state unverified",
+    "future_planned_count": 2,
+    "new_platform_receipts": 0,
+    "calendar_elapsed_is_not_publication": true,
+    "duplicate_or_backfill_attempts": 0
+  },
+  "checkpoint_decision": {
+    "id": "X-SEPT19-REVIEW-PERFORMED-20260922",
+    "decision": "PRESERVE_INITIAL_BASELINE__MINIMAL_USEFUL_COVERAGE__NO_EXTRA_PUBLICATION_OR_DRAFTS",
+    "reason": "Publication is unverified and no supported qualified X result or buyer question distinguishes content. Increasing output or choosing a winner would have no evidence basis.",
+    "alternatives_considered": [
+      "Increase cadence/add a product-image post: rejected; adds volume and unresolved image-origin risk without exposure or buyer evidence.",
+      "Preserve original native submissions, monitor useful attribution evidence, keep the approved connection gate: selected."
+    ],
+    "cadence": "Existing seven native submissions preserved; ceiling remains3-4originals/week and no more than1/day. No extension or replay added. September26 decides whether one existing reviewed candidate is justified after permitted publication evidence.",
+    "next_experiment": "No new winner or experiment selected. R009,R010,R011 remain LOCAL; at most one R010/R011 only after changed evidence, supported connection and current product/disclosure QA.",
+    "work_reduction": "No additional draft, repeated completed-period order query or publisher research without changed evidence. Retain short completed-day morning reports and bounded due-publication afternoon assessment under the unchanged09/16heartbeat.",
+    "next_check_local": "2026-09-22T16:00:00-04:00",
+    "next_decision_checkpoint": "2026-09-26",
+    "october12": "Decision checkpoint, not automatic stop."
+  },
+  "publisher": {
+    "supported_callable_x_tools_observed": 0,
+    "scope_of_observation": "Current enabled tool metadata and current local connection receipts; no credential inventory or hidden account inference.",
+    "candidate": "Buffer Free",
+    "setup_authorization": "PENDING_EXISTING_QUESTION",
+    "connected": false,
+    "account_setup_attempts": 0,
+    "question_repeated": false,
+    "website_automation_or_native_fallback": false
+  },
+  "mutations": {
+    "x_writes": 0,
+    "shopify_writes": 0,
+    "new_content_drafts": 0,
+    "automation_changes": 0,
+    "goal_changes": 0,
+    "shared_canonical_writes": 0,
+    "ads_or_new_charges_usd": 0
+  },
+  "effort": {
+    "source_freeze_elapsed_minutes": 10.15,
+    "previous_calendar_week_known_minutes": 56.21,
+    "current_calendar_week_start_local": "2026-09-21",
+    "current_calendar_week_prior_completed_minutes": 0,
+    "rolling_seven_day_prior_completed_minutes": 0,
+    "rolling_basis": "Previous September15 run ends13:05:54UTC; now outside trailing7days at closeout. Last week56.21 and older85.00 historical totals are not carried forward.",
+    "earlier_setup_minutes": null,
+    "unquantified_failed_wake_effort": true,
+    "cap_minutes": 120,
+    "final_elapsed_receipt": "To be recorded in EXECUTION_STATUS.json operating_effort after review/closeout; do not double count source-freeze subtotal.",
+    "pre_first_clock_limit": "Trigger-to-first-observed-work-clock interval is not classified as operator effort; any earlier active processing is unquantified, not asserted zero."
+  },
+  "verification": {
+    "source_validation": "14 analytic acceptance checks passed; order schema discovery, GraphQL validation, account identity, date bounds, distinct IDs and both pagination layers accepted;7parserfixtures passed",
+    "independent_review": "IN_PROGRESS; date-scope clarification applied after independent challenge, final review receipt controls.",
+    "strict_continuity": "PENDING",
+    "scoped_diff": "PENDING"
+  },
+  "parent_handoff": "Pending final checks; existing parent retains shared files; actual resumed execution and late checkpoint merit one factual handoff, not a new owner question."
+}

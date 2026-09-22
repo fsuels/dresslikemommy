@@ -1,0 +1,51 @@
+{
+  "at_utc": "2026-09-21T22:03:09.970153+00:00",
+  "status": "VERIFIED_WITH_LIMITS",
+  "action_id": "TA07-US-AU-SOURCE-MAINTENANCE-20260921",
+  "anchor": "2026-09-21-ceo-us-au-refresh-received",
+  "source_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_us_au_maintenance_source_review_20260921.json",
+    "sha256": "8bc85c2f8b08a23a8b3a19d9b28ca40b10421f636c499fca73605f4ace6955df",
+    "passed": 55
+  },
+  "canonical_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_us_au_maintenance_canonical_review_20260921.json",
+    "sha256": "b8fb1672896f3d16693df45c56246e98fe36c578ca7fe1a1211c53669c2631af",
+    "passed": 37
+  },
+  "standard_checks": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_us_au_maintenance_standard_checks_20260921.json",
+    "sha256": "72f8a5a4652d70ef52819bcec0ef97efa607da1bd87f09a4b15f6958e71b2b36"
+  },
+  "reviewed_manifest": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_us_au_maintenance_integration_manifest_20260921.json",
+    "sha256": "912bfb3ad9cd298e6f0d58b28282f5b67d871d7ca2e33607a678ce840b392957"
+  },
+  "final_checkpoint_metadata": {
+    "reviewed_before_sha256": "b67cc7e7529165f6145fa7413aba74bfc5c69c8496bd15b492dad2fb1506fefb",
+    "final_after_sha256": "f35229c006fb715dc5250811e2676ee6a8ba46c175164ecef10cb7610601233b",
+    "allowed_fields": [
+      "status",
+      "verified_at_utc",
+      "verification_path",
+      "independent_review_path",
+      "source_review_path"
+    ],
+    "inverse_reconstructs_exact_reviewed_bytes": true,
+    "business_source_authority_or_wake_change": false
+  },
+  "final_strict_continuity": {
+    "exit_code": 0,
+    "stdout": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 52482 lines; latest anchor 2026-09-21-ceo-us-au-refresh-received\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-21-ceo-us-au-refresh-received\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n",
+    "stderr": ""
+  },
+  "final_checkpoint_diff_check": {
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  "accepted_owner_records": 81,
+  "recorded_wakes": 65,
+  "root_external_or_git_writes": 0,
+  "outcome": "Existing US/AU source maintenance received and sampled with limits; broader all-market and profitable-growth goal remains PARTIAL."
+}

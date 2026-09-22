@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: actual script reproduces all 23 Danish cards hidden before repair, then shows all 23
+ok 1 - actual script reproduces all 23 Danish cards hidden before repair, then shows all 23
+  ---
+  duration_ms: 2.935584
+  type: 'test'
+  ...
+# Subtest: Danish compounds and casing work for da, da-DK and DA
+ok 2 - Danish compounds and casing work for da, da-DK and DA
+  ---
+  duration_ms: 0.839042
+  type: 'test'
+  ...
+# Subtest: existing tee exclusions win even when Danish shirt words also occur
+ok 3 - existing tee exclusions win even when Danish shirt words also occur
+  ---
+  duration_ms: 0.35925
+  type: 'test'
+  ...
+# Subtest: Danish count is correct for zero, one and multiple visible cards
+ok 4 - Danish count is correct for zero, one and multiple visible cards
+  ---
+  duration_ms: 1.368041
+  type: 'test'
+  ...
+# Subtest: non-shirt Danish words do not match merely a partial skjorte stem
+ok 5 - non-shirt Danish words do not match merely a partial skjorte stem
+  ---
+  duration_ms: 0.387917
+  type: 'test'
+  ...
+# Subtest: Danish tee collection remains the inverse of shirt classification
+ok 6 - Danish tee collection remains the inverse of shirt classification
+  ---
+  duration_ms: 0.394333
+  type: 'test'
+  ...
+# Subtest: English and all sampled non-Danish behavior exactly matches baseline across handles and filters
+ok 7 - English and all sampled non-Danish behavior exactly matches baseline across handles and filters
+  ---
+  duration_ms: 44.097042
+  type: 'test'
+  ...
+# Subtest: parent collection all/button-down filter navigation and unrelated query values are preserved
+ok 8 - parent collection all/button-down filter navigation and unrelated query values are preserved
+  ---
+  duration_ms: 0.555792
+  type: 'test'
+  ...
+# Subtest: repeat observer/popstate callbacks are idempotent; observer options are unchanged
+ok 9 - repeat observer/popstate callbacks are idempotent; observer options are unchanged
+  ---
+  duration_ms: 0.899834
+  type: 'test'
+  ...
+# Subtest: missing nav and empty DOM keep existing no-op behavior
+ok 10 - missing nav and empty DOM keep existing no-op behavior
+  ---
+  duration_ms: 1.49775
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 93.108458

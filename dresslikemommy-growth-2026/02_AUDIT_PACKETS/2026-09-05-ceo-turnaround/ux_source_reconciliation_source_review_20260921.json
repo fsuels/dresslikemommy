@@ -1,0 +1,465 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-21T23:17:07.890133+00:00",
+  "reviewer": "/root/recovery_source_verifier",
+  "independence": "Did not implement or execute this UX reconciliation; no external/API/browser/Git action during this review.",
+  "action_id": "TA06-CURRENT-THEME-SOURCE-RECONCILIATION-20260921",
+  "decision": "PASS_WITH_LIMITS",
+  "acceptance_scope": "Saved-source integrity and bounded read-only prerequisite only; not publication, full remote theme sync, post-publication buyer acceptance or overall TA-06.",
+  "check_count": 40,
+  "passed_count": 40,
+  "failures": [],
+  "checks": [
+    {
+      "check": "packet_15_files_14_validation_entries_exact",
+      "passed": true
+    },
+    {
+      "check": "source_review_inputs_all_hashes_exact",
+      "passed": true,
+      "evidence": {
+        "reference_count": 6
+      }
+    },
+    {
+      "check": "final_review_inputs_all_hashes_exact",
+      "passed": true,
+      "evidence": {
+        "reference_count": 7
+      }
+    },
+    {
+      "check": "final_prior_source_inputs_all_hashes_exact",
+      "passed": true,
+      "evidence": {
+        "reference_count": 6
+      }
+    },
+    {
+      "check": "final_historical_inputs_all_hashes_exact",
+      "passed": true,
+      "evidence": {
+        "reference_count": 5
+      }
+    },
+    {
+      "check": "result_exact_independent_review_hashes_and_check_accounting",
+      "passed": true
+    },
+    {
+      "check": "independent_reviews_qualified_and_no_reviewer_execution_claim",
+      "passed": true
+    },
+    {
+      "check": "historical_binding_hash_exact_and_527_unique_rows_retained",
+      "passed": true
+    },
+    {
+      "check": "all527_accepted_source_files_rehashed",
+      "passed": true,
+      "evidence": {
+        "rows": 527,
+        "failures": []
+      }
+    },
+    {
+      "check": "captured_shop_identity_and_complete_saved_inventory",
+      "passed": true
+    },
+    {
+      "check": "current_MAIN525_candidate527_roles_and_processing",
+      "passed": true
+    },
+    {
+      "check": "theme_list_matches_detail_and_single_main",
+      "passed": true
+    },
+    {
+      "check": "result_inventory_and_body_timestamps_exact",
+      "passed": true
+    },
+    {
+      "check": "exact_four_changed_523_retained_source_rows",
+      "passed": true
+    },
+    {
+      "check": "all527_current_source_bindings_rehashed_and_match_saved_API_metadata",
+      "passed": true,
+      "evidence": {
+        "rows": 527,
+        "retained_file_sources": 523,
+        "fresh_body_sources": 4,
+        "failed_filenames": []
+      }
+    },
+    {
+      "check": "current_artifact_and_recomputed_content_fingerprint_exact",
+      "passed": true
+    },
+    {
+      "check": "four_changed_bodies_and_three_callees_per_theme_exact",
+      "passed": true,
+      "evidence": {
+        "fresh_body_nodes": 14,
+        "failures": []
+      }
+    },
+    {
+      "check": "paired_seven_bodies_identical_MAIN_candidate",
+      "passed": true
+    },
+    {
+      "check": "three_unchanged_callees_equal_accepted_sources",
+      "passed": true
+    },
+    {
+      "check": "candidate_MAIN_delta69_modified2_added0_removed",
+      "passed": true
+    },
+    {
+      "check": "four_changed_files_are_not_candidate_MAIN_differences",
+      "passed": true
+    },
+    {
+      "check": "all22_config_template_files_preserved",
+      "passed": true
+    },
+    {
+      "check": "seven_preexisting_local_differences_qualified_not_global_sync",
+      "passed": true
+    },
+    {
+      "check": "named_commit_equality_preserved_as_prior_independent_proof",
+      "passed": true,
+      "evidence": {
+        "limit": "Named immutable commit equality is retained from the hash-bound independent source review; this verifier did not rerun Git comparison or fetch current refs."
+      }
+    },
+    {
+      "check": "five_historical_acceptance_hashes_exact_not_new_tests",
+      "passed": true
+    },
+    {
+      "check": "eight_buyer_observations_identity_and_narrow_overflow_limits",
+      "passed": true
+    },
+    {
+      "check": "four_screenshots_recorded_owner_only_not_independently_viewed",
+      "passed": true
+    },
+    {
+      "check": "breadcrumb_label_navigation_and_MAIN_parity_only",
+      "passed": true
+    },
+    {
+      "check": "breadcrumb_changed_branch_noncoverage_explicitly_corrected",
+      "passed": true
+    },
+    {
+      "check": "dormant_collection_and_radio_branches_unexercised",
+      "passed": true
+    },
+    {
+      "check": "no_claim_for_new_variant_cart_CA_GB_speed_global_or_profit",
+      "passed": true
+    },
+    {
+      "check": "conditional_shared_risks_retained_without_confirmed_buyer_failure",
+      "passed": true
+    },
+    {
+      "check": "historical_performance_and_separate_open_findings_retained",
+      "passed": true
+    },
+    {
+      "check": "publication_boundary_owner_action_and_full_remote_sync_incomplete",
+      "passed": true
+    },
+    {
+      "check": "no_new_approval_rejection_or_permission_request_claim",
+      "passed": true
+    },
+    {
+      "check": "owner_cleanup_restores_MAIN_and_zero_cart",
+      "passed": true
+    },
+    {
+      "check": "scope_and_mutations_read_only_owned_packet",
+      "passed": true
+    },
+    {
+      "check": "readiness_uses_latest_qualified_buyer_supplement",
+      "passed": true
+    },
+    {
+      "check": "observed_canonical_controls_and_theme_owner_boundary_compatible",
+      "passed": true
+    },
+    {
+      "check": "all_bound_artifacts_still_match_at_finish",
+      "passed": true
+    }
+  ],
+  "result": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/RESULT.json",
+    "sha256": "99ca9053cbc32faebdb5f649a4e6910807fe1e8c284af1353d6c05251a2248f5",
+    "status": "READY-FOR-OWNER-ADMIN-PUBLICATION"
+  },
+  "artifact_binding_count": 21,
+  "artifact_bindings": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/AFFECTED_BUYER_CHECKS.json": {
+      "sha256": "29ccd9fdfb2391b4b2a70d8bcd97ccfdf0092e45a73072b889b281c786905ecc",
+      "groups": [
+        "packet_validation",
+        "final_review_inputs"
+      ],
+      "expected_sha256": "29ccd9fdfb2391b4b2a70d8bcd97ccfdf0092e45a73072b889b281c786905ecc",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/BREADCRUMB_BRANCH_SUPPLEMENT.json": {
+      "sha256": "14444543c1113263ba975c29fc40f07f535a71bcacf7f22c53640c1468207a94",
+      "groups": [
+        "packet_validation",
+        "final_review_inputs"
+      ],
+      "expected_sha256": "14444543c1113263ba975c29fc40f07f535a71bcacf7f22c53640c1468207a94",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/CURRENT_527_SOURCE_BINDING.json": {
+      "sha256": "dee43aac58084d98eac680c11c64f10ebef509dec3ba53d45cf55148c2af5ef6",
+      "groups": [
+        "packet_validation",
+        "final_review_inputs"
+      ],
+      "expected_sha256": "dee43aac58084d98eac680c11c64f10ebef509dec3ba53d45cf55148c2af5ef6",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/CURRENT_CHANGED_SOURCE_BODIES.json": {
+      "sha256": "f43303d5c26a67368a2b67fc48a84963df9837dffe5b983d9773ce1f2299dd90",
+      "groups": [
+        "packet_validation",
+        "source_review_inputs",
+        "final_prior_source_inputs"
+      ],
+      "expected_sha256": "f43303d5c26a67368a2b67fc48a84963df9837dffe5b983d9773ce1f2299dd90",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/FINGERPRINT_METHOD.json": {
+      "sha256": "03ac1e7a8f54ca3a9d2e3d6756c8ca7ec7064dad3558fbf5f880605979c18347",
+      "groups": [
+        "packet_validation",
+        "final_review_inputs"
+      ],
+      "expected_sha256": "03ac1e7a8f54ca3a9d2e3d6756c8ca7ec7064dad3558fbf5f880605979c18347",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/PUBLICATION_BOUNDARY.json": {
+      "sha256": "5134eceb2a78e341fc3f790a1f0c7b7b85b2cc73bced437b3ad1ff9fcdea6199",
+      "groups": [
+        "packet_validation",
+        "final_review_inputs"
+      ],
+      "expected_sha256": "5134eceb2a78e341fc3f790a1f0c7b7b85b2cc73bced437b3ad1ff9fcdea6199",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/READOUT.md": {
+      "sha256": "9b521a562df77dd1d4b4996ee7d88249bd5cfb9036aa11ac23188b8451d15da2",
+      "groups": [
+        "packet_validation"
+      ],
+      "expected_sha256": "9b521a562df77dd1d4b4996ee7d88249bd5cfb9036aa11ac23188b8451d15da2",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/RESULT.json": {
+      "sha256": "99ca9053cbc32faebdb5f649a4e6910807fe1e8c284af1353d6c05251a2248f5",
+      "groups": [
+        "packet_validation"
+      ],
+      "expected_sha256": "99ca9053cbc32faebdb5f649a4e6910807fe1e8c284af1353d6c05251a2248f5",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/REUSED_ACCEPTANCE.json": {
+      "sha256": "f75d65780e5b14c8f6ea083348026cedf4703dac6f7962a6a005abd418c7ae76",
+      "groups": [
+        "packet_validation",
+        "final_review_inputs"
+      ],
+      "expected_sha256": "f75d65780e5b14c8f6ea083348026cedf4703dac6f7962a6a005abd418c7ae76",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/SCOPE.json": {
+      "sha256": "4d9791e642691039a71381f066709b2287aca6925bfbed546e6655a7c71028b1",
+      "groups": [
+        "packet_validation",
+        "source_review_inputs",
+        "final_prior_source_inputs"
+      ],
+      "expected_sha256": "4d9791e642691039a71381f066709b2287aca6925bfbed546e6655a7c71028b1",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/SOURCE_COMPARISON.json": {
+      "sha256": "6f2822525ad763cd20a0fab9e0a26b2148c81307de05b06fcf55f61eab924d2a",
+      "groups": [
+        "packet_validation",
+        "source_review_inputs",
+        "final_prior_source_inputs"
+      ],
+      "expected_sha256": "6f2822525ad763cd20a0fab9e0a26b2148c81307de05b06fcf55f61eab924d2a",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/SOURCE_INVENTORY.json": {
+      "sha256": "40ef52937808eace723465c8016f906bef718f14baa220b7aee30927824a7188",
+      "groups": [
+        "packet_validation",
+        "source_review_inputs",
+        "final_prior_source_inputs"
+      ],
+      "expected_sha256": "40ef52937808eace723465c8016f906bef718f14baa220b7aee30927824a7188",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/review/FINAL_READINESS_REVIEW.json": {
+      "sha256": "e50899217aa06b12a1acd1f05d27f049de9c9c37b29c880ff2e2381e2fdff0c1",
+      "groups": [
+        "packet_validation"
+      ],
+      "expected_sha256": "e50899217aa06b12a1acd1f05d27f049de9c9c37b29c880ff2e2381e2fdff0c1",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/review/INDEPENDENT_SOURCE_REVIEW.json": {
+      "sha256": "b7dd1ef2dc5b68f86d522c5a3c6279134e9f465b2a0da13107d96637ec3fffc2",
+      "groups": [
+        "packet_validation",
+        "final_review_inputs"
+      ],
+      "expected_sha256": "b7dd1ef2dc5b68f86d522c5a3c6279134e9f465b2a0da13107d96637ec3fffc2",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/PACKET_VALIDATION.json": {
+      "sha256": "c8d89310503159016f08d0234bbb05b1d5f774d619e95ee477016fbf67c108e4",
+      "groups": [
+        "validation_receipt"
+      ]
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/ACTUAL_527_SOURCE_BINDING.json": {
+      "sha256": "1320d12d8579e80361c94a580f97618af4818257a15f76ec4193de67285dc058",
+      "groups": [
+        "source_review_inputs",
+        "final_prior_source_inputs",
+        "final_historical_inputs",
+        "reused_acceptance"
+      ],
+      "expected_sha256": "1320d12d8579e80361c94a580f97618af4818257a15f76ec4193de67285dc058",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-21-project-main-sync/INDEPENDENT_REMOTE_SOURCE_REVIEW.json": {
+      "sha256": "374490760205454219183b0341bc6e3de06f3b79242a3264274dbe7e48b6ad29",
+      "groups": [
+        "source_review_inputs",
+        "final_prior_source_inputs"
+      ],
+      "expected_sha256": "374490760205454219183b0341bc6e3de06f3b79242a3264274dbe7e48b6ad29",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/COMPLETION_HANDOFF.json": {
+      "sha256": "7c118ce3643ee626aac310c86d9c4d5a449bcb86338d8af8433fe298f2554035",
+      "groups": [
+        "final_historical_inputs",
+        "reused_acceptance"
+      ],
+      "expected_sha256": "7c118ce3643ee626aac310c86d9c4d5a449bcb86338d8af8433fe298f2554035",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/BROWSER_COMPARISON.json": {
+      "sha256": "781934bc82db20346ddf947b4b77fef389135af88a8b9451311146ca8c2d2132",
+      "groups": [
+        "final_historical_inputs",
+        "reused_acceptance"
+      ],
+      "expected_sha256": "781934bc82db20346ddf947b4b77fef389135af88a8b9451311146ca8c2d2132",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/INTERACTION_ACCEPTANCE.json": {
+      "sha256": "dbd2a6d8a7fd52c3d40effecb83a1697976026a65b6d6dc8ca70df3305f2a689",
+      "groups": [
+        "final_historical_inputs",
+        "reused_acceptance"
+      ],
+      "expected_sha256": "dbd2a6d8a7fd52c3d40effecb83a1697976026a65b6d6dc8ca70df3305f2a689",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/PERFORMANCE_ACCEPTANCE.json": {
+      "sha256": "01790021653f84a03a2f20fa1b643725572435a0d5832c3506209b3da72fabee",
+      "groups": [
+        "final_historical_inputs",
+        "reused_acceptance"
+      ],
+      "expected_sha256": "01790021653f84a03a2f20fa1b643725572435a0d5832c3506209b3da72fabee",
+      "matches": true
+    }
+  },
+  "source_binding_validation": {
+    "current_rows_checked": 527,
+    "current_retained_file_sources": 523,
+    "current_changed_body_sources": 4,
+    "historical_rows_rehashed": 527,
+    "fresh_body_nodes_rehashed": 14,
+    "metadata_only_current_identity_for_retained_files": true,
+    "current_binding_artifact_sha256": "dee43aac58084d98eac680c11c64f10ebef509dec3ba53d45cf55148c2af5ef6",
+    "recomputed_content_fingerprint_sha256": "3087109b7ab743cd9c36fa7468270d0c0603138026f72f35176b00b5026cc2da",
+    "source_failures": [],
+    "historical_source_failures": [],
+    "body_failures": []
+  },
+  "facts": {
+    "shop_id": "gid://shopify/Shop/15571635",
+    "main_id": "133290917985",
+    "candidate_id": "137888792673",
+    "candidate_role": "UNPUBLISHED",
+    "inventory_observed_utc": "2026-09-21 22:42:55 UTC",
+    "changed_bodies_observed_utc": "2026-09-21 22:45:36 UTC",
+    "both_processing_false_at_saved_inventory": true,
+    "main_file_count": 525,
+    "candidate_file_count": 527,
+    "candidate_vs_main": {
+      "modified": 69,
+      "added": 2,
+      "removed": 0
+    },
+    "config_template_files_preserved": 22,
+    "existing_local_candidate_differences": 7,
+    "normalized_buyer_observations": 8,
+    "owner_inspected_screenshots": 4,
+    "screenshots_independently_viewed_here": 0,
+    "prior_source_checks": 69,
+    "prior_final_checks": 48,
+    "checks_across_reviewers_or_phases_not_claimed_disjoint": true
+  },
+  "observed_canonical_boundary": {
+    "control_block_sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57",
+    "UX_claim_row_sha256": "e9c1918d2f9ceb863e67dc613f6bdf1c1aca6a129441da68018f49898865e6f1",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "parent_retains_canonical_owner": true,
+    "claim_control_are_observations_not_whole_file_freezes": true
+  },
+  "essential_findings": [
+    "No material source-binding drift or contradiction found in the scoped prerequisite. 527 current source rows and 527 historical sources rehashed; four fresh changed bodies plus 523 retained sources reproduce the declared content fingerprint.",
+    "The final review corrects the initial buyer-check label: ordinary Sets breadcrumb navigation did not exercise the changed secondary group. Both conditional breadcrumb fallback and radio-swatch escaping risks remain; no actual triggered buyer failure was established.",
+    "Readiness is limited to the reconciled saved fingerprint. Current MAIN/candidate processing was false at22:42:55UTC; this does not restamp earlier processing observations or prove later unchanged live state.",
+    "Owner Admin publication of137888792673 remains the execution dependency. Full remote theme sync, post-publication MAIN/source/buyer checks and TA-06 remain incomplete. No new wake, owner dispatch or approval was created."
+  ],
+  "limits": [
+    "No fresh live truth or new browser check. Current file inventory and14fresh body nodes are owner-captured receipts; screenshots are retained only in the owner tool transcript and were not independently viewed here.",
+    "Retained523current file identities use captured current API MD5/size against rehashed accepted source bytes. This is not a fresh527-body download.",
+    "Immutable-commit identity and525MAIN-to-remote comparison are retained from the exact hash-bound69-check independent review; no Git operation, ref read or sync audit was replayed here.",
+    "The two changed collection sections, radio-swatch branch and secondary breadcrumb group remain unexercised. No narrow homepage rerun, variant/cart/checkout or CA/GB numeric-variant acceptance, global locale/cookie qualification, new speed score, all-image audit, sales or conversion claim.",
+    "Historical September15 16paired/208render/11interaction evidence retains its date; mobileFCP remained slower in historical samples. Seven preexisting local/candidate differences, Italian footer and article027hero findings stay separate.",
+    "Existing owner publication authority is retained, but this review grants no agent theme publication/MAIN write or connected-Git bypass authority. New source/role drift requires a narrow new comparison."
+  ],
+  "external_calls": 0,
+  "external_writes": 0,
+  "git_operations": 0,
+  "source_or_canonical_edits": 0,
+  "new_wakes_or_dispatches": 0,
+  "only_owned_output": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/ux_source_reconciliation_source_review_20260921.json"
+}

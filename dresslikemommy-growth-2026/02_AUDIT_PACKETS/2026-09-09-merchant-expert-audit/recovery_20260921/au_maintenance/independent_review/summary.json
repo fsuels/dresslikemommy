@@ -1,0 +1,68 @@
+{
+  "reviewer": "/root/merchant_us_maintenance_review",
+  "reviewed_at_utc": "2026-09-21T21:38:23.100089+00:00",
+  "decision": "APPROVE_EXACT_AU_NATIVE_UPLOAD",
+  "check_count": 48667,
+  "passed_count": 48667,
+  "failures": [],
+  "source_completed_at": "2026-09-21T21:30:52.149Z",
+  "upload_deadline_utc": "2026-09-21T23:30:52.149000+00:00",
+  "parents": 238,
+  "variants_all_aud_prices_checked": 4925,
+  "raw_rows": 4903,
+  "candidate_rows": 4741,
+  "candidate_parents": 232,
+  "exclusion_counts": {
+    "variant_not_available_for_sale": 22,
+    "reviewed_parent_eligibility_hold": 162
+  },
+  "price_groups": [
+    {
+      "before": "37.00 AUD",
+      "after": "38.00 AUD",
+      "rows": 93,
+      "sample_id": "shopify_AU_7227378892897_41871520235617"
+    },
+    {
+      "before": "47.00 AUD",
+      "after": "48.00 AUD",
+      "rows": 50,
+      "sample_id": "shopify_AU_7227375714401_41871506735201"
+    },
+    {
+      "before": "57.00 AUD",
+      "after": "58.00 AUD",
+      "rows": 43,
+      "sample_id": "shopify_AU_7533453934689_44047092613217"
+    }
+  ],
+  "changed_rows": 186,
+  "unchanged_whole_rows": 4555,
+  "source_requests": 280,
+  "source_aud_price_range": [
+    "22.0",
+    "58.0"
+  ],
+  "warnings_all_raw_rows": {
+    "identifier_status_unknown": 4779,
+    "missing_age_group": 179,
+    "missing_color": 775,
+    "missing_gender": 192
+  },
+  "emitted_missing_color_rows": 719,
+  "offline_generator_replay_exact": true,
+  "single_filter_outputs_exact": true,
+  "claim": {
+    "path": "/Users/fsuels/Projects/dresslikemommy/ops/AGENT_COORDINATION.md",
+    "line": 59,
+    "row_sha256": "2ee50d50bdccca4ba785a28ffc94f1d4e5e1a7d5b57af90b7842a9f12645f43c"
+  },
+  "external_calls": 0,
+  "external_writes": 0,
+  "limits": [
+    "Read-only independent local review of root-captured source/native evidence; not a new direct Google or Shopify read.",
+    "Existing numeric-variant arrival limitations remain separate; no new buyer acceptance or checkout/traffic/sales claim.",
+    "Legacy diagnostics include held/nonemitted offers; raw warning totals are not emitted-row counts.",
+    "The old native receipt display has no verified timezone and is not fresh acceptance."
+  ]
+}

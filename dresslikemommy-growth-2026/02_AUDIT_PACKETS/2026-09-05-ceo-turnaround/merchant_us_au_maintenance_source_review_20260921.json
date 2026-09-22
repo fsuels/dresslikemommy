@@ -1,0 +1,824 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-21T21:57:12.475847+00:00",
+  "reviewer": "/root/recovery_source_verifier",
+  "independent": true,
+  "independence": "Did not build, execute, or perform the original source/native reviews. Local saved-source reconciliation only.",
+  "action_id": "TA07-US-AU-SOURCE-MAINTENANCE-20260921",
+  "decision": "PASS_WITH_LIMITS",
+  "scope": "Accept exact existing US/en/USD and AU/en/AUD maintenance saved-source integrity and receipt consistency only. Parent retains canonical acceptance and action authority.",
+  "check_count": 55,
+  "passed_count": 55,
+  "failures": [],
+  "checks": [
+    {
+      "check": "intake_19_bindings_exact",
+      "passed": true
+    },
+    {
+      "check": "three_final_handoffs_match_dispatch_hashes",
+      "passed": true
+    },
+    {
+      "check": "combined_binds_exact_us_and_au_handoffs",
+      "passed": true
+    },
+    {
+      "check": "US_handoff_saved_evidence_exact",
+      "passed": true,
+      "evidence": {
+        "binding_count": 16
+      }
+    },
+    {
+      "check": "AU_handoff_saved_evidence_exact",
+      "passed": true,
+      "evidence": {
+        "binding_count": 19
+      }
+    },
+    {
+      "check": "US_independent_after_receipt_exact",
+      "passed": true
+    },
+    {
+      "check": "US_after_13_bindings_exact",
+      "passed": true
+    },
+    {
+      "check": "US_after_check_accounting",
+      "passed": true
+    },
+    {
+      "check": "AU_independent_after_receipt_exact",
+      "passed": true
+    },
+    {
+      "check": "AU_after_13_bindings_exact",
+      "passed": true
+    },
+    {
+      "check": "AU_after_check_accounting",
+      "passed": true
+    },
+    {
+      "check": "US_4741_unique_rows_same_schema_no_additions_removals",
+      "passed": true
+    },
+    {
+      "check": "US_byte_identity_no_row_changes",
+      "passed": true
+    },
+    {
+      "check": "US_manifest_feed_hash_bytes_rows_identity",
+      "passed": true
+    },
+    {
+      "check": "US_six_holds_preserved_and_not_emitted",
+      "passed": true
+    },
+    {
+      "check": "US_retained_exclusion_accounting",
+      "passed": true
+    },
+    {
+      "check": "US_719_missing_color_rows_retained",
+      "passed": true
+    },
+    {
+      "check": "US_exact_native_account_source_and_type",
+      "passed": true
+    },
+    {
+      "check": "US_receiving_4741_zero_new_no_file_issues",
+      "passed": true
+    },
+    {
+      "check": "US_native_samples_equal_bound_plan",
+      "passed": true
+    },
+    {
+      "check": "US_native_sample_identity_prices_status_and_clocks",
+      "passed": true,
+      "evidence": {
+        "sample_count": 6
+      }
+    },
+    {
+      "check": "US_true_source_clock_bound_and_24h_target",
+      "passed": true
+    },
+    {
+      "check": "US_native_limits_explicit",
+      "passed": true
+    },
+    {
+      "check": "US_combined_facts_match",
+      "passed": true
+    },
+    {
+      "check": "AU_4741_unique_rows_same_schema_no_additions_removals",
+      "passed": true
+    },
+    {
+      "check": "AU_186_price_only_changes_4555_unchanged",
+      "passed": true
+    },
+    {
+      "check": "AU_manifest_feed_hash_bytes_rows_identity",
+      "passed": true
+    },
+    {
+      "check": "AU_six_holds_preserved_and_not_emitted",
+      "passed": true
+    },
+    {
+      "check": "AU_retained_exclusion_accounting",
+      "passed": true
+    },
+    {
+      "check": "AU_719_missing_color_rows_retained",
+      "passed": true
+    },
+    {
+      "check": "AU_exact_native_account_source_and_type",
+      "passed": true
+    },
+    {
+      "check": "AU_receiving_4741_zero_new_no_file_issues",
+      "passed": true
+    },
+    {
+      "check": "AU_native_samples_equal_bound_plan",
+      "passed": true
+    },
+    {
+      "check": "AU_native_sample_identity_prices_status_and_clocks",
+      "passed": true,
+      "evidence": {
+        "sample_count": 9
+      }
+    },
+    {
+      "check": "AU_true_source_clock_bound_and_24h_target",
+      "passed": true
+    },
+    {
+      "check": "AU_native_limits_explicit",
+      "passed": true
+    },
+    {
+      "check": "AU_combined_facts_match",
+      "passed": true
+    },
+    {
+      "check": "native_protected_six_match_across_markets",
+      "passed": true
+    },
+    {
+      "check": "AU_three_price_bands_recomputed",
+      "passed": true
+    },
+    {
+      "check": "AU_native_samples_three_changed_and_six_protected",
+      "passed": true
+    },
+    {
+      "check": "item_clocks_preserved_separate_from_source_refresh",
+      "passed": true
+    },
+    {
+      "check": "prior_before_check_counts_qualified",
+      "passed": true
+    },
+    {
+      "check": "US_120minute_action_window_and_unchanged48h_guard",
+      "passed": true
+    },
+    {
+      "check": "US_admin_verification_and_public403_separate_from_later_native_receiving",
+      "passed": true
+    },
+    {
+      "check": "AU_initial_failed_receipt_and_correction_preserved",
+      "passed": true
+    },
+    {
+      "check": "AU_exact_failed_predicate_only_replaced",
+      "passed": true
+    },
+    {
+      "check": "AU_initial_final_same_13_saved_source_bindings",
+      "passed": true
+    },
+    {
+      "check": "AU_corrected_timing_predicates_independently_recomputed",
+      "passed": true
+    },
+    {
+      "check": "AU_identity_and_review_both_bound_by_guard",
+      "passed": true
+    },
+    {
+      "check": "AU_upload_within_true_source120minute_window",
+      "passed": true
+    },
+    {
+      "check": "AU_one_exact_nontest_upload_then_separate_final_receipt",
+      "passed": true
+    },
+    {
+      "check": "AU_manual_no_automatic_sync",
+      "passed": true
+    },
+    {
+      "check": "recorded_operations_exact_existing_sources_only",
+      "passed": true
+    },
+    {
+      "check": "whole_TA07_all_market_and_business_completion_not_claimed",
+      "passed": true
+    },
+    {
+      "check": "all_saved_bindings_read_current_and_exact",
+      "passed": true
+    }
+  ],
+  "binding_counts": {
+    "intake": 19,
+    "US_handoff_evidence": 16,
+    "AU_handoff_evidence": 19,
+    "US_after_review": 13,
+    "AU_after_review": 13,
+    "unique_artifacts": 51,
+    "groups_overlap_do_not_sum": true
+  },
+  "artifact_bindings": {
+    "/private/tmp/dlm-merchant-maintenance-intake-20260921.json": {
+      "sha256": "84a59c8b9c00e569497a96839ea1befc0d2456882446026b4694fd41fdcd5b0a",
+      "groups": [
+        "intake_candidate_fact_list"
+      ]
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/candidate_review_packet.json": {
+      "sha256": "f1fcc2bab61f3df0b6e2fe0442fa4e60a77d554b240ec0296c23a216d74143d8",
+      "groups": [
+        "intake_19",
+        "US_handoff_evidence",
+        "US_after_bindings"
+      ],
+      "expected_sha256": "f1fcc2bab61f3df0b6e2fe0442fa4e60a77d554b240ec0296c23a216d74143d8",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/promote.result-20260921T212938707169Z.json": {
+      "sha256": "8304cbfcda71f9d01dd1edcef4c389f7e6655998db72501219ff8c06ee2e64c7",
+      "groups": [
+        "intake_19",
+        "US_handoff_evidence",
+        "US_after_bindings"
+      ],
+      "expected_sha256": "8304cbfcda71f9d01dd1edcef4c389f7e6655998db72501219ff8c06ee2e64c7",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/native_receiving_after.json": {
+      "sha256": "e9c5f90403d97c5ddfa3ca93df6347722f4480fdbc2065c06928f0f15a7929f6",
+      "groups": [
+        "intake_19",
+        "US_handoff_evidence",
+        "US_after_bindings"
+      ],
+      "expected_sha256": "e9c5f90403d97c5ddfa3ca93df6347722f4480fdbc2065c06928f0f15a7929f6",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/native_samples_after.json": {
+      "sha256": "1308be82475cf0ecee780e955a8b4790f908ac4ab6a7ca6a1b5f34ad2c81681a",
+      "groups": [
+        "intake_19",
+        "US_handoff_evidence",
+        "US_after_bindings"
+      ],
+      "expected_sha256": "1308be82475cf0ecee780e955a8b4790f908ac4ab6a7ca6a1b5f34ad2c81681a",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/admin_after_and_public_limit.json": {
+      "sha256": "b55d6f8bb46596c0db015fec8df69feb429131931aa511076c626b124b45f80a",
+      "groups": [
+        "intake_19",
+        "US_handoff_evidence",
+        "US_after_bindings"
+      ],
+      "expected_sha256": "b55d6f8bb46596c0db015fec8df69feb429131931aa511076c626b124b45f80a",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/independent_review/review.json": {
+      "sha256": "1a74aa8ab44a15c67c5f4d0ce62372951819cd74fd3d46cde4e3a18687814023",
+      "groups": [
+        "intake_19",
+        "US_handoff_evidence",
+        "US_after_bindings"
+      ],
+      "expected_sha256": "1a74aa8ab44a15c67c5f4d0ce62372951819cd74fd3d46cde4e3a18687814023",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/independent_review/summary.json": {
+      "sha256": "3496ce32f48206dfaf2407d00b0351fdfaa6352a93b7c960a29401d5098b97db",
+      "groups": [
+        "intake_19",
+        "prior_check_accounting"
+      ],
+      "expected_sha256": "3496ce32f48206dfaf2407d00b0351fdfaa6352a93b7c960a29401d5098b97db",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/candidate/us-en.manifest.json": {
+      "sha256": "4270eef7be8005edcb88a3bb7ff860298b3d2980360d9f54791a84d99645afca",
+      "groups": [
+        "intake_19",
+        "US_after_bindings",
+        "US_manifest"
+      ],
+      "expected_sha256": "4270eef7be8005edcb88a3bb7ff860298b3d2980360d9f54791a84d99645afca",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/candidate/us-en.tsv": {
+      "sha256": "fc7aa665746887d1ce37f5bce2d3afa5ed6ea363f9cd362007d4825313797bb3",
+      "groups": [
+        "intake_19",
+        "US_after_bindings",
+        "US_feed_after"
+      ],
+      "expected_sha256": "fc7aa665746887d1ce37f5bce2d3afa5ed6ea363f9cd362007d4825313797bb3",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/independent_review/review.json": {
+      "sha256": "5814ca2bf9cabe3def517ea76b7aa9df4d423b8780bbc3ea1969288222de864e",
+      "groups": [
+        "intake_19",
+        "AU_handoff_evidence",
+        "AU_after_bindings"
+      ],
+      "expected_sha256": "5814ca2bf9cabe3def517ea76b7aa9df4d423b8780bbc3ea1969288222de864e",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/independent_review/summary.json": {
+      "sha256": "5f87d36b7a13df32ad62dcc2b83f159ae65670fba013dc3e3ed7fb38d8a8eb1a",
+      "groups": [
+        "intake_19",
+        "prior_check_accounting"
+      ],
+      "expected_sha256": "5f87d36b7a13df32ad62dcc2b83f159ae65670fba013dc3e3ed7fb38d8a8eb1a",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/native_upload_intent.json": {
+      "sha256": "5d021abadf0ff27aeb476a1c41dcc619bb2c204801cddb6e30e795ba20dc85b9",
+      "groups": [
+        "intake_19",
+        "AU_handoff_evidence",
+        "AU_after_bindings"
+      ],
+      "expected_sha256": "5d021abadf0ff27aeb476a1c41dcc619bb2c204801cddb6e30e795ba20dc85b9",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/native_upload_action.json": {
+      "sha256": "af1f3b448d27331bcf97a1988d61ae66e4b71e350135b14480914bf4b1b30170",
+      "groups": [
+        "intake_19",
+        "AU_handoff_evidence",
+        "AU_after_bindings"
+      ],
+      "expected_sha256": "af1f3b448d27331bcf97a1988d61ae66e4b71e350135b14480914bf4b1b30170",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/native_receiving_after.json": {
+      "sha256": "6bb8a6257b0e61294fd3aa7809c662935fb5608b907367446185f6b94c82cb36",
+      "groups": [
+        "intake_19",
+        "AU_handoff_evidence",
+        "AU_after_bindings"
+      ],
+      "expected_sha256": "6bb8a6257b0e61294fd3aa7809c662935fb5608b907367446185f6b94c82cb36",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/native_samples_after.json": {
+      "sha256": "054d53207272cc58ea55d97c45c9d48eb514259514d7631a98ae07aa453225f1",
+      "groups": [
+        "intake_19",
+        "AU_handoff_evidence",
+        "AU_after_bindings"
+      ],
+      "expected_sha256": "054d53207272cc58ea55d97c45c9d48eb514259514d7631a98ae07aa453225f1",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/root_after_checks.json": {
+      "sha256": "4694bac8f6a2e1c30d642875180b895dba56add273c4040f24aea351c3f252e7",
+      "groups": [
+        "intake_19",
+        "AU_handoff_evidence",
+        "AU_after_bindings"
+      ],
+      "expected_sha256": "4694bac8f6a2e1c30d642875180b895dba56add273c4040f24aea351c3f252e7",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/containment_and_delta.json": {
+      "sha256": "d90dd024e458890c1c9e1ad31ba9418058d0964bee9764ce1f34a106e32c7ac9",
+      "groups": [
+        "intake_19",
+        "AU_handoff_evidence",
+        "AU_after_bindings"
+      ],
+      "expected_sha256": "d90dd024e458890c1c9e1ad31ba9418058d0964bee9764ce1f34a106e32c7ac9",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/candidate/au-en.manifest.json": {
+      "sha256": "23ae249db3b6bcde39338ab2cd879e7e9cc2e05371e7a084d41e659d63b4167f",
+      "groups": [
+        "intake_19",
+        "AU_after_bindings",
+        "AU_manifest"
+      ],
+      "expected_sha256": "23ae249db3b6bcde39338ab2cd879e7e9cc2e05371e7a084d41e659d63b4167f",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/candidate/au-en.tsv": {
+      "sha256": "b4249404c374bbfd0467633c2959a0ddc13f85ce86fbf5c71177260455a45d5d",
+      "groups": [
+        "intake_19",
+        "AU_after_bindings",
+        "AU_feed_after"
+      ],
+      "expected_sha256": "b4249404c374bbfd0467633c2959a0ddc13f85ce86fbf5c71177260455a45d5d",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/us_au_maintenance_handoff.json": {
+      "sha256": "0b34161a1ba61da32969628b8cca7dce527d4af59a5a057ca94e61913745a953",
+      "groups": [
+        "final_handoff"
+      ],
+      "expected_sha256": "0b34161a1ba61da32969628b8cca7dce527d4af59a5a057ca94e61913745a953",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/execution_handoff.json": {
+      "sha256": "3cb96f70cd8877067c3198ff2bd14e60381dedddc7b7691ba7a9a08c7af29bc2",
+      "groups": [
+        "final_handoff"
+      ],
+      "expected_sha256": "3cb96f70cd8877067c3198ff2bd14e60381dedddc7b7691ba7a9a08c7af29bc2",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/execution_handoff.json": {
+      "sha256": "e85fe69fca74c57da0e2de4f9be3478ebd8f11cab28902fdbaef33c201f3805a",
+      "groups": [
+        "final_handoff"
+      ],
+      "expected_sha256": "e85fe69fca74c57da0e2de4f9be3478ebd8f11cab28902fdbaef33c201f3805a",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/prepare.json": {
+      "sha256": "763115e5eac1312cddb16719ffd99e7198e744f9a573630c52f080be45980b17",
+      "groups": [
+        "US_handoff_evidence"
+      ],
+      "expected_sha256": "763115e5eac1312cddb16719ffd99e7198e744f9a573630c52f080be45980b17",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/build.intent.json": {
+      "sha256": "0d7b0b4a9a2a2939ac9bf7e4ff7acbc83c0c9cd93d274ea39dcd3df848f7f062",
+      "groups": [
+        "US_handoff_evidence"
+      ],
+      "expected_sha256": "0d7b0b4a9a2a2939ac9bf7e4ff7acbc83c0c9cd93d274ea39dcd3df848f7f062",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/build.json": {
+      "sha256": "ce0aca7deb13d94bbeb71615be85eb5070396bfda5501311d240e51faf147ccb",
+      "groups": [
+        "US_handoff_evidence"
+      ],
+      "expected_sha256": "ce0aca7deb13d94bbeb71615be85eb5070396bfda5501311d240e51faf147ccb",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/contain.receipt.json": {
+      "sha256": "4496e1d790c9270b7e386ac10c02305bee62fca724807dc76a0dbe18e7552b2a",
+      "groups": [
+        "US_handoff_evidence"
+      ],
+      "expected_sha256": "4496e1d790c9270b7e386ac10c02305bee62fca724807dc76a0dbe18e7552b2a",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/native_before.json": {
+      "sha256": "9a24f89d65fc3a834f4f32bc47514ec98965636d6c96e8135332fa95f486f211",
+      "groups": [
+        "US_handoff_evidence",
+        "US_after_bindings"
+      ],
+      "expected_sha256": "9a24f89d65fc3a834f4f32bc47514ec98965636d6c96e8135332fa95f486f211",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/native_update_intent.json": {
+      "sha256": "7b33c02b5206dc4f9b255a58f7148ef8cfbfd751fd4c69360a4ac29b5b8aaef5",
+      "groups": [
+        "US_handoff_evidence",
+        "US_after_bindings"
+      ],
+      "expected_sha256": "7b33c02b5206dc4f9b255a58f7148ef8cfbfd751fd4c69360a4ac29b5b8aaef5",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/native_sample_plan.json": {
+      "sha256": "106e279c7f00e17280bfab8ef4ee324e18f19912cb5913b2246069ffb9c51b85",
+      "groups": [
+        "US_handoff_evidence",
+        "US_after_bindings"
+      ],
+      "expected_sha256": "106e279c7f00e17280bfab8ef4ee324e18f19912cb5913b2246069ffb9c51b85",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/root_after_checks.json": {
+      "sha256": "baf9275c864b7c760da2f5135eecc7f23742848858da70bcf05e2c4e05e3b16f",
+      "groups": [
+        "US_handoff_evidence",
+        "US_after_bindings"
+      ],
+      "expected_sha256": "baf9275c864b7c760da2f5135eecc7f23742848858da70bcf05e2c4e05e3b16f",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/independent_review/after_review.json": {
+      "sha256": "029199c21831e992c89a00f3af2d201547a089dbd9c4b192e053a9943fe18b75",
+      "groups": [
+        "US_handoff_evidence",
+        "independent_after"
+      ],
+      "expected_sha256": "029199c21831e992c89a00f3af2d201547a089dbd9c4b192e053a9943fe18b75",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/promote.intent.json": {
+      "sha256": "92bd0893732e010de293aa12f0e46c2f7a1af2ef01c44552271993d2fafb6a81",
+      "groups": [
+        "US_handoff_evidence",
+        "US_after_bindings"
+      ],
+      "expected_sha256": "92bd0893732e010de293aa12f0e46c2f7a1af2ef01c44552271993d2fafb6a81",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/prepare.json": {
+      "sha256": "bfc28a1a3dc42829d960e0f286e08ad114db5d7ab58c7065f2db0076b2969e40",
+      "groups": [
+        "AU_handoff_evidence"
+      ],
+      "expected_sha256": "bfc28a1a3dc42829d960e0f286e08ad114db5d7ab58c7065f2db0076b2969e40",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/build.intent.json": {
+      "sha256": "0cabe0608ff5565b5ddf12b3dec23efcb06318edbe43161abbcfdd61dbc5dc70",
+      "groups": [
+        "AU_handoff_evidence"
+      ],
+      "expected_sha256": "0cabe0608ff5565b5ddf12b3dec23efcb06318edbe43161abbcfdd61dbc5dc70",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/build.json": {
+      "sha256": "fd1ed24c8828bbb49bbacb94b22a92014db3f782eb6b73bf6d9e5546f6d7cf19",
+      "groups": [
+        "AU_handoff_evidence"
+      ],
+      "expected_sha256": "fd1ed24c8828bbb49bbacb94b22a92014db3f782eb6b73bf6d9e5546f6d7cf19",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/build_dependency_pins.json": {
+      "sha256": "f610e1acda1234a3f5939230991032ce37693bb30fe1ea8ad510acdd1492776b",
+      "groups": [
+        "AU_handoff_evidence"
+      ],
+      "expected_sha256": "f610e1acda1234a3f5939230991032ce37693bb30fe1ea8ad510acdd1492776b",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/dependency_verification.json": {
+      "sha256": "e7daf922fe5a8c8978a26140158a7b64acf394cd1b313c3f9611da8c40ff9fc0",
+      "groups": [
+        "AU_handoff_evidence"
+      ],
+      "expected_sha256": "e7daf922fe5a8c8978a26140158a7b64acf394cd1b313c3f9611da8c40ff9fc0",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/filter_guard_note.json": {
+      "sha256": "167156dedac27d41268fd1ab5afd046884741369645199ffe40ffecabdce9997",
+      "groups": [
+        "AU_handoff_evidence"
+      ],
+      "expected_sha256": "167156dedac27d41268fd1ab5afd046884741369645199ffe40ffecabdce9997",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/native_before.json": {
+      "sha256": "25a3506ac163f077838b94af261cbb0aa9e0894cf8ac35b1c81e1d27a6b3bc78",
+      "groups": [
+        "AU_handoff_evidence",
+        "AU_after_bindings"
+      ],
+      "expected_sha256": "25a3506ac163f077838b94af261cbb0aa9e0894cf8ac35b1c81e1d27a6b3bc78",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/native_action_identity.json": {
+      "sha256": "aebaa0002f640a62fdeea8a439c63ec2ca7530bf3302bb31138ce4ebe6166a8a",
+      "groups": [
+        "AU_handoff_evidence",
+        "AU_after_bindings"
+      ],
+      "expected_sha256": "aebaa0002f640a62fdeea8a439c63ec2ca7530bf3302bb31138ce4ebe6166a8a",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/root_preupload_guard.json": {
+      "sha256": "cfb90057dd545da3d1dfbd14063e18be514efb43ee673e32997c2c81e87735aa",
+      "groups": [
+        "AU_handoff_evidence",
+        "AU_after_bindings"
+      ],
+      "expected_sha256": "cfb90057dd545da3d1dfbd14063e18be514efb43ee673e32997c2c81e87735aa",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/native_sample_plan.json": {
+      "sha256": "d2168cbfef15b5dd7e49c608de2ca7d374607ed3094db95b86ca948783429adb",
+      "groups": [
+        "AU_handoff_evidence",
+        "AU_after_bindings"
+      ],
+      "expected_sha256": "d2168cbfef15b5dd7e49c608de2ca7d374607ed3094db95b86ca948783429adb",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/independent_review/after_review.json": {
+      "sha256": "e612e802912f399c463b0b5174d01d3351bec15d4a2c45a467805f036ed91e71",
+      "groups": [
+        "AU_handoff_evidence",
+        "independent_after"
+      ],
+      "expected_sha256": "e612e802912f399c463b0b5174d01d3351bec15d4a2c45a467805f036ed91e71",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/independent_review/after_review.correction.json": {
+      "sha256": "35678b7e8c434b5d98d023b05ad6c371603e51bcc6e30e59439c1a9d6c5b38a5",
+      "groups": [
+        "AU_handoff_evidence",
+        "predicate_correction"
+      ],
+      "expected_sha256": "35678b7e8c434b5d98d023b05ad6c371603e51bcc6e30e59439c1a9d6c5b38a5",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/before.tsv": {
+      "sha256": "fc7aa665746887d1ce37f5bce2d3afa5ed6ea363f9cd362007d4825313797bb3",
+      "groups": [
+        "US_feed_before"
+      ]
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/eligibility_holds.json": {
+      "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+      "groups": [
+        "US_six_holds"
+      ],
+      "expected_sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/before.au-en.tsv": {
+      "sha256": "ec6218ca947ef9c9cba8a198e5ee23c638b07d6d8591d3ba79fc99b32fcd9be2",
+      "groups": [
+        "AU_feed_before"
+      ]
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/eligibility_holds.json": {
+      "sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+      "groups": [
+        "AU_six_holds"
+      ],
+      "expected_sha256": "8ef6615558d3ff08e9b2bcef424041c36e25710be17101bd8145cc46c7b33733",
+      "matches": true
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/independent_review/sample_plan_review.json": {
+      "sha256": "2e72c850340ca10635bb097959eb278b7da64ad452a018488ed9555541f99890",
+      "groups": [
+        "prior_check_accounting"
+      ]
+    },
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/independent_review/after_review.initial.json": {
+      "sha256": "eb50e3e3684edfa3c41bbadf1b73f65c45a7f34b9ce15b52a4a512ed5e28e98d",
+      "groups": [
+        "predicate_correction"
+      ],
+      "expected_sha256": "eb50e3e3684edfa3c41bbadf1b73f65c45a7f34b9ce15b52a4a512ed5e28e98d",
+      "matches": true
+    }
+  },
+  "facts": {
+    "US": {
+      "account_id": "513542500",
+      "source_id": "10727274744",
+      "language": "en",
+      "currency": "USD",
+      "source_type": "File (URL)",
+      "received_rows": 4741,
+      "added_ids": 0,
+      "removed_ids": 0,
+      "feed_before_sha256": "fc7aa665746887d1ce37f5bce2d3afa5ed6ea363f9cd362007d4825313797bb3",
+      "feed_after_sha256": "fc7aa665746887d1ce37f5bce2d3afa5ed6ea363f9cd362007d4825313797bb3",
+      "changed_rows": 0,
+      "changed_fields": [],
+      "unchanged_rows": 4741,
+      "native_samples": 6,
+      "source_completed_at": "2026-09-21T21:22:35.148Z",
+      "source_generated_at": "2026-09-21T21:22:35.150Z",
+      "native_action_at": "2026-09-21T21:31:24.496Z",
+      "native_receiving_at": "2026-09-21T21:33:16.289Z",
+      "next_source_target_utc": "2026-09-22T21:22:35.148000+00:00",
+      "held_parents": 6,
+      "held_available_omitted": 162,
+      "unavailable_omitted": 22,
+      "emitted_missing_color_rows": 719,
+      "unchanged_48h_host_guard_expiry_utc": "2026-09-23T21:22:35.148000+00:00"
+    },
+    "AU": {
+      "account_id": "513542500",
+      "source_id": "10727245667",
+      "language": "en",
+      "currency": "AUD",
+      "source_type": "File (manual)",
+      "received_rows": 4741,
+      "added_ids": 0,
+      "removed_ids": 0,
+      "feed_before_sha256": "ec6218ca947ef9c9cba8a198e5ee23c638b07d6d8591d3ba79fc99b32fcd9be2",
+      "feed_after_sha256": "b4249404c374bbfd0467633c2959a0ddc13f85ce86fbf5c71177260455a45d5d",
+      "changed_rows": 186,
+      "changed_fields": [
+        "price"
+      ],
+      "unchanged_rows": 4555,
+      "native_samples": 9,
+      "source_completed_at": "2026-09-21T21:30:52.149Z",
+      "source_generated_at": "2026-09-21T21:30:52.151Z",
+      "native_action_at": "2026-09-21T21:40:34.857Z",
+      "native_receiving_at": "2026-09-21T21:41:47.697Z",
+      "next_source_target_utc": "2026-09-22T21:30:52.149000+00:00",
+      "held_parents": 6,
+      "held_available_omitted": 162,
+      "unavailable_omitted": 22,
+      "emitted_missing_color_rows": 719,
+      "price_groups": [
+        {
+          "before": "37.00 AUD",
+          "after": "38.00 AUD",
+          "rows": 93
+        },
+        {
+          "before": "47.00 AUD",
+          "after": "48.00 AUD",
+          "rows": 50
+        },
+        {
+          "before": "57.00 AUD",
+          "after": "58.00 AUD",
+          "rows": 43
+        }
+      ]
+    }
+  },
+  "prior_independent_review_accounting": {
+    "US_before": 39022,
+    "AU_before_main": 48667,
+    "AU_sample_plan": 73,
+    "AU_before_handoff_total": 48740,
+    "US_after": 66,
+    "AU_after_final": 139,
+    "qualification": "AU 48,740 equals 48,667 main plus 73 sample-plan checks. Prior source review suites were not replayed. Counts across phases/reviewers are not asserted disjoint and must not be summed as unique coverage."
+  },
+  "AU_predicate_correction": {
+    "accepted": true,
+    "initial_check_count": 138,
+    "initial_passed_count": 137,
+    "removed_check": [
+      "review_to_guard_to_action_order"
+    ],
+    "added_checks": [
+      "identity_record_before_guard_before_action",
+      "review_before_guard_before_action"
+    ],
+    "unchanged_retained_checks": 137,
+    "same_original_binding_count": 13,
+    "clocks": {
+      "identity_recorded_at_utc": "2026-09-21T21:39:01.333738+00:00",
+      "reviewed_at_utc": "2026-09-21T21:39:28.037438+00:00",
+      "guard_at_utc": "2026-09-21T21:40:16.189023+00:00",
+      "upload_at_utc": "2026-09-21T21:40:34.857Z"
+    },
+    "rationale": "The approved action-time requirements require the exact approved review and current native identity/settings to be checked before upload. They do not require the review to precede the identity observation. Both inputs preceded and were hash-bound by the guard, then the upload occurred inside the source+120-minute deadline. Replacing the extra identity-after-review ordering constraint corrects the reviewer predicate; source/action/sample bytes remain unchanged.",
+    "native_clock_limit": "Identity time is the owner-recorded time from preceding native observations; underlying AX event timestamps are not independently embedded."
+  },
+  "limits": [
+    "Read-only local saved-evidence review; no new live Shopify or Google truth was obtained. Root-captured native transcripts are not independent browser re-observation.",
+    "US byte identity and AU price-only delta were recomputed from before/after TSVs. Full 39,022/48,667 source reviews, source rebuilds, API reads and operational suites were not replayed.",
+    "15 native samples comprise 6 protected US offers and 3 representative changed AU price bands plus 6 protected AU offers. They do not prove all 186 changed offers or all 4,741 approvals. Full Google archive bytes were not read.",
+    "Source completion, native processing and item update labels remain separate clocks. Native displayed receipt timezone is unverified; deadlines use recorded UTC source completion, not display text.",
+    "US public-client HTTP403 remains unresolved for that client; no bypass or public-host byte verification. Admin pointer/immutable and later native receiving evidence are separate. The existing 48-hour host guard is retained according to bound execution/readback evidence; runtime configuration was not freshly reread.",
+    "Six product holds, 162 held available rows, 22 unavailable variants and 719 emitted missing-color rows per market remain. Source maintenance does not resolve unchanged buyer-route or supplier-fulfillment gates.",
+    "AU remains manual. No new market/language source, automatic AU/global synchronization, theme release, paid/financial action, traffic, attribution, order, cost or retained-profit completion is accepted.",
+    "Combined owner recommendation for fresh Canada/UK qualification is a proposal subject to current parent authority, not permission to launch or retry unchanged buyer gates. Entire TA07/all-market goal remains PARTIAL.",
+    "Closed Git-sync metadata in the combined handoff was outside this source review; no Git operations or renewed Git acceptance occurred."
+  ],
+  "external_calls": 0,
+  "external_writes": 0,
+  "source_or_canonical_mutations": 0,
+  "only_owned_output": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_us_au_maintenance_source_review_20260921.json"
+}

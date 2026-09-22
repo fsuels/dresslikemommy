@@ -1,0 +1,1020 @@
+{
+  "status": "PASS_CURRENT_SOURCE_RECONCILIATION_WITH_LIMITS",
+  "sourcePreservationGate": "READY_SOURCE_ONLY",
+  "publicationReadiness": "NOT_GRANTED_AWAIT_ROOT_AFFECTED_BUYER_EVIDENCE",
+  "reviewedAtUTC": "2026-09-21T22:51:34.770033+00:00",
+  "reviewer": "theme_delta_review",
+  "scope": "Independent read-only local verification of root-captured Shopify inventory/body receipts and immutable Git/source objects. No new browser/API access, source or Git writes, implementation, full-audit replay or publication.",
+  "inputBindings": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/SCOPE.json",
+      "sha256": "4d9791e642691039a71381f066709b2287aca6925bfbed546e6655a7c71028b1"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/SOURCE_INVENTORY.json",
+      "sha256": "40ef52937808eace723465c8016f906bef718f14baa220b7aee30927824a7188"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/SOURCE_COMPARISON.json",
+      "sha256": "6f2822525ad763cd20a0fab9e0a26b2148c81307de05b06fcf55f61eab924d2a"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/CURRENT_CHANGED_SOURCE_BODIES.json",
+      "sha256": "f43303d5c26a67368a2b67fc48a84963df9837dffe5b983d9773ce1f2299dd90"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/ACTUAL_527_SOURCE_BINDING.json",
+      "sha256": "1320d12d8579e80361c94a580f97618af4818257a15f76ec4193de67285dc058"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-21-project-main-sync/INDEPENDENT_REMOTE_SOURCE_REVIEW.json",
+      "sha256": "374490760205454219183b0341bc6e3de06f3b79242a3264274dbe7e48b6ad29"
+    }
+  ],
+  "sourceObservedAtUTC": "2026-09-21 22:42:55 UTC",
+  "bodiesObservedAtUTC": "2026-09-21 22:45:36 UTC",
+  "themeRoles": {
+    "main": {
+      "id": "gid://shopify/OnlineStoreTheme/133290917985",
+      "name": "dresslikemommy/main",
+      "role": "MAIN",
+      "processing": false,
+      "processingFailed": false,
+      "updatedAt": "2026-09-21T21:12:56Z"
+    },
+    "candidate": {
+      "id": "gid://shopify/OnlineStoreTheme/137888792673",
+      "name": "DLM UX Performance QA 2026-09-10",
+      "role": "UNPUBLISHED",
+      "processing": false,
+      "processingFailed": false,
+      "updatedAt": "2026-09-15T18:50:24Z"
+    }
+  },
+  "counts": {
+    "mainFiles": 525,
+    "candidateFiles": 527,
+    "acceptedSourcesRehashed": 527,
+    "candidateVsAcceptedChanged": 4,
+    "acceptedFilesRetained": 523,
+    "candidateVsMain": {
+      "modified": 69,
+      "added": 2,
+      "removed": 0
+    },
+    "existingLocalDifferences": 7,
+    "preservedConfigAndTemplates": 22,
+    "freshBodyNodesRehashed": 14,
+    "checksPassed": 69,
+    "checksFailed": 0
+  },
+  "changedFiles": [
+    {
+      "path": "sections/collection-list.liquid",
+      "accepted": {
+        "bytes": 12897,
+        "md5": "fc7360535cf8e7586e5456330ca7562f",
+        "sha256": "d337ed6bee607fba9663970b9f5a951742f68b2b39f436180217d35daaf5ff79"
+      },
+      "current": {
+        "bytes": 13648,
+        "md5": "3ad4ea32a4a5e135ffb3177bb3827d1e",
+        "sha256": "61349faad543d6c0217bb99acfbbafb70441720faf73142b06e0f16460baf11e"
+      },
+      "currentGitBlob": "ae243b57a94a6e17f114d022b6a0ef020bbfdf41",
+      "currentIdenticalIn": [
+        "MAIN",
+        "candidate",
+        "local096224c",
+        "remote731de115",
+        "Shopifyc865a775"
+      ]
+    },
+    {
+      "path": "sections/new-arrivals-mixed.liquid",
+      "accepted": {
+        "bytes": 9722,
+        "md5": "c8c53174854e97badee3bb8e37b16b6b",
+        "sha256": "bc1502cfeff474d587eeff11edf453aa74c9bb737a5610796f9939efe38b13a8"
+      },
+      "current": {
+        "bytes": 10395,
+        "md5": "fa4c1b14e677f2fcee483f052e5542c5",
+        "sha256": "e3ec05e81ec6d99bfdb67f57eec973bea597840fc10b7b06b6f402d5a2663d44"
+      },
+      "currentGitBlob": "b1212528de8b756a8c4f819fa48c252be3583cfd",
+      "currentIdenticalIn": [
+        "MAIN",
+        "candidate",
+        "local096224c",
+        "remote731de115",
+        "Shopifyc865a775"
+      ]
+    },
+    {
+      "path": "snippets/breadcrumbs.liquid",
+      "accepted": {
+        "bytes": 16501,
+        "md5": "8fee75fcef4201456367842dc4c00590",
+        "sha256": "b9e42316d9ef43fa0dd17727fb5413cac545d342d52c73c01cd3a77f7151d56b"
+      },
+      "current": {
+        "bytes": 16919,
+        "md5": "6cc83f29161f799a3049aec55568dd1f",
+        "sha256": "548d9244d0a89fdb29dfde4924dde4fd291c9cb19fc15b2e42dc96ad4e5e4a5a"
+      },
+      "currentGitBlob": "056caa9ab76475a659df74ea3151034e78cbec63",
+      "currentIdenticalIn": [
+        "MAIN",
+        "candidate",
+        "local096224c",
+        "remote731de115",
+        "Shopifyc865a775"
+      ]
+    },
+    {
+      "path": "snippets/product-variant-options.liquid",
+      "accepted": {
+        "bytes": 10981,
+        "md5": "e15b7f3f21a6f1c120e2fc60377a8bdd",
+        "sha256": "1ff45823e0db6dc747f3269c09eb6c00d48dd61c55ddc4b118f5b07d776ec3be"
+      },
+      "current": {
+        "bytes": 11736,
+        "md5": "c8de2fc02c29c9fca900c694f2d3052e",
+        "sha256": "6c542ac65321996c2e06b4dbdaa32303f6da083dc80c4dd61f3e5befadf29e6b"
+      },
+      "currentGitBlob": "ae73b1110c1910b95788238358e4e1def5e0e6ae",
+      "currentIdenticalIn": [
+        "MAIN",
+        "candidate",
+        "local096224c",
+        "remote731de115",
+        "Shopifyc865a775"
+      ]
+    }
+  ],
+  "candidateVsMainClassification": {
+    "modifiedHistoricalAcceptedFiles": [
+      "assets/cart.js",
+      "assets/component-cart.css",
+      "assets/component-facets.css",
+      "assets/component-product-desktop-ux-ruler-sync.css",
+      "assets/global.js",
+      "assets/homepage-collection-card-images.js",
+      "assets/predictive-search.js",
+      "assets/product-desktop-ux-20260513-ruler-sync.js",
+      "assets/section-blog-post.css",
+      "assets/section-home-curation.css",
+      "assets/size-conversion.js",
+      "assets/theme-inline-body-static-04.css",
+      "assets/theme-inline-body-static-05.css",
+      "assets/theme-inline-body-static-07.css",
+      "assets/theme-inline-head-static-03.css",
+      "layout/theme.liquid",
+      "locales/ar.json",
+      "locales/cs.json",
+      "locales/da.json",
+      "locales/de.json",
+      "locales/el.json",
+      "locales/en.default.json",
+      "locales/es.json",
+      "locales/fi.json",
+      "locales/fr.json",
+      "locales/he.json",
+      "locales/hi.json",
+      "locales/hr-HR.json",
+      "locales/hu.json",
+      "locales/id.json",
+      "locales/it.json",
+      "locales/ja.json",
+      "locales/ko.json",
+      "locales/lt-LT.json",
+      "locales/nb.json",
+      "locales/nl.json",
+      "locales/no.json",
+      "locales/pl.json",
+      "locales/pt-BR.json",
+      "locales/pt-PT.json",
+      "locales/ro-RO.json",
+      "locales/ro.json",
+      "locales/ru.json",
+      "locales/sk-SK.json",
+      "locales/sl-SI.json",
+      "locales/sv.json",
+      "locales/th.json",
+      "locales/tr.json",
+      "locales/vi.json",
+      "locales/zh-CN.json",
+      "locales/zh-TW.json",
+      "sections/category-icons.liquid",
+      "sections/curated-product-grid.liquid",
+      "sections/footer.liquid",
+      "sections/hero-banner.liquid",
+      "sections/main-cart-footer.liquid",
+      "sections/main-cart-items.liquid",
+      "sections/main-collection-banner.liquid",
+      "sections/main-collection-seo.liquid",
+      "sections/main-product.liquid",
+      "snippets/cart-drawer.liquid",
+      "snippets/collection-grid-product-visible.liquid",
+      "snippets/home-spotlight-card.liquid",
+      "snippets/jsonld-seo.liquid",
+      "snippets/pdp-description-copy-cleanup.liquid",
+      "snippets/pdp-policy-modals.liquid",
+      "snippets/pdp-purchase-confidence.liquid",
+      "snippets/product-desktop-ux.liquid",
+      "snippets/product-page-copy-map.liquid"
+    ],
+    "candidateOnlyAcceptedAdditions": [
+      "assets/cookie-preferences.css",
+      "assets/cookie-preferences.js"
+    ],
+    "mainOnlyFilesLost": [],
+    "freshUnexpectedDifferences": [],
+    "limit": "The 71 retained differences are exact source/metadata classifications, not 71 newly rendered buyer-flow certifications."
+  },
+  "existingLocalDifferences": [
+    {
+      "path": "assets/cart.js",
+      "candidateAccepted": {
+        "bytes": 24541,
+        "md5": "154cff4f7a997f6b1e8c8234171fda7a",
+        "sha256": "424bc9441658a476179df100a37ebf66e4162231e0ec97d99fcd805aa1c76fa6"
+      },
+      "local": {
+        "bytes": 24555,
+        "md5": "96cdcd3049a35662312d95ab4447ad2a",
+        "sha256": "3e56046d72019380c0d48ecbd7ec5c12473813278eaeff90090fcec4124955be"
+      },
+      "predatesFourShopifyChanges": true,
+      "unchangedBetweenCb7ff3aAnd096224c": true
+    },
+    {
+      "path": "assets/product-desktop-ux-20260513.js",
+      "candidateAccepted": {
+        "bytes": 258243,
+        "md5": "ec622df5527c35d282969bdf84e4fc56",
+        "sha256": "4208430b7754b2bb5a644875ff8da0600244bb3ba75d9cdcd1addab0baf6b6dd"
+      },
+      "local": {
+        "bytes": 258347,
+        "md5": "61ded53111ee5002eb5c37b42a2c4b3f",
+        "sha256": "a2d55e4177b65213ebce2d842f0e8cbedaff486e9aee46bfc20b95c986e33024"
+      },
+      "predatesFourShopifyChanges": true,
+      "unchangedBetweenCb7ff3aAnd096224c": true
+    },
+    {
+      "path": "assets/product-desktop-ux.js",
+      "candidateAccepted": {
+        "bytes": 258243,
+        "md5": "ec622df5527c35d282969bdf84e4fc56",
+        "sha256": "4208430b7754b2bb5a644875ff8da0600244bb3ba75d9cdcd1addab0baf6b6dd"
+      },
+      "local": {
+        "bytes": 258347,
+        "md5": "61ded53111ee5002eb5c37b42a2c4b3f",
+        "sha256": "a2d55e4177b65213ebce2d842f0e8cbedaff486e9aee46bfc20b95c986e33024"
+      },
+      "predatesFourShopifyChanges": true,
+      "unchangedBetweenCb7ff3aAnd096224c": true
+    },
+    {
+      "path": "assets/recipient-form.js",
+      "candidateAccepted": {
+        "bytes": 6504,
+        "md5": "f07e60312bcddee4557452e314b411d9",
+        "sha256": "791e56ea26b07b95e7b0e93aca983676c7680a89c58082dcb93c3d2c4e8db1e7"
+      },
+      "local": {
+        "bytes": 6659,
+        "md5": "b7e09b1188f5515c6cb3cb3e0d30eb2c",
+        "sha256": "d677c7894c4681c82dd2c8c4cfc06392d2a3e26c1b92a962bd993bdebd607997"
+      },
+      "predatesFourShopifyChanges": true,
+      "unchangedBetweenCb7ff3aAnd096224c": true
+    },
+    {
+      "path": "sections/main-cart-footer.liquid",
+      "candidateAccepted": {
+        "bytes": 16559,
+        "md5": "055bd33d2cfe98ae0a64f82e5d85bc67",
+        "sha256": "837bb2c9890cc26d7e46c30c172cd11bb75518d917b01cc580ce3339a1eac6a1"
+      },
+      "local": {
+        "bytes": 16590,
+        "md5": "ff8dd259ac544cabdde4b2d1f2ea2317",
+        "sha256": "7a32f8dea8d3f853dcbf79c5374527df9970142cc4b1e9ed22dd656a48014e45"
+      },
+      "predatesFourShopifyChanges": true,
+      "unchangedBetweenCb7ff3aAnd096224c": true
+    },
+    {
+      "path": "sections/main-password-header.liquid",
+      "candidateAccepted": {
+        "bytes": 4327,
+        "md5": "6e191bd7584799fadd546d0882fe427d",
+        "sha256": "0c7a0fc6290d2a5d20e622198e17eb47a7379b4e7c0bc9614d81e52435b62b5f"
+      },
+      "local": {
+        "bytes": 4276,
+        "md5": "8d61dc089b6f5a71fc21fbd6ef2c7935",
+        "sha256": "4dfbd8a1e7b4c136df268443b936affec15b3aae09b0b0f43e3eb10b1570afc7"
+      },
+      "predatesFourShopifyChanges": true,
+      "unchangedBetweenCb7ff3aAnd096224c": true
+    },
+    {
+      "path": "snippets/gift-card-recipient-form.liquid",
+      "candidateAccepted": {
+        "bytes": 8416,
+        "md5": "28c9657ad0eb7cd17070bfbbff6154dc",
+        "sha256": "1c26367bbd9ce7f29d61c51e2b8bf991969151f67430f2975934900406430dfa"
+      },
+      "local": {
+        "bytes": 8609,
+        "md5": "39404197febf15d3c550ad697ebc4b02",
+        "sha256": "75353f37457130bcc93b98320b47c6a22abfaaa5096000927e3fcfff28c13d37"
+      },
+      "predatesFourShopifyChanges": true,
+      "unchangedBetweenCb7ff3aAnd096224c": true
+    }
+  ],
+  "bodyBindings": [
+    {
+      "side": "main",
+      "path": "sections/collection-list.liquid",
+      "bytes": 13648,
+      "md5": "3ad4ea32a4a5e135ffb3177bb3827d1e",
+      "sha256": "61349faad543d6c0217bb99acfbbafb70441720faf73142b06e0f16460baf11e",
+      "gitBlob": "ae243b57a94a6e17f114d022b6a0ef020bbfdf41"
+    },
+    {
+      "side": "main",
+      "path": "sections/new-arrivals-mixed.liquid",
+      "bytes": 10395,
+      "md5": "fa4c1b14e677f2fcee483f052e5542c5",
+      "sha256": "e3ec05e81ec6d99bfdb67f57eec973bea597840fc10b7b06b6f402d5a2663d44",
+      "gitBlob": "b1212528de8b756a8c4f819fa48c252be3583cfd"
+    },
+    {
+      "side": "main",
+      "path": "snippets/breadcrumb-label.liquid",
+      "bytes": 3192,
+      "md5": "2c2773d5ee858b273626fb0508dd0440",
+      "sha256": "33cd7c7ec3d5bd021c31ca4bfe3786fb76be110123008925b43fff108b79be19",
+      "gitBlob": "b890733ca96781203918ba7c4c7f6fad3f35bd46"
+    },
+    {
+      "side": "main",
+      "path": "snippets/breadcrumbs.liquid",
+      "bytes": 16919,
+      "md5": "6cc83f29161f799a3049aec55568dd1f",
+      "sha256": "548d9244d0a89fdb29dfde4924dde4fd291c9cb19fc15b2e42dc96ad4e5e4a5a",
+      "gitBlob": "056caa9ab76475a659df74ea3151034e78cbec63"
+    },
+    {
+      "side": "main",
+      "path": "snippets/card-collection.liquid",
+      "bytes": 14710,
+      "md5": "bf8ac749288dea9c2c688d65397b1ad6",
+      "sha256": "0bb3c35702a849bf83f3c51210e0d8849fa57701c5e534fa0f0bf362897e3033",
+      "gitBlob": "9523d48625827588ff6b853da164d2da7f965656"
+    },
+    {
+      "side": "main",
+      "path": "snippets/product-variant-options.liquid",
+      "bytes": 11736,
+      "md5": "c8de2fc02c29c9fca900c694f2d3052e",
+      "sha256": "6c542ac65321996c2e06b4dbdaa32303f6da083dc80c4dd61f3e5befadf29e6b",
+      "gitBlob": "ae73b1110c1910b95788238358e4e1def5e0e6ae"
+    },
+    {
+      "side": "main",
+      "path": "snippets/swatch-input.liquid",
+      "bytes": 1531,
+      "md5": "6588874fbd00343859ecdec271560cf0",
+      "sha256": "27570ddb9a6b9d1d7a4cb738168a842f55a7e3e55c699def5307d39159b81758",
+      "gitBlob": "02df11ca52ada42cb05a73310d5e2a89f51fb7df"
+    },
+    {
+      "side": "candidate",
+      "path": "sections/collection-list.liquid",
+      "bytes": 13648,
+      "md5": "3ad4ea32a4a5e135ffb3177bb3827d1e",
+      "sha256": "61349faad543d6c0217bb99acfbbafb70441720faf73142b06e0f16460baf11e",
+      "gitBlob": "ae243b57a94a6e17f114d022b6a0ef020bbfdf41"
+    },
+    {
+      "side": "candidate",
+      "path": "sections/new-arrivals-mixed.liquid",
+      "bytes": 10395,
+      "md5": "fa4c1b14e677f2fcee483f052e5542c5",
+      "sha256": "e3ec05e81ec6d99bfdb67f57eec973bea597840fc10b7b06b6f402d5a2663d44",
+      "gitBlob": "b1212528de8b756a8c4f819fa48c252be3583cfd"
+    },
+    {
+      "side": "candidate",
+      "path": "snippets/breadcrumb-label.liquid",
+      "bytes": 3192,
+      "md5": "2c2773d5ee858b273626fb0508dd0440",
+      "sha256": "33cd7c7ec3d5bd021c31ca4bfe3786fb76be110123008925b43fff108b79be19",
+      "gitBlob": "b890733ca96781203918ba7c4c7f6fad3f35bd46"
+    },
+    {
+      "side": "candidate",
+      "path": "snippets/breadcrumbs.liquid",
+      "bytes": 16919,
+      "md5": "6cc83f29161f799a3049aec55568dd1f",
+      "sha256": "548d9244d0a89fdb29dfde4924dde4fd291c9cb19fc15b2e42dc96ad4e5e4a5a",
+      "gitBlob": "056caa9ab76475a659df74ea3151034e78cbec63"
+    },
+    {
+      "side": "candidate",
+      "path": "snippets/card-collection.liquid",
+      "bytes": 14710,
+      "md5": "bf8ac749288dea9c2c688d65397b1ad6",
+      "sha256": "0bb3c35702a849bf83f3c51210e0d8849fa57701c5e534fa0f0bf362897e3033",
+      "gitBlob": "9523d48625827588ff6b853da164d2da7f965656"
+    },
+    {
+      "side": "candidate",
+      "path": "snippets/product-variant-options.liquid",
+      "bytes": 11736,
+      "md5": "c8de2fc02c29c9fca900c694f2d3052e",
+      "sha256": "6c542ac65321996c2e06b4dbdaa32303f6da083dc80c4dd61f3e5befadf29e6b",
+      "gitBlob": "ae73b1110c1910b95788238358e4e1def5e0e6ae"
+    },
+    {
+      "side": "candidate",
+      "path": "snippets/swatch-input.liquid",
+      "bytes": 1531,
+      "md5": "6588874fbd00343859ecdec271560cf0",
+      "sha256": "27570ddb9a6b9d1d7a4cb738168a842f55a7e3e55c699def5307d39159b81758",
+      "gitBlob": "02df11ca52ada42cb05a73310d5e2a89f51fb7df"
+    }
+  ],
+  "configTemplateBindings": [
+    {
+      "path": "config/settings_data.json",
+      "bytes": 13704,
+      "md5": "c930f11c6c004cd13388be8892b9ae3d",
+      "sha256": "813613945a0d69e783a87f0c314b2ddcf23952ac2eb4c31d4dc76d1d47a860db",
+      "gitBlob": "d47af5bde20429038a096914033ad5ac1827eb68"
+    },
+    {
+      "path": "config/settings_schema.json",
+      "bytes": 40799,
+      "md5": "5ba5632deff58bb439305afd8ed22c44",
+      "sha256": "67e9731586a06b3c501e5fbbec1005ef1fec330388cfbcbaefd2176f36047b4c",
+      "gitBlob": "eab908ff2a2f1ead8d87ffe2d986d1b278d3fa62"
+    },
+    {
+      "path": "templates/404.json",
+      "bytes": 72,
+      "md5": "f14a0bd594f4fee47b13fc09543098ff",
+      "sha256": "3321b3b8eeaf71de7a44dff26f8e5c12df59fa5d147bcd9acbd2b3f0d9b1e265",
+      "gitBlob": "155f4cf35dea4f1d4aeaa28a7e9f99a92e6d54c3"
+    },
+    {
+      "path": "templates/article.json",
+      "bytes": 414,
+      "md5": "f71c7929b6684b178b32c1970e2f010c",
+      "sha256": "9d6ec46316be45b9c8670dd6ad15ebb8231f8cc39f4c02b16e92cf85f02cd7bb",
+      "gitBlob": "295261559cc0d526b99bbfe11919a7afd97dc036"
+    },
+    {
+      "path": "templates/blog.json",
+      "bytes": 965,
+      "md5": "8c174adf67183db3cfa9f3665e882249",
+      "sha256": "f607934cd8669c3613b5298f5d662036b78573ba608189ab9f9308368e208acf",
+      "gitBlob": "a81e91585cff3ead3d772614f70f8d68a285c9df"
+    },
+    {
+      "path": "templates/cart.json",
+      "bytes": 421,
+      "md5": "9fd24919e0ceeb91c8bad827c76ea232",
+      "sha256": "c7026f20177108fc4dd58eeb4976d3a34b194b6cd58d743186053a0a102af66c",
+      "gitBlob": "07f63b5d3b7b70ae86f9716f59c5597612b9ebac"
+    },
+    {
+      "path": "templates/collection.json",
+      "bytes": 14077,
+      "md5": "3d95b22c3f8d954efda60814425c6c9f",
+      "sha256": "9330c0fa99bc3bbb8c0853b1b3e712e21a615e8063b215567fdd85386cb7c65a",
+      "gitBlob": "31675e1474272f1f870f4edb6918d6cf6d93a067"
+    },
+    {
+      "path": "templates/customers/account.json",
+      "bytes": 112,
+      "md5": "b76ec502d6fb60dddd5668caf60e13eb",
+      "sha256": "36a349e004bfe6fd0e9c42a4a07dc23eb9b386263b3796b14aa086faf0ee17f1",
+      "gitBlob": "a7db875a67673e7afde7c977f50f30406a9bec60"
+    },
+    {
+      "path": "templates/customers/activate_account.json",
+      "bytes": 121,
+      "md5": "19324e777a1a5824b2ae62d5164b16c2",
+      "sha256": "c7f064f141a11e58dfa1fc4ffdb5810aacd2e05adac58dc0012638d37ad62ae2",
+      "gitBlob": "c395647f0f6efb243c9c9f49b1ca43c420a4947c"
+    },
+    {
+      "path": "templates/customers/addresses.json",
+      "bytes": 114,
+      "md5": "b76ff61f3721967b4d489fd879b11485",
+      "sha256": "e23637d36aab25db95144b69e7e0ce5728f92bfdae226504ece7cce52dec6d2b",
+      "gitBlob": "2220813dc0eea914750ddef45ecbefa62ca216cf"
+    },
+    {
+      "path": "templates/customers/login.json",
+      "bytes": 144,
+      "md5": "0bc9649f5f524087d1ba4e0b7c941989",
+      "sha256": "fccd6044859a80419caecfde8ce0d1879fa93cf84991133801f779565b904852",
+      "gitBlob": "4598e1ee996dfa4212eaf923e804c7e4232de572"
+    },
+    {
+      "path": "templates/customers/order.json",
+      "bytes": 110,
+      "md5": "218f05d49b934e788e0344c66373aed1",
+      "sha256": "2db07c07fad75344f11c9f02c25c32ca61e42509a9f1043c9b6d987117847cbb",
+      "gitBlob": "31815d0b75a60f7baf78c747a8bd54bc680ff9bb"
+    },
+    {
+      "path": "templates/customers/register.json",
+      "bytes": 113,
+      "md5": "2dacb5c8689dc6352dc99fe27f5bea83",
+      "sha256": "05684f16ddc5881c14f2ae9dc8aa7745e2a81c2b0157d0aa96629d38bb085930",
+      "gitBlob": "ffce5f602ce26ea4fa159aa30fb2478f103bb634"
+    },
+    {
+      "path": "templates/customers/reset_password.json",
+      "bytes": 119,
+      "md5": "686a49ce83d11f27584ce26b935b219f",
+      "sha256": "ce482207a0fcb0a030e69ccbaf4bed7eaecffb266ffc4b16383f864ebe18a63f",
+      "gitBlob": "56002c6d09bff6575636d647d5592c0ea0192457"
+    },
+    {
+      "path": "templates/gift_card.liquid",
+      "bytes": 10278,
+      "md5": "72afca1811cade4aa9b83973ab2c59ca",
+      "sha256": "71853149f6307761f330e8ac528c62fc409515bb931e589c2a3ace919f763c5e",
+      "gitBlob": "e4d133285a162ecc23ab4ca524cd718d0de93f70"
+    },
+    {
+      "path": "templates/index.json",
+      "bytes": 9980,
+      "md5": "51383a25a0cb4be5a15f69df6936d787",
+      "sha256": "3c1eb1ea6e75180d2381a8b43cabafa92c34041c11ce6f54b1079850add786c5",
+      "gitBlob": "fc589411d7d64b30296215b7f5566f1b29e7d06a"
+    },
+    {
+      "path": "templates/list-collections.json",
+      "bytes": 192,
+      "md5": "aafac6f0bd19e26173d49205948a5313",
+      "sha256": "7af33c915a0d783c2f13132fb9dcff1f1f39eff865a726c7de048cc1e754b927",
+      "gitBlob": "1477909f79649aec9bb59f13c909e0954979e241"
+    },
+    {
+      "path": "templates/page.contact.json",
+      "bytes": 581,
+      "md5": "deba72852cdfc01efb2dec5548a0ab5d",
+      "sha256": "606bb96bed1446e6dfb81600f7598bc6698dcb9034bed9b01d0edfe67777d564",
+      "gitBlob": "7b43a5ba5e2e7c2f82628d23ec3e625b5981073b"
+    },
+    {
+      "path": "templates/page.json",
+      "bytes": 109,
+      "md5": "7d9167256b6b2817956965f3a4f448e1",
+      "sha256": "ab1fdbf2dcd152b5d66c024b7a7219bb52a97947d5853f9ff989294ad7954473",
+      "gitBlob": "404f262fff83bc084374909498537c2e5d6533b3"
+    },
+    {
+      "path": "templates/password.json",
+      "bytes": 685,
+      "md5": "2383a1adfbc891993598f07e6941ea8e",
+      "sha256": "56156ddbdef6f36f52f5f9da9f326bfd7c56121ec7ca258419ac17e6e2aed19b",
+      "gitBlob": "8f9640ea0785cbf8f56339fde5a62e3bdef2b49e"
+    },
+    {
+      "path": "templates/product.json",
+      "bytes": 4233,
+      "md5": "ceae465256f4ea9f2bbc716b4968dc94",
+      "sha256": "ec24f14bdd083e13685431d77a3acdeb3e0a86c7914bc1edc41551623cd2fc7f",
+      "gitBlob": "727c22fbe88dcec9566af9bb91b9ba6823e6aef2"
+    },
+    {
+      "path": "templates/search.json",
+      "bytes": 410,
+      "md5": "e18b8dceddc729f1c629f6f314223fb9",
+      "sha256": "5e032d7e34460f02787789c5891f27b02c851bd3472c2455119650a94dcc49dd",
+      "gitBlob": "0aac431efe2ec24e00217117264642bf7af676ea"
+    }
+  ],
+  "configuration": {
+    "homepageSections": [
+      {
+        "id": "hero_banner_main",
+        "type": "hero-banner",
+        "disabled": false
+      },
+      {
+        "id": "category_icons",
+        "type": "category-icons",
+        "disabled": false
+      },
+      {
+        "id": "curated_product_grid_main",
+        "type": "curated-product-grid",
+        "disabled": false
+      }
+    ],
+    "changedSectionInstances": [],
+    "changedSectionStaticReferences": [],
+    "variantPickerBlocks": [
+      {
+        "location": "templates/product.json/sections/main/blocks/variant_picker",
+        "settings": {
+          "picker_type": "dropdown",
+          "swatch_shape": "circle"
+        }
+      }
+    ],
+    "pickerControlBinding": {
+      "path": "snippets/product-variant-picker.liquid",
+      "bytes": 28193,
+      "md5": "064c2d6a5a6f15a6f949048066571159",
+      "sha256": "bde5488071ab11ef2b0ff005e5fc34d356073c94fe0e685750f11f5415daa18b"
+    }
+  },
+  "semantics": [
+    {
+      "paths": [
+        "sections/collection-list.liquid",
+        "sections/new-arrivals-mixed.liquid"
+      ],
+      "finding": "The render flag now receives request.page_type. The unchanged card-collection callee additionally requires request.page_type == index before enabling its homepage image branch; other render arguments are retained.",
+      "evidence": "Current paired body lines 66-68 of snippets/card-collection.liquid; exact Git diff.",
+      "classification": "SOURCE_GUARD_PRESERVED_CURRENT_SECTIONS_UNCONFIGURED",
+      "runtimeLimit": "Neither section is instantiated in current config/templates or static Liquid references. Do not manufacture sections or claim their rendering was exercised."
+    },
+    {
+      "paths": [
+        "snippets/breadcrumbs.liquid",
+        "snippets/breadcrumb-label.liquid"
+      ],
+      "finding": "The rewritten call passes default: subcat_label as a distinct render parameter. The callee does not consume it; it uses default_label, collection.title, and handle mappings. A secondary-category link can lose its label if its existing collection has a blank title and no mapped-handle label (or other available fallback).",
+      "evidence": "Current breadcrumbs lines 226-250; breadcrumb-label lines 11-18 and 20-59.",
+      "classification": "CONDITIONAL_SOURCE_RISK_NOT_CONFIRMED_BUYER_PROBLEM",
+      "runtimeLimit": "Root should inspect an actual PDP secondary-category path. No actual blank-title collection or resulting lost buyer link has been demonstrated by this source review."
+    },
+    {
+      "paths": [
+        "snippets/product-variant-options.liquid",
+        "snippets/swatch-input.liquid"
+      ],
+      "finding": "The caller escape filter is removed only from the radio-swatch branch. The unchanged swatch-input directly interpolates value into value/title/aria-label attributes. HTML-significant option characters may be serialized incorrectly when that branch is used. Other color_image, button, and dropdown branches retain their own existing behavior.",
+      "evidence": "Current product-variant-options lines 176-195; swatch-input lines 31,43,44; unchanged product-variant-picker and default product template.",
+      "classification": "CONDITIONAL_SOURCE_RISK_DEFAULT_PDP_BRANCH_INACTIVE",
+      "runtimeLimit": "Default dropdown settings select swatch_dropdown, color_image, or button as applicable, never the changed radio-swatch branch. No current buyer corruption or affected option has been demonstrated."
+    }
+  ],
+  "targetedBuyerChecks": [
+    {
+      "id": "homepage_scope",
+      "scope": "One current MAIN/candidate homepage desktop and narrow readback",
+      "assert": "Bind rendered theme ID and actual three configured sections; check normal page render and absence of changed unconfigured sections.",
+      "reason": "Confirm current configuration in real output; no full homepage audit replay."
+    },
+    {
+      "id": "collection_context",
+      "scope": "One actual candidate collection page desktop and narrow",
+      "assert": "Readable heading/navigation, normal destination access, no homepage-only collection-image branch unexpectedly present.",
+      "reason": "Bounded non-index sanity check; does not exercise unconfigured collection-list/new-arrivals sections."
+    },
+    {
+      "id": "secondary_breadcrumb",
+      "scope": "One actual candidate PDP with existing secondary-category breadcrumb data, desktop and narrow",
+      "assert": "Visible nonblank labels, correct destinations, no duplicate/empty breadcrumb segments; inspect fallback only if an existing real blank-title case is observed.",
+      "reason": "Only potentially active semantic path changed by current four-file delta."
+    },
+    {
+      "id": "picker_branch_scope",
+      "scope": "Same actual candidate PDP desktop and narrow",
+      "assert": "Record actual rendered picker branch and selected option value/variant consistency. If radio-swatch controls are absent under dropdown settings, record unexercised rather than passing special-character escaping.",
+      "reason": "Verify that dormant source risk does not get misreported as a tested live branch."
+    }
+  ],
+  "limits": [
+    "Independent reviewer did not perform Shopify/API/browser calls; current live facts derive from the exact root-captured, hash-bound receipts.",
+    "Fresh body content was rehashed for seven selected files per theme. Remaining current file identity is metadata MD5 plus size against independently rehashed historical source; no fresh full-body download was performed.",
+    "READY_SOURCE_ONLY confirms preservation/reconciliation, not rendering completeness, publication authorization, current MAIN behavior after publication, PageSpeed, conversions, or full TA-06 completion.",
+    "The seven preexisting local/candidate differences remain explicitly separate; this review does not imply every local source byte is on the candidate.",
+    "No numeric-variant controller source changed in the four-file delta. This evidence does not establish a numeric-variant fix or justify repeating blocked CA/GB acceptance.",
+    "Italian footer proposal and article hero findings remain outside this review. No implementation or requalification is implied."
+  ],
+  "checks": [
+    {
+      "id": "exact_input_hashes",
+      "status": "PASS",
+      "detail": {
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/SCOPE.json": "4d9791e642691039a71381f066709b2287aca6925bfbed546e6655a7c71028b1",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/SOURCE_INVENTORY.json": "40ef52937808eace723465c8016f906bef718f14baa220b7aee30927824a7188",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/SOURCE_COMPARISON.json": "6f2822525ad763cd20a0fab9e0a26b2148c81307de05b06fcf55f61eab924d2a",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/CURRENT_CHANGED_SOURCE_BODIES.json": "f43303d5c26a67368a2b67fc48a84963df9837dffe5b983d9773ce1f2299dd90",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-10-storefront-ux-pagespeed/mobile-collection-heading-critical-css-execution-20260915/ACTUAL_527_SOURCE_BINDING.json": "1320d12d8579e80361c94a580f97618af4818257a15f76ec4193de67285dc058",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-21-project-main-sync/INDEPENDENT_REMOTE_SOURCE_REVIEW.json": "374490760205454219183b0341bc6e3de06f3b79242a3264274dbe7e48b6ad29"
+      }
+    },
+    {
+      "id": "schema_validation_receipts",
+      "status": "PASS"
+    },
+    {
+      "id": "no_api_errors",
+      "status": "PASS"
+    },
+    {
+      "id": "shop_identity",
+      "status": "PASS"
+    },
+    {
+      "id": "complete_theme_list",
+      "status": "PASS"
+    },
+    {
+      "id": "unique_theme_list",
+      "status": "PASS"
+    },
+    {
+      "id": "one_main_theme",
+      "status": "PASS"
+    },
+    {
+      "id": "main_identity_role",
+      "status": "PASS"
+    },
+    {
+      "id": "main_processing_cleared",
+      "status": "PASS"
+    },
+    {
+      "id": "main_complete_unique_count",
+      "status": "PASS"
+    },
+    {
+      "id": "main_list_detail_consistent",
+      "status": "PASS"
+    },
+    {
+      "id": "candidate_identity_role",
+      "status": "PASS"
+    },
+    {
+      "id": "candidate_processing_cleared",
+      "status": "PASS"
+    },
+    {
+      "id": "candidate_complete_unique_count",
+      "status": "PASS"
+    },
+    {
+      "id": "candidate_list_detail_consistent",
+      "status": "PASS"
+    },
+    {
+      "id": "accepted_unique_527",
+      "status": "PASS"
+    },
+    {
+      "id": "accepted_name_set_retained",
+      "status": "PASS"
+    },
+    {
+      "id": "all_main_files_retained",
+      "status": "PASS"
+    },
+    {
+      "id": "all_metadata_well_formed",
+      "status": "PASS"
+    },
+    {
+      "id": "accepted_527_source_bytes_rehashed",
+      "status": "PASS"
+    },
+    {
+      "id": "exact_four_candidate_deltas",
+      "status": "PASS"
+    },
+    {
+      "id": "523_accepted_metadata_retained",
+      "status": "PASS"
+    },
+    {
+      "id": "four_difference_rows_exact",
+      "status": "PASS"
+    },
+    {
+      "id": "71_candidate_main_differences",
+      "status": "PASS"
+    },
+    {
+      "id": "candidate_main_difference_rows_exact",
+      "status": "PASS"
+    },
+    {
+      "id": "69_modified_two_added_zero_removed",
+      "status": "PASS",
+      "detail": {
+        "added": [
+          "assets/cookie-preferences.css",
+          "assets/cookie-preferences.js"
+        ]
+      }
+    },
+    {
+      "id": "current_committed_name_sets",
+      "status": "PASS",
+      "detail": {
+        "local": 527,
+        "remote": 525
+      }
+    },
+    {
+      "id": "main_exact_remote_metadata",
+      "status": "PASS"
+    },
+    {
+      "id": "remote_guarded_tree_preserves_shopify",
+      "status": "PASS"
+    },
+    {
+      "id": "main_remote_no_differences_report",
+      "status": "PASS"
+    },
+    {
+      "id": "exact_seven_local_differences",
+      "status": "PASS"
+    },
+    {
+      "id": "local_difference_record_assets/cart.js",
+      "status": "PASS"
+    },
+    {
+      "id": "local_difference_record_assets/product-desktop-ux-20260513.js",
+      "status": "PASS"
+    },
+    {
+      "id": "local_difference_record_assets/product-desktop-ux.js",
+      "status": "PASS"
+    },
+    {
+      "id": "local_difference_record_assets/recipient-form.js",
+      "status": "PASS"
+    },
+    {
+      "id": "local_difference_record_sections/main-cart-footer.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "local_difference_record_sections/main-password-header.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "local_difference_record_snippets/gift-card-recipient-form.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "seven_predate_shopify_migration",
+      "status": "PASS"
+    },
+    {
+      "id": "exact_seven_body_filenames",
+      "status": "PASS"
+    },
+    {
+      "id": "main_bodies_complete",
+      "status": "PASS"
+    },
+    {
+      "id": "main_bodies_same_theme_metadata",
+      "status": "PASS"
+    },
+    {
+      "id": "main_body_sections/collection-list.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "main_body_sections/new-arrivals-mixed.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "main_body_snippets/breadcrumb-label.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "main_body_snippets/breadcrumbs.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "main_body_snippets/card-collection.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "main_body_snippets/product-variant-options.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "main_body_snippets/swatch-input.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "candidate_bodies_complete",
+      "status": "PASS"
+    },
+    {
+      "id": "candidate_bodies_same_theme_metadata",
+      "status": "PASS"
+    },
+    {
+      "id": "candidate_body_sections/collection-list.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "candidate_body_sections/new-arrivals-mixed.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "candidate_body_snippets/breadcrumb-label.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "candidate_body_snippets/breadcrumbs.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "candidate_body_snippets/card-collection.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "candidate_body_snippets/product-variant-options.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "candidate_body_snippets/swatch-input.liquid",
+      "status": "PASS"
+    },
+    {
+      "id": "paired_source_bytes_identical",
+      "status": "PASS"
+    },
+    {
+      "id": "four_prior_review_sha_matches",
+      "status": "PASS"
+    },
+    {
+      "id": "three_callees_unchanged_accepted",
+      "status": "PASS"
+    },
+    {
+      "id": "prior_dependency_hashes_match",
+      "status": "PASS"
+    },
+    {
+      "id": "all_22_config_templates_preserved",
+      "status": "PASS"
+    },
+    {
+      "id": "changed_sections_not_configured",
+      "status": "PASS"
+    },
+    {
+      "id": "index_three_sections_only",
+      "status": "PASS"
+    },
+    {
+      "id": "default_picker_dropdown",
+      "status": "PASS"
+    },
+    {
+      "id": "picker_control_source_matches_accepted_main_candidate",
+      "status": "PASS"
+    },
+    {
+      "id": "picker_swatch_dropdown_color_image_size_guards",
+      "status": "PASS"
+    },
+    {
+      "id": "inputs_stable_at_close",
+      "status": "PASS"
+    }
+  ],
+  "mutations": {
+    "reportFilesOnly": true,
+    "themeOrSharedSourceWrites": 0,
+    "gitIndexRefWrites": 0,
+    "apiBrowserActions": 0,
+    "externalWrites": 0
+  },
+  "nextDependency": "Root finishes only affected current buyer evidence, binds it to these sources, and decides readiness with remaining limitations and existing owner Admin publication restriction preserved."
+}

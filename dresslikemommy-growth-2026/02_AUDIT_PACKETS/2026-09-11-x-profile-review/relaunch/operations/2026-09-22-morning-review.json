@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/x_independent_review",
+  "checked_at_utc": "2026-09-22T13:17:42.728851Z",
+  "verdict": "PASS_WITH_LIMITS",
+  "confidence": "H_FOR_RETAINED_RECORD_CONSISTENCY",
+  "source": "operations/2026-09-22-morning.json",
+  "source_sha256": "9166100fbecfe6d332285244d01c22f232402ee032b847438cce130cc6010126",
+  "summary": "The corrected catch-up evidence supports continued publication hold and minimal useful coverage. Overlapping reports are not added, four retained eligible order records supply no observed X signal, and store-wide sessions are not credited to X. Calendar reconciliation matches the historical native submissions without promoting them to publication. The broader retrospective is now distinguished from the original seven-day cohort. No unresolved correction or new posting permission follows from this review.",
+  "resolved_finding": {
+    "initial_source_sha256": "6d7a6531fd936abfa83e18633ad347fafae67f568bddd1fd2d919bc36321fe28",
+    "issue": "September12-19 inclusive is eight completed days, whereas the original seven-full-day cohort is September12-18 with review scheduled September19.",
+    "resolution": "Root explicitly labeled the eight-day query and September20 04:00UTC order checkpoint cutoff as a broader retrospective, not an exact reconstruction of the original cohort or historical knowledge. No additional live query was required for the hold decision.",
+    "status": "VERIFIED_IN_FINAL_SOURCE"
+  },
+  "checks": {
+    "passed": 12,
+    "total": 12,
+    "method": "Local Python JSON/hash checks, date and America/New_York conversion, set overlap, arithmetic, URL-fixture reference parsing and comparison to frozen queue/launch receipts.",
+    "results": [
+      {"id":"C01","pass":true,"criterion":"Final source hash, exact X/shop identity, accepted report echoes/counts and no reported GraphQL errors agree."},
+      {"id":"C02","pass":true,"criterion":"Morning trigger converts to 09:01EDT; exclusive order cutoff September22 04:00UTC is September22 midnight EDT. Original seven-day and broader eight-day cohorts are explicit."},
+      {"id":"C03","pass":true,"criterion":"Gap report covers September15-21, following the prior September14 completed-day report. Retrospective covers September12-19. Five overlapping dates are not summed; empty campaign rows do not become verified zero acquisition."},
+      {"id":"C04","pass":true,"criterion":"28 referrer rows, below the 100-row limit, sum to 1991 store sessions. No named X/Twitter/t.co row is present and no store total is credited to X."},
+      {"id":"C05","pass":true,"criterion":"Four retained rows satisfy supplied bounds/checkpoint flags and PAID/non-test/noncancelled/web criteria. Counts match four eligible orders; September22 status is not represented as historical September19 status."},
+      {"id":"C06","pass":true,"criterion":"Reported outer/moment completeness flags agree. Moment counts are 1,0,1,1. Nine boundary-inclusive observations are not promoted to nine independent visits."},
+      {"id":"C07","pass":true,"criterion":"Retained visit classifications and row summaries contain no X signal. All seven synthetic URL fixtures match an independent Python reference interpretation; this is not production-parser reconstruction."},
+      {"id":"C08","pass":true,"criterion":"Reduced order rows retain no raw IDs, actual URLs, precise timestamps or customer identity. Costs/contribution and actual X outcomes remain unknown; acquisition and parent sales cohorts remain separate."},
+      {"id":"C09","pass":true,"criterion":"All seven historical saved bodies/dates match the frozen queue and launch receipt. Five planned dates have elapsed; R007 and R008 remain future at review time. No new publication receipt or native pending count is invented."},
+      {"id":"C10","pass":true,"criterion":"Publisher remains disconnected with existing setup question pending. No setup, repeated question, X website fallback or mutation is represented as authorized or performed."},
+      {"id":"C11","pass":true,"criterion":"No extra draft, replay, winner or extension is selected. Three-to-four originals/week and one/day limits, local R009-R011 gates and September26 checkpoint are preserved."},
+      {"id":"C12","pass":true,"criterion":"No missed run is backfilled. Source-freeze elapsed time matches timestamps; prior September15 completion is outside trailing seven days at freeze. The 120-minute cap and unquantified effort limitations remain explicit."}
+    ]
+  },
+  "calendar_readback": {
+    "as_of_utc": "2026-09-22T13:11:10.044Z",
+    "historical_native_saved_count": 7,
+    "elapsed_planned_ids": ["DLM-X-202609-R002","DLM-X-202609-R003","DLM-X-202609-R004","DLM-X-202609-R005","DLM-X-202609-R006"],
+    "elapsed_publication_status": "DUE__PUBLICATION_UNVERIFIED",
+    "R007_planned_utc": "2026-09-22T16:15:00Z",
+    "R008_planned_utc": "2026-09-23T16:15:00Z",
+    "current_native_pending_count": null,
+    "new_platform_publication_receipts": 0
+  },
+  "supporting_input_hashes": [
+    {"path":"POST_QUEUE.json","sha256":"c3d9d7ca9519994a1ef5a636793b571e01568b8dc7d518d364b5998cb61bb983"},
+    {"path":"LIVE_EXECUTION_20260911.json","sha256":"60cc747f7ebc49fcdfc5e0bb499911d742874609c4a39edd69fa5ebad0514200"},
+    {"path":"operations/2026-09-15-morning.json","sha256":"079d0c47acd62e01b6dd24ba2579df002c2e9b22af89a81aa8cfe048f613b5ce"}
+  ],
+  "independence": {
+    "built_or_executed_source": false,
+    "external_tool_calls": 0,
+    "raw_private_order_access": false,
+    "account_setup_credential_or_platform_actions": 0,
+    "shared_canonical_writes": 0,
+    "files_written": ["operations/2026-09-22-morning-review.json"]
+  },
+  "limitations": [
+    "This verifies retained-record consistency, not independent raw attribution reconstruction. Original IDs/URLs/timestamps were discarded before handoff; distinctness, exact row membership and original classification cannot be independently rederived.",
+    "Live schema validation, accepted Shopify responses, completeness flags and raw-data disposal are root-supplied. No new live request or private record inspection occurred.",
+    "First/last visits may repeat moment records. Ready journeys and exhausted pagination do not prove that all acquisition touchpoints were captured; an empty journey and Direct classification do not exclude unrecorded X influence.",
+    "URL strings in parser_checks are synthetic fixtures, not retained customer visit URLs. Fixture agreement does not certify the entire production reducer or untested parser cases.",
+    "The September12-19 report is an eight-day retrospective. The order checkpoint subset uses current September22 eligibility and a September20 04:00UTC creation cutoff; historical September19 payment/cancellation state remains unverified.",
+    "Source verification PENDING fields reflect its freeze. Current root completion belongs in mutable EXECUTION_STATUS.json; this review does not replace or edit that record.",
+    "No current X rendering, native queue, published post, buyer outcome, positive contribution, full effort accounting or future runtime availability is independently established."
+  ],
+  "required_corrections": [],
+  "next_action": "Root may index the review and continue the existing bounded afternoon assessment using newly available permitted evidence. Preserve all uncertain submissions and the publisher hold; do not replay posts or infer new publication permission."
+}

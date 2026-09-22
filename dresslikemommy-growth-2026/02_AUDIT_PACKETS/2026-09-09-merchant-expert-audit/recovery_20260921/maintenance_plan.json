@@ -1,0 +1,55 @@
+{
+  "recorded_at_utc": "2026-09-21T21:46:01.079214+00:00",
+  "action": "TA07-US-AU-SOURCE-MAINTENANCE-20260921",
+  "owner_task": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "parent_canonical_owner": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "scope": "Existing US and AU sources only; one complete source scan and independently reviewed release per market",
+  "steps": [
+    {
+      "step": "Fresh full US source and independent exact review",
+      "state": "VERIFIED"
+    },
+    {
+      "step": "Existing US pointer renewal, native receiving and six protected samples",
+      "state": "VERIFIED"
+    },
+    {
+      "step": "Fresh full AU source and independent exact review",
+      "state": "VERIFIED"
+    },
+    {
+      "step": "Existing AU manual upload, native receiving and nine samples",
+      "state": "VERIFIED"
+    },
+    {
+      "step": "Independent AU after-review and canonical integration handoff",
+      "state": "VERIFIED_PARENT_SOURCE_ACCEPTED"
+    }
+  ],
+  "git_sync": {
+    "status": "CLOSED_REVIEWED_CUTOFF",
+    "remote_main": "731de115a9f2ba94fe24cef95218332a15b685ee",
+    "local_main_reconciled": "096224cdb5ceb71f40b7e1014a5dc2f4fb445249",
+    "new_maintenance_artifacts": "AFTER_SYNC_CUTOFF_NOT_IN_EXISTING_PUSH",
+    "note": "No new Git/index/ref write by Merchant. Private exclusions, guarded theme paths and post-cutoff peer work remain preserved."
+  },
+  "source_refresh_targets": {
+    "US": "2026-09-22T21:22:35.148Z",
+    "AU": "2026-09-22T21:30:52.149Z",
+    "US_unchanged_48h_expiry": "2026-09-23T21:22:35.148Z"
+  },
+  "one_next_action": "After this bounded maintenance is accepted, resume fresh Canada/UK country and buyer-route qualification under the current command layer; do not claim historical readiness is current.",
+  "broader_all_market_goal": "PARTIAL",
+  "unchanged": [
+    "six eligibility holds",
+    "Worker/scheduler/48h guard",
+    "source URLs and existing source settings",
+    "Shopify prices and product status",
+    "other-country and language gates",
+    "MAIN theme and security",
+    "paid media and billing"
+  ],
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "updated_at_utc": "2026-09-21T21:54:54.746068+00:00",
+  "parent_acceptance_anchor": "2026-09-21-ceo-us-au-refresh-received"
+}

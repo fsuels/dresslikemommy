@@ -1,0 +1,137 @@
+{
+  "action_id": "TA15-RECEIVER-AND-DAY-20260922",
+  "recorded_at": "2026-09-22T08:34:25.653288+00:00",
+  "status": "READ_ONLY_RECEIVER_AND_COMPLETED_DAY_VERIFIED_WITH_LIMITS",
+  "source_live_evidence_as_of": "2026-09-22T08:28:51.706Z",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "uet_id": "36005151",
+  "completed_day": {
+    "date": "2026-09-21",
+    "timezone": "America/New_York; native label Eastern Time (U.S. & Canada)",
+    "basis": "Completed reporting day, not final attribution or order-profit reconciliation",
+    "spend_usd": 7.35,
+    "clicks": 47,
+    "impressions": 3266,
+    "reported_conversions": 0,
+    "reported_revenue_usd": 0,
+    "observed_average_cpc_usd": 0.156383,
+    "true_order_cpa_usd": null,
+    "contribution_profit_usd": null,
+    "Search": {
+      "spend_usd": 2.97,
+      "clicks": 20,
+      "impressions": 617
+    },
+    "Audience": {
+      "spend_usd": 4.38,
+      "clicks": 27,
+      "impressions": 2649
+    },
+    "audience_spend_share_percent": 59.5918,
+    "supersedes_only": "September21 partial-day report of USD4.34/28clicks; September15-20 source remains dated history, not re-read or merged"
+  },
+  "current_configuration": {
+    "enabled_ids": [
+      "506254907",
+      "506255071",
+      "506255081",
+      "506255080",
+      "506255284",
+      "506255076"
+    ],
+    "paused_ids": [
+      "506255078",
+      "506255077",
+      "506254908"
+    ],
+    "enabled_daily_budget_sum_usd": 120,
+    "all_nine_daily_budget_sum_usd": 163,
+    "interpretation": "Configured totals, not actual spend, hard account caps or approved budgets. Same nine status/budget tuples as Sep21 source; no owner/actor attribution inferred.",
+    "max_cpc_this_run": "NOT READ; USD0.15 owner ceiling remains; historical US/CA0.20 and EUR0.10 checks retain their own source dates."
+  },
+  "receiver": {
+    "today_date": "2026-09-22",
+    "today_partial_events": {
+      "page view": 145,
+      "purchase": 1,
+      "begin_checkout": 1,
+      "add_to_cart": 2,
+      "view_item": 13,
+      "home": 3
+    },
+    "yesterday_date": "2026-09-21",
+    "yesterday_events": {
+      "page view": 672,
+      "view_item": 74,
+      "home": 18,
+      "add_to_cart": 9,
+      "search": 3
+    },
+    "yesterday_purchase_row": "NOT_PRESENT_IN_RENDERED_TABLE",
+    "purchase_received_today": true,
+    "distinct_verified_orders": null,
+    "purchase_value": null,
+    "purchase_currency": null,
+    "exact_line_items": null,
+    "sender_identity_verified": false,
+    "order_deduplication_verified": false,
+    "microsoft_attribution_verified": false,
+    "repair_verified": false
+  },
+  "consent": {
+    "regional_population": "EEA, UK and Switzerland only",
+    "window": "Last7days per native tooltips; not selected report date",
+    "page_view_signal_presence_percent": 25,
+    "begin_checkout_signal_presence_percent": 0,
+    "add_to_cart_signal_presence_percent": 0,
+    "view_item_signal_presence_percent": 0,
+    "purchase_region_sample": "NO_EVENTS_DETECTED",
+    "population_denominators": null,
+    "meaning": "Presence of consent signal, not granted consent or privacy compliance. Aggregates do not isolate the app sandbox or re-test the Sep12 denied standard-publisher capture."
+  },
+  "goal": {
+    "configured_primary_event": "purchase",
+    "tag_id": "36005151",
+    "variable_value": true,
+    "fallback_value": 0,
+    "fallback_currency": "USD",
+    "count": "All",
+    "click_window_days": 30,
+    "view_through_window_days": 1,
+    "attribution_model": "Last click",
+    "use_for_auto_bidding_optimization": true,
+    "status": "No recent conversions",
+    "exact_value_receipt_verified": false,
+    "config_preserved_after_cancel": true
+  },
+  "authority": {
+    "live_state_mode": "READ_ONLY_MARKETING_RECONCILIATION",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "shared_writer_interval": false,
+    "existing_questions": "Six-campaign pause decision and numeric daily-budget/maximum30day-loss question remain pending; neither repeated."
+  },
+  "support": {
+    "case": "7108824779",
+    "stage": "TEAM_CONSULTATION_PENDING_ENGINEERING_ESCALATION_NOT_CONFIRMED",
+    "new_reply_read": false,
+    "new_contact_sent": false,
+    "draft_addendum": "LOCAL_NOT_SENT",
+    "mailbox_and_chat_gate": "Sep21 mismatch/failed human connection retained; unchanged surfaces not retried"
+  },
+  "material_decision": "Keep tracking repair unverified; do not treat active tag, parameter names, zero-revenue fallback or no-sample Healthy tooltip as validated purchase attribution. Prepare same-case diagnostic addendum and preserve current spend-authority gate.",
+  "next_action": "Use the existing case7108824779 channel when available to obtain a supported publisher correction, then verify consent and exact order/value/currency/items/single-sender/receiver deduplication. Parent may reconcile the new dated receipt against its existing full-sales cycle without inventing an event/order join.",
+  "limits": [
+    "No Shopify order or cost query; no claim of CPA, ROAS, profit, sales gain or lost sales.",
+    "No isolated denied/granted consent replay this run; aggregate diagnostics cannot prove every event is defective.",
+    "No support repair/email/escalation verified. Rejected cross-tab custom purchase candidate remains rejected.",
+    "Regional seven-day tooltip and selected-day event counts are separate populations.",
+    "Current six Enabled status is not authorization. Pending exact pause question not repeated.",
+    "Saved-source independent review is not independent live replay."
+  ],
+  "business_mutations": 0,
+  "source_sha256": "a222ee209c195b5f3bb2844a7940dce4706ecc03e2264eb6cb024922414a463c",
+  "prior_configuration_comparison_source": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/support-followup-20260921/account-drift-readback.json",
+  "prior_configuration_source_sha256": "50827af4fb1e237fda0eeaf9c7e78d0f535a5fa0a388e48610b7d41766ef1899"
+}

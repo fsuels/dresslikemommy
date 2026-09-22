@@ -1,0 +1,108 @@
+{
+  "schema": "dlm.parent.sales_and_attribution_acceptance.v1",
+  "action_id": "TA16-QUALIFIED-SALES-AND-ORGANIC-ATTRIBUTION-20260922",
+  "recorded_at_utc": "2026-09-22T09:06:16.611442+00:00",
+  "canonical_anchor": "2026-09-22-ceo-google-organic-order-verified",
+  "status": "LIVE_VERIFIED_WITH_LIMITS__DUE_RECONCILIATION_COMPLETE",
+  "parent_thread": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "evidence_label": "LIVE_VERIFIED",
+  "sources": {
+    "order_fulfillment_source_20260922_0833.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_source_20260922_0833.json",
+      "sha256": "0a1a9c8afdf78a72569eace2678143b6e7223e1337d42f935d29e4f299141a93"
+    },
+    "order_fulfillment_checkpoint_20260922_0833.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_checkpoint_20260922_0833.json",
+      "sha256": "b5fc4becc45517da8d9b3e711189053097c16c650a40e79cf0a03067d1f220a7"
+    },
+    "order_fulfillment_review_20260922_0833.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_review_20260922_0833.json",
+      "sha256": "e283604c59df87be2b54c1488007e3a4b93db3e589347e872af5e7128c8163b5"
+    },
+    "new_order_attribution_20260922_0838.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/new_order_attribution_20260922_0838.json",
+      "sha256": "1bca47c8611079c0249307cd9f68616c2ca35075033d898dd521729856c8612c"
+    },
+    "new_order_attribution_review_20260922_0838.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/new_order_attribution_review_20260922_0838.json",
+      "sha256": "559d12f96c04935507b5a6a6b8ff7fb4d4367775029fb133e62cbae60a0c4c03"
+    },
+    "new_order_organic_route_20260922_0843.json": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/new_order_organic_route_20260922_0843.json",
+      "sha256": "07a5d24729e3bbede269c5ab43b7be88a48e170319006d2e883607b0e4a2227f"
+    }
+  },
+  "accepted_sales": {
+    "orders": 6,
+    "current_units": 14,
+    "currentSubtotalPriceSet": "407.41",
+    "currentTotalPriceSet": "407.41",
+    "currentTotalTaxSet": "0.00",
+    "totalRefundedSet": "0.00"
+  },
+  "cutoff_utc": "2026-09-22T08:33:21Z",
+  "accepted_new_order_attribution": {
+    "platform": "Shopify",
+    "first_visit_source": "Google",
+    "first_visit_tactic": "SEO",
+    "last_visit_source": "Google",
+    "last_visit_tactic": "SEO",
+    "journey_ready": true,
+    "utm_parameters_present": false,
+    "qualifying_orders": 1,
+    "recorded_order_total_usd": "68.20",
+    "cross_platform_transaction_match": "NOT_VERIFIED",
+    "specific_recent_SEO_change_causality": "NOT_ESTABLISHED"
+  },
+  "sales_summary": "Shopify cutoff September22 08:33:21UTC: seven all-status records since September5 04:00UTC; six qualifying PAID, non-test, noncancelled web orders, 14 current units and USD407.41. One new qualifying creation since September21 20:32:03UTC adds two units/USD68.20. Trailing24hours has the same one order; the completed September21 NewYork day has zero qualifying creations. One excluded cancelled REFUNDED order has USD31.98 recorded refunds. Four SUCCESS/FULFILLED objects total10units without carrier transit/delivery proof.",
+  "attribution_summary": "For the new USD68.20 order only, the ready Shopify journey at08:38:02UTC reports Google/SEO for both first and last visit, with no UTM parameters. This supports one Shopify-reported Google organic sale. It does not establish GA4/Ads receiver acceptance, cross-platform transaction matching, recent SEO-change causality, actual costs, settlement or retained profit. Attribution of the other five orders is not changed by this finding.",
+  "independent_reviews": {
+    "sales": {
+      "binding": {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_review_20260922_0833.json",
+        "sha256": "e283604c59df87be2b54c1488007e3a4b93db3e589347e872af5e7128c8163b5"
+      },
+      "checks": 35
+    },
+    "attribution": {
+      "binding": {
+        "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/new_order_attribution_review_20260922_0838.json",
+        "sha256": "559d12f96c04935507b5a6a6b8ff7fb4d4367775029fb133e62cbae60a0c4c03"
+      },
+      "checks": 23
+    },
+    "verifier": "/root/cockpit_current_metrics_source",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+    "native_replay": "NOT_RUN"
+  },
+  "privacy_limits": "Deidentified records support recalculation; date-window/deduplication/longitudinal joins and transient exact-ID attribution join remain parent source assertions, not independent native replay. No order IDs or customer PII are persisted.",
+  "carrier_physical_delivery_verified": false,
+  "actual_costs_settlement_retained_profit": "UNKNOWN",
+  "recent_SEO_change_causality": "NOT_ESTABLISHED",
+  "cross_platform_receiver_match": "NOT_VERIFIED",
+  "paid_media_result_added": false,
+  "overall_TA16": "PARTIAL__COST_SETTLEMENT_DELIVERY_AND_CROSS_PLATFORM_GATES_REMAIN",
+  "next_full_read_not_before_utc": "2026-09-22T20:33:21Z",
+  "changed_evidence_route_dispatch": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_route_dispatch_20260922.json",
+    "sha256": "e32a4a3fe689981eae41452bd1c0456febf86ee03b0331177cef6aa84a45f049"
+  },
+  "root_business_writes": 0,
+  "owner_dispatches_this_wake": 1,
+  "route_completion_acceptance": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_route_parent_acceptance_20260922.json",
+    "sha256": "19f34a55986d2147965d40f9b1286fd858d2720cf4b5ce70387531523681d403"
+  },
+  "preservation": "The existing exact six-campaign pause question remains the single urgent owner action, with the separate numeric budget/30-day-loss gate retained. No duplicate question, live business write, new paid authority, claim transfer, goal/schedule/model change or Git release occurred. Root remains the sole shared canonical writer; Microsoft and Organic retain their account/packet ownership. Existing theme publication, Merchant/runtime/product and cost dependencies are unchanged. All prior review/source clocks remain, except the completed full-sales read now advances its next not-before time to September22 20:33:21UTC, earlier only on meaningful new lifecycle/cost evidence. The new September22 order is outside the existing September15–21 sizing review window; its September22 09:00NewYork assessment stays separate.",
+  "source_live_evidence_as_of": "2026-09-22T08:38:02.889Z",
+  "live_state_mode": "STALE_READBACK_REQUIRED",
+  "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+  "approved_external_scope": "NONE",
+  "decision_depends_on_uncertain_state": true,
+  "material_decision": true,
+  "decision_changing_evidence": "Public landing-to-purchased-product relationship; exact cross-platform attribution; source-backed costs and settlement.",
+  "if_evidence_supports_recommendation": "Keep route stable if it reaches the sold product; use verified sale as a bounded organic signal with costs still unknown.",
+  "if_evidence_opposes_recommendation": "Route an evidenced buyer failure to its existing owner within exact scope; do not infer a redirect fix from names alone.",
+  "independent_verifier": "/root/cockpit_current_metrics_source",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE"
+}

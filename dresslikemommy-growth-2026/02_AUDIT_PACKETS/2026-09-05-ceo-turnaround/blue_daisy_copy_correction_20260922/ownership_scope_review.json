@@ -1,0 +1,206 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/recovery_source_verifier",
+  "reviewed_at_utc": "2026-09-22T00:56:01.388437+00:00",
+  "verdict": "HOLD_ROOT_WRITE_OWNERSHIP_UNRESOLVED",
+  "product_id": "7577248596065",
+  "checks_summary": {
+    "pass": 18,
+    "total": 18,
+    "open_execution_dependencies": 2
+  },
+  "decision": {
+    "root_may_claim_independent_product_write_now": false,
+    "ownership_finding": "Exact current Blue Daisy exclusivity is unresolved. Only its closed historical listing claim names the product, while current Merchant product/source/localization work overlaps and the parent claim remains collection-only. No explicit carve-out, retained-owner release or authoritative transfer is evidenced.",
+    "disposition": "Hold root product and translation writes for exact ownership resolution through the existing owner or explicit authoritative transfer. Preserve Merchant01a08706-c63a-7e01-ba48-7777bcb1788a claim and saved usageLimited hold. Local preparation may continue; relabeling the lane does not resolve ownership.",
+    "user_scope": "No contradiction in the supplied current store-repair/publication/all-languages mandate. The two bound prior exact nonspend scopes corroborate that standing paid NONE is not a blanket prohibition on such user-authorized repairs. That is not evidence of a peer-claim transfer.",
+    "localization_finding": "English-only repair leaves the internal instruction in20 global bodies. Sentence-only changes across21 bodies leave surrounding English in20 translations. Neither establishes full localization. Require the existing localization owner scoped plan and explicit treatment of digest/outdated metadata; whole-body registration must not silently certify unchanged body quality.",
+    "new_user_approval_question_required": false
+  },
+  "open_dependencies": [
+    "Exact product/source/localization writer allocation without implicit claim transfer or runtime-hold bypass.",
+    "Qualified per-locale scope for20 existing body records, including honest freshness and residual-language limits."
+  ],
+  "checks": [
+    {
+      "name": "before_snapshot_hash",
+      "status": "PASS",
+      "evidence": "Exact saved source binding."
+    },
+    {
+      "name": "override_snapshot_hash",
+      "status": "PASS",
+      "evidence": "Later snapshot resolves earlier market_overrides_read=false for its dated scope."
+    },
+    {
+      "name": "product_resource_identity",
+      "status": "PASS",
+      "evidence": "Product7577248596065 across all source objects."
+    },
+    {
+      "name": "source_body_identity",
+      "status": "PASS",
+      "evidence": "English product and translatable body match."
+    },
+    {
+      "name": "all_twenty_existing_global_bodies",
+      "status": "PASS",
+      "evidence": "21 locales; pt_BR is query alias for actual locale pt-BR."
+    },
+    {
+      "name": "sentence_once_in_each_of_twenty_one_bodies",
+      "status": "PASS",
+      "evidence": "21 exact occurrences."
+    },
+    {
+      "name": "twenty_outdated_false_flags",
+      "status": "PASS",
+      "evidence": "Flags are saved metadata, not semantic approval."
+    },
+    {
+      "name": "english_survives_sentence_only_repair",
+      "status": "PASS",
+      "evidence": "A complete English fabric sentence remains in every global body."
+    },
+    {
+      "name": "six_markets_complete_pagination",
+      "status": "PASS",
+      "evidence": "All six configured markets, terminal saved pagination."
+    },
+    {
+      "name": "market_resource_and_locale_scope",
+      "status": "PASS",
+      "evidence": "21 aliases per market; same product; successful results."
+    },
+    {
+      "name": "126_empty_override_arrays",
+      "status": "PASS",
+      "evidence": "No market override content in this saved inventory."
+    },
+    {
+      "name": "unimplemented_english_only_candidate",
+      "status": "PASS",
+      "evidence": "Extending the candidate to global registrations requires its own exact scoped plan."
+    },
+    {
+      "name": "localization_owner_plan_required",
+      "status": "PASS",
+      "evidence": "Existing candidate explicitly requires this dependency."
+    },
+    {
+      "name": "retained_merchant_overlap_and_runtime_hold",
+      "status": "PASS",
+      "evidence": "Broad current lane overlaps; the hold does not release its owner."
+    },
+    {
+      "name": "parent_scope_does_not_establish_product_lane",
+      "status": "PASS",
+      "evidence": "No explicit root product carve-out or transfer evidenced."
+    },
+    {
+      "name": "only_exact_product_claim_is_closed_history",
+      "status": "PASS",
+      "evidence": "Closed June2 draft listing is not a current exclusive lease or a release of the broader lane."
+    },
+    {
+      "name": "one_writer_and_no_implicit_lock_clear",
+      "status": "PASS",
+      "evidence": "Claim before edits; explicit transfer, abandonment or completion before clearing a peer lock."
+    },
+    {
+      "name": "standing_control_none",
+      "status": "PASS",
+      "evidence": "Paid/default standing control is separate from exact user-authorized nonspend repair scopes."
+    }
+  ],
+  "bindings": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/blue_daisy_copy_correction_20260922/before_source.json",
+      "sha256": "26427d2b30eede230d05652cd93dcbacebfc649c02d0f9542a48d0fa258f875b"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/blue_daisy_copy_correction_20260922/market_overrides_before.json",
+      "sha256": "b17a767818c5e4124d3f7860ad10bcae2e7d18261a750e5dd8621cd11df34df7"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/copy-correction-candidate.json",
+      "sha256": "41518ebdcc37ef3ad2c5556ccfa6ac901a6de80ad9b8952d1e42eb0ba84af1cc"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_it24_exact_scope_20260915.json",
+      "sha256": "d3da440221802453d0994997a29336906d892e6d94707f3f8d0bbcd18c591588"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/merchant_czech_body_scope_20260915.json",
+      "sha256": "d07c37efeb2c39eaf1a9ba81d66e41815ad9f3488f414dcb6b68829cb43c022d"
+    }
+  ],
+  "canonical_excerpt_bindings": {
+    "merchant": {
+      "path": "ops/AGENT_COORDINATION.md",
+      "line": 63,
+      "sha256_of_line_without_newline": "2ee50d50bdccca4ba785a28ffc94f1d4e5e1a7d5b57af90b7842a9f12645f43c"
+    },
+    "parent": {
+      "path": "ops/AGENT_COORDINATION.md",
+      "line": 74,
+      "sha256_of_line_without_newline": "57572c9619f1adb4a13fac2dcf66afe71bbbe20416e8c40864e24dd72489709f"
+    },
+    "historical_product": {
+      "path": "ops/AGENT_COORDINATION.md",
+      "line": 376,
+      "sha256_of_line_without_newline": "5ce34cc7c24d8dbd60e098c8a6538d92b00bef5a9f7ad64db90797b8ce7c7744"
+    }
+  },
+  "authoritative_control_binding": {
+    "path": "ops/marketing/current_marketing_state.md",
+    "boundary": "MARKETING_AUTHORITATIVE_CONTROL START through END inclusive",
+    "sha256": "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57"
+  },
+  "coordination_rules": {
+    "path": "ops/AGENT_COORDINATION.md",
+    "line": 37,
+    "quoted_rule": "One writer per workstream. A workstream is a specific campaign, feed cohort, product set, theme area, prompt/script, or external-system surface.",
+    "no_clear_rule_line": 43
+  },
+  "source_clocks": {
+    "source_read_at": "2026-09-22 00:40:54 UTC",
+    "translations_read_at": "2026-09-22 00:46:16 UTC",
+    "market_overrides_read_at": "2026-09-22 00:48:53 UTC",
+    "product_updatedAt": "2026-09-15T15:55:40Z"
+  },
+  "source_facts": {
+    "english_body_digest": "ba72afd5585d5f0f94b4fd9499555bdb4f6266eb1e8a48c053f87e3c8e1f52bb",
+    "global_body_count": 20,
+    "outdated_false_count": 20,
+    "sentence_occurrences": 21,
+    "global_bodies_with_same_surrounding_english_sentence": 20,
+    "configured_market_count": 6,
+    "empty_market_override_array_count": 126
+  },
+  "actual_instruction_read": {
+    "tool": "mcp__codex_app__read_thread",
+    "task_id": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+    "title": "Audit Google Merchant setup",
+    "turn_limit": 5,
+    "evidence": "The actual task preview requests all products/all markets and audit/fix corrections between Shopify and Merchant; it supplies no transfer to this parent. Recent task metadata was not used to override the canonical runtime hold.",
+    "root_mandate_provenance": "Supplied parent assignment plus two bound prior exact user-authority scopes; no broad rollout scan."
+  },
+  "verifier_predicate_correction": {
+    "initial_attempt": "Aborted before output write:14/18 local assertions passed. Four checks used wrong literal/alias assumptions.",
+    "corrections": [
+      "Use actual record locale pt-BR and normalize it to query alias pt_BR, for global and market inventory comparisons.",
+      "Match the existing peerclaim takeover prohibition without inventing adjacent wording.",
+      "Match markdown-formatted authoritative control rather than plain YAML."
+    ],
+    "source_change_required": false,
+    "final_assertions": "18/18 PASS; ownership HOLD remains."
+  },
+  "limits": [
+    "This verdict accepts saved facts and identifies scope dependencies; it grants no live action authority.",
+    "Only this owned review is written; no canonical, owner checkpoint, source, browser, API, Git, recipient message, runtime retry or standard suite action.",
+    "No fresh live truth, completed repair, full language-quality, product-fact, buyer-path, feed, sale, attribution or profit claim.",
+    "No automatic clearing or resetting of translation freshness; an action-time plan must account for source digest changes.",
+    "Prior scopes are evidence of bounded authority practice, not permission to replay old actions or mutate this target."
+  ]
+}

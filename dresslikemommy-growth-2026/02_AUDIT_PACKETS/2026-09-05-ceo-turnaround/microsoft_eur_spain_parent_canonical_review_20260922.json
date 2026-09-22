@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-22T05:03:07.457811+00:00",
+  "reviewer": "/root/recovery_source_verifier",
+  "verdict": "PASS_WITH_LIMITS",
+  "canonical_anchor": "2026-09-22-ceo-eur-spain-buyer-route",
+  "check_count": 24,
+  "passed_count": 24,
+  "failures": [],
+  "checks": [
+    {
+      "name": "eleven_before_and_after_source_hashes",
+      "status": "PASS",
+      "evidence": "All11 canonical files match integration before/after bindings. GeneratedHTML/audit hashes excluded."
+    },
+    {
+      "name": "parent_acceptance_and_completed_source_review_bindings",
+      "status": "PASS",
+      "evidence": "Completed24-check source review consumed without replay."
+    },
+    {
+      "name": "accepted_source_bindings_identical_to_completed_review",
+      "status": "PASS",
+      "evidence": "Parent handoff and six frozen file hashes equal the completed source-review bindings; no arithmetic/native audit repeated."
+    },
+    {
+      "name": "accepted_record_count_83_to_84",
+      "status": "PASS",
+      "evidence": "Exactly one accepted source record appended."
+    },
+    {
+      "name": "all_83_prior_owner_entries_exact",
+      "status": "PASS",
+      "evidence": "All prior full JSON entries and ordering preserved."
+    },
+    {
+      "name": "all_72_wakes_and_latest_wake_exact",
+      "status": "PASS",
+      "evidence": "All72 full wake entries and latest-wake alias unchanged; no integration wake added."
+    },
+    {
+      "name": "new_record_source_only_partial_tasks",
+      "status": "PASS",
+      "evidence": "EUR source accepted; neither overallTA15 norTA06 nor publication marked complete."
+    },
+    {
+      "name": "active_checkpoint_change_boundary",
+      "status": "PASS",
+      "evidence": "Only3 existing direct keys changed and2 source/case keys added; every other active direct field exact."
+    },
+    {
+      "name": "checkpoint_outside_active_container_exact",
+      "status": "PASS",
+      "evidence": "All ancestor/unrelated checkpoint content unchanged."
+    },
+    {
+      "name": "anchor_and_previous_integration_preserved",
+      "status": "PASS",
+      "evidence": "Current anchor exact; complete previous integration retained."
+    },
+    {
+      "name": "old_us_canada_caps_and_source_dates_exact",
+      "status": "PASS",
+      "evidence": "NewEUR0.10 evidence does not refresh or repair earlierUS/CA0.20 findings."
+    },
+    {
+      "name": "one_owner_action_and_paid_authority_exact",
+      "status": "PASS",
+      "evidence": "Existing pause and budget/loss questions preserved, without inferred active-delivery authority."
+    },
+    {
+      "name": "clock_hold_goal_schedule_git_fields_preserved",
+      "status": "PASS",
+      "evidence": "All matched sales/feed/organic/Pinterest/release/runtime/goal/schedule/Git/authority fields preserved; complete direct-key boundary also protects unmatched names."
+    },
+    {
+      "name": "all_owner_claim_rows_byte_preserved",
+      "status": "PASS",
+      "evidence": "No writer, account, product, theme or Git claim transferred or added."
+    },
+    {
+      "name": "authoritative_control_blocks_exact",
+      "status": "PASS",
+      "evidence": "All authoritative control blocks in affected files byte-equivalent."
+    },
+    {
+      "name": "only_declared_markdown_insertions",
+      "status": "PASS",
+      "evidence": "Seven header insertions,2problem addenda and1worklog append exactly reproduce all nonqueue Markdown changes; no older evidence removed."
+    },
+    {
+      "name": "exact_intended_ta06_ta15_cells_only",
+      "status": "PASS",
+      "evidence": "TA06 cells5/9/10/11 andTA15 cells5/7/9/10 only, zero-based after trimming outer pipes. All other queue lines exact."
+    },
+    {
+      "name": "prior_queue_evidence_and_owner_actions_retained",
+      "status": "PASS",
+      "evidence": "Existing evidence/detail/next-step text retained; owner and owner-action cells unchanged."
+    },
+    {
+      "name": "sample_and_business_limits_present",
+      "status": "PASS",
+      "evidence": "Completed24-check source limits carried through exactly; no expanded sample or outcome inference."
+    },
+    {
+      "name": "exact_spain_case_under_existing_ux_owner",
+      "status": "PASS",
+      "evidence": "Parent acceptance and checkpoint bind the exact case to existingUX; no new repair owner."
+    },
+    {
+      "name": "publication_and_price_acceptance_boundaries",
+      "status": "PASS",
+      "evidence": "Existing owner publication and fresh postrelease identity/price/buyer proof remain required; no present candidate/release pass claimed."
+    },
+    {
+      "name": "father_son_receipt_binding_and_readonly_scope",
+      "status": "PASS",
+      "evidence": "Saved dispatch receipt records delivery to the existing Microsoft owner only; not execution or business authority."
+    },
+    {
+      "name": "father_son_not_counted_as_completion",
+      "status": "PASS",
+      "evidence": "Pending continuation predates this integration snapshot, remains separate from72wakes and84accepted results; no completed receipt inferred."
+    },
+    {
+      "name": "no_new_business_release_or_goal_transfer",
+      "status": "PASS",
+      "evidence": "One earlier independent continuation acknowledged; asynchronous source integration creates no new wake, release, goal, schedule or Git authority."
+    }
+  ],
+  "bindings": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_eur_spain_parent_integration_20260922.json",
+      "sha256": "52619e9d4d3756aac6dd5d8173e0ebf965411959eb6d66939bc50eec7c1adfb0"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_eur_spain_parent_acceptance_20260922.json",
+      "sha256": "f5c5d26218d28177512f1bbf7a59fab3eb37f94c9ddbbf646146578caa38e862"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_eur_spain_source_review_20260922.json",
+      "sha256": "daa190472af4af5151813ac1d32fb0a9a2d646d26e7f47bb48802ec9674fe66b"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_dispatch_20260922.json",
+      "sha256": "5e27ce44e0c00ba85012b2dc7a290aee9a45db8185cdd5da8d461237c043ff93"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/eur-spain-qualification-20260922/handoff.json",
+      "sha256": "6d1e1c17c906fad9627c4af893f38ab1ba135afccf57ccee2d773a648fca1fae"
+    }
+  ],
+  "canonical_source_bindings": [
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "before_sha256": "e6cffd8097a8049886e7f982fc1d9390d588449e8a3d379efe09e0978aee1ada",
+      "after_sha256": "b652980e71e0ae212c78d62916bbdf863e8bbbfbcbcc76a48ca404ce5688d6c3"
+    },
+    {
+      "path": "ops/marketing/action_queue.md",
+      "before_sha256": "db7fa3f4b904abb07f415ed40469f9b5978adaacf8b389198b2f1185a6d8812d",
+      "after_sha256": "f6c9b9eee89efa95277aafec0423c5ce85bb37c40ea95addfe9ca8b31b61dcd8"
+    },
+    {
+      "path": "ops/marketing/daily_scorecard.md",
+      "before_sha256": "3cf65d8f8221a735e0a97d41371f80856e1d75f6295d48a6e08734bc8b977579",
+      "after_sha256": "e2ee81c1b7bc5b147bae07711acfbfdbd7ea3133941d9a426d6f830b3f338be6"
+    },
+    {
+      "path": "ops/marketing/blocker_board.md",
+      "before_sha256": "1b6609f9056435eaf14c44ca3177e3752b47f8b98b3ee9560d100a0cdc927a64",
+      "after_sha256": "d2b6e189351e1da1b3ad86e20bd9f55ad62582f8dda4320f87db854eb89ee6d9"
+    },
+    {
+      "path": "ops/marketing/operator_cockpit.md",
+      "before_sha256": "7d9180a2780883b7a467c450f63e6037facbfcbde2f54b322c1e5f2c68f5d611",
+      "after_sha256": "959be1a865e70cbbdcbd1848a8146cad97934a615a9208f2bcc061c5ef03f840"
+    },
+    {
+      "path": "ops/marketing/decision_log.md",
+      "before_sha256": "21fec534ff48b050394d1e9f769af08c93c68b73acc6c3a0987ca2d09789b9f9",
+      "after_sha256": "5b5cf82477b058c2f955ffe9b6db639af94a79fd6b81817a981d0e05b0e3b21e"
+    },
+    {
+      "path": "ops/marketing/review_log.md",
+      "before_sha256": "4b9ff56be9d5b1a032db5d04e333a9c4d3618aa7a5d60b6a6a78483bc47eae90",
+      "after_sha256": "71d70948629d7674448e34bb32070726aaae2205734ffe25b273c8187726972a"
+    },
+    {
+      "path": "ops/AGENT_COORDINATION.md",
+      "before_sha256": "d00ce2a5dc871a35f87f72ef439414ed946c1f21635fbaf3b3ccf6f8a59c749e",
+      "after_sha256": "47e66d344ec80b2bb96890460759dc28fb42b20cae34c97876cfd5c6d42d63da"
+    },
+    {
+      "path": "ops/PROBLEM_TRACKER.md",
+      "before_sha256": "1717dae8f893c57fa034ba9a4aaf4a1a01c9510a7d23b70ebfb3fdf7b3bb188d",
+      "after_sha256": "717376f93717d51ea40df0c53040088acf393e35d1f03a1950d2d69a3c6c5707"
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "before_sha256": "a881297c03aa2bdca32e547ae703b56afbf8ff84b99ea33ebd235119fe35f277",
+      "after_sha256": "8b08b014bc2330f99781a4fd32b19a9066d9ed394b24e1f8cfbf828ac85241f5"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+      "before_sha256": "363ecdddc90cd1fa3695842f28225855a867019be19d1445dad2c215a735c39b",
+      "after_sha256": "3467cf1573e0d3e1f429377ac4196facc30ed0853cf7ec9f432bb4f029f8b1f4"
+    }
+  ],
+  "before_snapshot": "/private/tmp/dlm-eur-spain-20260922-before",
+  "active_checkpoint_container": [
+    "continuation_dispatches",
+    0,
+    "release_hold_reassessment",
+    "current_execution_revision",
+    "latest_qualified_cohort_checkpoint"
+  ],
+  "counts": {
+    "accepted_owner_records_before": 83,
+    "accepted_owner_records_after": 84,
+    "all83_prior_entries_exact": true,
+    "wakes_before": 72,
+    "wakes_after": 72,
+    "all72_wakes_and_latest_exact": true,
+    "new_accepted_business_releases": 0,
+    "father_son_dispatch": "RECEIVED__EXECUTION_PENDING__NOT_COUNTED_COMPLETE"
+  },
+  "changed_direct_checkpoint_keys": [
+    "canonical_anchor",
+    "latest_canonical_integration",
+    "owner_readback_integrations"
+  ],
+  "added_direct_checkpoint_keys": [
+    "latest_Microsoft_eur_spain_qualification",
+    "latest_UX_spain_variant_acceptance_case"
+  ],
+  "queue_changed_cells": {
+    "TA-06": [
+      5,
+      9,
+      10,
+      11
+    ],
+    "TA-15": [
+      5,
+      7,
+      9,
+      10
+    ]
+  },
+  "control_block_bindings": [
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "equal": true,
+      "sha256": [
+        "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57"
+      ]
+    }
+  ],
+  "protected_direct_fields": [
+    "au_source_qualification",
+    "sales_delta",
+    "paid_authority",
+    "new_goal_or_harness_or_automation_created",
+    "no_sales_lift_claim",
+    "UX_current_source_binding",
+    "latest_full_sales",
+    "scheduled_wakes",
+    "runtime_status_readback_20260914",
+    "latest_AU_current_source_outcome",
+    "latest_full_sales_history",
+    "latest_sizing_english_release",
+    "latest_faq_functional_release",
+    "latest_sizing_localized_release",
+    "latest_completed_release_anchor",
+    "latest_faq_sizing_release",
+    "latest_navy_size_release",
+    "latest_US_AU_source_propagation",
+    "latest_color47_source_release",
+    "latest_theme_successor_release",
+    "latest_Navy_french_suffix_release",
+    "latest_merchant_spanish_source_qualification",
+    "latest_Ads_source_prerequisite_consumption",
+    "latest_Microsoft_german_negative_release",
+    "latest_Czech_body_release",
+    "latest_Czech_theme_heading_release",
+    "latest_mobile_collection_heading_source_intake",
+    "latest_root_runtime_readback",
+    "latest_full_sales_acceptance",
+    "latest_pinterest_morning_readback_acceptance",
+    "latest_italian_source_scope",
+    "latest_italian_source_release_acceptance",
+    "latest_organic_gift_guide_owner_intake_20260915",
+    "latest_organic_gift_guide_release_acceptance",
+    "latest_Pinterest_publication_receipt",
+    "latest_scheduled_wake",
+    "latest_Merchant_runtime_hold_readback_20260921",
+    "latest_theme_source_reconciliation_20260921"
+  ],
+  "essential_findings": [
+    "All11 canonical before/after hashes match;83prior accepted records and72wakes/latest preserved, with one source-only acceptance appended.",
+    "Source sample limits, oldUS/CA source dates, existing pause/budget questions and paidNONE preserved.",
+    "ExactSpain child case joins existingUX post-publication acceptance; no new patch, publication, present candidate pass or ownership transfer.",
+    "Father&Son dispatch remains received/pending, with no observed completion or business-write authority."
+  ],
+  "limits": [
+    "This is canonical integration verification only; completed source/native/review suites were not repeated.",
+    "GeneratedHTML and command integration audit bytes were excluded; parent-reported standard checks were not rerun.",
+    "Review binds current source bytes and saved dispatch status only; it does not poll owner progress or establish fresh live account/theme/buyer truth.",
+    "No owner messaging, browser/network/API/native/Git/canonical/checkpoint mutation; only this owned JSON is written.",
+    "Integration metadata still says canonical checks pending at this cutoff; parent closure metadata may subsequently change under its own provenance."
+  ]
+}

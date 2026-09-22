@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at_utc": "2026-09-15T13:05:54.301757+00:00",
+  "updated_at_utc": "2026-09-22T13:21:53.358223+00:00",
   "target": "https://x.com/dresslikemommy",
   "stage": "DAILY_OPERATION_ACTIVE__BUSINESS_GOAL_BLOCKED_ON_CONNECTION",
   "local_preparation": "IMPLEMENTED_AND_VERIFIED",
@@ -82,7 +82,7 @@
     "buyer_events": 0,
     "note": "Counts identify known QA request types only; do not infer exact GA4 events or subtract invented sessions."
   },
-  "next_action": "At the existing September15 4 PM New York check, assess newly available permitted R003/R002 publication evidence and one justified opportunity. Preserve native submissions; do not replay uncertain items. The Buffer Free setup decision remains pending once; do not begin setup or repeat the question without the actual owner response.",
+  "next_action": "At the existing September22 4 PM New York check, assess newly available permitted R007 and R002-R006 publication evidence. Preserve all seven historical native submissions; no uncertain-item replay. The existing exact Buffer Free setup question remains pending once. Keep September26 as the next decision checkpoint; no setup, new draft or repeated question without changed evidence.",
   "canonical_integration": {
     "state": "IMPLEMENTED_AND_VERIFIED",
     "task_id": "TA-24",
@@ -146,39 +146,124 @@
   },
   "overall_requested_outcome": "PARTIAL; immediate business goal is BLOCKED on the missing supported publishing connection and new attribution evidence. Daily scheduled operation remains ACTIVE. No supported profitable X sale is established.",
   "latest_operation": {
-    "receipt": "operations/2026-09-15-morning.json",
-    "status": "NO_IDENTIFIED_X_RESULT__BUFFER_PROPOSAL_PENDING",
-    "trigger": "September15 09:00:53 EDT heartbeat",
+    "receipt": "operations/2026-09-22-morning.json",
+    "status": "LATE_CHECKPOINT_COMPLETE__NO_SUPPORTED_X_RESULT__PUBLICATION_HOLD",
+    "trigger": "September22 09:01:15 EDT heartbeat",
     "new_x_writes": 0,
-    "next_expected_check_local": "2026-09-15T16:00:00-04:00"
+    "next_expected_check_local": "2026-09-22T16:00:00-04:00",
+    "completed_at_utc": "2026-09-22T13:21:53.358223+00:00",
+    "independent_review": "operations/2026-09-22-morning-review.json; PASS_WITH_LIMITS12/12",
+    "root_verification": {
+      "analytic_source_acceptance": "PASS14/14",
+      "preservation": "PASS12/12",
+      "independent_source_sha256": "9166100fbecfe6d332285244d01c22f232402ee032b847438cce130cc6010126",
+      "strict_continuity": "PASS; CONTINUITY_OK10checks",
+      "scoped_diff": "PASS; exit0"
+    },
+    "notification_decision": {
+      "decision": "DONT_NOTIFY",
+      "reason": "Catch-up source and current publication calendar reconciled; no newly verified X buyer, traffic, order or contribution and no changed owner action. Existing setup question remains pending once."
+    },
+    "parent_integration": {
+      "status": "HANDOFF_SENT__PARENT_CANONICAL_INTEGRATION_PENDING",
+      "parent_thread_id": "01a08223-036e-7fa3-8961-ecd297163fb5",
+      "shared_writes_by_x": 0,
+      "reason": "Actual resumed read-only operation and completed late checkpoint supersede the earlier runtime-only hold; parent owns TA-24/claim/worklog integration.",
+      "sent_at_utc": "2026-09-22T13:21:53.358223+00:00",
+      "delivery": "send_message_to_thread returned target parent thread and isError=false; shared integration not independently read back."
+    }
   },
-  "latest_analytics_receipt": "operations/2026-09-15-morning.json",
-  "latest_completed_day_analytics_receipt": "operations/2026-09-15-morning.json",
+  "latest_analytics_receipt": "operations/2026-09-22-morning.json",
+  "latest_completed_day_analytics_receipt": "operations/2026-09-22-morning.json",
   "publication_observations": {
     "DLM-X-202609-R002": {
       "post_id": "DLM-X-202609-R002",
       "planned_local": "2026-09-13T12:15:00-04:00",
       "planned_utc": "2026-09-13T16:15:00Z",
+      "as_of_utc": "2026-09-22T13:10:00Z",
       "current_status": "DUE__PUBLICATION_UNVERIFIED",
       "platform_post_id": null,
       "platform_post_url": null,
       "actual_published_at": null,
-      "evidence": "One native Save and exact body/date readback on September11. The planned time has now passed. No actual permitted post receipt was found.",
+      "evidence": "September11 exact native submission/body/date receipt preserved. Current status is calendar reconciliation only, not a fresh platform readback.",
       "current_native_pending_count": null,
-      "original_native_saved_count": 7,
-      "remaining_future_planned_count": 6,
-      "duplicate_or_backfill_attempts": 0,
-      "meaning": "Past planned time and missing indexed results prove neither success nor failure; preserve the original item without another submission."
+      "duplicate_or_backfill_attempts": 0
     },
     "DLM-X-202609-R003": {
       "post_id": "DLM-X-202609-R003",
       "planned_local": "2026-09-15T12:15:00-04:00",
       "planned_utc": "2026-09-15T16:15:00Z",
+      "as_of_utc": "2026-09-22T13:10:00Z",
+      "current_status": "DUE__PUBLICATION_UNVERIFIED",
+      "platform_post_id": null,
+      "platform_post_url": null,
+      "actual_published_at": null,
+      "evidence": "September11 exact native submission/body/date receipt preserved. Current status is calendar reconciliation only, not a fresh platform readback.",
+      "current_native_pending_count": null,
+      "duplicate_or_backfill_attempts": 0
+    },
+    "DLM-X-202609-R004": {
+      "post_id": "DLM-X-202609-R004",
+      "planned_local": "2026-09-16T12:15:00-04:00",
+      "planned_utc": "2026-09-16T16:15:00Z",
+      "as_of_utc": "2026-09-22T13:10:00Z",
+      "current_status": "DUE__PUBLICATION_UNVERIFIED",
+      "platform_post_id": null,
+      "platform_post_url": null,
+      "actual_published_at": null,
+      "evidence": "September11 exact native submission/body/date receipt preserved. Current status is calendar reconciliation only, not a fresh platform readback.",
+      "current_native_pending_count": null,
+      "duplicate_or_backfill_attempts": 0
+    },
+    "DLM-X-202609-R005": {
+      "post_id": "DLM-X-202609-R005",
+      "planned_local": "2026-09-18T12:15:00-04:00",
+      "planned_utc": "2026-09-18T16:15:00Z",
+      "as_of_utc": "2026-09-22T13:10:00Z",
+      "current_status": "DUE__PUBLICATION_UNVERIFIED",
+      "platform_post_id": null,
+      "platform_post_url": null,
+      "actual_published_at": null,
+      "evidence": "September11 exact native submission/body/date receipt preserved. Current status is calendar reconciliation only, not a fresh platform readback.",
+      "current_native_pending_count": null,
+      "duplicate_or_backfill_attempts": 0
+    },
+    "DLM-X-202609-R006": {
+      "post_id": "DLM-X-202609-R006",
+      "planned_local": "2026-09-20T12:15:00-04:00",
+      "planned_utc": "2026-09-20T16:15:00Z",
+      "as_of_utc": "2026-09-22T13:10:00Z",
+      "current_status": "DUE__PUBLICATION_UNVERIFIED",
+      "platform_post_id": null,
+      "platform_post_url": null,
+      "actual_published_at": null,
+      "evidence": "September11 exact native submission/body/date receipt preserved. Current status is calendar reconciliation only, not a fresh platform readback.",
+      "current_native_pending_count": null,
+      "duplicate_or_backfill_attempts": 0
+    },
+    "DLM-X-202609-R007": {
+      "post_id": "DLM-X-202609-R007",
+      "planned_local": "2026-09-22T12:15:00-04:00",
+      "planned_utc": "2026-09-22T16:15:00Z",
+      "as_of_utc": "2026-09-22T13:10:00Z",
       "current_status": "PLANNED_TIME_NOT_YET_DUE__CURRENT_PLATFORM_STATE_UNVERIFIED",
       "platform_post_id": null,
       "platform_post_url": null,
       "actual_published_at": null,
-      "evidence": "September11 native submission and exact body/date readback; planned time is still ahead at the September15 morning check. No current permitted publication receipt.",
+      "evidence": "September11 exact native submission/body/date receipt preserved. Current status is calendar reconciliation only, not a fresh platform readback.",
+      "current_native_pending_count": null,
+      "duplicate_or_backfill_attempts": 0
+    },
+    "DLM-X-202609-R008": {
+      "post_id": "DLM-X-202609-R008",
+      "planned_local": "2026-09-23T12:15:00-04:00",
+      "planned_utc": "2026-09-23T16:15:00Z",
+      "as_of_utc": "2026-09-22T13:10:00Z",
+      "current_status": "PLANNED_TIME_NOT_YET_DUE__CURRENT_PLATFORM_STATE_UNVERIFIED",
+      "platform_post_id": null,
+      "platform_post_url": null,
+      "actual_published_at": null,
+      "evidence": "September11 exact native submission/body/date receipt preserved. Current status is calendar reconciliation only, not a fresh platform readback.",
       "current_native_pending_count": null,
       "duplicate_or_backfill_attempts": 0
     }
@@ -205,15 +290,19 @@
     "selection": "Choose at most one of R010/R011 at a justified future checkpoint; do not add to initial native cadence.",
     "review_receipt": "product-photo-20260914/INDEPENDENT_REVIEW.json"
   },
-  "latest_order_attribution_receipt": "operations/2026-09-14-goal-attribution.json",
+  "latest_order_attribution_receipt": "operations/2026-09-22-morning.json",
   "operating_effort": {
-    "as_of_utc": "2026-09-15T13:05:54.301757+00:00",
-    "known_recorded_rolling_seven_day_minutes": 85.0,
-    "known_recorded_current_calendar_week_minutes": 56.21,
+    "as_of_utc": "2026-09-22T13:21:53.358223+00:00",
+    "known_recorded_rolling_seven_day_minutes": 16.84,
+    "known_recorded_current_calendar_week_minutes": 16.84,
+    "current_calendar_week_start_local": "2026-09-21",
     "limit_minutes_per_week": 120,
-    "latest_run_minutes": 4.67,
-    "latest_run_source": "operations/2026-09-15-morning.json",
-    "counting_note": "This completed-day measurement counted once from observed work start, including closeout. Previous report/proposal/setup runs are already in the baseline. Earlier setup/coordination gaps remain unquantified; no full weekly-cap certification."
+    "latest_run_minutes": 16.84,
+    "latest_run_source": "operations/2026-09-22-morning.json",
+    "previous_calendar_week_known_minutes": 56.21,
+    "setup_minutes": null,
+    "unquantified_failed_wake_effort": true,
+    "counting_note": "Observed elapsed wall time from first work clock through this closeout, including review waits. Source-freeze subtotal is included, never added again. Older85.00 rolling/56.21 calendar-week totals are historical. Failed-wake, pre-first-clock and earlier setup gaps are not asserted zero; no full cap certification. Final handoff/check seconds after this timestamp are not separately measured."
   },
   "publishing_connection_proposal": {
     "candidate": "Buffer Free",
@@ -229,5 +318,22 @@
     "authority": "Existing organic mandate preserved. New Buffer connection/app setup needs exact owner authorization; normal login/authorization cannot be bypassed.",
     "review_receipt": "publishing-connection-20260914/INDEPENDENT_REVIEW.json",
     "operation_receipt": "operations/2026-09-14-publishing-proposal.json"
+  },
+  "latest_decision_checkpoint": {
+    "planned_date": "2026-09-19",
+    "actually_performed_date": "2026-09-22",
+    "receipt": "operations/2026-09-22-morning.json",
+    "decision": "PRESERVE_INITIAL_BASELINE__MINIMAL_USEFUL_COVERAGE__NO_EXTRA_PUBLICATION_OR_DRAFTS",
+    "next_checkpoint": "2026-09-26",
+    "independent_review": "PASS_WITH_LIMITS12/12; operations/2026-09-22-morning-review.json",
+    "date_scope": "Original seven full daysSeptember12-18. Current reportSeptember12-19 is a broader eight-day retrospective readSeptember22; no reconstruction of historical September19 knowledge."
+  },
+  "runtime_reconciliation": {
+    "previous_accepted_execution": "operations/2026-09-15-morning.json",
+    "later_completed_receipts_before_today": 0,
+    "previous_parent_runtime_hold": "September21 usage-limit failure recorded in TA-24; repeated September22 parent status was the same failed turn.",
+    "current_read_only_execution": "VERIFIED on September22",
+    "future_runtime_availability": "UNKNOWN",
+    "intervening_execution_backfilled": false
   }
 }

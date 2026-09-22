@@ -1,0 +1,72 @@
+{
+  "action": "TA07-US-AU-SOURCE-MAINTENANCE-20260921",
+  "at_utc": "2026-09-21T21:48:32.911599+00:00",
+  "status": "EXISTING_US_AU_MAINTENANCE_IMPLEMENTED_AND_VERIFIED_WITH_LIMITS",
+  "owner_task": "01a08706-c63a-7e01-ba48-7777bcb1788a",
+  "parent_task": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "overall_all_market_goal": "PARTIAL",
+  "US": {
+    "handoff": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260911/direct-feed-deployment/local_lifecycle_interim/runs/20260921T203400Z-us-maintenance/execution_handoff.json",
+    "handoff_sha256": "3cb96f70cd8877067c3198ff2bd14e60381dedddc7b7691ba7a9a08c7af29bc2",
+    "source_completed_at": "2026-09-21T21:22:35.148Z",
+    "native_receipt_at": "2026-09-21T21:33:16.289Z",
+    "rows_updated": 4741,
+    "new_rows": 0,
+    "changed_rows": 0,
+    "native_approved_samples": 6,
+    "next_source_target_utc": "2026-09-22T21:22:35.148000+00:00",
+    "unchanged_48h_guard_expiry_utc": "2026-09-23T21:22:35.148000+00:00"
+  },
+  "AU": {
+    "handoff": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260921/au_maintenance/execution_handoff.json",
+    "handoff_sha256": "e85fe69fca74c57da0e2de4f9be3478ebd8f11cab28902fdbaef33c201f3805a",
+    "source_completed_at": "2026-09-21T21:30:52.149Z",
+    "native_receipt_at": "2026-09-21T21:41:47.697Z",
+    "rows_updated": 4741,
+    "new_rows": 0,
+    "price_only_changes": 186,
+    "native_approved_samples": 9,
+    "next_source_target_utc": "2026-09-22T21:30:52.149Z",
+    "automatic_sync": false
+  },
+  "operations": {
+    "US_R2_pointer_promotions": 1,
+    "US_native_updates": 1,
+    "AU_native_uploads": 1,
+    "new_country_or_language_sources": 0,
+    "Shopify_mutations": 0,
+    "Worker_scheduler_security_paid_theme_changes": 0
+  },
+  "canonical_owner": "Parent01a08223 owns shared ops files; Merchant updates only its packet and international checkpoint",
+  "independent_verifier": [
+    "/root/merchant_us_maintenance_review"
+  ],
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "source_live_evidence_as_of": "2026-09-21T21:41:47.697Z",
+  "live_state_mode": "LIVE_VERIFIED_EXISTING_US_AU_WITH_LIMITS",
+  "effective_approval_policy": "Current user nonspend active-product feed maintenance mandate and parent TA07 maintenance dispatch; exact sole-writer claim plus independent before/after reviews",
+  "approved_external_scope": "Completed exact existing-source US/AU maintenance only",
+  "decision_depends_on_uncertain_state": true,
+  "material_decision": "MATERIAL",
+  "decision_changing_evidence": "Fresh source or exact receiving mismatch, changed claim or pinned dependency, source expiry",
+  "if_evidence_supports_recommendation": "Accept these exact records and resume fresh Canada/UK qualification",
+  "if_evidence_opposes_recommendation": "Preserve receipts and stop affected follow-up; never repeat completed submissions",
+  "limits": [
+    "This is source processing verification and fifteen native offer samples, not all-offer approval or sales proof.",
+    "AU remains manual; no automatic global synchronization claim.",
+    "US public client403 persists for that client; no bypass. Google native receipt succeeded independently.",
+    "Six held parents and22unavailable variants remain excluded per market.",
+    "Canada,UK and remaining languages are not completed by this maintenance release.",
+    "Existing Git sync cutoff is closed. These newly created maintenance files are after that cutoff and were not included in its push."
+  ],
+  "closed_git_sync": {
+    "remote_main_pushed": "731de115a9f2ba94fe24cef95218332a15b685ee",
+    "local_main_reconciled": "096224cdb5ceb71f40b7e1014a5dc2f4fb445249",
+    "verification_at_utc": "2026-09-21T21:15:19Z",
+    "project_path_updates": 4484,
+    "guarded_theme_config_workflow_entries_preserved": 528,
+    "new_git_writes_by_Merchant": 0
+  },
+  "one_next_action": "Resume fresh Canada/UK country and buyer-route qualification under current command-layer authority while retaining the next existing-source freshness targets.",
+  "continuation": "ops/prompts/paid-growth-ai-army-continuation-prompt.md"
+}

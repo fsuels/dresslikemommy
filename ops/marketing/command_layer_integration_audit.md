@@ -2,7 +2,7 @@
 
 Integration status: `GENERATED`
 
-Last generated: 2026-09-21 16:47
+Last generated: 2026-09-22 09:34
 
 Purpose: identify command-layer files that risk becoming side documents nobody uses.
 
@@ -33,7 +33,7 @@ No new `ops/marketing/` artifact counts as done unless it is either:
 | `ops/marketing/blocker_board.md` | `PASS_CORE` | `true` | `7` | `true` | none |
 | `ops/marketing/campaign_explorer.json` | `PASS_CORE` | `true` | `10` | `true` | none |
 | `ops/marketing/command_layer_integration_audit.md` | `PASS_GENERATED` | `true` | `9` | `true` | generated integration audit |
-| `ops/marketing/current_marketing_state.md` | `PASS_CORE` | `true` | `10` | `true` | none |
+| `ops/marketing/current_marketing_state.md` | `PASS_CORE` | `true` | `9` | `true` | none |
 | `ops/marketing/daily_scorecard.md` | `PASS_CORE` | `true` | `10` | `true` | none |
 | `ops/marketing/decision_log.md` | `PASS_CORE` | `true` | `6` | `true` | none |
 | `ops/marketing/dream_consolidation_prompt.md` | `PASS_INTEGRATED` | `true` | `4` | `true` | none |

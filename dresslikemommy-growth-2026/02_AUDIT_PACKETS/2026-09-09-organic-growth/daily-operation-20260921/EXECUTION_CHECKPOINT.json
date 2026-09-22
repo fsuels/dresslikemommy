@@ -1,0 +1,50 @@
+{
+  "schema": "dlm.organic_assessment_checkpoint.v1",
+  "as_of": "2026-09-21T21:00:47.479401+00:00",
+  "task_id": "01a0870a-e632-7773-ac5d-8ee2616b31bc",
+  "status": "IMPLEMENTED_AND_VERIFIED_WITH_LIMITS__READY_FOR_PARENT_INTEGRATION",
+  "due_windows": [
+    {
+      "entity": "Article559471919201",
+      "start": "2026-09-10",
+      "end": "2026-09-16",
+      "due": "2026-09-17"
+    },
+    {
+      "entity": "Sunshine343118065387544334",
+      "start": "2026-09-11",
+      "end": "2026-09-17",
+      "due": "2026-09-18"
+    },
+    {
+      "entity": "P1 343118065387567020",
+      "start": "2026-09-14",
+      "end": "2026-09-20",
+      "due": "2026-09-21"
+    }
+  ],
+  "why_late": "Quota interruption; scheduler wakes alone do not establish completed work.",
+  "external_mutations": 0,
+  "scope": "Read-only Shopify/GA4/GSC assessment; consume existing Pinterest owner's receipts. Preserve completed releases.",
+  "shared_writer": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "automation": {
+    "id": "review-organic-article-and-sunshine-results",
+    "status": "ACTIVE",
+    "cadence": "Daily 09:00 America/New_York",
+    "changed": false
+  },
+  "next": "Parent integrate frozen report/assessment intoTA-20 and datedscorecard. Existingdaily9amrun nextassesses sizingSep22. Completedreleases andthreefixed-windowreadbacks mustnotbereplayed withoutnewdecision-changingevidence.",
+  "strict_continuity": "PASS",
+  "source_data_artifacts": [
+    "SHOPIFY_QUERIES.json",
+    "SHOP_IDENTITY.json",
+    "GA4_ARTICLE_WEEK1.json",
+    "GA4_PIN_DIAGNOSTICS.json",
+    "GSC_ARTICLE_WEEK1.json",
+    "PARENT_ATTRIBUTION_LIMIT.json",
+    "RECEIPTS_AND_QA_REVIEW.json",
+    "PINTEREST_RECEIPT_ACCEPTANCE.json"
+  ],
+  "native_receipt": "PINTEREST_RECEIPT_ACCEPTANCE.json",
+  "independent_review": "PASS 51/51;13currentinputbindingsverified"
+}

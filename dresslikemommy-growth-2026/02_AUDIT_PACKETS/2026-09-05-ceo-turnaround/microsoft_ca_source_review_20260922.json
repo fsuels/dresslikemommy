@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-09-22T00:40:28.830389+00:00",
+  "reviewer": "/root/recovery_source_verifier",
+  "independence": "Did not execute Microsoft or storefront actions or the prior21-machine/six-manual review.",
+  "decision": "PASS_WITH_LIMITS",
+  "scope": "Exact Canada handoff and four saved bindings; material acceptance claims only.",
+  "check_count": 14,
+  "passed_count": 14,
+  "failures": [],
+  "checks": [
+    {
+      "check": "exact_expected_handoff_sha256",
+      "passed": true
+    },
+    {
+      "check": "all_four_handoff_bound_files_exact",
+      "passed": true
+    },
+    {
+      "check": "independent_review_three_inputs_match_same_saved_bytes",
+      "passed": true
+    },
+    {
+      "check": "prior_21_machine_six_manual_review_retained_not_replayed",
+      "passed": true,
+      "evidence": {
+        "review_reuse": "Counts and bound verdict checked only; prior machine/manual suite was not rerun."
+      }
+    },
+    {
+      "check": "CA_campaign_account_customer_identity_bound",
+      "passed": true
+    },
+    {
+      "check": "configured_cap_020_conflicts_with_retained_015_no_authority_inferred",
+      "passed": true
+    },
+    {
+      "check": "material_network_arithmetic_313impressions_3clicks_USD045_allAudience",
+      "passed": true
+    },
+    {
+      "check": "historical_report_window_separate_from_current_saved_configuration",
+      "passed": true,
+      "evidence": {
+        "cap_observed_at_utc": "2026-09-22T00:25:54.345Z",
+        "report_observed_at_utc": "2026-09-22T00:26:25.278Z"
+      }
+    },
+    {
+      "check": "ready_to_add_is_one_product_two_roles_empty_cart_only",
+      "passed": true
+    },
+    {
+      "check": "exact_one_sentence_copy_candidate_unimplemented_owner_source_gate",
+      "passed": true
+    },
+    {
+      "check": "sample_scope_and_rejected_pajama_defect_not_overclaimed",
+      "passed": true
+    },
+    {
+      "check": "existing_questions_authority_and_tracking_profit_gates_preserved",
+      "passed": true
+    },
+    {
+      "check": "saved_handoff_cleanup_and_prior_acceptance_preserved",
+      "passed": true
+    },
+    {
+      "check": "all_five_bound_files_stable_at_review_finish",
+      "passed": true
+    }
+  ],
+  "artifact_bindings": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/handoff.json",
+      "sha256": "87ed47b752351e0d44b97458a83f7055633a3170c4866264b108ce09bcfa2deb",
+      "expected_sha256": "87ed47b752351e0d44b97458a83f7055633a3170c4866264b108ce09bcfa2deb",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/readback.json",
+      "sha256": "f0f12fc2bc432e807663d2b22a209bab265eca11f0c145224ac000b0c7a44f17",
+      "expected_sha256": "f0f12fc2bc432e807663d2b22a209bab265eca11f0c145224ac000b0c7a44f17",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/copy-correction-candidate.json",
+      "sha256": "41518ebdcc37ef3ad2c5556ccfa6ac901a6de80ad9b8952d1e42eb0ba84af1cc",
+      "expected_sha256": "41518ebdcc37ef3ad2c5556ccfa6ac901a6de80ad9b8952d1e42eb0ba84af1cc",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/READBACK.md",
+      "sha256": "03b85bb7ef464a40c84f2addf989ebfb2b4cdabf23e3ac8983774fbf85850b79",
+      "expected_sha256": "03b85bb7ef464a40c84f2addf989ebfb2b4cdabf23e3ac8983774fbf85850b79",
+      "matches": true
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/independent-review.json",
+      "sha256": "cd05423ea1fc13463d50734f9fdf68a26065a6228ffe4acb87c3cc7518fd82a8",
+      "expected_sha256": "cd05423ea1fc13463d50734f9fdf68a26065a6228ffe4acb87c3cc7518fd82a8",
+      "matches": true
+    }
+  ],
+  "facts": {
+    "account_id": "477439",
+    "customer_id": "770182",
+    "campaign_id": "506255071",
+    "native_cap_observed_at_utc": "2026-09-22T00:25:54.345Z",
+    "configured_maximum_cpc_usd": "0.20",
+    "retained_cpc_ceiling_usd": "0.15",
+    "configured_budget_usd_per_day": "20.00",
+    "configured_budget_is_authorization": false,
+    "report_window": [
+      "2026-09-15",
+      "2026-09-20"
+    ],
+    "report_timezone": "Eastern Time (U.S. & Canada)",
+    "clicks": 3,
+    "spend_usd": "0.45",
+    "impressions": 313,
+    "Search": {
+      "impressions": 6,
+      "clicks": 0,
+      "spend_usd": "0.00"
+    },
+    "Audience": {
+      "impressions": 307,
+      "clicks": 3,
+      "spend_usd": "0.45"
+    },
+    "reported_conversions": 0,
+    "buyer_scope": "One English Canada/CAD product; Mother M CAD40 and Girl2Years CAD35 ready-to-add; cart remains0.",
+    "copy_candidate_product_id": "7577248596065",
+    "copy_candidate_status": "PREPARED_NOT_IMPLEMENTED",
+    "copy_after_sentence": "Compare the height and weight guidance for each swimmer before choosing a size."
+  },
+  "essential_findings": [
+    "No material contradiction found. Current saved CA capUSD0.20 exceeds retainedUSD0.15; its actor/authority is unknown and no setting change is accepted.",
+    "313impressions reconcile6Search+307Audience. All3clicks/USD0.45 were Audience swimwear delivery in the dated report window; this is not validated search demand, CPA, retained revenue or profit.",
+    "Ready-to-add does not verify numeric variant identity, inventory, checkout shipping, actual delivery, consent or purchase ingestion/deduplication. Observed shipping promises are not checkout quotes.",
+    "Exact one-sentence product7577248596065 candidate remains unimplemented. Fresh source, owning authority, protected-content/localization plan and after-readback remain separate owner prerequisites."
+  ],
+  "limits": [
+    "Saved owner-rendered evidence only; no new native/browser/API/account/support check and no live truth beyond the recorded clocks.",
+    "Prior21machine/sixmanual review is hash-bound and retained, not rerun. Only the requested material cap/network arithmetic, buyer limits and prepared-copy scope were independently checked.",
+    "Seven destination mappings and20visible Phrase negatives are limited observations, not exhaustive destination/keyword qualification. Rejected pajama URL candidate remains rejected without speculative repair.",
+    "No new owner question or authority is created. Existing six-campaign pause decision remains first; numeric spend limits, tracking and economics stay unresolved. Root retains canonical/source/release ownership."
+  ],
+  "external_calls": 0,
+  "external_writes": 0,
+  "git_operations": 0,
+  "canonical_or_owner_checkpoint_edits": 0,
+  "new_questions_or_dispatches": 0,
+  "only_owned_output": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_ca_source_review_20260922.json"
+}

@@ -1,0 +1,4 @@
+query HalloweenReleaseRead($id: ID!) {
+ article(id:$id){id handle title body summary tags isPublished publishedAt updatedAt templateSuffix blog{id handle title}}
+ translatableResource(resourceId:$id){resourceId translatableContent{key value digest locale type}}
+}

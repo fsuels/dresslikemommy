@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "status": "PASS_WITH_LIMITS",
+  "strict_continuity": {
+    "command": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3 ops/scripts/check_continuity_integrity.py --strict",
+    "exit_code": 0,
+    "output": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 52689 lines; latest anchor 2026-09-22-ceo-microsoft-search-cpc-control\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-22-ceo-microsoft-search-cpc-control\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n"
+  },
+  "scoped_diff_check": {
+    "command": "git diff --check -- dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/CONTENT_REGISTER_20260911.json",
+    "exit_code": 0,
+    "output": ""
+  },
+  "diff_review": {
+    "expected_exit_code": 1,
+    "result": "Only planned register field changes; the before snapshot is preserved."
+  },
+  "independent_review": {
+    "path": "MORNING_REGISTER_REVIEW_20260922.md",
+    "sha256": "845539c64ebd6597edcd8f7d947be993a2e67335f4b8dd8e72dca9b4d10edb90",
+    "verdict": "PASS_WITH_LIMITS",
+    "grouped_checks": 20,
+    "basis": "Local receipt and scope verification, without independent native UI replay"
+  },
+  "shared_canonical_writes_by_this_task": 0,
+  "shared_canonical_integration": "Requested from existing parent writer; not yet independently read back",
+  "browser_handoff": {
+    "browser_id": "2",
+    "retained_task_tab_id": "1",
+    "url": "https://www.pinterest.com/dresslikemommy/scheduled-pins/",
+    "temporary_guide_tab_closed": "4"
+  }
+}

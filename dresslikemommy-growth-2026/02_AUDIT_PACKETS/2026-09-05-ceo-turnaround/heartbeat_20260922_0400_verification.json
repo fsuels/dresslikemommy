@@ -1,0 +1,53 @@
+{
+  "status": "VERIFIED_WITH_LIMITS",
+  "verified_at_utc": "2026-09-22T04:04:32.076399+00:00",
+  "wake_id": "2026-09-22T04:00:13.693Z",
+  "canonical_anchor": "2026-09-22-ceo-canada-cpc-and-copy-source",
+  "checks": {
+    "83_owner_integrations_unchanged": true,
+    "all70_prior_wakes_unchanged": true,
+    "one_current_wake": true,
+    "latest_matches_append": true,
+    "checkpoint_inverse_exact": true,
+    "receipt_binding_matches": true,
+    "ads_owning_receipt_unchanged": true,
+    "organic_existing_exact_clock_preserved": true,
+    "no_dispatch_or_business_write": true,
+    "protected_canonical_files_preserved": true,
+    "scoped_whitespace_check": true
+  },
+  "receipt": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/heartbeat_20260922_0400.json",
+    "sha256": "59d09a3d3f4464b9f465fd6a0bdfeb397aaa64714fc1836db5fc48e8c4e9d108"
+  },
+  "after_checkpoint": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+    "sha256": "d076da5eee7ed360ee8c9e3b24aa311a962d9030d5c8ce9b504a5d0ee8b19744"
+  },
+  "preserved_canonical_bindings": {
+    "ops/AGENT_COORDINATION.md": "d00ce2a5dc871a35f87f72ef439414ed946c1f21635fbaf3b3ccf6f8a59c749e",
+    "ops/AGENT_WORKLOG.md": "a881297c03aa2bdca32e547ae703b56afbf8ff84b99ea33ebd235119fe35f277",
+    "ops/marketing/action_queue.md": "db7fa3f4b904abb07f415ed40469f9b5978adaacf8b389198b2f1185a6d8812d",
+    "ops/marketing/current_marketing_state.md": "e6cffd8097a8049886e7f982fc1d9390d588449e8a3d379efe09e0978aee1ada",
+    "ops/marketing/operator_cockpit.md": "7d9180a2780883b7a467c450f63e6037facbfcbde2f54b322c1e5f2c68f5d611",
+    "ops/marketing/operator_cockpit.html": "ed33200c03b502f4249d8c13c46f117c0b1eeff2230010287aefa0f9b75d8e5d",
+    "ops/marketing/command_layer_integration_audit.md": "f1bcda18c133a1a6da549c1e6dfc17f819ea030e1bdf60293b8a042cef441642"
+  },
+  "organic_source_binding": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/daily-operation-20260921/EXECUTION_HANDOFF.json",
+    "sha256": "ab4aa57ff025a26efafdc436a545ef770a607ce3ed6b45e3e9c1ff3ea1dc584f"
+  },
+  "before_snapshot": "/private/tmp/dlm-heartbeat-20260922-0400-before",
+  "source_acceptance_count": 83,
+  "recorded_wakes": 71,
+  "new_owner_dispatches": 0,
+  "root_business_writes": 0,
+  "business_results_changed": false,
+  "command_layer_render_and_audit": "SKIPPED: no material canonical-control or business change; existing artifacts preserved. Narrow source, checkpoint readback and inverse-preservation checks passed.",
+  "notification": "DONT_NOTIFY",
+  "limits": [
+    "A completed owner turn is not operational release completion; existing release dependencies remain.",
+    "The Google Ads source receipt is unchanged; this readback is not fresh native metrics or purchase evidence.",
+    "Generated cockpit changes were preserved and not treated as changed business state."
+  ]
+}

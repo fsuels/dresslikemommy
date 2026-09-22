@@ -1,0 +1,196 @@
+{
+  "schema": "dlm.sizing_week1_independent_data_review.v1",
+  "action_id": "TA20-SIZING-WEEK1-ASSESSMENT-20260922",
+  "status": "PASS_WITH_LIMITS",
+  "reviewed_at_utc": "2026-09-22T13:14:41.741829+00:00",
+  "reviewer": "/root/daily_operation_review",
+  "independence": "DID_NOT_BUILD_OR_EXECUTE current analytics or assessment. Saved-source consistency only; no native/API/browser/account replay. Relied on separate19-check cohort/QA review without re-reading its21underlying sources.",
+  "source_sha256": {
+    "SHOPIFY_SIZING_WEEK1.json": "cbfe134ac9d9509433505e0f84caa292ed7fb34474f0206326137169703532dc",
+    "GA4_SIZING_WEEK1.json": "cafd8173fcde4c6ceb1c1bdf8907c81707e1fca97c93a11a689c14f33204be42",
+    "GSC_SIZING_WEEK1.json": "3175f08c853e5519c63bd069a2b96c9e49690f8969c1eedebfe4d5a67ffcda32",
+    "COHORT_AND_QA_REVIEW.json": "f83a13012b2519a16a556287457a5ca220167ef6c5fa63d4c9026c167ef27a8c",
+    "SOURCE_INTERPRETATION.json": "129aa94f887ff9fd9ad2f35fb812dedaf2779482f148b9cd29fa3c00acb9a772",
+    "BROWSER_CLEANUP.json": "6d6091361005a57f00b5a394ebe1d301f17970113e2a1e8bc7e9e172db84a7dc",
+    "ASSESSMENT.json": "3598fcd00214335048c3a2b19f40a698fd3747619fc0fd96ae3157c7bba48d9e",
+    "READBACK.md": "135b6bea84b96900683a5290a82cf7c845c92a85d4be39b4670269258e872baa"
+  },
+  "checks_passed": 25,
+  "checks_total": 25,
+  "checks": [
+    {
+      "check": "identity_and_route_scope",
+      "pass": true,
+      "detail": "Exact sizing entity/path, all locale variants via path filter; landing reports do not represent every internal article read."
+    },
+    {
+      "check": "provider_identity",
+      "pass": true,
+      "detail": "Intended store and GA4/GSC properties match saved records."
+    },
+    {
+      "check": "independent_cohort_receipt",
+      "pass": true,
+      "detail": "Rely on completed independent date/QA review and its21bound sources; underlying files not replayed or rebound."
+    },
+    {
+      "check": "seven_complete_NY_dates",
+      "pass": true,
+      "detail": "Window recomputed as [2026-09-15T04:00Z,2026-09-22T04:00Z),168hours; original due September22 preserved."
+    },
+    {
+      "check": "query_and_report_dates",
+      "pass": true,
+      "detail": "Saved Shopify query and displayed GA4/GSC dates use the intended seven calendar labels."
+    },
+    {
+      "check": "URL_date_bindings",
+      "pass": true,
+      "detail": "Saved native source URLs corroborate displayed date selection."
+    },
+    {
+      "check": "timezone_basis_and_difference",
+      "pass": true,
+      "detail": "Current GA4 setting and prior-day Shop timezone basis are stated; PT window shifts3hours and overlaps NY for165hours, not an exact-hour join."
+    },
+    {
+      "check": "release_clock_annotations",
+      "pass": true,
+      "detail": "English and localization saves are separately annotated; both precede first full September15 date, not two additive traffic cohorts."
+    },
+    {
+      "check": "shopify_arithmetic",
+      "pass": true,
+      "detail": "Three returned daily rows sum to3landing sessions,0cart,0checkout,0completed-checkout sessions; below LIMIT100."
+    },
+    {
+      "check": "shopify_direct_ru_sv",
+      "pass": true,
+      "detail": "Russian-path September15/21 and Swedish-path September18; direct without UTMs does not certify human unpaid acquisition."
+    },
+    {
+      "check": "ga4_arithmetic",
+      "pass": true,
+      "detail": "Two GA4 rows reconcile to3direct sessions. Displayed engagement is0seconds, not proof of literally zero activity; users are not generally additive."
+    },
+    {
+      "check": "instruments_not_added",
+      "pass": true,
+      "detail": "Count/path agreement only: each instrument reports3sessions, not6. No individual session match or deduplicated cross-provider union."
+    },
+    {
+      "check": "locale_release_limit",
+      "pass": true,
+      "detail": "Observed landing paths are outside18repaired translation rows; no proof of current fallback, assisted reading or repair impact."
+    },
+    {
+      "check": "gsc_page_arithmetic",
+      "pass": true,
+      "detail": "Five displayed rows sum exactly to39impressions/0clicks; English17is an included subset, not an extra total."
+    },
+    {
+      "check": "gsc_display_and_query_limits",
+      "pass": true,
+      "detail": "Rounded weighted position6.76667is compatible with6.8; undisclosed query terms do not mean no searches or demand."
+    },
+    {
+      "check": "latest_day_processing_limits",
+      "pass": true,
+      "detail": "Complete calendar dates are not guaranteed finalized ingestion;100%available GA4 data and GSC last-update label do not certify finality."
+    },
+    {
+      "check": "commercial_unknowns_preserved",
+      "pass": true,
+      "detail": "Qualified visits, paid-order joins, retained revenue/costs/profit remain null. Funnel/session/key-event zeros do not establish zero actual orders."
+    },
+    {
+      "check": "QA_no_arbitrary_subtraction",
+      "pass": true,
+      "detail": "One HTTP GET and one browser arrival are known actions, not matched sessions; neither3minus2nor automatic exclusion of all direct visits is justified."
+    },
+    {
+      "check": "QA_date_boundaries",
+      "pass": true,
+      "detail": "September14 release QA lies outside; two September15 actions lie inside. Rely on independent dated receipt review, not a new exhaustive QA census."
+    },
+    {
+      "check": "assessment_source_summaries",
+      "pass": true,
+      "detail": "Assessment copies provider totals faithfully and preserves instruments/scopes."
+    },
+    {
+      "check": "decision_and_no_causality",
+      "pass": true,
+      "detail": "Tiny unqualified exposure supports provisional hold; separate Google/SEO order is not assigned to this guide. No snippet/conversion failure or new-content hypothesis established."
+    },
+    {
+      "check": "readback_metric_semantics",
+      "pass": true,
+      "detail": "Human-facing report retains nonadditivity, QA, landing-versus-journey and zero-versus-unknown qualifications."
+    },
+    {
+      "check": "fixed_later_sizing_dates",
+      "pass": true,
+      "detail": "Sizing14/30date reviews are not reset; stated next daily action remains separate. Other content releases were not re-audited."
+    },
+    {
+      "check": "cleanup_scope",
+      "pass": true,
+      "detail": "Root records two analytics tabs closed and no storefront/settings/business writes; this is saved-source corroboration, not independent native observation."
+    },
+    {
+      "check": "frozen_eight_input_bindings",
+      "pass": true,
+      "detail": "All eight reviewed files remained unchanged; no checkpoint/own-review circular binding."
+    }
+  ],
+  "required_corrections": [],
+  "recomputed": {
+    "shopify_sessions": 3,
+    "ga4_sessions": 3,
+    "cross_instrument_sum_reported": false,
+    "per_provider_landing_paths": {
+      "ru": 2,
+      "sv": 1
+    },
+    "all_returned_sessions_direct_unqualified": true,
+    "gsc_impressions": 39,
+    "gsc_clicks": 0,
+    "gsc_pages": 5,
+    "gsc_page_impressions": {
+      "English": 17,
+      "es": 16,
+      "de": 3,
+      "pl": 2,
+      "ar": 1
+    },
+    "rounded_page_position_weighted_diagnostic": 6.766666666666666,
+    "NY_start_inclusive_utc": "2026-09-15T04:00:00+00:00",
+    "NY_end_exclusive_utc": "2026-09-22T04:00:00+00:00",
+    "PT_start_inclusive_utc": "2026-09-15T07:00:00+00:00",
+    "PT_end_exclusive_utc": "2026-09-22T07:00:00+00:00",
+    "calendar_hours_each": 168,
+    "NY_PT_overlap_hours": 165,
+    "GA4_capture_hours_after_latest_NY_date_closed": 9.076347499999999,
+    "identifiable_QA_sessions_subtracted": 0
+  },
+  "limits": [
+    "Eight saved files only; screenshots/native reports were not independently replayed. Current GA4 timezone is owner-verified; Shopify timezone uses disclosed prior-day identity evidence, not a new identity call.",
+    "September21 data can revise. GA4 capture is approximately9.08hours after NY date closure; GSC latest finalized date is unknown. PT dates shift3hours from NY, so no exact-hour click/session join.",
+    "Each instrument reports3unqualified direct ru/sv sessions. Aggregate agreement is not proof of identical people/sessions, six visits, buyer quality, human acquisition or QA-free traffic.",
+    "Landing reports omit internal/assisted reading. ru/sv were not among18repaired translations; no current fallback behavior or presence/absence of repair impact is established.",
+    "39search impressions and0clicks with undisclosed query terms cannot diagnose snippet/conversion failure, estimate keyword demand or establish lift.",
+    "Known QA requests/navigation are not matched analytics sessions. September14 release QA is outside; two September15 actions are inside. Source review is not an exhaustive activity census; no arbitrary subtraction.",
+    "All key events is not a view_item or complete journey count. Qualified visits, matched paid orders, retained revenue, actual costs and profit remain unknown; zero tracked funnel/revenue metrics do not replace those joins.",
+    "Separate order timing/route is a parent-qualified exclusion statement, not independently re-audited from these eight sources. No attribution to sizing is established regardless; no causal or commercial credit is accepted."
+  ],
+  "decision": "Accept provisional keep-existing-guide-and-distribution decision with original clocks unchanged. No new publication, rewrite, Pin or indexing action is justified by this sample.",
+  "confidence": "High for saved arithmetic/date consistency; insufficient evidence for qualified buyer impact.",
+  "writes": {
+    "owned_file": "INDEPENDENT_DATA_REVIEW.json",
+    "shared_canonical": 0,
+    "source_artifacts": 0,
+    "checkpoint": 0,
+    "external": 0
+  }
+}

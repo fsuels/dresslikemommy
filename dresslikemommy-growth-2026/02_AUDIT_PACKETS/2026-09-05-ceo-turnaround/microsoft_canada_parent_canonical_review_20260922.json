@@ -1,0 +1,554 @@
+{
+  "schema_version": 1,
+  "reviewer": "/root/recovery_source_verifier",
+  "reviewed_at_utc": "2026-09-22T01:06:08.962038+00:00",
+  "verdict": "PASS_WITH_LIMITS",
+  "canonical_anchor": "2026-09-22-ceo-canada-cpc-and-copy-source",
+  "scope": "Independent bounded Canada parent integration review against exact before snapshots; no source/live/suite replay.",
+  "check_count": 34,
+  "passed_count": 34,
+  "failures": [],
+  "checks": [
+    {
+      "name": "twelve_canonical_before_bindings",
+      "status": "PASS",
+      "evidence": "12 canonical source snapshots match their manifest;2 generated/report paths excluded."
+    },
+    {
+      "name": "sixteen_explicit_reference_hashes",
+      "status": "PASS",
+      "evidence": "16 explicit references all match current saved bytes; the initial verifier expected17 due to a counting mistake. Repeated references are not distinct sources."
+    },
+    {
+      "name": "accepted_independent_source_review",
+      "status": "PASS",
+      "evidence": "Retain completed14/14 review without rerunning native or prior suites."
+    },
+    {
+      "name": "source_identity_and_cap_values",
+      "status": "PASS",
+      "evidence": "Exact Canada identity; checked0.20 versus retained0.15."
+    },
+    {
+      "name": "source_window_and_placement_limits",
+      "status": "PASS",
+      "evidence": "Source reports all clicks/cost from Audience in the same completed Eastern reporting window; no incremental order or profit inference."
+    },
+    {
+      "name": "buyer_path_not_overclaimed",
+      "status": "PASS",
+      "evidence": "One Canadian route/product, two ready-to-add selections; wider buyer and purchase gates remain open."
+    },
+    {
+      "name": "owner_record_count_82_to_83",
+      "status": "PASS",
+      "evidence": "Exactly one accepted record appended."
+    },
+    {
+      "name": "all_82_prior_records_exact",
+      "status": "PASS",
+      "evidence": "Full JSON values and order are exact, not just identifiers/counts."
+    },
+    {
+      "name": "all_67_wakes_exact",
+      "status": "PASS",
+      "evidence": "Entire wake lists exact, including all dispatches and observations."
+    },
+    {
+      "name": "latest_wake_exact",
+      "status": "PASS",
+      "evidence": "Latest wake alias is unchanged; no new completion annotation or wake."
+    },
+    {
+      "name": "new_record_source_only",
+      "status": "PASS",
+      "evidence": "Only TA15-CANADA-QUALIFICATION-20260922 accepted; no overall paid/copy completion."
+    },
+    {
+      "name": "no_new_dispatch_or_business_write",
+      "status": "PASS",
+      "evidence": "Canonical and acceptance assertions align with exact unchanged dispatch/wake records."
+    },
+    {
+      "name": "only_expected_active_fields_changed",
+      "status": "PASS",
+      "evidence": "Five direct keys changed and two added; all other active fields preserved."
+    },
+    {
+      "name": "outside_active_checkpoint_exact",
+      "status": "PASS",
+      "evidence": "All enclosing and unrelated checkpoint state is exact."
+    },
+    {
+      "name": "current_anchor_and_prior_integration",
+      "status": "PASS",
+      "evidence": "Current source anchor correct; full prior integration preserved."
+    },
+    {
+      "name": "business_release_clock_not_advanced",
+      "status": "PASS",
+      "evidence": "Source acceptance does not advance the last actual release anchor."
+    },
+    {
+      "name": "same_pause_question_and_publication_action",
+      "status": "PASS",
+      "evidence": "Only descriptive US→US-and-Canada cap wording changed; exact six-campaign question, numeric gate distinction, paid restriction and theme-publication clause preserved."
+    },
+    {
+      "name": "original_us_exposure_preserved",
+      "status": "PASS",
+      "evidence": "Original US/current exposure acceptance remains exact; only Canada evidence reference appended."
+    },
+    {
+      "name": "zero_inferred_authority",
+      "status": "PASS",
+      "evidence": "No account-control, paid, product or theme authority inferred from new source evidence."
+    },
+    {
+      "name": "sales_feed_organic_runtime_schedules_preserved",
+      "status": "PASS",
+      "evidence": "All matched protected direct fields exact, including source/measurement clocks and Merchant runtime hold; full changed-key check also covers unmatched names."
+    },
+    {
+      "name": "all_owner_claim_rows_byte_preserved",
+      "status": "PASS",
+      "evidence": "Every table row byte-preserved; no new or transferred live-write claim."
+    },
+    {
+      "name": "all_authoritative_control_blocks_exact",
+      "status": "PASS",
+      "evidence": "Exact complete control blocks across affected canonical sources."
+    },
+    {
+      "name": "canonical_history_preserved_except_exact_owner_cap_refinement",
+      "status": "PASS",
+      "evidence": "Nine other Markdown files contain insertions only. Cockpit contains insertions plus the explicitly notified exact US-to-US-and-Canada cap refinement in its existing One Owner Action; no question or priority change."
+    },
+    {
+      "name": "action_queue_only_existing_ta15_row_updated",
+      "status": "PASS",
+      "evidence": "No new task row, dispatch, owner or paid status added."
+    },
+    {
+      "name": "ta15_pause_action_and_history_preserved",
+      "status": "PASS",
+      "evidence": "Existing writer and exact next owner-action cell unchanged; all prior detail retained beneath new Canada evidence."
+    },
+    {
+      "name": "ta15_current_next_step_not_replay",
+      "status": "PASS",
+      "evidence": "Completed diagnostic is not queued for repetition; copy execution remains gated."
+    },
+    {
+      "name": "blocked_copy_disposition_and_checkpoint",
+      "status": "PASS",
+      "evidence": "Ownership/runtime/localization dependency is BLOCKED, not implemented or released."
+    },
+    {
+      "name": "independent_ownership_hold_not_overridden",
+      "status": "PASS",
+      "evidence": "Root keeps local preparation only; no missing authority is silently inferred."
+    },
+    {
+      "name": "translation_freshness_and_quality_limits_retained",
+      "status": "PASS",
+      "evidence": "20 global dependencies and126 dated empty override arrays remain limited source facts."
+    },
+    {
+      "name": "copy_preparation_only_bound_not_replayed",
+      "status": "PASS",
+      "evidence": "Retain reported10 local checks and exact candidate hash; no structural suite or source audit repeated."
+    },
+    {
+      "name": "current_summary_has_both_caps_and_open_gates",
+      "status": "PASS",
+      "evidence": "Current prose reconciles caps, counts and unfinished actions."
+    },
+    {
+      "name": "worklog_counts_clocks_and_source_only",
+      "status": "PASS",
+      "evidence": "UTC integration date and source observation clocks separate from completed September15–20 report days and actual release dates."
+    },
+    {
+      "name": "cockpit_owner_action_matches_checkpoint",
+      "status": "PASS",
+      "evidence": "Final reader-facing One Owner Action equals the active checkpoint exactly; question, paid boundary and publication dependency preserved."
+    },
+    {
+      "name": "final_source_cutoff_hashes_stable",
+      "status": "PASS",
+      "evidence": "All12 canonical after hashes and14 distinct saved artifact bindings still match the inspected cutoff; generated/check-suite files excluded."
+    }
+  ],
+  "checkpoint": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+    "active_container": [
+      "continuation_dispatches",
+      0,
+      "release_hold_reassessment",
+      "current_execution_revision",
+      "latest_qualified_cohort_checkpoint"
+    ],
+    "accepted_owner_records_before": 82,
+    "accepted_owner_records_after": 83,
+    "prior_records_exact": true,
+    "recorded_wakes_before": 67,
+    "recorded_wakes_after": 67,
+    "all_wakes_and_latest_alias_exact": true,
+    "new_record_action_id": "TA15-CANADA-QUALIFICATION-20260922",
+    "changed_direct_keys": [
+      "canonical_anchor",
+      "latest_Microsoft_active_spend_drift",
+      "latest_canonical_integration",
+      "one_owner_action",
+      "owner_readback_integrations"
+    ],
+    "added_direct_keys": [
+      "latest_Blue_Daisy_copy_dependency",
+      "latest_Microsoft_canada_qualification"
+    ],
+    "protected_direct_keys_checked": [
+      "au_source_qualification",
+      "sales_delta",
+      "paid_authority",
+      "new_goal_or_harness_or_automation_created",
+      "no_sales_lift_claim",
+      "UX_current_source_binding",
+      "latest_full_sales",
+      "scheduled_wakes",
+      "runtime_status_readback_20260914",
+      "latest_AU_current_source_outcome",
+      "latest_full_sales_history",
+      "latest_US_AU_source_propagation",
+      "latest_color47_source_release",
+      "latest_merchant_spanish_source_qualification",
+      "latest_Ads_source_prerequisite_consumption",
+      "latest_mobile_collection_heading_source_intake",
+      "latest_root_runtime_readback",
+      "latest_full_sales_acceptance",
+      "latest_pinterest_morning_readback_acceptance",
+      "latest_italian_source_scope",
+      "latest_italian_source_release_acceptance",
+      "latest_organic_gift_guide_owner_intake_20260915",
+      "latest_organic_gift_guide_release_acceptance",
+      "latest_Pinterest_publication_receipt",
+      "latest_scheduled_wake",
+      "latest_Merchant_runtime_hold_readback_20260921",
+      "latest_theme_source_reconciliation_20260921"
+    ],
+    "new_owner_dispatches": 0,
+    "new_live_business_release": false
+  },
+  "canonical_source_bindings": [
+    {
+      "path": "ops/AGENT_COORDINATION.md",
+      "before_sha256": "0bca0bb7bfece5dccec4bd7eb5e3b50e0e76d4825df9550c5c0dfb3b3ae5898d",
+      "after_sha256": "d00ce2a5dc871a35f87f72ef439414ed946c1f21635fbaf3b3ccf6f8a59c749e",
+      "expected_before_sha256": "0bca0bb7bfece5dccec4bd7eb5e3b50e0e76d4825df9550c5c0dfb3b3ae5898d"
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "before_sha256": "825630e7c992ded77dd2a1011c82f13d15057fa140df12750ec358e20c772a08",
+      "after_sha256": "1df9d87c48199e0c30799db4554ff56c9c7dddc91828c98374b99bb6cb592319",
+      "expected_before_sha256": "825630e7c992ded77dd2a1011c82f13d15057fa140df12750ec358e20c772a08"
+    },
+    {
+      "path": "ops/PROBLEM_TRACKER.md",
+      "before_sha256": "a0171865fcd78506bf39f1f34aa0cfa78bb13c6ded23c94852c37d21b8131292",
+      "after_sha256": "1717dae8f893c57fa034ba9a4aaf4a1a01c9510a7d23b70ebfb3fdf7b3bb188d",
+      "expected_before_sha256": "a0171865fcd78506bf39f1f34aa0cfa78bb13c6ded23c94852c37d21b8131292"
+    },
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "before_sha256": "a19c11c88eb821da943d4e48a1e111adb1f2dee45e631ecb4f91353b57f93174",
+      "after_sha256": "e6cffd8097a8049886e7f982fc1d9390d588449e8a3d379efe09e0978aee1ada",
+      "expected_before_sha256": "a19c11c88eb821da943d4e48a1e111adb1f2dee45e631ecb4f91353b57f93174"
+    },
+    {
+      "path": "ops/marketing/action_queue.md",
+      "before_sha256": "7cc70b73a8ea65cb81a5e16e79ee8c0826f4ee1a6715c071e448040be9f64d27",
+      "after_sha256": "fc6d7dd961330b295cabdeaac1ef19a199eacdebbdb1662a8376b5eda2a51ae8",
+      "expected_before_sha256": "7cc70b73a8ea65cb81a5e16e79ee8c0826f4ee1a6715c071e448040be9f64d27"
+    },
+    {
+      "path": "ops/marketing/blocker_board.md",
+      "before_sha256": "68a5dd689a295ad7c1c206f769002107370b5c3c245c2695cc8d0fd26b2f5626",
+      "after_sha256": "1b6609f9056435eaf14c44ca3177e3752b47f8b98b3ee9560d100a0cdc927a64",
+      "expected_before_sha256": "68a5dd689a295ad7c1c206f769002107370b5c3c245c2695cc8d0fd26b2f5626"
+    },
+    {
+      "path": "ops/marketing/daily_scorecard.md",
+      "before_sha256": "5e1de2f56e8487d948edd2d9b5bcd630862def6c4c137d6d66f065128951e743",
+      "after_sha256": "3cf65d8f8221a735e0a97d41371f80856e1d75f6295d48a6e08734bc8b977579",
+      "expected_before_sha256": "5e1de2f56e8487d948edd2d9b5bcd630862def6c4c137d6d66f065128951e743"
+    },
+    {
+      "path": "ops/marketing/operator_cockpit.md",
+      "before_sha256": "565a05d47b16072dc19a22b1d6a78f28c4f055d56fc51727e2703bb4a5834551",
+      "after_sha256": "7d9180a2780883b7a467c450f63e6037facbfcbde2f54b322c1e5f2c68f5d611",
+      "expected_before_sha256": "565a05d47b16072dc19a22b1d6a78f28c4f055d56fc51727e2703bb4a5834551"
+    },
+    {
+      "path": "ops/marketing/decision_log.md",
+      "before_sha256": "4e2143c581f2384701757cb3507a8b76738470b1bfe9dced8b9f53a51c86515d",
+      "after_sha256": "21fec534ff48b050394d1e9f769af08c93c68b73acc6c3a0987ca2d09789b9f9",
+      "expected_before_sha256": "4e2143c581f2384701757cb3507a8b76738470b1bfe9dced8b9f53a51c86515d"
+    },
+    {
+      "path": "ops/marketing/review_log.md",
+      "before_sha256": "65b53e0beba2511ef4f09a75cc15c3a27adfed6672c80638503e00784d4bab55",
+      "after_sha256": "4b9ff56be9d5b1a032db5d04e333a9c4d3618aa7a5d60b6a6a78483bc47eae90",
+      "expected_before_sha256": "65b53e0beba2511ef4f09a75cc15c3a27adfed6672c80638503e00784d4bab55"
+    },
+    {
+      "path": "ops/marketing/memory_digest.md",
+      "before_sha256": "1e4b7bd2d339705eccc774a8817c34f086ef0005043308dbcb135b3c8dd1d57e",
+      "after_sha256": "a469e0bf3c805223b6a5749a10ece38acc7ebccbe40cffb3bc7027b2acf382fc",
+      "expected_before_sha256": "1e4b7bd2d339705eccc774a8817c34f086ef0005043308dbcb135b3c8dd1d57e"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json",
+      "before_sha256": "842a5af5981f13051ceeed0c34eddd09b0b9fef06f4dc21bef50f4c0a00fe341",
+      "after_sha256": "3c0e6489545701616354f937e2e93b7752db441270ad5cdbdc682d186df368d0",
+      "expected_before_sha256": "842a5af5981f13051ceeed0c34eddd09b0b9fef06f4dc21bef50f4c0a00fe341"
+    }
+  ],
+  "before_manifest": {
+    "path": "/private/tmp/dlm-canada-20260922-before/manifest.json",
+    "sha256": "eb89070baff4d9e1ee6694c5e5442e9bca3f2ee462f0d5dd4069e817776218aa"
+  },
+  "artifact_bindings": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_canada_parent_integration_20260922.json",
+      "sha256": "ff298c5032c83d0630b019bc254914776e898b9ba2368f6719b1758bdb653d14"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_canada_parent_acceptance_20260922.json",
+      "sha256": "add5f357864876fa882cd10479bfaf609950927f11310bfbedfd9a4307fa86ae"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_ca_source_review_20260922.json",
+      "sha256": "1f5125bed122cf66254bb795c7fb38aa4645946b70198cae1a85ae4f9d779d8e"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/blue_daisy_copy_correction_20260922/ownership_scope_review.json",
+      "sha256": "ae1d2395dcdc3601a529e342f0b55cfbdd1ff5f3b40e1db5df9c48d4c096f1c1"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/blue_daisy_copy_correction_20260922/disposition.json",
+      "sha256": "57054c5ff6f50e09f02149d3e5f65057b70ba8cfdff1bb9b513b7a8e159fcdb2"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/blue_daisy_copy_correction_20260922/copy_preparation.json",
+      "sha256": "e32a451df4c6aac45db3f45060a70f356654ea50904263f2196c055de170b1bb"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/blue_daisy_copy_correction_20260922/english_body_candidate.html",
+      "sha256": "04b0c5cbbd47f6d2082048f0735db10c2ab2d33cf6a1f6c2356d4a960847117d"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/handoff.json",
+      "sha256": "87ed47b752351e0d44b97458a83f7055633a3170c4866264b108ce09bcfa2deb"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/readback.json",
+      "sha256": "f0f12fc2bc432e807663d2b22a209bab265eca11f0c145224ac000b0c7a44f17"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/copy-correction-candidate.json",
+      "sha256": "41518ebdcc37ef3ad2c5556ccfa6ac901a6de80ad9b8952d1e42eb0ba84af1cc"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/READBACK.md",
+      "sha256": "03b85bb7ef464a40c84f2addf989ebfb2b4cdabf23e3ac8983774fbf85850b79"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/independent-review.json",
+      "sha256": "cd05423ea1fc13463d50734f9fdf68a26065a6228ffe4acb87c3cc7518fd82a8"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/blue_daisy_copy_correction_20260922/before_source.json",
+      "sha256": "26427d2b30eede230d05652cd93dcbacebfc649c02d0f9542a48d0fa258f875b"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/blue_daisy_copy_correction_20260922/market_overrides_before.json",
+      "sha256": "b17a767818c5e4124d3f7860ad10bcae2e7d18261a750e5dd8621cd11df34df7"
+    }
+  ],
+  "explicit_reference_checks": [
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_canada_parent_acceptance_20260922.json",
+      "expected_sha256": "add5f357864876fa882cd10479bfaf609950927f11310bfbedfd9a4307fa86ae",
+      "current_sha256": "add5f357864876fa882cd10479bfaf609950927f11310bfbedfd9a4307fa86ae"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/blue_daisy_copy_correction_20260922/disposition.json",
+      "expected_sha256": "57054c5ff6f50e09f02149d3e5f65057b70ba8cfdff1bb9b513b7a8e159fcdb2",
+      "current_sha256": "57054c5ff6f50e09f02149d3e5f65057b70ba8cfdff1bb9b513b7a8e159fcdb2"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/handoff.json",
+      "expected_sha256": "87ed47b752351e0d44b97458a83f7055633a3170c4866264b108ce09bcfa2deb",
+      "current_sha256": "87ed47b752351e0d44b97458a83f7055633a3170c4866264b108ce09bcfa2deb"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/readback.json",
+      "expected_sha256": "f0f12fc2bc432e807663d2b22a209bab265eca11f0c145224ac000b0c7a44f17",
+      "current_sha256": "f0f12fc2bc432e807663d2b22a209bab265eca11f0c145224ac000b0c7a44f17"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/copy-correction-candidate.json",
+      "expected_sha256": "41518ebdcc37ef3ad2c5556ccfa6ac901a6de80ad9b8952d1e42eb0ba84af1cc",
+      "current_sha256": "41518ebdcc37ef3ad2c5556ccfa6ac901a6de80ad9b8952d1e42eb0ba84af1cc"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/READBACK.md",
+      "expected_sha256": "03b85bb7ef464a40c84f2addf989ebfb2b4cdabf23e3ac8983774fbf85850b79",
+      "current_sha256": "03b85bb7ef464a40c84f2addf989ebfb2b4cdabf23e3ac8983774fbf85850b79"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/canada-qualification-20260921/independent-review.json",
+      "expected_sha256": "cd05423ea1fc13463d50734f9fdf68a26065a6228ffe4acb87c3cc7518fd82a8",
+      "current_sha256": "cd05423ea1fc13463d50734f9fdf68a26065a6228ffe4acb87c3cc7518fd82a8"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_ca_source_review_20260922.json",
+      "expected_sha256": "1f5125bed122cf66254bb795c7fb38aa4645946b70198cae1a85ae4f9d779d8e",
+      "current_sha256": "1f5125bed122cf66254bb795c7fb38aa4645946b70198cae1a85ae4f9d779d8e"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/blue_daisy_copy_correction_20260922/copy_preparation.json",
+      "expected_sha256": "e32a451df4c6aac45db3f45060a70f356654ea50904263f2196c055de170b1bb",
+      "current_sha256": "e32a451df4c6aac45db3f45060a70f356654ea50904263f2196c055de170b1bb"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/blue_daisy_copy_correction_20260922/before_source.json",
+      "expected_sha256": "26427d2b30eede230d05652cd93dcbacebfc649c02d0f9542a48d0fa258f875b",
+      "current_sha256": "26427d2b30eede230d05652cd93dcbacebfc649c02d0f9542a48d0fa258f875b"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/blue_daisy_copy_correction_20260922/market_overrides_before.json",
+      "expected_sha256": "b17a767818c5e4124d3f7860ad10bcae2e7d18261a750e5dd8621cd11df34df7",
+      "current_sha256": "b17a767818c5e4124d3f7860ad10bcae2e7d18261a750e5dd8621cd11df34df7"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/blue_daisy_copy_correction_20260922/ownership_scope_review.json",
+      "expected_sha256": "ae1d2395dcdc3601a529e342f0b55cfbdd1ff5f3b40e1db5df9c48d4c096f1c1",
+      "current_sha256": "ae1d2395dcdc3601a529e342f0b55cfbdd1ff5f3b40e1db5df9c48d4c096f1c1"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_canada_parent_acceptance_20260922.json",
+      "expected_sha256": "add5f357864876fa882cd10479bfaf609950927f11310bfbedfd9a4307fa86ae",
+      "current_sha256": "add5f357864876fa882cd10479bfaf609950927f11310bfbedfd9a4307fa86ae"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_canada_parent_acceptance_20260922.json",
+      "expected_sha256": "add5f357864876fa882cd10479bfaf609950927f11310bfbedfd9a4307fa86ae",
+      "current_sha256": "add5f357864876fa882cd10479bfaf609950927f11310bfbedfd9a4307fa86ae"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/blue_daisy_copy_correction_20260922/disposition.json",
+      "expected_sha256": "57054c5ff6f50e09f02149d3e5f65057b70ba8cfdff1bb9b513b7a8e159fcdb2",
+      "current_sha256": "57054c5ff6f50e09f02149d3e5f65057b70ba8cfdff1bb9b513b7a8e159fcdb2"
+    },
+    {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_canada_parent_acceptance_20260922.json",
+      "expected_sha256": "add5f357864876fa882cd10479bfaf609950927f11310bfbedfd9a4307fa86ae",
+      "current_sha256": "add5f357864876fa882cd10479bfaf609950927f11310bfbedfd9a4307fa86ae"
+    }
+  ],
+  "owner_claim_table_row_count": 302,
+  "authoritative_control_blocks": [
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "blocks": 1,
+      "equal": true,
+      "sha256": [
+        "1e09f7d618b678bf1d534b3c9421fe1b84162c8047b37033d1270420bb098c57"
+      ]
+    }
+  ],
+  "historical_markdown_preservation": [
+    {
+      "path": "ops/AGENT_COORDINATION.md",
+      "prior_lines_preserved": true
+    },
+    {
+      "path": "ops/AGENT_WORKLOG.md",
+      "prior_lines_preserved": true
+    },
+    {
+      "path": "ops/PROBLEM_TRACKER.md",
+      "prior_lines_preserved": true
+    },
+    {
+      "path": "ops/marketing/current_marketing_state.md",
+      "prior_lines_preserved": true
+    },
+    {
+      "path": "ops/marketing/blocker_board.md",
+      "prior_lines_preserved": true
+    },
+    {
+      "path": "ops/marketing/daily_scorecard.md",
+      "prior_lines_preserved": true
+    },
+    {
+      "path": "ops/marketing/operator_cockpit.md",
+      "prior_lines_preserved": false,
+      "approved_exact_exception": "One Owner Action: a US USD0.20 cap above -> US and Canada USD0.20 caps above; all other old text retained.",
+      "preservation_requirement_satisfied": true
+    },
+    {
+      "path": "ops/marketing/decision_log.md",
+      "prior_lines_preserved": true
+    },
+    {
+      "path": "ops/marketing/review_log.md",
+      "prior_lines_preserved": true
+    },
+    {
+      "path": "ops/marketing/memory_digest.md",
+      "prior_lines_preserved": true
+    }
+  ],
+  "essential_findings": [
+    "One Canada source record appended; all82prior owner records,67wakes/latest wake, and checkpoint state outside the active container preserved.",
+    "US exposure remains intact; Canada adds checked0.20 versus retained0.15. Existing six-campaign pause question and separate numeric gate remain; zero inferred authority.",
+    "Blue Daisy release remains blocked for existing-owner allocation, runtime allowance and localization scope; preparation and outdated=false do not prove publication or language quality.",
+    "Sales/feed/organic/Pinterest/release clocks, owner claims and authoritative control remain exact."
+  ],
+  "limits": [
+    "Canonical hashes bind the source bytes inspected at this review cutoff; subsequent explicit parent metadata-only finalization requires its own provenance.",
+    "Generated operator_cockpit.html and command_layer_integration_audit.md were excluded; parent runs render/audit/strict/context/diff checks separately. No such suites were rerun here.",
+    "Prior14 source checks,10 local preparation checks and18 scope checks are retained separate phase receipts; no additive/disjoint comprehensive-audit claim.",
+    "No native/UI/API/browser/GraphQL/Git actions, owner messages, live-write claims or source/checkpoint/canonical edits. Only this owned review JSON is written.",
+    "Saved Canadian ready-to-add/report evidence proves no new qualified order, purchase ingestion, attribution, retained revenue or profit. Overall TA15 and Blue Daisy repair remain incomplete."
+  ],
+  "reviewer_predicate_corrections": {
+    "initial_result_summary": {
+      "verdict": "HOLD",
+      "passed_count": 30,
+      "check_count": 32,
+      "review_sha256_before_correction": "cbe2467ce7df5222b64e284f8be40cfd31122f4553d17f6d3c0c858c0233b358",
+      "failures": [
+        {
+          "name": "seventeen_explicit_reference_hashes",
+          "status": "FAIL",
+          "evidence": "17 explicit parent, owner, copy, and checkpoint references; repeated references are not counted as distinct sources."
+        },
+        {
+          "name": "other_canonical_changes_are_insertions_only",
+          "status": "FAIL",
+          "evidence": "No historical source/evidence prose removed from the ten other Markdown files."
+        }
+      ]
+    },
+    "resolution": [
+      "All16 saved reference hashes passed initially; corrected the erroneous expected reference count17 to actual16.",
+      "The sole non-insertion in cockpit is the parent-notified exact One Owner Action cap wording refinement. Verified that change exactly and its equality with the active checkpoint; all other prior text remains."
+    ],
+    "underlying_source_hashes_changed_during_narrow_recheck": false,
+    "limitations_weakened": false
+  }
+}

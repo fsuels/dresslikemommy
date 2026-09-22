@@ -1,0 +1,42 @@
+{
+  "captured_at_utc": "2026-09-22T14:02:51.600406+00:00",
+  "method": "Unauthenticated public HTTPS GET, no cookie jar, no credentials, no JS execution, no event injection",
+  "homepage_status": 200,
+  "homepage_url": "https://www.dresslikemommy.com/",
+  "theme": {
+    "name": "dresslikemommy/main",
+    "id": 133290917985,
+    "schema_name": "Dawn",
+    "schema_version": "14.0.0",
+    "theme_store_id": null,
+    "role": "main"
+  },
+  "pixel": {
+    "id": "931561569",
+    "configuration": "{\"ti\":\"36005151\",\"endpoint\":\"https://bat.bing.com/action/0\"}",
+    "runtimeContext": "STRICT",
+    "scriptVersion": "5ee93563fe31b11d2d65e2f09a5229dc",
+    "type": "APP",
+    "apiClientId": 2997493,
+    "privacyPurposes": [
+      "ANALYTICS",
+      "MARKETING",
+      "SALE_OF_DATA"
+    ],
+    "dataSharingState": "optimized"
+  },
+  "app_source": {
+    "url": "https://www.dresslikemommy.com/web-pixels/strict/app/web-pixel-931561569@5ee93563fe31b11d2d65e2f09a5229dc.js",
+    "http_status": 200,
+    "bytes": 8917,
+    "sha256": "bdf85b114cb9d9ef5c790dee198f38dd8032c46bc13bdf7ca9f4ee034abc7f29",
+    "byte_identical_to_september9_audited_bundle": true
+  },
+  "source_fragments": {
+    "updateMsclkid": " Date;e.setDate(e.getDate()+13*30),yield this.setLocalstorageItem(\"vid\",this.vid,e.toISOString())})}updateMsclkid(){return c(this,null,function*(){var t=new URLSearchParams(this.para.init.context.window.location.search);let e=this.para.browser.cookie;var i=t.get(\"msclkid\");if(i){this.msclkid=i,this.msclkidSrouce=1;var r=new Date;r.setDate(r.getDate()+90),yield e.set(`msclkid; expires=${r.toUTCString()}`,i),yield this.setLocalstorageItem(\"msclkid\",i,r.toISOString())}else{var s=yield e.get(\"msclkid\"),o=yield this.getLocalstorageItem(\"msclkid\"),d=",
+    "completePurchase": "mount.currencyCode,gv:(d=t.data.cart)==null?void 0:d.cost.totalAmount.amount};this.pushEvent(t,r)})}completePurchase(t){return c(this,null,function*(){var e=t.data.checkout.lineItems.map(s=>{var o,d;return`${(o=s.variant)==null?void 0:o.product.id}_${(d=s.variant)==null?void 0:d.id}`}),i=Array.from(new Set(e)),r={pagetype:\"purchase\",evt:\"custom\",prodid:i.join(\",\"),ea:\"purchase\",gc:t.data.checkout.subtotalPrice.currencyCode,gv:t.data.checkout.subtotalPrice.amount};this.pushEvent(t,r)})}},T=L;I(a=>{var t=new T(a);a.analytics.subscribe(\"product_vi",
+    "checkout_completed": "ults(e)}),a.analytics.subscribe(\"product_added_to_cart\",e=>{t.addToCart(e)}),a.analytics.subscribe(\"checkout_completed\",e=>{t.completePurchase(e)}),a.analytics.subscribe(\"checkout_started\",e=>{t.checkoutStarted(e)}),a.analytics.subscribe(\"page_viewed\",e=>{t.pageLoad(e),e.context.window.location.pathname==\"/\"&&t.home(e)})});})();\n",
+    "subtotalPrice": ",i=Array.from(new Set(e)),r={evt:\"custom\",ea:\"begin_checkout\",prodid:i.join(\",\"),gc:t.data.checkout.subtotalPrice.currencyCode,gv:t.data.checkout.subtotalPrice.amount};this.pushEvent(t,r)})}addToCart(t){return c(this,null,function*(){var s,o,d;var e=(s=t.data.cartLine)==null?void 0:s.merchandise,i=`${e==null?void 0:e.product.id}_${e==null?void 0:e.id}`,r={evt:\"custom\",ea:\"add_to_cart\",prodid:i,gc:(o=t.data.cartLine)==null?void 0:o.merchandise.price.currencyCode,gv:(d=t.data.cartLine)==null?void 0:d.merchandise.price.amount};this.pushEvent(t,r)}"
+  },
+  "receiver_consent_purchase_attribution_certified": false
+}

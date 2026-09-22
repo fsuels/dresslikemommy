@@ -1,0 +1,70 @@
+{
+  "action_id": "TA15-EUR-SPAIN-QUALIFICATION-20260922",
+  "recorded_at_utc": "2026-09-22T04:58:15.983653+00:00",
+  "canonical_anchor": "2026-09-22-ceo-eur-spain-buyer-route",
+  "status": "SOURCE_ACCEPTED_WITH_LIMITS__NO_BUSINESS_RELEASE",
+  "owner_thread": "01a08703-644f-7940-8f67-9a2fa63722bb",
+  "parent_thread": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "source": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/eur-spain-qualification-20260922/handoff.json",
+    "sha256": "6d1e1c17c906fad9627c4af893f38ab1ba135afccf57ccee2d773a648fca1fae",
+    "source_live_evidence_as_of": "2026-09-22T04:40:21.786Z",
+    "bound_files": {
+      "readback.json": "bc4407dc3a4e15805b0115c8e921b9e91b8c90963c83855d20bc9bef08280b6b",
+      "READBACK.md": "df551be1dbcc501f5a9dad24402ef1e6f116587261d5f15eb27c98698f994223",
+      "independent-review.json": "14c13733710ff8f1a8ca8c5cf201d7c0c8c451489269112bc0c5f10c718f86e9",
+      "negative-readback.json": "eba8b62b096ddad4f8e15bcada929ada96482df07581ffae5ccfc2ed8d1e3d49",
+      "negative-independent-review.json": "2875fddca50b485b83ae8ba7bcd7efb76a779f0b78677fc18fc8e2563375c354",
+      "root-verification.json": "ff0c22aeb7d50aabaa47b6f69d652e424b9ed21c152119831e234c85b7cd9c48"
+    }
+  },
+  "independent_parent_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_eur_spain_source_review_20260922.json",
+    "sha256": "daa190472af4af5151813ac1d32fb0a9a2d646d26e7f47bb48802ec9674fe66b",
+    "verdict": "PASS_WITH_LIMITS",
+    "passed": 24,
+    "native_replay": "NOT_RUN",
+    "independence": "DID_NOT_BUILD_OR_EXECUTE"
+  },
+  "accepted_dated_source": "At September22 04:22–04:40UTC, Microsoft EUR506255284 was Enabled, English, presence-only across20countries, USD20/day, with a checked USD0.10 MaximizeClicks cap. September15–20 Eastern reporting shows13 Search clicks/367impressions/USD0.65 and0reportedconversions; Audience has9impressions/0clicks/0cost. Spain and Sweden account for9clicks/USD0.45 in a separate country report. Twelve rendered query rows/eight strings cover139of367Search impressions, although their13clicks/USD0.65 reconcile. Twenty existing campaign-level English Phrase negatives were sampled; no negatives were added and full coverage/count remain unknown. These small, separate aggregates do not establish a query-country join, attributed purchases or profit. Earlier US/Canada USD0.20 cap findings retain their source dates and were not reread or repaired.",
+  "UX_acceptance_case": {
+    "case_id": "TA06-SPAIN-EUR-CHILD-NUMERIC-VARIANT-20260922",
+    "existing_problem": "PROB-2026-09-10-STOREFRONT-UX-PAGESPEED",
+    "owner_thread": "01a088c3-c890-71a1-98ee-f19b6905af55",
+    "product_id": "7672336646241",
+    "variant_id": "46512187113569",
+    "url": "https://www.dresslikemommy.com/products/together-heart-family-matching-sweaters?variant=46512187113569",
+    "context": {
+      "country": "Spain",
+      "currency": "EUR",
+      "language": "English"
+    },
+    "expected_options": [
+      "Child",
+      "2 Years",
+      "White"
+    ],
+    "source_result": "Spain/EUR/English family collection and manual Together Heart selection work. Product7672336646241 child variant46512187113569, expected Child/2Years/White, instead initializes Adult with size/color unselected and Add disabled; a later settled DOM/screenshot reproduced it. Manual Child/2Years/White reached ready-to-add atEUR22.95/cart0, without a cart or checkout action. This is an additional-context recurrence of the existing numeric-variant defect, not a new root cause or patch. Current EUR ads land on collections, so lost-sale causation or an ad URL mismatch is not established. Historical September11 candidate acceptance tested another variant; September21 reconciliation did not retest this path. No fresh Admin theme-role or current Spain candidate pass is asserted.",
+    "required_after_release": "TA06-SPAIN-EUR-CHILD-NUMERIC-VARIANT-20260922 is added to existing UX post-publication acceptance. After the already-authorized owner Admin publication and actual MAIN/source verification, test https://www.dresslikemommy.com/products/together-heart-family-matching-sweaters?variant=46512187113569 in Spain/EUR/English for automatic Child/2Years/White selection and a price matching current country-effective source. EUR22.95 is the dated observation only. Preserve ordinary collection/manual checks separately. Overall TA-06 remains PARTIAL and release BLOCKED_OWNER_ADMIN_REQUIRED; no duplicate patch or blocked UX wake.",
+    "release_status": "BLOCKED_OWNER_ADMIN_PUBLICATION__PUBLISHED_BUYER_ACCEPTANCE_PENDING"
+  },
+  "independent_continuation": {
+    "action_id": "TA15-FATHER-SON-QUERY-FIT-20260922",
+    "status": "DISPATCH_RECEIVED__EXECUTION_PENDING",
+    "receipt": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_dispatch_20260922.json",
+      "sha256": "5e27ce44e0c00ba85012b2dc7a290aee9a45db8185cdd5da8d461237c043ff93"
+    }
+  },
+  "preservation": "The existing exact six-campaign pause question remains the single urgent owner action; numeric daily budget/30-day loss authority stays separate. One existing idle Microsoft owner was resumed for TA15-FATHER-SON-QUERY-FIT-20260922, the bounded read-only destination check identified by its handoff. Dispatch is received, execution pending; no ad/negative or other business write is authorized. Parent retains shared canonical writes. Merchant runtime/product-localization holds, Blue Daisy scope, closed Git cutoff, all source/organic/Pinterest review clocks, sales evidence and paidNONE remain unchanged.",
+  "root_business_writes": 0,
+  "new_owner_dispatches": 1,
+  "verified_attributed_orders": null,
+  "retained_profit": null,
+  "authority_context": {
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE"
+  },
+  "canonical_verification": "Separate final verification artifact; source acceptance is not a business release."
+}

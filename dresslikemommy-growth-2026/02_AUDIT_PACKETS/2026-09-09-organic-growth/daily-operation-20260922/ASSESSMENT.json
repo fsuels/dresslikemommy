@@ -1,0 +1,128 @@
+{
+  "schema": "dlm.sizing_first_week_assessment.v1",
+  "action_id": "TA20-SIZING-WEEK1-ASSESSMENT-20260922",
+  "as_of": "2026-09-22T13:10:57.968Z",
+  "status": "ASSESSMENT_COMPLETE__INDEPENDENT_REVIEW_PENDING",
+  "entity": "Article559700574305",
+  "path": "/blogs/news/matching-outfit-sizing-guide-right-fit-for-everyone",
+  "cohort": {
+    "first_full_date": "2026-09-15",
+    "start": "2026-09-15",
+    "end_inclusive": "2026-09-21",
+    "due": "2026-09-22",
+    "assessed": "2026-09-22",
+    "timezone": "America/New_York",
+    "on_original_due_date": true,
+    "english_release_final_utc": "2026-09-14T23:05:21Z",
+    "localized_body_release_utc": [
+      "2026-09-14T23:44:58Z",
+      "2026-09-14T23:44:59Z"
+    ]
+  },
+  "source_results": {
+    "shopify": {
+      "source": "SHOPIFY_SIZING_WEEK1.json",
+      "sessions": 3,
+      "cart_sessions": 0,
+      "checkout_sessions": 0,
+      "completed_checkout_sessions": 0,
+      "source_rows": "All direct; ru Sep15/21 and sv Sep18; no UTM values.",
+      "reporting_timezone": "America/New_York",
+      "timezone_basis": "Prior Sep21 verified Shop identity; current shopDomain matches."
+    },
+    "ga4": {
+      "source": "GA4_SIZING_WEEK1.json",
+      "sessions": 3,
+      "active_users": 3,
+      "new_users": 3,
+      "organic_source_rows_returned": 0,
+      "unqualified_direct_sessions": 3,
+      "average_engagement_seconds_display": 0,
+      "all_key_events": 0,
+      "reported_revenue_usd": 0,
+      "reporting_timezone": "America/New_York",
+      "native_timezone_verified": true
+    },
+    "gsc": {
+      "source": "GSC_SIZING_WEEK1.json",
+      "clicks": 0,
+      "impressions": 39,
+      "visible_page_rows": 5,
+      "english_impressions": 17,
+      "localized_impressions": {
+        "es": 16,
+        "de": 3,
+        "pl": 2,
+        "ar": 1
+      },
+      "average_position_display": "6.8",
+      "visible_query_terms": 0,
+      "reporting_timezone": "America/Los_Angeles",
+      "last_update_ui": "3.5 hours ago"
+    }
+  },
+  "reconciliation": {
+    "instruments_added": false,
+    "matched_users_or_sessions": false,
+    "interpretation": "Shopify and GA4 agree in aggregate on three ru/sv direct landings, without an exact session join. They are not six visits. GSC is a separate PT calendar-window discovery report.",
+    "locale_scope": "ru and sv were not among the18 translated body rows released September14. No English or edited-localized route session row returned; this does not prove no internal reading, impact, or current fallback behavior.",
+    "qualified_unpaid_human_visits": null,
+    "qualified_product_visits": null,
+    "distinct_paid_noncancelled_orders_matched": null,
+    "retained_revenue": null,
+    "actual_costs": null,
+    "profit": null,
+    "separate_order": "Do not credit the separate parent-reported September22 USD68.20 Google/SEO order to this guide or window. Parent declares it outside Sep15-21; its recorded landing is Little Pear. No sizing-guide order join established."
+  },
+  "qa": {
+    "source": "COHORT_AND_QA_REVIEW.json",
+    "release_qa_before_window": true,
+    "in_window_actions": [
+      {
+        "at": "2026-09-15T13:18:23Z",
+        "type": "cookie-free HTTP GET, no JavaScript",
+        "path": "English sizing guide"
+      },
+      {
+        "at": "2026-09-15T13:49:02.801Z",
+        "type": "successful untagged native link navigation",
+        "path": "English sizing guide"
+      }
+    ],
+    "analytics_session_linkage": false,
+    "numeric_subtraction": 0,
+    "remaining_contamination": "UNKNOWN",
+    "public_storefront_visits_this_run": 0
+  },
+  "limits": [
+    "Latest Sep21 rows can revise during processing; current results are a dated first assessment, not guaranteed final data.",
+    "No disclosed search queries support a new keyword/copy hypothesis; no unsupported keyword-demand estimate.",
+    "39 impressions and three unqualified direct landings cannot diagnose snippet or conversion failure.",
+    "Landing reports do not cover every internal visit or assisted journey; qualified product visits and genuine paid-order joins remain unknown.",
+    "No pre/post matched baseline, causal incrementality, traffic/sales lift or profit is established."
+  ],
+  "decision": {
+    "action": "KEEP_EXISTING_GUIDE_AND_SCHEDULED_DISTRIBUTION",
+    "reason": "Insufficient qualified exposure to justify rewriting the corrected guide or adding thin content. Preserve the truthful sizing repair and independent channel queues.",
+    "new_article": false,
+    "english_rewrite": false,
+    "new_pin": false,
+    "index_submission": false,
+    "measured_lift_claimed": false
+  },
+  "next_action": {
+    "owner": "Existing TA-20 daily operator",
+    "when": "2026-09-23T09:00:00-04:00",
+    "task": "Assess gift-guide Article559471886433 first completed-date window September16–22; use it alongside this sizing result to choose the next substantial editorial improvement.",
+    "why_first": "Next matured existing release; avoids speculative content and preserves measurement sequence."
+  },
+  "later_sizing_reviews": [
+    "2026-09-29",
+    "2026-10-15"
+  ],
+  "external_mutations": 0,
+  "ad_and_service_charges": 0,
+  "automation_changes": 0,
+  "shared_canonical_owner": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "confidence": "H for saved account-report values and release/date boundaries; L for buyer impact because samples are tiny and unqualified."
+}

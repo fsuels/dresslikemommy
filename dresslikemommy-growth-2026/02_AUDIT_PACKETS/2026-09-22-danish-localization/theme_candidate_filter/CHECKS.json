@@ -1,0 +1,29 @@
+{
+  "status": "PASS_LOCAL_SOURCE_AND_ACTUAL_SCRIPT_REGRESSIONS",
+  "checks": {
+    "sourceAndCandidateHashes": "PASS",
+    "phase1DanishLocaleRestoredByteExactly": "PASS",
+    "allOtherJsSourceBytesPreserved": "PASS",
+    "combined13SourceHashes": "PASS",
+    "javascriptSyntax": "PASS_NODE_CHECK",
+    "actualScriptVmTests": {
+      "passed": 10,
+      "failed": 0,
+      "observedCohortCards": 23,
+      "baselineVisible": 0,
+      "candidateVisible": 23,
+      "nonDanishBehaviorComparisons": 84,
+      "danishCountCases": [
+        0,
+        1,
+        2,
+        23
+      ],
+      "teeExclusionCases": 6
+    },
+    "whitespace": "PASS_ZERO_DIAGNOSTICS"
+  },
+  "renderedPreview": "NOT_RUN_BY_THIS_WORKER",
+  "externalWrites": 0,
+  "observerNote": "Original observer body/options remain byte-identical. Repeated callback/popstate regression is idempotent. VM stub is not proof against every real DOM observer loop."
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "dlm.organic_order_route_admin_source.v1",
+  "action_id": "TA20-GOOGLE-ORGANIC-ORDER-ROUTE-20260922",
+  "started_at": "2026-09-22T08:52:57.588Z",
+  "completed_by": "2026-09-22T08:52:58.487Z",
+  "query": "query DLMOrganicOrderRoute($productId: ID!, $redirectQuery: String!) {\n  shop { id myshopifyDomain }\n  product(id: $productId) { id handle status onlineStoreUrl }\n  urlRedirects(first: 10, query: $redirectQuery) {\n    nodes { id path target }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+  "variables": {
+    "productId": "gid://shopify/Product/7533081133153",
+    "redirectQuery": "path:/products/little-pear-mommy-and-me-pajamas"
+  },
+  "validation": {
+    "connector": "VALID",
+    "skill": "VALID",
+    "artifact": "dlm-organic-order-route-20260922",
+    "revision": 1
+  },
+  "result": {
+    "data": {
+      "shop": {
+        "id": "gid://shopify/Shop/15571635",
+        "myshopifyDomain": "dresslikemommy-com.myshopify.com"
+      },
+      "product": {
+        "id": "gid://shopify/Product/7533081133153",
+        "handle": "vintage-cottage-floral-mommy-and-me-pajama-set",
+        "status": "ACTIVE",
+        "onlineStoreUrl": "https://www.dresslikemommy.com/products/vintage-cottage-floral-mommy-and-me-pajama-set"
+      },
+      "urlRedirects": {
+        "nodes": [],
+        "pageInfo": {
+          "hasNextPage": false,
+          "endCursor": null
+        }
+      }
+    }
+  },
+  "external_mutations": 0,
+  "limitation": "Empty filtered urlRedirects result does not independently prove absence of every possible server/CDN/client redirect. Observed HTTP path and rendered page supply public route evidence."
+}

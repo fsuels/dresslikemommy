@@ -1,0 +1,328 @@
+{
+  "schema": "dlm.microsoft_search_query_parent_canonical_review.v1",
+  "recorded_at_utc": "2026-09-22T12:59:42.599667+00:00",
+  "reviewer": "/root/recovery_source_verifier",
+  "independence": "DID_NOT_BUILD_EXECUTE_OR_INTEGRATE_THIS_CHANGE",
+  "action_id": "TA15-SEARCH-QUERY-REVIEW-20260922",
+  "verdict": "PASS_WITH_LIMITS",
+  "checks_passed": 21,
+  "checks_total": 21,
+  "failed_checks": [],
+  "scope": "Bounded saved canonical integration preservation; no source arithmetic, native replay, business execution or historical audit.",
+  "manifest": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_search_query_parent_integration_20260922.json",
+    "sha256": "8b24835845702e333b9b79aca62454d71058f587b1e2ab4f98407474a0607322"
+  },
+  "acceptance": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_search_query_parent_acceptance_20260922.json",
+    "sha256": "b344a526a936fe676726c700fdd257344728554b25007ccde6668974641d2944"
+  },
+  "before_snapshot": "/private/tmp/dlm-ms-sq22-20260922-before",
+  "canonical_after_sha256": {
+    "ops/marketing/current_marketing_state.md": "8474fe139b24f58bbb5ea964a98a17c63035b35997a18a831f8e350e9bb5b949",
+    "ops/marketing/action_queue.md": "d298bf3885edfc7d636863bdb31abaa76811de2c02dae42f97fc6be8f32f2584",
+    "ops/marketing/operator_cockpit.md": "dfcac0bf0a5204e9a32ada4317ca0109cf00bcd4b36413554b7177e027481fd2",
+    "ops/marketing/decision_log.md": "a4bcd3aeb89df8a2d9946b7d15fd9090a5e37a9cb64050a69c69ad92179a398d",
+    "ops/marketing/review_log.md": "94501f3ff99fcca054e477c207e30f3ac890b91ae012164dead63b7870ce0028",
+    "ops/AGENT_COORDINATION.md": "f1652558678d3d9a4ad2740ae33098dd071d8a8bb80beea539dfed536fa12b38",
+    "ops/AGENT_WORKLOG.md": "692045ebd0e655205a0d1fe4dc416cebbbf05fcc5caa54c741f22d7433a9b45d",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json": "3d8e28830aac46d8c43110ec9c081a1b83833f1724d0bdb5cd21145f2ea84d40",
+    "ops/marketing/daily_scorecard.md": "41d5601dd6ccc6c6faac857bc0f668831d1c66ca663cceaa47ae216edd942bed",
+    "ops/marketing/blocker_board.md": "412822fa24ca9dc2b4ad06df1ca1b1e9686c25f5506b21d18eef8073e0e823bd",
+    "ops/PROBLEM_TRACKER.md": "5b5ec0c70e76b467c5159f7bdaaa2d5340e02d4a3b4c77ec95235777ca1b4ce4"
+  },
+  "source_binding_sha256": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_parent_final_verification_20260922.json": "550e610aeed88e68b51060343594e3fe773e912971982378a6f09670d1ee256e",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_search_query_parent_acceptance_20260922.json": "b344a526a936fe676726c700fdd257344728554b25007ccde6668974641d2944",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_sq22_destination_dispatch_20260922.json": "07bf49a7b9e3539fbf195b80fcf14fc83137eb796f5a08f557570256b22af03a",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/search-query-review-20260922/handoff.json": "de5c39080c8f072b177defc67a7a6131878bcd3f75c2b386fb3d163813d89dda",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_search_query_source_review_20260922.json": "0aec58eb6c61d9934df04a32eaa0f721e44872e6cf37872777b6d16d2bc8d73a",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/search-query-review-20260922/source.json": "eed8cc8f6530df2b5999098f3748031823376d89571cd97054fd727fcc889274",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/search-query-review-20260922/native-settings.json": "e41ad41889fe5d7f7de85755027a8503a74591ba2996e2c99d821a867f33b4ad",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/search-query-review-20260922/analysis.json": "058fa7eeef6a9d89baeb5e32521e5a1307d783a915bcc5d4da1879f50b6fbafa",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/search-query-review-20260922/root-verification.json": "90e11dbdac48916a76e3d811c0f00433e15f5382869d358d7c970bdc8509eb75",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/search-query-review-20260922/READBACK.md": "b982d564a5a0e5bab4ae3aa0a84c218702b1a3971b039a506b042b11294cd5ee",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/search-query-review-20260922/independent-review.json": "35f7fa786d5d6f9708c87a89428925f91dc5d0b72ea880a5918357d2ff80f75a"
+  },
+  "checks": [
+    {
+      "id": "manifest_and_acceptance_exact",
+      "status": "PASS",
+      "evidence": {
+        "manifest_sha256": "8b24835845702e333b9b79aca62454d71058f587b1e2ab4f98407474a0607322",
+        "acceptance_sha256": "b344a526a936fe676726c700fdd257344728554b25007ccde6668974641d2944"
+      }
+    },
+    {
+      "id": "all_snapshot_preimages_exact",
+      "status": "PASS",
+      "evidence": {
+        "paths": 14,
+        "mismatches": [],
+        "snapshot": "/private/tmp/dlm-ms-sq22-20260922-before"
+      }
+    },
+    {
+      "id": "eleven_current_canonical_hashes_exact",
+      "status": "PASS",
+      "evidence": {
+        "files": 11,
+        "mismatches": []
+      }
+    },
+    {
+      "id": "saved_source_and_dispatch_bindings_exact",
+      "status": "PASS",
+      "evidence": {
+        "distinct_files": 11,
+        "mismatches": [],
+        "source_members": 6
+      }
+    },
+    {
+      "id": "completed_source_review_consumed_without_replay",
+      "status": "PASS",
+      "evidence": {
+        "source_review_checks": "42/42",
+        "required_corrections": [],
+        "limits_transcribed_exactly": true,
+        "native_replay": "NOT_RUN"
+      }
+    },
+    {
+      "id": "seven_headers_and_cockpit_reason_inverse_exact",
+      "status": "PASS",
+      "evidence": {
+        "ops/marketing/current_marketing_state.md": true,
+        "ops/marketing/operator_cockpit.md": true,
+        "ops/marketing/daily_scorecard.md": true,
+        "ops/marketing/decision_log.md": true,
+        "ops/marketing/review_log.md": true,
+        "ops/AGENT_COORDINATION.md": true,
+        "ops/marketing/blocker_board.md": true
+      }
+    },
+    {
+      "id": "problem_addendum_inverse_exact",
+      "status": "PASS",
+      "evidence": {
+        "problem": "PROB-2026-09-21-MICROSOFT-ACTIVE-SPEND-DRIFT",
+        "prior_problem_bytes_preserved": true
+      }
+    },
+    {
+      "id": "worklog_append_only",
+      "status": "PASS",
+      "evidence": {
+        "prior_bytes_preserved": true,
+        "anchor": "2026-09-22-ceo-microsoft-search-cpc-control",
+        "only_appended_entry_read_for_meaning": true
+      }
+    },
+    {
+      "id": "only_ta15_cells_5_7_9_10_changed",
+      "status": "PASS",
+      "evidence": {
+        "changed_cells": {
+          "TA-15": [
+            5,
+            7,
+            9,
+            10
+          ]
+        },
+        "task_id_cell": 2,
+        "complete_queue_inverse_exact": true,
+        "all_other_rows_and_cells_preserved": true
+      }
+    },
+    {
+      "id": "complete_checkpoint_declared_inverse_exact",
+      "status": "PASS",
+      "evidence": {
+        "changed_direct_fields": [
+          "canonical_anchor",
+          "latest_Microsoft_query_fit_dispatch",
+          "latest_Microsoft_search_query_review",
+          "latest_canonical_integration",
+          "one_owner_action",
+          "owner_readback_integrations"
+        ],
+        "restored_sha256": "4cf6e5c915496977e3296b3fb23a64f43ce176512818ec73f4127e05714f1e1d",
+        "whole_checkpoint_semantic_and_original_bytes_restored": true
+      }
+    },
+    {
+      "id": "eighty_seven_prior_records_preserved_plus_one",
+      "status": "PASS",
+      "evidence": {
+        "before": 87,
+        "after": 88,
+        "new_action_id": "TA15-SEARCH-QUERY-REVIEW-20260922",
+        "new_live_business_release": false
+      }
+    },
+    {
+      "id": "all_seventy_three_wakes_and_latest_alias_unchanged",
+      "status": "PASS",
+      "evidence": {
+        "before": 73,
+        "after": 73,
+        "new_scheduled_wakes": 0
+      }
+    },
+    {
+      "id": "all_undeclared_checkpoint_scopes_and_spend_control_exact",
+      "status": "PASS",
+      "evidence": {
+        "unchanged_direct_fields": 123,
+        "preserves": "full sales and next20:33:21UTC; Organic/Pinterest/Merchant/UX review clocks; paid authority; goals, runtime gates, closed Git cutoff and all undeclared history",
+        "spend_authorization_sha256": "a75ab912c212231c2327479723f7da4e91e1b0fd341d6e8441ef65901790748c"
+      }
+    },
+    {
+      "id": "authoritative_blocks_and_owner_claim_rows_byte_preserved",
+      "status": "PASS",
+      "evidence": {
+        "control_files": {
+          "ops/marketing/current_marketing_state.md": true
+        },
+        "all_coordination_table_rows_equal": true,
+        "paid_external_scope": "NONE"
+      }
+    },
+    {
+      "id": "one_owner_question_unchanged_reason_only_updated",
+      "status": "PASS",
+      "evidence": {
+        "question_and_theme_publication_text_preserved": true,
+        "changed_reason": "Fresh GB setting and 12 reported above-ceiling clicks; earlier US/Canada source dates retained."
+      }
+    },
+    {
+      "id": "new_anchor_and_source_only_completion_correct",
+      "status": "PASS",
+      "evidence": {
+        "anchor": "2026-09-22-ceo-microsoft-search-cpc-control",
+        "source_action": "TA15-SEARCH-QUERY-REVIEW-20260922",
+        "overall_TA15": "PARTIAL",
+        "live_correction": "NOT_ENTERED_NOT_SAVED",
+        "prior_integration_object_preserved": true
+      }
+    },
+    {
+      "id": "one_read_only_dispatch_received_not_completed",
+      "status": "PASS",
+      "evidence": {
+        "action_id": "TA15-SQ22-CANDIDATE-DESTINATION-FIT-20260922",
+        "recorded_at_utc": "2026-09-22 12:50:59 UTC",
+        "dispatch_count": 1,
+        "pre_send_status": "idle",
+        "completion": "NOT_VERIFIED",
+        "root_business_writes": 0
+      }
+    },
+    {
+      "id": "dated_user_scope_and_heartbeat_verified_at_exact_lines",
+      "status": "PASS",
+      "evidence": {
+        "source": "/Users/fsuels/.codex/sessions/2026/09/09/rollout-2026-09-09T12-32-21-01a08703-644f-7940-8f67-9a2fa63722bb.jsonl",
+        "lines": {
+          "13935": {
+            "timestamp": "2026-09-14T18:38:39.798Z",
+            "role": "user",
+            "line_sha256": "4e851e136c4b995744fb0955fb7216fbb43ce1f08f3eb0939a8042e60f80d388"
+          },
+          "15254": {
+            "timestamp": "2026-09-14T20:37:30.586Z",
+            "role": "user",
+            "line_sha256": "3488276cd8dd6b1fbaf055262cf41c87bfea99ce6c8770bcfd86ec9b6a2b88b9"
+          },
+          "19794": {
+            "timestamp": "2026-09-22T12:21:45.770Z",
+            "role": "user",
+            "line_sha256": "e702e8ec51c90033bd174d27d311da41b182573b42e3641f21e9f952143decda"
+          }
+        },
+        "interpretation": "Read-only destination qualification fits recovered scope; no new business authority, goal, model, schedule, claim or account inferred. Runtime idle is saved pre-send evidence, not fresh live verification."
+      }
+    },
+    {
+      "id": "current_copy_retains_sample_temporal_and_authority_limits",
+      "status": "PASS",
+      "evidence": {
+        "sample": "20 clicked rows/23 impressions only; full Search617 separate",
+        "spend": "USD2.97 is within existing USD7.35 day, not additive",
+        "settings": "Sep22 GB current only; earlier US/CA dates retained, not Sep21 setting-history proof",
+        "stopped_editor": "Cause/clean-form state unknown; retained tab6 not to be navigated, saved or discarded",
+        "candidates": "Local conditional only; retain live; fit/conflicts/authority unresolved"
+      }
+    },
+    {
+      "id": "owner_metric_rows_unchanged_no_search_double_count",
+      "status": "PASS",
+      "evidence": {
+        "all_scorecard_table_rows_byte_preserved": true,
+        "orders": 6,
+        "cohort_revenue_usd": "407.41",
+        "shopify_google_organic_new_order_usd": "68.20",
+        "microsoft_separate_completed_day_usd": "7.35",
+        "search_subset_usd": "2.97",
+        "retained_profit": "UNKNOWN"
+      }
+    },
+    {
+      "id": "final_canonical_freeze_stable_and_no_generated_dependency",
+      "status": "PASS",
+      "evidence": {
+        "canonical_files": 11,
+        "changed_during_review": [],
+        "generated_outputs": "Not bound; parent may rerender timestamps and standard reports."
+      }
+    }
+  ],
+  "counts": {
+    "prior_owner_records_preserved": 87,
+    "owner_records_after": 88,
+    "scheduled_wakes_before": 73,
+    "scheduled_wakes_after": 73,
+    "new_pending_owner_dispatches": 1,
+    "new_business_releases": 0
+  },
+  "limits": [
+    "This accepts only saved local canonical integration. The completed source review42/42 is consumed without rerunning native tests or source arithmetic; separate check counts are not summed.",
+    "Live CPC correction remains NOT_ENTERED_NOT_SAVED and blocked by current authority/fresh state/resolved editor warning. Paid scopeNONE and existing pause/budget/loss questions remain.",
+    "One read-only destination-fit dispatch is received and pending. Saved pre-send idle/completed evidence is not fresh runtime state or completion.",
+    "No native account/browser/network/API/Git/owner-checkpoint action or new dispatch was performed. No current platform truth, purchases, profit, savings or negative implementation inferred.",
+    "Generated HTML/audit output and parent standard-check receipts are intentionally outside this freeze because parent runs them in parallel. Existing scorecard metric source rows are byte-preserved.",
+    "Snapshot and declared-inverse coverage is the supplied14-file before-set and11changed canonical files; unrelated filesystem or historical owner scopes were not audited."
+  ],
+  "safe_acceptance_wording": "Accept TA15-SEARCH-QUERY-REVIEW-20260922 as a completed read-only diagnostic with saved-source limits. Preserve88owner records/73wakes, the existing paid-control decision and all unrelated clocks. SearchUSD2.97 is a subset of the already acceptedUSD7.35September21day. GBUSD0.20 is September22state; earlierUS/CA evidence retains its dates. CPC correction and both conditional negatives are unimplemented; the single destination-fit continuation is pending.",
+  "writes": {
+    "owned_review_only": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_search_query_parent_canonical_review_20260922.json",
+    "shared_canonical": 0,
+    "external_business": 0,
+    "new_owner_dispatches": 0
+  },
+  "review_predicate_correction": {
+    "initial_verdict": "HOLD",
+    "initial_checks_passed": 20,
+    "checks_total": 21,
+    "initial_review_sha256": "389978e3a51b70b7ca388253a3dd2e52bf88c2685f2f7ece1cf93f3ac7a813cc",
+    "initial_failed_check": "only_ta15_cells_5_7_9_10_changed",
+    "initial_result": {
+      "changed_cells": {},
+      "complete_queue_inverse_exact": false
+    },
+    "cause": "Reviewer parser incorrectly searched for the task ID in table cell0; actual task ID is in cell2 with inline-code formatting. No canonical/source issue or edit. Corrected only row identification; retained exact declared cell and whole-file inverse requirements.",
+    "corrected_task_id_cell": 2,
+    "corrected_actual_changed_cells": {
+      "TA-15": [
+        5,
+        7,
+        9,
+        10
+      ]
+    }
+  }
+}

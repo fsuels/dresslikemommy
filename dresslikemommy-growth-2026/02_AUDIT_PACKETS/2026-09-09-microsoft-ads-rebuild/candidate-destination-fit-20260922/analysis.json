@@ -1,0 +1,71 @@
+{
+  "action_id": "TA15-SQ22-CANDIDATE-DESTINATION-FIT-20260922",
+  "status": "BOUNDED_READ_ONLY_CLASSIFICATION_COMPLETE__INDEPENDENT_REVIEW_PENDING",
+  "overall_microsoft_objective": "PARTIAL; tracking, paid authority, attributed profit and pending owner decisions remain unresolved",
+  "source_live_evidence_as_of": "2026-09-22T12:59:49.216Z",
+  "live_state_mode": "READ_ONLY_MARKETING_RECONCILIATION",
+  "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+  "approved_external_scope": "NONE",
+  "decisions": [
+    {
+      "candidate_id": "TA15-SQ22-GB",
+      "query": "celebrity family event outfits",
+      "campaign_id": "506255081",
+      "ad_group_id": "1275435292356142",
+      "ad_id": "79714816628874",
+      "classification": "RETAIN",
+      "confidence": "M",
+      "negative_readiness": "NOT_JUSTIFIED_BY_CURRENT_EVIDENCE",
+      "reason": "The current ad offers matching clothing for shared occasions and planned events. Its working final destination is a broad family clothing collection with coordinated dresses, shirts and sets; the ivory-family offer describes dinner/photo occasions. The celebrity modifier could indicate inspiration or celebrity-specific editorial intent, but current evidence does not prove incompatibility with buying coordinated event outfits. Excluding the literal query would risk suppressing a plausible shopping need.",
+      "change_from_prior_hypothesis": "Reject this candidate for the current negative batch after the destination check; preserve the historical conditional proposal as dated evidence.",
+      "remaining_unknowns": ["What the individual searcher intended", "Exact historical served asset combination and click redirect chain", "UK-specific buyer/shipping acceptance", "True purchase attribution and economics"],
+      "selected_live_action": "NONE; retain the query without adding a negative. This does not authorize continued campaign spend or resolve the pending pause decision."
+    },
+    {
+      "candidate_id": "TA15-SQ22-US",
+      "query": "top 10 family costumes",
+      "campaign_id": "506254907",
+      "ad_group_id": "1275435291895118",
+      "ad_id": "79714816594315",
+      "classification": "UNKNOWN",
+      "confidence": "M",
+      "negative_readiness": "NOT_READY",
+      "reason": "The ad goes to a general coordinated-clothing shopping collection, not a ranked costume guide or a verified full-costume category. However, the store itself publishes Halloween costume-inspired outfit guidance, and the actual paid collection offers live long-sleeve plaid shirts for family/holiday styling. This is counterevidence to treating all costume research as irrelevant. A first guide product link is broken, and neither a complete costume catalog nor this searcher's desired costume type is established. Those limits prevent a justified Exact exclusion.",
+      "change_from_prior_hypothesis": "The destination is now bound and a relevant site-content/product relationship is observed. Keep the negative unready; the one-click sample and zero reported conversions still cannot establish waste.",
+      "remaining_unknowns": ["Full-costume versus coordinated-clothing research intent", "Whether any complete costume offering exists elsewhere in the catalog", "The other two guide product-link destinations", "Exact historical served asset combination and click redirect chain", "True purchase attribution and economics"],
+      "selected_live_action": "NONE; leave this query unexcluded while classification is unknown. Do not move the ad to the Halloween article or add a new ad/campaign."
+    }
+  ],
+  "association_and_conflict_review": {
+    "status": "NOT_RUN",
+    "reason": "No candidate advanced to justified conditional Exact exclusion. Readiness was not claimed, so the conditional association/conflict dependency was not triggered. The prior Added/Excluded None cells do not prove inherited exclusion absence."
+  },
+  "new_verified_public_defect": {
+    "finding_id": "TA15-SQ22-HALLOWEEN-GUIDE-404-20260922",
+    "source_page": "https://www.dresslikemommy.com/blogs/news/halloween-family-matching-costume-ideas",
+    "broken_target": "https://www.dresslikemommy.com/products/matching-mommy-me-plaid-flannel-shirts-cozy-button-up-jackets-for-fall",
+    "observation": "The guide's first product recommendation opens a rendered 404 page at 12:58:34.770 UTC on September22.",
+    "relationship": "Indirectly relevant site-content defect. Both current paid ad final destinations rendered normally. No historical click or lost-sale attribution to this broken link is established.",
+    "available_evidence_for_owner": "A separate current red-plaid-family-matching-tops page renders a plaid shirt offer present on the paid collection. It is not proven to be the same product, flannel fabric, an equivalent replacement, or a suitable direct substitution for the old article copy.",
+    "focused_tracker_lookup": "Exact old product path/article handle/red-plaid handle had no matches in PROBLEM_TRACKER, action_queue or blocker_board at lookup; this does not prove the defect is globally unknown.",
+    "proposed_owner_action": "Parent routes this exact broken article link to the existing content owner for canonical product/route identification and a minimal copy-link correction through its established authority. Verify replacement wording and public target before any write.",
+    "root_action": "READ_ONLY_EVIDENCE_AND_HANDOFF_ONLY"
+  },
+  "credible_alternative": "Apply both previously proposed Exact negatives based on informational wording alone. Rejected: current public offering and guide evidence allow relevant shopping interpretations, and outcome data/attribution are insufficient.",
+  "decision_changing_evidence": [
+    "Exact native campaign/group/ad identity and shared working destination",
+    "Complete union of 19 observed ad assets: 15 headlines and four descriptions",
+    "Current collection offers coordinated family clothing and contains a live holiday-plaid product",
+    "Current costume-ideas article supplies relevant research context but one checked product link renders 404",
+    "No mature attributed conversion, retained revenue or actual-cost cohort for either query"
+  ],
+  "if_evidence_supports_recommendation": "Keep both literal queries out of the ready negative batch, preserve their distinct RETAIN/UNKNOWN classifications, and address the proved article-link defect through its owner. No new audience, budget, campaign or tracking action.",
+  "if_evidence_opposes_recommendation": "If later exact offer/search-intent evidence or sufficiently mature attributed economics establishes a mismatch, propose only the reviewed literal Exact exclusion after current association/conflict, authority, before-state and rollback checks. If the old article path resolves correctly later, supersede only that dated 404 finding.",
+  "business_success_claim": "NONE; relevance classification and a rendered-link defect are not sales, CPA, ROAS or profit improvement",
+  "business_mutations": 0,
+  "shared_canonical_mutations": 0,
+  "stopped_settings_tab6_ui_interactions": 0,
+  "pending_owner_questions_repeated": false,
+  "one_next_executable_action": "The existing content owner should identify the correct live target for the proved Halloween-guide product link and prepare the smallest accurate correction. This is an independent storefront defect while paid-control questions remain pending.",
+  "continuation_prompt": "Use ops/prompts/paid-growth-ai-army-continuation-prompt.md. Resume TA15-SQ22-CANDIDATE-DESTINATION-FIT-20260922 through the existing owner handoff; preserve the completed query and destination reads, the stopped GB settings surface, pending paid-control questions, frozen source windows and all peers."
+}

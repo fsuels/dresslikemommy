@@ -1,0 +1,54 @@
+{
+  "actionId": "TA06-CURRENT-THEME-SOURCE-RECONCILIATION-20260921",
+  "reason": "Independent reviewer required exact changed branch membership rather than inferring it from a Sets breadcrumb label.",
+  "observedAt": "2026-09-21T22:59:05.842Z",
+  "browserId": "2",
+  "tabId": "2",
+  "url": "https://www.dresslikemommy.com/products/navy-sprig-mommy-and-me-dresses",
+  "themeId": "137888792673",
+  "role": "unpublished",
+  "viewport": [
+    1280,
+    720
+  ],
+  "breadcrumb": {
+    "className": "breadcrumb product-breadcrumb product-breadcrumb__trail",
+    "groupSelector": ".product-breadcrumb__group",
+    "groupCount": 0,
+    "text": "Home > Mommy and Me > Sets",
+    "links": [
+      {
+        "label": "Home",
+        "href": "/",
+        "insideChangedGroup": false
+      },
+      {
+        "label": "Mommy and Me",
+        "href": "/collections/mommy-and-me",
+        "insideChangedGroup": false
+      },
+      {
+        "label": "Sets",
+        "href": "/collections/matching-family-vacation-outfits",
+        "insideChangedGroup": false
+      }
+    ]
+  },
+  "result": "CHANGED_SECONDARY_GROUP_BRANCH_NOT_EXERCISED",
+  "qualification": "The earlier Sets navigation proves actual existing breadcrumb behavior and current MAIN/candidate parity only. It does not cover the changed subcategory2 render call. That branch and its conditional empty-title fallback risk remain unexercised; no currently broken buyer label was observed.",
+  "sourceRiskContext": "Current MAIN and candidate have identical affected source, so this conditional concern is not a new candidate-versus-MAIN difference.",
+  "cleanup": {
+    "observedAt": "2026-09-21T22:59:06.980Z",
+    "nativeExitPreview": true,
+    "themeId": "133290917985",
+    "role": "main",
+    "previewFramePresent": false,
+    "cartCount": 0,
+    "viewport": [
+      1280,
+      720
+    ],
+    "temporaryTabClosed": true
+  },
+  "productionMutations": 0
+}

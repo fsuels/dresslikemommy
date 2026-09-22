@@ -1,0 +1,176 @@
+{
+  "recorded_at_utc": "2026-09-22T05:16:01.611689+00:00",
+  "action_id": "TA15-FATHER-SON-QUERY-FIT-20260922",
+  "status": "PASS_WITH_LIMITS",
+  "check_count": 28,
+  "passed_count": 28,
+  "checks": [
+    {
+      "check": "acceptance_binding",
+      "status": "PASS",
+      "evidence": "Frozen integration acceptance hash."
+    },
+    {
+      "check": "owner_handoff_binding",
+      "status": "PASS",
+      "evidence": "Owner source, not parent native replay."
+    },
+    {
+      "check": "six_frozen_source_members",
+      "status": "PASS",
+      "evidence": "Six source files unchanged."
+    },
+    {
+      "check": "independent_review_binding",
+      "status": "PASS",
+      "evidence": "31 checks of saved source."
+    },
+    {
+      "check": "snapshot_bindings",
+      "status": "PASS",
+      "evidence": "All dated before files match."
+    },
+    {
+      "check": "eight_intended_canonical_changes",
+      "status": "PASS",
+      "evidence": "No writer drift since integration."
+    },
+    {
+      "check": "header_edits_inverse",
+      "status": "PASS",
+      "evidence": "Five exact header insertions preserve complete historical contents."
+    },
+    {
+      "check": "worklog_append_only",
+      "status": "PASS",
+      "evidence": "Prior worklog bytes unchanged."
+    },
+    {
+      "check": "single_queue_row_change",
+      "status": "PASS",
+      "evidence": "All other queue rows, including Spain TA06, unchanged."
+    },
+    {
+      "check": "queue_cells",
+      "status": "PASS",
+      "evidence": "Only evidence/checkpoint/detail/next-action cells change."
+    },
+    {
+      "check": "queue_completion_scope",
+      "status": "PASS",
+      "evidence": "Read-only completion distinguished from live release."
+    },
+    {
+      "check": "prior_84_owner_records_preserved",
+      "status": "PASS",
+      "evidence": "Exactly one new source-accepted owner record."
+    },
+    {
+      "check": "72_wakes_preserved",
+      "status": "PASS",
+      "evidence": "Asynchronous completion creates no wake."
+    },
+    {
+      "check": "complete_checkpoint_inverse",
+      "status": "PASS",
+      "evidence": "Only five intended focus fields differ; every other control, claim, receipt, metric and clock preserved."
+    },
+    {
+      "check": "current_owner_action_preserved",
+      "status": "PASS",
+      "evidence": "Existing exact six-campaign question still first; no new question."
+    },
+    {
+      "check": "spain_case_preserved",
+      "status": "PASS",
+      "evidence": "Previously accepted exact UX case retained unchanged."
+    },
+    {
+      "check": "dispatch_identity_time_receipt_preserved",
+      "status": "PASS",
+      "evidence": "Original04:49:29 dispatch metadata unchanged."
+    },
+    {
+      "check": "original_dispatch_file_immutable",
+      "status": "PASS",
+      "evidence": "Frozen receipt remains pending at its original dated moment."
+    },
+    {
+      "check": "completion_separate_and_bound",
+      "status": "PASS",
+      "evidence": "Observed owner completion is separately source-accepted."
+    },
+    {
+      "check": "authority_control_byte_preservation",
+      "status": "PASS",
+      "evidence": "Stale/read-only/fresh approval/NONE unchanged."
+    },
+    {
+      "check": "no_extra_dispatch_or_business_write",
+      "status": "PASS",
+      "evidence": "Only already-recorded Microsoft continuation this wake."
+    },
+    {
+      "check": "conditional_proposal_exact_identity",
+      "status": "PASS",
+      "evidence": "One Exact ad-group conditional proposal only."
+    },
+    {
+      "check": "unknowns_and_no_profit_claim",
+      "status": "PASS",
+      "evidence": "Limited searches and one-click trigger not business outcome."
+    },
+    {
+      "check": "dated_native_evidence_not_refreshed",
+      "status": "PASS",
+      "evidence": "Integration timestamp is not native measurement."
+    },
+    {
+      "check": "unchanged_metric_blocker_problem_files",
+      "status": "PASS",
+      "evidence": "No duplicate metric entry, reclassification or new issue invented."
+    },
+    {
+      "check": "standard_checks_passed",
+      "status": "PASS",
+      "evidence": "Rendered cockpit, integration risk check and strict continuity actually ran."
+    },
+    {
+      "check": "generated_cockpit_current",
+      "status": "PASS",
+      "evidence": "Current queue completion rendered."
+    },
+    {
+      "check": "narrow_diff_check",
+      "status": "PASS",
+      "evidence": "No whitespace errors in affected tracked paths."
+    }
+  ],
+  "acceptance": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_parent_acceptance_20260922.json",
+    "sha256": "857669f8360c97c6653af26b5132b558c3b7bcbe4301270b3082460a66bd48b5"
+  },
+  "integration": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_parent_integration_20260922.json",
+    "sha256": "72c72358e80b5ff286628779767686c9f51dbab8967af3275d7c8a24eace7367"
+  },
+  "standard_checks": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_standard_checks_20260922.json",
+    "sha256": "3b89754ecf5333fe746695e479c516cdaf60288f9f1a328795c1ba01ab28be3a"
+  },
+  "canonical_sha256": {
+    "ops/marketing/current_marketing_state.md": "8708c98076e63237a717daad53523d6bc7e98e9cb9163c13358227a2e8934ef6",
+    "ops/marketing/action_queue.md": "c1a1ac361e7bf6fa786143cccb41bfdce8df354c75267e6932c5870ea8a3e756",
+    "ops/marketing/operator_cockpit.md": "303fd4f9e08f3096332a740eee1f7a465596c8bb04cc0c65b9fee169bff8d1b5",
+    "ops/marketing/decision_log.md": "20f4192a588c2e817b4d32254d19ea387858e7cbb9a1f1132c9388dd622575a8",
+    "ops/marketing/review_log.md": "72823f96b0983f1f1f3a365897293946c2484df5ca5ae45fbb7e0bee82a9f78d",
+    "ops/AGENT_COORDINATION.md": "f4531c1d9f79c45d74f5ac77729025a844ba7bd35a8e566845312fca24161a99",
+    "ops/AGENT_WORKLOG.md": "501f9270c6960700f0385ad5059c4f6c6d64bcd4a85096f84aae390a6f412741",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json": "438482b6d1db45a55d34f1c41ac5f850793c7d627203f945f6b4edf584743273"
+  },
+  "generated_sha256": {
+    "ops/marketing/operator_cockpit.html": "7fbedd0e1be1c6666e4ee6f4f55e2d4d9232673ffe4d1f6795e185acee5b7089",
+    "ops/marketing/command_layer_integration_audit.md": "0a77f956130b6f57b00fb7293662d65ee85b3dd242a8aa5c7fb13cf75a62297f"
+  },
+  "limits": "Local reconciliation only; no native replay or external business release, sales or profit proven."
+}

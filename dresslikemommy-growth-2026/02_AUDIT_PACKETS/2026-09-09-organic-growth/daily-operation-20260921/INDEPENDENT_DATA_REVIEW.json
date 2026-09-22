@@ -1,0 +1,414 @@
+{
+  "schema": "dlm.organic_independent_data_review.v1",
+  "status": "PASS",
+  "reviewed_at_utc": "2026-09-21T20:59:30.659487+00:00",
+  "reviewer": "/root/daily_operation_review",
+  "independence": "Did not build or execute current provider queries, native owner readback, or assessment. Independently recomputed saved arithmetic/windows and checked cross-source interpretations. No external/browser/account replay.",
+  "acceptance_scope": "Saved-evidence consistency and provisional assessment. Native owner receipt arrived during review and is now included; complete ingestion, exact NY native cohorts, paid orders and commercial lift are not certified.",
+  "confidence": {
+    "saved_evidence_consistency": "HIGH",
+    "qualified_buyer_quality_and_commercial_effect": "UNKNOWN"
+  },
+  "external_actions": 0,
+  "shared_canonical_files_changed": 0,
+  "input_sha256": {
+    "SHOPIFY_QUERIES.json": "1c968e5677d4e6d6c5ec2fd18a5a543cc13b6c7865656f75c70f4932a41ad267",
+    "SHOP_IDENTITY.json": "123c765a0ae6a66b156696cc16c5e3f77d7602c362e409fca43059a671b49bbc",
+    "GA4_ARTICLE_WEEK1.json": "229dad7b9f7c19498381d2e14f9ceb33cc37a1e41cfef965ab47522276e7b9c6",
+    "GA4_PIN_DIAGNOSTICS.json": "3f362704f993313f1d7f2bc21c8bca7c80d50c01bf76c27856c49c4cbd144482",
+    "GSC_ARTICLE_WEEK1.json": "3f6e6d7c2236afc9ff7ee8b7f49d1456ff3177ccafe8eb969027b871809cb217",
+    "PARENT_ATTRIBUTION_LIMIT.json": "2697df1fbfe21f853f0317131de57fcec34b0ec72ff2f045c09b23506f3692e0",
+    "ASSESSMENT.json": "e3c1a947da5c58c2f7fde818695e4850b972c62fb9372616e1c2039e1d3cc279",
+    "READBACK.md": "53080b82c96d07ca47ecbd79a2f261f7fcef02b3d2cf1fdfd1fbff33e3b61d70",
+    "RECEIPTS_AND_QA_REVIEW.json": "8554a8d062bc34a641d1225b4bba8b8640767480fb08b5cda2b8f4ec313df7ed",
+    "CONTINUITY_READBACK.json": "23a25244de221c41cc1784ca0122635d4aaa7434a2391b5f41e77794e01ffeb4",
+    "BROWSER_CLEANUP.json": "f0938f688a6269116707fc0feb8712f86f6a1f85bc5825c2b2472030e6b6d7b7",
+    "PINTEREST_RECEIPT_ACCEPTANCE.json": "8aa594ef04c1588d5943298cc3e82c1729206aa07982e00eda4e9104a7df38f2",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/PUBLICATION_AND_COHORT_RECEIPT_20260921.json": "c531281d09b716ea65dcb1274e641d593a08ca477fd885251339c30d3ce66052"
+  },
+  "checks": {
+    "passed": 51,
+    "failed": 0,
+    "results": [
+      {
+        "id": "shop_identity",
+        "pass": true,
+        "evidence": "All five Shopify reports return the intended shop domain."
+      },
+      {
+        "id": "provider_properties",
+        "pass": true,
+        "evidence": "Saved account/property identifiers agree with intended store."
+      },
+      {
+        "id": "timezones",
+        "pass": true,
+        "evidence": "Native Pinterest timezone checked separately; no silent timezone normalization."
+      },
+      {
+        "id": "article_week1_window",
+        "pass": true,
+        "evidence": "Exact query/assessment/receipt dates and independent UTC boundary recomputation agree; original due date retained."
+      },
+      {
+        "id": "article_week1_shopify_metrics",
+        "pass": true,
+        "evidence": "Recomputed sums from metric columns: [2, 0, 0, 0]. These count sessions, not paid orders."
+      },
+      {
+        "id": "sunshine_week1_window",
+        "pass": true,
+        "evidence": "Exact query/assessment/receipt dates and independent UTC boundary recomputation agree; original due date retained."
+      },
+      {
+        "id": "sunshine_week1_shopify_metrics",
+        "pass": true,
+        "evidence": "Recomputed sums from metric columns: [0, 0, 0, 0]. These count sessions, not paid orders."
+      },
+      {
+        "id": "p1_week1_window",
+        "pass": true,
+        "evidence": "Exact query/assessment/receipt dates and independent UTC boundary recomputation agree; original due date retained."
+      },
+      {
+        "id": "p1_week1_shopify_metrics",
+        "pass": true,
+        "evidence": "Recomputed sums from metric columns: [0, 0, 0, 0]. These count sessions, not paid orders."
+      },
+      {
+        "id": "article_provider_dates",
+        "pass": true,
+        "evidence": "Identical calendar labels; GSC hour boundaries remain different."
+      },
+      {
+        "id": "ga4_url_window_bindings",
+        "pass": true,
+        "evidence": "Saved GA4 hash-routed URL date parameters independently parsed and matched to displayed date labels."
+      },
+      {
+        "id": "ga4_pin_dates",
+        "pass": true,
+        "evidence": "Separate completed Sunshine and P1 windows retained."
+      },
+      {
+        "id": "sunshine_week1_exact_utm",
+        "pass": true,
+        "evidence": "Four exact source/medium/campaign/content filters agree with dated destination receipt and assessment."
+      },
+      {
+        "id": "p1_week1_exact_utm",
+        "pass": true,
+        "evidence": "Four exact source/medium/campaign/content filters agree with dated destination receipt and assessment."
+      },
+      {
+        "id": "shopify_article_views_reconcile",
+        "pass": true,
+        "evidence": "Landing summary and daily source diagnostic overlap, rather than adding four sessions."
+      },
+      {
+        "id": "shopify_article_search_detail",
+        "pass": true,
+        "evidence": "Korean September 13 and Japanese September 16 search landings; no cross-provider user match."
+      },
+      {
+        "id": "shopify_visible_counts_below_limit",
+        "pass": true,
+        "evidence": "Returned row counts agree and are below LIMIT 100; provider-side omission cannot be independently ruled out."
+      },
+      {
+        "id": "shopify_empty_referrer_report",
+        "pass": true,
+        "evidence": "No numeric row in this broader grouped report. Explicit UTM zeros come from separate nonempty aggregate rows; do not manufacture numeric values from an empty schema."
+      },
+      {
+        "id": "ga4_article_arithmetic",
+        "pass": true,
+        "evidence": "Four rows reconcile. Distinct users happen to sum here but are not generally additive; display-rounded engagement is not reconstructed."
+      },
+      {
+        "id": "ga4_source_segments",
+        "pass": true,
+        "evidence": "Organic: ja1/ko1; direct: ko3/cs1. Direct sessions remain unqualified."
+      },
+      {
+        "id": "ga4_event_semantics",
+        "pass": true,
+        "evidence": "Selected key-event zeros do not reconstruct a product journey or prove absence of all product visits."
+      },
+      {
+        "id": "ga4_pin_scope",
+        "pass": true,
+        "evidence": "Broad Pinterest source diagnostic is separate from exact Shopify UTM attribution."
+      },
+      {
+        "id": "gsc_page_totals",
+        "pass": true,
+        "evidence": "All 12 displayed page rows reconcile to the reported total."
+      },
+      {
+        "id": "gsc_ctr_rounding",
+        "pass": true,
+        "evidence": "2/116 = 1.724137931 percent; total/page CTR displays agree with rounding."
+      },
+      {
+        "id": "gsc_position_display",
+        "pass": true,
+        "evidence": "Impression-weighted rounded page positions give 10.73017. This is a plausibility check, not recovery of unrounded ranks."
+      },
+      {
+        "id": "gsc_english_subset",
+        "pass": true,
+        "evidence": "English exact URL is included in the page total; not another additive cohort."
+      },
+      {
+        "id": "gsc_visible_queries",
+        "pass": true,
+        "evidence": "Residual 1 click/102 impressions is unassigned. Do not invent queries or attribute all missing rows to one omission mechanism."
+      },
+      {
+        "id": "assessment_metrics",
+        "pass": true,
+        "evidence": "Assessment matches saved provider figures without summing across instruments."
+      },
+      {
+        "id": "attribution_unknown_not_zero",
+        "pass": true,
+        "evidence": "Paid/noncancelled orders, retained sales, costs and profit are unavailable, not zero; no broad order totals used as proof."
+      },
+      {
+        "id": "attribution_source_pointer_resolves",
+        "pass": true,
+        "evidence": "Corrected repository-relative source pointer resolves. Its contents were not re-read; attribution-field absence remains the parent-qualified receipt."
+      },
+      {
+        "id": "zero_denominator_rates",
+        "pass": true,
+        "evidence": "No 0/0 Pin conversion rate manufactured."
+      },
+      {
+        "id": "p1_original_clock_unknown_actual_time",
+        "pass": true,
+        "evidence": "Conservative first full date follows public verification, not an invented exact publication time."
+      },
+      {
+        "id": "qa_no_arbitrary_subtraction",
+        "pass": true,
+        "evidence": "Eight dated QA groups have no event/session identifiers. No fabricated subtraction or buyer/QA-free certification."
+      },
+      {
+        "id": "p1_qa_window",
+        "pass": true,
+        "evidence": "September13 QA overlaps article week, precedes P1 week and cannot be blindly subtracted from either."
+      },
+      {
+        "id": "cohort_nonadditivity",
+        "pass": true,
+        "evidence": "P1 is an article source segment conceptually; exact-UTM sessions and landing-page sessions have different scope/windows, so no literal intersection or additivity is established."
+      },
+      {
+        "id": "native_source_hash_and_copy",
+        "pass": true,
+        "evidence": "New native owner source is hash-bound; acceptance copies exact cohort and queue evidence."
+      },
+      {
+        "id": "sunshine_week1_native_cohort",
+        "pass": true,
+        "evidence": "Exact public Pin and Organic date filters match owner report; same date labels use UTC, not New York."
+      },
+      {
+        "id": "sunshine_week1_native_lag_limits",
+        "pass": true,
+        "evidence": "Native exact cutoff and complete ingestion are unknown; assessment preserves lag and zone limits."
+      },
+      {
+        "id": "p1_week1_native_cohort",
+        "pass": true,
+        "evidence": "Exact public Pin and Organic date filters match owner report; same date labels use UTC, not New York."
+      },
+      {
+        "id": "p1_week1_native_lag_limits",
+        "pass": true,
+        "evidence": "Native exact cutoff and complete ingestion are unknown; assessment preserves lag and zone limits."
+      },
+      {
+        "id": "native_global_limits",
+        "pass": true,
+        "evidence": "Owner report is read-only; no invented actor exclusion or newly generated historical traffic."
+      },
+      {
+        "id": "p2_p4_public_identity_reconciliation",
+        "pass": true,
+        "evidence": "Later current-public receipts supersede historical pending status, without claiming September15/17/20 actual publication times."
+      },
+      {
+        "id": "p2_p4_destination_utm_bindings",
+        "pass": true,
+        "evidence": "Native displayed destinations and all four UTMs match prior scheduled mappings; no storefront arrival or caption/product certification claimed."
+      },
+      {
+        "id": "remaining_queue",
+        "pass": true,
+        "evidence": "P5/P6/N2 remain scheduled in saved native readback. Native schedule timezone is not exposed; dates are not publication evidence."
+      },
+      {
+        "id": "no_lift_or_profit_claim",
+        "pass": true,
+        "evidence": "No matched orders, baseline/control or known costs supports a sales, traffic or profit lift claim."
+      },
+      {
+        "id": "hold_decision",
+        "pass": true,
+        "evidence": "Tiny observed exposure supports a provisional hold, not a diagnosis of creative or conversion failure or promised success."
+      },
+      {
+        "id": "fixed_future_due_dates",
+        "pass": true,
+        "evidence": "Original14/30completed-date clocks remain anchored; new P2-P4 follow-up is not backdated publication maturity."
+      },
+      {
+        "id": "critical_readback_qualifications",
+        "pass": true,
+        "evidence": "Human-facing readback preserves key attribution, QA, source-zone, lag and order-join limits."
+      },
+      {
+        "id": "fresh_observation_not_global_authority",
+        "pass": true,
+        "evidence": "Assessment separates fresh organic observation and narrow user mandate from canonical global action readiness. Canonical source itself not re-audited in this data review."
+      },
+      {
+        "id": "root_support_receipts",
+        "pass": true,
+        "evidence": "Root continuity/cleanup receipts consumed as corroboration; reviewer did not replay browser, run continuity or verify automation state."
+      },
+      {
+        "id": "input_stability",
+        "pass": true,
+        "evidence": "All13input SHA256 values stable through final review."
+      }
+    ]
+  },
+  "findings": [],
+  "recomputed": {
+    "shopify": {
+      "article_week1": {
+        "sessions": 2,
+        "sessions_with_cart_additions": 0,
+        "sessions_that_reached_checkout": 0,
+        "sessions_that_completed_checkout": 0
+      },
+      "sunshine_week1": {
+        "sessions": 0,
+        "sessions_with_cart_additions": 0,
+        "sessions_that_reached_checkout": 0,
+        "sessions_that_completed_checkout": 0
+      },
+      "p1_week1": {
+        "sessions": 0,
+        "sessions_with_cart_additions": 0,
+        "sessions_that_reached_checkout": 0,
+        "sessions_that_completed_checkout": 0
+      }
+    },
+    "ga4_article": {
+      "sessions": 6,
+      "google_organic_sessions": 2,
+      "unqualified_direct_sessions": 4,
+      "purchase_key_events": 0,
+      "view_item_key_events": 0,
+      "reported_total_revenue_usd": 0
+    },
+    "gsc": {
+      "page_rows": 12,
+      "clicks": 2,
+      "impressions": 116,
+      "ctr_percent": 1.7241379310344827,
+      "visible_query_rows": 9,
+      "visible_query_clicks": 1,
+      "visible_query_impressions": 14,
+      "unassigned_query_residual_clicks": 1,
+      "unassigned_query_residual_impressions": 102,
+      "english_url_is_subset": true,
+      "rounded_page_position_weighted_diagnostic": 10.730172413793102
+    },
+    "new_york_windows": [
+      {
+        "cohort": "article_week1",
+        "start_inclusive_utc": "2026-09-10T04:00:00+00:00",
+        "end_exclusive_utc": "2026-09-17T04:00:00+00:00",
+        "hours": 168,
+        "original_due": "2026-09-17"
+      },
+      {
+        "cohort": "sunshine_week1",
+        "start_inclusive_utc": "2026-09-11T04:00:00+00:00",
+        "end_exclusive_utc": "2026-09-18T04:00:00+00:00",
+        "hours": 168,
+        "original_due": "2026-09-18"
+      },
+      {
+        "cohort": "p1_week1",
+        "start_inclusive_utc": "2026-09-14T04:00:00+00:00",
+        "end_exclusive_utc": "2026-09-21T04:00:00+00:00",
+        "hours": 168,
+        "original_due": "2026-09-21"
+      }
+    ],
+    "gsc_pacific_window": {
+      "start_inclusive_utc": "2026-09-10T07:00:00+00:00",
+      "end_exclusive_utc": "2026-09-17T07:00:00+00:00",
+      "shift_hours_from_NY": 3,
+      "overlap_hours_with_NY": 165
+    },
+    "native_utc_window_relation": {
+      "shift_hours_from_NY": -4,
+      "overlap_hours_with_corresponding_NY_window": 164,
+      "sunshine_start_inclusive_utc": "2026-09-11T00:00:00+00:00",
+      "sunshine_end_exclusive_utc": "2026-09-18T00:00:00+00:00",
+      "p1_start_inclusive_utc": "2026-09-14T00:00:00+00:00",
+      "p1_end_exclusive_utc": "2026-09-21T00:00:00+00:00"
+    },
+    "p1_ga4_hours_after_latest_NY_day_closed": 16.740286944444446,
+    "native_organic": {
+      "Sunshine": {
+        "impressions": 2,
+        "outbound_clicks": 0
+      },
+      "P1": {
+        "impressions": 1,
+        "outbound_clicks": 0
+      }
+    },
+    "article_p1_calendar_overlap_days": 3,
+    "sunshine_p1_calendar_overlap_days": 4
+  },
+  "limitations": [
+    "Saved provider responses and root/owner native-report transcriptions only. No independent live replay, raw event/session/order records or report export; exact shop-identity capture time is null.",
+    "P1 September20 GA4 was read about16.74hours after New York close and may revise. Native reports say updated1dayago with unknown exact cutoff and uncertified complete ingestion.",
+    "GSC Pacific windows begin/end3hours later than NY; native Pinterest UTC windows begin/end4hours earlier. Same date labels cannot be joined into exact click/session funnels.",
+    "Shopify2 and GA4 6 are different instruments, not8sessions. Two Google-organic sessions align in locale/count only with Shopify/GSC. Four direct sessions remain unqualified and none is certified QA-free.",
+    "Eight QA groups are a non-exhaustive history without analytics identities. Requests, HEAD calls, page checks and clicks are not sessions; no invented subtraction.",
+    "GA4 selected key events do not reconstruct full journeys. Tracked revenue zero and completed-checkout session zero do not establish zero paid/noncancelled orders or zero retained sales.",
+    "Exact-UTM Shopify zeros apply to tagged cohorts; broad GA4 Pinterest zeros/no rows and native zero outbound clicks do not prove absence of untagged activity, consent loss, delayed ingestion or purchases.",
+    "Visible GSC query rows omit1click/102impressions relative to page totals. Their missing queries and exact omission mechanism cannot be inferred; displayed averages cannot recover raw distributions.",
+    "P1 article source and all-source article landing cohorts differ in window and filtering. No addition, subtraction or literal aggregate subset proof is warranted.",
+    "Paid/noncancelled order joins, retained revenue, actual costs and profit remain null. No baseline/control or causal traffic/sales lift established.",
+    "Native public P2-P4 identities are now supported by the owner receipt, but actual publication timestamps are unknown. P5/P6/N2 dates and hidden native schedule timezone remain scheduling evidence only.",
+    "Native description provenance/product accuracy and public board membership were not certified; displayed destination mappings are not storefront-arrival proof. Final root acceptance records a separate native saved-source review PASS_WITH_LIMITS with source/check hashes; this reviewer did not repeat that separate review or replay native UI.",
+    "Automation current state/future execution, browser cleanup and root continuity are outside this data review; saved receipts are qualified corroboration only."
+  ],
+  "decision_review": {
+    "accepted_provisionally": true,
+    "decision": "Keep existing article, published Pins and URLs steady; preserve original due clocks and existing paced queue. Tiny observed discovery cannot diagnose conversion quality or justify an artificial new article, duplicate Pin or scale-up. Use later comparable source-specific metrics and matched orders to change this conclusion.",
+    "external_action_authorized_by_this_review": false
+  },
+  "next_action": "Root integrates this frozen saved-evidence review and the native owner receipt; preserve independent UTC/PT/NY windows, lag/QA limitations and unknown commercial outcomes. Current native source supersedes historical pending-publication portions of the receipt-only review without changing historical evidence.",
+  "supporting_review_recorded_by_root": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/RECEIPT_REVIEW_20260921.md",
+    "sha256": "38e6010c5482f1c7a5db924be69de3e43fd057f3fe8207dd2b4bc70f6f214dea",
+    "verdict": "PASS_WITH_LIMITS",
+    "checks_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/PUBLICATION_AND_COHORT_CHECKS_20260921.json",
+    "checks_sha256": "3d6ac0c7763c6f520ba54e518173baa8f56d20e3857f6a8edf4d210569e27066",
+    "no_native_replay": true,
+    "direct_source_reinspection_by_this_reviewer": false
+  }
+}

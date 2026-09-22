@@ -1,0 +1,8 @@
+query DLMOrganicOrderRoute($productId: ID!, $redirectQuery: String!) {
+  shop { id myshopifyDomain }
+  product(id: $productId) { id handle status onlineStoreUrl }
+  urlRedirects(first: 10, query: $redirectQuery) {
+    nodes { id path target }
+    pageInfo { hasNextPage endCursor }
+  }
+}

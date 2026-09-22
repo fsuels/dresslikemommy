@@ -1,0 +1,346 @@
+{
+  "schema": "dlm.parent.microsoft_receiver_day_saved_source_review.v1",
+  "recorded_at_utc": "2026-09-22T08:57:28.768965+00:00",
+  "action_id": "TA15-RECEIVER-AND-DAY-20260922",
+  "reviewer": "/root/cockpit_current_metrics_source",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "status": "PASS_WITH_LIMITS",
+  "verdict": "PASS_WITH_LIMITS",
+  "handoff_binding": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/receiver-and-day-20260922/handoff.json",
+    "sha256": "40605d9d99947b4a3fd989e4f0a124c2e1c488d7a33dc74b8abc0f29ea78ac59"
+  },
+  "source_sha256": {
+    "source.json": "a222ee209c195b5f3bb2844a7940dce4706ecc03e2264eb6cb024922414a463c",
+    "readback.json": "a23a99a0e6786fe0467b6d0236d5ff747791c6c799ba2d3176ab1186c13975ca",
+    "root-verification.json": "ff1f014eae8eb914512dbbab20cc2753f9c7b8e1b2eb3e7570b05bf9e1d2ee83",
+    "READBACK.md": "4fb1065fd56332b120511ac984ed710409d196c407bb68fbb9235d0bc387b128",
+    "support-addendum.md": "5f37d0ab4252fea85a522ff87ac5a8d4fcc6e93b934bd36c2fd753d5d1e7cdea",
+    "independent-review.json": "4235d1a4662de40a5eddd14a4db4b94479e1214becf174a700b17d82298e2acd"
+  },
+  "prior_configuration_binding": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/support-followup-20260921/account-drift-readback.json",
+    "sha256": "50827af4fb1e237fda0eeaf9c7e78d0f535a5fa0a388e48610b7d41766ef1899",
+    "scope": "Dated tuples and superseded partial snapshot only"
+  },
+  "preserved_shopify_receipt_hashes": {
+    "order_fulfillment_review_20260922_0833.json": "e283604c59df87be2b54c1488007e3a4b93db3e589347e872af5e7128c8163b5",
+    "new_order_attribution_review_20260922_0838.json": "559d12f96c04935507b5a6a6b8ff7fb4d4367775029fb133e62cbae60a0c4c03",
+    "new_order_attribution_20260922_0838.json": "1bca47c8611079c0249307cd9f68616c2ca35075033d898dd521729856c8612c"
+  },
+  "consumed_reviews": {
+    "builder_self_checks": 27,
+    "independent_machine_checks": 43,
+    "independent_manual_assessments": 8,
+    "native_replay": "NOT RUN",
+    "counts_not_added_to_parent_checks": true
+  },
+  "checks_passed": 50,
+  "checks_total": 50,
+  "checks": [
+    {
+      "check": "handoff_exact_hash",
+      "status": "PASS",
+      "detail": "40605d9d99947b4a3fd989e4f0a124c2e1c488d7a33dc74b8abc0f29ea78ac59"
+    },
+    {
+      "check": "six_exact_source_bindings",
+      "status": "PASS",
+      "detail": "All six final handoff bindings independently match."
+    },
+    {
+      "check": "action_owner_identity",
+      "status": "PASS",
+      "detail": "Exact action, owner and parent IDs agree."
+    },
+    {
+      "check": "account_customer_uet",
+      "status": "PASS",
+      "detail": "Account477439/customer770182/UET36005151; native URL query identity corroborates source."
+    },
+    {
+      "check": "readback_and_builder_hashes",
+      "status": "PASS",
+      "detail": "Builder27/27 consumed as self-check evidence, not added to this independent count."
+    },
+    {
+      "check": "independent_review_bindings",
+      "status": "PASS",
+      "detail": "Existing43-machine/8-manual review consumed; sources match final review."
+    },
+    {
+      "check": "independent_review_limits",
+      "status": "PASS",
+      "detail": "Existing reviewer did not replay native UI; same limitation preserved here."
+    },
+    {
+      "check": "report_grid_shape",
+      "status": "PASS",
+      "detail": "Selected first17 of34 DOM cells for14 rows, not a complete native export."
+    },
+    {
+      "check": "report_completed_day_currency",
+      "status": "PASS",
+      "detail": "September21 completed Eastern reporting day; account timezone label is not a forced fixed UTC offset."
+    },
+    {
+      "check": "campaign_spend_usd",
+      "status": "PASS",
+      "detail": "Nine campaign cells reconcile to account spend_usd."
+    },
+    {
+      "check": "network_spend_usd",
+      "status": "PASS",
+      "detail": "Search + Audience independently reconcile spend_usd."
+    },
+    {
+      "check": "campaign_clicks",
+      "status": "PASS",
+      "detail": "Nine campaign cells reconcile to account clicks."
+    },
+    {
+      "check": "network_clicks",
+      "status": "PASS",
+      "detail": "Search + Audience independently reconcile clicks."
+    },
+    {
+      "check": "campaign_impressions",
+      "status": "PASS",
+      "detail": "Nine campaign cells reconcile to account impressions."
+    },
+    {
+      "check": "network_impressions",
+      "status": "PASS",
+      "detail": "Search + Audience independently reconcile impressions."
+    },
+    {
+      "check": "search_summary",
+      "status": "PASS",
+      "detail": "Search source and normalized spend/click/impression values agree."
+    },
+    {
+      "check": "audience_summary",
+      "status": "PASS",
+      "detail": "Audience source and normalized spend/click/impression values agree."
+    },
+    {
+      "check": "zero_reported_conversion_revenue",
+      "status": "PASS",
+      "detail": "Native reported revenue/conversion cells are zero; real purchase absence is not established."
+    },
+    {
+      "check": "zero_other_aggregate_rows",
+      "status": "PASS",
+      "detail": "Displayed other aggregate rows contribute zero; avoid double-counting totals."
+    },
+    {
+      "check": "average_cpc_arithmetic",
+      "status": "PASS",
+      "detail": "Average reported CPC is spend/click arithmetic, not current bid cap."
+    },
+    {
+      "check": "audience_share_arithmetic",
+      "status": "PASS",
+      "detail": "Audience share59.5918% of September21 spend."
+    },
+    {
+      "check": "prior_receipt_binding",
+      "status": "PASS",
+      "detail": "Prior used only for dated configuration tuples and partial-snapshot identity."
+    },
+    {
+      "check": "partial_supersession_only",
+      "status": "PASS",
+      "detail": "Only September21 partialUSD4.34/28 is superseded; September15-20 is neither refreshed nor summed."
+    },
+    {
+      "check": "nine_current_prior_tuples",
+      "status": "PASS",
+      "detail": "Exact ID/status/budget tuples agree; equality does not identify an actor or historical hourly status."
+    },
+    {
+      "check": "six_enabled_three_paused",
+      "status": "PASS",
+      "detail": "Six Enabled and three Paused visible campaigns at source read time."
+    },
+    {
+      "check": "configured_budgets",
+      "status": "PASS",
+      "detail": "USD120/day enabled and USD163/day including paused allocations; not spend, hard caps or authority."
+    },
+    {
+      "check": "no_current_cpc_cap_read",
+      "status": "PASS",
+      "detail": "Historical US/CA0.20 and EUR0.10 cap observations retain their source dates; owner0.15 ceiling is not a repaired/current cap."
+    },
+    {
+      "check": "receiver_today_parsed_counts",
+      "status": "PASS",
+      "detail": "Selected TSV rows equal normalized event counts."
+    },
+    {
+      "check": "receiver_today_chart_sum",
+      "status": "PASS",
+      "detail": "Table/chart total165 events; not distinct orders."
+    },
+    {
+      "check": "receiver_yesterday_parsed_counts",
+      "status": "PASS",
+      "detail": "Selected TSV rows equal normalized event counts."
+    },
+    {
+      "check": "receiver_yesterday_chart_sum",
+      "status": "PASS",
+      "detail": "Table/chart total776 events; not distinct orders."
+    },
+    {
+      "check": "receiver_dates_separate",
+      "status": "PASS",
+      "detail": "PartialSeptember22 receiver is distinct from completedSeptember21 report."
+    },
+    {
+      "check": "one_custom_purchase_names_only",
+      "status": "PASS",
+      "detail": "One received Custom purchase exposes four parameter names only, no values/identity/items/deduplication."
+    },
+    {
+      "check": "yesterday_purchase_absence_bounded",
+      "status": "PASS",
+      "detail": "Absence applies only to rendered September21 event table, not a no-order assertion."
+    },
+    {
+      "check": "regional_page_signal25",
+      "status": "PASS",
+      "detail": "25% is rolling regional signal presence, not granted-consent rate or selected-day population."
+    },
+    {
+      "check": "regional_event_signal0",
+      "status": "PASS",
+      "detail": "Three checked event types have0% signal presence in the same regional diagnostic."
+    },
+    {
+      "check": "unknown_population_denominators",
+      "status": "PASS",
+      "detail": "No denominators available; selected-day event totals cannot supply them."
+    },
+    {
+      "check": "purchase_healthy_no_regional_sample",
+      "status": "PASS",
+      "detail": "Healthy does not certify regional purchase consent; no relevant sample is reported."
+    },
+    {
+      "check": "goal_action_tag_variable_value",
+      "status": "PASS",
+      "detail": "Correct saved event/tag, variable revenue and USD0 fallback are configuration, not exact-value receipt."
+    },
+    {
+      "check": "goal_count_windows_model",
+      "status": "PASS",
+      "detail": "All;30-dayclick;1-dayview;Lastclick;optimizationYes agree."
+    },
+    {
+      "check": "goal_cancel_preservation_declared",
+      "status": "PASS",
+      "detail": "Runtime before/after equality and Cancel are owner-observed; only before text/equality assertion retained, not independently replayable after text."
+    },
+    {
+      "check": "goal_status_dash_and_lag",
+      "status": "PASS",
+      "detail": "Goal dash is unavailable, unlike numeric report zeros; recent UET conversion lag remains possible."
+    },
+    {
+      "check": "measurement_fields_unknown",
+      "status": "PASS",
+      "detail": "No verified transaction/value/items/sender/dedup/attribution/repair/trueCPA/profit."
+    },
+    {
+      "check": "authority_and_questions_preserved",
+      "status": "PASS",
+      "detail": "Read-only scope; existing exact six-campaign pause and numeric budget/loss questions remain pending, not approvals."
+    },
+    {
+      "check": "support_local_unsent",
+      "status": "PASS",
+      "detail": "Same-case local draft only; no message, reply, engineering escalation or repair verified."
+    },
+    {
+      "check": "support_timestamp_correction_final",
+      "status": "PASS",
+      "detail": "Final broadened window includes saved08:27:56 NeedAttention header; no remaining correction."
+    },
+    {
+      "check": "zero_declared_business_shared_writes",
+      "status": "PASS",
+      "detail": "Source reports no business/shared writes; review performs no live action."
+    },
+    {
+      "check": "accepted_shopify_receipts_frozen",
+      "status": "PASS",
+      "detail": "Prior sales/attribution source and reviews preserved byte-for-byte."
+    },
+    {
+      "check": "no_shopify_receiver_date_join",
+      "status": "PASS",
+      "detail": "ShopifyGoogleSEOUSD68.20 and UETpurchase cannot be matched by date; UET collects across traffic sources and exposes no exact joining keys here."
+    },
+    {
+      "check": "capture_and_receipt_clock",
+      "status": "PASS",
+      "detail": "Source observation, cleanup, receipt creation and freeze clocks remain distinct; parent edit times are not native results."
+    }
+  ],
+  "source_live_evidence_as_of": "2026-09-22T08:28:51.706Z",
+  "recomputed": {
+    "completed_day": "2026-09-21",
+    "timezone_label": "Eastern Time (U.S. & Canada)",
+    "currency": "USD",
+    "account": {
+      "spend": "7.35",
+      "clicks": 47,
+      "impressions": 3266,
+      "reported_conversions": 0,
+      "reported_revenue": "0.00"
+    },
+    "Search": {
+      "spend": "2.97",
+      "clicks": 20,
+      "impressions": 617
+    },
+    "Audience": {
+      "spend": "4.38",
+      "clicks": 27,
+      "impressions": 2649
+    },
+    "audience_spend_share_percent": "59.5918",
+    "observed_average_cpc": "0.156383",
+    "configured_enabled_budget_sum": "120.00",
+    "configured_all_nine_budget_sum": "163.00",
+    "partial_sep22_events": 165,
+    "partial_sep22_purchase_events": 1,
+    "sep21_receiver_events": 776,
+    "sep21_purchase_row": "NOT_PRESENT_IN_RENDERED_TABLE"
+  },
+  "material_issues": [],
+  "resolved_source_issue": "Existing independent review corrected addendum observation window to08:25-08:28UTC; final bound version includes the08:27:56NeedAttention header. No outstanding arithmetic/source correction.",
+  "limits": [
+    "Selected owner-observed DOM/tooltips only: first17 of34 grid cells, normalized rows and accessible-link/status bindings. No native/browser/network/API replay or independent screenshot audit.",
+    "September21 is a completed Eastern reporting date, not final attribution. It replaces only that date partialUSD4.34/28 snapshot. No sum with September15-20 or September22 partial receiver is justified.",
+    "One partial-day Custom purchase and parameter names do not establish a distinct order, exact value/currency/items, sender, consent, deduplication, Microsoft attribution, repaired tracking or profit. Relative last-received timestamps are not exact selected-day event times.",
+    "Regional25%pageview/0%shopping-event diagnostics cover rolling7day EEA/UK/Switzerland signal presence with unknown denominators, not granted consent or isolated app-sandbox causality. Healthy purchase has no regional sample.",
+    "Goal Cancel and runtime before/after equality are root-observed. The saved before table and assertion cannot independently prove after equality; variable-value/USD0fallback configuration is not receiver value proof. Unavailable goal dash is not numeric zero.",
+    "Current status/budget tuples agree with prior dated tuples; configuredUSD120/163 are not spend, hard caps or authority. No fresh CPC cap setting was read.",
+    "Support addendum is local and unsent on existing case7108824779. Exact pause/budget questions stay pending; no repair, reply, escalation or new account authority is conferred.",
+    "The independently reviewed ShopifyGoogleSEOUSD68.20 order has no transaction join to this UETreceiver. Same date and one event/order count cannot substitute for exact cross-platform identity evidence."
+  ],
+  "safe_parent_wording": "Accepted September 21 completed Eastern report: USD7.35 spend, 47 clicks, 3,266 impressions and zero reported conversions/revenue; Search USD2.97/20/617 plus Audience USD4.38/27/2,649. It supersedes only the September 21 partial snapshot. September 22 partial UET reports one purchase with parameter names only, not a verified attributed order or tracking repair. Regional consent diagnostics and goal configuration retain their stated limits. The Shopify-reported Google organic USD68.20 order cannot be joined by date to that event. Support addendum remains LOCAL_NOT_SENT and exact pause/budget questions remain pending.",
+  "required_corrections": [],
+  "confidence": "H for frozen bindings and saved arithmetic; M for measurement diagnosis because exact transactions, consent sessions, sender and attribution remain unjoined.",
+  "independent_native_replay": "NOT RUN",
+  "writes": {
+    "owned_review_only": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_receiver_day_parent_source_review_20260922.json",
+    "prior_sales_and_attribution_reviews": 0,
+    "shared_canonical": 0,
+    "git": 0,
+    "external": 0
+  }
+}

@@ -1,0 +1,279 @@
+{
+  "schema": "dlm.x_morning_parent_source_review.v1",
+  "recorded_at_utc": "2026-09-22T13:30:05.449581+00:00",
+  "reviewer": "/root/recovery_source_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "scope": "TA-24 September22 morning saved-source and late-checkpoint acceptance",
+  "verdict": "PASS_WITH_LIMITS",
+  "checks_passed": 18,
+  "checks_total": 18,
+  "failed_checks": [],
+  "source": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-22-morning.json",
+    "sha256": "9166100fbecfe6d332285244d01c22f232402ee032b847438cce130cc6010126"
+  },
+  "independent_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-22-morning-review.json",
+    "sha256": "b67674a306d88248e18af458fd9873a14d435b653a2ebbdd1b0e34684885a7d5",
+    "checks": 12
+  },
+  "source_bindings_sha256": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-22-morning.json": "9166100fbecfe6d332285244d01c22f232402ee032b847438cce130cc6010126",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-22-morning-review.json": "b67674a306d88248e18af458fd9873a14d435b653a2ebbdd1b0e34684885a7d5",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/EXECUTION_STATUS.json": "3b7e2823e41cd60793379b790cf7111b5497fbcc9735993bdb944d7260b2b9b1",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/POST_QUEUE.json": "c3d9d7ca9519994a1ef5a636793b571e01568b8dc7d518d364b5998cb61bb983",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/LIVE_EXECUTION_20260911.json": "60cc747f7ebc49fcdfc5e0bb499911d742874609c4a39edd69fa5ebad0514200",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-15-morning.json": "079d0c47acd62e01b6dd24ba2579df002c2e9b22af89a81aa8cfe048f613b5ce"
+  },
+  "checks": [
+    {
+      "id": "exact_source_and_final_review_binding",
+      "status": "PASS",
+      "evidence": {
+        "source_sha256": "9166100fbecfe6d332285244d01c22f232402ee032b847438cce130cc6010126",
+        "review_sha256": "b67674a306d88248e18af458fd9873a14d435b653a2ebbdd1b0e34684885a7d5"
+      }
+    },
+    {
+      "id": "historical_queue_launch_prior_receipt_bindings",
+      "status": "PASS",
+      "evidence": {
+        "supporting_files": 3,
+        "mismatches": [],
+        "scope": "Hash bindings plus exact schedule/launch fields; no historical source audit."
+      }
+    },
+    {
+      "id": "independent_review_twelve_checks_and_limits_retained",
+      "status": "PASS",
+      "evidence": {
+        "checks": "12/12 consumed; not added to new native coverage",
+        "independence": "Saved retained-record review only",
+        "resolved_scope_finding": {
+          "initial_source_sha256": "6d7a6531fd936abfa83e18633ad347fafae67f568bddd1fd2d919bc36321fe28",
+          "issue": "September12-19 inclusive is eight completed days, whereas the original seven-full-day cohort is September12-18 with review scheduled September19.",
+          "resolution": "Root explicitly labeled the eight-day query and September20 04:00UTC order checkpoint cutoff as a broader retrospective, not an exact reconstruction of the original cohort or historical knowledge. No additional live query was required for the hold decision.",
+          "status": "VERIFIED_IN_FINAL_SOURCE"
+        },
+        "limitations_consumed": [
+          "This verifies retained-record consistency, not independent raw attribution reconstruction. Original IDs/URLs/timestamps were discarded before handoff; distinctness, exact row membership and original classification cannot be independently rederived.",
+          "Live schema validation, accepted Shopify responses, completeness flags and raw-data disposal are root-supplied. No new live request or private record inspection occurred.",
+          "First/last visits may repeat moment records. Ready journeys and exhausted pagination do not prove that all acquisition touchpoints were captured; an empty journey and Direct classification do not exclude unrecorded X influence.",
+          "URL strings in parser_checks are synthetic fixtures, not retained customer visit URLs. Fixture agreement does not certify the entire production reducer or untested parser cases.",
+          "The September12-19 report is an eight-day retrospective. The order checkpoint subset uses current September22 eligibility and a September20 04:00UTC creation cutoff; historical September19 payment/cancellation state remains unverified.",
+          "Source verification PENDING fields reflect its freeze. Current root completion belongs in mutable EXECUTION_STATUS.json; this review does not replace or edit that record.",
+          "No current X rendering, native queue, published post, buyer outcome, positive contribution, full effort accounting or future runtime availability is independently established."
+        ]
+      }
+    },
+    {
+      "id": "x_shop_and_timezone_identity",
+      "status": "PASS",
+      "evidence": {
+        "X": "@dresslikemommy",
+        "Shopify": "dresslikemommy-com.myshopify.com",
+        "currency": "USD",
+        "reported_timezone": "EDT; September calendar boundaries interpreted in America/New_York",
+        "scope": "TA-24 only, no imported all-channel outcomes."
+      }
+    },
+    {
+      "id": "campaign_raw_results_zero_rows_with_exact_filters",
+      "status": "PASS",
+      "evidence": {
+        "campaign_rows": [
+          0,
+          0
+        ],
+        "root_acceptance_predicates": 14,
+        "claim": "No matching returned report rows, not verified zero X traffic or orders."
+      }
+    },
+    {
+      "id": "seven_day_gap_eight_day_retrospective_not_added",
+      "status": "PASS",
+      "evidence": {
+        "gap": "September15–21: 7 days",
+        "retrospective": "September12–19: 8 days",
+        "original_first_week": "September12–18; review planned September19",
+        "overlap_days": 5,
+        "not_added": true,
+        "historic_as_of_claim": false
+      }
+    },
+    {
+      "id": "referrer_rows_recompute_1991_no_named_x",
+      "status": "PASS",
+      "evidence": {
+        "rows": 28,
+        "row_limit": 100,
+        "store_sessions": 1991,
+        "named_X_Twitter_tco_rows": 0,
+        "qualification": "These are store sessions; referrer names are report labels, not an exhaustive acquisition reconstruction."
+      }
+    },
+    {
+      "id": "exact_launch_through_sep21_order_creation_window",
+      "status": "PASS",
+      "evidence": {
+        "creation_start_inclusive": "2026-09-11T18:41:00Z",
+        "creation_end_exclusive": "2026-09-22T04:00:00Z",
+        "NewYork_end": "2026-09-22 midnight",
+        "status_observed": "September22; not historical September19 payment/cancellation truth",
+        "separate_checkpoint_cutoff": "September20 04:00UTC, includes September19."
+      }
+    },
+    {
+      "id": "four_retained_eligible_rows_with_raw_identity_limit",
+      "status": "PASS",
+      "evidence": {
+        "retained_rows": 4,
+        "eligible_rows": 4,
+        "eligibility": "PAID, non-test, noncancelled, web",
+        "distinctness_membership_pagination": "Owner-validated flags only. Raw IDs/timestamps were discarded; independently rederiving these raw properties is NOT_RUN and not claimed."
+      }
+    },
+    {
+      "id": "three_direct_one_empty_ready_no_observed_x_marker",
+      "status": "PASS",
+      "evidence": {
+        "direct_ready_journeys": 3,
+        "empty_ready_journeys": 1,
+        "moment_counts": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "supported_X_orders_in_retained_evidence": 0,
+        "limit": "First/last can repeat moments; no visit summing. Ready/exhausted records do not establish every touchpoint or absence of X influence."
+      }
+    },
+    {
+      "id": "parser_recovery_and_synthetic_check_provenance",
+      "status": "PASS",
+      "evidence": {
+        "retained_fixtures": 7,
+        "coverage": "Consumed synthetic fixture outcomes, not actual customer URL evidence or production-parser reconstruction.",
+        "recovery": "Initial unavailable-URL-constructor reduction discarded; accepted reread only."
+      }
+    },
+    {
+      "id": "unknown_buyer_cost_profit_and_qa_limits",
+      "status": "PASS",
+      "evidence": {
+        "unknown_fields": [
+          "qualified_sessions",
+          "product_progression",
+          "genuine_questions",
+          "actual_x_orders",
+          "contribution",
+          "costs"
+        ],
+        "QA": "No buyer-facing QA request claimed for this run; no QA-free or complete-human-acquisition proof. Earlier launch QA is outside current gap report; no arbitrary analytics subtraction established.",
+        "non_X_orders_not_credited": true,
+        "costs_unqueried_not_zero": true
+      }
+    },
+    {
+      "id": "seven_historical_submissions_calendar_not_publication",
+      "status": "PASS",
+      "evidence": {
+        "historical_submissions": 7,
+        "elapsed_ids": [
+          "DLM-X-202609-R002",
+          "DLM-X-202609-R003",
+          "DLM-X-202609-R004",
+          "DLM-X-202609-R005",
+          "DLM-X-202609-R006"
+        ],
+        "elapsed_publication": "UNVERIFIED",
+        "current_native_pending_count": null,
+        "new_platform_receipts": 0,
+        "no_resubmit": true
+      }
+    },
+    {
+      "id": "r007_today_r008_tomorrow_at_morning_asof",
+      "status": "PASS",
+      "evidence": {
+        "as_of_utc": "2026-09-22T13:11:10.044Z",
+        "planned_local": {
+          "DLM-X-202609-R007": "2026-09-22T12:15:00-04:00",
+          "DLM-X-202609-R008": "2026-09-23T12:15:00-04:00"
+        },
+        "qualification": "Future/not-yet-due only at saved morning readback; no later-day live publication claim."
+      }
+    },
+    {
+      "id": "buffer_pending_once_no_new_authority_or_writes",
+      "status": "PASS",
+      "evidence": {
+        "candidate": "Buffer Free",
+        "connection": "Not connected in saved receipts",
+        "existing_question": "Pending; not repeated",
+        "source_mutations": {
+          "x_writes": 0,
+          "shopify_writes": 0,
+          "new_content_drafts": 0,
+          "automation_changes": 0,
+          "goal_changes": 0,
+          "shared_canonical_writes": 0,
+          "ads_or_new_charges_usd": 0
+        },
+        "permission": "No new setup, publication, business or shared-write authority inferred."
+      }
+    },
+    {
+      "id": "late_checkpoint_honest_no_backfill_next_sep26",
+      "status": "PASS",
+      "evidence": {
+        "planned_checkpoint": "September19",
+        "actually_performed": "September22",
+        "next_checkpoint": "September26",
+        "next_existing_check_local": "2026-09-22T16:00:00-04:00",
+        "unverified_intervening_or_future_execution_not_inferred": true
+      }
+    },
+    {
+      "id": "baseline_preserved_and_final_status_qualifies_frozen_pending_fields",
+      "status": "PASS",
+      "evidence": {
+        "source_pending_fields": "Historical source-freeze state; final independent review and saved EXECUTION_STATUS latest_operation show completed late checkpoint. No source rewrite required.",
+        "overall_outcome": "PARTIAL; connection and supported buyer/profit evidence still blocked.",
+        "no_extra_draft_or_extension": true,
+        "standard_checks": "Owner reports PASS; not rerun independently."
+      }
+    },
+    {
+      "id": "frozen_sources_stable_review_only_scope",
+      "status": "PASS",
+      "evidence": {
+        "stable_frozen_bindings": 5,
+        "mismatches": [],
+        "mutable_status_binding": "Exact read snapshot only; future owner updates are not frozen by this review.",
+        "written_only": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/x_morning_parent_source_review_20260922.json"
+      }
+    }
+  ],
+  "safe_parent_acceptance": "Accept the actual September22 read-only X operation and completed late September19 checkpoint with publication hold. Sep15–21 has no matching X campaign rows; the overlapping Sep12–19 report is8days, distinct from the original Sep12–18week. 28returnedreferrers total1991store sessions without namedX/Twitter/t.co; none is credited toX. Four owner-validated eligible retainedorder rows show3Directreadyjourneys and1emptyreadyjourney, no observedXsignal. Rawdistinctness/windowmembership cannot be rederived after privacy reduction; actualXorders, costs andprofit remainUNKNOWN. R002–R006 elapsed plans remain publicationUNVERIFIED; R007/R008future at morningasof; nativependingcountUNKNOWN. Keep existingBufferquestion and Sep26checkpoint; no replay, extraoutput or newauthority.",
+  "limits": [
+    "Read-only saved-source review; no browser/API/network/native account or raw-private-order replay. No current X publication, queue, connection, buyer outcome, cost or profitable lift independently established.",
+    "The two campaign reports overlap five dates and are not additive. Sep12–19 is eight days; original seven full days are Sep12–18. CurrentSep22eligibility is not historicalSep19payment/cancellation status.",
+    "Referrer arithmetic is independently recomputed from28savedrows. Distinct raworder IDs, exactcreationtimes, rawURL classifications and both pagination layers rely on owner-recorded validation because rawprivate material was discarded.",
+    "ThreeDirectplusoneemptyreadyjourney and zeroobservedXsignals are retained classifications, not proof X played no role. First/last may duplicate moments and are not independentvisits.",
+    "Sevenparserfixtures are synthetic and consumed with the existing12-checkreview; neither certifies the entire productionreducer. Failed initial reduction was discarded.",
+    "No buyer-facingQA request in thisrun; no exhaustive QA-free or human-session certification. Namedreferrer absence and exactUTMfilters can miss unattributed acquisition.",
+    "All publication/calendar statements apply to the saved13:11UTCmorningasof. Historical seven native submissions are not later publicationproof; R002–R006 remainunverified and live pendingcountunknown.",
+    "EXECUTION_STATUS is an exact read snapshot clarifying finalsourcecompletion, not modified or frozen against laterowner updates. Reported ownerstandardchecks were consumed, not rerun.",
+    "This review accepts the savedsourceassessment only. Parent owns sharedcanonicalintegration; overallbusinessgoal remainspartial/blocked, and existingBufferquestion remainspending without a newrequest."
+  ],
+  "required_corrections": [],
+  "writes": {
+    "owned_review": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/x_morning_parent_source_review_20260922.json",
+    "shared_canonical": 0,
+    "owner_checkpoint": 0,
+    "external": 0,
+    "new_dispatches": 0
+  }
+}

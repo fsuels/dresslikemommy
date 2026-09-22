@@ -1,0 +1,154 @@
+{
+  "actionId": "TA06-CURRENT-THEME-SOURCE-RECONCILIATION-20260921",
+  "completedAtUTC": "2026-09-21 23:05:11 UTC",
+  "status": "READY-FOR-OWNER-ADMIN-PUBLICATION",
+  "readinessScope": "Changed-evidence source reconciliation only; source preservation and bounded affected-route checks. This does not close publication, full remote theme sync, post-publication buyer acceptance or overall TA-06.",
+  "confidence": "H for observed source/role/preservation; no overall storefront perfection claim",
+  "authoritative_execution_context": {
+    "ownerTask": "01a088c3-c890-71a1-98ee-f19b6905af55",
+    "parentTask": "01a08223-036e-7fa3-8961-ecd297163fb5",
+    "mode": "READ_ONLY_EXTERNAL_AND_OWN_PACKET",
+    "runtimeGoal": null,
+    "userPublicationAuthority": "Existing explicit instruction to publish the better reviewed theme is retained.",
+    "executionBoundary": "Current Shopify mutation connector blocks agent theme publishing and MAIN file writes and directs owner action in Shopify Admin. No browser/CLI/API/connected-Git workaround."
+  },
+  "verified": {
+    "liveMainThemeId": "133290917985",
+    "unpublishedCandidateId": "137888792673",
+    "mainProcessing": false,
+    "candidateProcessing": false,
+    "processingFailed": false,
+    "mainFiles": 525,
+    "candidateFiles": 527,
+    "unchangedAcceptedFiles": 523,
+    "laterShopifyChanges": 4,
+    "candidateVsMain": {
+      "modified": 69,
+      "added": 2,
+      "removed": 0
+    },
+    "configAndTemplateFilesPreserved": 22
+  },
+  "source": {
+    "shopId": "gid://shopify/Shop/15571635",
+    "myshopifyDomain": "dresslikemommy-com.myshopify.com",
+    "inventoryReadbackUTC": "2026-09-21 22:42:55 UTC",
+    "changedBodiesReadbackUTC": "2026-09-21 22:45:36 UTC",
+    "oldAcceptedBindingSha256": "1320d12d8579e80361c94a580f97618af4818257a15f76ec4193de67285dc058",
+    "currentBindingFile": "CURRENT_527_SOURCE_BINDING.json",
+    "currentBindingArtifactSha256": "dee43aac58084d98eac680c11c64f10ebef509dec3ba53d45cf55148c2af5ef6",
+    "currentContentFingerprintSha256": "3087109b7ab743cd9c36fa7468270d0c0603138026f72f35176b00b5026cc2da",
+    "fourChanges": [
+      "sections/collection-list.liquid",
+      "sections/new-arrivals-mixed.liquid",
+      "snippets/breadcrumbs.liquid",
+      "snippets/product-variant-options.liquid"
+    ],
+    "fourChangesIdenticalIn": [
+      "current MAIN",
+      "current candidate",
+      "Shopify c865a775",
+      "remote 731de115",
+      "local 096224c"
+    ],
+    "currentMainMatchesRemoteCommitFiles": 525,
+    "sourceProofLimit": "Current MD5/size for all527 with independently rehashed accepted sources; fresh body readback only for four changed files and three unchanged callees on each theme."
+  },
+  "buyerEvidence": {
+    "current": "AFFECTED_BUYER_CHECKS.json",
+    "exactBranchQualification": "BREADCRUMB_BRANCH_SUPPLEMENT.json",
+    "result": "No new visible regression on actual sampled collection/PDP desktop and narrow routes; existing breadcrumb navigation and MAIN/candidate parity passed.",
+    "changedBranchesUnexercised": [
+      "unconfigured collection-list section",
+      "unconfigured new-arrivals-mixed section",
+      "radio-swatch branch inactive under default PDP settings and absent on sampled PDP",
+      "subcategory2 breadcrumb render branch absent on sampled PDP"
+    ],
+    "noClaim": [
+      "narrow homepage rerun",
+      "variant selection or cart/checkout test",
+      "CA/GB numeric-variant acceptance",
+      "new PageSpeed/Lighthouse/CrUX score",
+      "global locale or cookie-independent qualification",
+      "purchase/conversion uplift"
+    ],
+    "previousAcceptedEvidence": "REUSED_ACCEPTANCE.json",
+    "previousEvidenceDate": "2026-09-15",
+    "previousChecksNotRerun": {
+      "pairedCases": 16,
+      "renderAssertionsPassed": 208,
+      "interactionChecksPassed": 11
+    }
+  },
+  "independent_material_decision_verifier": {
+    "reviewer": "theme_delta_review",
+    "sourceReview": "review/INDEPENDENT_SOURCE_REVIEW.json",
+    "sourceReviewSha256": "b7dd1ef2dc5b68f86d522c5a3c6279134e9f465b2a0da13107d96637ec3fffc2",
+    "sourceChecksPassed": 69,
+    "finalReview": "review/FINAL_READINESS_REVIEW.json",
+    "finalReviewSha256": "e50899217aa06b12a1acd1f05d27f049de9c9c37b29c880ff2e2381e2fdff0c1",
+    "finalChecksPassed": 48,
+    "decision": "READY-FOR-OWNER-ADMIN-PUBLICATION",
+    "limit": "Independent source/receipt verification; browser screenshots reviewed by root only."
+  },
+  "residuals": [
+    "Conditional empty-title fallback risk in the optional secondary breadcrumb call remains; no actual blank buyer label was demonstrated.",
+    "Conditional special-character escaping risk in the radio-swatch branch remains; default configured picker does not use that branch.",
+    "Seven local/candidate file differences predate the Shopify changes and remain preserved, held and separate; candidate is not byte-identical to all local theme source.",
+    "Italian footer proposal and article027 hero finding remain separate and unapplied/unresolved.",
+    "Prior historical performance acceptance was qualified to heading first-paint/CLS; mobile FCP remained slower and broad speed improvement is unproven.",
+    "Full remote theme sync and published buyer acceptance remain incomplete."
+  ],
+  "closedGitSync": {
+    "lastClosedAt": "2026-09-21T21:19:49.508841+00:00",
+    "localMain": "096224cdb5ceb71f40b7e1014a5dc2f4fb445249",
+    "remoteMain": "731de115a9f2ba94fe24cef95218332a15b685ee",
+    "result": "VERIFIED_LOCAL_COMPLETE_REMOTE_PROJECT_SUBSET_COMPLETE",
+    "fullRemoteThemeSync": "BLOCKED_BY_LIVE_THEME_PUBLICATION_RESTRICTION",
+    "replayed": false
+  },
+  "owner_next_action": {
+    "action": "Publish DLM UX Performance QA 2026-09-10 (137888792673) in Shopify Admin",
+    "url": "https://admin.shopify.com/store/dresslikemommy-com/themes",
+    "whyFirst": "The preserved draft fixes remain unpublished; this is the supported release action.",
+    "preserveRollbackTheme": "dresslikemommy/main (133290917985)",
+    "newPermissionRequested": false
+  },
+  "uncertainty_outcome_branches": [
+    {
+      "if": "Owner publishes137888792673",
+      "then": "Freshly verify MAIN identity, completed processing and full source binding; then perform the affected published buyer checks and reconcile actual GitHub connection/source before any next theme-sync proposal."
+    },
+    {
+      "if": "Candidate remains unpublished with this unchanged source",
+      "then": "Retain the exact owner Admin publication dependency; no closed Git-sync replay or repeated audit."
+    },
+    {
+      "if": "Candidate fingerprint or current MAIN role/source changes before publication",
+      "then": "Reconcile only the new difference and its affected paths; this result is stale for the changed source."
+    },
+    {
+      "if": "A real affected blank-title or special-character option case is observed later",
+      "then": "Record the actual buyer failure and prepare the smallest reviewed correction within fresh scope; do not infer that this current reconciliation fixed it."
+    }
+  ],
+  "mutations": {
+    "production": 0,
+    "themeSaves": 0,
+    "publications": 0,
+    "sourceEdits": 0,
+    "gitIndexOrRefWrites": 0,
+    "sharedCanonicalEdits": 0,
+    "ownedPacketOnly": true
+  },
+  "browserCleanup": {
+    "previewExitedNatively": true,
+    "restoredMainId": "133290917985",
+    "cartCount": 0,
+    "temporaryTabsClosed": 2,
+    "viewportOverrideReset": true,
+    "userAdminTabTouched": false
+  },
+  "parentHandoff": "Parent owns canonical integration; this packet does not modify shared command-layer files.",
+  "continuationPrompt": "After owner publication, verify MAIN137888792673 and its current527-file source, then complete only affected published buyer and GitHub-source reconciliation. Preserve the closed Git sync and all existing limitations."
+}

@@ -1,0 +1,66 @@
+{
+  "schema": "dlm.new_organic_order_route.v1",
+  "action_id": "TA16-NEW-ORGANIC-ROUTE-20260922",
+  "recorded_at_utc": "2026-09-22T08:43:33.328Z",
+  "source_time_bounds": {
+    "after_utc": "2026-09-22T08:38:02.889Z",
+    "readback_available_by_utc": "2026-09-22T08:43:33.328Z",
+    "precision": "BOUNDED; exact query timestamps not retained"
+  },
+  "shop_id": "gid://shopify/Shop/15571635",
+  "window": {
+    "from_inclusive": "2026-09-21T20:32:03Z",
+    "to_exclusive": "2026-09-22T08:33:21Z"
+  },
+  "query": "query DLMNewOrganicRoute($query: String!) {\n  shop { id }\n  orders(first: 10, sortKey: CREATED_AT, query: $query) {\n    pageInfo { hasNextPage endCursor }\n    nodes {\n      id\n      customerJourneySummary { ready firstVisit { landingPage } lastVisit { landingPage } }\n      lineItems(first: 50) {\n        pageInfo { hasNextPage endCursor }\n        nodes { title currentQuantity product { id handle title } }\n      }\n    }\n  }\n}",
+  "validation": "VALID_CONNECTOR_AND_SKILL",
+  "validator_artifact": "dlm-new-organic-route-20260922-0833",
+  "validator_revision": 1,
+  "same_exact_order_ids_as_qualified_new_cohort": true,
+  "order_id_persisted": false,
+  "complete_order_and_line_pagination": true,
+  "records": [
+    {
+      "journey_ready": true,
+      "first_landing": {
+        "host": "www.dresslikemommy.com",
+        "path": "/products/little-pear-mommy-and-me-pajamas",
+        "query_removed": false,
+        "fragment_removed": false
+      },
+      "last_landing": {
+        "host": "www.dresslikemommy.com",
+        "path": "/products/little-pear-mommy-and-me-pajamas",
+        "query_removed": false,
+        "fragment_removed": false
+      },
+      "purchased_lines": [
+        {
+          "order_time_title": "Vintage Cottage Floral Mommy and Me Pajamas — Short-Sleeve Set",
+          "current_quantity": 1,
+          "public_product": {
+            "id": "gid://shopify/Product/7533081133153",
+            "handle": "vintage-cottage-floral-mommy-and-me-pajama-set",
+            "title": "Vintage Cottage Floral Mommy and Me Pajamas — Short-Sleeve Set"
+          }
+        },
+        {
+          "order_time_title": "Vintage Cottage Floral Mommy and Me Pajamas — Short-Sleeve Set",
+          "current_quantity": 1,
+          "public_product": {
+            "id": "gid://shopify/Product/7533081133153",
+            "handle": "vintage-cottage-floral-mommy-and-me-pajama-set",
+            "title": "Vintage Cottage Floral Mommy and Me Pajamas — Short-Sleeve Set"
+          }
+        }
+      ]
+    }
+  ],
+  "privacy": "No order ID, personal details, click identifier, URL query, or URL fragment retained.",
+  "live_writes": 0,
+  "causality": "NOT_ESTABLISHED",
+  "paid_ad_result": "NOT_ESTABLISHED",
+  "profit": "UNKNOWN",
+  "limitation": "Shopify-reported journey and purchased product, not a GA4/GSC join or effect of recent SEO work.",
+  "processing_note": "The query succeeded. Local URL constructor was unavailable; recovered saved response using a strict HTTPS parser without rerunning the query."
+}

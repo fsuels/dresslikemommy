@@ -1,0 +1,56 @@
+--- before/layout/theme.liquid
++++ theme/layout/theme.liquid
+@@ -159,6 +159,12 @@
+       assign append_shop_name_to_title = false
+     elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
+       assign resolved_page_title = 'Style Journal'
++      if request.locale.iso_code == 'da'
++        assign resolved_page_title = 'Stiljournal'
++        if current_tags == blank
++          assign resolved_page_description = 'Guider til matchende tøj, stylingtips og købsråd til mor og barn, far og barn og hele familien.'
++        endif
++      endif
+     endif
+ 
+     if request.page_type == 'collection' and collection != blank
+@@ -187,6 +193,9 @@
+         assign resolved_page_description = collection_seo_meta_description
+       elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
+         assign resolved_page_description = 'Outfit guides, styling tips, and shopping advice for mommy and me, daddy and me, and family matching looks.'
++        if request.locale.iso_code == 'da'
++          assign resolved_page_description = 'Guider til matchende tøj, stylingtips og købsråd til mor og barn, far og barn og hele familien.'
++        endif
+       elsif request.page_type == 'article' and article != blank
+         assign resolved_page_description = article.excerpt | default: article.content | strip_html | truncatewords: 28
+       endif
+--- before/locales/da.json
++++ theme/locales/da.json
+@@ -275,11 +275,13 @@
+       "max_price": "Den højeste pris er {{ price }}",
+       "product_count": {
+         "one": "{{ product_count }} af {{ count }} produkt",
+-        "other": "{{ product_count }} af {{ count }} produkter"
++        "other": "{{ product_count }} af {{ count }} produkter",
++        "zero": "{{ product_count }} af {{ count }} produkter"
+       },
+       "product_count_simple": {
+         "one": "{{ count }} produkt",
+-        "other": "{{ count }} produkter"
++        "other": "{{ count }} produkter",
++        "zero": "{{ count }} produkter"
+       },
+       "reset": "Nulstil",
+       "sort_button": "Sortér",
+--- before/snippets/article-card.liquid
++++ theme/snippets/article-card.liquid
+@@ -163,8 +163,8 @@
+           {%- endif -%}
+ 
+           <div class="article-card__footer">
+-            <span class="article-card__read-time">{{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min read</span>
+-            <a href="{{ article.url }}" class="article-card__read-more link">Read article &rarr;</a>
++            <span class="article-card__read-time">{{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} {% if request.locale.iso_code == 'da' %}min. læsetid{% else %}min read{% endif %}</span>
++            <a href="{{ article.url }}" class="article-card__read-more link">{% if request.locale.iso_code == 'da' %}Læs artiklen{% else %}Read article{% endif %} &rarr;</a>
+           </div>
+         </div>
+ 

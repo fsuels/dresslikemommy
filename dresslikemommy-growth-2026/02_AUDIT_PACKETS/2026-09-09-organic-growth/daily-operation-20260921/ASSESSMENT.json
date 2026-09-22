@@ -1,0 +1,211 @@
+{
+  "schema": "dlm.organic_completed_window_assessment.v1",
+  "assessment_date": "2026-09-21",
+  "task": "TA-20",
+  "execution": "All three due-window assessments completed from available Shopify/GA4/GSC and native Pinterest evidence, with explicit date-zone, lag, QA and attribution limits.",
+  "dates_inclusive": true,
+  "shopify_ga4_timezone": "America/New_York",
+  "gsc_timezone": "America/Los_Angeles",
+  "cohorts": [
+    {
+      "key": "article_week1",
+      "entity_id": "559471919201",
+      "start": "2026-09-10",
+      "end": "2026-09-16",
+      "original_due": "2026-09-17",
+      "shopify": {
+        "landing_sessions": 2,
+        "cart_sessions": 0,
+        "checkout_sessions": 0,
+        "completed_checkout_sessions": 0
+      },
+      "ga4": {
+        "landing_sessions": 6,
+        "google_organic_sessions": 2,
+        "direct_unqualified_sessions": 4,
+        "purchase_key_events": 0,
+        "view_item_key_events": 0,
+        "reported_total_revenue_usd": 0
+      },
+      "gsc": {
+        "clicks": 2,
+        "impressions": 116,
+        "ctr_display": "1.7%",
+        "average_position_display": "10.7",
+        "english_subset_clicks": 0,
+        "english_subset_impressions": 7
+      },
+      "verified_qualified_product_visits": null,
+      "distinct_paid_noncancelled_order_join": null,
+      "attributed_retained_revenue": null,
+      "profit": null,
+      "qa_exclusions": 0,
+      "decision": "Keep the existing article and URL stable. Continue the already scheduled distribution; reassess the original14-day window September24. Tiny reach cannot distinguish a content/conversion problem; no rewrite or artificial new article justified."
+    },
+    {
+      "key": "sunshine_week1",
+      "entity_id": "343118065387544334",
+      "start": "2026-09-11",
+      "end": "2026-09-17",
+      "original_due": "2026-09-18",
+      "exact_shopify_utm": {
+        "source": "pinterest",
+        "medium": "social",
+        "campaign": "dlm_sunshine_organic_20260907",
+        "content": "product_detail_01"
+      },
+      "shopify": {
+        "landing_sessions": 0,
+        "cart_sessions": 0,
+        "checkout_sessions": 0,
+        "completed_checkout_sessions": 0
+      },
+      "ga4_broad_pinterest_source_diagnostic": {
+        "sessions": 0,
+        "detail_rows": 0
+      },
+      "native_pinterest": {
+        "status": "VERIFIED_OWNER_RECEIPT_WITH_LIMITS",
+        "reporting_timezone": "UTC",
+        "same_calendar_dates_not_same_NY_timestamps": true,
+        "impressions": 2,
+        "pin_clicks": 0,
+        "saves": 0,
+        "outbound_clicks": 0,
+        "update_age_display": "Metrics updated 1 day ago.",
+        "exact_data_cutoff_timestamp": null,
+        "complete_ingestion_certified": false,
+        "source": "PINTEREST_RECEIPT_ACCEPTANCE.json"
+      },
+      "distinct_paid_noncancelled_order_join": null,
+      "conversion_rate": null,
+      "profit": null,
+      "decision": "Preserve the published Pin and exact UTMs. Native impressions and outbound clicks indicate extremely limited observed distribution, with UTC/lag limits; sample cannot diagnose conversion quality. Continue the existing paced queue; no duplicate or extra production justified."
+    },
+    {
+      "key": "p1_week1",
+      "entity_id": "343118065387567020",
+      "start": "2026-09-14",
+      "end": "2026-09-20",
+      "original_due": "2026-09-21",
+      "actual_publication_timestamp": null,
+      "first_full_date_rule": "Conservative first full date after public verification September13",
+      "exact_shopify_utm": {
+        "source": "pinterest",
+        "medium": "social",
+        "campaign": "organic_202609",
+        "content": "p1"
+      },
+      "shopify": {
+        "landing_sessions": 0,
+        "cart_sessions": 0,
+        "checkout_sessions": 0,
+        "completed_checkout_sessions": 0
+      },
+      "ga4_broad_pinterest_source_diagnostic": {
+        "sessions": 0,
+        "detail_rows": 0
+      },
+      "native_pinterest": {
+        "status": "VERIFIED_OWNER_RECEIPT_WITH_LIMITS",
+        "reporting_timezone": "UTC",
+        "same_calendar_dates_not_same_NY_timestamps": true,
+        "impressions": 1,
+        "pin_clicks": 0,
+        "saves": 0,
+        "outbound_clicks": 0,
+        "update_age_display": "Metrics updated 1 day ago.",
+        "exact_data_cutoff_timestamp": null,
+        "complete_ingestion_certified": false,
+        "source": "PINTEREST_RECEIPT_ACCEPTANCE.json"
+      },
+      "distinct_paid_noncancelled_order_join": null,
+      "conversion_rate": null,
+      "profit": null,
+      "processing_lag": "September20 is the newest completed day. Counts are a Sep21 readback and can revise.",
+      "decision": "Preserve the published Pin and exact UTMs. Native impressions and outbound clicks indicate extremely limited observed distribution, with UTC/lag limits; sample cannot diagnose conversion quality. Continue the existing paced queue; no duplicate or extra production justified."
+    }
+  ],
+  "overlap": "P1 is a source segment of article traffic and has a different fixed window. Do not add cohorts or sum Shopify/GA4/GSC counts.",
+  "qa": "No identifiable analytics rows could be matched to operator QA. Zero rows subtracted; retained observations are not certified QA-free. See receipt review.",
+  "measured_traffic_lift_claimed": false,
+  "measured_sales_lift_claimed": false,
+  "causal_incrementality_claimed": false,
+  "profit_claimed": false,
+  "external_mutations_this_run": 0,
+  "storefront_visits_this_run": 0,
+  "automation": {
+    "id": "review-organic-article-and-sunshine-results",
+    "status": "ACTIVE",
+    "cadence": "09:00 America/New_York daily until user stop",
+    "schedule_writes": 0,
+    "availability_limit": "Local Mac/Codex/account access and available quota are required. Wakes do not prove execution."
+  },
+  "next_due_reviews": [
+    {
+      "entity": "Sizing559700574305",
+      "dates": [
+        "2026-09-22",
+        "2026-09-29",
+        "2026-10-15"
+      ]
+    },
+    {
+      "entity": "Giftguide559471886433",
+      "dates": [
+        "2026-09-23",
+        "2026-09-30",
+        "2026-10-16"
+      ]
+    },
+    {
+      "entity": "Original article559471919201",
+      "dates": [
+        "2026-09-24",
+        "2026-10-10"
+      ]
+    },
+    {
+      "entity": "Sunshine343118065387544334",
+      "dates": [
+        "2026-09-25",
+        "2026-10-11"
+      ]
+    }
+  ],
+  "authority_context": {
+    "source_live_evidence_as_of": "2026-06-01",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "decision_depends_on_uncertain_state": true,
+    "material_decision": "NOT_MATERIAL",
+    "decision_changing_evidence": "Later comparable native reach/outbound-click data, fixed due-window qualified product events and matched paid orders; present native counts already confirm very low observed distribution.",
+    "if_evidence_supports_recommendation": "Keep existing page and paced distribution while low sample accumulates.",
+    "if_evidence_opposes_recommendation": "Use a verified native failure or observed buyer drop-off to prepare and execute the smallest in-scope correction through its owner.",
+    "independent_verifier": "/root/daily_operation_review",
+    "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+    "autonomous_action_ready": false,
+    "canonical_control_source": "ops/marketing/current_marketing_state.md:204",
+    "organic_observation_date": "2026-09-21",
+    "narrow_task_authority": "Current user standing daily routine zero-ad-spend organic mandate; this run exercised read-only analytics and local packet writing only. No external mutation or expansion of paid/account authority."
+  },
+  "shared_canonical_owner": "01a08223-036e-7fa3-8961-ecd297163fb5",
+  "shared_files_changed_by_this_task": 0,
+  "distribution_receipts": {
+    "public_ids": {
+      "P2": "343118065387581115",
+      "P3": "343118065387595533",
+      "P4": "343118065387616411"
+    },
+    "first_verified_public_date": "2026-09-21",
+    "actual_publication_timestamps_known": false,
+    "remaining_schedules": [
+      "P5 September22 01:30PM",
+      "P6 September24 01:30PM",
+      "N2 September27 02:00PM"
+    ],
+    "native_schedule_timezone": null,
+    "new_clock_policy": "Parent may use Sep22asconservativeprospectivefirstfulldate for newly verified P2-P4; not actual release clock. No backdated outcome maturity inferred."
+  }
+}

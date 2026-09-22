@@ -1,0 +1,105 @@
+{
+  "schema": "dlm.parent.source_acceptance_final_verification.v1",
+  "recorded_at_utc": "2026-09-22T05:24:03.339619+00:00",
+  "status": "VERIFIED_WITH_LIMITS",
+  "canonical_anchor": "2026-09-22-ceo-father-son-query-fit",
+  "action_id": "TA15-FATHER-SON-QUERY-FIT-20260922",
+  "operational_outcome": "READ_ONLY_QUALIFICATION_COMPLETE__SOURCE_ACCEPTED; conditional live negative NOT_AUTHORIZED_OR_IMPLEMENTED; overall TA15 PARTIAL",
+  "accepted_owner_records": 85,
+  "recorded_wakes": 72,
+  "dispatch": {
+    "original_receipt_immutable": true,
+    "total_this_wake": 1,
+    "additional_during_acceptance": 0,
+    "observed_completion": "SOURCE_ACCEPTED_WITH_LIMITS",
+    "owner_completed_turn": "01a0c771-d372-7433-a14e-3f0978d9c00b",
+    "new_owner_dispatch_needed": false
+  },
+  "verification": {
+    "parent_source_checks": "31/31 PASS_WITH_LIMITS",
+    "parent_root_checks": "28/28 PASS_WITH_LIMITS",
+    "independent_canonical_checks": "29/29 PASS_WITH_LIMITS",
+    "standard_commands": [
+      "render_marketing_cockpit.py exit0",
+      "audit_marketing_command_integration.py --write-report --fail-on-risk exit0",
+      "check_continuity_integrity.py --strict exit0"
+    ],
+    "exact_task_context_retrieval": {
+      "command": "compile_task_context.py --query TA15-FATHER-SON-QUERY-FIT-20260922 --format brief",
+      "exit_code": 0,
+      "retrieval": "OK",
+      "selected_anchor": "2026-09-22-ceo-father-son-query-fit",
+      "currentness": "REPO_KNOWN",
+      "approved_external_scope": "NONE"
+    },
+    "native_replay": "NOT_RUN"
+  },
+  "bindings": {
+    "acceptance": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_parent_acceptance_20260922.json",
+      "sha256": "857669f8360c97c6653af26b5132b558c3b7bcbe4301270b3082460a66bd48b5"
+    },
+    "integration": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_parent_integration_20260922.json",
+      "sha256": "72c72358e80b5ff286628779767686c9f51dbab8967af3275d7c8a24eace7367"
+    },
+    "source_review": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_source_review_20260922.json",
+      "sha256": "b5e547da3c251bcab4b96341a370de0b7989e7e05913560a16a2df43882070fa"
+    },
+    "root_verification": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_parent_root_verification_20260922.json",
+      "sha256": "41abda183ddc2491acab0dfb712ab90c949633c43eef036db4c6e416ace830b1"
+    },
+    "canonical_review": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_parent_canonical_review_20260922.json",
+      "sha256": "21899c0ca95f6765687f53f83fb73cdcf25a1433f6874d24165f38d1bdf7afd8"
+    },
+    "standard_checks": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_standard_checks_20260922.json",
+      "sha256": "3b89754ecf5333fe746695e479c516cdaf60288f9f1a328795c1ba01ab28be3a"
+    },
+    "original_dispatch": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_dispatch_20260922.json",
+      "sha256": "5e27ce44e0c00ba85012b2dc7a290aee9a45db8185cdd5da8d461237c043ff93"
+    }
+  },
+  "canonical_sha256": {
+    "ops/marketing/current_marketing_state.md": "8708c98076e63237a717daad53523d6bc7e98e9cb9163c13358227a2e8934ef6",
+    "ops/marketing/action_queue.md": "c1a1ac361e7bf6fa786143cccb41bfdce8df354c75267e6932c5870ea8a3e756",
+    "ops/marketing/operator_cockpit.md": "303fd4f9e08f3096332a740eee1f7a465596c8bb04cc0c65b9fee169bff8d1b5",
+    "ops/marketing/decision_log.md": "20f4192a588c2e817b4d32254d19ea387858e7cbb9a1f1132c9388dd622575a8",
+    "ops/marketing/review_log.md": "72823f96b0983f1f1f3a365897293946c2484df5ca5ae45fbb7e0bee82a9f78d",
+    "ops/AGENT_COORDINATION.md": "f4531c1d9f79c45d74f5ac77729025a844ba7bd35a8e566845312fca24161a99",
+    "ops/AGENT_WORKLOG.md": "501f9270c6960700f0385ad5059c4f6c6d64bcd4a85096f84aae390a6f412741",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json": "438482b6d1db45a55d34f1c41ac5f850793c7d627203f945f6b4edf584743273"
+  },
+  "generated_sha256": {
+    "ops/marketing/operator_cockpit.html": "7fbedd0e1be1c6666e4ee6f4f55e2d4d9232673ffe4d1f6795e185acee5b7089",
+    "ops/marketing/command_layer_integration_audit.md": "0a77f956130b6f57b00fb7293662d65ee85b3dd242a8aa5c7fb13cf75a62297f"
+  },
+  "previous_EUR_final": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_eur_spain_parent_final_verification_20260922.json",
+    "sha256": "da6ddbe396127f20083298d983c24f4f3bda425c7140518fbf28c4dcc03fa4c7",
+    "status": "IMMUTABLE_DATED_VERIFICATION; pending Father status at its own integration is superseded only by this successor"
+  },
+  "preserved": {
+    "prior_84_records": true,
+    "all_72_wakes": true,
+    "one_owner_action": "Answer the existing exact six-campaign pause question in Audit Microsoft Ads tracking; do not create a duplicate request. Current owner evidence shows live spend and US and Canada USD0.20 caps above the retained USD0.15 ceiling, so this precedes further expansion. Do not infer new paid authority or auto-pause an unknown actor's changes. The existing Shopify owner-publication action remains queued with the changed-source prerequisite now verified on137888792673; published buyer acceptance remains pending; keep133290917985 for rollback. No new theme, repeated approval or agent publication is required.",
+    "authority_and_claims": true,
+    "Spain_UX_case": true,
+    "organic_sales_source_review_clocks": true,
+    "closed_Git_cutoff": true,
+    "goal_scheduler_and_models": true
+  },
+  "root_business_writes": 0,
+  "profit_or_sales_result_added": false,
+  "limits": [
+    "Saved-source and canonical reconciliation; no fresh native account/buyer replay by parent.",
+    "Button-down destination fit is a medium-confidence inference; catalog-wide polo absence and waste unproved.",
+    "One conditional Exact ad-group proposal remains local and unimplemented; no current negative write is authorized.",
+    "Existing exact pause/budget and owner Admin publication dependencies remain; do not duplicate requests or finished audits."
+  ],
+  "next_action": "Preserve existing owner question and scheduled source/outcome clocks. No repeat dispatch from this completed read-only action. Resume only a currently executable owning step with changed evidence/authority or when its saved due time arrives."
+}

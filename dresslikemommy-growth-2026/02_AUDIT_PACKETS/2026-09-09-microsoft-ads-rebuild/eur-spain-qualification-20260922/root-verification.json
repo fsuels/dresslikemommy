@@ -1,0 +1,30 @@
+{
+  "action_id": "TA15-EUR-SPAIN-QUALIFICATION-20260922",
+  "status": "PASS_WITH_LIMITS",
+  "reviewer": "root01a08703 (builder; separate independent review required)",
+  "source_sha256": {
+    "readback.json": "bc4407dc3a4e15805b0115c8e921b9e91b8c90963c83855d20bc9bef08280b6b",
+    "READBACK.md": "df551be1dbcc501f5a9dad24402ef1e6f116587261d5f15eb27c98698f994223"
+  },
+  "local_checks": {
+    "passed": 25,
+    "failed": 0,
+    "total": 25,
+    "method": "Bundled Python3 parsed JSON and checked counts, three-metric group/country/query sums, unique strings, query-impression coverage limit, CPC comparison, configured-budget arithmetic, zero changes, child ID consistency, manual no-cart boundary, unknown business outcomes, referenced paths and trailing whitespace.",
+    "command_exit_code": 0
+  },
+  "strict_continuity": {
+    "command": "ops/scripts/check_continuity_integrity.py --strict",
+    "python": "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "result": "CONTINUITY_OK",
+    "passed": 10,
+    "failed": 0,
+    "exit_code": 0,
+    "anchor_at_check": "2026-09-22-ceo-canada-cpc-and-copy-source"
+  },
+  "limits": [
+    "Machine checks validate the local normalized receipt, not platform truth independently of the root's native observations.",
+    "No live system implementation occurred. No purchase, shipping checkout, theme release or conversion lift was verified.",
+    "Dirty peer files and all shared canonical records were preserved."
+  ]
+}

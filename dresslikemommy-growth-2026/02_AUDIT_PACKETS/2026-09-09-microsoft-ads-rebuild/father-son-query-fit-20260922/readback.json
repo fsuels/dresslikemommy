@@ -1,0 +1,127 @@
+{
+  "action_id": "TA15-FATHER-SON-QUERY-FIT-20260922",
+  "status": "VERIFIED_BOUNDED_QUALIFICATION__NO_LIVE_CHANGE",
+  "source_live_evidence_as_of": "2026-09-22T04:52:25.583Z",
+  "account_id": "477439",
+  "customer_id": "770182",
+  "campaign_id": "506255284",
+  "ad_group_id": "1264440176304276",
+  "ad_group_name": "Father & Son Shirts",
+  "historical_trigger": {
+    "query": "father and son polos",
+    "match_type": "Exact (close variant)",
+    "matched_keyword": "father son matching shirts",
+    "clicks": 1,
+    "spend_usd": 0.04,
+    "from": "2026-09-15",
+    "through": "2026-09-20",
+    "timezone": "America/New_York",
+    "source": "../eur-spain-qualification-20260922/readback.json",
+    "source_readback_sha256": "bc4407dc3a4e15805b0115c8e921b9e91b8c90963c83855d20bc9bef08280b6b",
+    "limit": "Historical sample reused, not rerun; shopper country unknown; no new query/performance report."
+  },
+  "authority": {
+    "scope": "READ_ONLY_DESTINATION_AND_SOURCE_QUALIFICATION",
+    "parent_dispatch": "TA15-FATHER-SON-QUERY-FIT-20260922",
+    "approved_external_scope": "NONE",
+    "shared_writer_interval": "NONE",
+    "owner": "root01a08703 owns only new bounded packet and checkpoint; parent01a08223 owns canonical records",
+    "pending_questions": "Existing six-campaign pause and numeric budget/maximum30-day loss questions preserved; not repeated."
+  },
+  "observations": {
+    "collection": "Exact Collection355558883425,23source members in one complete page and23matching public product links; all ACTIVE, productType Family Matching, all carry Daddy & Me Button-Downs tag. ProductType is generic; tags include T-Shirts and are not independent construction proof.",
+    "representative": {
+      "id": "7502836007009",
+      "url": "https://www.dresslikemommy.com/products/father-son-matching-cotton-tropical-shirts-black-white-palm-print",
+      "actual_route": "Clicked product heading link in the actual collection",
+      "image": "Root inspected current screenshot showing full front buttons; evidence stays in tool transcript",
+      "public_description": "Classic collar, full button front; short-sleeve button-up",
+      "piece_disclosure": "Add matching family sizes below — each selection is sold separately.",
+      "adult_selection": {
+        "at": "2026-09-22T04:51:06.557Z",
+        "role": "Father",
+        "size": "M",
+        "source_option_color": "Black (sole variant color)",
+        "expected_source_variant_id": "43731511836769",
+        "display_price_usd": 24.99,
+        "ready_to_add": true,
+        "add_enabled": true,
+        "cart_count": 0
+      },
+      "child_selection": {
+        "at": "2026-09-22T04:51:21.138Z",
+        "role": "Child",
+        "size": "2 Years",
+        "source_option_color": "Black (sole variant color)",
+        "expected_source_variant_id": "43731511640161",
+        "display_price_usd": 19.99,
+        "ready_to_add": true,
+        "add_enabled": true,
+        "cart_count": 0
+      },
+      "selection_limit": "IDs are joined from exact source options, not proven by a cart line, checkout or numeric-variant arrival. Only selection controls were exercised. No size-chart accuracy, stock or shipping acceptance claim."
+    },
+    "public_search": {
+      "webmcp": {
+        "at": "2026-09-22T04:50:24.735Z",
+        "tool": "search_catalog",
+        "query": "polo",
+        "limit": 10,
+        "returned_products": 10,
+        "result_character": "Nine products presented as dresses and one family dress/shirt set; no returned title identifies a polo",
+        "sample_product_ids": [
+          "7229023846497",
+          "7537978933345",
+          "7536988520545",
+          "7537109991521",
+          "7537979359329",
+          "7536704520289",
+          "7227374534753",
+          "7535362015329",
+          "7227270791265",
+          "7227270299745"
+        ],
+        "result_url": "/search?q=polo"
+      },
+      "visible_page": {
+        "at": "2026-09-22T04:51:54.939Z",
+        "url": "https://www.dresslikemommy.com/search?q=polo",
+        "display_total": 58,
+        "rendered_result_headings": 24,
+        "rendered_products": 22,
+        "rendered_articles": 2,
+        "pages_2_and_3_available": true,
+        "full_results_enumerated": false,
+        "observed_types": "Button-up/Hawaiian shirts, family dress/shirt sets, T-shirts and two articles; no polo-labeled item among rendered titles."
+      },
+      "limit": "WebMCP top10 and visible search results are different surfaces/rankings, not equivalent exhaustive sets. Search expands or matches products by unverified logic; do not call58 polo products, zero matches, or a catalog-wide absence. A real matching polo option was not identified or selection-tested."
+    }
+  },
+  "decision": {
+    "landing_fit": "MISMATCH_SUPPORTED_FOR_CURRENT_DESTINATION",
+    "confidence": "H for observed route/source and sampled button-up selection; M for semantic query-fit inference",
+    "reason": "The query explicitly asks for polos. Current destination promise and complete member metadata describe father/son button-down/Hawaiian shirts, with one full-button-front sample verified. No actual matching polo offer was established.",
+    "catalog_wide_polo_availability": "UNKNOWN",
+    "matching_polo_selectability": "NOT_VERIFIED",
+    "all_eur_market_acceptance": "NOT_RUN",
+    "business_effect": "UNKNOWN; oneUSD0.04click does not establish wasted spend, conversion failure, CPA or lost profit."
+  },
+  "changes": {
+    "ad_negative_keyword": 0,
+    "campaign_status_budget_bid": 0,
+    "theme_product_tracking": 0,
+    "cart_checkout": 0,
+    "support_financial_scheduler": 0,
+    "shared_canonical": 0
+  },
+  "cleanup": {
+    "at": "2026-09-22T04:52:25.583Z",
+    "country": "United States",
+    "currency": "USD",
+    "language": "English",
+    "cart_count": 0,
+    "task_public_tab_5_closed": true,
+    "microsoft_tabs_1_2_marked_handoff": true,
+    "microsoft_account_ui_interactions": 0
+  }
+}

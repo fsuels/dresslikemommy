@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "checked_at_utc": "2026-09-21T20:51:39.972712+00:00",
+  "receipt_path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/PUBLICATION_AND_COHORT_RECEIPT_20260921.json",
+  "receipt_sha256": "c531281d09b716ea65dcb1274e641d593a08ca477fd885251339c30d3ce66052",
+  "local_checks": {
+    "input_hashes_unchanged": true,
+    "public_ids_distinct": true,
+    "public_ids_not_schedule_ids": true,
+    "title_and_schedule_mapping": true,
+    "four_utms": true,
+    "seven_dates_per_cohort": true,
+    "queue_ids_match_saved": true,
+    "unknown_timestamps_preserved": true,
+    "utc_lag_and_business_unknowns_preserved": true,
+    "no_trailing_whitespace": true
+  },
+  "commands": [
+    {
+      "command": [
+        "/Users/fsuels/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "ops/scripts/check_continuity_integrity.py",
+        "--strict"
+      ],
+      "exit_code": 0,
+      "stdout": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 52419 lines; latest anchor 2026-09-21-ceo-growth-resumed-and-sales-reconciled\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-21-ceo-growth-resumed-and-sales-reconciled\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/PUBLICATION_AND_COHORT_RECEIPT_20260921.json",
+        "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/RECEIPT_REVIEW_20260921.md"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "shared_canonical_writes": false,
+  "status": "VERIFIED",
+  "independent_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/RECEIPT_REVIEW_20260921.md",
+    "sha256": "38e6010c5482f1c7a5db924be69de3e43fd057f3fe8207dd2b4bc70f6f214dea",
+    "verdict": "PASS_WITH_LIMITS",
+    "basis": "Independent saved-source consistency review; root native UI observations were not replayed",
+    "reviewed_receipt_sha256": "c531281d09b716ea65dcb1274e641d593a08ca477fd885251339c30d3ce66052"
+  },
+  "finalized_at_utc": "2026-09-21T20:53:33.650848+00:00"
+}

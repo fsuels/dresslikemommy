@@ -1,0 +1,111 @@
+{
+  "observedDate": "2026-09-22",
+  "recordedAt": "2026-09-22T15:27:00Z",
+  "method": "Task-owned Codex in-app browser2/tab1; rendered DOM and screenshots; no direct HTTP status instrumentation",
+  "market": "Country picker changed normally fromUS/USD toDenmark/DKK; selected Dansk",
+  "initialRouteSet": [
+    "/da/collections/mommy-and-me",
+    "/da/collections/new-women-outfits",
+    "/da/collections/pajamas",
+    "/da/collections/dresses",
+    "/da/collections/swimsuits",
+    "/da/collections/daddy-me",
+    "/da/collections/matching-family-vacation-outfits",
+    "/da/collections/matching-outfits",
+    "/da/collections/new-pajama-drop",
+    "/da/collections/family-swimsuits",
+    "/da/collections/formal-dresses",
+    "/da/collections/daddy-me-shirts",
+    "/da/pages/about-us",
+    "/da/pages/shipping-info",
+    "/da/pages/return-policy",
+    "/da/pages/faqs",
+    "/da/pages/track-your-order",
+    "/da/pages/contact-us",
+    "/da/products/red-panda-mommy-and-me-pajamas",
+    "/da/search",
+    "/da/blogs/news",
+    "/da/policies/refund-policy",
+    "/da/policies/privacy-policy",
+    "/da/policies/terms-of-service",
+    "/da/policies/shipping-policy",
+    "/da/policies/contact-information"
+  ],
+  "liveAfter": {
+    "homepage": "36Danish setting values render; 2footer labels fixed; no Translation missing",
+    "collections": [
+      "new-pajama-drop: Nye matchende pyjamas; Danish title/meta",
+      "daddy-me-shirts: Danish title/meta; separate client filter defect discovered"
+    ],
+    "policyBodies": {
+      "count": 5,
+      "previewFrame": false,
+      "lang": "da",
+      "headings": [
+        "Returnering & ombytning",
+        "Privatlivspolitik",
+        "Servicevilkår",
+        "Forsendelsespolitik",
+        "Dress Like Mommy"
+      ],
+      "allRenderedDanish": true,
+      "refundNarrowScreenshot": "Readable paragraphs, no overflow; client/scroll341px"
+    }
+  },
+  "draftAfterPhase1": {
+    "themeId": "137888792673",
+    "previewFrame": true,
+    "desktopHomeScreenshot": "Danish hero/navigation, localeprefixed hero links, footerDanish; titleKjoler til mor og datter | Matchende familietøj",
+    "narrowHomeScreenshot": "Danish CTA buttons and trust labels fit; drawer Matchende familietøj works",
+    "viewportNote": "Requested1280x900 and390x844; browser reported innerWidths1164 and355, clientWidths1150 and341; page zoom/scaling means these are not literal CSS1280/390",
+    "routes": [
+      "new-pajama-drop",
+      "new-women-outfits",
+      "swimsuits",
+      "formal-dresses",
+      "daddy-me-shirts",
+      "blogs/news"
+    ],
+    "translationMissing": false,
+    "horizontalOverflow": false
+  },
+  "draftAfterPhase2": {
+    "journalTitle": "Stiljournal – Dress Like Mommy",
+    "journalMeta": "Guider til matchende tøj, stylingtips og købsråd til mor og barn, far og barn og hele familien.",
+    "articleCards": "LÆS ARTIKLEN and MINUTTERS LÆSETID; no READ ARTICLE/MIN READ",
+    "zeroPluralHypothesis": "FAILED; not a locale-key defect",
+    "shirtDefect": {
+      "beforeDanish": {
+        "presentCards": 23,
+        "visibleCards": 0,
+        "count": "0 products",
+        "allTitlesDanish": true
+      },
+      "EnglishControl": {
+        "presentCards": 23,
+        "visibleCards": 23,
+        "count": "23 products",
+        "lang": "en"
+      },
+      "rootCause": "assets/daddy-me-collection-filter.js recognizes English shirt/shirts only and overwrites count in English; translated Danish title cards are incorrectly hidden",
+      "inventoryConclusion": "Do not infer zero inventory from rendered zero. Phase3repair pending."
+    }
+  },
+  "routeLimits": [
+    {
+      "route": "/da/collections/family-swimsuits",
+      "actual": "/da/collections/new-women-outfits",
+      "result": "Reachable broader collection; swim-specific destination fit remains unqualified"
+    }
+  ],
+  "otherLimits": [
+    "No cart/checkout/order or newsletter submission",
+    "No full catalog/PDP/size/article translation certification",
+    "Some product proper/descriptive names and existing aria labels remain mixed-language",
+    "Home menu Shoppe href remains absoluteEnglishroot; no globalmenu rewrite",
+    "No paid launch or negatives changed",
+    "Browser screenshot evidence is in tool transcript; no local image file claimed"
+  ],
+  "finalPhase3": "See filter_browser_after.json:23Danishshirtsvisible/23produkter;11teesunchanged/11produkter;English23productsunchanged;settleddesktop+narrowloading0;linkedDanishPDPverified. Speculativezeroentriesremoved.",
+  "finalTheme": "13 reviewed changed files,514unchanged,527total,UNPUBLISHED137888792673; ownerAdminpublicationrequired"
+}

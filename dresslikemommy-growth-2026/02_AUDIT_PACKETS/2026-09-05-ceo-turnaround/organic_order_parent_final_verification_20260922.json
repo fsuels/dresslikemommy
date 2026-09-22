@@ -1,0 +1,179 @@
+{
+  "schema": "dlm.parent.sales_and_route_final_verification.v1",
+  "recorded_at_utc": "2026-09-22T09:20:35.069897+00:00",
+  "status": "VERIFIED_WITH_LIMITS",
+  "canonical_anchor": "2026-09-22-ceo-google-organic-order-verified",
+  "accepted_owner_records": 87,
+  "recorded_wakes": 73,
+  "operational_outcome": "Due full-sales and new-order Shopify attribution read complete; Organic current-route qualification complete; separate Microsoft completed-day/receiver source accepted. Overall profit/measurement/release dependencies remain unresolved.",
+  "verified_qualified_sales": {
+    "window_start_utc": "2026-09-05T04:00:00Z",
+    "cutoff_utc": "2026-09-22T08:33:21Z",
+    "orders": 6,
+    "units": 14,
+    "current_subtotal_and_total_usd": "407.41",
+    "new_orders": 1,
+    "new_units": 2,
+    "new_order_total_usd": "68.20"
+  },
+  "verified_new_order_attribution": {
+    "platform": "Shopify",
+    "first_visit": "Google/SEO",
+    "last_visit": "Google/SEO",
+    "ready": true,
+    "qualifying_order_count": 1,
+    "amount_usd": "68.20",
+    "cross_platform_match": "NOT_VERIFIED",
+    "recent_SEO_causality": "NOT_ESTABLISHED",
+    "actual_costs_settlement_retained_profit": "UNKNOWN"
+  },
+  "Organic_route": {
+    "landing_product": "7533404291169",
+    "purchased_product": "7533081133153",
+    "classification": "WORKING_DISTINCT_PRODUCT_ROUTE",
+    "decision": "Preserve both routes; no current redirect repair indicated.",
+    "cart_checkout": "NOT_RUN",
+    "historical_alias_or_intervening_clicks": "NOT_ESTABLISHED"
+  },
+  "Microsoft_completed_day": {
+    "date": "2026-09-21",
+    "timezone": "Eastern",
+    "spend_usd": "7.35",
+    "clicks": 47,
+    "impressions": 3266,
+    "reported_conversions": 0,
+    "reported_revenue_usd": "0.00",
+    "Shopify_order_UET_join": "NOT_VERIFIED",
+    "support_addendum": "LOCAL_NOT_SENT",
+    "tracking_repair": "UNVERIFIED"
+  },
+  "dispatch": {
+    "total_this_wake": 1,
+    "recipient": "01a0870a-e632-7773-ac5d-8ee2616b31bc",
+    "original_at_utc": "2026-09-22T08:47:27.637Z",
+    "original_receipt_immutable": true,
+    "observed_completion": "SOURCE_ACCEPTED_WITH_LIMITS",
+    "completed_turn": "01a0c84c-6f78-7561-91d7-7b6e402613ea",
+    "Microsoft_root_dispatch": false,
+    "additional_dispatch_needed": false
+  },
+  "verification": {
+    "sales_saved_source": "35/35 PASS_WITH_LIMITS",
+    "attribution_supplement": "23/23 PASS_WITH_LIMITS",
+    "Microsoft_parent_source": "50/50 PASS_WITH_LIMITS",
+    "Organic_parent_source": "35/35 PASS_WITH_LIMITS",
+    "root_preservation": "32/32 PASS_WITH_LIMITS",
+    "independent_canonical": {
+      "status": "PASS_WITH_LIMITS",
+      "passed": 33,
+      "total": 33
+    },
+    "standard_commands": [
+      "ops/scripts/render_marketing_cockpit.py exit0",
+      "ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk exit0",
+      "ops/scripts/check_continuity_integrity.py --strict exit0"
+    ],
+    "exact_action_context_retrieval": {
+      "command": "compile_task_context.py --query TA20-GOOGLE-ORGANIC-ORDER-ROUTE-20260922 --format brief",
+      "exit_code": 0,
+      "retrieval": "OK",
+      "selected_anchor": "2026-09-22-ceo-google-organic-order-verified",
+      "currentness": "REPO_KNOWN",
+      "approved_external_scope": "NONE"
+    },
+    "independent_native_replay": "NOT_RUN"
+  },
+  "bindings": {
+    "sales_acceptance": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_parent_acceptance_20260922.json",
+      "sha256": "327309d4f2bfec2fdff57e0dc69529fca65164088b4c66d573e1a02d56d15c85"
+    },
+    "Microsoft_acceptance": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_receiver_day_parent_acceptance_20260922.json",
+      "sha256": "4638886fe2d9e1d3aa0247a709f352398b5aa0c1b74d6552961da758cd29333f"
+    },
+    "Organic_acceptance": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_route_parent_acceptance_20260922.json",
+      "sha256": "19f34a55986d2147965d40f9b1286fd858d2720cf4b5ce70387531523681d403"
+    },
+    "integration": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_parent_integration_20260922.json",
+      "sha256": "0c96b7478cac6b10c8cb0b4007d13566eedc2b1edfb5aca422abc52110027cb1"
+    },
+    "root_verification": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_parent_root_verification_20260922.json",
+      "sha256": "c3b79ae06fa91b2b524dcc063937ca1c3db71489a85eac65d6d1e8bd45370b16"
+    },
+    "canonical_review": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_parent_canonical_review_20260922.json",
+      "sha256": "8608f143d750dc1b6cfbbf5e2a850b600907eb5dca9cf9579441fb5fe76e1dfd"
+    },
+    "standard_checks": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_standard_checks_20260922.json",
+      "sha256": "4afb84339016ef03bef297d5df4e5e7a52978eba5f8338d9deb8050dad23a882"
+    },
+    "original_dispatch": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_route_dispatch_20260922.json",
+      "sha256": "e32a4a3fe689981eae41452bd1c0456febf86ee03b0331177cef6aa84a45f049"
+    },
+    "sales_independent_review": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/order_fulfillment_review_20260922_0833.json",
+      "sha256": "e283604c59df87be2b54c1488007e3a4b93db3e589347e872af5e7128c8163b5"
+    },
+    "attribution_independent_review": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/new_order_attribution_review_20260922_0838.json",
+      "sha256": "559d12f96c04935507b5a6a6b8ff7fb4d4367775029fb133e62cbae60a0c4c03"
+    },
+    "Microsoft_source_review": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_receiver_day_parent_source_review_20260922.json",
+      "sha256": "c6b40f3d4d518112d4ef98b7d4776fa49a969c080b2338e44acc47bd82c4d065"
+    },
+    "Organic_route_source_review": {
+      "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_route_parent_source_review_20260922.json",
+      "sha256": "adf3112b1189098458c3c7ef8ae7447cf831d087fa25b363cd229d58d20b2805"
+    }
+  },
+  "canonical_sha256": {
+    "ops/marketing/current_marketing_state.md": "55fd874e92988445df778b29687e4c83b5b6e0f3148891da3bd5280ebb700746",
+    "ops/marketing/action_queue.md": "18fb9de015850d86cf46b0f7e9fa92ae34d46d605e56436d74ab20acaf1ce842",
+    "ops/marketing/operator_cockpit.md": "a12a9d5056ffa0e43ed114bed0c669dd4f1f3fd5761809c857214779dd34308a",
+    "ops/marketing/decision_log.md": "2ea32529867b9d8b7858581da506bbb8082c2afbce88d4435bf57f08fe71e59c",
+    "ops/marketing/review_log.md": "25041ff0cef4364a35aefa3ad23664e1a7958d392ee87e03ad2648cb9086b2fc",
+    "ops/AGENT_COORDINATION.md": "ee5864b8f5b47448f269e236caa4fb882d31fb6d525bc4d3b8163434c150a6a2",
+    "ops/AGENT_WORKLOG.md": "dfd88d8724314c83d80ea43cc961d8af7b44125faf393cf3c7b43bab3a12aa1d",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/current_sales_checkpoint_20260908_evening.json": "4cf6e5c915496977e3296b3fb23a64f43ce176512818ec73f4127e05714f1e1d",
+    "ops/marketing/daily_scorecard.md": "6c9502870ac5587ee3efbf4a5c0aba3e9cb76bd9284477c674ccf824747f55da"
+  },
+  "generated_sha256": {
+    "ops/marketing/operator_cockpit.html": "28fc9ffa4fa3f6b91bf6b86f01fbd6ef91da0d17879516effc356f5a2bebd659",
+    "ops/marketing/command_layer_integration_audit.md": "a09f02b20a7f3dbc4d62226f9b4657080aba4200d2e56c6a2eaf08806a8e42d3"
+  },
+  "prior_parent_final_immutable": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_parent_final_verification_20260922.json",
+    "sha256": "eac41f5428d5c55a072347a7d4b5a2567be4200ca16c5dbf45ab28771c26b12c"
+  },
+  "preserved": {
+    "prior85ownerrecords": true,
+    "prior72wakes": true,
+    "one_owner_action": "Answer the existing exact six-campaign pause question in Audit Microsoft Ads tracking; do not create a duplicate request. Current owner evidence shows live spend and US and Canada USD0.20 caps above the retained USD0.15 ceiling, so this precedes further expansion. Do not infer new paid authority or auto-pause an unknown actor's changes. The existing Shopify owner-publication action remains queued with the changed-source prerequisite now verified on137888792673; published buyer acceptance remains pending; keep133290917985 for rollback. No new theme, repeated approval or agent publication is required.",
+    "authority_controls_and_claims": true,
+    "Spain_UX_case": true,
+    "Merchant_runtime_and_product_holds": true,
+    "other_review_source_clocks": true,
+    "closed_Git_cutoff": true,
+    "goals_schedules_models": true
+  },
+  "next_sales_read_not_before_utc": "2026-09-22T20:33:21Z",
+  "next_organic_assessment": "2026-09-22 09:00 America/New_York; sizing Article559700574305 completed September15-21 window. Separate from new September22 sale.",
+  "root_business_writes": 0,
+  "goal_complete": false,
+  "run_acceptance_criteria": "COMPLETE_WITH_LIMITS; no actionable unclaimed dependency before saved due clocks or changed access/authority/source evidence.",
+  "limits": [
+    "Paid order value is not settlement, retained cash or profit.",
+    "Attribution and route receipts do not prove recent SEO changes caused the sale or establish a cross-platform transaction match.",
+    "Independent reviewers reconcile frozen saved source; transient exact-order joins and raw native query execution remain source-owner assertions.",
+    "Microsoft UET names-only purchase does not establish this organic order or tracking repair.",
+    "Generated cockpit changed only its build timestamp during preparation; source canonical guards held, then generated outputs were deliberately regenerated and verified."
+  ],
+  "next_action": "Preserve the existing exact Microsoft pause decision and owning support/UX/Merchant dependencies; the existing Organic owner runs its next due assessment without another dispatch. No repeat route audit or release."
+}

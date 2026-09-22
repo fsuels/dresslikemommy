@@ -1,0 +1,278 @@
+{
+  "schema": "dlm.parent.microsoft_father_son_saved_source_review.v1",
+  "recorded_at_utc": "2026-09-22T05:04:16.343978+00:00",
+  "action_id": "TA15-FATHER-SON-QUERY-FIT-20260922",
+  "reviewer": "/root/cockpit_current_metrics_source",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "scope": "Bounded independent saved-source verification for parent acceptance; one owned review artifact only.",
+  "status": "PASS_WITH_LIMITS",
+  "verdict": "PASS_WITH_LIMITS",
+  "source_live_evidence_as_of": "2026-09-22T04:52:25.583Z",
+  "independent_native_replay": "NOT RUN",
+  "handoff_binding": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/father-son-query-fit-20260922/handoff.json",
+    "sha256": "3fc3063f901e1ee998b85b40e3094dc4b2a76f0294803593305772b755409163"
+  },
+  "source_sha256": {
+    "source.json": "6e10de776d0c7330d0460798e33842ff4d952b0c4db3acc334f93d63c357488c",
+    "readback.json": "16fdcc006cda684963a34950d42b0b2a1df5cf100f19ff23dd44d4c93a98b18f",
+    "conditional-proposal.json": "a14e4014784f589f1fbca57f071cc3a6132346fdc7fc75532e1cba264c181b4b",
+    "READBACK.md": "1130871d94e1a935f7fb8f345927c2d30b28a5e76efa9c9534f1ae0a19775248",
+    "root-verification.json": "44130b60b9550fd50a3438bcbe1711f94293e589af1a3c44581e8a252e7d6a2d",
+    "independent-review.json": "15426af729c61f6419ebd46a4c31a662cf6ed6fb44c10e431a9d9890a3ba0cd3"
+  },
+  "historical_source_binding": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/eur-spain-qualification-20260922/readback.json",
+    "sha256": "bc4407dc3a4e15805b0115c8e921b9e91b8c90963c83855d20bc9bef08280b6b",
+    "report_window": {
+      "from": "2026-09-15",
+      "through": "2026-09-20",
+      "inclusive": true,
+      "timezone": "America/New_York",
+      "currency": "USD",
+      "observed_at": "2026-09-22T04:22:14.770Z",
+      "overall": {
+        "clicks": 13,
+        "impressions": 376,
+        "spend_cents": 65,
+        "reported_conversions": 0,
+        "reported_revenue_cents": 0
+      },
+      "search": {
+        "clicks": 13,
+        "impressions": 367,
+        "spend_cents": 65,
+        "reported_conversions": 0,
+        "reported_revenue_cents": 0
+      },
+      "audience": {
+        "clicks": 0,
+        "impressions": 9,
+        "spend_cents": 0,
+        "reported_conversions": 0,
+        "reported_revenue_cents": 0
+      },
+      "meaning": "Dated platform reporting, not a current-day spend estimate. Zero reported conversions does not prove zero real purchases while tracking acceptance remains incomplete. No verified CPA, ROAS or contribution profit result."
+    }
+  },
+  "consumed_owner_independent_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/father-son-query-fit-20260922/independent-review.json",
+    "sha256": "15426af729c61f6419ebd46a4c31a662cf6ed6fb44c10e431a9d9890a3ba0cd3",
+    "verdict": "PASS_WITH_LIMITS",
+    "recorded_machine_checks": 24,
+    "recorded_manual_checks": 7,
+    "limit": "Consumed without repeating native audit; these counts are not added to parent machine count."
+  },
+  "checks_passed": 31,
+  "checks_total": 31,
+  "checks": [
+    {
+      "check": "exact_handoff_binding",
+      "status": "PASS",
+      "evidence": "3fc3063f901e1ee998b85b40e3094dc4b2a76f0294803593305772b755409163"
+    },
+    {
+      "check": "six_frozen_file_bindings",
+      "status": "PASS",
+      "evidence": "All six bound files match expected SHA256 values."
+    },
+    {
+      "check": "shared_action_identity",
+      "status": "PASS",
+      "evidence": "TA15-FATHER-SON-QUERY-FIT-20260922"
+    },
+    {
+      "check": "owner_parent_identity",
+      "status": "PASS",
+      "evidence": "Frozen owning Microsoft task and parent identities match delegation."
+    },
+    {
+      "check": "independent_review_binding",
+      "status": "PASS",
+      "evidence": "Existing independent review consumed; bound source/readback/proposal match."
+    },
+    {
+      "check": "independent_review_scope",
+      "status": "PASS",
+      "evidence": "24 recorded machine and 7 manual checks; no native replay represented."
+    },
+    {
+      "check": "builder_review_binding",
+      "status": "PASS",
+      "evidence": "Builder consistency review remains supporting evidence, not this reviewer native proof."
+    },
+    {
+      "check": "historical_source_binding",
+      "status": "PASS",
+      "evidence": "bc4407dc3a4e15805b0115c8e921b9e91b8c90963c83855d20bc9bef08280b6b"
+    },
+    {
+      "check": "account_campaign_identity",
+      "status": "PASS",
+      "evidence": "Microsoft477439/customer770182/campaign506255284."
+    },
+    {
+      "check": "ad_group_identity",
+      "status": "PASS",
+      "evidence": "Frozen group identity consistent; no current native association claim."
+    },
+    {
+      "check": "historical_query_join",
+      "status": "PASS",
+      "evidence": "One frozen query row; historical 1 click/USD0.04 only."
+    },
+    {
+      "check": "historical_window",
+      "status": "PASS",
+      "evidence": "September15-20 Eastern; no new account report."
+    },
+    {
+      "check": "destination_collection_join",
+      "status": "PASS",
+      "evidence": "Exact selected collection distinguished from second discovery match."
+    },
+    {
+      "check": "complete_source_membership",
+      "status": "PASS",
+      "evidence": "Complete23-member query is distinct from embedded20-item sample."
+    },
+    {
+      "check": "source_public_handle_equality",
+      "status": "PASS",
+      "evidence": "All23 unique source/public handles match; no omitted/extra handles."
+    },
+    {
+      "check": "membership_metadata",
+      "status": "PASS",
+      "evidence": "Generic type and tags preserved; not proof of all garment constructions."
+    },
+    {
+      "check": "representative_identity",
+      "status": "PASS",
+      "evidence": "Representative is an actual reconciled collection member."
+    },
+    {
+      "check": "representative_source_and_construction",
+      "status": "PASS",
+      "evidence": "One sample source/public-description construction supports concern; image remains owner-observed transcript evidence."
+    },
+    {
+      "check": "adult_selection_source_join",
+      "status": "PASS",
+      "evidence": "Father M / Black / USD24.99; ID joined from source options only."
+    },
+    {
+      "check": "adult_selection_only",
+      "status": "PASS",
+      "evidence": "Ready-to-add selection, not cart-line/numeric-arrival/checkout proof."
+    },
+    {
+      "check": "child_selection_source_join",
+      "status": "PASS",
+      "evidence": "Child 2 years / Black / USD19.99; ID joined from source options only."
+    },
+    {
+      "check": "child_selection_only",
+      "status": "PASS",
+      "evidence": "Ready-to-add selection, not cart-line/numeric-arrival/checkout proof."
+    },
+    {
+      "check": "field_limited_polo_search",
+      "status": "PASS",
+      "evidence": "Zero within active title/type/tag prefix query; catalog-wide absence remains unproved."
+    },
+    {
+      "check": "webmcp_sample",
+      "status": "PASS",
+      "evidence": "Only ten returned product IDs; different search surface from visible page."
+    },
+    {
+      "check": "visible_search_incomplete",
+      "status": "PASS",
+      "evidence": "58 displayed mixed results;22products+2articles rendered; later pages not enumerated."
+    },
+    {
+      "check": "unknowns_preserved",
+      "status": "PASS",
+      "evidence": "No catalog absence, country, waste, conversion loss or profit conclusion."
+    },
+    {
+      "check": "single_exact_ad_group_candidate",
+      "status": "PASS",
+      "evidence": "One exact-query proposal for adgroup1264440176304276; no broad or campaign-level exclusion."
+    },
+    {
+      "check": "no_current_execution_authority",
+      "status": "PASS",
+      "evidence": "Existing current-state/action-time authority gates retained; review grants none."
+    },
+    {
+      "check": "promotion_gates_and_falsifier",
+      "status": "PASS",
+      "evidence": "Current identity/destination/associations, exact authority, independent payload/before/after/rollback required; selectable polo can overturn rationale."
+    },
+    {
+      "check": "no_recorded_external_mutations",
+      "status": "PASS",
+      "evidence": "Source owner reports zero business/shared writes; no independent live-history audit."
+    },
+    {
+      "check": "cleanup_and_evidence_clock",
+      "status": "PASS",
+      "evidence": "Saved US/USD/English/cart0 cleanup; canonical edit times do not refresh this source clock."
+    }
+  ],
+  "manual_assessments": [
+    {
+      "check": "semantic_inference_scope",
+      "status": "PASS_WITH_LIMITS",
+      "finding": "Current button-down/Hawaiian route promise, complete membership metadata and one full-button-front sample support a medium-confidence destination-fit concern. They do not certify all23 garment constructions or catalog-wide polo absence."
+    },
+    {
+      "check": "native_evidence_not_replayed",
+      "status": "PASS_WITH_LIMITS",
+      "finding": "Consumed frozen normalized owner source and its independent24machine+7manual review. No browser, network, API, screenshot replay, Microsoft/native account audit or live buyer verification was performed by this reviewer."
+    },
+    {
+      "check": "selection_and_country_limits",
+      "status": "PASS_WITH_LIMITS",
+      "finding": "FatherM24.99USD and Child2Years19.99USD reach ready-to-add in saved US/USD evidence. Source IDs are not independently cart-proven; no numeric arrival, checkout, all-EUR route, shipping or stock proof."
+    },
+    {
+      "check": "decision_not_performance_claim",
+      "status": "PASS_WITH_LIMITS",
+      "finding": "Historical oneclick/USD0.04 provides the query trigger, not proof of waste, lost conversions, savings or profit. Shopper country remains unknown."
+    },
+    {
+      "check": "conditional_candidate_only",
+      "status": "PASS_WITH_LIMITS",
+      "finding": "Parent may retain one local conditional Exact ad-group candidate only. Current association/destination/falsifier, exact live authority and independent payload/before/after/rollback gates remain unresolved; pending pause/budget questions are not approvals."
+    }
+  ],
+  "proposal": {
+    "account_id": "477439",
+    "customer_id": "770182",
+    "campaign_id": "506255284",
+    "ad_group_id": "1264440176304276",
+    "text": "father and son polos",
+    "match_type": "Exact",
+    "level": "Ad group",
+    "status": "LOCAL_CONDITIONAL_NOT_AUTHORIZED_OR_IMPLEMENTED"
+  },
+  "safe_parent_wording": "Accepted bounded father/son query-fit evidence: all23 saved source handles match the public collection; one button-up sample supports FatherM/Child2Years selection in US/USD. The current button-down/Hawaiian destination raises a supported semantic mismatch concern for father and son polos, with catalog-wide polo availability and wasted spend unproved. Retain only one LOCAL conditional Exact ad-group proposal under current destination/association, exact authority and independent before/after gates. No negative or paid action was performed or authorized.",
+  "required_corrections": [],
+  "limits": [
+    "Current button-down/Hawaiian route promise, complete membership metadata and one full-button-front sample support a medium-confidence destination-fit concern. They do not certify all23 garment constructions or catalog-wide polo absence.",
+    "Consumed frozen normalized owner source and its independent24machine+7manual review. No browser, network, API, screenshot replay, Microsoft/native account audit or live buyer verification was performed by this reviewer.",
+    "FatherM24.99USD and Child2Years19.99USD reach ready-to-add in saved US/USD evidence. Source IDs are not independently cart-proven; no numeric arrival, checkout, all-EUR route, shipping or stock proof.",
+    "Historical oneclick/USD0.04 provides the query trigger, not proof of waste, lost conversions, savings or profit. Shopper country remains unknown.",
+    "Parent may retain one local conditional Exact ad-group candidate only. Current association/destination/falsifier, exact live authority and independent payload/before/after/rollback gates remain unresolved; pending pause/budget questions are not approvals."
+  ],
+  "parent_gate": "Accept evidence and preserve existing current-state authority, exact association/falsifier checks, pending pause/budget questions, owner claims, source dates and closed Git scope. Canonical integration timestamps are not new native evidence.",
+  "writes": {
+    "owned_review_artifact_only": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_source_review_20260922.json",
+    "shared_or_owner_checkpoint_writes": 0,
+    "git_writes": 0,
+    "external_writes": 0
+  }
+}

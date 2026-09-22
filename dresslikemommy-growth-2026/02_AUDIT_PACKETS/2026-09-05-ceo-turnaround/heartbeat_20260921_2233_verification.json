@@ -1,0 +1,30 @@
+{
+  "at_utc": "2026-09-21T22:44:06.563543+00:00",
+  "status": "PASS",
+  "previous81_owner_records_exact": true,
+  "previous65_wakes_exact": true,
+  "only_new_wake_and_runtime_metadata_changed": true,
+  "source_controls_sales_owner_action_and_review_dates_unchanged": true,
+  "dispatch_received": true,
+  "recipient_executing": true,
+  "completion_verified": false,
+  "receipt": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/heartbeat_20260921_2233.json",
+    "sha256": "0fa868cdea75c8b2c89ec98f52a08c4de472d71faff13963997273a0ac029b16"
+  },
+  "final_checkpoint_sha256": "b4c162f662d99cf945f9957ae6a206c7272db6803796ee95085d56d055f4328b",
+  "checks": [
+    {
+      "check": "strict_continuity",
+      "exit_code": 0,
+      "stdout": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 52482 lines; latest anchor 2026-09-21-ceo-us-au-refresh-received\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-21-ceo-us-au-refresh-received\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9183, root+paid-growth=15918 bytes)\n\nCONTINUITY_OK\n",
+      "stderr": ""
+    },
+    {
+      "check": "checkpoint_diff_check",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ]
+}

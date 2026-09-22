@@ -1,0 +1,51 @@
+--- before/assets/daddy-me-collection-filter.js
++++ theme/assets/daddy-me-collection-filter.js
+@@ -5,6 +5,9 @@
+   const SHIRTS_HANDLE = "daddy-me-shirts";
+   const BUTTON_DOWNS_FILTER = "button-downs";
+   const TEES_FILTER = "tees";
++  const IS_DANISH = (document.documentElement.lang || "")
++    .toLowerCase()
++    .split("-")[0] === "da";
+ 
+   function normalizeTitle(value) {
+     return ` ${(value || "").toLowerCase().replace(/[^a-z0-9]+/g, " ").trim()} `;
+@@ -13,7 +16,8 @@
+   function isButtonDownTitle(title) {
+     const normalized = normalizeTitle(title);
+     const hasShirtText =
+-      normalized.includes(" shirt ") || normalized.includes(" shirts ");
++      normalized.includes(" shirt ") || normalized.includes(" shirts ") ||
++      (IS_DANISH && /(?:^|[^a-zæøå])[a-zæøå]*skjorte(?:r|sæt)?(?=$|[^a-zæøå])/i.test(title || ""));
+     const isTeeTitle =
+       normalized.includes(" t shirt ") ||
+       normalized.includes(" t shirts ") ||
+@@ -64,7 +68,9 @@
+     ["ProductCount", "ProductCountDesktop"].forEach((id) => {
+       const element = document.getElementById(id);
+       if (!element) return;
+-      element.textContent = `${visibleCount} product${visibleCount === 1 ? "" : "s"}`;
++      element.textContent = IS_DANISH
++        ? `${visibleCount} produkt${visibleCount === 1 ? "" : "er"}`
++        : `${visibleCount} product${visibleCount === 1 ? "" : "s"}`;
+     });
+   }
+ 
+--- before/locales/da.json
++++ theme/locales/da.json
+@@ -275,13 +275,11 @@
+       "max_price": "Den højeste pris er {{ price }}",
+       "product_count": {
+         "one": "{{ product_count }} af {{ count }} produkt",
+-        "other": "{{ product_count }} af {{ count }} produkter",
+-        "zero": "{{ product_count }} af {{ count }} produkter"
++        "other": "{{ product_count }} af {{ count }} produkter"
+       },
+       "product_count_simple": {
+         "one": "{{ count }} produkt",
+-        "other": "{{ count }} produkter",
+-        "zero": "{{ count }} produkter"
++        "other": "{{ count }} produkter"
+       },
+       "reset": "Nulstil",
+       "sort_button": "Sortér",

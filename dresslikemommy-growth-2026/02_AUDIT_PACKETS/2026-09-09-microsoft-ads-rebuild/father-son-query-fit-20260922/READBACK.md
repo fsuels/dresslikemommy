@@ -1,0 +1,17 @@
+# Father and son polos — destination qualification
+
+Confidence: H for observed source and shopper controls; M for the query-fit inference. Decision: **mismatch with the current button-down destination**. Storewide polo availability remains **UNKNOWN**.
+
+The observed EUR query `father and son polos` produced one click / USD0.04 in the September15–20 Eastern report. This historical row was reused; no new Microsoft report or account setting was opened. Its shopper country is unknown.
+
+The actual destination, `/collections/daddy-me-shirts`, resolves to Collection355558883425. Fresh Shopify source enumerated all23 members in one complete page; all23 handles match the public collection's product links. All are ACTIVE, use the generic productType `Family Matching`, and carry `Daddy & Me Button-Downs`. The collection explicitly offers button-up, dress-shirt and Hawaiian styles. Those labels and tags describe the route; they do not independently prove every garment's construction.
+
+One representative product,7502836007009, was opened through the actual collection link. Its description and inspected current image show a short-sleeve shirt with a full button front. FatherM reaches ready-to-add at USD24.99, and Child2Years at USD19.99, with cart0 throughout. Source-matched variant IDs are43731511836769 and43731511640161; no cart line or numeric-variant arrival was used to prove those IDs. The observed context remained UnitedStates/USD/English. No Europe shipping, checkout, size-chart accuracy, physical stock or purchase acceptance was tested.
+
+The active Shopify title/type/tag prefix search returned zero polo matches. Public search is broader: WebMCP returned10 dress/family-set candidates, while the visible `/search?q=polo` page showed58 mixed results and24 rendered headings (22products and2articles). Only that first public page was inspected. These are different limited search surfaces;58 results does not mean58 polos, and zero indexed-field matches does not prove the store has no unlabelled polo. No real matching polo was identified or selection-tested.
+
+The narrowly justified proposal is one **ad-group Exact** exclusion for `father and son polos` in EUR campaign506255284 / Father & Son Shirts1264440176304276, conditional on current native association checks, exact live-write authority and independent review. This is a local review candidate, **not implemented or authorized**. Its rationale is specific destination fit, not a claimed USD0.04 waste or poor conversion performance. Preserve general matching-shirt terms and avoid a campaign-wide `polo` negative. A verified matching polo and selectable destination would overturn the proposal.
+
+No ad/negative/keyword, campaign status/budget/bid, product/theme/tracking, cart/checkout, support, financial, scheduler or shared canonical write occurred. The temporary storefront tab was closed with US/USD/English/cart0; existing Microsoft tabs were retained for handoff. Existing account questions were not repeated.
+
+Exact evidence: [source.json](source.json), [readback.json](readback.json), [conditional-proposal.json](conditional-proposal.json). Next: parent reviews this single exact-query proposal within existing authority; do not duplicate completed EUR/Spain qualification. Continue through the existing [paid-growth prompt](../../../../ops/prompts/paid-growth-ai-army-continuation-prompt.md) using actionTA15-FATHER-SON-QUERY-FIT-20260922 and current controls.

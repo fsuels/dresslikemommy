@@ -1,0 +1,307 @@
+{
+  "schema": "dlm.independent.order_fulfillment_saved_source_review.v1",
+  "recorded_at_utc": "2026-09-22T08:38:35.621461+00:00",
+  "action_id": "TA-16",
+  "reviewer": "/root/cockpit_current_metrics_source",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "status": "PASS_WITH_LIMITS",
+  "verdict": "PASS_WITH_LIMITS",
+  "scope": "Independent recomputation of exactly three bound saved source/checkpoint files; only this review artifact written.",
+  "source_sha256": {
+    "order_fulfillment_source_20260922_0833.json": "0a1a9c8afdf78a72569eace2678143b6e7223e1337d42f935d29e4f299141a93",
+    "order_fulfillment_checkpoint_20260922_0833.json": "b5fc4becc45517da8d9b3e711189053097c16c650a40e79cf0a03067d1f220a7",
+    "order_fulfillment_checkpoint_20260921_2032.json": "870094bbf9bcc192596bec94b9e6ec4cc2b74e3f56db7e565b02ecef139ef8df"
+  },
+  "source_live_evidence_as_of": "2026-09-22T08:33:22.696Z",
+  "observed_cutoff_utc": "2026-09-22T08:33:21Z",
+  "checks_passed": 35,
+  "checks_total": 35,
+  "checks": [
+    {
+      "check": "hash_order_fulfillment_source_20260922_0833.json",
+      "status": "PASS",
+      "detail": "0a1a9c8afdf78a72569eace2678143b6e7223e1337d42f935d29e4f299141a93"
+    },
+    {
+      "check": "hash_order_fulfillment_checkpoint_20260922_0833.json",
+      "status": "PASS",
+      "detail": "b5fc4becc45517da8d9b3e711189053097c16c650a40e79cf0a03067d1f220a7"
+    },
+    {
+      "check": "hash_order_fulfillment_checkpoint_20260921_2032.json",
+      "status": "PASS",
+      "detail": "870094bbf9bcc192596bec94b9e6ec4cc2b74e3f56db7e565b02ecef139ef8df"
+    },
+    {
+      "check": "shop_identity",
+      "status": "PASS",
+      "detail": "Shop15571635/USD/America_New_York matches all bound records."
+    },
+    {
+      "check": "seven_all_status_rows",
+      "status": "PASS",
+      "detail": "Seven deidentified rows; uniqueness of native IDs cannot be independently tested."
+    },
+    {
+      "check": "money_cents_integer_format",
+      "status": "PASS",
+      "detail": "All amounts recomputed from nonnegative integer-cent strings, without float arithmetic."
+    },
+    {
+      "check": "quantities_valid",
+      "status": "PASS",
+      "detail": "Current quantities are nonnegative integers."
+    },
+    {
+      "check": "qualification_flags_recomputed",
+      "status": "PASS",
+      "detail": "Recomputed from non-test/noncancelled/PAID/web, rather than trusting qualified flag."
+    },
+    {
+      "check": "qualifying_cohort",
+      "status": "PASS",
+      "detail": "Six qualifying orders,14 current units,USD407.41 subtotal and total; zero qualifying tax/refunds."
+    },
+    {
+      "check": "new_creation_cohort",
+      "status": "PASS",
+      "detail": "One declared new qualifying creation,2units/USD68.20."
+    },
+    {
+      "check": "last24_cohort",
+      "status": "PASS",
+      "detail": "Trailing24h declared flag cohort is1order/2units/USD68.20."
+    },
+    {
+      "check": "completed_sep21_ny_cohort",
+      "status": "PASS",
+      "detail": "Completed September21 NewYork day has zero qualifying creations from declared flags; distinct from trailing24h."
+    },
+    {
+      "check": "window_flag_types",
+      "status": "PASS",
+      "detail": "All stored creation-window flags are explicit booleans."
+    },
+    {
+      "check": "new_creation_subset_last24",
+      "status": "PASS",
+      "detail": "Previous cutoff is within trailing24h; new-creation flag subset is consistent."
+    },
+    {
+      "check": "prior_qualifying_aggregate_reconciles",
+      "status": "PASS",
+      "detail": "Remaining current5orders/12units/USD339.21 equal prior qualifying aggregate; no per-order longitudinal match inferred."
+    },
+    {
+      "check": "aggregate_delta",
+      "status": "PASS",
+      "detail": "Aggregate delta1order/2units/USD68.20 matches new-creation flagged cohort."
+    },
+    {
+      "check": "excluded_refund_cohort",
+      "status": "PASS",
+      "detail": "One cancelled REFUNDED order has0currentunits/USD0currentvalue/USD31.98recordedrefunds; not subtracted again from qualifying revenue."
+    },
+    {
+      "check": "all_status_partition",
+      "status": "PASS",
+      "detail": "Qualified/excluded partition covers all seven rows exactly once."
+    },
+    {
+      "check": "qualifying_lifecycle_statuses",
+      "status": "PASS",
+      "detail": "Four FULFILLED,one UNFULFILLED,one IN_PROGRESS qualifying orders."
+    },
+    {
+      "check": "new_order_status",
+      "status": "PASS",
+      "detail": "New flagged order is IN_PROGRESS, with no returned fulfillment object."
+    },
+    {
+      "check": "fulfillment_totals",
+      "status": "PASS",
+      "detail": "Four SUCCESS/FULFILLED objects totaling10units;0transit/delivery flags and0events."
+    },
+    {
+      "check": "unchanged_aggregate_fulfillments",
+      "status": "PASS",
+      "detail": "Fulfillment aggregate is unchanged from prior checkpoint except all-order record count6to7; no exact order joins retained."
+    },
+    {
+      "check": "no_physical_delivery_proof",
+      "status": "PASS",
+      "detail": "Recorded fulfillment does not establish carrier acceptance, transit or physical delivery."
+    },
+    {
+      "check": "orders_lines_complete",
+      "status": "PASS",
+      "detail": "Saved completion declarations for order and every line connection; raw page cursors not retained."
+    },
+    {
+      "check": "events_arrays_complete",
+      "status": "PASS",
+      "detail": "Saved event pagination and nontruncated fulfillment-array declarations are consistent; no native replay."
+    },
+    {
+      "check": "cutoff_bindings",
+      "status": "PASS",
+      "detail": "Current cutoff and prior cutoff references agree."
+    },
+    {
+      "check": "due_read_timing",
+      "status": "PASS",
+      "detail": "Due08:32:03UTC;cutoff08:33:21UTC,78seconds later."
+    },
+    {
+      "check": "next12h_timing",
+      "status": "PASS",
+      "detail": "Next full read20:33:21UTC is exactly12h after current cutoff."
+    },
+    {
+      "check": "completed_ny_day_boundaries",
+      "status": "PASS",
+      "detail": "September21NewYork=[September21 04:00,September22 04:00)UTC; independent zoneinfo conversion."
+    },
+    {
+      "check": "full_source_query_window",
+      "status": "PASS",
+      "detail": "Saved query has exact inclusive start/exclusive cutoff bounds."
+    },
+    {
+      "check": "query_observation_clock",
+      "status": "PASS",
+      "detail": "Single saved order/fulfillment observation08:33:21.961-08:33:22.696UTC; cutoff fixed before request."
+    },
+    {
+      "check": "read_only_no_purchase_injection",
+      "status": "PASS",
+      "detail": "Saved declaration is one read-only query with no purchase sent; native execution history not reaudited."
+    },
+    {
+      "check": "unknowns_and_causality",
+      "status": "PASS",
+      "detail": "Attribution,actualcosts,settlement,retainedprofit unknown; no marketing or agent causality."
+    },
+    {
+      "check": "deidentified_row_privacy",
+      "status": "PASS",
+      "detail": "Persisted rows contain no order/customer IDs,creationtimestamps,names,contacts,addresses or tracking identifiers; public shop identity is retained."
+    },
+    {
+      "check": "artifact_references",
+      "status": "PASS",
+      "detail": "Checkpoint references exact prior/source/owned review names."
+    }
+  ],
+  "recomputed": {
+    "all_status_records": 7,
+    "qualifying": {
+      "orders": 6,
+      "current_units": 14,
+      "currentSubtotalPriceSet": "407.41",
+      "currentTotalPriceSet": "407.41",
+      "currentTotalTaxSet": "0.00",
+      "totalRefundedSet": "0.00"
+    },
+    "new_creations_since_previous": {
+      "all_status": 1,
+      "qualifying": {
+        "orders": 1,
+        "current_units": 2,
+        "currentSubtotalPriceSet": "68.20",
+        "currentTotalPriceSet": "68.20",
+        "currentTotalTaxSet": "0.00",
+        "totalRefundedSet": "0.00"
+      }
+    },
+    "last_24_hours": {
+      "orders": 1,
+      "current_units": 2,
+      "currentSubtotalPriceSet": "68.20",
+      "currentTotalPriceSet": "68.20",
+      "currentTotalTaxSet": "0.00",
+      "totalRefundedSet": "0.00"
+    },
+    "completed_sep21_new_york": {
+      "orders": 0,
+      "current_units": 0,
+      "currentSubtotalPriceSet": "0.00",
+      "currentTotalPriceSet": "0.00",
+      "currentTotalTaxSet": "0.00",
+      "totalRefundedSet": "0.00"
+    },
+    "prior_qualifying_aggregate": {
+      "orders": 5,
+      "current_units": 12,
+      "currentSubtotalPriceSet": "339.21",
+      "currentTotalPriceSet": "339.21",
+      "currentTotalTaxSet": "0.00",
+      "totalRefundedSet": "0.00"
+    },
+    "delta": {
+      "orders": 1,
+      "current_units": 2,
+      "currentSubtotalPriceSet": "68.20",
+      "currentTotalPriceSet": "68.20",
+      "currentTotalTaxSet": "0.00",
+      "totalRefundedSet": "0.00"
+    },
+    "excluded": [
+      {
+        "test": false,
+        "cancelled": true,
+        "financial_status": "REFUNDED",
+        "source": "web",
+        "orders": 1,
+        "current_units": 0,
+        "currentSubtotalPriceSet": "0.00",
+        "currentTotalPriceSet": "0.00",
+        "currentTotalTaxSet": "0.00",
+        "totalRefundedSet": "31.98"
+      }
+    ],
+    "qualifying_fulfillment_statuses": {
+      "FULFILLED": 4,
+      "UNFULFILLED": 1,
+      "IN_PROGRESS": 1
+    },
+    "fulfillment": {
+      "records": 7,
+      "fulfillment_objects": 4,
+      "total_fulfilled_quantity": 10,
+      "has_delivered_at": 0,
+      "has_in_transit_at": 0,
+      "events": {},
+      "unpaginated_nested_connections": 0,
+      "statuses": {
+        "SUCCESS/FULFILLED": 4
+      }
+    }
+  },
+  "timing": {
+    "prior_due_utc": "2026-09-22T08:32:03Z",
+    "cutoff_utc": "2026-09-22T08:33:21Z",
+    "seconds_after_due": 78,
+    "trailing24h_start_utc": "2026-09-21T08:33:21Z",
+    "completed_sep21_new_york_window_utc": [
+      "2026-09-21T04:00:00Z",
+      "2026-09-22T04:00:00Z"
+    ],
+    "next_full_read_not_before_utc": "2026-09-22T20:33:21Z"
+  },
+  "limits": [
+    "Saved-source verification only: no browser, network, API, native-order audit or independent live replay.",
+    "Exact per-order creation timestamps were intentionally not retained. Window counts are independently aggregated from declared booleans; membership against raw creation timestamps cannot be independently rederived. Boundary calculations and cross-window logical consistency were checked.",
+    "Order IDs are intentionally absent. Native uniqueness and exact order-level longitudinal joins cannot be independently verified; prior-to-current comparisons establish aggregate consistency only.",
+    "Pagination/nontruncation and source identity declarations are present and consistent. Raw cursors/responses and omitted per-row currency codes are not independently replayed; integer-cent arithmetic uses the documented shopMoney/USD normalization.",
+    "Fulfillment flags/objects do not prove carrier acceptance, transit, delivery or retained settlement. Recorded USD31.98 refunds do not independently establish bank settlement.",
+    "Attribution, actual delivered costs, acquisition expense, settlement and retained profit remain UNKNOWN. The new purchase is not attributed to marketing or agent work."
+  ],
+  "confidence": "H for exact bindings, qualification arithmetic and aggregate reconciliation; window membership and native completeness remain owner-source declarations.",
+  "safe_parent_wording": "At September 22 08:33:21 UTC, the saved source has 7 all-status records and 6 qualifying PAID, non-test, noncancelled web orders: 14 current units / USD407.41. One newly created qualifying order adds 2 units / USD68.20 since the prior cutoff and in the trailing 24 hours; the completed September 21 New York day has 0 qualifying creations based on declared window flags. One excluded cancelled REFUNDED order retains USD31.98 recorded refunds. Four SUCCESS/FULFILLED objects total 10 units, with no transit/delivery timestamp or event evidence. Attribution, costs, settlement and profit remain UNKNOWN; causality is not established.",
+  "required_corrections": [],
+  "independent_native_replay": "NOT RUN",
+  "shared_or_owner_checkpoint_writes": 0,
+  "git_writes": 0,
+  "external_writes": 0
+}

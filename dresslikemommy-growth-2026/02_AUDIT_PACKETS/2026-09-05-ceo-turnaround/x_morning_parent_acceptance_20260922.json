@@ -1,0 +1,94 @@
+{
+  "action_id": "TA24-X-MORNING-CATCHUP-20260922",
+  "recorded_at_utc": "2026-09-22T13:34:21.798962+00:00",
+  "canonical_anchor": "2026-09-22-ceo-halloween-link-and-pinterest-state",
+  "status": "SOURCE_ACCEPTED_WITH_LIMITS__LATE_CHECKPOINT_COMPLETE__PUBLICATION_BLOCKED",
+  "evidence_label": "REPO_KNOWN",
+  "owner_thread": "01a0915d-9105-7833-9d4b-eb467ab0ebbd",
+  "source": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-22-morning.json",
+    "sha256": "9166100fbecfe6d332285244d01c22f232402ee032b847438cce130cc6010126"
+  },
+  "owner_independent_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-11-x-profile-review/relaunch/operations/2026-09-22-morning-review.json",
+    "sha256": "b67674a306d88248e18af458fd9873a14d435b653a2ebbdd1b0e34684885a7d5"
+  },
+  "parent_source_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/x_morning_parent_source_review_20260922.json",
+    "sha256": "a7ba4c29934c0d5d8a7514736a7ce81b06be170817efc4324426034b20e264f6"
+  },
+  "source_live_evidence_as_of": "2026-09-22T13:15:12.180899+00:00",
+  "interpretation": {
+    "campaign_evidence": "Both accepted X campaign queries returned zero rows. The September12-19 checkpoint window overlaps the September15-21 catch-up window; they are not added.",
+    "referrer_evidence": "28 returned referrer rows sum to1991 store sessions; no named X/Twitter/t.co row. These total store sessions are not credited to X.",
+    "qualified_sessions": null,
+    "product_progression": null,
+    "genuine_questions": null,
+    "distinct_orders_with_observed_x_evidence": 0,
+    "actual_x_orders": null,
+    "contribution": null,
+    "orders": "Four distinct paid, non-test, noncancelled web orders in the exact launch-through-completed-September21 creation window. All four also precede the September19 checkpoint cutoff. Three ready journeys each show one Direct moment, and one ready journey has no moments. None provides observed X attribution. No totals from other parent or channel cohorts are imported.",
+    "limits": "Current status read September22 is not payment/cancellation state as of September19. No rows or attribution markers does not prove all X clicks/orders absent. Costs unqueried because no order supports X credit; contribution unknown. No buyer-facing QA request in this run.",
+    "cohort_rule": "Article, Pinterest, Sunshine Pin and parent full-sales windows remain separate. A guide visit from X is not counted as an additional independent article acquisition.",
+    "original_seven_full_day_cohort": "September12-18 inclusive; first full reporting day September12 and original review scheduled September19.",
+    "retrospective_extension": "The current September12-19 query covers8completed days, including the planned review date itself. The order cutoff September20 04:00UTC likewise includes September19. This is a broader retrospective read September22, not an exact reconstruction of the original7day cohort or information available on September19. The conservative no-credit/publication-hold decision does not require another query."
+  },
+  "publication_reconciliation": {
+    "as_of_utc": "2026-09-22T13:11:10.044Z",
+    "verified_historical_r001_url": "https://x.com/dresslikemommy/status/2098481955721380021",
+    "historical_native_submissions": 7,
+    "current_pending_count": null,
+    "elapsed_planned_ids": [
+      "DLM-X-202609-R002",
+      "DLM-X-202609-R003",
+      "DLM-X-202609-R004",
+      "DLM-X-202609-R005",
+      "DLM-X-202609-R006"
+    ],
+    "elapsed_status": "DUE__PUBLICATION_UNVERIFIED",
+    "today": "DLM-X-202609-R007 plannedSeptember22 12:15EDT/16:15UTC; not due at this morning review, live state unverified",
+    "next": "DLM-X-202609-R008 plannedSeptember23 12:15EDT/16:15UTC; live state unverified",
+    "future_planned_count": 2,
+    "new_platform_receipts": 0,
+    "calendar_elapsed_is_not_publication": true,
+    "duplicate_or_backfill_attempts": 0
+  },
+  "checkpoint_decision": {
+    "id": "X-SEPT19-REVIEW-PERFORMED-20260922",
+    "decision": "PRESERVE_INITIAL_BASELINE__MINIMAL_USEFUL_COVERAGE__NO_EXTRA_PUBLICATION_OR_DRAFTS",
+    "reason": "Publication is unverified and no supported qualified X result or buyer question distinguishes content. Increasing output or choosing a winner would have no evidence basis.",
+    "alternatives_considered": [
+      "Increase cadence/add a product-image post: rejected; adds volume and unresolved image-origin risk without exposure or buyer evidence.",
+      "Preserve original native submissions, monitor useful attribution evidence, keep the approved connection gate: selected."
+    ],
+    "cadence": "Existing seven native submissions preserved; ceiling remains3-4originals/week and no more than1/day. No extension or replay added. September26 decides whether one existing reviewed candidate is justified after permitted publication evidence.",
+    "next_experiment": "No new winner or experiment selected. R009,R010,R011 remain LOCAL; at most one R010/R011 only after changed evidence, supported connection and current product/disclosure QA.",
+    "work_reduction": "No additional draft, repeated completed-period order query or publisher research without changed evidence. Retain short completed-day morning reports and bounded due-publication afternoon assessment under the unchanged09/16heartbeat.",
+    "next_check_local": "2026-09-22T16:00:00-04:00",
+    "next_decision_checkpoint": "2026-09-26",
+    "october12": "Decision checkpoint, not automatic stop."
+  },
+  "publisher": {
+    "supported_callable_x_tools_observed": 0,
+    "scope_of_observation": "Current enabled tool metadata and current local connection receipts; no credential inventory or hidden account inference.",
+    "candidate": "Buffer Free",
+    "setup_authorization": "PENDING_EXISTING_QUESTION",
+    "connected": false,
+    "account_setup_attempts": 0,
+    "question_repeated": false,
+    "website_automation_or_native_fallback": false
+  },
+  "runtime": "Actual September22 source execution supersedes current-failure label only; September21 failure remains dated history, intervening runs and future availability unproved.",
+  "observed_completion": {
+    "cursor": "433ef3d2-02f6-4441-9551-79692bb8a992:2",
+    "turn_id": "01a0c934-cc63-72f3-abc3-5aeaef463dc4",
+    "status": "completed",
+    "completed_at_unix": 1790083336
+  },
+  "native_replay_by_parent": "NOT_RUN",
+  "business_writes": 0,
+  "approved_external_scope": "NONE",
+  "overall_TA24": "PARTIAL__ATTRIBUTION_AND_PUBLISHER_GATES_OPEN",
+  "independent_verifier": "/root/recovery_source_verifier",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE"
+}

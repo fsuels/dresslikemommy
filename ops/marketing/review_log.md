@@ -1,5 +1,47 @@
 # Marketing Safety Review Log
 
+## September22 channel-source reconciliation and editorial handoff
+
+Parent Microsoft source review24/24, Pinterest17/17, sizing20/20 and X18/18 each PASS_WITH_LIMITS. These are separate saved-source reviews, not summed native coverage. Sizing binds12manifest members/34distinct artifacts and consumes separate25metric/19QA checks. X consumes the owner12-check review; intermediate pending labels in frozen source remain historical. Parent performed only the exact live Shopify product status read; no independent native account replay.
+
+The Organic recipient was idle immediately before the one13:26:08UTC continuation and is now active. Its current exact routine editorial release authority is preserved; all paid and peer boundaries remain intact. A release receipt is still required. Canonical inverse/preservation and required standard checks are recorded separately in the final verification receipt.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_sq22_destination_parent_acceptance_20260922.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/pinterest_morning_parent_acceptance_20260922.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/sizing_week1_parent_acceptance_20260922.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/x_morning_parent_acceptance_20260922.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/halloween_archived_product_source_20260922.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/halloween_article_owner_dispatch_20260922.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/halloween_article_owner_preflight_intake_20260922.json`. Anchor `2026-09-22-ceo-halloween-link-and-pinterest-state`.
+
+## September22 Microsoft Search saved-source acceptance
+
+Independent parent review PASS_WITH_LIMITS42/42 binds the frozen handoff and all six source files, recomputes the20click/USD2.97 and12above-ceiling/USD2.21 summaries, and preserves current-versus-historical settings, conditional candidate, no-write and editor-warning limits. Prior owner25checks and18machine+6manual checks are separate, not disjoint added coverage. No native account or public documentation replay by parent reviewer.
+
+Canonical preservation and standard checks are recorded separately in the final verification receipt. This accepts a completed read-only diagnosis, not a live CPC correction, optimization, conversion repair or profitable result.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_search_query_parent_acceptance_20260922.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_search_query_source_review_20260922.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_sq22_destination_dispatch_20260922.json`. Anchor `2026-09-22-ceo-microsoft-search-cpc-control`.
+
+## September22 sales, attribution and Microsoft source acceptance
+
+Sales review PASS_WITH_LIMITS35/35; supplemental attribution review PASS_WITH_LIMITS23/23. They independently recalculate the frozen deidentified source and qualify only one Shopify-reported Google organic sale/USD68.20. Raw native replay and source-declared transient ID/date membership are not independently reproduced. The initial sales review remains immutable and its then-unknown attribution is narrowed only by the separate supplemental receipt.
+
+The separately frozen Microsoft parent source review passes with limits; its source-owner27checks and43machine+8manual review are not summed as disjoint independent coverage. UET parameter names/one event and no-sample Healthy do not prove the new Shopify order, consent repair, costs or profit. Native replay NOT_RUN. Canonical preservation/standard checks are recorded separately in the final integration verification.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_parent_acceptance_20260922.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_receiver_day_parent_acceptance_20260922.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_route_parent_acceptance_20260922.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/organic_order_route_dispatch_20260922.json`. Anchor `2026-09-22-ceo-google-organic-order-verified`.
+
+## September22 Father & Son parent source acceptance
+
+PASS_WITH_LIMITS: cockpit_current_metrics_source independently checked31/31 saved-source assertions plus five bounded assessments and seven packet bindings. Its review consumed the source-owner24machine+7manual review without native replay; counts are not added as independent exhaustive coverage. Confidence H for saved-data consistency and M for semantic fit. No current negative association check, live authority, catalog-wide absence, cart/checkout or business gain is certified.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_father_son_parent_acceptance_20260922.json`; `microsoft_father_son_source_review_20260922.json`. Anchor `2026-09-22-ceo-father-son-query-fit`.
+
+## September22 EUR/Spain parent source acceptance
+
+PASS_WITH_LIMITS: recovery_source_verifier checked24/24 source assertions, seven packet bindings and four existing UX references. Source-owner reviews retain32machine+7manual main checks and11negative-sample checks; these are not added as disjoint exhaustive coverage. Independent native replay was NOT RUN. The Spain case belongs to existing UX post-publication acceptance, without new patch, current candidate pass, fresh theme-role proof or release authority.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_eur_spain_parent_acceptance_20260922.json`; `microsoft_eur_spain_source_review_20260922.json`. Anchor `2026-09-22-ceo-eur-spain-buyer-route`.
+
+## September22 Canada source and copy-scope review
+
+Reviewer verdict: PASS_WITH_LIMITS for Canada source acceptance; HOLD for root live product writing. The recovery_source_verifier independently verified14source checks and separately resolved the exact ownership dependency; it did not execute native tests or a source write. Root freshly compared English source/body and20existing translations, enumerated all6market contexts and126empty override arrays, and passed10local one-sentence preservation checks. Market and global translation reads are not public-language quality certification. Preserve the existing product owner, known runtime hold, pending Microsoft question and paidNONE. No source or platform write is approved by this review.
+
+Evidence: `microsoft_canada_parent_acceptance_20260922.json`; `microsoft_ca_source_review_20260922.json`; `blue_daisy_copy_correction_20260922/disposition.json`. Anchor `2026-09-22-ceo-canada-cpc-and-copy-source`.
+
 ## 2026-09-11 — Ongoing Google keyword correction
 
 Independent /root/tag_repair_review DID_NOT_BUILD_OR_EXECUTE: PASS_WITH_LIMITS for exact five-file patch74f2552167eb67458048bda26ed8341556805d1b075062f36eb9a294bac9fb5f and manifest697d55fbe2f0b75f656ea661eec72e30895f39e552c9b0fe525262c58e248d31.35independent checks, regenerated diff, patch applicability, all105identities/statuses, eight watchlists, five frozen failures and negative protections pass. Earlier R/H conflict was corrected before review. Illustrative rounding now distinguishes approximate7.23from strict-cent7.22. Root then read exact baseline/candidate hashes and applied only the five local files.

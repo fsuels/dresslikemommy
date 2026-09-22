@@ -1,0 +1,195 @@
+{
+  "schema": "dlm.parent.microsoft_search_query_acceptance.v1",
+  "action_id": "TA15-SEARCH-QUERY-REVIEW-20260922",
+  "recorded_at_utc": "2026-09-22T12:54:33.079105+00:00",
+  "canonical_anchor": "2026-09-22-ceo-microsoft-search-cpc-control",
+  "status": "SOURCE_ACCEPTED_WITH_LIMITS__READ_ONLY_DIAGNOSTIC_COMPLETE",
+  "evidence_label": "REPO_KNOWN",
+  "source": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/search-query-review-20260922/handoff.json",
+    "sha256": "de5c39080c8f072b177defc67a7a6131878bcd3f75c2b386fb3d163813d89dda"
+  },
+  "source_members": {
+    "source.json": "eed8cc8f6530df2b5999098f3748031823376d89571cd97054fd727fcc889274",
+    "native-settings.json": "e41ad41889fe5d7f7de85755027a8503a74591ba2996e2c99d821a867f33b4ad",
+    "analysis.json": "058fa7eeef6a9d89baeb5e32521e5a1307d783a915bcc5d4da1879f50b6fbafa",
+    "root-verification.json": "90e11dbdac48916a76e3d811c0f00433e15f5382869d358d7c970bdc8509eb75",
+    "READBACK.md": "b982d564a5a0e5bab4ae3aa0a84c218702b1a3971b039a506b042b11294cd5ee",
+    "independent-review.json": "35f7fa786d5d6f9708c87a89428925f91dc5d0b72ea880a5918357d2ff80f75a"
+  },
+  "parent_source_review": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_search_query_source_review_20260922.json",
+    "sha256": "0aec58eb6c61d9934df04a32eaa0f721e44872e6cf37872777b6d16d2bc8d73a"
+  },
+  "owner_thread": "01a08703-644f-7940-8f67-9a2fa63722bb",
+  "source_live_evidence_as_of": "2026-09-22T12:33:42.616Z",
+  "accepted_metrics": {
+    "clicked_query_rows": 20,
+    "clicks": 20,
+    "search_spend_usd": "2.97",
+    "clicked_row_impressions": 23,
+    "all_reported_search_impressions": 617,
+    "unrounded_mean_search_cpc_usd": "0.1485",
+    "above_ceiling_clicks": 12,
+    "above_ceiling_spend_usd": "2.21",
+    "above_ceiling_click_share_pct": "60.00",
+    "above_ceiling_spend_share_pct": "74.41",
+    "phrase_close_variant_clicks": 19,
+    "exact_close_variant_clicks": 1,
+    "reported_conversions": "0.00",
+    "reported_revenue_usd": "0.00",
+    "verified_attributed_purchases": null,
+    "verified_cpa_usd": null,
+    "verified_contribution_profit_usd": null,
+    "expected_savings_usd": null,
+    "by_campaign": {
+      "GB": {
+        "clicks": 4,
+        "above_ceiling_clicks": 2,
+        "spend_usd": "0.58",
+        "above_ceiling_spend_usd": "0.36"
+      },
+      "US": {
+        "clicks": 13,
+        "above_ceiling_clicks": 9,
+        "spend_usd": "2.08",
+        "above_ceiling_spend_usd": "1.66"
+      },
+      "AU": {
+        "clicks": 1,
+        "above_ceiling_clicks": 0,
+        "spend_usd": "0.09",
+        "above_ceiling_spend_usd": "0"
+      },
+      "CA": {
+        "clicks": 1,
+        "above_ceiling_clicks": 1,
+        "spend_usd": "0.19",
+        "above_ceiling_spend_usd": "0.19"
+      },
+      "EUR": {
+        "clicks": 1,
+        "above_ceiling_clicks": 0,
+        "spend_usd": "0.03",
+        "above_ceiling_spend_usd": "0"
+      }
+    }
+  },
+  "current_GB_settings": {
+    "as_of": "2026-09-22T12:28:57.421Z",
+    "url": "https://ui.ads.microsoft.com/campaign/vnext/settings?aid=477439&campaignId=506255081&cid=770182&uid=2290164",
+    "campaign_id": "506255081",
+    "name": "DLM | MS | GB | EN | Search | 202609",
+    "status": "Enabled",
+    "language": "English",
+    "selected_bid_strategy": "Maximize Clicks (automated bidding): Set my bids to get the most clicks",
+    "maximum_cpc_checkbox": "checked",
+    "max_cpc_textbox": "0.20",
+    "currency": "USD",
+    "budget_type": "Individual budget",
+    "daily_budget_textbox": "20.00",
+    "country_and_presence_settings_read_this_run": false,
+    "fields_edited": 0,
+    "save_clicked": false,
+    "interpretation_limit": "This is the September 22 settings state, not a change-history proof of the setting during September 21 clicks. Daily budget is a configured amount, not actual spend, a hard cash cap, or spending authority."
+  },
+  "candidate_status": "LOCAL_CONDITIONAL_REVIEW_ONLY__RETAIN_LIVE",
+  "conditional_candidates": [
+    {
+      "candidate_id": "TA15-SQ22-GB",
+      "text": "celebrity family event outfits",
+      "match_type": "Exact",
+      "scope": "AdGroup",
+      "campaign_id": "506255081",
+      "ad_group_id": "1275435292356142",
+      "ad_group_name": "Family Matching Outfits",
+      "observed_clicks": 1,
+      "observed_spend_usd": "0.09",
+      "status": "LOCAL_CONDITIONAL_REVIEW_ONLY",
+      "reason": "Celebrity-event wording may indicate editorial inspiration. Product-shopping intent remains possible; confirm offer mismatch before excluding.",
+      "activation_conditions": [
+        "Confirm the actual ad/destination and offered product cohort do not serve this specific query intent.",
+        "Read current ad-group, campaign, shared and account-level negatives; check duplication and conflicts.",
+        "Obtain current exact external-write authority; preserve the existing pending owner questions.",
+        "Re-read exact campaign/group IDs and capture before-state; apply only the individually reviewed literal Exact candidate, if still justified."
+      ],
+      "rollback_if_ever_authorized": "Remove only the newly created negative ID from this exact ad group; preserve pre-existing exclusions and other campaigns. No rollback needed now because nothing was applied."
+    },
+    {
+      "candidate_id": "TA15-SQ22-US",
+      "text": "top 10 family costumes",
+      "match_type": "Exact",
+      "scope": "AdGroup",
+      "campaign_id": "506254907",
+      "ad_group_id": "1275435291895118",
+      "ad_group_name": "Family Matching Outfits",
+      "observed_clicks": 1,
+      "observed_spend_usd": "0.20",
+      "status": "LOCAL_CONDITIONAL_REVIEW_ONLY",
+      "reason": "Top-10 wording suggests list/research intent. One click is not evidence of unprofitable traffic; confirm costume/destination fit before excluding.",
+      "activation_conditions": [
+        "Confirm the actual ad/destination and offered product cohort do not serve this specific query intent.",
+        "Read current ad-group, campaign, shared and account-level negatives; check duplication and conflicts.",
+        "Obtain current exact external-write authority; preserve the existing pending owner questions.",
+        "Re-read exact campaign/group IDs and capture before-state; apply only the individually reviewed literal Exact candidate, if still justified."
+      ],
+      "rollback_if_ever_authorized": "Remove only the newly created negative ID from this exact ad group; preserve pre-existing exclusions and other campaigns. No rollback needed now because nothing was applied."
+    }
+  ],
+  "unexpected_exit_warning": {
+    "trigger": "Clicked settings Cancel after reading; no form fields had been edited by the operator.",
+    "title": "Are you sure you want to exit?",
+    "text": "You have unsaved changes that could be lost.",
+    "response": "Clicked No; did not accept Yes or click Save.",
+    "settled_readback": "AX after No showed the settings page without the dialog. An immediate DOM snapshot still contained the old dialog; the subsequent settled AX resolved this transient ambiguity.",
+    "settled_readback_recorded_at": "2026-09-22T12:33:42.616Z",
+    "cause": "UNKNOWN; no dirty-state root cause inferred",
+    "safety_state": "Stopped on this settings surface. Task-created tab6 retained for handoff without navigation, discard confirmation, or Save. Do not use this form for a later write without resolving the warning and obtaining fresh before-state/authority."
+  },
+  "correction_status": "NOT_ENTERED_NOT_SAVED",
+  "observed_completion": {
+    "runtime_status": "idle",
+    "cursor": "cfd7b15a-a359-4966-9f61-20f8ec65187b:12",
+    "turn_id": "01a0c910-a1f5-7793-9e2a-2c0be4e4586f",
+    "completed_at_unix": 1790081039
+  },
+  "source_owner_root_checks": 25,
+  "source_owner_independent_checks": 24,
+  "parent_independent_checks": 42,
+  "counts_are_separate_not_summed": true,
+  "native_replay_by_parent": "NOT_RUN",
+  "live_state_mode": "STALE_READBACK_REQUIRED",
+  "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+  "approved_external_scope": "NONE",
+  "decision_depends_on_uncertain_state": true,
+  "material_decision": true,
+  "decision_changing_evidence": [
+    "Native completed September 21 Search report: all 20 clicked rows, USD2.97 and 20 clicks. Twelve reported clicks, totaling USD2.21, cost above USD0.15. Mean USD0.1485 is not per-click compliance. The 20 rows have 23 impressions versus 617 for all Search; no hidden-query or placement inference.",
+    "Fresh GB campaign 506255081: Enabled, English, Maximize Clicks, maximum CPC checked at USD0.20, individual USD20/day configured budget. This is current native cap availability, not change-history proof of September 21 settings. Country and presence settings were not reread.",
+    "Nineteen Phrase close-variant clicks and one Exact close-variant click; one click per query; zero reported conversions/revenue with measurement unresolved. Neither these zeros nor wording establishes waste or profit.",
+    "Fresh Family Matching Outfits group bindings: GB 1275435292356142 and US 1275435291895118. The literal local candidates are celebrity family event outfits and top 10 family costumes. Existing/inherited negative associations and actual ad/destination fit were not read this run.",
+    "An unexpected unsaved-changes warning after read-only settings Cancel was declined with No. Settled AX showed the dialog absent. No fields edited, Save or discard accepted. The cause remains unknown; tab6 is retained and this settings surface is stopped."
+  ],
+  "if_evidence_supports_recommendation": "Parent may accept this diagnostic with limits into TA15 controls. Resolve the pending paid-control decision before active expansion. A later authorized correction may change only the GB maximum CPC from USD0.20 to USD0.15 after fresh native state, resolved exit warning, review and after-state. The exclusion candidates require demonstrated offer mismatch, conflict checks and exact authority before any application.",
+  "if_evidence_opposes_recommendation": "If fresh settings or owner ceiling change, record their dates and supersede only that finding. If the actual offering fits a candidate query, reject the proposed negative. Do not use aggregate averages, a generic support statement, one UET event or count/date-only order joins as contradiction of these gates.",
+  "independent_verifier": "/root/cockpit_current_metrics_source",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "business_writes": 0,
+  "root_dispatch_for_completed_source": false,
+  "next_independent_action_dispatch": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_sq22_destination_dispatch_20260922.json",
+    "sha256": "07bf49a7b9e3539fbf195b80fcf14fc83137eb796f5a08f557570256b22af03a"
+  },
+  "overall_TA15": "PARTIAL__PAID_CONTROL_MEASUREMENT_AND_ECONOMICS_OPEN",
+  "limits": [
+    "Saved selected native DOM/AX only; no independent browser/API replay or separate Microsoft documentation verification. Root25 and independent18machine+6manual checks are consumed, not new native coverage.",
+    "Twenty clicked rows reconcile20clicks/USD2.97 only. Their23impressions do not cover all617Searchimpressions or92reported terms. Native significant-click reporting and excluded Audience traffic limit coverage.",
+    "Twelve displayed single-click costs aboveUSD0.15 totalUSD2.21. Values are displayed rounded report amounts; averageUSD0.1485 is not per-click compliance, waste or causal proof.",
+    "GB506255081 checkedUSD0.20cap is current September22 native state. It does not establish September21 setting history, user location, country/presence settings or numeric paid authority.",
+    "Celebrity-family-event and top10costume wording are semantic hypotheses. Both literal Exact ad-group candidates remain local, with actual offer/ad/destination fit, inherited associations/conflicts and authority unknown; neither is justified live.",
+    "Settings Cancel unexpectedly triggered unsaved changes. No declined exit/discard; settledAX showed dialog absent after staleDOM. Root reports no field edits orSave. Warning cause and clean form state remain unresolved; tab6 is retained and stopped.",
+    "Zero reported conversions/revenue do not establish zero Shopifyorders. No fresh Shopify/cost query, exact attribution, CPA, profit, expected savings or support outcome exists in this run.",
+    "Current source remains read-only with existing pause/budget/loss questions pending. No negative, bid, status, budget, tracking, support-contact, scheduling or shared-canonical action is authorized by this review."
+  ],
+  "preservation": "The existing exact six-campaign pause question remains first; the separate numeric daily-budget/30-day-loss question is still pending. No repeated question, business write, claim transfer, new account/task/schedule/model/goal or Git release. Paid scopeNONE remains. The current six-order/14unit/USD407.41cohort, oneShopify-reportedGoogle-organic sale/USD68.20, unknown costs/profit, full-sales next20:33:21UTC and all existing Organic/Pinterest/Merchant review/source clocks stay unchanged. Existing theme owner-Admin publication and Merchant runtime/product-localization gates remain. Prior father-son and receiver/day diagnostic steps are complete; earlier pending snapshots below are historical."
+}

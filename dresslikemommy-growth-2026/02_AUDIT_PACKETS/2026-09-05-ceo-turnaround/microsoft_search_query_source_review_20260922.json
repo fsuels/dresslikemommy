@@ -1,0 +1,353 @@
+{
+  "schema": "dlm.parent.microsoft_search_query_saved_source_review.v1",
+  "recorded_at_utc": "2026-09-22T12:47:51.975066+00:00",
+  "action_id": "TA15-SEARCH-QUERY-REVIEW-20260922",
+  "reviewer": "/root/cockpit_current_metrics_source",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "status": "PASS_WITH_LIMITS",
+  "verdict": "PASS_WITH_LIMITS",
+  "handoff_binding": {
+    "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-microsoft-ads-rebuild/search-query-review-20260922/handoff.json",
+    "sha256": "de5c39080c8f072b177defc67a7a6131878bcd3f75c2b386fb3d163813d89dda"
+  },
+  "source_sha256": {
+    "source.json": "eed8cc8f6530df2b5999098f3748031823376d89571cd97054fd727fcc889274",
+    "native-settings.json": "e41ad41889fe5d7f7de85755027a8503a74591ba2996e2c99d821a867f33b4ad",
+    "analysis.json": "058fa7eeef6a9d89baeb5e32521e5a1307d783a915bcc5d4da1879f50b6fbafa",
+    "root-verification.json": "90e11dbdac48916a76e3d811c0f00433e15f5382869d358d7c970bdc8509eb75",
+    "READBACK.md": "b982d564a5a0e5bab4ae3aa0a84c218702b1a3971b039a506b042b11294cd5ee",
+    "independent-review.json": "35f7fa786d5d6f9708c87a89428925f91dc5d0b72ea880a5918357d2ff80f75a"
+  },
+  "consumed_reviews": {
+    "root_self_checks": 25,
+    "independent_machine_checks": 18,
+    "independent_manual_assessments": 6,
+    "independent_focused_checks": 24,
+    "native_replay": "NOT_RUN",
+    "counts_not_added_to_parent_checks": true
+  },
+  "checks_passed": 42,
+  "checks_total": 42,
+  "checks": [
+    {
+      "check": "handoff_exact_hash",
+      "status": "PASS",
+      "detail": "de5c39080c8f072b177defc67a7a6131878bcd3f75c2b386fb3d163813d89dda"
+    },
+    {
+      "check": "six_source_bindings",
+      "status": "PASS",
+      "detail": "All six final source hashes match handoff."
+    },
+    {
+      "check": "one_action_exact_accounts",
+      "status": "PASS",
+      "detail": "Exact action/account/customer across current saved sources."
+    },
+    {
+      "check": "analysis_builder_bindings",
+      "status": "PASS",
+      "detail": "Analysis and builder source bindings match current frozen inputs."
+    },
+    {
+      "check": "builder25_consumed",
+      "status": "PASS",
+      "detail": "Consumed25 root self-checks; not counted as new native coverage."
+    },
+    {
+      "check": "independent24_consumed",
+      "status": "PASS",
+      "detail": "Consumed18machine+6manual focused review; no native or separate documentation replay."
+    },
+    {
+      "check": "completed_report_date_currency",
+      "status": "PASS",
+      "detail": "One September21 native Eastern reporting date; no forced fixed-offset UTC conversion."
+    },
+    {
+      "check": "twenty_complete_unique_rows",
+      "status": "PASS",
+      "detail": "All20 unique complete selected clicked-query rows; literal spelling retained."
+    },
+    {
+      "check": "single_click_each",
+      "status": "PASS",
+      "detail": "Every row has one click; displayed row cost equals displayed cost per reported click."
+    },
+    {
+      "check": "clicked_spend_total",
+      "status": "PASS",
+      "detail": "All selected spend reconciles to both filtered and native all-Search spend."
+    },
+    {
+      "check": "clicked_count_total",
+      "status": "PASS",
+      "detail": "Selected20 clicks reconcile to reported Search total."
+    },
+    {
+      "check": "impression_coverage_limited",
+      "status": "PASS",
+      "detail": "Clicked-row23 impressions differ from all-Search617/92terms; no full query-text/placement coverage."
+    },
+    {
+      "check": "above_threshold_count",
+      "status": "PASS",
+      "detail": "Strictly greater than0.15 selects12 displayed single-click costs; equality is excluded."
+    },
+    {
+      "check": "above_threshold_spend",
+      "status": "PASS",
+      "detail": "Twelve above-threshold rows totalUSD2.21."
+    },
+    {
+      "check": "exact_threshold_excluded",
+      "status": "PASS",
+      "detail": "DisplayedUSD0.15 row is not classified above threshold."
+    },
+    {
+      "check": "mean_not_click_compliance",
+      "status": "PASS",
+      "detail": "MeanUSD0.1485 does not certify each click at or belowUSD0.15."
+    },
+    {
+      "check": "threshold_shares",
+      "status": "PASS",
+      "detail": "Above-threshold shares60%clicks/74.41%displayedspend."
+    },
+    {
+      "check": "close_variant_mix",
+      "status": "PASS",
+      "detail": "Nineteen Phrase close-variant clicks and one Exact close-variant click."
+    },
+    {
+      "check": "campaign_subtotals",
+      "status": "PASS",
+      "detail": "US13/USD2.08;GB4/0.58;CA1/0.19;AU1/0.09;EUR1/0.03, with matching excess subtotals."
+    },
+    {
+      "check": "zeros_reported_only",
+      "status": "PASS",
+      "detail": "Zero reported conversions/revenue does not establish zero orders or waste."
+    },
+    {
+      "check": "outcomes_unknown",
+      "status": "PASS",
+      "detail": "Verified purchases,CPA,profit,savings remain unknown."
+    },
+    {
+      "check": "added_excluded_none_not_association_proof",
+      "status": "PASS",
+      "detail": "Native None cells do not establish absence of inherited/shared/account negatives."
+    },
+    {
+      "check": "twenty_bound_dispositions",
+      "status": "PASS",
+      "detail": "Every literal row classified once; all live actions remainNONE."
+    },
+    {
+      "check": "current_gb_identity",
+      "status": "PASS",
+      "detail": "Fresh saved native settings bind exact GB506255081."
+    },
+    {
+      "check": "current_gb_configuration",
+      "status": "PASS",
+      "detail": "Current Enabled/English/MaximizeClicks, checkedUSD0.20cap, configuredUSD20/day."
+    },
+    {
+      "check": "current_cap_difference",
+      "status": "PASS",
+      "detail": "Current checked cap exceeds retained ceiling byUSD0.05; no change-history conclusion."
+    },
+    {
+      "check": "setting_date_and_country_limits",
+      "status": "PASS",
+      "detail": "September22 state is separate from September21 clicks; country/presence not read."
+    },
+    {
+      "check": "correction_not_entered_saved",
+      "status": "PASS",
+      "detail": "Potential exact cap correction remains local and requires authority/resolved form/fresh before-state/review/after-state."
+    },
+    {
+      "check": "two_literal_exact_candidates",
+      "status": "PASS",
+      "detail": "Only two literal Exact ad-group hypotheses; not approved negatives or upload data."
+    },
+    {
+      "check": "candidate_binding_TA15-SQ22-GB",
+      "status": "PASS",
+      "detail": "Literal query links to fresh saved native group identity and historical one-click cost."
+    },
+    {
+      "check": "candidate_binding_TA15-SQ22-US",
+      "status": "PASS",
+      "detail": "Literal query links to fresh saved native group identity and historical one-click cost."
+    },
+    {
+      "check": "candidates_not_justified_live",
+      "status": "PASS",
+      "detail": "CombinedUSD0.29 is historical cost, not savings; retain both live pending offer-fit proof."
+    },
+    {
+      "check": "candidate_remaining_gates",
+      "status": "PASS",
+      "detail": "Actual ad/destination/cohort fit, inherited associations/conflicts, exact authority and reviewed before/after/rollback remain open."
+    },
+    {
+      "check": "unexpected_cancel_warning_preserved",
+      "status": "PASS",
+      "detail": "Cancel produced unexpected unsaved warning; No declined exit/discard, not an approved save."
+    },
+    {
+      "check": "settled_ax_not_stale_dom",
+      "status": "PASS",
+      "detail": "Source preserves transient stale DOM versus settled AX; warning cause unproved."
+    },
+    {
+      "check": "settings_surface_stopped_retained",
+      "status": "PASS",
+      "detail": "Tab6/form remains retained and stopped; no field edit, Save, discard or clean-state guarantee."
+    },
+    {
+      "check": "cleanup_no_peer_action",
+      "status": "PASS",
+      "detail": "Only temporary lookup tab7 closed; native query/UET/settings tabs retained for handoff."
+    },
+    {
+      "check": "authority_unknown_numeric",
+      "status": "PASS",
+      "detail": "Exact pause/budget/loss questions remain pending; current settings are not spend authority."
+    },
+    {
+      "check": "zero_recorded_business_shared_write",
+      "status": "PASS",
+      "detail": "Reporting filters and local packet only; no business/shared write recorded."
+    },
+    {
+      "check": "no_support_contact_shopify_read",
+      "status": "PASS",
+      "detail": "No supportcontact,Shopifyorder/productread or unchanged support retry; old card is not new reply/availability."
+    },
+    {
+      "check": "no_mixed_day_or_audience_inference",
+      "status": "PASS",
+      "detail": "No partialToday/prior-period sum or Audience placement inference."
+    },
+    {
+      "check": "source_clock_order",
+      "status": "PASS",
+      "detail": "Query report, current settings, warning resolution, analysis and freeze clocks are distinct."
+    }
+  ],
+  "recomputed": {
+    "report_date": "2026-09-21",
+    "timezone_label": "(GMT-05:00) Eastern Time (U.S. & Canada)",
+    "currency": "USD",
+    "clicked_rows": 20,
+    "clicks": 20,
+    "spend_usd": "2.97",
+    "clicked_row_impressions": 23,
+    "all_search_impressions": 617,
+    "reported_unfiltered_terms": 92,
+    "above_usd015_clicks": 12,
+    "above_usd015_spend": "2.21",
+    "mean_cpc": "0.1485",
+    "match_types": {
+      "Phrase (close variant)": 19,
+      "Exact (close variant)": 1
+    },
+    "by_campaign": {
+      "AU": {
+        "clicks": 1,
+        "above_ceiling_clicks": 0,
+        "spend_usd": "0.09",
+        "above_ceiling_spend_usd": "0"
+      },
+      "CA": {
+        "clicks": 1,
+        "above_ceiling_clicks": 1,
+        "spend_usd": "0.19",
+        "above_ceiling_spend_usd": "0.19"
+      },
+      "EUR": {
+        "clicks": 1,
+        "above_ceiling_clicks": 0,
+        "spend_usd": "0.03",
+        "above_ceiling_spend_usd": "0"
+      },
+      "GB": {
+        "clicks": 4,
+        "above_ceiling_clicks": 2,
+        "spend_usd": "0.58",
+        "above_ceiling_spend_usd": "0.36"
+      },
+      "US": {
+        "clicks": 13,
+        "above_ceiling_clicks": 9,
+        "spend_usd": "2.08",
+        "above_ceiling_spend_usd": "1.66"
+      }
+    }
+  },
+  "current_gb_finding": {
+    "campaign_id": "506255081",
+    "observed_at": "2026-09-22T12:28:57.421Z",
+    "status": "Enabled",
+    "language": "English",
+    "strategy": "Maximize Clicks",
+    "maximum_cpc_checked": true,
+    "maximum_cpc_usd": "0.20",
+    "configured_individual_daily_budget_usd": "20.00",
+    "retained_owner_cpc_ceiling_usd": "0.15",
+    "country_and_presence_settings_read": false,
+    "historical_setting_cause": "NOT_VERIFIED",
+    "correction_status": "NOT_ENTERED_NOT_SAVED"
+  },
+  "conditional_candidates": [
+    {
+      "text": "celebrity family event outfits",
+      "match_type": "Exact",
+      "scope": "AdGroup",
+      "campaign_id": "506255081",
+      "ad_group_id": "1275435292356142",
+      "status": "LOCAL_CONDITIONAL_NOT_JUSTIFIED_LIVE"
+    },
+    {
+      "text": "top 10 family costumes",
+      "match_type": "Exact",
+      "scope": "AdGroup",
+      "campaign_id": "506254907",
+      "ad_group_id": "1275435291895118",
+      "status": "LOCAL_CONDITIONAL_NOT_JUSTIFIED_LIVE"
+    }
+  ],
+  "material_source_issues": [],
+  "open_operational_gates": [
+    "Current GB cap exceeds retained ceiling; exact paid-control authority remains unresolved.",
+    "Unexpected unsaved-changes warning leaves settings surface stopped and retained; resolve before any future write.",
+    "Both candidates lack actual offer/ad/destination and inherited-association qualification."
+  ],
+  "required_corrections": [],
+  "limits": [
+    "Saved selected native DOM/AX only; no independent browser/API replay or separate Microsoft documentation verification. Root25 and independent18machine+6manual checks are consumed, not new native coverage.",
+    "Twenty clicked rows reconcile20clicks/USD2.97 only. Their23impressions do not cover all617Searchimpressions or92reported terms. Native significant-click reporting and excluded Audience traffic limit coverage.",
+    "Twelve displayed single-click costs aboveUSD0.15 totalUSD2.21. Values are displayed rounded report amounts; averageUSD0.1485 is not per-click compliance, waste or causal proof.",
+    "GB506255081 checkedUSD0.20cap is current September22 native state. It does not establish September21 setting history, user location, country/presence settings or numeric paid authority.",
+    "Celebrity-family-event and top10costume wording are semantic hypotheses. Both literal Exact ad-group candidates remain local, with actual offer/ad/destination fit, inherited associations/conflicts and authority unknown; neither is justified live.",
+    "Settings Cancel unexpectedly triggered unsaved changes. No declined exit/discard; settledAX showed dialog absent after staleDOM. Root reports no field edits orSave. Warning cause and clean form state remain unresolved; tab6 is retained and stopped.",
+    "Zero reported conversions/revenue do not establish zero Shopifyorders. No fresh Shopify/cost query, exact attribution, CPA, profit, expected savings or support outcome exists in this run.",
+    "Current source remains read-only with existing pause/budget/loss questions pending. No negative, bid, status, budget, tracking, support-contact, scheduling or shared-canonical action is authorized by this review."
+  ],
+  "safe_parent_wording": "Accepted September 21 Search evidence: 20 clicked rows / 20 clicks / USD2.97, including 12 displayed one-click costs above USD0.15 totaling USD2.21. Their 23 impressions do not cover all 617 Search impressions. Fresh September 22 GB506255081 is Enabled/English with a checked USD0.20 maximum CPC and configured USD20/day; this is not yesterday setting history, country qualification or paid authority. Both literal Exact ad-group candidates remain local and not justified live. Settings Cancel produced an unexpected unsaved warning; No closed the warning in settled AX without Save, discard or field editing, and tab6 remains retained with the surface stopped.",
+  "confidence": "H for hashes and saved arithmetic; current native/form-state preservation remains owner-observed and commercial candidate merit unverified.",
+  "independent_native_replay": "NOT_RUN",
+  "separate_public_documentation_review": "NOT_RUN",
+  "writes": {
+    "owned_review_only": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-05-ceo-turnaround/microsoft_search_query_source_review_20260922.json",
+    "earlier_receipts": 0,
+    "shared_canonical": 0,
+    "git": 0,
+    "native_accounts": 0
+  }
+}

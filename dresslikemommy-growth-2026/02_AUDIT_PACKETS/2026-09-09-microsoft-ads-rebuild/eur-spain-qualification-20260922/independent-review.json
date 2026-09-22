@@ -1,0 +1,228 @@
+{
+  "schema": "dlm.microsoft.eur_spain_independent_review.v1",
+  "recorded_at_utc": "2026-09-22T04:39:02.021565+00:00",
+  "verifier": "/root/support_followup_review",
+  "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE",
+  "review_kind": "SAVED_EVIDENCE_REVIEW_ONLY",
+  "independent_live_replay": "NOT RUN",
+  "verdict": "PASS_WITH_LIMITS",
+  "owned_artifact": "independent-review.json",
+  "source_sha256": {
+    "readback.json": "bc4407dc3a4e15805b0115c8e921b9e91b8c90963c83855d20bc9bef08280b6b",
+    "READBACK.md": "df551be1dbcc501f5a9dad24402ef1e6f116587261d5f15eb27c98698f994223"
+  },
+  "reference_source_sha256": {
+    "../../2026-09-10-storefront-ux-pagespeed/variant-deep-link-20260911/READBACK.md": "4432b78ef5f31b03da3db4415b2f50e6627362a527cf90ecde28b3ea0b02b41b",
+    "../../2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/REUSED_ACCEPTANCE.json": "f75d65780e5b14c8f6ea083348026cedf4703dac6f7962a6a005abd418c7ae76",
+    "../../2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/PUBLICATION_BOUNDARY.json": "5134eceb2a78e341fc3f790a1f0c7b7b85b2cc73bced437b3ad1ff9fcdea6199",
+    "../../2026-09-10-storefront-ux-pagespeed/current-theme-source-reconciliation-20260921/AFFECTED_BUYER_CHECKS.json": "29ccd9fdfb2391b4b2a70d8bcd97ccfdf0092e45a73072b889b281c786905ecc"
+  },
+  "machine_checks_passed": 32,
+  "machine_checks_total": 32,
+  "machine_checks": [
+    {
+      "name": "account_campaign_identity",
+      "result": "PASS",
+      "evidence": "Exact account/customer/EUR campaign identity in reviewed packet."
+    },
+    {
+      "name": "dated_completed_report_window",
+      "result": "PASS",
+      "evidence": "September15–20 inclusive Eastern window, observed September22; not current-day metrics."
+    },
+    {
+      "name": "current_six_enabled_three_paused",
+      "result": "PASS",
+      "evidence": "Nine current filtered rows, six enabled and three paused; historical13-paused state is not current."
+    },
+    {
+      "name": "eur_currently_enabled",
+      "result": "PASS",
+      "evidence": "Campaign506255284 remains enabled in saved source."
+    },
+    {
+      "name": "configured_budget_arithmetic",
+      "result": "PASS",
+      "evidence": "Six USD20 configured budgets totalUSD120; no spend or hard-cap inference."
+    },
+    {
+      "name": "eur_cap_currency_and_scope",
+      "result": "PASS",
+      "evidence": "EUR campaign cap is USD0.10, not EUR0.10; US/Canada USD0.20 observations remain separately dated."
+    },
+    {
+      "name": "network_clicks_sum",
+      "result": "PASS",
+      "evidence": "13 Search + 0 Audience = 13 overall."
+    },
+    {
+      "name": "network_impressions_sum",
+      "result": "PASS",
+      "evidence": "367 Search + 9 Audience = 376 overall."
+    },
+    {
+      "name": "network_spend_cents_sum",
+      "result": "PASS",
+      "evidence": "65 Search + 0 Audience = 65 overall."
+    },
+    {
+      "name": "group_count_unique_ids",
+      "result": "PASS",
+      "evidence": "Seven distinct ad groups."
+    },
+    {
+      "name": "group_totals",
+      "result": "PASS",
+      "evidence": "Group totals13clicks/376impressions/65USD cents."
+    },
+    {
+      "name": "country_count_unique",
+      "result": "PASS",
+      "evidence": "20 distinct country rows; rendered-union method disclosed."
+    },
+    {
+      "name": "country_totals",
+      "result": "PASS",
+      "evidence": "Country totals13clicks/376impressions/65USD cents."
+    },
+    {
+      "name": "spain_sweden_subtotal",
+      "result": "PASS",
+      "evidence": "Spain6/30c + Sweden3/15c =9clicks/45c."
+    },
+    {
+      "name": "query_rows_distinct_strings",
+      "result": "PASS",
+      "evidence": "12 observed rows preserve eight distinct strings."
+    },
+    {
+      "name": "query_full_grain_unique",
+      "result": "PASS",
+      "evidence": "No repeated full-grain rows; repeated term strings must not be collapsed."
+    },
+    {
+      "name": "query_row_totals",
+      "result": "PASS",
+      "evidence": "Observed rows sum13clicks/139impressions/65c."
+    },
+    {
+      "name": "query_click_spend_reconcile_search",
+      "result": "PASS",
+      "evidence": "Visible sample reconciles Search clicks and spend only."
+    },
+    {
+      "name": "query_impressions_partial",
+      "result": "PASS",
+      "evidence": "139 of367 Search impressions;228 are outside the displayed query sample."
+    },
+    {
+      "name": "query_group_grain_consistency",
+      "result": "PASS",
+      "evidence": "Clicks/spend reconcile by named group; sample impressions do not exceed group totals."
+    },
+    {
+      "name": "ideas_query_subtotal",
+      "result": "PASS",
+      "evidence": "Two distinct-grain rows total2clicks/12c."
+    },
+    {
+      "name": "seven_collection_destinations_one_checked",
+      "result": "PASS",
+      "evidence": "Actual ad routes are collections without numeric variant parameters; only one path tested."
+    },
+    {
+      "name": "product_variant_identity",
+      "result": "PASS",
+      "evidence": "Exact product and two selected variant IDs agree; adult and child are separate variants."
+    },
+    {
+      "name": "failed_child_initialization_separate_from_recovery",
+      "result": "PASS",
+      "evidence": "Failed automatic selection and later manual recovery are distinct observations."
+    },
+    {
+      "name": "variant_observation_sequence",
+      "result": "PASS",
+      "evidence": "Separate confirmation precedes manual recovery and cleanup."
+    },
+    {
+      "name": "no_business_metrics_invented",
+      "result": "PASS",
+      "evidence": "Distinct orders, attributed revenue, costs, CPA, ROAS and contribution profit remain null."
+    },
+    {
+      "name": "zero_external_mutation_scope",
+      "result": "PASS",
+      "evidence": "No account, campaign, Shopify, cart, checkout, order, support or canonical mutation claimed."
+    },
+    {
+      "name": "historical_variant_pass_is_different_case",
+      "result": "PASS",
+      "evidence": "September11 pass is Adult4XL/Green/USD, not current Child2Years/White/Spain/EUR."
+    },
+    {
+      "name": "september21_acceptance_is_reused",
+      "result": "PASS",
+      "evidence": "September21 retained historical acceptance; no new numeric-variant pass."
+    },
+    {
+      "name": "september21_candidate_unpublished_and_boundary",
+      "result": "PASS",
+      "evidence": "Dated candidate role and owner-admin publication boundary support the packet; current Admin role not independently reread."
+    },
+    {
+      "name": "september21_variant_replay_not_done",
+      "result": "PASS",
+      "evidence": "Affected buyer checks did not certify numeric-variant initialization."
+    },
+    {
+      "name": "cleanup_empty_cart",
+      "result": "PASS",
+      "evidence": "Recorded disposable-session cleanup restoredUS/USD and empty cart."
+    }
+  ],
+  "manual_checks": [
+    {
+      "name": "authority_and_pending_decisions",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Read-only scope and pending six-campaign pause/numeric budget-loss answers are retained; no current active delivery authority or elapsed-time approval inferred."
+    },
+    {
+      "name": "country_query_grain",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Country and query totals are separate aggregates. Neither German-query country nor shipping needs nor language demand is inferred from their coincidence."
+    },
+    {
+      "name": "current_vs_historical_configuration",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Six currently enabled campaigns supersede the older paused baseline. Only EUR USD0.10 cap is fresh here; US/CA USD0.20 is not incorrectly declared repaired."
+    },
+    {
+      "name": "buyer_path_scope",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Available catalog flags, EUR UI prices and displayed shipping text do not prove stock, checkout shipping, fulfillment or purchases. BaseUSD and localizedEUR values are not compared as the same currency."
+    },
+    {
+      "name": "existing_mechanism_not_duplicate_repair",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Observed selector behavior recurs in an additional market context and is consistent with the documented defect. No fresh root-cause diagnosis, current theme identity, or Spain candidate pass is claimed; retain existing UX owner and post-publication exact-case verification."
+    },
+    {
+      "name": "ad_impact_and_profit_limits",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Actual ad destinations are collections, so numeric-variant failure is not attributed to those ad arrivals or lost orders. Low-volume platform reports establish no CPA/ROAS/profit or tracking repair."
+    },
+    {
+      "name": "evidence_independence",
+      "result": "PASS_WITH_LIMITS",
+      "assessment": "Reviewer did not build or execute this qualification. Review validates saved values, arithmetic and references only. Independent live replay NOT RUN; native screenshots and DOM were not independently inspected."
+    }
+  ],
+  "required_corrections": [],
+  "limitations": [
+    "Normalized root-native observations are the underlying evidence; this review is not independent native verification.",
+    "No present-day Shopify Admin role or theme source was reread by this reviewer. Historical variant mechanism acceptance is not current Spain case acceptance.",
+    "No new pause, spend, negative, theme, product or tracking action is authorized by this review."
+  ],
+  "next_action": "Parent/UX may add the exact Spain/EUR Child2Years/White variant46512187113569 to existing source-verified post-publication acceptance; preserve pending account decisions and avoid a duplicate theme repair."
+}

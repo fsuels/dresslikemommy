@@ -1,0 +1,27 @@
+{
+  "recorded_at_utc": "2026-09-21T21:56:02.386347+00:00",
+  "status": "REPO_KNOWN_SOURCE_DELTAS_DO_NOT_ESTABLISH_BUYER_GATE_CHANGE",
+  "reviewer": "/root/cockpit_current_metrics_source",
+  "scope": "Read-only local source delta relevance review; no live buyer check or release",
+  "comparison": {
+    "before": "cb7ff3a0fb55f423d3132fa65229f553ea903d52",
+    "Shopify_remote": "c865a7750ca536de4ff0ad6623b920f217827cab",
+    "preserving_merge": "af7b8daee0b91a848a6fb1170390859fe77ae0d1"
+  },
+  "findings": {
+    "snippets/product-variant-options.liquid": "Removes escape from the value passed to swatch-input; selection, checked-state, availability and country/currency logic unchanged. No numeric-preselection fix established.",
+    "snippets/breadcrumbs.liquid": "Fallback-label argument rewrite.",
+    "sections/collection-list.liquid": "Homepage collection-image argument rewrite.",
+    "sections/new-arrivals-mixed.liquid": "Homepage collection-image argument rewrite."
+  },
+  "four_file_remote_to_merge_diff": "ZERO",
+  "saved_buyer_evidence": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260914/ca_gb_qualification_1917/source_and_buyer_qualification.json",
+  "saved_observation": "CA numeric variant39756755861601 arrived with Mother selected but size/color unselected and CAD26-34 range. Manual selection reached CAD26; checkout-country switch reached GBP14. GB numeric arrival was not newly tested.",
+  "conclusion": "The four source deltas alone do not justify repeating the blocked CA/GB buyer route. A relevant selection-path correction/publication or another independently established live change is needed before dependent qualification.",
+  "current_live_buyer_status": "UNKNOWN; not claimed still failing today",
+  "dispatch": "No additional recipient dispatched. Merchant existing owner observed active on new turn01a0c5f5-71eb-7512-b7a7-ad742218f36d; preserve its newer instructions.",
+  "other_unchanged_pending_work": "TA07-MEOW-SIZE-UNIT-DIAGNOSIS-20260915 remains interrupted read-only; no repeat or completion claim.",
+  "external_writes": 0,
+  "git_writes": 0,
+  "business_result": null
+}
