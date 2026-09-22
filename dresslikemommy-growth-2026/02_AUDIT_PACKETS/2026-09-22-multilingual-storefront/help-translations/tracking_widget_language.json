@@ -1,0 +1,1343 @@
+{
+  "status": "LOCAL_PREPARED_FOR_INTEGRATION",
+  "targetResourceId": "gid://shopify/Page/18847760481",
+  "beforePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+  "beforeSHA256": "5266bad407f335e669250802644d714d93a9bea2b691e4d44e50724a0c970d2f",
+  "documentation": {
+    "officialURL": "https://www.17track.net/en/widget",
+    "api": "YQV5.trackSingle / YQ_Lang",
+    "mapping": {
+      "cs": "cs",
+      "da": "da",
+      "de": "de",
+      "el": "el",
+      "es": "es",
+      "fi": "fi",
+      "fr": "fr",
+      "it": "it",
+      "ja": "ja",
+      "ko": "ko",
+      "nl": "nl",
+      "no": "no",
+      "pl": "pl",
+      "ro": "ro",
+      "ru": "ru",
+      "sv": "sv",
+      "pt-BR": "pt"
+    },
+    "unsupportedOrUnlisted": [
+      "ar",
+      "he",
+      "hi"
+    ],
+    "notes": [
+      "pt is documented as generic Portuguese; pt-BR is not a documented widget code.",
+      "No claim that all carrier event text is translated; setting applies to documented widget UI language.",
+      "Arabic, Hebrew, Hindi native support is unknown for this widget. The different branded iFrame product uses another contract."
+    ]
+  },
+  "rows": [
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "ar",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "رقم التتبع: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "ar",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "36b9951376d483e2fde53332a8e2a8237ad8f60a64e8d436af21e9e21f855da5",
+      "value": "رقم التتبع: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"تتبع\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"أدخل رقم التتبع.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "3225305252f6447f16e55193d706842e34fc7d6c1c2d38577b343d05a08507ec",
+      "desiredYQLang": "en",
+      "widgetNativeLanguageSupport": "UNKNOWN_UNLISTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "en"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "تتبع"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "أدخل رقم التتبع."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "cs",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "Sledovací číslo: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "cs",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "915507d9ef876bd3c533bbd89f2c7de2ed06a9cfdf159504db9722f6ffe8e565",
+      "value": "Sledovací číslo: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"Sledovat\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Zadejte sledovací číslo.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"cs\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "5d4a2572b845134f0c3911e7deddc18aa41245c5bd16e9e4c8c626ee9a0933ab",
+      "desiredYQLang": "cs",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "cs"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "Sledovat"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "Zadejte sledovací číslo."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "da",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "Sporingsnummer: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "da",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "a0f8a3a06700fb818193bf600a368cf218718eb84a5aa16b1ad722a5a9c89b8f",
+      "value": "Sporingsnummer: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"Spor\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Indtast dit sporingsnummer.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"da\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "682d68f85c14150f0eae64692ad19289f6499feaf259512387090d87e21eb6bf",
+      "desiredYQLang": "da",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "da"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "Spor"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "Indtast dit sporingsnummer."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "de",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "Sendungsnummer: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "de",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "e2a53f974ddb1a11e002744df3e371ce01e8752a05eff438d11004359c6b95cb",
+      "value": "Sendungsnummer: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"Sendung verfolgen\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Geben Sie Ihre Sendungsnummer ein.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"de\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "5ea2dea467884eaa5bdbf9a624be8836f464bb81912273dcde314fd374c83089",
+      "desiredYQLang": "de",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "de"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "Sendung verfolgen"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "Geben Sie Ihre Sendungsnummer ein."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "el",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "Αριθμός παρακολούθησης: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "el",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "47fda2fdb5272756ee196e5a381a948ef51fdd9640c5c3a74ec9402478e6faf9",
+      "value": "Αριθμός παρακολούθησης: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"Παρακολούθηση\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Εισαγάγετε τον αριθμό παρακολούθησης.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"el\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "78f752172bf64b44672d5f824959673d3ad4ed13bd7b6b0e1edb88f2b96f541c",
+      "desiredYQLang": "el",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "el"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "Παρακολούθηση"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "Εισαγάγετε τον αριθμό παρακολούθησης."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "es",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "El número de rastreo: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"><!--The button is used to call script method.--><input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"><!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n\n<div class=\"gtx-trans-icon\"></div>\n\n\n</div>",
+        "outdated": false,
+        "locale": "es",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "c7a9187bf29354d839ca36db84fbaa953156b8f6992eb9576d014e3463637f7b",
+      "value": "El número de rastreo: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"><!--The button is used to call script method.--><input type=\"button\" value=\"Rastrear\" onclick=\"doTrack()\"><!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Introduce tu número de seguimiento.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"es\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n\n<div class=\"gtx-trans-icon\"></div>\n\n\n</div>",
+      "valueSHA256": "26161dcff98a66be8dc96ee66f7bef12ce32c9eb5371f073f1467e5c3225feb7",
+      "desiredYQLang": "es",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "es"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "Rastrear"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "Introduce tu número de seguimiento."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "fi",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "Seurantanumero: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "fi",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "6805236d76795e4b699b7df98b1682327974b329ed62b2681b34dd3d7fd07831",
+      "value": "Seurantanumero: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"Seuraa\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Anna seurantanumerosi.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"fi\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "c6892727493c262dc8539d15e888e446a4b2f8d65df8d4d6a869996cd20942c8",
+      "desiredYQLang": "fi",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "fi"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "Seuraa"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "Anna seurantanumerosi."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "fr",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "Numéro de suivi : <input type=\"text\" id=\"YQNum\" maxlength=\"50\"><!--The button is used to call script method.--><input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"><!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n\n<div class=\"gtx-trans-icon\"></div>\n\n\n</div>",
+        "outdated": false,
+        "locale": "fr",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "8bce65bfce74b3553f95f8d2413fee792029a5aeb075c34dc47552a892522691",
+      "value": "Numéro de suivi : <input type=\"text\" id=\"YQNum\" maxlength=\"50\"><!--The button is used to call script method.--><input type=\"button\" value=\"Suivre\" onclick=\"doTrack()\"><!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Saisissez votre numéro de suivi.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"fr\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n\n<div class=\"gtx-trans-icon\"></div>\n\n\n</div>",
+      "valueSHA256": "977c2ce32b96ad93f1f11d071b26ba6f0dbc1e3de919c2fbcebfb26120e3c74a",
+      "desiredYQLang": "fr",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "fr"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "Suivre"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "Saisissez votre numéro de suivi."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "he",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "מספר מעקב: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "he",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "f79deaa877dccea3459b8b50bc34900285d95cb0aa2a2532b941026d3cf133ca",
+      "value": "מספר מעקב: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"מעקב\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"הזינו את מספר המעקב.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "eea25cf8e391ce0fae1ce371ed2f410be6e027145bfde90f73ea0d0a7565cd22",
+      "desiredYQLang": "en",
+      "widgetNativeLanguageSupport": "UNKNOWN_UNLISTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "en"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "מעקב"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "הזינו את מספר המעקב."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "hi",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "ट्रैकिंग नंबर: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "hi",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "b2136a0e65252f1756ab48c3f96511126f7499eced361dc249fbba1037a60d5a",
+      "value": "ट्रैकिंग नंबर: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"ट्रैक करें\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"अपना ट्रैकिंग नंबर दर्ज करें।\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "e6f260b4f01767ca427a05b7b2a7f95e9c526bb4f7d44e76e96902976b87da2c",
+      "desiredYQLang": "en",
+      "widgetNativeLanguageSupport": "UNKNOWN_UNLISTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "en"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "ट्रैक करें"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "अपना ट्रैकिंग नंबर दर्ज करें।"
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "it",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "Numero di tracciamento: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "it",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "60c16baf6aebfcac7d94f9b48273afbc696d605e480d175ac150cf943e76143a",
+      "value": "Numero di tracciamento: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"Traccia\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Inserisci il numero di tracciamento.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"it\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "c47605381f53335ac90383ee2d366c4615a5a2423b20e4d7b79b48e8f65eb300",
+      "desiredYQLang": "it",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "it"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "Traccia"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "Inserisci il numero di tracciamento."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "ja",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "追跡番号： <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "ja",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "9e53dbc3b3885f590da09a3863be6af2d87b14197a73af5bdbfa810d064a9840",
+      "value": "追跡番号： <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"追跡する\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"追跡番号を入力してください。\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"ja\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "ef79030f14ece4a80db3b6c42d5c5ff9502abe612f0f9b0492e51bf029017019",
+      "desiredYQLang": "ja",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "ja"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "追跡する"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "追跡番号を入力してください。"
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "ko",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "운송장 번호: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "ko",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "8411272ea1cec22efe820d08643abebf6752a9c356218435d8480747f10bd2fa",
+      "value": "운송장 번호: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"배송 조회\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"운송장 번호를 입력해 주세요.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"ko\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "6d762eb9186c98d9ad4472908b5d32e7c097d8290dc958bc226698b92fdfd7e8",
+      "desiredYQLang": "ko",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "ko"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "배송 조회"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "운송장 번호를 입력해 주세요."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "nl",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "Volgnummer: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "nl",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "aa4c18be168102e4020ffc976b1a6885e57888c85ec022e70040140146388d46",
+      "value": "Volgnummer: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"Volgen\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Voer uw trackingnummer in.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"nl\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "c6b44a9465a8bc072a009abb9ac69e90403dbe74e36347215dd1127173a4bc47",
+      "desiredYQLang": "nl",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "nl"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "Volgen"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "Voer uw trackingnummer in."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "no",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "Sporingsnummer: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "no",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "a0f8a3a06700fb818193bf600a368cf218718eb84a5aa16b1ad722a5a9c89b8f",
+      "value": "Sporingsnummer: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"Spor\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Skriv inn sporingsnummeret ditt.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"no\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "db304e9a03a8f7e19ede59eaa1d204d505cc60f7f463ecc149fd1cdc1639a869",
+      "desiredYQLang": "no",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "no"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "Spor"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "Skriv inn sporingsnummeret ditt."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "pl",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "Numer śledzenia: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "pl",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "6be8a7b26194ed8f028ea5be98d2a2946a1d1ff87c270c436bf0c29bd83313d2",
+      "value": "Numer śledzenia: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"Śledź\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Wpisz numer śledzenia.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"pl\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "99ba88d92c61c1a612ccf9c2476df30ef8e736dd88ecd9e5a0865f981dd0bf41",
+      "desiredYQLang": "pl",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "pl"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "Śledź"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "Wpisz numer śledzenia."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "pt-BR",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "Número de rastreamento: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "pt-BR",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "3070811a8e753f8f7109eae90f31288b5ce135dbed18a5301d9d02b16685ebef",
+      "value": "Número de rastreamento: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"Rastrear\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Digite seu código de rastreamento.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"pt\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "6dd3a1b821b84080d953db0c0f9565fb9cf7bc00e00cf00c3481bce7cd85d1ff",
+      "desiredYQLang": "pt",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "pt"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "Rastrear"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "Digite seu código de rastreamento."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "ro",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": {
+        "key": "body_html",
+        "value": "Număr de urmărire: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+        "outdated": false,
+        "locale": "ro",
+        "market": null
+      },
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/content_before_apply.json",
+      "baseCandidateSHA256": null,
+      "baseValueSHA256": "f45a67487cbab0cb6a5541e386b1c97d5dba2d4872d31ba81b00719afb646ec3",
+      "value": "Număr de urmărire: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"Urmărește\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Introduceți numărul de urmărire.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"ro\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "c00cae721123eb7b9526448d0030a103da872cdc9bd7051e4202fb45d8e4d79a",
+      "desiredYQLang": "ro",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "ro"
+        },
+        "button": {
+          "before": "TRACK",
+          "after": "Urmărește"
+        },
+        "emptyInputAlert": {
+          "before": "Enter your number.",
+          "after": "Introduceți numărul de urmărire."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "ru",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": null,
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/help-translations/ru_manual.json",
+      "baseCandidateSHA256": "b4c060b342d010b309310830a0b557325da9c22899d828fda40cd76f6dcc60ba",
+      "baseValueSHA256": "52953fe9313f669f101018453eebf9c22dff94206673916cc8713f7d2d9e3d44",
+      "value": "Номер отправления: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"ОТСЛЕДИТЬ\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Введите номер отправления.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"ru\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "1cc7abddae9c04060e7a9bd861c6bb074d3b6045286da1ffce44e0f62a3aec98",
+      "desiredYQLang": "ru",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "ru"
+        },
+        "button": {
+          "before": "ОТСЛЕДИТЬ",
+          "after": "ОТСЛЕДИТЬ"
+        },
+        "emptyInputAlert": {
+          "before": "Введите номер отправления.",
+          "after": "Введите номер отправления."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "locale": "sv",
+      "key": "body_html",
+      "source": "Tracking number: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"TRACK\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Enter your number.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"en\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "sourceDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65",
+      "before": null,
+      "operation": "UPSERT_MERGED_ROW_BY_RESOURCE_LOCALE_KEY",
+      "baseValuePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/help-translations/sv_manual.json",
+      "baseCandidateSHA256": "39b4a8c6066d954960da3f54063515c4143264adc27c49f8f0a053a2bad666e9",
+      "baseValueSHA256": "1ba9569bbd0711ff3a821bb352aff5b0914cc6c5bd0f55695d1d47a7b76f4092",
+      "value": "Spårningsnummer: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"SPÅRA\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Ange ditt spårningsnummer.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"sv\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "valueSHA256": "ec3ed0ec4c52b8ac9c9098650b5eda5ef90afd3fbc276a13f06edff58c250b89",
+      "desiredYQLang": "sv",
+      "widgetNativeLanguageSupport": "DOCUMENTED",
+      "changes": {
+        "YQLang": {
+          "before": "en",
+          "after": "sv"
+        },
+        "button": {
+          "before": "SPÅRA",
+          "after": "SPÅRA"
+        },
+        "emptyInputAlert": {
+          "before": "Ange ditt spårningsnummer.",
+          "after": "Ange ditt spårningsnummer."
+        }
+      },
+      "reviewed": true,
+      "reason": "Manually localize visible tracking button/empty-input alert and set documented widget language, while preserving all existing localized input labels and every other byte of the chosen base."
+    }
+  ],
+  "visibleTextAudit": [
+    {
+      "locale": "ar",
+      "inputLabel": "رقم التتبع:",
+      "button": "تتبع",
+      "emptyInputAlert": "أدخل رقم التتبع.",
+      "YQLang": "en",
+      "widgetSupport": "UNKNOWN_UNLISTED"
+    },
+    {
+      "locale": "cs",
+      "inputLabel": "Sledovací číslo:",
+      "button": "Sledovat",
+      "emptyInputAlert": "Zadejte sledovací číslo.",
+      "YQLang": "cs",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "da",
+      "inputLabel": "Sporingsnummer:",
+      "button": "Spor",
+      "emptyInputAlert": "Indtast dit sporingsnummer.",
+      "YQLang": "da",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "de",
+      "inputLabel": "Sendungsnummer:",
+      "button": "Sendung verfolgen",
+      "emptyInputAlert": "Geben Sie Ihre Sendungsnummer ein.",
+      "YQLang": "de",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "el",
+      "inputLabel": "Αριθμός παρακολούθησης:",
+      "button": "Παρακολούθηση",
+      "emptyInputAlert": "Εισαγάγετε τον αριθμό παρακολούθησης.",
+      "YQLang": "el",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "es",
+      "inputLabel": "El número de rastreo:",
+      "button": "Rastrear",
+      "emptyInputAlert": "Introduce tu número de seguimiento.",
+      "YQLang": "es",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "fi",
+      "inputLabel": "Seurantanumero:",
+      "button": "Seuraa",
+      "emptyInputAlert": "Anna seurantanumerosi.",
+      "YQLang": "fi",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "fr",
+      "inputLabel": "Numéro de suivi :",
+      "button": "Suivre",
+      "emptyInputAlert": "Saisissez votre numéro de suivi.",
+      "YQLang": "fr",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "he",
+      "inputLabel": "מספר מעקב:",
+      "button": "מעקב",
+      "emptyInputAlert": "הזינו את מספר המעקב.",
+      "YQLang": "en",
+      "widgetSupport": "UNKNOWN_UNLISTED"
+    },
+    {
+      "locale": "hi",
+      "inputLabel": "ट्रैकिंग नंबर:",
+      "button": "ट्रैक करें",
+      "emptyInputAlert": "अपना ट्रैकिंग नंबर दर्ज करें।",
+      "YQLang": "en",
+      "widgetSupport": "UNKNOWN_UNLISTED"
+    },
+    {
+      "locale": "it",
+      "inputLabel": "Numero di tracciamento:",
+      "button": "Traccia",
+      "emptyInputAlert": "Inserisci il numero di tracciamento.",
+      "YQLang": "it",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "ja",
+      "inputLabel": "追跡番号：",
+      "button": "追跡する",
+      "emptyInputAlert": "追跡番号を入力してください。",
+      "YQLang": "ja",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "ko",
+      "inputLabel": "운송장 번호:",
+      "button": "배송 조회",
+      "emptyInputAlert": "운송장 번호를 입력해 주세요.",
+      "YQLang": "ko",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "nl",
+      "inputLabel": "Volgnummer:",
+      "button": "Volgen",
+      "emptyInputAlert": "Voer uw trackingnummer in.",
+      "YQLang": "nl",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "no",
+      "inputLabel": "Sporingsnummer:",
+      "button": "Spor",
+      "emptyInputAlert": "Skriv inn sporingsnummeret ditt.",
+      "YQLang": "no",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "pl",
+      "inputLabel": "Numer śledzenia:",
+      "button": "Śledź",
+      "emptyInputAlert": "Wpisz numer śledzenia.",
+      "YQLang": "pl",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "pt-BR",
+      "inputLabel": "Número de rastreamento:",
+      "button": "Rastrear",
+      "emptyInputAlert": "Digite seu código de rastreamento.",
+      "YQLang": "pt",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "ro",
+      "inputLabel": "Număr de urmărire:",
+      "button": "Urmărește",
+      "emptyInputAlert": "Introduceți numărul de urmărire.",
+      "YQLang": "ro",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "ru",
+      "inputLabel": "Номер отправления:",
+      "button": "ОТСЛЕДИТЬ",
+      "emptyInputAlert": "Введите номер отправления.",
+      "YQLang": "ru",
+      "widgetSupport": "DOCUMENTED"
+    },
+    {
+      "locale": "sv",
+      "inputLabel": "Spårningsnummer:",
+      "button": "SPÅRA",
+      "emptyInputAlert": "Ange ditt spårningsnummer.",
+      "YQLang": "sv",
+      "widgetSupport": "DOCUMENTED"
+    }
+  ],
+  "checks": [
+    {
+      "locale": "ar",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "cs",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "da",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "de",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "el",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "es",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "fi",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "fr",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "he",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "hi",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "it",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "ja",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "ko",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "nl",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "no",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "pl",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "pt-BR",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "ro",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "ru",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    },
+    {
+      "locale": "sv",
+      "explicitReturnedLocaleMatched": true,
+      "onlyThreeAllowedStringLocationsChanged": true,
+      "inputLabelPreserved": true,
+      "scriptSourcesPreserved": true,
+      "sourceDigestPreserved": true,
+      "englishButtonAndAlertAbsent": true
+    }
+  ],
+  "summary": {
+    "rows": 20,
+    "visibleTextNewlyLocalizedLocales": 18,
+    "existingManualLocalizedTextPreservedLocales": [
+      "ru",
+      "sv"
+    ],
+    "documentedWidgetLanguageChanges": 17,
+    "unknownWidgetLocalesKeptEn": [
+      "ar",
+      "he",
+      "hi"
+    ],
+    "duplicateResourceLocaleKeys": 0
+  },
+  "integrationInstruction": "Merge these twenty body_html rows by resourceId/locale/key. They supersede the tracking rows in ru_manual.json and sv_manual.json; do not append duplicate rows. Preserve baseline before objects and verify sourceDigest against fresh source before external write.",
+  "limits": [
+    "Arabic, Hebrew and Hindi button/alert/input are localized, but native tracking-result UI support is unknown; YQ_Lang remains en for those three.",
+    "Portuguese widget code pt is generic Portuguese; Brazilian-specific result wording is not documented.",
+    "No provider, URL, function name, container/input ID, form behavior or script source was changed. No tracking queries or external writes.",
+    "Code-local validation can establish exact options passed to a stub; it does not establish real carrier rendering."
+  ],
+  "localRuntimeVerification": {
+    "status": "PASS",
+    "method": "Actual inline doTrack script evaluated in isolated Node VM with document/alert/YQV5 stubs; no network functions available and no real tracking request.",
+    "locales": 20,
+    "flowChecks": 40,
+    "results": [
+      {
+        "locale": "ar",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "en"
+      },
+      {
+        "locale": "cs",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "cs"
+      },
+      {
+        "locale": "da",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "da"
+      },
+      {
+        "locale": "de",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "de"
+      },
+      {
+        "locale": "el",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "el"
+      },
+      {
+        "locale": "es",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "es"
+      },
+      {
+        "locale": "fi",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "fi"
+      },
+      {
+        "locale": "fr",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "fr"
+      },
+      {
+        "locale": "he",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "en"
+      },
+      {
+        "locale": "hi",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "en"
+      },
+      {
+        "locale": "it",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "it"
+      },
+      {
+        "locale": "ja",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "ja"
+      },
+      {
+        "locale": "ko",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "ko"
+      },
+      {
+        "locale": "nl",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "nl"
+      },
+      {
+        "locale": "no",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "no"
+      },
+      {
+        "locale": "pl",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "pl"
+      },
+      {
+        "locale": "pt-BR",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "pt"
+      },
+      {
+        "locale": "ro",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "ro"
+      },
+      {
+        "locale": "ru",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "ru"
+      },
+      {
+        "locale": "sv",
+        "status": "PASS",
+        "emptyInputLocalizedAlert": true,
+        "emptyInputSkipsWidget": true,
+        "nonEmptyInputOptionsPreserved": true,
+        "widgetLanguage": "sv"
+      }
+    ]
+  }
+}

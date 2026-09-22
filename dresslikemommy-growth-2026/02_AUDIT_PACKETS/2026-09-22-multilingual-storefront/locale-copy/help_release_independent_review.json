@@ -1,0 +1,1278 @@
+{
+  "status": "REJECT_PENDING_EXACT_CORRECTIONS",
+  "reviewer": "danish_scope_evidence",
+  "scope": "Independent full source/value semantic review of Group A 10 rows, Polish 3 bodies and shipping 16 bodies. Local candidate review only.",
+  "files": {
+    "faq_corrections_group_a.json": {
+      "sha256": "272519c149deb46ec7028dd11d100fb78e8e700d96d538c515092da60f0bc73d",
+      "rows": 10
+    },
+    "pl_manual.json": {
+      "sha256": "cddb54a50dc21343bf9c609fbdf51be7c96b367a822997569e582b8adbdf9be7",
+      "rows": 3
+    },
+    "shipping_manual.json": {
+      "sha256": "f3912ff33f8152f6e1e0b3fb8b8661513b0820c8ad62a92eaabb6e328f7ecdc3",
+      "rows": 16
+    }
+  },
+  "findings": [
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "status": "REJECT",
+      "summary": "All five existing locales retain material stale policy/operational claims outside the nine updated paragraphs. Exact corrections supplied for six additional FAQ answers and five About blocks per locale; additionally repair Spanish opening meaning and French brand/curation wording."
+    },
+    {
+      "candidate": "shipping_manual.json",
+      "status": "REJECT",
+      "summary": "German missing-destination negation; multiple express-upgrade mistranslations; Russian delivery-time estimate changed to cost. Fourteen scoped paragraph corrections also remove clear English/garbled phrases."
+    },
+    {
+      "candidate": "pl_manual.json",
+      "status": "PASS_WITH_LIMITS",
+      "summary": "Three complete bodies match provided corrected sources in meaning, conditions, negation, timing and links. Source refresh required for About and FAQ."
+    }
+  ],
+  "replacements": [
+    {
+      "candidate": "shipping_manual.json",
+      "locale": "de",
+      "handle": "shipping-info",
+      "selector": {
+        "tag": "p",
+        "index": 3
+      },
+      "severity": "P1",
+      "reason": "MISSING_NEGATION",
+      "source": "<p>If your destination does not appear at checkout, or if no shipping method is shown, email us at <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> before ordering.</p>",
+      "before": "<p>Wenn Ihr Ziel oder keine Versandmethode beim Bezahlen angezeigt wird, schreiben Sie uns vor der Bestellung an <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a>.</p>",
+      "after": "<p>Wenn Ihr Ziel beim Bezahlen nicht angezeigt wird oder keine Versandmethode verfügbar ist, schreiben Sie uns vor der Bestellung an <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a>.</p>"
+    },
+    {
+      "candidate": "shipping_manual.json",
+      "locale": "cs",
+      "handle": "shipping-info",
+      "selector": {
+        "tag": "p",
+        "index": 3
+      },
+      "severity": "P2",
+      "reason": "AMBIGUOUS_NEGATED_CONDITION",
+      "source": "<p>If your destination does not appear at checkout, or if no shipping method is shown, email us at <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> before ordering.</p>",
+      "before": "<p>Pokud se vaše destinace nebo žádný způsob dopravy při placení nezobrazuje, napište nám před objednáním na <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a>.</p>",
+      "after": "<p>Pokud se vaše destinace při placení nezobrazuje nebo není uveden žádný způsob dopravy, napište nám před objednáním na <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a>.</p>"
+    },
+    {
+      "candidate": "shipping_manual.json",
+      "locale": "de",
+      "handle": "shipping-info",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "DELIVERY_ESTIMATE",
+      "source": "<p>Standard shipping is included in product prices for countries and regions where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment.</p>",
+      "before": "<p>Standardversand ist in den Produktpreisen für Länder und Regionen enthalten, in denen eine Standardmethode verfügbar ist. An der Kasse werden die genaue Methode, der Liefervoranschlag und etwaige Express-Upgrades vor der Zahlung angezeigt.</p>",
+      "after": "<p>Der Standardversand ist für Länder und Regionen, in denen eine Standardversandmethode verfügbar ist, im Produktpreis enthalten. Vor der Zahlung werden beim Checkout die genaue Versandmethode, die voraussichtliche Lieferzeit und gegebenenfalls eine Expressoption angezeigt.</p>"
+    },
+    {
+      "candidate": "shipping_manual.json",
+      "locale": "el",
+      "handle": "shipping-info",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "EXPRESS_MISTRANSLATED_AS_EXPLICIT",
+      "source": "<p>Standard shipping is included in product prices for countries and regions where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment.</p>",
+      "before": "<p> Η τυπική αποστολή περιλαμβάνεται στις τιμές των προϊόντων για χώρες και περιοχές όπου είναι διαθέσιμη μια τυπική μέθοδος. Το checkout δείχνει την ακριβή μέθοδο, την εκτίμηση παράδοσης και οποιαδήποτε ρητή αναβάθμιση πριν από την πληρωμή.</p>",
+      "after": "<p>Η κανονική αποστολή περιλαμβάνεται στις τιμές των προϊόντων για χώρες και περιοχές όπου είναι διαθέσιμη μια κανονική μέθοδος αποστολής. Πριν από την πληρωμή, στο ταμείο εμφανίζονται η ακριβής μέθοδος, ο εκτιμώμενος χρόνος παράδοσης και τυχόν επιλογή αναβάθμισης σε ταχεία αποστολή.</p>"
+    },
+    {
+      "candidate": "shipping_manual.json",
+      "locale": "fi",
+      "handle": "shipping-info",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "EXPRESS_MISTRANSLATED_AS_QUICK_UPDATES",
+      "source": "<p>Standard shipping is included in product prices for countries and regions where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment.</p>",
+      "before": "<p>Standarditoimitus sisältyy tuotteiden hintoihin maissa ja alueilla, joissa vakiotapa on saatavilla. Checkout näyttää tarkan menetelmän, toimitusarvion ja mahdolliset pikapäivitykset ennen maksua.</p>",
+      "after": "<p>Vakiotoimitus sisältyy tuotteiden hintoihin maissa ja alueilla, joissa vakiotoimitustapa on saatavilla. Kassalla näytetään tarkka toimitustapa, arvioitu toimitusaika ja mahdollinen vaihto pikatoimitukseen ennen maksamista.</p>"
+    },
+    {
+      "candidate": "shipping_manual.json",
+      "locale": "nl",
+      "handle": "shipping-info",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "EXPRESS_MISTRANSLATED_AS_EXPLICIT",
+      "source": "<p>Standard shipping is included in product prices for countries and regions where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment.</p>",
+      "before": "<p>Standaardverzending is inbegrepen in de productprijzen voor landen en regio's waar een standaardmethode beschikbaar is. Afrekenen toont de exacte methode, schatting van de levering en eventuele uitdrukkelijke upgrade vóór betaling.</p>",
+      "after": "<p>Standaardverzending is inbegrepen in de productprijzen voor landen en regio’s waar een standaardverzendmethode beschikbaar is. Bij het afrekenen zie je vóór de betaling de exacte verzendmethode, de verwachte levertijd en een eventuele optie voor expresverzending.</p>"
+    },
+    {
+      "candidate": "shipping_manual.json",
+      "locale": "pl",
+      "handle": "shipping-info",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "EXPRESS_MISTRANSLATED_AS_UPDATES",
+      "source": "<p>Standard shipping is included in product prices for countries and regions where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment.</p>",
+      "before": "<p>Standardowa wysyłka jest wliczona w ceny produktów dla krajów i regionów, w których dostępna jest metoda standardowa. Kasa pokazuje dokładną metodę, szacunkową dostawę i wszelkie ekspresowe aktualizacje przed dokonaniem płatności.</p>",
+      "after": "<p>Standardowa wysyłka jest wliczona w ceny produktów dla krajów i regionów, w których dostępna jest standardowa metoda wysyłki. Przed zapłatą, podczas składania zamówienia, wyświetlane są dokładna metoda wysyłki, przewidywany termin dostawy i ewentualna opcja dostawy ekspresowej.</p>"
+    },
+    {
+      "candidate": "shipping_manual.json",
+      "locale": "ru",
+      "handle": "shipping-info",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "DELIVERY_TIME_CHANGED_TO_COST_AND_EXPRESS_UPDATE",
+      "source": "<p>Standard shipping is included in product prices for countries and regions where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment.</p>",
+      "before": "<p>Стандартная доставка включена в стоимость продукта для стран и регионов, где доступен стандартный метод. При оформлении заказа перед оплатой отображается точный способ, стоимость доставки и любое экспресс-обновление.</p>",
+      "after": "<p>Стандартная доставка включена в цены товаров для стран и регионов, где доступен стандартный способ доставки. При оформлении заказа перед оплатой отображаются точный способ доставки, предполагаемый срок и возможность перехода на экспресс-доставку, если она доступна.</p>"
+    },
+    {
+      "candidate": "shipping_manual.json",
+      "locale": "no",
+      "handle": "shipping-info",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "ENGLISH_CHECKOUT",
+      "source": "<p>Standard shipping is included in product prices for countries and regions where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment.</p>",
+      "before": "<p>Standardfrakt er inkludert i produktprisene for land og regioner der en standardmetode er tilgjengelig. Checkout viser nøyaktig metode, leveringsestimat og eventuell ekspressoppgradering før betaling.</p>",
+      "after": "<p>Standardfrakt er inkludert i produktprisene for land og regioner der en standard fraktmetode er tilgjengelig. I kassen vises den nøyaktige fraktmetoden, forventet leveringstid og eventuell oppgradering til ekspressfrakt før betaling.</p>"
+    },
+    {
+      "candidate": "shipping_manual.json",
+      "locale": "ar",
+      "handle": "shipping-info",
+      "selector": {
+        "tag": "p",
+        "index": 4
+      },
+      "severity": "P2",
+      "reason": "UNIDIOMATIC_NUMERIC_TIMING",
+      "source": "<p>Orders are processed within 1-3 business days after payment confirmation. During holidays, promotions, or high-volume periods, processing may take an additional 1-2 business days.</p>",
+      "before": "<p> تتم معالجة الطلبات خلال أيام عمل 1-3 بعد تأكيد الدفع. خلال العطلات أو العروض الترويجية أو الفترات ذات الحجم الكبير، قد تستغرق المعالجة أيام عمل إضافية في 1-2.</p>",
+      "after": "<p>تُعالَج الطلبات خلال 1-3 أيام عمل بعد تأكيد الدفع. خلال العطلات أو العروض الترويجية أو فترات كثرة الطلبات، قد تستغرق المعالجة 1-2 يوم عمل إضافيين.</p>"
+    },
+    {
+      "candidate": "shipping_manual.json",
+      "locale": "ja",
+      "handle": "shipping-info",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "UNIDIOMATIC_DELIVERY_OPTIONS",
+      "source": "<p>Standard shipping is included in product prices for countries and regions where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment.</p>",
+      "before": "<p>標準配送方法が利用できる国および地域では、標準配送料が商品価格に含まれています。チェックアウトには、支払い前の正確な方法、配送見積もり、およびエクスプレス アップグレードが表示されます。</p>",
+      "after": "<p>通常配送をご利用いただける国や地域では、商品価格に通常配送料が含まれています。購入手続き画面には、お支払い前に正確な配送方法、お届け予定、および利用可能な速達へのアップグレードが表示されます。</p>"
+    },
+    {
+      "candidate": "shipping_manual.json",
+      "locale": "ja",
+      "handle": "shipping-info",
+      "selector": {
+        "tag": "p",
+        "index": 4
+      },
+      "severity": "P2",
+      "reason": "HIGH_VOLUME_NONSENSICAL",
+      "source": "<p>Orders are processed within 1-3 business days after payment confirmation. During holidays, promotions, or high-volume periods, processing may take an additional 1-2 business days.</p>",
+      "before": "<p>ご注文は、支払い確認後 1-3 営業日以内に処理されます。休日、プロモーション、または大量の期間中は、処理にさらに 1-2 営業日かかる場合があります。</p>",
+      "after": "<p>ご注文は、お支払いの確認後1-3営業日以内に処理されます。祝日、販促期間中、または注文が集中する時期には、処理にさらに1-2営業日かかる場合があります。</p>"
+    },
+    {
+      "candidate": "shipping_manual.json",
+      "locale": "pl",
+      "handle": "shipping-info",
+      "selector": {
+        "tag": "p",
+        "index": 4
+      },
+      "severity": "P2",
+      "reason": "UNIDIOMATIC_NUMERIC_TIMING",
+      "source": "<p>Orders are processed within 1-3 business days after payment confirmation. During holidays, promotions, or high-volume periods, processing may take an additional 1-2 business days.</p>",
+      "before": "<p>Zamówienia realizowane są w ciągu 1-3 dni roboczych po potwierdzeniu płatności. W święta, promocje lub okresy wzmożonego ruchu przetwarzanie może zająć dodatkowe dni robocze 1-2.</p>",
+      "after": "<p>Zamówienia są przetwarzane w ciągu 1-3 dni roboczych od potwierdzenia płatności. W okresie świąt, promocji lub zwiększonej liczby zamówień przetwarzanie może potrwać dodatkowe 1-2 dni robocze.</p>"
+    },
+    {
+      "candidate": "shipping_manual.json",
+      "locale": "ru",
+      "handle": "shipping-info",
+      "selector": {
+        "tag": "p",
+        "index": 4
+      },
+      "severity": "P2",
+      "reason": "UNIDIOMATIC_NUMERIC_TIMING",
+      "source": "<p>Orders are processed within 1-3 business days after payment confirmation. During holidays, promotions, or high-volume periods, processing may take an additional 1-2 business days.</p>",
+      "before": "<p>Заказы обрабатываются в течение 1-3 рабочих дней после подтверждения оплаты. Во время праздников, рекламных акций или периодов большого объема обработка может занять дополнительные рабочие дни 1-2.</p>",
+      "after": "<p>Заказы обрабатываются в течение 1-3 рабочих дней после подтверждения оплаты. Во время праздников, акций или при большом количестве заказов обработка может занять дополнительно 1-2 рабочих дня.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "de",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Yes. Checkout is hosted securely by Shopify and supports the payment methods shown at checkout. We do not store your full card details on our site.</p>",
+      "before": "<p>Ja, das ist sicher. Wir verwenden PayPal zur Zahlungsabwicklung. Selbst unser Personal sieht Ihre Zahlungsdaten nicht. PayPal ist der weltweit größte sichere Zahlungsanbieter. Unsere Website basiert auf der sicheren Shopify-Plattform. Alle Ihre persönlichen Daten sind bestens geschützt.</p>",
+      "after": "<p>Ja. Der Checkout wird sicher von Shopify bereitgestellt und unterstützt die dort angezeigten Zahlungsmethoden. Wir speichern keine vollständigen Kartendaten auf unserer Website.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "de",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 25
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>We currently ship to the countries listed in our shipping policy. If your country is not listed at checkout, contact us before placing an order.</p>",
+      "before": "<p>Ja, das tun wir. Wir liefern in alle Länder weltweit.</p>",
+      "after": "<p>Wir versenden derzeit in die in unseren Versandbedingungen aufgeführten Länder. Wenn Ihr Land beim Checkout nicht aufgeführt ist, kontaktieren Sie uns vor der Bestellung.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "de",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 28
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Processing and transit times vary by destination and carrier. Review the <a href=\"https://www.dresslikemommy.com/policies/shipping-policy\" alt=\"Shipping Policy\">shipping policy</a> for the current shipping details before checkout.</p>",
+      "before": "<p>Die Lieferung dauert normalerweise etwa 15-30 Tage. Die genauen Lieferzeiten können Sie hier prüfen: <a href=\"https://www.dresslikemommy.com/pages/shipping-and-delivery\" alt=\"Versandseite\">Versandseite</a></p>",
+      "after": "<p>Bearbeitungs- und Versandzeiten hängen vom Zielort und Versanddienstleister ab. Lesen Sie vor dem Checkout die <a href=\"https://www.dresslikemommy.com/policies/shipping-policy\" alt=\"Shipping Policy\">Versandbedingungen</a>, um die aktuellen Versandinformationen zu prüfen.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "de",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 31
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Customs duties, import taxes, or local fees may be charged by your destination country and are the customer's responsibility. We cannot mark orders as gifts or lower-value shipments.</p>",
+      "before": "<p>Nein, Sie müssen keine Zollgebühren zahlen. Wir kennzeichnen alle unsere Bestellungen als Geschenke mit geringem Wert. Außerdem versenden wir größere Bestellungen in separaten Paketen.</p>",
+      "after": "<p>Das Zielland kann Zölle, Einfuhrsteuern oder lokale Gebühren erheben, die vom Kunden zu tragen sind. Wir können Bestellungen nicht als Geschenke oder als Sendungen mit einem geringeren Wert kennzeichnen.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "de",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 66
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Please contact us at <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> and provide your order number. Approved exchanges follow the current refund policy, including item-condition requirements and return-shipping responsibility.</p>",
+      "before": "<p>Bitte kontaktieren Sie uns unter <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> und geben Sie uns Ihre Bestellnummer an. Sie können uns Ihren Artikel zurücksenden und wir senden Ihnen einen neuen Artikel in der aktualisierten Größe. *Die Versandkosten gehen zu Ihren Lasten.</p>",
+      "after": "<p>Bitte kontaktieren Sie uns unter <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> und geben Sie Ihre Bestellnummer an. Genehmigte Umtausche richten sich nach unseren aktuellen Rückerstattungsbedingungen, einschließlich der Anforderungen an den Artikelzustand und der Verantwortung für die Rücksendekosten.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "de",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 69
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Please contact us at <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> and provide your order number. Review the refund policy for eligibility, return shipping, and refund timing before sending anything back.</p>",
+      "before": "<p>Bitte kontaktieren Sie uns unter <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> und geben Sie uns Ihre Bestellnummer an. Sie können uns Ihren Artikel zurücksenden und wir erstatten Ihnen den Kaufpreis. *Die Versandkosten gehen zu Ihren Lasten.</p>",
+      "after": "<p>Bitte kontaktieren Sie uns unter <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> und geben Sie Ihre Bestellnummer an. Informieren Sie sich vor einer Rücksendung in unseren Rückerstattungsbedingungen über die Voraussetzungen, Rücksendekosten und Erstattungsfristen.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "es",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Yes. Checkout is hosted securely by Shopify and supports the payment methods shown at checkout. We do not store your full card details on our site.</p>",
+      "before": "<p> Por supuesto que sí. Usamos PayPal para procesar los pagos, por lo que ni siquiera nuestro personal puede ver los detalles de tu pago. PayPal es el proveedor de pagos seguros más grande del mundo. Nuestro sitio web está construido sobre la plataforma segura de Shopify. Toda tu información personal está protegida de forma estricta.</p>",
+      "after": "<p>Sí. Shopify aloja el proceso de pago de forma segura y admite los métodos de pago que se muestran al finalizar la compra. No almacenamos los datos completos de tu tarjeta en nuestro sitio.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "es",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 25
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>We currently ship to the countries listed in our shipping policy. If your country is not listed at checkout, contact us before placing an order.</p>",
+      "before": "<p> Sí, hacemos envíos a todos los países del mundo.</p>",
+      "after": "<p>Actualmente enviamos a los países indicados en nuestra política de envíos. Si tu país no aparece al finalizar la compra, contáctanos antes de realizar un pedido.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "es",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 28
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Processing and transit times vary by destination and carrier. Review the <a href=\"https://www.dresslikemommy.com/policies/shipping-policy\" alt=\"Shipping Policy\">shipping policy</a> for the current shipping details before checkout.</p>",
+      "before": "<p> El plazo de entrega suele ser de entre 15 y 30 días. No obstante, puedes consultar el plazo de entrega exacto aquí: <a href=\"https://www.dresslikemommy.com/pages/shipping-and-delivery\" alt=\"Shipping Page\">Página de envíos</a></p>",
+      "after": "<p>Los plazos de preparación y transporte varían según el destino y el transportista. Revisa la <a href=\"https://www.dresslikemommy.com/policies/shipping-policy\" alt=\"Shipping Policy\">política de envíos</a> para conocer la información vigente antes de finalizar la compra.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "es",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 31
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Customs duties, import taxes, or local fees may be charged by your destination country and are the customer's responsibility. We cannot mark orders as gifts or lower-value shipments.</p>",
+      "before": "<p> No, no es necesario pagar aranceles aduaneros. Marcamos todos nuestros pedidos como obsequios de bajo valor. Además, enviamos pedidos más grandes en paquetes separados. </p>",
+      "after": "<p>El país de destino puede cobrar aranceles, impuestos de importación o cargos locales, que son responsabilidad del cliente. No podemos marcar los pedidos como regalos ni declarar un valor inferior.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "es",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 66
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Please contact us at <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> and provide your order number. Approved exchanges follow the current refund policy, including item-condition requirements and return-shipping responsibility.</p>",
+      "before": "<p>Comuníquese con nosotros a <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> y proporciónenos su número de pedido. Puede devolvernos su artículo y le enviaremos uno nuevo con la talla actualizada. *Los costos de envío correrán por su cuenta.</p>",
+      "after": "<p>Contáctanos en <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> e indica tu número de pedido. Los cambios aprobados se rigen por la política de reembolso vigente, incluidos los requisitos sobre el estado del artículo y la responsabilidad de los gastos de devolución.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "es",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 69
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Please contact us at <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> and provide your order number. Review the refund policy for eligibility, return shipping, and refund timing before sending anything back.</p>",
+      "before": "<p> Comuníquese con nosotros a <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> y proporciónenos su número de pedido. Puede devolvernos el artículo y le reembolsaremos el importe. *Los gastos de envío correrán a su cargo.</p>",
+      "after": "<p>Contáctanos en <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> e indica tu número de pedido. Antes de devolver cualquier artículo, consulta la política de reembolso para conocer los requisitos, los gastos de devolución y los plazos de reembolso.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "fr",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Yes. Checkout is hosted securely by Shopify and supports the payment methods shown at checkout. We do not store your full card details on our site.</p>",
+      "before": "<p> Absolument. Nous utilisons PayPal pour le traitement des paiements. Ainsi, même notre personnel n'a pas accès à vos informations de paiement. PayPal est le plus grand fournisseur de paiements sécurisés au monde. Notre site web est construit sur la plateforme sécurisée Shopify. Toutes vos informations personnelles sont parfaitement protégées.</p>",
+      "after": "<p>Oui. Le processus de paiement est hébergé de manière sécurisée par Shopify et prend en charge les moyens de paiement qui y sont affichés. Nous ne conservons pas les données complètes de votre carte sur notre site.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "fr",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 25
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>We currently ship to the countries listed in our shipping policy. If your country is not listed at checkout, contact us before placing an order.</p>",
+      "before": "<p> Oui, nous livrons dans tous les pays du monde.</p>",
+      "after": "<p>Nous livrons actuellement dans les pays indiqués dans notre politique d’expédition. Si votre pays n’apparaît pas lors de la commande, contactez-nous avant de commander.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "fr",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 28
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Processing and transit times vary by destination and carrier. Review the <a href=\"https://www.dresslikemommy.com/policies/shipping-policy\" alt=\"Shipping Policy\">shipping policy</a> for the current shipping details before checkout.</p>",
+      "before": "<p> La livraison prend généralement entre 15 et 30 jours. Vous pouvez toutefois consulter les estimations de livraison exactes ici : <a href=\"https://www.dresslikemommy.com/pages/shipping-and-delivery\" alt=\"Shipping Page\">Page Livraison</a></p>",
+      "after": "<p>Les délais de préparation et de transport varient selon la destination et le transporteur. Consultez la <a href=\"https://www.dresslikemommy.com/policies/shipping-policy\" alt=\"Shipping Policy\">politique d’expédition</a> pour connaître les informations en vigueur avant de finaliser votre commande.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "fr",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 31
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Customs duties, import taxes, or local fees may be charged by your destination country and are the customer's responsibility. We cannot mark orders as gifts or lower-value shipments.</p>",
+      "before": "<p> Non, vous n'avez pas de frais de douane à payer. Nous déclarons toutes nos commandes comme cadeaux de faible valeur. De plus, les commandes importantes sont expédiées en plusieurs colis. </p>",
+      "after": "<p>Le pays de destination peut facturer des droits de douane, des taxes à l’importation ou des frais locaux, qui sont à la charge du client. Nous ne pouvons pas déclarer les commandes comme des cadeaux ni leur attribuer une valeur inférieure.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "fr",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 66
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Please contact us at <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> and provide your order number. Approved exchanges follow the current refund policy, including item-condition requirements and return-shipping responsibility.</p>",
+      "before": "<p>Veuillez nous contacter à l' <a href=\"mailto:info@dresslikemommy.com\">adresse info@dresslikemommy.com</a> en indiquant votre numéro de commande. Vous pouvez nous renvoyer votre article et nous vous enverrons un nouvel article à la bonne taille. *Les frais de port sont à votre charge.</p>",
+      "after": "<p>Contactez-nous à <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> en indiquant votre numéro de commande. Les échanges approuvés sont soumis à la politique de remboursement en vigueur, notamment aux exigences concernant l’état des articles et la responsabilité des frais de retour.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "fr",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 69
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Please contact us at <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> and provide your order number. Review the refund policy for eligibility, return shipping, and refund timing before sending anything back.</p>",
+      "before": "<p> Veuillez nous contacter à l'adresse <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> en indiquant votre numéro de commande. Vous pouvez nous renvoyer votre article et nous vous rembourserons. *Les frais de port sont à votre charge.</p>",
+      "after": "<p>Contactez-nous à <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> en indiquant votre numéro de commande. Consultez la politique de remboursement pour connaître les conditions d’admissibilité, les frais de retour et les délais de remboursement avant de renvoyer quoi que ce soit.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "nl",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Yes. Checkout is hosted securely by Shopify and supports the payment methods shown at checkout. We do not store your full card details on our site.</p>",
+      "before": "<p>Dat is het zeker. We gebruiken PayPal om betalingen te verwerken. Dus zelfs ons personeel ziet je betalingsgegevens niet. PayPal is de grootste beveiligde betalingsprovider ter wereld. Onze website is gebouwd op het beveiligde Shopify-platform. Al je persoonlijke informatie is goed beveiligd.</p>",
+      "after": "<p>Ja. De betaalomgeving wordt veilig gehost door Shopify en ondersteunt de betaalmethoden die bij het afrekenen worden getoond. We bewaren je volledige kaartgegevens niet op onze website.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "nl",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 25
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>We currently ship to the countries listed in our shipping policy. If your country is not listed at checkout, contact us before placing an order.</p>",
+      "before": "<p>Ja, dat doen we. We leveren aan alle landen wereldwijd.</p>",
+      "after": "<p>We verzenden momenteel naar de landen die in ons verzendbeleid staan. Als je land niet bij het afrekenen wordt vermeld, neem dan contact met ons op voordat je bestelt.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "nl",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 28
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Processing and transit times vary by destination and carrier. Review the <a href=\"https://www.dresslikemommy.com/policies/shipping-policy\" alt=\"Shipping Policy\">shipping policy</a> for the current shipping details before checkout.</p>",
+      "before": "<p>De levering duurt meestal ongeveer 15-30 dagen. Je kunt echter de exacte levertijd hier controleren: <a href=\"https://www.dresslikemommy.com/pages/shipping-and-delivery\" alt=\"Verzendpagina\">Verzendpagina</a></p>",
+      "after": "<p>De verwerkings- en vervoerstijden verschillen per bestemming en vervoerder. Lees vóór het afrekenen het <a href=\"https://www.dresslikemommy.com/policies/shipping-policy\" alt=\"Shipping Policy\">verzendbeleid</a> voor de actuele verzendinformatie.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "nl",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 31
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Customs duties, import taxes, or local fees may be charged by your destination country and are the customer's responsibility. We cannot mark orders as gifts or lower-value shipments.</p>",
+      "before": "<p>Nee, je hoeft geen douanekosten te betalen. We markeren al onze bestellingen als cadeaus met lage waarde. Bovendien sturen we grotere bestellingen in aparte pakketten.</p>",
+      "after": "<p>Het land van bestemming kan invoerrechten, invoerbelastingen of lokale kosten in rekening brengen. Deze zijn voor rekening van de klant. We kunnen bestellingen niet als geschenken of als zendingen met een lagere waarde aangeven.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "nl",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 66
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Please contact us at <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> and provide your order number. Approved exchanges follow the current refund policy, including item-condition requirements and return-shipping responsibility.</p>",
+      "before": "<p>Neem alstublieft contact met ons op via <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> en geef ons uw bestelnummer door. U kunt het artikel naar ons terugsturen en wij sturen u een nieuw artikel in de juiste maat. *Verzendkosten zijn voor uw rekening.</p>",
+      "after": "<p>Neem contact met ons op via <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> en vermeld je bestelnummer. Goedgekeurde omruilingen vallen onder het huidige terugbetalingsbeleid, inclusief de eisen aan de staat van het artikel en wie de retourkosten draagt.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "nl",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 69
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Please contact us at <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> and provide your order number. Review the refund policy for eligibility, return shipping, and refund timing before sending anything back.</p>",
+      "before": "<p>Neem alstublieft contact met ons op via <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> en geef ons uw bestelnummer door. U kunt het artikel naar ons terugsturen en wij zullen het aankoopbedrag terugbetalen. *Verzendkosten zijn voor uw rekening.</p>",
+      "after": "<p>Neem contact met ons op via <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> en vermeld je bestelnummer. Lees het terugbetalingsbeleid voor de voorwaarden, retourkosten en terugbetalingstermijnen voordat je iets terugstuurt.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "pt-BR",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Yes. Checkout is hosted securely by Shopify and supports the payment methods shown at checkout. We do not store your full card details on our site.</p>",
+      "before": "<p>Com certeza é seguro. Usamos PayPal para processar pagamentos. Assim, nem mesmo nossa equipe vê seus dados de pagamento. PayPal é o maior provedor de pagamento seguro do mundo. Nosso site é construído na plataforma segura Shopify. Todas as suas informações pessoais estão protegidas.</p>",
+      "after": "<p>Sim. A finalização da compra é hospedada com segurança pela Shopify e aceita as formas de pagamento exibidas nessa etapa. Não armazenamos os dados completos do seu cartão em nosso site.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "pt-BR",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 25
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>We currently ship to the countries listed in our shipping policy. If your country is not listed at checkout, contact us before placing an order.</p>",
+      "before": "<p>Sim, entregamos. Fazemos entregas para todos os países do mundo.</p>",
+      "after": "<p>Atualmente enviamos para os países indicados em nossa política de frete. Se o seu país não aparecer na finalização da compra, entre em contato conosco antes de fazer um pedido.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "pt-BR",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 28
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Processing and transit times vary by destination and carrier. Review the <a href=\"https://www.dresslikemommy.com/policies/shipping-policy\" alt=\"Shipping Policy\">shipping policy</a> for the current shipping details before checkout.</p>",
+      "before": "<p>A entrega geralmente leva cerca de 15 a 30 dias. No entanto, você pode verificar as estimativas exatas de entrega aqui: <a href=\"https://www.dresslikemommy.com/pages/shipping-and-delivery\" alt=\"Página de Envio\">Página de Envio</a></p>",
+      "after": "<p>Os prazos de processamento e transporte variam conforme o destino e a transportadora. Consulte a <a href=\"https://www.dresslikemommy.com/policies/shipping-policy\" alt=\"Shipping Policy\">política de frete</a> para ver as informações atuais antes de finalizar a compra.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "pt-BR",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 31
+      },
+      "severity": "P1",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Customs duties, import taxes, or local fees may be charged by your destination country and are the customer's responsibility. We cannot mark orders as gifts or lower-value shipments.</p>",
+      "before": "<p>Não, você não precisa pagar taxa de alfândega. Marcamos todos os nossos pedidos como presentes de baixo valor. Além disso, enviamos pedidos maiores em pacotes separados.</p>",
+      "after": "<p>O país de destino pode cobrar tarifas alfandegárias, impostos de importação ou taxas locais, que são de responsabilidade do cliente. Não podemos declarar os pedidos como presentes nem atribuir um valor menor às remessas.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "pt-BR",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 66
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Please contact us at <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> and provide your order number. Approved exchanges follow the current refund policy, including item-condition requirements and return-shipping responsibility.</p>",
+      "before": "<p>Por favor, entre em contato conosco em <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> e nos forneça o número do seu pedido. Você pode nos enviar o item de volta e nós enviaremos um novo item com o tamanho atualizado. *Os custos de postagem serão por sua conta.</p>",
+      "after": "<p>Entre em contato pelo e-mail <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> e informe o número do pedido. As trocas aprovadas seguem a política de reembolso vigente, incluindo os requisitos sobre o estado do produto e a responsabilidade pelos custos do frete de devolução.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "pt-BR",
+      "handle": "faqs",
+      "selector": {
+        "tag": "p",
+        "index": 69
+      },
+      "severity": "P2",
+      "reason": "STALE_TRANSLATION_CONTRADICTS_CURRENT_SOURCE",
+      "source": "<p>Please contact us at <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> and provide your order number. Review the refund policy for eligibility, return shipping, and refund timing before sending anything back.</p>",
+      "before": "<p>Por favor, entre em contato conosco em <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> e nos forneça o número do seu pedido. Você pode nos enviar o item de volta e nós emitiremos um reembolso. *Os custos de postagem serão por sua conta.</p>",
+      "after": "<p>Entre em contato pelo e-mail <a href=\"mailto:info@dresslikemommy.com\">info@dresslikemommy.com</a> e informe o número do pedido. Antes de devolver qualquer item, consulte a política de reembolso para verificar os requisitos de elegibilidade, o frete de devolução e os prazos de reembolso.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "de",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p>Dress Like Mommy grew from Francisco's family idea in Naples, Florida: the joy his daughters felt when they matched outfits with their mom. That spark — the giggles, the photos, and the \"we're twinning!\" moments — became the heart of a business dedicated to bringing families closer through fashion.</p>",
+      "before": "<p>Gegründet 2016 von Francisco, einem Vater von zwei Mädchen in Naples, Florida, begann Dress Like Mommy, als er bemerkte, wie seine Töchter jedes Mal aufleuchteten, wenn sie Outfits mit ihrer Mutter abstimmten. Dieses Funkeln der Freude – das Kichern, die Fotos, die „Wir sind Zwillinge!“-Momente – wurde zum Herzstück eines Unternehmens, das Familien durch Mode näher zusammenbringen möchte.</p>",
+      "after": "<p>Dress Like Mommy entstand aus Franciscos Familienidee in Naples, Florida: der Freude seiner Töchter, wenn sie passende Outfits zu ihrer Mutter trugen. Dieser Funke — das Kichern, die Fotos und die „Wir sehen aus wie Zwillinge!“-Momente — wurde zum Herzstück eines Unternehmens, das Familien durch Mode näher zusammenbringen möchte.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "de",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 3
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p>We serve families across the United States, Canada, United Kingdom, and Australia. Whether it's Christmas morning matching pajamas, a family photo shoot, or a fun day out twinning with your mini-me, our customers come to us for coordinated outfits that make getting dressed together simpler.</p>",
+      "before": "<p>Seit 2016 haben wir Tausende von Familien in den USA, Kanada, Großbritannien und Australien bedient. Ob es die passenden Schlafanzüge am Weihnachtsmorgen sind, ein Familienshooting oder einfach ein spaßiger Tag im Partnerlook mit deinem Mini-Ich – unsere Kunden kommen immer wieder wegen der Freude zurück, die diese Outfits schaffen.</p>",
+      "after": "<p>Wir bedienen Familien in den USA, Kanada, Großbritannien und Australien. Ob passende Pyjamas am Weihnachtsmorgen, ein Familienfotoshooting oder ein fröhlicher Ausflug im Partnerlook mit dem Nachwuchs: Unsere Kunden finden bei uns abgestimmte Outfits, die das gemeinsame Anziehen einfacher machen.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "de",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 7
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p><em>Dress Like Mommy — Making family moments even more special.</em></p>",
+      "before": "<p><em>Dress Like Mommy – macht Familienmomente seit 2016 noch besonderer.</em></p>",
+      "after": "<p><em>Dress Like Mommy — macht Familienmomente noch besonderer.</em></p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "de",
+      "handle": "about-us",
+      "selector": {
+        "tag": "li",
+        "index": 2
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<li>\n<strong>Family Matching Made Easy</strong> — Coordinated outfits for photos, holidays, trips, and everyday moments</li>",
+      "before": "<li>\n<strong>Tausende glückliche Familien</strong> seit 2016</li>",
+      "after": "<li>\n<strong>Familien-Partnerlooks leicht gemacht</strong> — Abgestimmte Outfits für Fotos, Feiertage, Reisen und den Alltag</li>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "de",
+      "handle": "about-us",
+      "selector": {
+        "tag": "li",
+        "index": 3
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<li>\n<strong>Easy Returns</strong> — Clear return and exchange guidance in our refund policy</li>",
+      "before": "<li>\n<strong>Einfache Rückgabe</strong> – 30 Tage unkomplizierte Rückgabegarantie</li>",
+      "after": "<li>\n<strong>Einfache Rückgabe</strong> — Klare Hinweise zu Rückgabe und Umtausch in unseren Rückerstattungsbedingungen</li>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "es",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 0
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p>Dress Like Mommy was born from a simple idea: families that match together, bond together.</p>",
+      "before": "<p> Dress Like Mommy nació de una idea simple: familias que se unen, se unen.</p>",
+      "after": "<p>Dress Like Mommy nació de una idea sencilla: las familias que se visten a juego fortalecen sus lazos.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "es",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p>Dress Like Mommy grew from Francisco's family idea in Naples, Florida: the joy his daughters felt when they matched outfits with their mom. That spark — the giggles, the photos, and the \"we're twinning!\" moments — became the heart of a business dedicated to bringing families closer through fashion.</p>",
+      "before": "<p> Fundada en 2016 por Francisco, padre de dos niñas en Naples, Florida, Dress Like Mommy surgió cuando notó cómo sus hijas se iluminaban cada vez que combinaban ropa con su mamá. Esa chispa de alegría —las risas, las fotos, los momentos de \"¡Somos gemelas!\"— se convirtió en el corazón de una empresa dedicada a unir familias a través de la moda.</p>",
+      "after": "<p>Dress Like Mommy surgió de una idea familiar de Francisco en Naples, Florida: la alegría de sus hijas al llevar conjuntos a juego con su mamá. Esa chispa —las risas, las fotos y los momentos de «¡Somos gemelas!»— se convirtió en el corazón de un negocio dedicado a acercar a las familias a través de la moda.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "es",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 3
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p>We serve families across the United States, Canada, United Kingdom, and Australia. Whether it's Christmas morning matching pajamas, a family photo shoot, or a fun day out twinning with your mini-me, our customers come to us for coordinated outfits that make getting dressed together simpler.</p>",
+      "before": "<p> Desde 2016, hemos atendido a miles de familias en Estados Unidos, Canadá, Reino Unido y Australia. Ya sea para una pijamada navideña a juego, una sesión de fotos familiar o simplemente un día divertido con tu pequeño, nuestros clientes vuelven una y otra vez por las sonrisas que estos conjuntos provocan.</p>",
+      "after": "<p>Atendemos a familias de Estados Unidos, Canadá, Reino Unido y Australia. Ya sea para llevar pijamas a juego la mañana de Navidad, una sesión de fotos familiar o una salida divertida con tu peque, nuestros clientes encuentran en nosotros conjuntos coordinados que facilitan vestirse en familia.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "es",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 7
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p><em>Dress Like Mommy — Making family moments even more special.</em></p>",
+      "before": "<p> <em>Vístete como mamá: haciendo que los momentos familiares sean aún más especiales desde 2016.</em></p>",
+      "after": "<p><em>Dress Like Mommy — Haciendo que los momentos en familia sean aún más especiales.</em></p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "es",
+      "handle": "about-us",
+      "selector": {
+        "tag": "li",
+        "index": 2
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<li>\n<strong>Family Matching Made Easy</strong> — Coordinated outfits for photos, holidays, trips, and everyday moments</li>",
+      "before": "<li> \n<strong>Miles de familias felices</strong> desde 2016</li>",
+      "after": "<li>\n<strong>Vestirse a juego en familia es fácil</strong> — Conjuntos coordinados para fotos, fiestas, viajes y momentos cotidianos</li>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "es",
+      "handle": "about-us",
+      "selector": {
+        "tag": "li",
+        "index": 3
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<li>\n<strong>Easy Returns</strong> — Clear return and exchange guidance in our refund policy</li>",
+      "before": "<li>\n\n <strong>Devoluciones fáciles</strong> : política de devolución sin complicaciones de 30 días</li>",
+      "after": "<li>\n<strong>Devoluciones fáciles</strong> — Orientación clara sobre devoluciones y cambios en nuestra política de reembolso</li>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "fr",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 0
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p>Dress Like Mommy was born from a simple idea: families that match together, bond together.</p>",
+      "before": "<p> L'idée de « S'habiller comme maman » est née d'une idée simple : les familles qui s'habillent ensemble renforcent leurs liens.</p>",
+      "after": "<p>Dress Like Mommy est née d’une idée simple : les familles qui s’habillent de façon assortie renforcent leurs liens.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "fr",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p>Dress Like Mommy grew from Francisco's family idea in Naples, Florida: the joy his daughters felt when they matched outfits with their mom. That spark — the giggles, the photos, and the \"we're twinning!\" moments — became the heart of a business dedicated to bringing families closer through fashion.</p>",
+      "before": "<p> Fondée en 2016 par Francisco, père de deux filles à Naples, en Floride, Dress Like Mommy est née de son constat : ses filles s'illuminaient à chaque fois qu'elles assortissaient leurs tenues à celles de leur mère. Cette étincelle de joie – les rires, les photos, les « On est assorties ! » – est devenue le cœur d'une entreprise qui a pour vocation de rapprocher les familles grâce à la mode.</p>",
+      "after": "<p>Dress Like Mommy est née d’une idée familiale de Francisco, à Naples, en Floride : la joie de ses filles lorsqu’elles portaient des tenues assorties à celles de leur mère. Cette étincelle — les rires, les photos et les moments « On est assorties ! » — est devenue le cœur d’une entreprise qui rapproche les familles grâce à la mode.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "fr",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 2
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p>We curate matching outfits for moms, dads, and kids — from cozy holiday pajamas to everyday casual sets and special occasion looks. Every piece is selected with comfort, style, and affordability in mind, so families everywhere can create those picture-perfect moments without breaking the bank.</p>",
+      "before": "<p>Nous créons des tenues assorties pour mamans, papas et enfants : des pyjamas douillets pour les fêtes aux ensembles décontractés du quotidien, en passant par les looks pour les grandes occasions. Chaque pièce est choisie avec soin pour son confort, son style et son prix abordable, afin que toutes les familles puissent immortaliser de beaux moments sans se ruiner.</p>",
+      "after": "<p>Nous sélectionnons des tenues assorties pour les mamans, les papas et les enfants : des pyjamas douillets pour les fêtes aux ensembles décontractés du quotidien, en passant par les looks pour les grandes occasions. Chaque pièce est choisie pour son confort, son style et son prix abordable, afin que les familles puissent créer de beaux souvenirs sans se ruiner.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "fr",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 3
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p>We serve families across the United States, Canada, United Kingdom, and Australia. Whether it's Christmas morning matching pajamas, a family photo shoot, or a fun day out twinning with your mini-me, our customers come to us for coordinated outfits that make getting dressed together simpler.</p>",
+      "before": "<p> Depuis 2016, nous avons accompagné des milliers de familles aux États-Unis, au Canada, au Royaume-Uni et en Australie. Que ce soit pour des pyjamas assortis le matin de Noël, une séance photo en famille ou simplement une sortie amusante avec votre enfant, nos clients reviennent sans cesse pour les sourires que ces tenues suscitent.</p>",
+      "after": "<p>Nous servons des familles aux États-Unis, au Canada, au Royaume-Uni et en Australie. Qu’il s’agisse de pyjamas assortis le matin de Noël, d’une séance photo en famille ou d’une sortie amusante avec votre enfant, nos clients viennent chez nous pour des tenues coordonnées qui simplifient le fait de s’habiller ensemble.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "fr",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 7
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p><em>Dress Like Mommy — Making family moments even more special.</em></p>",
+      "before": "<p> <em>S'habiller comme maman — Pour rendre les moments en famille encore plus spéciaux depuis 2016.</em></p>",
+      "after": "<p><em>Dress Like Mommy — Pour rendre les moments en famille encore plus spéciaux.</em></p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "fr",
+      "handle": "about-us",
+      "selector": {
+        "tag": "li",
+        "index": 2
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<li>\n<strong>Family Matching Made Easy</strong> — Coordinated outfits for photos, holidays, trips, and everyday moments</li>",
+      "before": "<li> \n<strong>Des milliers de familles heureuses</strong> depuis 2016</li>",
+      "after": "<li>\n<strong>Des tenues familiales assorties en toute simplicité</strong> — Des ensembles coordonnés pour les photos, les fêtes, les voyages et le quotidien</li>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "fr",
+      "handle": "about-us",
+      "selector": {
+        "tag": "li",
+        "index": 3
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<li>\n<strong>Easy Returns</strong> — Clear return and exchange guidance in our refund policy</li>",
+      "before": "<li>\n\n <strong>Retours faciles</strong> — Politique de retour sans tracas de 30 jours</li>",
+      "after": "<li>\n<strong>Retours faciles</strong> — Des indications claires sur les retours et les échanges dans notre politique de remboursement</li>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "nl",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p>Dress Like Mommy grew from Francisco's family idea in Naples, Florida: the joy his daughters felt when they matched outfits with their mom. That spark — the giggles, the photos, and the \"we're twinning!\" moments — became the heart of a business dedicated to bringing families closer through fashion.</p>",
+      "before": "<p>Opgericht in 2016 door Francisco, een vader van twee meisjes in Napels, Florida, begon Dress Like Mommy toen hij merkte hoe zijn dochters oplichtten telkens als ze dezelfde kleding droegen als hun moeder. Die vonk van vreugde — het gegiechel, de foto’s, de \"we lijken op elkaar!\" momenten — werd het hart van een bedrijf dat zich inzet om gezinnen dichter bij elkaar te brengen via mode.</p>",
+      "after": "<p>Dress Like Mommy groeide uit Francisco’s gezinsidee in Naples, Florida: de vreugde van zijn dochters wanneer ze outfits droegen die bij die van hun moeder pasten. Die vonk — het gegiechel, de foto’s en de momenten waarop ze riepen dat ze op elkaar leken — werd het hart van een bedrijf dat gezinnen via mode dichter bij elkaar wil brengen.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "nl",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 3
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p>We serve families across the United States, Canada, United Kingdom, and Australia. Whether it's Christmas morning matching pajamas, a family photo shoot, or a fun day out twinning with your mini-me, our customers come to us for coordinated outfits that make getting dressed together simpler.</p>",
+      "before": "<p>Sinds 2016 hebben we duizenden gezinnen bediend in de Verenigde Staten, Canada, het Verenigd Koninkrijk en Australië. Of het nu gaat om kerstontbijt in bijpassende pyjama’s, een familieshoot of gewoon een leuke dag uit in matching outfits met je mini-me, onze klanten blijven terugkomen voor de glimlachen die deze kleding creëert.</p>",
+      "after": "<p>We helpen gezinnen in de Verenigde Staten, Canada, het Verenigd Koninkrijk en Australië. Of het nu gaat om bijpassende pyjama’s op kerstochtend, een gezinsfotoshoot of een gezellig uitje in dezelfde stijl als je kind: onze klanten komen bij ons voor afgestemde outfits die het samen aankleden eenvoudiger maken.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "nl",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 7
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p><em>Dress Like Mommy — Making family moments even more special.</em></p>",
+      "before": "<p><em>Dress Like Mommy — Maakt familietijd sinds 2016 nog specialer.</em></p>",
+      "after": "<p><em>Dress Like Mommy — Maakt familiemomenten nog specialer.</em></p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "nl",
+      "handle": "about-us",
+      "selector": {
+        "tag": "li",
+        "index": 2
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<li>\n<strong>Family Matching Made Easy</strong> — Coordinated outfits for photos, holidays, trips, and everyday moments</li>",
+      "before": "<li>\n<strong>Duizenden Blije Gezinnen</strong> sinds 2016</li>",
+      "after": "<li>\n<strong>Bijpassende gezinsoutfits zonder moeite</strong> — Afgestemde outfits voor foto’s, feestdagen, reizen en dagelijkse momenten</li>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "nl",
+      "handle": "about-us",
+      "selector": {
+        "tag": "li",
+        "index": 3
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<li>\n<strong>Easy Returns</strong> — Clear return and exchange guidance in our refund policy</li>",
+      "before": "<li>\n<strong>Eenvoudig Retourneren</strong> — 30 dagen probleemloos retourbeleid</li>",
+      "after": "<li>\n<strong>Eenvoudig retourneren</strong> — Duidelijke uitleg over retourneren en omruilen in ons terugbetalingsbeleid</li>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "pt-BR",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 1
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p>Dress Like Mommy grew from Francisco's family idea in Naples, Florida: the joy his daughters felt when they matched outfits with their mom. That spark — the giggles, the photos, and the \"we're twinning!\" moments — became the heart of a business dedicated to bringing families closer through fashion.</p>",
+      "before": "<p>Fundada em 2016 por Francisco, pai de duas meninas em Naples, Flórida, Dress Like Mommy começou quando ele percebeu como suas filhas se iluminavam toda vez que combinavam roupas com a mãe. Essa faísca de alegria — as risadas, as fotos, os momentos de \"estamos combinando!\" — se tornou o coração de um negócio dedicado a aproximar famílias por meio da moda.</p>",
+      "after": "<p>A Dress Like Mommy nasceu de uma ideia da família de Francisco em Naples, Flórida: a alegria de suas filhas quando usavam roupas combinando com a mãe. Essa faísca — as risadas, as fotos e os momentos de «estamos combinando!» — tornou-se o coração de um negócio dedicado a aproximar famílias por meio da moda.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "pt-BR",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 3
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p>We serve families across the United States, Canada, United Kingdom, and Australia. Whether it's Christmas morning matching pajamas, a family photo shoot, or a fun day out twinning with your mini-me, our customers come to us for coordinated outfits that make getting dressed together simpler.</p>",
+      "before": "<p>Desde 2016, atendemos milhares de famílias nos Estados Unidos, Canadá, Reino Unido e Austrália. Seja no Natal com pijamas combinando, em uma sessão de fotos em família ou apenas em um dia divertido combinando com seu mini-eu, nossos clientes continuam voltando pelo sorriso que essas roupas proporcionam.</p>",
+      "after": "<p>Atendemos famílias nos Estados Unidos, Canadá, Reino Unido e Austrália. Seja com pijamas combinando na manhã de Natal, em uma sessão de fotos em família ou em um passeio divertido combinando com seu filho, nossos clientes procuram roupas coordenadas que tornam mais simples se vestir em família.</p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "pt-BR",
+      "handle": "about-us",
+      "selector": {
+        "tag": "p",
+        "index": 7
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<p><em>Dress Like Mommy — Making family moments even more special.</em></p>",
+      "before": "<p><em>Dress Like Mommy — Tornando os momentos em família ainda mais especiais desde 2016.</em></p>",
+      "after": "<p><em>Dress Like Mommy — Tornando os momentos em família ainda mais especiais.</em></p>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "pt-BR",
+      "handle": "about-us",
+      "selector": {
+        "tag": "li",
+        "index": 2
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<li>\n<strong>Family Matching Made Easy</strong> — Coordinated outfits for photos, holidays, trips, and everyday moments</li>",
+      "before": "<li>\n<strong>Milhares de Famílias Felizes</strong> desde 2016</li>",
+      "after": "<li>\n<strong>Combinar roupas em família ficou fácil</strong> — Looks coordenados para fotos, festas, viagens e momentos do dia a dia</li>"
+    },
+    {
+      "candidate": "faq_corrections_group_a.json",
+      "locale": "pt-BR",
+      "handle": "about-us",
+      "selector": {
+        "tag": "li",
+        "index": 3
+      },
+      "severity": "P2",
+      "reason": "UNSUPPORTED_LEGACY_CLAIMS_OR_BRAND_MEANING",
+      "source": "<li>\n<strong>Easy Returns</strong> — Clear return and exchange guidance in our refund policy</li>",
+      "before": "<li>\n<strong>Devoluções Fáceis</strong> — Política de devolução sem complicações em 30 dias</li>",
+      "after": "<li>\n<strong>Devoluções fáceis</strong> — Orientações claras sobre devoluções e trocas em nossa política de reembolso</li>"
+    }
+  ],
+  "checks": {
+    "readbackInputHashesUnchanged": true,
+    "replacementEveryBeforeUnique": true,
+    "shippingAll16ExactHTMLAttributesNumbers": true,
+    "polishExactHTMLAttributesLinks": true,
+    "candidateStats": {
+      "faq_corrections_group_a.json": {
+        "rowsReviewed": 10,
+        "exactReplacements": 58
+      },
+      "pl_manual.json": {
+        "rowsReviewed": 3,
+        "exactReplacements": 0
+      },
+      "shipping_manual.json": {
+        "rowsReviewed": 16,
+        "exactReplacements": 14
+      }
+    },
+    "errors": [],
+    "correctedValueBindings": [
+      {
+        "candidate": "faq_corrections_group_a.json",
+        "locale": "de",
+        "handle": "faqs",
+        "proposedIntegratedValueSHA256": "b95c6e629ce1b9230091bb25fe309ef639e8c64f567e1855fa9b9c961eb61027",
+        "replacements": 6
+      },
+      {
+        "candidate": "faq_corrections_group_a.json",
+        "locale": "de",
+        "handle": "about-us",
+        "proposedIntegratedValueSHA256": "755ef71fd3d8f790a968e7558f421ce66043b2a3be650920c53ffa0cc628a780",
+        "replacements": 5
+      },
+      {
+        "candidate": "faq_corrections_group_a.json",
+        "locale": "es",
+        "handle": "faqs",
+        "proposedIntegratedValueSHA256": "5a12fe61cfdcdebe94d9aaed142e2c0a37bad8e17ccc834436f95257713c76dc",
+        "replacements": 6
+      },
+      {
+        "candidate": "faq_corrections_group_a.json",
+        "locale": "es",
+        "handle": "about-us",
+        "proposedIntegratedValueSHA256": "4da1e6f171ac253486f2e011a736ab2c409ac5026e981f6b3060720be5052f15",
+        "replacements": 6
+      },
+      {
+        "candidate": "faq_corrections_group_a.json",
+        "locale": "fr",
+        "handle": "faqs",
+        "proposedIntegratedValueSHA256": "cf2b48bd709ede947a6ddd865b7281438d911530265ac95140c3daa89f8329fd",
+        "replacements": 6
+      },
+      {
+        "candidate": "faq_corrections_group_a.json",
+        "locale": "fr",
+        "handle": "about-us",
+        "proposedIntegratedValueSHA256": "7f940c2e1f6fc16cf25dfd1fb356f8f26b6eb1043207c361e3adb2f28c0ec4f1",
+        "replacements": 7
+      },
+      {
+        "candidate": "faq_corrections_group_a.json",
+        "locale": "nl",
+        "handle": "faqs",
+        "proposedIntegratedValueSHA256": "aa37e2d6e986400aa3f1866e1963aa898fee65462b600d503e6eef855fbc4aa3",
+        "replacements": 6
+      },
+      {
+        "candidate": "faq_corrections_group_a.json",
+        "locale": "nl",
+        "handle": "about-us",
+        "proposedIntegratedValueSHA256": "045a2be14fd0dc18f2e50d48e276f31b01d0842cad0ad1b95a11c3fa8cc80853",
+        "replacements": 5
+      },
+      {
+        "candidate": "faq_corrections_group_a.json",
+        "locale": "pt-BR",
+        "handle": "faqs",
+        "proposedIntegratedValueSHA256": "d6cba806c8d9d59c60b50830c87b037339385b4cd1c2eb09b25fbb4cf23c4e88",
+        "replacements": 6
+      },
+      {
+        "candidate": "faq_corrections_group_a.json",
+        "locale": "pt-BR",
+        "handle": "about-us",
+        "proposedIntegratedValueSHA256": "74ffb67d38beeb3ef574e0ebfb1b1c16308f09cba3c7167b7fa36feb93134bdf",
+        "replacements": 5
+      },
+      {
+        "candidate": "pl_manual.json",
+        "locale": "pl",
+        "handle": "about-us",
+        "proposedIntegratedValueSHA256": "a67bfb43697e8bbc2b2b45c356713d2d246a7e424546756554bd544a84fcb134",
+        "replacements": 0
+      },
+      {
+        "candidate": "pl_manual.json",
+        "locale": "pl",
+        "handle": "contact-us",
+        "proposedIntegratedValueSHA256": "ebc08ff552fb2deee03d73af3a329fe1e5cc6677129adf6ca9bcc7d2a120de76",
+        "replacements": 0
+      },
+      {
+        "candidate": "pl_manual.json",
+        "locale": "pl",
+        "handle": "faqs",
+        "proposedIntegratedValueSHA256": "2ead65542298605b7be873048c25937238c6f1cb6da23050157acb04a126e5b0",
+        "replacements": 0
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "ar",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "9e1fd37290a4f5c3196aca5aef24aacf1178cfd4442d6ed373d8923e64ed0d01",
+        "replacements": 1
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "cs",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "c28e31fa2ff2992d5161121934bce6f1d0fd12eb80772ae387e601413ef80d83",
+        "replacements": 1
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "da",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "d671f8a7d17c98e228f7c2e4ea7a9a40bec33ee1ffbae6fca618daa5e114031c",
+        "replacements": 0
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "de",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "8eac050956bc3a255b2b4e58d52f4898088575631cf8d39caa3401cee3890ff0",
+        "replacements": 2
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "el",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "a88abf6bf3cda96dd694d16bd189625381d484a8a33131587e492da5d1f274d0",
+        "replacements": 1
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "fi",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "923de50dc4aba9328a6cb68cd57cd2ffa0934dc72e04b6b29c4f078ba0c979fc",
+        "replacements": 1
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "fr",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "75dd9bb30eb266004d0be0603a92a8d72613422690406b7615e0bfd76b28e49b",
+        "replacements": 0
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "he",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "6c3c9cd04f30764ffca332eecee095cf9e8a19bbf9008475dfbe2b2bd61d1b4d",
+        "replacements": 0
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "hi",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "c8a0079355a53c872b0fb34664e497439823e962800efecb413fd10c8da1d4e1",
+        "replacements": 0
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "ja",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "6ae06ae8b05ef918763e3aa08510d4f95b1c1a719aefca37f278b9f553b93628",
+        "replacements": 2
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "ko",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "25dbb62efee80058dd032e9fcdaf9027674326a312ce3f9abb4a53be4a27e1b5",
+        "replacements": 0
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "nl",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "a632905baa38c5f8fb8b773515a98dc21b3d8731a644ed4d74f863c3101a12a5",
+        "replacements": 1
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "no",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "4be0ce7bb763a9b25b3ce1d2a6b74126b8d49911a62135fed7dfa043f6fa6174",
+        "replacements": 1
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "pl",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "3125ef928e48f826aa0b692c2242cae6835f9507941884230624325b35cce020",
+        "replacements": 2
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "ru",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "23dc9c235ae100ef90bf4a597abeab21e7c3e2db407a91cc637adc0828dbfb2d",
+        "replacements": 2
+      },
+      {
+        "candidate": "shipping_manual.json",
+        "locale": "sv",
+        "handle": "shipping-info",
+        "proposedIntegratedValueSHA256": "bd260d7a1d061434ea661d64390a2305145d2890feedcffc466de48a3200d95f",
+        "replacements": 0
+      }
+    ]
+  },
+  "limitations": [
+    "No external writes or translation network calls. Parent must refresh source digests and verify destination readback after integration.",
+    "Polish 9AM–5PM converted faithfully to 9:00–17:00; digit-sequence difference is intentional.",
+    "Existing correct localized sizing-guide URLs are retained; source English link locale prefixes need not be removed."
+  ],
+  "reviewComplete": true
+}

@@ -1,0 +1,69 @@
+{
+  "status": "PASS_WITH_LIMITS",
+  "candidatePath": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/help-translations/ru_manual.json",
+  "candidateSHA256": "0d448a873ca44fc556af240a590d21eb8a57fb569868e24f616864f8a177c18c",
+  "rowsReviewed": 5,
+  "checks": [
+    {
+      "resourceId": "gid://shopify/Page/161498117",
+      "handle": "about-us",
+      "key": "body_html",
+      "tagsAndAttributesPreservedExceptLocalizedTrackingButton": true,
+      "hrefsPreserved": true,
+      "numericSequencesPreserved": true,
+      "manualMeaningReview": "PASS"
+    },
+    {
+      "resourceId": "gid://shopify/Page/161929989",
+      "handle": "return-policy",
+      "key": "body_html",
+      "tagsAndAttributesPreservedExceptLocalizedTrackingButton": true,
+      "hrefsPreserved": true,
+      "numericSequencesPreserved": true,
+      "manualMeaningReview": "PASS"
+    },
+    {
+      "resourceId": "gid://shopify/Page/161932805",
+      "handle": "contact-us",
+      "key": "body_html",
+      "tagsAndAttributesPreservedExceptLocalizedTrackingButton": true,
+      "hrefsPreserved": true,
+      "numericSequencesPreserved": true,
+      "manualMeaningReview": "PASS"
+    },
+    {
+      "resourceId": "gid://shopify/Page/161933381",
+      "handle": "faqs",
+      "key": "body_html",
+      "tagsAndAttributesPreservedExceptLocalizedTrackingButton": true,
+      "hrefsPreserved": true,
+      "numericSequencesPreserved": true,
+      "manualMeaningReview": "PASS"
+    },
+    {
+      "resourceId": "gid://shopify/Page/18847760481",
+      "handle": "track-your-order",
+      "key": "body_html",
+      "tagsAndAttributesPreservedExceptLocalizedTrackingButton": true,
+      "hrefsPreserved": true,
+      "numericSequencesPreserved": true,
+      "manualMeaningReview": "PASS",
+      "onlyThreeAuthorizedLocalizedStringsChanged": true
+    }
+  ],
+  "reviewedMeaning": [
+    "About story, actual country list and qualified standard shipping availability; no added customer totals or founding date in About.",
+    "Return 30-day window; original condition/tag requirements; swimwear/intimate, Final Sale, gift-card and late-return exclusions; 7-day damaged goods contact, replacement/full refund without damaged return; original payment method, 5–10 business-day processing and 2–5 bank delay; return-shipping exceptions preserved.",
+    "Contact email, phone, address, hours and links retained.",
+    "Full FAQ: checkout methods, country qualification, variable transit, customer customs responsibility/no gift or low-value declarations, return-policy qualifications and qualified tracking.",
+    "Tracking visible label, button and empty-input alert localized; identifiers retained."
+  ],
+  "limits": [
+    "17track widget YQ_Lang remains en; tracking-result UI localization and carrier lookup are not certified.",
+    "Quoted source status names Unfulfilled/Fulfilled and tracking status strings remain English so readers can match status UI.",
+    "Postal address and AM/PM/EST source notation are preserved.",
+    "Parent owns canonical size-guide destination repair, English source updates, fresh source digests and public rendering.",
+    "No external or candidate writes."
+  ],
+  "validationNote": "Initial raw tag regex treated CDATA script content as a tag and falsely reported a difference; HTMLParser plus exact three-string script comparison passed."
+}

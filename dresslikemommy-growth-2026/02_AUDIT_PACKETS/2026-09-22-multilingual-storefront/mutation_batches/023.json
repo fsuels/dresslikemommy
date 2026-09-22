@@ -1,0 +1,29 @@
+{
+  "resourceId": "gid://shopify/Page/18847760481",
+  "translations": [
+    {
+      "locale": "sv",
+      "key": "body_html",
+      "value": "Spårningsnummer: <input type=\"text\" id=\"YQNum\" maxlength=\"50\"> <!--The button is used to call script method.--> <input type=\"button\" value=\"SPÅRA\" onclick=\"doTrack()\"> <!--Container to display the tracking result.-->\n<div id=\"YQContainer\"></div>\n<!--Script code can be put in the bottom of the page, wait until the page is loaded then execute.-->\n<script type=\"text/javascript\" src=\"//www.17track.net/externalcall.js\"></script>\n<script type=\"text/javascript\">// <![CDATA[\nfunction doTrack() {\n    var num = document.getElementById(\"YQNum\").value;\n    if(num===\"\"){\n        alert(\"Ange ditt spårningsnummer.\"); \n        return;\n    }\n    YQV5.trackSingle({\n        //Required, Specify the container ID of the carrier content.\n        YQ_ContainerId:\"YQContainer\",\n        //Optional, specify tracking result height, max height 800px, default is 560px.\n        YQ_Height:800,\n        //Optional, select carrier, default to auto identify.\n        YQ_Fc:\"0\",\n        //Optional, specify UI language, default language is automatically detected based on the browser settings.\n        YQ_Lang:\"sv\",\n        //Required, specify the number needed to be tracked.\n        YQ_Num:num\n    });\n}\n// ]]></script>\n<div id=\"gtx-trans\" style=\"position: absolute; left: 68px; top: 31.071px;\">\n<div class=\"gtx-trans-icon\"></div>\n</div>",
+      "translatableContentDigest": "2c75c913f9febbf42b60e2fcfdd0fb50d830bd35bb711cf00aa3b2329ae72c65"
+    },
+    {
+      "locale": "sv",
+      "key": "meta_description",
+      "value": "Spåra din beställning",
+      "translatableContentDigest": "4a60abf4bbb6aeac0fae212fb4c491d0b9882331e8723bb7a9e1cd9755150275"
+    },
+    {
+      "locale": "sv",
+      "key": "meta_title",
+      "value": "Spåra din beställning - dresslikemommy.com",
+      "translatableContentDigest": "75c7f1fbdbf70947d63d0c47c31a59e0191b47949ec113514aadf21739807326"
+    },
+    {
+      "locale": "sv",
+      "key": "title",
+      "value": "Spåra din beställning",
+      "translatableContentDigest": "4a60abf4bbb6aeac0fae212fb4c491d0b9882331e8723bb7a9e1cd9755150275"
+    }
+  ]
+}

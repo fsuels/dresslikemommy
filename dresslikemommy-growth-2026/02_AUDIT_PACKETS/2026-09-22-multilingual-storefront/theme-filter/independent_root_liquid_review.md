@@ -14,4 +14,6 @@ Other review conclusions:
 
 Residual edge case in the new URL helper (not observed in current menu fixtures): an absolute store homepage URL followed immediately by ?query or #fragment becomes a relative ?query/#fragment after origin removal, which refers to the current page instead of the localized home. Parent can cover this small input case if such menu URLs are supported; no current storefront defect asserted.
 
+Re-review after parent fixes: PASS. Mobile child/grandchild hrefs now use the helper. The helper tracks store_origin_removed and preserves original relative query/fragment values while localizing absolute home query/fragment and /? or /# forms. All three family navigation assignments now use the existing sections.home_category_copy.family_matching key. Scoped git diff --check passed. No remaining blocking source-review findings.
+
 No live verification or release claim.
