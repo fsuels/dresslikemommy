@@ -1,0 +1,34 @@
+{
+  "status": "PARTIAL_PUBLIC_ACCEPTANCE",
+  "checks": [
+    {
+      "type": "recently_viewed_locale_isolation",
+      "result": "PASS",
+      "routes": [
+        "/da/products/ladybug-dots-mommy-and-me-pajamas",
+        "/sv/collections/all"
+      ],
+      "evidence": "Danish empty cart displayed its visited product title and /da product link. Switching to Svenska through header and opening Swedish empty cart showed no Danish recently-viewed item. Cart remained empty."
+    },
+    {
+      "type": "article_titles",
+      "result": "PASS",
+      "locales": [
+        "de",
+        "he",
+        "pl"
+      ],
+      "routes": [
+        "/de/blogs/news/adorable-matching-valentines-day-looks-for-the-whole-family",
+        "/he/blogs/news/easter-sunday-family-matching-outfits",
+        "/pl/blogs/news/how-to-style-cozy-mommy-and-me-looks-in-january"
+      ],
+      "evidence": "All3 rendered headings exactly match applied cohort01 values. Polish narrow screenshot390x844 shows headline fits; viewport reset."
+    }
+  ],
+  "limits": [
+    "Title acceptance only: body candidates were still pending at initial screenshots.",
+    "Shared article chrome English leakage identified and being repaired in source.",
+    "One DOM evaluate read returned an inconsistent heading; not used as article content evidence. Actual current DOM snapshot and screenshot agreed with Polish article."
+  ]
+}

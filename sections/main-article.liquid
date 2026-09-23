@@ -5,12 +5,12 @@
 {%- liquid
   assign journal_label = blog.title
   if blog.handle == 'news'
-    assign journal_label = 'Style Journal'
+    assign journal_label = 'storefront.journal.title' | t
   endif
 -%}
 
 <article class="article-template" itemscope itemtype="https://schema.org/BlogPosting">
-  <nav class="article-template__breadcrumb page-width page-width--narrow" aria-label="breadcrumbs">
+  <nav class="article-template__breadcrumb page-width page-width--narrow" aria-label="{{ 'storefront.article.breadcrumbs_label' | t }}">
     <a href="{{ routes.root_url }}">{{ 'sections.breadcrumbs.home' | t }}</a>
     <span aria-hidden="true">&rsaquo;</span>
     <a href="{{ blog.url }}">{{ journal_label }}</a>
@@ -120,12 +120,12 @@
                 <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="https://schema.org/Person">
                   <span itemprop="name">{{ article.author }}</span>
                 </span>
-                <span class="article-template__author-credential">Family Fashion Editor</span>
+                <span class="article-template__author-credential">{{ 'storefront.article.author_credential' | t }}</span>
               {%- endif -%}
             </div>
           {%- endif -%}
           <div class="article-template__read-time">
-            <span>{{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min read</span>
+            <span>{{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} {{ 'storefront.journal.read_time' | t }}</span>
           </div>
         </header>
 
@@ -135,8 +135,8 @@
           itemprop="articleBody"
           {{ block.shopify_attributes }}
         >
-          <nav class="article-toc" aria-label="Table of contents">
-            <p class="article-toc__label">In this article</p>
+          <nav class="article-toc" aria-label="{{ 'storefront.article.contents_aria_label' | t }}">
+            <p class="article-toc__label">{{ 'storefront.article.contents_label' | t }}</p>
             <ol class="article-toc__list" id="article-toc-list"></ol>
           </nav>
           {{ article.content }}
@@ -163,9 +163,9 @@
             var paragraphs = content.querySelectorAll('p');
             if (paragraphs.length < 6) return;
             var ctaData = document.querySelector('.article-template__inline-cta-data');
-            var ctaText = ctaData && ctaData.getAttribute('data-inline-cta-text') || 'Ready to start matching?';
-            var ctaLabel = ctaData && ctaData.getAttribute('data-inline-cta-label') || 'Shop Matching Outfits';
-            var ctaUrl = ctaData && ctaData.getAttribute('data-inline-cta-url') || '/collections/matching-outfits';
+            var ctaText = ctaData && ctaData.getAttribute('data-inline-cta-text') || {% if request.locale.iso_code == 'en' %}{{ 'Ready to start matching?' | json }}{% else %}{{ 'storefront.article.inline_cta_text' | t | json }}{% endif %};
+            var ctaLabel = ctaData && ctaData.getAttribute('data-inline-cta-label') || {% if request.locale.iso_code == 'en' %}{{ 'Shop Matching Outfits' | json }}{% else %}{{ 'storefront.article.inline_cta_label' | t | json }}{% endif %};
+            var ctaUrl = ctaData && ctaData.getAttribute('data-inline-cta-url') || {{ routes.collections_url | append: '/matching-outfits' | json }};
             var midPoint = Math.floor(paragraphs.length * 0.4);
             var cta = document.createElement('div');
             cta.className = 'article-cta-inline';
@@ -238,7 +238,7 @@
                     data-style-journal-destination-handle="{{ recommended_product.handle | escape }}"
                     data-style-journal-destination-title="{{ recommended_product.title | escape }}"
                   >
-                    Shop now <span aria-hidden="true">&rarr;</span>
+                    {{ 'storefront.menu.shop_now' | t }} <span aria-hidden="true">&rarr;</span>
                   </a>
                 </div>
               </article>
@@ -250,8 +250,8 @@
         {%- if recommended_products_markup != blank -%}
           <section class="article-template__recommended-products page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
             <div class="article-template__recommended-card">
-              <p class="article-template__recommended-eyebrow">Shop the edit</p>
-              <h2 class="article-template__recommended-title">Recommended products from this guide</h2>
+              <p class="article-template__recommended-eyebrow">{{ 'storefront.menu.shop_edit' | t }}</p>
+              <h2 class="article-template__recommended-title">{{ 'storefront.article.recommended_products' | t }}</h2>
               <div class="article-template__recommended-grid">
                 {{ recommended_products_markup }}
               </div>
@@ -278,23 +278,23 @@
         {{ article.author | slice: 0 }}
       </div>
       <div class="article-template__author-info">
-        <p class="article-template__author-label">Written by</p>
+        <p class="article-template__author-label">{{ 'storefront.article.written_by' | t }}</p>
         <h3 class="article-template__author-name" itemprop="author" itemscope itemtype="https://schema.org/Person">
           <span itemprop="name">{{ article.author }}</span>
         </h3>
-        <p class="article-template__author-bio">Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.</p>
+        <p class="article-template__author-bio">{{ 'storefront.article.author_bio' | t }}</p>
       </div>
     </div>
   </section>
 
   <section class="article-template__social-proof page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     <div class="article-template__testimonial-card">
-      <p class="article-template__testimonial-label">Shop the look</p>
-      <h2 class="article-template__testimonial-title">Ready to compare matching outfits?</h2>
-      <p class="article-template__testimonial-text">Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.</p>
+      <p class="article-template__testimonial-label">{{ 'storefront.article.shop_look' | t }}</p>
+      <h2 class="article-template__testimonial-title">{{ 'storefront.article.compare_title' | t }}</h2>
+      <p class="article-template__testimonial-text">{{ 'storefront.article.compare_body' | t }}</p>
       <div class="article-template__testimonial-actions">
-        <a href="{{ routes.collections_url }}/mommy-and-me" class="button">Mommy &amp; Me</a>
-        <a href="{{ routes.collections_url }}/matching-outfits" class="button button--secondary">Family Matching</a>
+        <a href="{{ routes.collections_url }}/mommy-and-me" class="button">{% if request.locale.iso_code == 'en' %}Mommy &amp; Me{% else %}{{ 'sections.breadcrumbs.cat_mommy_me' | t }}{% endif %}</a>
+        <a href="{{ routes.collections_url }}/matching-outfits" class="button button--secondary">{{ 'sections.breadcrumbs.cat_family_matching' | t }}</a>
       </div>
     </div>
   </section>
@@ -311,8 +311,8 @@
   {%- elsif blog.articles_count > 1 -%}
     <section class="article-template__related page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <div class="article-template__related-header">
-        <p class="article-template__related-eyebrow">Continue reading</p>
-        <h2 class="article-template__related-title">More from {{ journal_label }}</h2>
+        <p class="article-template__related-eyebrow">{{ 'storefront.article.continue_reading' | t }}</p>
+        <h2 class="article-template__related-title">{{ 'storefront.article.more_from' | t: journal: journal_label }}</h2>
       </div>
       <div class="article-template__related-grid">
         {%- liquid

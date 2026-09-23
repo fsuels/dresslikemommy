@@ -2,6 +2,7 @@
   assign mode = mode | default: ''
   assign collections_root = routes.collections_url
   assign journal_blog = blogs['news']
+  assign journal_label = 'storefront.journal.title' | t
 
   assign article_context_handle = article.handle | default: ''
   assign collection_context_handle = collection.handle | default: ''
@@ -421,9 +422,40 @@
     assign collection_link_3_caption = collection_link_3_caption | strip
   endif
 
+  if request.locale.iso_code != 'en'
+    assign collection_link_1_title = ''
+    assign collection_link_1_caption = ''
+    if collection_link_1_object != blank
+      capture collection_link_1_title
+        render 'collection-seo-fallback', collection: collection_link_1_object, field: 'display_title'
+      endcapture
+      assign collection_link_1_title = collection_link_1_title | strip
+      assign collection_link_1_caption = 'storefront.collection_fallback_description' | t: title: collection_link_1_title
+    endif
+    assign collection_link_2_title = ''
+    assign collection_link_2_caption = ''
+    if collection_link_2_object != blank
+      capture collection_link_2_title
+        render 'collection-seo-fallback', collection: collection_link_2_object, field: 'display_title'
+      endcapture
+      assign collection_link_2_title = collection_link_2_title | strip
+      assign collection_link_2_caption = 'storefront.collection_fallback_description' | t: title: collection_link_2_title
+    endif
+    assign collection_link_3_title = ''
+    assign collection_link_3_caption = ''
+    if collection_link_3_object != blank
+      capture collection_link_3_title
+        render 'collection-seo-fallback', collection: collection_link_3_object, field: 'display_title'
+      endcapture
+      assign collection_link_3_title = collection_link_3_title | strip
+      assign collection_link_3_caption = 'storefront.collection_fallback_description' | t: title: collection_link_3_title
+    endif
+  endif
+
   assign inline_cta_url = collection_link_1_url | default: collections_root
-  assign inline_cta_label = collection_link_1_title | default: 'Shop matching collections'
-  assign inline_cta_text = 'Ready to shop the looks from this guide?'
+  assign inline_cta_fallback_label = 'storefront.article.inline_cta_label' | t
+  assign inline_cta_label = collection_link_1_title | default: inline_cta_fallback_label
+  assign inline_cta_text = 'storefront.article.inline_cta_text' | t
   assign inline_cta_collection_handle = collection_link_1_handle | default: ''
 
   assign related_article_1_handle = ''
@@ -694,28 +726,13 @@
   endif
 
   if guide_link_1_title != blank and guide_link_1_caption == blank
-    capture guide_link_1_caption
-      echo 'Read '
-      echo guide_link_1_title
-      echo ' before you shop.'
-    endcapture
-    assign guide_link_1_caption = guide_link_1_caption | strip
+    assign guide_link_1_caption = 'storefront.article.guide_caption' | t: title: guide_link_1_title
   endif
   if guide_link_2_title != blank and guide_link_2_caption == blank
-    capture guide_link_2_caption
-      echo 'Read '
-      echo guide_link_2_title
-      echo ' before you shop.'
-    endcapture
-    assign guide_link_2_caption = guide_link_2_caption | strip
+    assign guide_link_2_caption = 'storefront.article.guide_caption' | t: title: guide_link_2_title
   endif
   if guide_link_3_title != blank and guide_link_3_caption == blank
-    capture guide_link_3_caption
-      echo 'Read '
-      echo guide_link_3_title
-      echo ' before you shop.'
-    endcapture
-    assign guide_link_3_caption = guide_link_3_caption | strip
+    assign guide_link_3_caption = 'storefront.article.guide_caption' | t: title: guide_link_3_title
   endif
 -%}
 
@@ -723,8 +740,8 @@
   <div
     class="article-template__inline-cta-data"
     hidden
-    data-inline-cta-text="{{ inline_cta_text | escape }}"
-    data-inline-cta-label="{{ inline_cta_label | escape }}"
+    data-inline-cta-text="{{ inline_cta_text | escape_once }}"
+    data-inline-cta-label="{{ inline_cta_label | escape_once }}"
     data-inline-cta-url="{{ inline_cta_url | escape }}"
     data-inline-cta-collection-handle="{{ inline_cta_collection_handle | escape }}"
     data-inline-cta-article-handle="{{ article_context_handle | escape }}"
@@ -733,8 +750,8 @@
   {%- if inline_cta_url != blank -%}
     <section class="article-template__recommended-products page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <div class="article-template__recommended-card article-template__recommended-card--fallback">
-        <p class="article-template__recommended-eyebrow">Shop the collection</p>
-        <h2 class="article-template__recommended-title">{{ inline_cta_text | escape }}</h2>
+        <p class="article-template__recommended-eyebrow">{{ 'storefront.article.shop_collection' | t }}</p>
+        <h2 class="article-template__recommended-title">{{ inline_cta_text | escape_once }}</h2>
         <a
           href="{{ inline_cta_url }}"
           class="article-template__recommended-fallback-link button"
@@ -743,9 +760,9 @@
           data-style-journal-link-placement="article_recommended_products_fallback"
           data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
           data-style-journal-destination-handle="{{ inline_cta_collection_handle | escape }}"
-          data-style-journal-destination-title="{{ inline_cta_label | escape }}"
+          data-style-journal-destination-title="{{ inline_cta_label | escape_once }}"
         >
-          {{ inline_cta_label | escape }}
+          {{ inline_cta_label | escape_once }}
         </a>
       </div>
     </section>
@@ -754,8 +771,8 @@
   {%- if collection_link_1_url != blank or collection_link_2_url != blank or collection_link_3_url != blank -%}
     <section class="article-template__shop-links page-width page-width--narrow">
       <div class="article-template__shop-card">
-        <p class="article-template__shop-eyebrow">Shop the collections</p>
-        <h2 class="article-template__shop-title">Build the look from this guide</h2>
+        <p class="article-template__shop-eyebrow">{{ 'storefront.article.shop_collections' | t }}</p>
+        <h2 class="article-template__shop-title">{{ 'storefront.article.build_look' | t }}</h2>
         <div class="article-template__shop-grid">
           {%- if collection_link_1_url != blank -%}
             <a
@@ -766,11 +783,11 @@
               data-style-journal-link-placement="article_endcap"
               data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
               data-style-journal-destination-handle="{{ collection_link_1_handle | escape }}"
-              data-style-journal-destination-title="{{ collection_link_1_title | escape }}"
+              data-style-journal-destination-title="{{ collection_link_1_title | escape_once }}"
             >
               <span class="article-template__shop-link-copy">
-                <span class="article-template__shop-link-title">{{ collection_link_1_title | escape }}</span>
-                <span class="article-template__shop-link-caption">{{ collection_link_1_caption | escape }}</span>
+                <span class="article-template__shop-link-title">{{ collection_link_1_title | escape_once }}</span>
+                <span class="article-template__shop-link-caption">{{ collection_link_1_caption | escape_once }}</span>
               </span>
               <span class="article-template__shop-arrow" aria-hidden="true">&rarr;</span>
             </a>
@@ -784,11 +801,11 @@
               data-style-journal-link-placement="article_endcap"
               data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
               data-style-journal-destination-handle="{{ collection_link_2_handle | escape }}"
-              data-style-journal-destination-title="{{ collection_link_2_title | escape }}"
+              data-style-journal-destination-title="{{ collection_link_2_title | escape_once }}"
             >
               <span class="article-template__shop-link-copy">
-                <span class="article-template__shop-link-title">{{ collection_link_2_title | escape }}</span>
-                <span class="article-template__shop-link-caption">{{ collection_link_2_caption | escape }}</span>
+                <span class="article-template__shop-link-title">{{ collection_link_2_title | escape_once }}</span>
+                <span class="article-template__shop-link-caption">{{ collection_link_2_caption | escape_once }}</span>
               </span>
               <span class="article-template__shop-arrow" aria-hidden="true">&rarr;</span>
             </a>
@@ -802,11 +819,11 @@
               data-style-journal-link-placement="article_endcap"
               data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
               data-style-journal-destination-handle="{{ collection_link_3_handle | escape }}"
-              data-style-journal-destination-title="{{ collection_link_3_title | escape }}"
+              data-style-journal-destination-title="{{ collection_link_3_title | escape_once }}"
             >
               <span class="article-template__shop-link-copy">
-                <span class="article-template__shop-link-title">{{ collection_link_3_title | escape }}</span>
-                <span class="article-template__shop-link-caption">{{ collection_link_3_caption | escape }}</span>
+                <span class="article-template__shop-link-title">{{ collection_link_3_title | escape_once }}</span>
+                <span class="article-template__shop-link-caption">{{ collection_link_3_caption | escape_once }}</span>
               </span>
               <span class="article-template__shop-arrow" aria-hidden="true">&rarr;</span>
             </a>
@@ -819,8 +836,8 @@
   {%- if related_article_1 != blank or related_article_2 != blank or related_article_3 != blank -%}
     <section class="article-template__related page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
       <div class="article-template__related-header">
-        <p class="article-template__related-eyebrow">Continue reading</p>
-        <h2 class="article-template__related-title">More from Style Journal</h2>
+        <p class="article-template__related-eyebrow">{{ 'storefront.article.continue_reading' | t }}</p>
+        <h2 class="article-template__related-title">{{ 'storefront.article.more_from' | t: journal: journal_label }}</h2>
       </div>
       <div class="article-template__related-grid">
         {%- if related_article_1 != blank and related_article_1.handle != article_context_handle -%}
@@ -897,11 +914,11 @@
     <div class="collection-hero__journal">
       <div class="collection-hero__journal-header">
         <div>
-          <p class="collection-hero__journal-eyebrow">Style Journal</p>
-          <h2 class="collection-hero__journal-title">Read the guide before you shop</h2>
+          <p class="collection-hero__journal-eyebrow">{{ journal_label }}</p>
+          <h2 class="collection-hero__journal-title">{{ 'storefront.article.read_before_shop' | t }}</h2>
         </div>
         {%- if journal_blog != blank -%}
-          <a href="{{ journal_blog.url }}" class="collection-hero__journal-all">View all guides</a>
+          <a href="{{ journal_blog.url }}" class="collection-hero__journal-all">{{ 'storefront.article.view_all_guides' | t }}</a>
         {%- endif -%}
       </div>
       <div class="collection-hero__journal-links">
@@ -917,7 +934,7 @@
             data-style-journal-destination-title="{{ guide_link_1_title | escape }}"
           >
             <span class="collection-hero__journal-link-title">{{ guide_link_1_title | escape }}</span>
-            <span class="collection-hero__journal-link-caption">{{ guide_link_1_caption | escape }}</span>
+            <span class="collection-hero__journal-link-caption">{{ guide_link_1_caption | escape_once }}</span>
           </a>
         {%- endif -%}
         {%- if guide_link_2_url != blank -%}
@@ -932,7 +949,7 @@
             data-style-journal-destination-title="{{ guide_link_2_title | escape }}"
           >
             <span class="collection-hero__journal-link-title">{{ guide_link_2_title | escape }}</span>
-            <span class="collection-hero__journal-link-caption">{{ guide_link_2_caption | escape }}</span>
+            <span class="collection-hero__journal-link-caption">{{ guide_link_2_caption | escape_once }}</span>
           </a>
         {%- endif -%}
         {%- if guide_link_3_url != blank -%}
@@ -947,7 +964,7 @@
             data-style-journal-destination-title="{{ guide_link_3_title | escape }}"
           >
             <span class="collection-hero__journal-link-title">{{ guide_link_3_title | escape }}</span>
-            <span class="collection-hero__journal-link-caption">{{ guide_link_3_caption | escape }}</span>
+            <span class="collection-hero__journal-link-caption">{{ guide_link_3_caption | escape_once }}</span>
           </a>
         {%- endif -%}
       </div>

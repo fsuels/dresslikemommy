@@ -1,0 +1,137 @@
+{
+  "status": "PASS",
+  "review": "Independent local mocks; no API/provider/network/browser/Git calls",
+  "runnerSHA256": "966ad6d0dc7071ccf100c24509060ae0de0502b621576b91e5805b656547b9fb",
+  "cases": [
+    {
+      "case": "success",
+      "status": "PASS",
+      "mutations": 1,
+      "queryCount": 2,
+      "patches": 2,
+      "offset": 1,
+      "pending": false,
+      "caughtError": null
+    },
+    {
+      "case": "source_drift",
+      "status": "PASS",
+      "mutations": 0,
+      "queryCount": 1,
+      "patches": 0,
+      "offset": 0,
+      "pending": false,
+      "caughtError": "Source drift gid://shopify/Article/1/body_html"
+    },
+    {
+      "case": "before_drift",
+      "status": "PASS",
+      "mutations": 0,
+      "queryCount": 1,
+      "patches": 0,
+      "offset": 0,
+      "pending": false,
+      "caughtError": "Before drift gid://shopify/Article/1/he/body_html"
+    },
+    {
+      "case": "supporting_source_drift",
+      "status": "PASS",
+      "mutations": 0,
+      "queryCount": 1,
+      "patches": 0,
+      "offset": 0,
+      "pending": false,
+      "caughtError": "Supporting source drift gid://shopify/Article/1/title"
+    },
+    {
+      "case": "unpublished",
+      "status": "PASS",
+      "mutations": 0,
+      "queryCount": 1,
+      "patches": 0,
+      "offset": 0,
+      "pending": false,
+      "caughtError": "Publication drift 0"
+    },
+    {
+      "case": "missing_alias",
+      "status": "PASS",
+      "mutations": 1,
+      "queryCount": 1,
+      "patches": 1,
+      "offset": 0,
+      "pending": true,
+      "caughtError": null
+    },
+    {
+      "case": "mutation_user_error",
+      "status": "PASS",
+      "mutations": 1,
+      "queryCount": 1,
+      "patches": 1,
+      "offset": 0,
+      "pending": true,
+      "caughtError": null
+    },
+    {
+      "case": "after_query_error",
+      "status": "PASS",
+      "mutations": 1,
+      "queryCount": 2,
+      "patches": 1,
+      "offset": 0,
+      "pending": true,
+      "caughtError": null
+    },
+    {
+      "case": "after_value_mismatch",
+      "status": "PASS",
+      "mutations": 1,
+      "queryCount": 2,
+      "patches": 1,
+      "offset": 0,
+      "pending": true,
+      "caughtError": "After mismatch gid://shopify/Article/1/he/body_html"
+    },
+    {
+      "case": "after_outdated",
+      "status": "PASS",
+      "mutations": 1,
+      "queryCount": 2,
+      "patches": 1,
+      "offset": 0,
+      "pending": true,
+      "caughtError": "After mismatch gid://shopify/Article/1/he/body_html"
+    },
+    {
+      "case": "after_pagination",
+      "status": "PASS",
+      "mutations": 1,
+      "queryCount": 2,
+      "patches": 1,
+      "offset": 0,
+      "pending": true,
+      "caughtError": null
+    },
+    {
+      "case": "receipt_throws",
+      "status": "PASS",
+      "mutations": 1,
+      "queryCount": 2,
+      "patches": 2,
+      "offset": 0,
+      "pending": true,
+      "caughtError": "mock receipt failure"
+    },
+    {
+      "case": "pending_resume",
+      "status": "PASS",
+      "mutations": 0,
+      "queryCount": 0,
+      "patches": 0,
+      "offset": 0,
+      "pending": true,
+      "caughtError": "Pending mutation requires explicit read-only recovery before resuming test"
+    }
+  ]
+}
