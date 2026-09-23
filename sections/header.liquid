@@ -63,6 +63,46 @@
     }
   {%- endif -%}
 
+  .section-header .header__heading-link--with-name {
+    align-items: center;
+    display: inline-flex;
+    gap: 0.4rem;
+    min-width: 0;
+  }
+
+  .section-header .header__heading-link--with-name .header__heading-logo-wrapper {
+    flex: 0 0 auto;
+    width: 3.2rem;
+  }
+
+  .section-header .header__brand-name {
+    color: #7e431b;
+    display: block;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    max-width: 7.4rem;
+    text-align: start;
+    text-wrap: balance;
+  }
+
+  @media screen and (min-width: 990px) {
+    .section-header .header__heading-link--with-name {
+      gap: 0.6rem;
+    }
+
+    .section-header .header__heading-link--with-name .header__heading-logo-wrapper {
+      width: {{ settings.logo_width }}px;
+    }
+
+    .section-header .header__brand-name {
+      font-size: 2rem;
+      max-width: 10.6rem;
+    }
+  }
+
   .section-header .header-wrapper,
   .section-header .header-wrapper--border-bottom {
     background: #fff !important;
@@ -270,10 +310,13 @@
       {%- if request.page_type == 'index' -%}
         <h1 class="header__heading">
       {%- endif -%}
-          <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
+          <a href="{{ routes.root_url }}" class="header__heading-link{% if settings.logo_show_name and settings.logo != blank %} header__heading-link--with-name{% endif %} link link--text focus-inset">
             {%- if settings.logo != blank -%}
               <div class="header__heading-logo-wrapper">
                 {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+                {%- if settings.logo_show_name -%}
+                  {%- assign logo_alt = '' -%}
+                {%- endif -%}
                 {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
                 {% capture sizes %}(max-width: {{ settings.logo_width | times: 2 }}px) 50vw, {{ settings.logo_width }}px{% endcapture %}
                 {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
@@ -286,6 +329,9 @@
                   sizes: sizes
                 }}
               </div>
+              {%- if settings.logo_show_name -%}
+                <span class="header__brand-name">{{ shop.name | escape }}</span>
+              {%- endif -%}
             {%- else -%}
               <span class="h2">{{ shop.name }}</span>
             {%- endif -%}
@@ -309,10 +355,13 @@
       {%- if request.page_type == 'index' -%}
         <h1 class="header__heading">
       {%- endif -%}
-          <a href="{{ routes.root_url }}" class="header__heading-link link link--text focus-inset">
+          <a href="{{ routes.root_url }}" class="header__heading-link{% if settings.logo_show_name and settings.logo != blank %} header__heading-link--with-name{% endif %} link link--text focus-inset">
             {%- if settings.logo != blank -%}
               <div class="header__heading-logo-wrapper">
                 {%- assign logo_alt = settings.logo.alt | default: shop.name | escape -%}
+                {%- if settings.logo_show_name -%}
+                  {%- assign logo_alt = '' -%}
+                {%- endif -%}
                 {%- assign logo_height = settings.logo_width | divided_by: settings.logo.aspect_ratio -%}
                 {% capture sizes %}(min-width: 750px) {{ settings.logo_width }}px, 50vw{% endcapture %}
                 {% capture widths %}{{ settings.logo_width }}, {{ settings.logo_width | times: 1.5 | round }}, {{ settings.logo_width | times: 2 }}{% endcapture %}
@@ -325,6 +374,9 @@
                   sizes: sizes
                 }}
               </div>
+              {%- if settings.logo_show_name -%}
+                <span class="header__brand-name">{{ shop.name | escape }}</span>
+              {%- endif -%}
             {%- else -%}
               <span class="h2">{{ shop.name }}</span>
             {%- endif -%}
