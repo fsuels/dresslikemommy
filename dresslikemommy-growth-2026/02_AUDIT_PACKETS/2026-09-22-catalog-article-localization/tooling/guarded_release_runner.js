@@ -5,11 +5,13 @@ for(;done<count&&pos<idsAll.length;done++,pos+=5){
 const ids=idsAll.slice(pos,pos+5),rows=all.filter(r=>ids.includes(r.resourceId));
 const scopeIds=[...new Set(rows.map(r=>r.productId||r.resourceId))];
 const vars={ids,scopeIds};
-const b=await tools.mcp__codex_apps__shopify_graphql_query({query:load("catalogGenericQuery"),variables:vars});
+const query=rows.some(r=>r.resourceId.includes("/Metaobject/"))?load("catalogGenericLinkedQuery"):load("catalogGenericQuery");
+const b=await tools.mcp__codex_apps__shopify_graphql_query({query,variables:vars});
 const data=b.structuredContent?.data,c=data?.translatableResourcesByIds;
 if(b.isError||!c||c.pageInfo.hasNextPage||c.nodes.length!==ids.length){store(key+"Failure",{phase:"before",pos,result:b});text({key,stopped:pos,phase:"before",error:b.structuredContent||b.content});return;}
 if(data.scope.length!==scopeIds.length||data.scope.some(n=>!n||(!n.isPublished&&(n.status!=="ACTIVE"||!n.onlineStoreUrl))))throw Error("Publication drift "+pos);
 for(const r of rows){
+ if(r.resourceId.includes("/Metaobject/")){const p=data.scope.find(n=>n.id===r.productId);const o=p?.options?.find(o=>o.id===r.linkedOptionId);const v=o?.optionValues?.find(v=>v.id===r.linkedOptionValueId);if(!r.productId||!r.linkedOptionId||!r.linkedOptionValueId||!v?.hasVariants||v.linkedMetafieldValue!==r.resourceId)throw Error("Shared label product link drift "+r.resourceId);}
  const n=c.nodes.find(n=>n.resourceId===r.resourceId),s=n.translatableContent.find(s=>s.key===r.key),old=n["tr_"+r.locale.replace("-","_")].filter(t=>t.locale===r.locale&&!t.market&&t.key===r.key);
  if(s?.value!==(r.sourceValue??r.source)||s.digest!==r.sourceDigest)throw Error("Source drift "+r.resourceId+"/"+r.key);
  for(const [k,d]of Object.entries(r.supportingSourceDigests||{})) if(n.translatableContent.find(s=>s.key===k)?.digest!==d)throw Error("Supporting source drift "+r.resourceId+"/"+k);
@@ -22,7 +24,7 @@ const m=await tools.mcp__codex_apps__shopify_graphql_mutation({query:load("catal
 store(key+"LastMutation",{pos,ids,rows:rows.length,mutation:md});
 if(m.isError||!md||Object.keys(md).length!==ids.length||ids.some((_,i)=>!md["r"+i]||md["r"+i].userErrors?.length)){store(key+"Failure",{phase:"mutation",pos,result:m});text({key,stopped:pos,phase:"mutation",error:m.structuredContent||m.content});return;}
 
-const a=await tools.mcp__codex_apps__shopify_graphql_query({query:load("catalogGenericQuery"),variables:vars}),nn=a.structuredContent?.data?.translatableResourcesByIds?.nodes;
+const a=await tools.mcp__codex_apps__shopify_graphql_query({query,variables:vars}),nn=a.structuredContent?.data?.translatableResourcesByIds?.nodes;
 if(a.isError||!nn||nn.length!==ids.length||a.structuredContent.data.translatableResourcesByIds.pageInfo.hasNextPage){store(key+"Failure",{phase:"after",pos,result:a});text({key,stopped:pos,phase:"after",error:a.structuredContent||a.content});return;}
 for(const r of rows){const n=nn.find(n=>n.resourceId===r.resourceId),t=n["tr_"+r.locale.replace("-","_")].filter(t=>t.locale===r.locale&&!t.market&&t.key===r.key);if(t.length!==1||t[0].value!==r.value||t[0].outdated)throw Error("After mismatch "+r.resourceId+"/"+r.locale+"/"+r.key);}
 const rec={cohort:key,resourceOffset:pos,resourceIds:ids,fields:rows.length,beforeSourceAndTranslationGuard:"PASS",publicationGuard:"PASS",afterExactValueAndCurrentGuard:"PASS",mutation:md};
