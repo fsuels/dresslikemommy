@@ -1,0 +1,82 @@
+{
+  "status": "PASS_HISTORIC_CACHE_MARKUP_GUARD",
+  "sourceSHA256": "201c3a8da94f84dbbcf57bb0437c68d42d7b01a2ecd1d2fe916cb3bc98921c93",
+  "independentProbes": [
+    {
+      "name": "valid_localized",
+      "pass": true,
+      "result": true
+    },
+    {
+      "name": "lost_tag",
+      "pass": true,
+      "result": false
+    },
+    {
+      "name": "added_tag",
+      "pass": true,
+      "result": false
+    },
+    {
+      "name": "duplicate_tag",
+      "pass": true,
+      "result": false
+    },
+    {
+      "name": "reordered_tags",
+      "pass": true,
+      "result": false
+    },
+    {
+      "name": "translated_tag",
+      "pass": true,
+      "result": false
+    },
+    {
+      "name": "none",
+      "pass": true,
+      "result": false
+    },
+    {
+      "name": "nonstring",
+      "pass": true,
+      "result": false
+    },
+    {
+      "name": "token_alt",
+      "pass": true,
+      "result": false
+    },
+    {
+      "name": "single_historic_missing_tag_retried",
+      "pass": true,
+      "mockCalls": 1
+    },
+    {
+      "name": "single_valid_localized_markup_cache_retained",
+      "pass": true,
+      "mockCalls": 0
+    },
+    {
+      "name": "batch_historic_missing_tag_retried",
+      "pass": true,
+      "mockCalls": 1
+    },
+    {
+      "name": "batch_valid_localized_markup_cache_retained",
+      "pass": true,
+      "mockCalls": 0
+    }
+  ],
+  "independentProbeCount": 13,
+  "rootRegressionTest": {
+    "command": "python3 ops/tests/test_translation_utils_token_integrity.py",
+    "exitCode": 0,
+    "output": "ok",
+    "testSHA256": "53c77cd93b207a6c8cfea33b4daebf5ce11aae3014625ebd2f004398f6fa1615"
+  },
+  "result": "No correctness blocker found. Both cache-hit paths reject missing, added, duplicated, reordered and altered HTML while retaining localized prose with intact protected markup.",
+  "providerCalls": 0,
+  "sourceEdits": 0,
+  "testEdits": 0
+}

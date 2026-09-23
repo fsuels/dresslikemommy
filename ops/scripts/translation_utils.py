@@ -14,7 +14,10 @@ COMMENT_RE = re.compile(r"\A(/\*.*?\*/\s*)", re.S)
 LIQUID_TOKEN_RE = re.compile(r"(\{\{.*?\}\}|\{%.*?%\}|https?://\S+|dresslikemommy\.com|Dresslikemommy|DLM)", re.I | re.S)
 HTML_TAG_RE = re.compile(r"(<!--.*?-->|<[^>]+>)", re.S)
 HTML_ENTITY_RE = re.compile(r"&[a-zA-Z#0-9]+;")
-PLACEHOLDER_TOKEN_RE = re.compile(r"(?:QZXTOKEN|DLMTOKEN)\d{5}(?:QXZ|XYZ)|__DLM[A-Z]*TOK\d+_+")
+PLACEHOLDER_TOKEN_RE = re.compile(
+    r"(?:QZXTOKEN|DLMTOKEN)[A-Z0-9]*|__DLM[A-Z]*TOK\d+_+"
+    r"|(?<![A-Za-z0-9])(?:QZ\d+(?:QZ|QX)[A-Z0-9]*|Q\d+QX[A-Z0-9]*|\d+QXZ\d*)(?![A-Za-z0-9])"
+)
 GOOGLE_ENDPOINT = "https://translate.googleapis.com/translate_a/single"
 BATCH_SEPARATOR = "\n___DLMSEP___\n"
 SPLIT_RE = re.compile(r"(\n{2,}|</p>|</li>|</tr>|<br\s*/?>)", re.I)
@@ -199,7 +202,18 @@ class TranslationBackend:
 
     @staticmethod
     def _contains_placeholder_tokens(value):
-        return isinstance(value, str) and bool(PLACEHOLDER_TOKEN_RE.search(value))
+        if not isinstance(value, str):
+            return False
+        # Supplier image names can legitimately contain QZ-like fragments.
+        without_urls = re.sub(r"https?://[^\s\"'<>]+", "", value)
+        return bool(PLACEHOLDER_TOKEN_RE.search(without_urls))
+
+    def _cache_value_is_valid(self, source, value):
+        return (
+            isinstance(value, str)
+            and not self._contains_placeholder_tokens(value)
+            and HTML_TAG_RE.findall(source) == HTML_TAG_RE.findall(value)
+        )
 
     def _postprocess(self, locale, value):
         if not isinstance(value, str) or not value:
@@ -237,6 +251,30 @@ class TranslationBackend:
         for token, value in reversed(replacements):
             restored = restored.replace(token, value)
         return restored
+
+    def _restore_checked(self, protected, translated, replacements):
+        """Reject damaged protection tokens before returning or caching a value."""
+        if not isinstance(translated, str):
+            raise ValueError("Translation response must be text")
+        html_tokens = set()
+        remaining = translated
+        for token, value in replacements:
+            if translated.count(token) != protected.count(token):
+                raise ValueError("Translation changed a protected token count")
+            if HTML_TAG_RE.fullmatch(value):
+                html_tokens.add(token)
+            remaining = remaining.replace(token, " ")
+        # Prose and glossary terms may move for grammar; HTML structure may not.
+        token_pattern = re.compile(r"QZXTOKEN\d{5}QXZ")
+        before_html = [t for t in token_pattern.findall(protected) if t in html_tokens]
+        after_html = [t for t in token_pattern.findall(translated) if t in html_tokens]
+        if before_html != after_html:
+            raise ValueError("Translation reordered protected HTML")
+        if HTML_TAG_RE.search(remaining):
+            raise ValueError("Translation introduced unprotected HTML")
+        if PLACEHOLDER_TOKEN_RE.search(remaining):
+            raise ValueError("Translation contains an unrecognized placeholder")
+        return self._restore(translated, replacements)
 
     def _call_with_timeout(self, fn):
         if not hasattr(signal, "SIGALRM"):
@@ -327,7 +365,7 @@ class TranslationBackend:
         protected, replacements = self._protect(core, locale)
         segments = self._split_long_text(protected)
         translated = "".join(translator.translate(segment) for segment in segments)
-        return f"{lead}{self._restore(translated, replacements)}{trail}"
+        return f"{lead}{self._restore_checked(protected, translated, replacements)}{trail}"
 
     def _http_translate_oversized(self, locale, protected):
         """Translate protected long-form copy with a timeout per segment.
@@ -355,7 +393,7 @@ class TranslationBackend:
         locale_cache = self.cache.setdefault(locale, {})
         if text in locale_cache:
             cached = locale_cache[text]
-            if cached is not None and not self._contains_placeholder_tokens(cached):
+            if self._cache_value_is_valid(text, cached):
                 cleaned_cached = self._postprocess(locale, cached)
                 if cleaned_cached != cached:
                     locale_cache[text] = cleaned_cached
@@ -380,7 +418,7 @@ class TranslationBackend:
                 else:
                     translator = GoogleTranslator(source="en", target=self._target_code(locale))
                     translated_core = "".join(translator.translate(segment) for segment in self._split_long_text(protected))
-                translated = f"{lead}{self._restore(translated_core, replacements)}{trail}"
+                translated = f"{lead}{self._restore_checked(protected, translated_core, replacements)}{trail}"
                 translated = self._postprocess(locale, translated)
                 locale_cache[text] = translated
                 if save:
@@ -427,8 +465,7 @@ class TranslationBackend:
             cached = locale_cache.get(text)
             cache_hit = (
                 text in locale_cache
-                and cached is not None
-                and not self._contains_placeholder_tokens(cached)
+                and self._cache_value_is_valid(text, cached)
             )
             if cache_hit:
                 cleaned_cached = self._postprocess(locale, cached)
@@ -476,6 +513,13 @@ class TranslationBackend:
                 for attempt in range(1, self.retries + 1):
                     try:
                         translated_batch = self._http_translate_batch(locale, [item[1] for item in prepared])
+                        if not isinstance(translated_batch, list) or len(translated_batch) != len(batch):
+                            raise ValueError("Unexpected translation batch size")
+                        # Validate the entire batch before any successful cache write.
+                        translated_batch = [
+                            self._restore_checked(item[1], translated, replacements)
+                            for translated, item, replacements in zip(translated_batch, prepared, batch_replacements)
+                        ]
                         break
                     except Exception:
                         if attempt >= self.retries:
@@ -504,7 +548,7 @@ class TranslationBackend:
                         lead, _, trail = prepared_item
                         locale_cache[text] = self._postprocess(
                             locale,
-                            f"{lead}{self._restore(translated, replacements)}{trail}",
+                            f"{lead}{translated}{trail}",
                         )
 
                 self._save_cache()
