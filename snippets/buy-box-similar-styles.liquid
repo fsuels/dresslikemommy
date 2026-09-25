@@ -207,11 +207,11 @@
       class="buy-box-navigation__back-link"
       data-back-to-results
       data-back-to-results-fallback="{{ back_to_results_fallback_url }}"
-      data-back-to-results-label-default="{{ back_to_results_label | escape }}"
+      data-back-to-results-label-default="{{ back_to_results_label | escape_once }}"
       data-back-to-results-template="{{ 'sections.product_navigation.back_to_context' | t: context: '__CONTEXT__' | escape }}"
       data-back-to-search-results-label="{{ 'sections.product_navigation.back_to_search_results' | t | escape }}"
       rel="prev"
-      aria-label="{{ back_to_results_label | escape }}"
+      aria-label="{{ back_to_results_label | escape_once }}"
     >
       {{ back_to_results_label }}
     </a>

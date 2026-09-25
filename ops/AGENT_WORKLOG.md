@@ -40334,7 +40334,7 @@ Next best action:
 AGENT_CONTINUITY_ANCHOR: 2026-05-18-white-crochet-mommy-and-me-draft-listing-created
 
 Why:
-- Owner requested the canonical Shopify listing workflow for vendor URL `[PRIVATE_SUPPLIER_URL]` with attached product image and size chart, `FORCE_SPEC_PRICES=true`, and the mandatory localized size-chart repair gate.
+- Owner requested the canonical Shopify listing workflow for vendor URL `[vendor URL redacted; 1688 offer 1048876747231]` with attached product image and size chart, `FORCE_SPEC_PRICES=true`, and the mandatory localized size-chart repair gate.
 
 What changed:
 - Created Shopify draft product `white-crochet-mommy-and-me-set` via Admin API only; no publish/live channel action was performed.
@@ -43835,7 +43835,7 @@ Next best action:
 AGENT_CONTINUITY_ANCHOR: 2026-06-02-blue-daisy-skirted-swimsuit-vendor-url-blocked
 
 Why:
-- Owner supplied the missing vendor URL `[PRIVATE_SUPPLIER_URL]` and asked to push a Shopify draft.
+- Owner supplied the missing vendor URL `[vendor URL redacted; 1688 offer 976129452884]` and asked to push a Shopify draft.
 
 Readback:
 - Direct HTTP fetch of the vendor URL returned 1688 `_____tmd_____` / captcha interception markup, not product details or child size rows.
@@ -52814,9 +52814,114 @@ The Danish owner delivered completed source/scoped public acceptance: all527MAIN
 
 Current canonical Danish coordination/problem status and parent packet next step are reconciled to SOURCE_AND_SCOPED_PUBLIC_VERIFIED, preserving historical evidence. Final receipt and later completed records are captured in the separate bounded closure snapshot; future peer changes remain local for their next reviewed sync. Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-project-main-sync/ and the Danish main-sync packet. Git ownership closes only after the final receipt reaches main and its exact remote ref is read back; all527theme blobs must remain identical.
 
+
+## 2026-09-22 — Google Search saved draft recovered, budget choice pending
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-google-search-draft-saved-budget-pending
+task_entities: DLM | GADS | US | EN | Search | 202609, draft10215314947, creationcampaign281499249292033, PROB-2026-09-11-ADS-CAMPAIGN-QUALITY-AND-CPC
+task_stage: HANDOFF_BUDGET_REQUIRED
+
+User continue authorized resumed preparation. Normal same-account native Resume campaign draft in fresh IAB tab2 loaded the existing single exact-name draft and verified8dresskeywords/1RSA with12headlines,4descriptions,pin1 and exact URL/paths. Four exact callouts were created and applied at campaign scope, then read in the reopened preview. Final Review says All changes saved. US Presence/English, partners/display off and text/URL expansion off verified; old identity gate and AI summary conflict are historical. The campaign remains an unlaunched creation draft, not a verified Paused live record. Publish not clicked; banner no ads running.
+
+Full six-group creation remains PARTIAL. ManualCPC/bids, group naming/remaining five groups, negatives/sitelinks/snippet and explicit budget type/amount/dates remain unfinished in Google Ads.11.53/day and Maximizeclicks are UI placeholders, not approved choices. User budget question remains pending. Native Uploads supports separate Preview/Apply and templates for newcampaign/groups/RSA/keywords/negatives; no upload, preview or apply occurred. Local candidates use official schemas, explicitPaused and no executable campaign row without budget. Need native preview qualification and full after-state readback before any completion claim.
+
+Account read-only: autotaggingYes, trackingNooptionsset, autoapplyOff, Eastern GMT-04; USD code unverified. Existing funding-source confirmation is a separate observed owner task, not completed by login verification. No account, billing, tracking, existingcampaign24247604341 or peer action changed. Draft tab2 held at Review; original tab1 stopped. Evidence READBACK.md in2026-09-22-google-search-build; canonical continuation ops/prompts/paid-growth-ai-army-continuation-prompt.md restricted to this exact build. Standing paid authorityNONE unchanged.
+
+Closeout: candidate8CSVs/146rows passed673separate local schema/content assertions; zero executable campaignCSV. Independent current saved-record review PASS_WITH_LIMITS (did not execute browserwrites). Native campaign template advertises ManualCPC and Daily/CampaignTotal/Monthly budget types/date columns; account Preview acceptance remains unknown. Root cockpit render/integration audit0risks/strict CONTINUITY_OK/scoped diff checks passed. Budget still unanswered; no native upload/preview/apply or activation.
+
+
+## 2026-09-22 — Danish Microsoft campaign localized and verified, shared image captions pending
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-microsoft-danish-localization-readback
+task_entities: 506254908, 477439, 770182, DK, DA, PROB-2026-09-22-MICROSOFT-DANISH-CAMPAIGN
+task_stage: HANDOFF
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+Current task01a0ca04 user authorized completing the existing campaign and clarified Denmark/Danish. Native saved target is DLM | MS | DK | DA | Search | 202609, Paused, Danish-only, Denmark-country/presence-only, existing3USDdaily/MaxClicks0.15USDcap and allAIexpansionsOff.8Danishgroups allPaused/Danish;8RSAs each15headlines/4descriptions withDanishpaths,/daURLs andDKmanualUTMs. Separateaction-timeuserapprovals covered deletion135oldpositives and161copiedgroupnegatives. Fullrendered144positives matchpayload(text,match,group) exactly;201campaignnegatives and20groupcategorynegatives saved.25Exactroutingnegatives held bysourceactive-recipientcondition.8campaignsitelinks,32groupassociations,6callouts and8Danishsnippets saved/readback. SourceEnglishcampaign notchanged.
+
+Images retained:81copied sharedassociations. Source/targetbothreference8864942504662, so globalcaptionedits would affectUS. OneDanishcaptioncopy of existingpictureasset1267736960489319 was attachedto otherwiseimageempty group1262241151661314;82imagesoverall. Useraskedtosimplify; furtherimagecopyworkstopped andoneunsaveddraftcanceled. SharedEnglishimagecaptionsremainpendinguserchoice(keepas-is orsame-pictureDanish-onlycopies). Noactivation/spend/budget/account/tracking/shared-list change. AdsPendingeditorialreview; originalgroup6RSAremainsPaused. Nativecopywarningishistorical, currentcorechildcountsreadback.
+
+Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-danish-campaign/EXECUTION.md andpayload/. Independentpayloadreviewpassedsource/counts/maps; livewritesrootonly. Nextnarrowtask: resolveimagecaptionchoice, preservepausedstate, thenonlyapplyconditionalroutingwhentherecipientreadiness/activationconditionissatisfied. Standingpaidcontrolandallpeerclaimsremainunchanged.
+
+
 ## Anchor 2026-09-22-multilingual-theme-main-push
 
 Task01a0c99c-7966-71d1-aac0-7b312c4651af owns current user-requested all-published-language repair. Source528theme files prepared;49theme paths reviewed, full Theme Check0findings,12filterregressions and scopedJS/diff checks pass; strictcontinuity CONTINUITY_OK. Normal Gitpush0dd8c90c51e8239a5d4859b6bd5dbcc8a49ac253 tofsuels/dresslikemommy/main verified exactremoteref. Existing MAIN133290917985 sync/publicverification PENDING; noalternate theme/branch. Resource translations711plus help-page gaps remain candidates under review, notapplied. Googletranslation429causednetworkstop; cached/manualcorrections only. FAQsourcecontradictions corrected inlocalcandidate fromcurrent publishedpolicies, withlocalizedparagraphpatches preservingothercontent. No ad/negative/feed/product/financial/checkout change. Evidence new2026-09-22-multilingual-storefront packet. Root continues exactbefore/afterbound resourcewrites andmain/livesync readback; do notcall taskcomplete fromthispush.
+
+
+## 2026-09-22 — Danish image captions completed with original pictures
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-microsoft-danish-image-captions-complete
+task_entities: 506254908, 477439, 770182, DK, DA, PROB-2026-09-22-MICROSOFT-DANISH-CAMPAIGN
+task_stage: HANDOFF
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+Supersedes the caption-choice portion of 2026-09-22-microsoft-danish-localization-readback. User explicitly said complete everything including image caption. Root finished81Danish caption copies using the same existing original picture assets and attached them only to campaign506254908, replacing81recoverable old target associations. The existing one-picture Danish extension for previously empty group6 remains. Native active total82; full rendered DOM exact picture comparison82/82, correct Danish categoryURLs82/82, allDanish display/alt text, zero length violations. Group counts14/14/8/12/13/1/14/6. Shared source captions and image assets preserved; no picture upload/generation. Temporary viewport override reset and no unsaved editor. CampaignPaused read back. Prior8groups/8RSAs/144positives/201campaignnegatives/20groupnegatives/32sitelinks/6callouts/8snippets andDK/Danish/3USDdaily/0.15USDcap checks remain. No activation/spend/budget/tracking/othercampaign action.25routingnegatives still require active eligible recipients per attachment; editorial acceptance and original pausedRSA remain future activation considerations. This exact paused localization is IMPLEMENTED and VERIFIED, not a launch or performance result.
+
+Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-danish-campaign/EXECUTION.md and image_readback.json. Standing paid authority and all peer claims unchanged. Next owner action is an editorial/readiness check before separately authorized activation; retain conditional routing and originalRSA state in that review.
+
+
+## 2026-09-22 — Google Search six groups saved, final ads authentication gate
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-google-search-six-groups-auth-gate
+task_entities: DLM | GADS | US | EN | Search | 202609, draft10215314947, creationcampaign281499249292033, PROB-2026-09-11-ADS-CAMPAIGN-QUALITY-AND-CPC
+task_stage: HANDOFF_AUTH_REQUIRED
+next_action_id: GOOGLE-SEARCH-PAUSED-BUILD-20260922
+
+The exact Google Search creation draft10215314947 / campaign281499249292033 now has six correctly named Paused groups,48Paused keywords with exact USD bids,67negative associations,14sitelink associations,4campaign callouts and1group-specific snippet saved. Native keyword/negative/asset exports match the payload. Campaign is Paused and unpublished, Manual CPC, USD210 Campaign Total over seven days as selected by the user. Sep22-28 are provisional editable setup dates, not an approved activation schedule. Two RSAs are saved and Paused; the final four are fully entered in the sole draft editor but NOT saved because a fresh Google Confirm it's you prompt appeared with Changes failed to save. Root asked for normal user verification and preserved tab2. This is PARTIAL_AUTH_REQUIRED_FINAL_FOUR_RSA; the six groups and all non-ad imports are completed, not merely prepared. No Publish or campaign activation occurred. Standing paidNONE, existing campaign24247604341 and all peer claims are unchanged. Next action: complete the fresh verification in task IABbrowser2/tab2, then retry save and verify six saved RSAs plus all child Paused statuses; do not reload the unsaved editor. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/READBACK.md`; anchor `2026-09-22-google-search-six-groups-auth-gate`.
+
+source_live_evidence_as_of: 2026-09-22 18:22 UTC
+live_state_mode: LIVE_VERIFIED_SAVED_COMPONENTS_WITH_UNSAVED_RSA_AUTH_GATE
+effective_approval_policy: CURRENT_USER_EXACT_PAUSED_BUILD_ONLY
+approved_external_scope: Exact campaign281499249292033 unpublished Paused build and children; no activation/spend/account/billing/tracking/othercampaign authority
+decision_depends_on_uncertain_state: true
+material_decision: MATERIAL
+decision_changing_evidence: User completes new Google identity prompt and native after-save ad report verifies all6ads andPausedchildren
+if_evidence_supports_recommendation: Finish authorized save and exactreadback; retainPaused/unpublished status
+if_evidence_opposes_recommendation: Preserve editor; stop repeatedsave attempts; report exact normal authentication/save dependency
+independent_verifier: /root/campaign_payload
+verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+independent_verifier_scope: Native exports versus local payload; root alone executed external writes; no independent browser replay
+independent_verifier_status: PASS_WITH_LIMITS349/349
+
+Verification complete: independent native receipt review349/349PASS_WITH_LIMITS; root verified all reviewed source/payload hashes. Cockpit render, integration audit25/25with0risks, strict CONTINUITY_OK and scoped diff checks PASS. Receipts: final_checkpoint_checks.json and independent_native_readback_review.json. No launch, editorial approval, serving, purchase measurement or realized sales/profit result is claimed.
+
+
+## 2026-09-22 — Google Search post-verification save still gated
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-google-search-resave-auth-repeated
+task_entities: draft10215314947, creationcampaign281499249292033, GOOGLE-SEARCH-PAUSED-BUILD-20260922, PROB-2026-09-11-ADS-CAMPAIGN-QUALITY-AND-CPC
+task_stage: HANDOFF_AUTH_REQUIRED
+next_action_id: GOOGLE-SEARCH-PAUSED-BUILD-20260922
+
+User reported verification completed and renewed exact finish-four-ads/keepPaused instruction. Same preserved draft2 retained the prior modal. Root dismissed that modal using its Cancel control, without closing/reloading/discarding the draft, and retried BudgetNext once. Google again returned Changes failed to save and a new Review-step Confirm it's you dialog. Fresh standard Ads table still has exactly2PausedRSAs. Four editor-held ads remain unsaved; all previously saved non-ad components and349-check accepted export review retain their earlier evidence clocks. No Publish, campaign activation, spending or status mutation occurred. Exact Review draft tab display requested through open_in_codex; user asked to complete Confirm there and wait for dialog dismissal. Keep same tab2 and stop further save retries until changed auth evidence. Execution_log.json and READBACK.md record this recurrence; prior build anchor2026-09-22-google-search-six-groups-auth-gate supplies complete component state and authority. This is a Google authentication gate, not a new permission request or automatic approval rejection.
+
+source_live_evidence_as_of: 2026-09-22 18:43 UTC
+live_state_mode: LIVE_VERIFIED_AUTH_GATE_AND_TWO_SAVED_ADS
+effective_approval_policy: CURRENT_USER_EXACT_PAUSED_BUILD_ONLY
+approved_external_scope: Same unpublished Paused campaign and children; no activation or spend
+decision_depends_on_uncertain_state: true
+material_decision: NOT_MATERIAL
+decision_changing_evidence: Exact Review-step Google dialog disappears after normal user verification
+if_evidence_supports_recommendation: Retry save and verify all6RSAs/Pausedchildren
+if_evidence_opposes_recommendation: Preserve editor and report authentication dependency
+
+
+## 2026-09-22 — French Microsoft campaign built; exclusions and image-caption choices pending
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-microsoft-french-build-confirmations-pending
+task_entities: 506255077, 506254907, 477439, 770182, FR, CA, PROB-2026-09-22-MICROSOFT-FRENCH-CAMPAIGN
+task_stage: HANDOFF
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+Current task01a0ca3e user requests exact existing French campaign completion from English source, same images; user clarified France and Canada. Root native before-state targetPaused/20USDdaily/EnhancedCPC/zero groups. Copied7sourcegroups once; addedgeneric eighth. Now8completedPaused/Frenchgroups and8FrenchRSAs(15headlines/4descriptions each), localized paths,/frURLs andFRCAUTMs.144Frenchpositives saved and nativeenabledcount144verified;132oldEnglishcopiesPaused rather than deleted pending action-time confirmation.251campaignnegatives saved/nativecount251.8Frenchcampaignsitelinks/32groupassociations,6callouts,8Frenchgroup-specificsnippets saved. Targetsettingsfreshreadback French,Paused,FR+CApresence,MaximizeClicks0.20USDcap/20USDdaily, matching currentEnglishsourcebidsettings under useronly-language-and-target-change mandate. AllAIexpansionsoff. No launch or spend activation.
+
+Images:95currentassociations=81on7copiedgroups+14exactsourceDressesassets for newmotherdaughtergroup. Fivewizard-addedassociations removed through reversible Deleteassociation; assetsremainlibrary. Native95currentcountverified. SourcepictureIDs/sharedcaptionassetsunchanged; captionsEnglishpendinguserchoice. No sharednegativekeywordlistattached.8public/frcollectionresponses200andFrenchH1 verified by reviewer; partialEnglishshopcontentremainsat that evidenceclock. No storefrontwrite in this task; peerlocalizationtaskownsrepairs.
+
+PARTIAL:161copiedEnglishgroupnegatives still awaiting deletion confirmation and replacement with58reviewedFrenchgroupnegatives(6/9/10/0/8/19/0/6 bygroup). Imagecaptionchoicealsoawaitinguser. Twoexistingquestionsmustnotberepeatedorassumedapproved. Originalcopygenericchildwarningnotreplayed; childinventoriesreconciled. DraftPausemisleadinginactiveaccountmessage resolved bynativeDrafthelp-prescribedEnable underPausedparent, followedbyPause; all8groupsPausednow. No accountactivation,billing,sharedsourceassetedit,sourcecampaignchange,peerchange,orpaidactivation.
+
+Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-french-campaign/EXECUTION.md, payload/,review/INDEPENDENT_REVIEW.md,review/FINAL_RECONCILIATION.md. Independent225/225payloadchecksPASS; reviewerfinalPARTIALcorrectlyexcludesrootnativeexecutionfromindependence. Nextexacttask: use pending user replies, remove onlypausedEnglishpositivecopies andoriginal161groupnegatives ifconfirmed, addreviewednegatives respectingconditionalrecipientgates, localizeimages onlyviaFrench-specificcopiesifselected, thennativecounts/contentreview. PreservePaused; activation/editorialreadinessremainsseparate. GlobalREAD_ONLY_MARKETING_RECONCILIATIONandpaidNONEunchanged.
+
 
 ## Anchor 2026-09-22-multilingual-content-live-theme-processing
 
@@ -52829,6 +52934,7 @@ Current user authorized all-language repeated Danish defect repairs and main/liv
 
 Final release is PARTIAL_PLATFORM_PROCESSING:7f9a05f is verified on GitHubmain, existing MAIN133290917985 has528matching checksum metadata, but18actualbody checks show6complete/12old (ar,cs,el,es,fi,ko,nl,no,pl,ro,ru,sv). Shopify same-theme reset at18:59:04UTC remains processing=true/processingFailed=false. Manifest metadata is not finalpublicproof. Root retains finalsyncownership and must compareactualbody plus publiclabels after completion; no repeatedreset/newtheme. Narrow family-swim broadredirect and3native17TRACK language limitations preserved; no ad/negative/budget/producttruth/account/financial/checkout changes. First7journalcards repaired; broader product/articleprose notcertified. Exact receipts/reviews/before-after, remaininglanguage list and release report in2026-09-22-multilingual-storefront packet. Unrelated peer work remains untouched.
 
+
 ## Anchor 2026-09-22-multilingual-main-live-verified
 
 AGENT_CONTINUITY_ANCHOR: 2026-09-22-multilingual-main-live-verified
@@ -52840,6 +52946,213 @@ Supersedes the exact pending-sync state in2026-09-22-multilingual-content-live-t
 
 Own claim CLOSED_VERIFIED_SCOPED_RELEASE and problem FIXED_VERIFIED_SCOPED_DEFECT_CLASSES. Preserve everypeer claim/dirtywork, family-swim broadredirect/narrownegative constraints,17TRACK nativear/he/hilanguage limitation and broaderarticle/productprose uncertified scope. No ad/budget/producttruth/checkout/order/financial/underlyingpolicyterm changes or conversionprofitclaims. Full report/receipts/checks: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-multilingual-storefront/RELEASE_REPORT.md. Next owner action: use scoped live destinationevidence while retaining narrower routinglimits; no automatic campaignlaunch inference.
 
+
+## 2026-09-22 — Portuguese Microsoft paused build; browser and cleanup gates
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-microsoft-portuguese-partial-browser-gate
+task_entities: 506255983,506254907,477439,770182,BR,PT,PROB-2026-09-22-MICROSOFT-PORTUGUESE-CAMPAIGN
+task_stage: BLOCKED
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+User explicitly confirmed creating a new paused BR/PT campaign after live target absence. Native copy yielded506255983, renamed DLM | MS | BR & PT | PT | Search | 202609. Saved Portuguese campaign/group language and Brazil+Portugal presence targeting; copied20USDdaily/MaxClicks0.20cap unchanged.8groups/8PortugueseRSAs saved15H4D,/ptdestinations andBRPTUTMs. Fullfield/settings finalreconciliation remains due.144Portuguese keywords received full144row exact text+group+match comparison:0missing/0unexpected.152copiedEnglishpositivesPaused reversibly. Existing permanent deletion confirmation remains unanswered;106campaign/186groupnegatives unchanged. Payload244campaign/28unconditionalgroupnegative entries prepared;48routing entries held for recipient readiness.
+
+Saved/readback7campaignsitelinks,6callouts,7Portuguese group-specific snippets;28group sitelink associations saved withfullmappingrereadpending. Native Microsoft Adultcontent rejection prevented pajamas sitelink/snippet; canceled without bypass. Captured95original image associations/81unique records,76withEnglishcaptions.8newPortuguese shirts records saved and16rowgroupreadback verifiedfullthumbnail/cropURLs exactly equal8originals;shared English records preserved.68unique caption records remain. Selected8oldEnglishshirts associations andclickedreversibleDeleteassociation, thenCDPtimeout. Removal outcomeUNKNOWN; do not replay untilreadback. DOM/nativeAX bothfailedfocus-emulation; inventoryconfirmedassignedtab;one reloadfailed20sectimeout/reset. No furtherexternalwork; no anotherbrowser/helper/security workaround. VolatileCUAmapslost, recapturebeforecleanup.
+
+PARTIAL, notcomplete. Restoreexactside tab andconfirmPaused plusold/new8shirt associations first. CurrentURL/group andIDs are in EXECUTION.md. NormalMicrosofteditorialreview andexistingdestructiveconfirmation remain gates. Independentreview explicitlyagreesPARTIALanddoesnotclaimnativebrowser replay. OriginalUS,peer/sharedassets,negativekeywordlists,spend/billing/measurement/storefront unchanged. No conversion/profit/lift claim. Canonicalcontinuationprompt remains ops/prompts/paid-growth-ai-army-continuation-prompt.md;globalpaidNONE/READ_ONLY_MARKETING_RECONCILIATION unchanged.
+
+Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-portuguese-campaign/EXECUTION.md;payload/payload.json;payload/validation.json;payload/landing_readback.json;payload/image_caption_translations.json;review/partial_execution_review.md.
+
+
+## 2026-09-22 — Google Search six ads saved and paused; build complete
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-google-search-six-ads-paused-complete
+task_entities: draft10215314947, creationcampaign281499249292033, GOOGLE-SEARCH-PAUSED-BUILD-20260922, PROB-2026-09-11-ADS-CAMPAIGN-QUALITY-AND-CPC
+task_stage: COMPLETE_PAUSED_BUILD_VERIFIED
+next_action_id: NONE_FOR_COMPLETED_PAUSED_BUILD
+
+Exact Google Search draft10215314947 / campaign281499249292033 is COMPLETE for the authorized paused build. All6groups,48positive keywords and6RSAs are saved and Paused. All72headlines/24descriptions,6finalURLs/path pairs and6first-description pins match the supplied payload; independent new-ad export review PASS268/268 with root source/payload hash acceptance. Fresh group/default-bid,48keyword/bid and67negative preservation checks PASS.14sitelink associations,4campaign callouts and1group-specific snippet remain saved; their exact earlier export review and final20-total association UI readback are separately dated. Saved Review confirms All changes saved, Manual CPC, USD210 Campaign Total, Google Search Network, English, no audiences and text/URL expansion off. Campaign remains Paused and unpublished; no Publish or activation occurred. Sep22-28 are provisional editable setup dates, not an approved activation schedule. Repeated identity prompts are historical and cleared by normal user verification; no four-ad save dependency remains. Existing campaign24247604341, account/billing/tracking and all peers were untouched. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/READBACK.md`; anchor `2026-09-22-google-search-six-ads-paused-complete`. No remaining build action; review activation readiness only under a new explicit scope.
+
+source_live_evidence_as_of: 2026-09-22 19:42 UTC
+live_state_mode: LIVE_VERIFIED_PAUSED_DRAFT_BUILD
+effective_approval_policy: CURRENT_USER_EXACT_PAUSED_BUILD_FULFILLED
+approved_external_scope: Exact pausedunpublishedcampaignbuildonly; noactivation/spend/account/billing/tracking/othercampaignauthority
+decision_depends_on_uncertain_state: false
+material_decision: MATERIAL
+independent_verifier: /root/campaign_payload
+verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+independent_verifier_status: PASS268/268 six-adexportchecks; no externalreplay orbroadercampaignconclusions
+
+Root accepted independent source/payload hashes and finalgroup/keyword/negativepreservation. Publication/measurement/profitnotclaimed. See execution_log.json, final_completion_checks.json and independent_six_ad_review.json. Standard continuity/integration/diff closeout checks follow this record; no further external action is needed for the current request.
+
+## 2026-09-22 — Portuguese shirts cleanup verified; browser input blocked
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-microsoft-portuguese-shirts-cleanup-verified
+task_entities: 506255983,506254907,477439,770182,BR,PT,PROB-2026-09-22-MICROSOFT-PORTUGUESE-CAMPAIGN
+task_stage: BLOCKED
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+User said continue, retaining exact paused Portuguese build authorization. Initial IAB2/tab1 readback recovered and proved the prior eight-old-shirt removal had not occurred. Native recoverable Delete association was then invoked for those exact eight selected target associations. JavaScript confirm appeared; normal accept reported no longer active, followed by authoritative eight-row non-deleted table containing only the Portuguese replacement IDs8864942620643/644/645/646/648/649/651/652, all Pending editorial review. Prior UNKNOWN resolved; shirts cleanup VERIFIED. Source shared records and picture/crops retained. Do not replay this cleanup.
+
+Navigated to sweaters1266639202268102: six English image records8864942551975-1980 remain. First two source editors inspected and canceled without Save. Third inspection stalled on CDP key dispatch. Subsequent original-tab AX/rebind/reload failed focus-emulation; no active JavaScript dialog. Disclosed fresh-tab fallback within same IAB; tab2 loads exact target and reads six unchanged records with Campaign paused, but checkbox presses/check, native input and Create do not change the UI. One reload did not restore interaction. User asked to refresh/reopen Microsoft side tab and report ready; fresh tab2 marked handoff, original user tab preserved. No other browser, app, helper, permission, source-code or security workaround.
+
+PARTIAL. Resume six sweater images after interactive recovery, then other groups and full settings/RSA/sitelink comparisons.68unique image-caption records remain. Existing action-time keyword deletion confirmation remains unanswered;152oldpositivecopiesPaused,144PTpositives previously exact-verified,106campaign/186groupnegatives unchanged.244campaign/28unconditionalgroupnegative payload ready;48routingnegatives still conditional. Microsoft pajamas sitelink/snippet rejection remains normal-editorial-review gate; no bypass. Previous eight RSAs and localized text assets retain their earlier evidence clocks. No activation/spend/billing/source/shared/peer/storefront change and no performance claim. Global paidNONE/READ_ONLY_MARKETING_RECONCILIATION unchanged.
+
+Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-portuguese-campaign/EXECUTION.md continuation at19:43UTC; same payload/review artifacts. Root UI readback is not independent browser review. Canonical continuation prompt remains ops/prompts/paid-growth-ai-army-continuation-prompt.md.
+
+
+## 2026-09-22 — Danish negatives re-audit opened; browser input blocked
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-microsoft-danish-negative-reaudit
+task_entities: 506254908, 477439, 770182, PROB-2026-09-22-MICROSOFT-DANISH-CAMPAIGN
+task_stage: BLOCKED
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+User says missing group negatives and requests both levels corrected. Exact supplied lists independentlyrechecked201campaign/45group, zero literal conflicts across144positives, all25Exactroutingterms mapto matchingExactpositives inintendedrecipients. Prior rootapplied20group/held25 accountsfor8familyoutfit/6familyshirt/11motherdaughteroutfit missingrows. RootfreshcampaignheaderEnabled andvisiblepositivekeywordsEligible; no statusactor/timeinferred, no rootstatusaction. NativeIABnegative-tabclicks gaveunchangedstate afterDOM/AX/keyboard/coordinate/reload/rebind/kernelreset checks. Supported directKeywordsnavigationloadedbutNegativekeywords stillnotopened. UseraskedtoopentheNegativekeywords tab; browserlefttherewithnoeditor/noSave. Currentnegativelistsnotyetreconciledorcorrected. Owningclaim/problemreopened, peerspreserved. Evidence2026-09-22-microsoft-danish-campaign/NEGATIVE_REAUDIT.md,negative_expected.csv,payload/negative_reaudit_review.md. Needreadall201campaign/20currentgroup(orupdatedactual) rows,recipienteligibility, addonlymissingauthorizedrows,verify45exactscopedmatches. No sharedlists/status/budget/trackingauthorityadded.
+
+## 2026-09-22 — French cleanup approved; browser input blocked
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-microsoft-french-approved-browser-blocked
+task_entities: 506255077,506254907,477439,770182,FR,CA,PROB-2026-09-22-MICROSOFT-FRENCH-CAMPAIGN
+task_stage: BLOCKED
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+User explicitly approved132pausedEnglishpositive removals,161copiedgroupnegative replacement with58French, and French-captionedcopies usingidenticalpictures. Currentauthorizationpersists; do notaskagain. No externalwrites submitted because Microsoftsidebrowser controls stoppedresponding. ExactcampaignPaused/144enabledFrenchkeywords freshlyread; reload,rebind,native/PW/keyboard,disclosedfreshsame-IABtab andCUAreset failedtorecoverinteraction. Userasked torefresh/reopenMicrosoftsidepanelandconfirmmenusrespond. OriginalIAB2/tab1preservedandmarkedhandoff;temporarytab2closed;nosave/deletepending. Nootherbrowser,app,helper,permission,source/shared/peerchanges.
+
+Independentlocalcaptiondictionary64display/63alt+scopedfiveimagefallback prepared;lengthlimitsPASS max34/57. Notapplied;actualimageprovenance/cropsmustberecapturedafterreset. OverallPARTIAL_BROWSER_INPUT_BLOCKED, allremainingapprovedoperationsunexecuted. EightFrenchgroups/RSAs,144Frenchpositives,251campaignnegativesandFrenchextensionsretainpriorverifiedclocks;132EnglishpositivesPaused/161groupnegatives/95sharedcaptionassociationsremain. Campaignactivation/spendnotauthorized. Source andglobalpaidNONEunchanged.
+
+Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-french-campaign/EXECUTION.md andpayload/image_caption_translations.json,image_caption_validation.json. Rootnativechecksarenotindependentbrowserreview. Canonicalcontinuationpromptunchanged. CheckpointUTC2026-09-22T19:46:57.115575+00:00.
+
+## 2026-09-22 — Pinterest P5 public and saved fields verified
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-pinterest-p5-public-fields-verified
+task_entities: TA-25, TA-12, Pin343118065387631697, scheduled3849566935843924928, scheduled3849568157896098688, scheduled3858290826238337152, CONTENT_REGISTER_20260911.json
+task_stage: VERIFY
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+P5 is publicly VERIFIED as Pin343118065387631697 at https://www.pinterest.com/pin/343118065387631697/ on September22. Its exact saved title, authored caption, full four-UTM destination, alt text, board, AI-modified=true, AI-person=false and ad-only=false match the reviewed release. The native editor was canceled without changes and the public page read back. The public product-style Description differs from the saved authored caption; enrichment provenance and product claims are not independently certified. Actual publication timestamp remains UNKNOWN. The refreshed native queue has exactly two Pins: P6 September24 01:30PM and N2 September27 02:00PM; native timezone is unexposed. No new Pin or duplicate submission, storefront visit, paid-ad click, event, order, tracking or account write occurred during the P5 acceptance phase; subsequent source-qualification QA is recorded separately.
+
+P5 first full observation window is September23–29 UTC, earliest review September30 after reporting availability; 14-date window September23–October6, earliest October7; 30-date window September23–October22, earliest October23. These start after verified public existence, not an inferred publication time. Native stats are unavailable, not zero. Qualified visits, attributed purchases, actual costs and contribution remain UNKNOWN. Preserve separate TA-20 article/Sunshine reviews and source timezones; no cross-source sum or sales-lift claim.
+
+Accept the existing content owner release receipt when available and qualify one distinct next Pin; otherwise retain the evidence-backed source hold. N3 remains SOURCE_AND_DESTINATION_GATED and Halloween article559662366817 release is unverified in the current owner preflight. The queue extends approximately five calendar days, short of the7–14day target; do not fill it with unsupported content. Verify P6 after its displayed September24 schedule without resubmitting. Preserve max3originalPins/rolling168hours.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/P5_PUBLICATION_RECEIPT_20260922.json`; independent review `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/P5_PUBLICATION_REVIEW_20260922.md`; verification `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/P5_CANONICAL_VERIFICATION_20260922.json`. Anchor `2026-09-22-pinterest-p5-public-fields-verified`.
+
+The previous shared-writer parent01a08223 is archived according to the internal message tool; it was not unarchived or retried. X01a0915d explicitly confirmed no shared canonical writes and was notified before this bounded closeout; this is X-only non-use, not authority for other owners. Sole Pinterest owner01a08704 is reconciling only its TA-25 row/dated sections and own claim under the continuing user mandate, with exact before-state guards. Peer claims, TA-12, TA-20, TA-24, other result totals and authoritative paid control remain unchanged. No parent takeover or automation change.
+
+Local changes: preserve12 register identities/order and all nine unrelated rows; update P5 public identity/observation windows plus P5/P6/N2 queue receipts. Update only owning TA-25/Pinterest canonical fields; preserve all other rows and paid authority. Shared generated cockpit/integration artifacts will be refreshed during this interval.
+
+Verification: native queue refresh, public profile/detail, exact href, native persisted fields, canceled-editor public readback and screenshots in conversation VERIFIED. Independent publication/register review PASS_WITH_LIMITS36 grouped checks; separate canonical checkpoint review PASS_WITH_LIMITS22 grouped checks. All seven original canonical before-hashes independently reconstruct exactly. Render, integration25/25 with0risks, strict CONTINUITY_OK and scoped diff checks passed. Final post-closeout results and hashes are recorded in `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/P5_CANONICAL_VERIFICATION_20260922.json`. The bounded shared writer interval is released; current Pinterest source qualification remains packet-only until a new coordinated closeout. No screenshot file is claimed.
+
+Rollback: no live mutation to reverse. Exact pre-edit local records are retained in P5_REGISTER_BEFORE_20260922.json and P5_CANONICAL_BEFORE_20260922.json; restore only owned fields after checking later dependencies, never overwrite peer work or remove published Pins.
+
+Authority handoff: source_live_evidence_as_of=2026-06-01; live_state_mode=STALE_READBACK_REQUIRED; effective_approval_policy=FRESH_ACTION_TIME_APPROVAL_REQUIRED; approved_external_scope=NONE (paid control). Organic read/record authority is the current daily-operation mandate; no new consequential grant. decision_depends_on_uncertain_state=true; decision_changing_evidence=accepted accurate source release plus current cadence; if_evidence_supports_recommendation=review one distinct organic candidate; if_evidence_opposes_recommendation=retain source hold; material_decision=NOT_MATERIAL. Independent verifier receipt_review did not perform native reads or local implementation; verifier_independence=DID_NOT_BUILD_OR_EXECUTE.
+
+Continue with `ops/prompts/paid-growth-ai-army-continuation-prompt.md` and this anchor; no competing task state or prompt.
+
+## 2026-09-22 — French English-keyword removal submitted; outcome unknown
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-microsoft-french-delete-outcome-unknown
+task_entities: 506255077,506254907,477439,770182,FR,CA,PROB-2026-09-22-MICROSOFT-FRENCH-CAMPAIGN
+task_stage: BLOCKED
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+Currentusercontinue retained132Englishpositive/161groupnegativecleanup/58Frenchnegatives/Frenchsame-picturecaptionauthority. OriginalIAB2/tab1 initiallyresponded. StatusAllkeywordsplusStatuscontainsPaused returnedFilteredtotal132; All132selected bannerverified; rootinvokedEdit/Deleteonce. CDPinputtimeoutfollowed;getJsDialogundefined andDOM/AXfocus-emulationtimeouts. DeletionoutcomeUNKNOWN, no replaypermittedbeforefreshnativecount/readback. CampaignPaused beforeaction. No negative/imagewrites inthiscontinuation.
+
+DisclosednativeappinspectionfallbackwasblockedbyComputerUse safetyforcom.openai.codex;noalternateappcontrolbypass. Useraskedtoinspectsidebrowser for132keywordconfirmation,completeifvisible,andreportresponse. Thepriorcheckpoint no-submissionstatementis historical;thisturnhasoneuncertainDelete invocation. Allothercanonicalclaims/source/sharedassets/globalpaidNONEpreserved. No activation, spendorperformanceclaim. Evidence:dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-french-campaign/EXECUTION.md checkpoint2026-09-22T20:36:14.334929+00:00.
+
+## 2026-09-22 — Pinterest N4 Halloween Pin scheduled and read back
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-pinterest-n4-halloween-scheduled
+task_entities: TA-25, TA-12, scheduled3881480438074766784, scheduled3849568157896098688, scheduled3858290826238337152, Pin343118065387631697, Article559662366817
+task_stage: VERIFY
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+N4, Family Halloween Outfits: Plan Daytime and Evening Layers, was submitted once at2026-09-22T20:32:05.360Z and is natively scheduled as3881480438074766784 for Wed,September30 02:00PM on existing Matching Family Halloween Costumes. Pinterest Pin Scheduled confirmation, refreshed three-Pin queue, and separate saved detail verify the image, exact title/caption/four-UTM destination/date and board. Native timezone remains unexposed. Alt text, AI-modified=true, AI-person=false and ad-only=false were verified before submission; scheduled detail does not expose those saved fields, so public acceptance must verify them. Actual publication time, public Pin ID and commercial outcomes remain UNKNOWN.
+
+The queue now extends approximately eight calendar days: P6 September24 01:30PM (3849568157896098688), N2 September27 02:00PM (3858290826238337152), N4 September30 02:00PM (3881480438074766784). Prior P6/N2 titles/boards/dates/identities are unchanged. Conservative native-date/public-existence bounds retain at most3 original Pins per rolling168hours. All12 existing register rows remain exact; N4 is the13th distinct row. No duplicate Pin, board, article repair, paid campaign, catalog, consent or tracking change.
+
+The earlier Halloween preflight-only hold is superseded only for this narrow English editorial Pin. Newer receipts in interrupted Organic task01a0870a show its English plus16translation saves; the reviewed English candidate/mutation/two after-reads agree and21after-review bindings match. Root independently verified the corrected current English article, one retained hoodie link, actual hoodie/Fall&Winter/maincollection arrivals, legible main CTA on desktop/mobile and no observed horizontal overflow at390x844. Broader TA-20 after-review/frozen handoff remains incomplete; no takeover or repeated save. N3 stays SOURCE_AND_DESTINATION_GATED. The illustration depicts no products or people and makes no garment/material/fit/care/stock/shipping/safety claim.
+
+Do not start an N4 outcome window from scheduling. Accept its actual public receipt after the displayed September30 schedule, then set the first complete reporting dates. P5 remains public343118065387631697; its first seven complete observation dates after verification are September23–29 UTC, earliest review September30 subject to data availability. Existing TA-20 article/Sunshine clocks remain separate. New operator QA uses codex_qa / qa / pinterest_n4_source_20260922 for the English guide and linked hoodie/collections; exclude identifiable tagged/session-linked rows only, with no arbitrary numerical subtraction. Some destination URLs were untagged; unlinked contamination may remain. Qualified visits, purchases, actual costs and contribution are UNKNOWN.
+
+Next executable action: verify P6 publication after its displayed September24 schedule, preserve P6/N2/N4 without resubmission, and continue source-qualified content preparation within the current three-per168hour limit. Review N4 saved alt/AI fields once public. The eight-day queue meets the present7–14day target; source/creative quality still controls further submissions.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/N4_NATIVE_EXECUTION_20260922.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/N4_HALLOWEEN_DAY_EVENING_20260922.json`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/N4_HALLOWEEN_SOURCE_REVIEW_20260922.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/N4_HALLOWEEN_PREPUBLICATION_REVIEW_20260922.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/N4_POSTSUBMISSION_REVIEW_20260922.md`; `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/N4_CANONICAL_VERIFICATION_20260922.json`. Anchor `2026-09-22-pinterest-n4-halloween-scheduled`.
+
+Changes: created one original1024x1536AIillustrated asset in existing creative directory, one reviewed payload and one native schedule on an existing board. Exact prewrite/native receipt and rollback target retained. Native Pin Scheduled success and three-record queue verified; previous schedules unchanged. All prior12register rows exact. No website, product, translation, catalog, paid, financial or consent mutation by this owner. Source correction was already executed by its original owner and was not replayed.
+
+Independent source and creative review PASS_WITH_LIMITS; creative image inspected plus10groupedchecks. Postsubmission/register review PASS_WITH_LIMITS12groupedchecks, SHA1f608f54e6f3e5530480b54231072c7a5707cbe0672bfb32e1e52398445425b3. Root inverse checks reconstruct all seven canonical before-hashes exactly, preserving every unrelated row and authoritative control. Final matching canonical check outputs and source hashes are recorded in N4_CANONICAL_VERIFICATION_20260922.json. Broader TA20after-review remains incomplete. Root used task-owned background browser2 only, closed sourceQA6 and successful composer7, retained publicP5tab5, scheduledN4tab8 and queuetab1; viewport reset.
+
+Authority: source_live_evidence_as_of=2026-06-01; live_state_mode=STALE_READBACK_REQUIRED; effective_approval_policy=FRESH_ACTION_TIME_APPROVAL_REQUIRED; approved_external_scope=NONE (paid control). Organic publication scope derives from the current daily-operation and actual submission user mandate. decision_depends_on_uncertain_state=true; decision_changing_evidence=exact current English source, reviewed creative and native cadence; if_evidence_supports_recommendation=one authorized native schedule; if_evidence_opposes_recommendation=retain candidate hold without submission. material_decision=MATERIAL; independent_verifier=receipt_review; verifier_independence=DID_NOT_BUILD_OR_EXECUTE. Native action was performed only by root; no claim of independent live replay.
+
+Shared interval: Pinterest-only closeout RELEASED, X notified, archived parent unchanged; no peer writer transfer. Rollback uses N4_REGISTER_BEFORE_20260922.json and N4_CANONICAL_BEFORE_20260922.json for exact local fields after checking later dependencies. Native rollback, if owner requests it, targets only new scheduled3881480438074766784 through normal confirmation; no rollback performed.
+
+Continue through `ops/prompts/paid-growth-ai-army-continuation-prompt.md` and this anchor. Preserve existing TA12consent/ID/purchase acceptance gates, USD0.15CPC and approximately6.5xpaidROAS objective; scheduling is not measurement acceptance or commercial success.
+
+
+## 2026-09-22 — Missing Danish ad-group negatives completed and exported
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-microsoft-danish-negatives-complete
+task_entities: 506254908,477439,770182,PROB-2026-09-22-MICROSOFT-DANISH-CAMPAIGN
+task_stage: VERIFY
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+Current user correction authority executed in exact target only. Direct navigation to previouslyvisited negative-keywords page restored nativecontrols. Before20group rows; added25Exactroutingrows in3saves:8familyclothing,6familyshirts,11motherdaughterclothing. FullDOMread201campaign/45group followed by separate nativeexports; exactsourcecomparison passes201/201 and45/45,missing0/unexpected0. Matchsplits192Phrase+9Exactcampaign;20Phrase+25Exactgroup. Groupcounts6/8/6/0/8/11/0/6. Nightwear/swim0direct intentionally;campaignexclusionsapply. Rootdidnotdeleteorchangeactivation/status/budget/bids/sharedlists/images/othercampaigns. HeaderEnabled is current, earlierPaused historical; actor/timeunknown. Allpriorimage/coreevidence retainsitsclock. No editorial/inventory/serving/performanceclaim.
+
+Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-danish-campaign/NEGATIVE_REAUDIT.md; native UTF16 TSV campaign/group exports dated16:38:39/16:39:11ET; negative_comparison.json. Independent final exportreview requested fromexistingdanish_payload (didnotexecutelivewrites),pendingreceipt. Prior payload consistencyreviewPASS,0literal own-positiveconflicts. No unsavededitor; usertableftopenonAdgroupnegativeview. Current exactauthority fulfilled; preserve globalpaidNONE andallpeerclaims.
+
+Authority: approved_external_scope=campaign506254908negativeadditionsonly; rootsolewriter; source_live_evidence_as_of=2026-09-22T20:39:11Z; live_state_mode=LIVE_VERIFIED_SCOPED_NEGATIVES. Unknowneditorialeligibilityisnotclaimedcomplete. Currentuserexplicitmissingnegativecorrection supersedesearlieragenthold; no newapprovalgate. Nextowneraction: review Microsoft editorial/serving status read-only before any further optimization; use canonical ops/prompts/paid-growth-ai-army-continuation-prompt.md andthisanchor.
+
+Final independent verification receipt: payload/negative_final_verification.md PASS, both native exports match payload and expected CSV exactly246/246,0missing/0unexpected/0duplicates,0literal own-positive conflicts. Verifier didnotexecute livewrites. Requested negative correction is IMPLEMENTED and VERIFIED; no remaining negative setup action. Scoped strict/diff checks follow.
+
+
+## 2026-09-22 — Portuguese paused Microsoft campaign final reconciliation
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-microsoft-portuguese-final-readback-cleanup-pending
+- task_entities: campaign506255983, account477439, PROB-2026-09-22-MICROSOFT-PORTUGUESE-CAMPAIGN
+- task_stage: HANDOFF
+- next_action_id: receive-scoped-portuguese-keyword-cleanup-confirmation (task-local paused exception; does not change global paid next action)
+- Why: user continued explicitlyauthorizedpausedBR/PTcampaignlocalization. Previousanchor2026-09-22-microsoft-portuguese-shirts-cleanup-verified superseded.
+- Changed: completed74uniquePTimagecaptionrecords(88associations), preserving95originalpictures/fullthumbnailcrops; twooriginalEnglishpolicyheld+fiveuncaptioned. Resolvedcustomsweatercrop. CorrectedEnglishsweaterRSAURL and7lingeringEnglishgrouplanguageoverrides. Added149missingcampaignnegatives/18groupnegatives while retaining95/10existingmatches.
+- Verified:8RSAs/216orderededitorfieldvaluesexactlymatchpayload; all8groupPortuguese; campaignPaused/Portuguese/BR+PTpresence-only/20USDdaily/MaxClickschecked0.20cap;28sitelinkgroupmapping;95picture/fullcropURLs;255campaignrows=244intended+11obsolete;204grouprows=28intended+176obsolete,0desiredmissing.144PTpositiveexactreconciliationfrompriorcheckpointretained; no positivechangesinthiscontinuation.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-portuguese-campaign/EXECUTION.md, CLEANUP_REVIEW.md, review/final_paused_readback.json. BrowsernativeAX/DOMreceipts; localpayloadfingerprintcomparison8/8pass.
+- Guardrails: target506255983only; no permanentkeyworddeletion, activation, spend/bidchange, source/shared/peer/billing/measurement/storefrontwrite. OriginalIABtab1preserved;workingtab2markedhandoff. GlobalpaidNONEunchanged.
+- Blockers: narrowedaction-timequestionpending339obsoletekeywords(152PausedEnglishpositive+11campaignextra+176groupextra). NativeAdultcontentrejectionsheld: pajamaslink/snippet and2specificimagecaptions; canceleddrafts/noalternatewording.48routingnegativesconditional.
+- Next: explicit339cleanupconfirmation, fresh152positiveIDscope, applyexactextras-onlycleanupandreadback144/244/28; normaleditorialreviewfor4rejections. Do notrebuildverifiedassets orapplyobsolete106/186blanketnegativecleanup. No uncertainwriteoutcomesremain.
+- Validation: localJSON/ID-disjointness/payloadcomparisonPASS. Strictcontinuityandscopeddiffcheckrecordedbelowafterexecution.
+
+Validation receipt for2026-09-22-microsoft-portuguese-final-readback-cleanup-pending: strictcontinuity10/10PASS(CONTINUITY_OK); scopedgitdiff--checkPASS. Seeownpacketreview/final_paused_readback.json. No peercockpitwrite.
+
+
+## 2026-09-22 — German Microsoft preparation; target identity pending
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-microsoft-german-payload-target-pending
+- task_entities: account477439, campaign506254907, PROB-2026-09-22-MICROSOFT-GERMAN-TARGET
+- task_stage: BLOCKED
+- next_action_id: resolve-german-campaign-target-and-budget (task-local clarification; global READ_ONLY_MARKETING_RECONCILIATION unchanged)
+- User scope: complete/create DE/DE Search campaign using existing US English source and supplied German attachment; task01a0cb07-e60a-75d2-b268-2783a9cc4008 owns its IAB2/tab1 and German packet only. Latest explicit Germany target supersedes attachment USA text.
+- VERIFIED: requested German campaign absent from 11 native Enabled/Paused campaign rows; source506254907 has seven enabled groups, English, US presence-only, MaximizeClicks with checked0.20USD cap and20USD/day. Eight supplied German collection pages load with products after native Germany/EUR selection; some product titles remain mixed English. No checkout/tracking certification.
+- Local preparation: independent payload extraction/validation covers8groups,144positives,120headlines,32descriptions,230campaignnegatives,49groupnegatives,8sitelinks,6callouts,8snippets; counts/limits/literalconflicts PASS. Missing160image-caption pairs are documented, not invented.
+- BLOCKED: target identity question pending (create new versus existing renamed copy), plus daily budget. No Microsoft write, campaign creation/status/budget/bid action, source/peer/shared asset, billing, measurement, storefront or Git change. Country selection altered only storefront browsing context. Untagged QA visits may enter analytics; no paid ad click or cart/order action.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-german-campaign/EXECUTION.md; payload/campaign_payload.json; payload/validation.json.
+- Next: owner response resolves target and budget, then exact paused German build and native readback. Do not repeat source-copy or rename a peer campaign by assumption. Canonical continuation prompt remains ops/prompts/paid-growth-ai-army-continuation-prompt.md. Preserve globalpaidNONE, peer claims and shared cockpit ownership.
+
+
+## 2026-09-22 — Portuguese group negative gaps corrected
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-22-microsoft-portuguese-negative-gaps-corrected
+- task_entities: campaign506255983, account477439, PROB-2026-09-22-MICROSOFT-PORTUGUESE-CAMPAIGN
+- task_stage: HANDOFF
+- next_action_id: receive-scoped-portuguese-negative-cleanup-confirmation (task-local paused exception; global paid next action unchanged)
+- Why: user identified missing group negatives and requested both levels corrected. Earlier all-planned-negatives wording counted only28unconditional rows and was corrected openly.
+- Changed: added48ExactPortuguese group negatives in16/10/22batches to family outfits/family shirts/generic mother-daughter. Full supplied76nowstaged in paused draft; no activation. Nativebefore/afterexports downloaded through the task side browser and preserved locally.
+- Verified: native255campaignrows includeall244planned+11obsolete;252grouprows includeall76planned+176obsolete;0missing/0duplicates. Planned groupcounts10/16/10/0/8/22/0/10; pajamas/swim correctlyneed0additional group terms. Local normalized exact/phrase comparison against144positive rows has0conflicts; no platform conflictreport or semantic eligibility guarantee.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-portuguese-campaign/NEGATIVE_REAUDIT.md, review/negative_reaudit_comparison.json, negative_campaign_reaudit_before.csv, negative_group_reaudit_before.csv, negative_group_reaudit_after_additions.csv, EXECUTION.md.
+- Guardrails: target506255983only, stillPaused; no permanentdeletion, activation, spend/source/shared/peer/storefront change. User's current request completes48previously deferred entries in paused draft; recipient readiness remains a launch check.
+- Blocker: focused action-time question for187obsolete negative deletions(11campaign+176group), retaining244/76, excludes152PausedEnglishpositives. No answer or permission inferred. Other four native editorial exceptions remain separate and unchanged.
+- Next: receive187cleanupconfirmation, fresh ID/target readback, deleteonlyobsolete negatives, export andcompare244/76. Do notre-add48Exactrows orretainstale28-only target. Earlieranchor2026-09-22-microsoft-portuguese-final-readback-cleanup-pending superseded fornegative state.
+
+
 ## 2026-09-22 — Published product and article localization inventory
 
 AGENT_CONTINUITY_ANCHOR: 2026-09-22-catalog-article-localization-active
@@ -52849,3 +53162,839 @@ Status: PARTIAL_SOURCE_EVIDENCE_REQUIRED__QUALIFIED_TRANSLATIONS_LIVE_AND_MAIN_V
 All qualified translation batches are live: 375 structural descriptions, 2,028 English-header descriptions, 156 size-label descriptions, 88 placeholder descriptions, 11 full-prose completions, 19 native typo/dimension descriptions, 2,145 native-header semantic descriptions and 154 full-current-source descriptions. Cohorts overlap and must not be added as distinct fields. Public samples cover all 20 translated languages; final RU/SV/FI routes and representative 390px layouts/size-unit switching passed. Existing MAIN theme 133290917985 matches all 37 reviewed changed files, processing=false and processingFailed=false. GitHub main release 15d4d20100351d9a87990b3423acbd5803ea946b and the existing live theme are verified; the final receipt is review/main_sync_receipt.json.
 
 Known native/outdated header and placeholder findings are resolved. Remaining source dependencies: 443 product-language fields, 142 article-language fields, 80 title source-fact watches with 4 overlaps, and 3 exact Danish 404 destinations represented by 7 English links in 4 articles. These are documented source conflicts/unknowns, not uncompleted translation batches. 20 product fields have unknown measurement provenance, not proven wrong data. Preserve source facts pending decisions, variants/prices/status/handles, narrower routing observations, ads negatives, financial boundaries and peer changes. Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-catalog-article-localization/RELEASE_REPORT.md, RELEASE_PROGRESS.json, verified_translation_values/, releases/ and review/final_remaining_dispositions.json.
+
+
+## 2026-09-23 — Pinterest first-week baseline and observation windows
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-pinterest-baseline-and-observation-windows
+task_entities: TA-25, TA-12, Pin343118065387581115, Pin343118065387595533, Pin343118065387616411, Pin343118065387631697, scheduled3849568157896098688, scheduled3858290826238337152, scheduled3881480438074766784
+task_stage: VERIFY
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+September14–20 baseline: Pinterest Organic for claimed www.dresslikemommy.com reports312impressions,6engagements,0outboundclicks,1save, audience254/engaged5 (UTC, estimated; saved Pins and real-time estimates excluded). Shopify Pinterest source/referrer union reports0sessions/cart/reached/completed-checkout sessions (America/New_York), with32all-source groups/1,982sessions as a report control. Reused TA20 GA4 evidence is datedSeptember21, has no Pinterest rows and was not refreshed. Exact order-created-window read at2026-09-23T13:14:42.892Z qualifies3distinct PAID, non-test, noncancelled store orders:2direct first/last visits withoutUTMs,1missing first/last visits. No observed Pinterest match. Qualified human visits, true Pinterest purchases/revenue, actual costs and contribution remain UNKNOWN. No cross-source addition or zero-denominator ratio. The unfiltered351page-visit conversion preview is excluded.
+
+Native queue refreshed2026-09-23T13:06:14.032Z: P6/3849568157896098688 September24 01:30PM, N2/3858290826238337152 September27 02:00PM, N4/3881480438074766784 September30 02:00PM. Titles/boards/identities unchanged, native timezone UNKNOWN; approximately7calendar days ahead. No publication is due today and no duplicate/new submission was made.
+
+P2–P4 now have explicit post-verification observation dates September22–28, earliest review September29 subject to source availability, following September21 public existence verification. These are not inferred publication clocks. PinterestUTC and Shopify/GA4NewYork are separate. P5 September23–29UTC/earliestSeptember30 and all TA20 article/gift/Sunshine clocks remain. Compare October5–11 using identical definitions and retain October14 cycle assessment.
+
+Verify P6 public acceptance after its displayed September24 schedule, because it is the next due submission; preserve P6/N2/N4 without resubmission and maintain qualified content within3originalPins/rolling168hours. TA12 consent/ID/catalog/purchase gates, N3 source gate, paidNONE and existing heartbeat are unchanged.
+
+Changed only local baseline evidence, owning canonical annotations and P2–P4 measurement fields in the existing register.10other rows and all native records are preserved. No external business write, storefront visit, fake event/order, Git/index, source, consent, tracking, catalog or financial action. Native report filters only. Validated read-only Shopify query used transient order IDs/timestamps for deduplication/window checks; durable receipts omit them and no names/contact data were queried. HomebrewNode failed before docs search; bundledNode completed docs search and CLI/connector validation. IAB content export is unsupported; DOM and visually inspected tool-transcript screenshot support the native read, with no downloaded report/local screenshot claimed.
+
+Safety: read-only/local scope, no blocker reclassification, no causal/profit claim. Independent source review is BASELINE_INDEPENDENT_REVIEW_20260923.md. Matching check results and hashes will be recorded in BASELINE_CANONICAL_VERIFICATION_20260923.json; no passing result is asserted before execution.
+
+Authority: source_live_evidence_as_of=2026-06-01; live_state_mode=STALE_READBACK_REQUIRED; effective_approval_policy=FRESH_ACTION_TIME_APPROVAL_REQUIRED; approved_external_scope=NONE; autonomous_action_ready=false; decision_depends_on_uncertain_state=true; decision_changing_evidence=actual due public receipt or mature qualified-buyer outcomes; if_evidence_supports_recommendation=execute next due readback within scope; if_evidence_opposes_recommendation=evidence-backed hold without duplication; material_decision=NOT_MATERIAL. Independent reviewer did not execute live reads.
+
+Shared interval RELEASED. Independent saved-source review passed25groupedchecks; root inverse reconstruction preserves all seven canonical before-hashes, every peer field and paid control. Cockpit render, integration25/25with0risks, strictCONTINUITY_OK and scoped gitdiffcheck passed. Final result hashes/check outputs are in BASELINE_CANONICAL_VERIFICATION_20260923.json. X01a0915d and UX01a088c3 each confirmed own-lane non-use; former parent remains archived. All peer claims/rows preserved. Rollback: own exact replacements in BASELINE_CANONICAL_BEFORE_20260923.json and prior register BASELINE_REGISTER_BEFORE_20260923.json, after checking later dependencies. No external rollback needed.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/BASELINE_READBACK_20260923.md`; BASELINE_NATIVE_20260923.json; BASELINE_SHOPIFY_20260923.json; BASELINE_ORDERS_20260923.json; BASELINE_ASSESSMENT_20260923.json. Reused GA4 source SHA3f362704f993313f1d7f2bc21c8bca7c80d50c01bf76c27856c49c4cbd144482 capturedSeptember21. Continue through `ops/prompts/paid-growth-ai-army-continuation-prompt.md` and this anchor.
+
+
+## 2026-09-23 — German campaign creation authorized; browser input blocked
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-microsoft-german-create-browser-blocked
+- task_entities: account477439, campaign506254907, PROB-2026-09-22-MICROSOFT-GERMAN-TARGET
+- task_stage: BLOCKED
+- next_action_id: recover-german-build-side-browser (scoped task-local action; globalREAD_ONLY_MARKETING_RECONCILIATIONunchanged)
+- Authority: user explicitlyrequestednewDE/DEcampaign. Exactcreate/localizeauthorityconfirmed; do not askagain. Rootplannedpausedcreation, preserving copiedmonetaryconfigurationwithoutactivation.
+- Attempted: native freshinventory10campaigns/noGerman; selectedonlyUS506254907, EditCopyconfirmed1copied, clearedselection, toolbarPasteclickedonce. Pasteinputtimedoutbefore anypausedoptions/finalsubmission; originalAX/rebindtimedout. No exposedJSdialog.
+- Verification: independentfreshsameIABtab3read10campaigns/noGerman/noEnglishcopy. Itssemantic/AX/screenshotmenuactionsdidnotrespond; runtime resetfailed. Temporarytab3closed, originaltab1preserved. No campaigncreated; no source/peer/shared,billing,tracking,storefront,spend/status/budget/bidwrite. Microsoftconnectorsearchreturnednone.
+- Independentreview: german_payload preflight69/69PASS; existing8group144positive230campaignnegative49groupnegativepayloadunchanged. Reviewdidnotoperatebrowser.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-german-campaign/EXECUTION.md; payload/review/preflight_2026-09-23.json.
+- Blocker: BROWSER_INPUT_RECOVERY_REQUIRED, notapproval. Userrefresh/reopenMicrosoftsidebrowser, thenrootfreshinventoryreadbackandPausedverificationbeforecreation. Do notblindlyreplayPaste. Existingcanonicalcontinuationprompt ops/prompts/paid-growth-ai-army-continuation-prompt.md remainsownerstandard.
+
+
+## 2026-09-23 — Dutch campaign native baseline and browser input blocker
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-microsoft-dutch-browser-blocked
+- task_entities: campaign506255078, campaign506254907, account477439, PROB-2026-09-23-MICROSOFT-DUTCH-BUILD
+- task_stage: BLOCKED
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- Current user authorizes exact Dutch campaign completion; owner geography clarification pending because suppliedfile saysUS and requestedname saysNL. Noactivation inferred.
+- VERIFIED target506255078 Paused,Dutch,USD20/day,EnhancedCPC,oneDraftAdGroup1(1275435292107598). Source506254907 sevenEnabledgroups; supplied eighthMommy&MeOutfits absent. SourceCopy toast7groups is clipboardreceipt only; noPaste/Save/businessmutation. TargetfreshinventorystilloneDraftgroup.
+- Browser: initialtaskIABempty, openedexactMicrosoftURL successfully. Laterclicks/Enter/menu actionsunresponsive across taskIABtabs, supportedsemantic/coordinate and fresh-tabrecovery unsuccessful; directnavigation/readbacksavailable, JSdialogundefined. Causeunknown; noauth/permission claim. Retain tab3handoff; temporary1/2closed; noactiveeditor.
+- Local: independentparser preserves exactDutch source,8groups/144positives/120headlines/32descriptions/202campaign negatives/all45groupnegatives/8sitelinks32associations/6callouts/8snippets.222lengthcheckspass,0scopedduplicates/literalconflicts; rootsourcehash/countacceptancepass. No native eligibility/semantic/platformconflict or livebuyer-readiness claim. Referencedimagecaptionfilesabsent.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-microsoft-dutch-campaign/EXECUTION.md, baseline.json, root_acceptance.json, payload/validation.json and payload/review.md.
+- Guardrails: exactpausedtargetonly; nobudget/bid/status/activation/spend/source/shared/peer/storefrontwrite. GlobalpaidNONEunchanged; preservepeerclaims and unrelateddirtywork. Permanentdeletionrequiresaction-timeconfirmation.
+- Next: restoretasksidebrowserinput and resolveonependinggeoquestion, then freshreadtargetbeforecopy/paste once. Completeandexportreconcile202campaign/45groupnegatives and allotherDutchfields. Canonicalcontinuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md.
+
+
+## 2026-09-23 — Portuguese negative cleanup partially applied, browser blocked
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-microsoft-portuguese-negative-cleanup-browser-blocked
+- task_entities: campaign506255983, account477439, PROB-2026-09-22-MICROSOFT-PORTUGUESE-CAMPAIGN
+- task_stage: HANDOFF
+- next_action_id: restore-portuguese-side-browser-and-finish-approved-negatives (task-local paused exception; global paid next action unchanged)
+- Authorization: user continue directly answers the exact187negative-only deletion proposal. Received scope is11campaign+176group extras, preserving244/76; positivekeywords excluded. Do not ask again for unchanged cleanup scope.
+- Implemented: native deletion of exactly11freshly reread campaign negatives; toolbar11selected verified. Post-action table refreshed, selection cleared; persisted after reload. Pagination indicates244remaining. Full tuple verification BLOCKED:164unique virtualized rows captured, export no new file.
+- Not implemented: no ad-group Delete action. Twelve approved Dresses selection-only rows discarded by reload after nextcheckbox repeatedly failed.176obsolete group entries remain pending;76desired entries were fully verified in September22native export.
+- Browser blocker: same-IABtab2 and freshtab3 selection/navigation controls ignore input; native/Playwright/coordinate and runtime reconnect tried. No authentication or macOS permission failure observed. Read recovery skill; no helper restart, permission reset, unrelatedapp access or personalbrowser fallback. Target headerPaused.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-portuguese-campaign/review/negative_cleanup_checkpoint_20260923.json, EXECUTION.md, NEGATIVE_REAUDIT.md.
+- Resume: restore input, reconcile244campaign tuples, deleteonlystill-present176manifest IDs, full76group comparison. No repeated campaign deletions or48group additions. Four native editorial exceptions and152pausedEnglishpositivecopies remain separate. Originaltab1/priorworkingtab2/recoverytab3preserved. GlobalpaidNONE and peerclaimsunchanged.
+
+
+## 2026-09-23 — Portuguese campaign negatives verified; group cleanup native-dialog hold
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-microsoft-portuguese-group-cleanup-native-dialog
+- task_entities: campaign506255983, account477439, PROB-2026-09-22-MICROSOFT-PORTUGUESE-CAMPAIGN
+- task_stage: HANDOFF
+- next_action_id: resolve-portuguese-native-dialog-and-reconcile-pending-delete (task-local paused exception; global paid next action unchanged)
+- Verified: apprestart restored IAB1/tab1controls and nativeexports. Campaign244exacttuples allmatchpayload,0missing/extra/duplicates; previous11cleanup fullyconfirmed. Groupbefore252exactlyequals76desired+176approvedobsolete.
+- Changed: removed25Looks and39FamilyOutfitsobsolete group negatives with native post-action readbacks;64applied. Page navigation clearsselection, so initial151selection-onlyattempt was not deleted.
+- UNKNOWN:31FamilyShirts manifest rows selected/toolbarverified and nativeDelete keyboard submitted; commandtimedout, subsequentAXfocus-emulationreadtwicetimedout. getJsDialogundefined. Do notrepeatDeletebeforeinventory.81remainingobsolete IDs notattempted.
+- Blocker: possible nativeconfirmation unconfirmed; native Codex/ChatGPT inspection denied by computer-use safety. Userasyncquestion asks tohandle visible31-rowconfirmationorreportnodialog. This is inputrecovery, notnewapproval; unchanged187negative-onlyscopealreadyapproved. No bypass, personalChromeorhelper/permissionchanges.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-portuguese-campaign/negative_campaign_final_20260923.csv, negative_group_before_cleanup_20260923.csv, review/negative_cleanup_progress_after_restart_20260923.json, EXECUTION.md.
+- Resume: userdialogreadback, exactnative groupexporttoresolve31unknown, thenremainingapprovedIDsonlyand76finaltuplecheck. CampaignPaused/positivekeywords/source/peers/sharedassetspreserved; allfourpreviouseditorialexceptionsremainseparate.
+
+
+## 2026-09-23 — German campaign created, eight groups localized, content input blocked
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-microsoft-german-created-content-browser-blocked
+- task_entities: account477439, campaign506256066, source506254907, PROB-2026-09-22-MICROSOFT-GERMAN-TARGET
+- task_stage: PARTIAL_BROWSER_INPUT_BLOCKED
+- next_action_id: restore-german-content-side-browser (task-local paused exception; global READ_ONLY_MARKETING_RECONCILIATION unchanged)
+- Authority: explicit user createGerman followed by continue; no repeat creation approval.
+- IMPLEMENTED/VERIFIED: new506256066 named DLM | MS | DE | DE | Search | 202609, native Paste paused checked before submission. Seven source groups plus eighth target-only dresses copy, all eight German names and German language, persisted in fresh native table.
+- Settings: German and Germany presence-only saved. Fresh settings reread Paused/German/USD10daily/MaxClicks/checked0.20cap. Expanded fresh country read pending. Current source/peers now10USD differs from earlier20USD; root changed no budget/bid field and did not infer actor.
+- NOT RUN: German RSA/positive/negative/text-extension/image-caption entry or cleanup. Existing reviewed payload remains ready. Images copied natively but exact ID/crop/caption reconciliation pending.
+- Blocker: input controls stopped reacting at dresses keywords, inherited Status contains Paused display filter. Native/Playwright/keyboard/coordinate, reload, visibility restoration and new same-IABtab2 did not restore input; readbacks available, no authentication/policy inference. Temporarytab2closed; originaltab1preserved. UseraskedreopenoriginalMicrosoftsidetab.
+- Resume existing506256066 only, no duplicate campaign/groups. Clear display filter; localize and reconcile full payload at both negative levels, all ads/URLs/tracking/assets; retain Paused. No source/peer/shared/measurement/storefront/activation/spend mutation. GlobalpaidNONE unchanged.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-german-campaign/creation_checkpoint_20260923.json and superseding EXECUTION.md. Payload worker reviews local checkpoint only; independent live read not claimed.
+- Canonical continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor.
+
+
+## 2026-09-23 — Dutch groups saved, Netherlands resolved, browser input blocked again
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-microsoft-dutch-groups-saved-browser-blocked
+- task_entities: campaign506255078, campaign506254907, account477439, PROB-2026-09-23-MICROSOFT-DUTCH-BUILD
+- task_stage: BLOCKED
+- next_action_id: restore-dutch-side-browser-and-complete-localization (task-local paused exception; global paid next action unchanged)
+- Owner explicitly resolved Netherlands. Target nameNL|NL retained; planned suffixNL-coded. Geographic setting not yet saved/readback.
+- IMPLEMENTED and root-native-read: Paste7once withnewgroupsPaused;7success mappings plus originalDraft. All8group languagesDutch andall8Dutch names saved. Virtualizedrow shift caused temporaryswimsuit/sweater misnaming, corrected and reread by exact IDs1275435295500590/1276534807763903. Do not recopy.
+- Copyaggregate Completed with errors remains unresolved atchild level; Details7success doesnotproveallads/assets. Error export unreadable. Ads,keywords,negatives,URL/text/imageasset localization unfinished; all202/45negativepayload remains required.
+- Inputsagainunresponsive after semantic/keyboard/native/reload/observed-link recovery. Directreadswork, noJSdialog/unsavededitor; causeunknown. Askeduser torefresh/reopenMicrosoftsidebrowser. Retain IAB2/tab1 Dresseskeywords. Personalbrowserunused.
+- Independent localreview:8names exactpayloadmatch; correctedIDmappingconsistent; PARTIALonly, noindependentnativeproof. Source/budget/bidding/activation/measurement/shared/peersunchanged; campaignPaused.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-microsoft-dutch-campaign/EXECUTION.md, live_progress.json; earlierbaseline/acceptancefileshistorical.
+- Resume freshreadtargetafterinputrestoration, finishNetherlands presence/sourcebidparity/eighthdraft/Dutchadsandassets, thenfullnative202campaign/45groupnegative reconciliation. Canonicalcontinuation ops/prompts/paid-growth-ai-army-continuation-prompt.md.
+
+
+## 2026-09-23 — Six Google ads and campaign sitelinks improved; keyword score unresolved
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-google-six-ad-copy-sitelinks-keyword-score-unresolved
+- task_entities: 24273103416, 825605060532, 825646172296, 825646199950, 825646199956, 825727913987, 825727944842, GOOGLE-RSA-STRENGTH-20260923
+- task_stage: BLOCKED
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+The owner explicitly requested Excellent strength for every current campaign ad and useful sitelinks. Root inspected current IAB campaign24273103416 rather than assuming historical draft281499249292033 was the target. Six paused ads found. Added relevant headlines to15each, full keyword phrases in headlines/descriptions, and six existing distinct campaign sitelinks after public destination readback. Shared asset contents were not edited. Five first-description pins retained; Pajamas descriptions now all clarify individual pricing and rotate unpinned.
+
+VERIFIED: six saves and six reopen comparisons pass for all22fields/ad,15headlines/4descriptions and six sitelinks each. Local evidence transfer checks match all six native arrays. Every group's four distinct keyword strings fully appear in its copy. All six ads/groups/campaign remain Paused, all48keywords Paused, USD210campaign total and datesSep22–28 unchanged.
+
+FAILED requested result: all six saved-table ratings remain Pending and editor ratings Poor, with keyword category low while the other four categories high. Native keyword View ideas shows recent assets, no keyword suggestions. Static phrases, DKI(reverted), unpinning and exact long-description keywords did not clear it. User correctly flagged the empty checkbox; acknowledged. Neither paused-keyword causation nor a platform bug is established. Native Pending cell gives no explanation. IAB content export unsupported; CSV requested but receipt unverified, so no native export artifact claimed.
+
+Separate permission requested for only eight Family Matching Shirts keywords202058006604: temporarily Enabled under campaign/group/adPaused, inspect scoring, restore all8Paused. Permission pending; no keyword/status test run. Root surface IAB2/tab1 saved ads; temporarytab2 read-only exact group keywords. Do not reapply completed copy work or infer launch/status authority.
+
+Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-google-ad-strength/EXECUTION.md and ad_copy_before_after.json. Independent reviewer ad_review did not build or execute. Final outcome remains PARTIAL until native Excellent is read back for all six.
+
+Handoff fields: source_live_evidence_as_of:2026-09-23; live_state_mode:LIVE_VERIFIED_EXACT_ADS_ONLY; effective_approval_policy:CURRENT_USER_EXACT_ADS_SITELINKS; approved_external_scope:CAMPAIGN24273103416_AD_COPY_AND_SITELINKS; decision_depends_on_uncertain_state:true; material_decision:NOT_MATERIAL; independent_verifier:ad_review; verifier_independence:DID_NOT_BUILD_OR_EXECUTE. decision_changing_evidence:native keyword rating after an explicitly authorized isolated diagnostic; if_evidence_supports_recommendation:record scoring dependency without inferring activation authority; if_evidence_opposes_recommendation:restore paused keywords and leave cause unknown. Global authoritative control remains stale/NONE/READ_ONLY_MARKETING_RECONCILIATION.
+
+Next owner action: answer the pending isolated diagnostic permission. Continuation uses ops/prompts/paid-growth-ai-army-continuation-prompt.md, preserving current saved ads and all peer claims.
+
+
+## 2026-09-23 — Portuguese-only content audit and approved cleanup verified
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-microsoft-portuguese-only-copy-verified-cleanup-pending
+- task_entities: campaign506255983, account477439, PROB-2026-09-22-MICROSOFT-PORTUGUESE-CAMPAIGN
+- task_stage: HANDOFF
+- next_action_id: confirm-additional-248-portuguese-english-removals (task-local paused exception; globalpaidnextactionunchanged)
+- source_live_evidence_as_of: 2026-09-23T17:09:34.391005+00:00
+- live_state_mode: LIVE_VERIFIED_SCOPED_PAUSED_CAMPAIGN
+- effective_approval_policy: ExactcurrentPortuguese-localizationrequest plus187negative-onlypermanent-removalapproval; additional248permanentdeletionsawaitfocusedComputerUseaction-timeconfirmation.
+- approved_external_scope: Pausedcampaign506255983only; original187negative-onlyscope nowcomplete; reversibletargetimageassociationcleanup. Noactivation/monetary/source/peer/sharedcontent/measurement/storefrontauthority.
+- decision_depends_on_uncertain_state: false
+- material_decision: MATERIAL
+- independent_verifier: paused_build_review localpayload/native-negative-exportreview; noindependentbrowserexecutionclaimed
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Implemented/verified:112remainingapprovedgroupnegatives removed; freshafterexport76=66PT+10English. EarlierDelete timeout resolvedAPPLIEDwithoutrepeat. Nativecaptionassociationreadback93=88PT+5uncaptioned after2target-onlyEnglishassociationremovals. Sharedassetsintact.
+- Verifiedfresh:144PTkeywordtuples exactpayload;152ENPausedextra. All8RSA184visiblefieldsPASS,8Excellentlabels;7campaignsitelinks28groupassociations6callouts7snippetsPortuguese. Originalmixed244/76targetsupersededby144/158/66PTonly.
+- Pending:additional248permanentEnglishrecords (152positive,86campaignnegative,10groupnegative), explicitasyncconfirmationunanswered. Noapprovalbyelapsedtime. Twoimagereplacementsandpajamassitelink/snippetremainnativeeditorialexceptions, nobypass/retry.
+- Browser:originalIAB1/tab1refreshedworkingandkept;temporaryauditTab2closed. Prior112userdialogquestionobsoletebecausefreshafterexportprovesdeletion. Noambiguousmutationremaining.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-portuguese-campaign/PORTUGUESE_ONLY_REVIEW.md; revisedpayload, scopedmanifest, textreadback, native76afterexport. KeywordCSVwithDErowswasexcluded; DOMusedforPTproof.
+- Nextowneraction:answerpending248-removalconfirmation. Thenremoveonlyexactstill-presentEnglishrecords; verify144/158/66beforecomplete. Canonicalcontinuationops/prompts/paid-growth-ai-army-continuation-prompt.md withthisanchor. GlobalpaidNONE/peerclaims/dirtyworktreepreserved.
+
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-23-google-phone-removed-snippet-saved-logo-gated
+
+- task_id: 01a0cf24-6062-7de3-9169-fff694582c76
+- task_stage: BLOCKED
+- task_entities: Google Ads campaign24273103416; account Call association; GOOGLE-LOGO-VERIFICATION-20260923
+- Current exact user request: remove phone asset from all ads, add logo and useful snippet.
+- IMPLEMENTED / VERIFIED: sole inherited account-level Call association removed through native confirmation; current campaign Call view including Account/Campaign/Ad group Enabled/Paused returns no matches. Account scope selector has two campaigns, old Campaign #1 Removed and current target Paused/six groups. Direct all-account asset navigation redirects Overview; no accountwide export or removed-campaign coverage claim.
+- IMPLEMENTED / VERIFIED: new campaign English Types: Dresses, Shirts, Pajamas snippet saved at native1:16PM; Pending/Under review. Existing Types: Dresses, Pajamas, Matching Sets group snippet remains Eligible. No logo added.
+- BLOCKED: logo dialog explicitly requires advertiser verification. Owner must complete it; do not bypass or submit identity documents. Other work completed independently.
+- Preservation: campaignPaused/USD210total/Sep22–28; no delivery/keyword/bid/budget/measurement/billing change. No phone number logged in packet. Prior ad-strength issue remains unresolved and eight-keyword diagnostic remains unapproved.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-google-ad-strength/PHONE_LOGO_SNIPPET.md
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- Owner next action: complete advertiser verification, then resume the already-authorized logo association.
+- source_live_evidence_as_of: 2026-09-23
+- live_state_mode: LIVE_VERIFIED_EXACT_ASSETS_ONLY
+- effective_approval_policy: CURRENT_USER_EXACT_PHONE_LOGO_SNIPPET
+- approved_external_scope: ACCOUNT_CALL_ASSOCIATION_REMOVAL_AND_CAMPAIGN24273103416_LOGO_SNIPPET
+- decision_depends_on_uncertain_state: false
+- material_decision: NOT_MATERIAL
+- independent_verifier: ad_review
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- decision_changing_evidence: native verification completion unlocks logo path; absence keeps logo blocked. No delivery activation inferred.
+- Continuation uses ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor and exact logo gate; preserve unrelated peer edits and standing paid scopeNONE.
+
+
+### 2026-09-23 — Polish Microsoft payload ready; target identity pending
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-microsoft-polish-payload-target-clarification
+- task_entities: 477439,770182,506254907,PL,PROB-2026-09-23-MICROSOFT-POLISH-TARGET
+- task_stage: BLOCKED
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- Current exact user request: complete PL/PLcampaign from US/ENsource in assigned sidebrowser. User asserts Englishcopyexists; fresh native list twice shows11campaigns/noPLtarget. One question asks newpausedcampaign/source10USDsettings versus existingcopyidentity; unanswered at checkpoint.
+- VERIFIED native source: sevenEnabledgroups,English,UnitedStatespresence,USD10/day,MaximizeClicks checked0.20CPCcap. Campaign trackingtemplate/suffix blank; deeperinheritanceNOTRUN.
+- IMPLEMENTED localpayload:8groups,144positives,120headlines,32descriptions,247campaignnegative(229Phrase+18Exact),all64groupnegative including31conditionalrows,8sitelinks/32associations,6callouts,8snippets. Localvalidation0lengtherrors/duplicate/conflicts.
+- VERIFIED all8suppliedPolishcollectionURLs displayproducts/prices underPolandPLN; mixedEnglishproductfragments remain. No checkout or fullstockcertification. OriginalGermanyEUR restored,cart0,temporarytabclosed. AssignedMicrosoftIAB2/tab1leftcampaigninventory/deselected/noeditor; noCopy/Paste/Save/businesswrite.
+- Images: attachment advertises160pairs but actuallycontains0pairs; nativepicture/captionreadback remains. Do not invent imagecontents. Preserve source/peers/sharedassets,paidNONE,billing/measurement/storefront.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-microsoft-polish-campaign/EXECUTION.md
+- Owner nextaction: resolve exactnewversusexistingtarget; then create/localizepausedcopy and reconcile fullnativeexports. No activationinferred.
+- source_live_evidence_as_of: 2026-09-23
+- live_state_mode: LIVE_VERIFIED_SOURCE_ONLY
+- effective_approval_policy: CURRENT_USER_EXACT_LOCALIZATION_WITH_TARGET_IDENTITY_PENDING
+- approved_external_scope: NONE_PENDING_TARGET_IDENTITY
+- decision_depends_on_uncertain_state: true
+- material_decision: MATERIAL_NATIVE_BUILD_PENDING
+- independent_verifier: polish_verify
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- decision_changing_evidence: owneridentifiesexistingtargetorconfirmsnewpausedcampaign;freshnativeinventorythenresolvesidentity.
+- Continuation uses ops/prompts/paid-growth-ai-army-continuation-prompt.md with thisanchor/packet/owneranswer; neveraskagainforreceivedexactauthorization.
+
+
+## 2026-09-23 — Portuguese target keywords and negatives fully reconciled
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-microsoft-portuguese-keywords-cleanup-complete
+- task_entities: campaign506255983, account477439, PROB-2026-09-22-MICROSOFT-PORTUGUESE-CAMPAIGN
+- task_stage: VERIFY
+- next_action_id: hold-portuguese-editorial-exceptions (task-local paused exception; global paid next action unchanged)
+- source_live_evidence_as_of: 2026-09-23T17:40:18.056581+00:00
+- live_state_mode: LIVE_VERIFIED_SCOPED_PAUSED_CAMPAIGN
+- effective_approval_policy: DirectuserreiterationafterconcreteEnglishremovalproposal; samecampaignkeyword/negativecleanup executed. No new approvalpending.
+- approved_external_scope: Paused506255983keyword/negativeEnglishcopyremoval and earlierreversibletargetimageassociationcleanup only. Noactivation/monetary/source/peer/sharedcontent/measurement/storefrontauthority.
+- decision_depends_on_uncertain_state: false
+- material_decision: MATERIAL
+- independent_verifier: paused_build_review localfullpayload/nativeexports; rootindependentafterstatereadback ofactualUIactions
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- IMPLEMENTED/VERIFIED:249Englishrecordsremoved=153positive+86campaignnegative+10groupnegative. Freshcurrent144PTpositiveexacthash68c1dab5/nativeOverall144,158campaignnegativeexporthash6a64a2b3,66groupnegativeexporthashf8899b33; all0missing/extra/duplicate.
+- Correctedcount:fullPausedfilter153exposedonepreviouslymissedEnglishExactswimkeyword79234199694054. Before297=144PT+153EN; after144. Previous152/248pendingfigures superseded. NoambiguousDeleteleft; browsererror wasfollowedbyfreshsaveddatareadback, no duplicate submission.
+- Othertextproof:8RSAs120headlines32descriptions16paths8PTURLs;7sitelinks28associations6callouts7snippetsPT.93imageassociations=88PTcaptioned+5uncaptioned. Four native editorialexceptionsremain(pajamassitelink/snippet,twoimagereplacements); nobypass oractivation.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-portuguese-campaign/PORTUGUESE_ONLY_REVIEW.md; review/portuguese_only_final_verification.json; negative_campaign_portuguese_only_final.csv; negative_group_portuguese_only_final.csv.
+- Browser:originalIAB1/tab1onPortugueseKeywords, temporaryauditTab3closed. Source/peers/sharedassetcontent/dirtyworktreeandglobalpaidNONEpreserved.
+- Nextowneraction:normalMicrosofteditorialreviewforremainingreplacementsifdesired; no additionalkeyword cleanupneeded. Canonicalcontinuationops/prompts/paid-growth-ai-army-continuation-prompt.md withthisanchor.
+
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-23-google-logo-created-brand-consistency-choice
+
+- task_id: 01a0cf24-6062-7de3-9169-fff694582c76
+- task_entities: campaign24273103416; GOOGLE-LOGO-VERIFICATION-20260923; dress-like-mommy-matching-dresses-logo-v2.png
+- task_stage: BLOCKED
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- IMPLEMENTED: new1254square opaque bronze/pink matching-dresses mark, built-in imagegen, byte-identical project copy; source/hash/final prompt preserved in creative/CREATIVE_BRIEF.md. No pixel editing outside imagegen.
+- VERIFIED: real Google logo form unlocked after owner verification work; old-wordmark upload and picker selection succeeded. No campaign Save; form canceled. Fresh all-level Enabled/Paused Business logo inventory No assets match your filters; campaignPaused/USD210total/Sep22–28 retained.
+- VERIFIED: root local28/40/64/96px circular/light/dark preview, independent V2 file review PASS_WITH_GATES. Current landing still has old single-dress wordmark; official Google logo-prominence requirement checked.
+- BLOCKED: one branding-scope choice pending, new logo on website and Ads versus retain current website branding for Ads. Newlogo not uploaded; website untouched; no logo association or serving claim. PriorExcellent issue remains unresolved; eight-keyword diagnostic stillunapproved/unexecuted.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-google-ad-strength/LOGO_RETRY.md and creative/CREATIVE_BRIEF.md
+- Owner next action: choose site+ads newmark or existingbrand, because logo must match landing. Resume exact authorized logo Save after this concrete route resolves; do not reask original campaign authority.
+- source_live_evidence_as_of: 2026-09-23
+- live_state_mode: LIVE_VERIFIED_EXACT_LOGO_ACCESS_ONLY
+- effective_approval_policy: CURRENT_USER_EXACT_LOGO_CREATION_AND_CAMPAIGN_ADDITION
+- approved_external_scope: CAMPAIGN24273103416_LOGO_ONLY; SITE_ADOPTION_CHOICE_PENDING
+- decision_depends_on_uncertain_state: true
+- material_decision: NOT_MATERIAL_LOCAL_CREATIVE
+- independent_verifier: ad_review
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- decision_changing_evidence: owner branding choice and landing consistency; no elapsed-time permission or verification-complete inference.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor, LOGO_RETRY.md and pending choice. Preserve peerfiles/globalpaidNONE.
+
+
+## 2026-09-23 — German campaign content verified; exact obsolete-keyword cleanup confirmation pending
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-microsoft-german-content-verified-cleanup-pending
+- task_entities: account477439, campaign506256066, source506254907, PROB-2026-09-22-MICROSOFT-GERMAN-TARGET
+- task_stage: BLOCKED
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- Task-local next step: receive already-pending action-time permanent deletion confirmation for340manifested copied records, then root deletes only those records and reconciles exact144/230/49native inventories. Global marketing next action/paidNONE unchanged.
+- Browser input recovered with supported native/keyboard interaction. IMPLEMENTED/VERIFIED:8German groups/RSAs,216reopenedfields,144German Enabled positives,230intendedcampaign and49intendedgroup negatives; raw297/241/225native exports have no intended omissions/duplicates.153copiedEnglishpositive records Paused;11campaign and176groupobsolete negatives remain pending removal.
+- Text assets VERIFIED:8campaign sitelinks and32group assignments, exact German text/descriptions/URLs;6callouts and8group snippets. Image assets VERIFIED:95associations,90Germancaptioned+5originaluncaptioned,76new German records,95/95originalpicture+thumbnailcrop URLs. Native9-format sweater customcrop corrected; maxvertical0.122displaypixel difference, finalthumbnailURLexact. SharedEnglish originals retained. DressesRSAfreshly inheritsGermanalttext.
+- Fresh expandedsettings VERIFIED:Paused/German/Germany-only/presence-only/USD10daily/MaxClicks/0.20cap; copiedmoney unchanged. Final8ad overviewCampaignpaused/strengthPending, snippetsEligible. No whole-ad editorial, recipient-serving-readiness, tracking, purchase orperformance claim.
+- Only outstanding build work:340permanentremovals plus resulting exactnativeexport reconciliation. Useraskedexactconfirmationonce; notanswered; no deletionattempt. Source/peer/sharedrecords, billing, tracking, storefront, activation and monetary settings unchanged.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-microsoft-german-campaign/native/content_completion_receipt_20260923.json; native/*reconciliation.json; native/obsolete_keyword_cleanup_manifest_20260923.json; EXECUTION.md. Independent saved-evidence review50/50PASS_WITH_GATES at payload/review/content_completion_review_20260923.json; no independent live replay. Strictcontinuity10/10PASS with bundledPython, systemPython3.9 incompatible; scoped gitdiffcheckPASS.
+- Original IAB2/tab1 retained on Germanads overview, no unsavededitor. Resume exact506256066; no rebuild/copy/creation-approval repeat. Canonical continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor.
+
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-23-logo-live-website-and-google-campaign
+
+- task_id: 01a0cf24-6062-7de3-9169-fff694582c76
+- task_entities: campaign24273103416; MAIN133290917985; GOOGLE-LOGO-VERIFICATION-20260923
+- task_stage: COMPLETE_APPLICATION_VERIFIED_REVIEW_PENDING
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- IMPLEMENTED/VERIFIED: explicit owner instruction to use new logo on website and Google Ads fulfilled. Source commit587bf21079aec78bc63a41d6af3ad14ecab5ead1 pushed main; exact published3file bodies plus preserved cart.js match. Guarded reset executed once after528file comparison. Header/name/favicon live; home1265/390/320px and all six ad collection landings plus /da pass. No overflow320px. CDN decoded RGB pixels identical; favicon32px inspected. Shopify processing flag still true; processing completion not claimed.
+- IMPLEMENTED/VERIFIED: same V2 selected then native campaign Save clicked once after landing consistency. Fresh Associations table exactly1enabled Campaign Business logo, correct matching-dresses thumbnail, Pending/Under review, native last updatedSep23 2:07PM. Campaign Paused/USD210/Sep22–28 preserved. No keyword/status/bid/budget/billing/tracking mutation. Google approval and serving remain pending; Excellent strength unresolved, separate keyword diagnostic unapproved/unexecuted.
+- Validation: installed Shopify CLI theme check exit0 JSON[]; skill validator blocked by missing package, fallback recorded. JSON/diff/source and public browser checks passed. Independent ad_review source and reset-guard PASS; final source after-review recorded separately, no independent native replay.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-google-ad-strength/WEBSITE_ADS_RELEASE.md; logo-release-verification.json; website-logo-final-source.json; website-logo-cdn-verification.json.
+- source_live_evidence_as_of: 2026-09-23
+- live_state_mode: LIVE_VERIFIED_SITE_AND_SAVED_AD_LOGO
+- effective_approval_policy: CURRENT_USER_EXACT_WEBSITE_AND_GOOGLE_LOGO_RELEASE
+- approved_external_scope: THREE_FILE_LOGO_RELEASE_AND_CAMPAIGN24273103416_LOGO_ASSOCIATION
+- decision_depends_on_uncertain_state: false
+- material_decision: USER_APPROVED_REVERSIBLE_BRANDING_RELEASE
+- independent_verifier: ad_review
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Next owner action: read saved Google review result before claiming approval/serving. No repeat branding approval or blind reset. Root Git interval released; all peer claims/files preserved. Original Ads tab retained, updated public home available, temporary admin closed, viewport override cleared.
+- Continuation: ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor and exact release packet; global paid scopeNONE unchanged.
+
+
+## 2026-09-23-microsoft-dutch-content-verified-account-blocked
+
+Owner task01a0cf08; current exact Netherlands/Dutch campaign506255078 localization continues from preserved copy, not rebuild. Working same-IABtab2 restored input; oldbrowserblocker superseded. CampaignPaused; fresh source/target10USD/day MaxClicks0.20cap, Netherlands presence-only andDutch. Eightgroupsnames/languages/settings read;7Paused/original1275435292107598Draft. Saved8RSAs184fields zero differences;144Dutchkeywords;202campaign negatives exact;45intendedgroupnegatives allpresent;8campaign/32groupsitelinks,6callouts,8snippets. Image86final associations preserve source identities:76Dutch captions and10blank;75/76localized crop URLs exact, one sweater cropdifferent. Native positive276/campaignnegative202/groupnegative196 exports fully reconcile desiredtuples, zero duplicates; all132Englishpositive extras Paused and151obsoletegroupnegative extras preserved for exact283record action-time cleanup confirmation. No permanent keyworddeletion attempted.
+
+Microsoft rejected original Draftgroup→Paused save as belonging to inactiveaccount. Rootcause UNKNOWN (USsource stillEnabled); user resolution requested and subsequent businesswrites stopped. No campaignactivation, billing, source/shared/peerasset or measurementchange. Allindependent safe nativeverification/exports complete; public8Dutchcollectionsmokecheck200/products passes, NetherlandsEURcheckoutunverified. Exactcroprepair inspection canceled withoutsave.
+
+Status PARTIAL_CONTENT_VERIFIED__ACCOUNT_RESTRICTION_BLOCKED;complete=false. Nextowneraction resolveMicrosoftrestriction. Then freshread exactcampaign; finishDraftgroup/crop; obtain permanentcleanupconfirmation and reconcile144/202/45exports. No re-copy, no authorization inferred from elapsedtime. Packet EXECUTION.md/live_progress.json/native in2026-09-23-microsoft-dutch-campaign. BroaderpaidNONE and READ_ONLY_MARKETING_RECONCILIATION remain unchanged. Nativekeywordreview and canonicalchecks recorded separately inpacket.
+
+
+## 2026-09-23 — Pinterest Pastel source containment
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-pinterest-pastel-source-containment
+task_entities: TA-25, TA-12, PROB-2026-09-23-PINTEREST-PASTEL-SOURCE-CONTAINMENT, product7536086089825, Pin343118065387595533, scheduled3849568157896098688, board343118134050386510
+task_stage: BLOCKED
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+P3/343118065387595533 was moved once to the newly created, initially private Source Review Hold board343118134050386510 at2026-09-23T20:15:18.711Z. Reloaded private board shows exactly P3 and owner-only collaborator label; the original public board343118134050368248 returns no P3 for its exact-title search. Reopened editor passed11 saved-field checks. Copy, image, full UTMs, alt and AI/person flags are preserved. No duplicate Pin, deletion, invitation or public board-wide privacy change. Resaves, caches and unauthenticated public-URL visibility remain UNKNOWN.
+
+P6/3849568157896098688 is STILL SCHEDULED for displayedSeptember24 01:30PM, native timezone UNKNOWN. Its known child-skirt image discrepancy remains unresolved. Existing lifestyle-only derivative approval did not resolve product accuracy. Both independent P3/P6 reviews now HOLD under the current quarantine instruction. Native scheduled detail/Actions expose Publish now/Delete, despite generic help describing edit support. Exact permanent-delete confirmation was requested once and is pending; no Delete attempted. Local source HOLD has NOT stopped P6.
+
+N2September27 02:00PM and N4September30 02:00PM remain scheduled unchanged. Final native queue3 includes uncontained P6; only two future Pins remain source-qualified. P3's plannedSeptember22–28 window is interrupted by containment and must not be treated as an unchanged seven-date cohort. P2/P4/P5, TA20 clocks and the frozen morning baseline are preserved. Source correctness, tracking acceptance and contribution remain unresolved; no new performance read or sales/profit claim.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/PASTEL_CONTAINMENT_EXECUTION_20260923.json`; P6_PREFLIGHT_SOURCE_20260923.json; P6_PREFLIGHT_REVIEW_20260923.md; P3_CONTAINMENT_REVIEW_20260923.md; PASTEL_CONTAINMENT_POSTREVIEW_20260923.md (15 grouped saved-evidence checks PASS_WITH_LIMITS, no independent live replay).
+
+Exactly2external writes: initial private board creation and one P3board Save. No source/Shopify/catalog/tracking/consent/paid/financial/Git/index action. ProductQA used codex_qa/qa/pinterest_p6_preflight_20260923; Germany/EUR English observed, cart0, no add/checkout/location/privacy change. Exact p6-tagged route and mobile QA NOT RUN after sourceHOLD; native saved URL and QA-equivalent destination checked. IAB2privateboard/tab1 and queue/tab3 marked handoff; producttab2closed. No local screenshots/export claimed; native screenshot transcript/AX/DOM support readback. Two scoped evaluate timeouts recovered through native AX; noSave retry.
+
+Coordination: UX01a088c3 and localization01a0c99c confirmed own-lane non-use; X01a0915d/formerparent archived, no unarchive/retry or authority transfer. Shared interval RELEASED after verified closeout; exact peer non-use is not a transfer of business authority. Local logging initially failed serializing a Path after ownTA25row write; exact rollback log recovered from prior recorded row, parser fixed before remaining writes, no repeated external action. Local inverse ledger PASTEL_CANONICAL_DELTA_20260923.json and registerbefore PASTEL_REGISTER_BEFORE_20260923.json preserve peer state. External rollback is same P3move back only after source resolution and authorized reviewed restoration; no automatic test restoration. P6deletion remains unapproved/unattempted.
+
+Global paid: source_live_evidence_as_of=2026-06-01; live_state_mode=STALE_READBACK_REQUIRED; effective_approval_policy=FRESH_ACTION_TIME_APPROVAL_REQUIRED; approved_external_scope=NONE; autonomous_action_ready=false. Current bounded organic containment authority is the user quarantine instruction. decision_depends_on_uncertain_state=true; decision_changing_evidence=exact P6confirmation and size-linked child-cut proof; if_evidence_supports_recommendation=exact authorized containment after fresh-read; if_evidence_opposes_recommendation=hold without guessed deletion or duplicate. material_decision=true; independent_verifier=receipt_review; verifier_independence=DID_NOT_BUILD_OR_EXECUTE.
+
+Next: Resolve the existing exact P6 deletion confirmation before its displayedSeptember24 schedule because source-held imagery remains queued. Fresh-read the same target after the answer; if already public, reconcile actual identity and authority rather than guessing. Continue unaffected N2/N4 work within3originalPins/168hours. Continue via ops/prompts/paid-growth-ai-army-continuation-prompt.md and this anchor. Initial render, integration25/25with0risks, strictCONTINUITY_OK, scopedgitdiff and exact inverse preservation of8canonical files passed. Register13rows:11unchanged, onlyP3/P6annotated. Six source bindings match. Final matching rechecks and source hashes are recorded in PASTEL_CANONICAL_VERIFICATION_20260923.json; source/approval gates remain unresolved.
+
+## 2026-09-23 — Norwegian Microsoft preparation and country clarification
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-microsoft-norwegian-preflight-country-pending
+task_entities: 477439, 770182, 506254907, 506256099, NB, PROB-2026-09-23-MICROSOFT-NORWEGIAN-TARGET
+task_stage: BLOCKED
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+User requests Norwegian source-copy campaign. Requested NB|NB conflicts with attachment US|NB/UnitedStates; country question remains unanswered. Initial copy question is superseded by Polish owner confirmation:506256099 exclusivelyPL|PL, never reuse. Source readback shows sevenEnabledgroups,English,USD10/day,MaxClicks checked0.20cap,USpresence and blank campaign trackingtemplate/suffix. No Ads writes occurred. Source Cancel unexpectedly raised unsaved warning; No closed it, source editor preserved with no Save/discard. Temporary storefront tab verified eight /no collection routes/products in unchanged GermanyEUR and was closed; raw promo translation key and English labels remain, country-specific checkout NOTRUN.
+
+Local payload:8groups,144positives(62Exact/82Phrase),120headlines,32descriptions,233campaignnegatives(222Phrase/11Exact),all54groupnegatives(30Exact/24Phrase),8sitelinks/32associations,6callouts,8snippets. 222length checks pass,zero duplicates/literalconflicts. Independent attachment/paste-file comparison agrees. Advertised160imagepairs are absent; translate actual native source captions after image readback, do not invent attachment. No source/peer/shared/budget/bid/tracking/activation change. Paused target ID remains unset; native after-state incomplete.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-microsoft-norwegian-campaign/EXECUTION.md` and payload/validation.md, review/PREFLIGHT.md. Own canonical section appended in Polish-owner-confirmed shared interval, no claim transfer. Checks recorded in packet. Next owner action: specify Norway NO|NB versus UnitedStates US|NB; create a distinct paused copy after fresh inventory and then complete/reconcile content. Continue through canonical ops/prompts/paid-growth-ai-army-continuation-prompt.md with this anchor and actual answer.
+
+source_live_evidence_as_of: 2026-09-24T01:09:21Z
+live_state_mode: LIVE_VERIFIED_SOURCE_ONLY
+effective_approval_policy: CURRENT_USER_LOCALIZATION_COUNTRY_PENDING
+approved_external_scope: NONE_PENDING_COUNTRY_CLARIFICATION
+decision_depends_on_uncertain_state: true
+material_decision: MATERIAL_NATIVE_BUILD_PENDING
+independent_verifier: norwegian_review
+verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+decision_changing_evidence: explicit country answer and fresh distinct target identity
+if_evidence_supports_recommendation: build separate paused localized copy and verify complete native exports
+if_evidence_opposes_recommendation: hold dependent edits and resolve the exact contradiction
+
+
+## 2026-09-23 — Italian Microsoft preparation and country clarification
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-microsoft-italian-preflight-country-pending
+task_entities: 477439, 770182, 506254907, IT, PROB-2026-09-23-MICROSOFT-ITALIAN-TARGET
+task_stage: BLOCKED
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+Directuser requests newIT|IT campaign, while attachment saysUnitedStates/US|IT; one countryquestionpending. Source506254907 freshEnabled7groups,English/USpresence,USD10/day,MaxClicks checked0.20cap,blankcampaigntrackingfields. Latest13campaigninventory hasnoItalian; newNorwegianpeer notours. NativeCopy usedonce andPaste dialog inspected; uncheckedPauseafterpaste must becheckedbeforefuturePaste. Canceledunsubmitted; no campaigncreated/saved/activated/deleted/modified. TaskIAB2/tab1inventorymarkedhandoff; source settings read-only andcleanlynavigatedaway. Userexplicitcreationrequest resolves anyexistingcopyambiguity; no need askagain.
+
+Localpayload8groups/144positives/120headlines/32descriptions/209campaignnegatives/all49groupnegatives/8sitelinks+32associations/6callouts/8snippets passes48/48checks,zerooverlength/duplicates/literalconflicts. Preserve84Englishcomplementarynegatives and27Exactroutingnegativeswithlaunchgates. Source lacksMommyMeOutfits; add suppliedeighthgroup. Imagecaption160pairsadvertisedbutabsent; translateactualnativecaptionsandpreservepicturesafterreadback. All8ItalianlandingcollectionsshowproductsunderunchangedGermany/EUR,includingfamily-sweaters; targetmarket/mobile/checkout remainunverified. Temporarytab2closed; no cart,market,privacy orstorefrontchange.
+
+Evidence:`dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-microsoft-italian-campaign/EXECUTION.md`,source_before.json,landing_smoke.json,payload/validation.json,review/INDEPENDENT_REVIEW.md. Independentverifieritalian_reviewdidnotbuildorexecute; exactverdict/limitsinreviewreceipt. Canonicalrecordsrecordcountrygateonly; paidNONEandallpeerclaimsunchanged. Nextowneraction: answerItaly/ItalianorUnitedStates/Italian; thenfreshread,createadistinctpausedcopy,completeallcontentandfullnativeexportverification. Continueviaops/prompts/paid-growth-ai-army-continuation-prompt.mdwiththisanchor. Checkreceiptsinpacket; no completedcampaignclaim.
+
+source_live_evidence_as_of: 2026-09-24
+live_state_mode: LIVE_VERIFIED_SOURCE_ONLY
+effective_approval_policy: CURRENT_USER_LOCALIZATION_COUNTRY_PENDING
+approved_external_scope: NONE_PENDING_COUNTRY_CLARIFICATION
+decision_depends_on_uncertain_state: true
+material_decision: MATERIAL_NATIVE_BUILD_PENDING
+independent_verifier: italian_review
+verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+decision_changing_evidence: explicitcountryanswerandfreshdistincttargetidentity
+if_evidence_supports_recommendation: buildseparatepausedlocalizedcopyandverifycompletenativeexports
+if_evidence_opposes_recommendation: holddependentwritesandresolveexactcontradiction
+
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-23-merchant-logo-editor-unavailable
+
+- task_id: 01a0cf24-6062-7de3-9169-fff694582c76
+- task_entities: Merchant513542500; BusinessManagerom-680848741535919920; MERCHANT-LOGO-20260923
+- task_stage: BLOCKED
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+- Owner explicitly authorized same approved V2 logo in Merchant. IMPLEMENTED: local exact-file validation and narrow claim/evidence only. VERIFIED: authenticated correct account, no Brand/Logo editor via native Business info/Marketing/logo search or official Search profile route. Current user is Super admin in linked Business Manager. External logo upload/save NOT RUN because no control; no external mutation.
+- Candidate1254squareRGBPNG903307bytes SHA50e520b50d3bed2f9a71840a4bdd6d16b1e5e478f3b61799f1e3e6836ace1b08 unchanged. Independent ad_review scope/file PASS_WITH_GATES; root native evidence only. Do not assume missing role, suspension or rollout cause.
+- Next owner action: Google support identifies the supported logo editor or diagnoses its absence; no support message sent. Then resume already-approved upload/preview/save/readback. No renewed logo-choice approval needed.
+- Evidence: dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-google-ad-strength/MERCHANT_LOGO_UPDATE.json and MERCHANT_LOGO_UPDATE.md. Source live observation2026-09-24T02:08:47Z. Task-owned IAB2/tab7 at Business info retained; temporarySearchtab8 closed.
+- source_live_evidence_as_of: 2026-09-24T02:08:47Z
+- live_state_mode: LIVE_VERIFIED_NATIVE_EDITOR_ABSENT
+- effective_approval_policy: CURRENT_USER_EXACT_MERCHANT_LOGO_UPDATE
+- approved_external_scope: MERCHANT513542500_BUSINESS_LOGO_ONLY
+- decision_depends_on_uncertain_state: true
+- material_decision: NOT_MATERIAL_READ_ONLY_BLOCKER_RECONCILIATION
+- independent_verifier: ad_review
+- verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+- Preserve all peer claims/products/feed/source/account/permission/paid/theme fields. Canonical continuation ops/prompts/paid-growth-ai-army-continuation-prompt.md with this exact anchor; global paid controls unchanged.
+
+
+## 2026-09-23 — Polish Microsoft paused build and final reconciliation
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-microsoft-polish-paused-build-policy-cleanup
+task_entities: 477439, 770182, 506256099, 506254907, PROB-2026-09-23-MICROSOFT-POLISH-TARGET
+task_stage: BLOCKED
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+Target **506256099**, `DLM | MS | PL | PL | Search | 202609`, is created and VERIFIED Paused, Poland/Polish presence-only, USD10/day, Maximize Clicks checkedUSD0.20cap. Exact current user creation authority persists; do not recopy or ask target identity again. Eight Polish groups/RSAs saved; all152RSAtextfields reopened and exact;144Polishpositives verified,153inheritedEnglishpositivesPaused. Campaign247negatives match exactly; all64desiredgroupnegatives present,176obsolete inherited group negatives remain. Eightcampaign/32groupsitelinks,6callouts,8snippets saved/read. Three independent Polish-caption copies saved with original media IDs; Microsoft rejected sourceimage8864942551977 copy with Adult content alert, so further image submissions stopped.73unique captions unfinished; one accepted sweatercrop differs. Status PARTIAL_BLOCKED_IMAGE_POLICY__PERMANENT_CLEANUP_CONFIRMATION_REQUIRED. Root task01a0cf40 owns only this target/IAB2tab1; source506254907 and peer/sharedoriginals remain untouched. Exact329cleanup IDs (176negatives+153pausedpositives) recorded; no permanent deletion or activation. Resume policy review and action-time confirmed cleanup, then full final144/247/64/image reconciliation. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-microsoft-polish-campaign/EXECUTION.md`, `final_native_verification.json`, `negative_reconciliation_and_cleanup.json`. Global paid controls unchanged.
+
+source_live_evidence_as_of: 2026-09-24T02:18:07.245521+00:00
+live_state_mode: LIVE_VERIFIED_PAUSED_BUILD_PARTIAL
+effective_approval_policy: CURRENT_USER_EXACT_PAUSED_POLAND_POLISH_BUILD
+approved_external_scope: MICROSOFT506256099_PAUSED_LOCALIZATION_ONLY
+decision_depends_on_uncertain_state: true
+material_decision: MATERIAL_BUILD_SAVED_BUT_COMPLETION_GATED
+independent_verifier: polish_verify
+verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+decision_changing_evidence: Microsoft image policy resolution and exact irreversible cleanup confirmation
+if_evidence_supports_recommendation: finish approved savedtarget and reconcile native records
+if_evidence_opposes_recommendation: preserve paused target and escalate exact blocker
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-23-google-activation-budget-and-bidding-review
+
+- task_entities: 24273103416, GOOGLE-DAILY-BUDGET-20260923, DEC-GADS-DAILY-20260923
+- task_stage: BLOCKED
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+## Google activation budget and sales bidding — September23 evening
+
+Task01a0d13a owns only campaign24273103416 delivery/budget request in its task-owned IAB2/tab1; status OWNER_APPROVAL_REQUIRED for replacement, no external business writes. Fresh user approval covers activation at USD20/day, but native existing budget is USD200 CAMPAIGN TOTAL Sep22–Oct10 and type cannot be converted. Campaign/six groups are Enabled; six RSAs Paused. MaxClicks checkedUSD0.20cap. Initial all-keywords-paused summary conflicts with11 freshly rendered Enabled/Eligible rows in48-total table; full status reconciliation remains open. Earlier paused/USD210/Sep28 records are historical for these fields only.
+
+User then asked which bidding best produces sales. Live primary Website Purchase is used by1of1campaigns, Awaiting conversions, Sep16–22 zero allconv/value, last event pingSep22 4:22AM; not proof of broken tracking or validated purchase/value/dedup. Recommend verifying purchase measurement first, then Purchase-only Maximize Conversions for order count; value bidding/ROAS follows reliable values/history. No strategy change approved or executed. Independent activation_review blocks wrong-budget activation and conditionally accepts advice. Global standing scopeNONE and READ_ONLY_MARKETING_RECONCILIATION unchanged; peer brand/asset/measurement claims preserved.
+
+Owner next action: resolve the pending Daily replacement choice because existing total budget cannot meetUSD20/day. Independent next3: validate genuine purchase/value/dedup; refresh full keyword/ad inventory; after exact choice prepare/verify correct-budget launch. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-google-activation-budget/READBACK.json` and `.md`. Local record interval RELEASED after closeout. Continue canonical `ops/prompts/paid-growth-ai-army-continuation-prompt.md`, anchor `2026-09-23-google-activation-budget-and-bidding-review`.
+
+Handoff: source_live_evidence_as_of2026-09-24T02:31:51Z; live_state_modeLIVE_VERIFIED_EXACT_CAMPAIGN_AND_GOAL; effective_approval_policyCURRENT_USER_EXACT20DAILY_ACTIVATION; approved_external_scopeEXISTING_CAMPAIGN20DAILY_REQUEST_ONLY_REPLACEMENT_PENDING; decision_depends_on_uncertain_statetrue; material_decisiontrue; independent_verifieractivation_review; verifier_independenceDID_NOT_BUILD_OR_EXECUTE. decision_changing_evidence: replacementchoice and genuinePurchasevalidation; if_evidence_supports_recommendation: verifycorrect-budgetlaunch; if_evidence_opposes_recommendation: retainnonservingandresolveexactdependency. No paid, tracking, billing, peer or Git changes.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-23-google-required-cpc-control
+
+- task_entities: 24273103416, GOOGLE-DAILY-BUDGET-20260923, DEC-GADS-DAILY-20260923
+- task_stage: BLOCKED
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+User constraint supersedes prior bidding advice: the owner requires control of per-click cost and rejects potentially expensive clicks. Retain current Maximize Clicks with checked USD0.20 maximum CPC pending full bid-adjustment review; do not switch to uncapped conversion bidding or raise the cap without exact approval. USD0.20 is the current observed setting, not a newly owner-specified numeric ceiling. Google documents that bid adjustments apply on top of this cap, so absolute ceiling compliance remains unverified. Sales optimization should use verified purchase measurement, focused queries, negatives and landing fit inside the accepted CPC constraint. Existing USD20/day budget-type replacement question remains pending; no external business changes.
+Official CPC-limit guidance checked live. Source packet2026-09-23-google-activation-budget/READBACK.json and.md. Existing purchase event/value/dedup uncertainty and replacement approval remain. Parent did not change Ads settings. Handoff: source_live_evidence_as_of2026-09-24T02:31:51Z; live_state_modeLIVE_VERIFIED_EXACT_CAMPAIGN_AND_GOAL; effective_approval_policyCURRENT_EXACT_SCOPE_ONLY; approved_external_scopeREPLACEMENT_PENDING_NO_BID_INCREASE; decision_depends_on_uncertain_statetrue; material_decisionNOT_MATERIAL_OWNER_CONSTRAINT; decision_changing_evidence:modifierreadbackandownerbudgetchoice; if_evidence_supports_recommendation:preservecappedlaunch; if_evidence_opposes_recommendation:resolveeffectivecapbeforeactivation. Continue via ops/prompts/paid-growth-ai-army-continuation-prompt.md.
+
+
+## 2026-09-23 — Polish confirmed329cleanup, native dialog handoff
+
+AGENT_CONTINUITY_ANCHOR: 2026-09-23-microsoft-polish-confirmed-cleanup-dialog-handoff
+task_entities: 506256099, 1273236272902732, 1261141645145937
+task_stage: BLOCKED
+next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+Superseding cleanup checkpoint: user explicitly confirmed all329record removals; no further deletion permission is needed for that exact scope.23obsolete dress-group negatives are VERIFIED deleted, with all10desired rows intact. The next39family-outfit obsolete rows were selected exactly and Delete invoked, but native JavaScript confirmation blocks IAB controls and getJsDialog returns none; its outcome is UNVERIFIED. Native Codex-app fallback was rejected by Computer Use safety controls. Status PARTIAL_BLOCKED_NATIVE_DIALOG_AND_IMAGE_POLICY. User handoff requested to click OK once if that native dialog is visible. Resume by reading current outcome, never blindly resubmit.306records remain unverified, including all153pausedEnglishpositives; existing image policy/crop gaps unchanged. Approval persists and campaign remains last-verifiedPaused. Receipt: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-microsoft-polish-campaign/cleanup_execution.json`.
+source_live_evidence_as_of: 2026-09-24T02:44:55.686188+00:00
+live_state_mode: VERIFIED23DELETED_NEXT39UNVERIFIED
+effective_approval_policy: EXPLICIT329PERMANENT_REMOVAL_CONFIRMED
+approved_external_scope: EXACT329KEYWORD_RECORDS_WITHIN506256099
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-23-google-activation-identity-handoff
+
+- task_entities: 24273103416, 281499254360335, 10215473139, GOOGLE-DAILY-BUDGET-20260923
+- task_stage: BLOCKED
+- next_action_id: READ_ONLY_MARKETING_RECONCILIATION
+
+## Google activation security handoff — September23 evening
+
+Superseding status: PARTIAL_BLOCKED_GOOGLE_IDENTITY_VERIFICATION. The user's latest “so make the campaign active!” authorizes the previously explained daily-budget replacement in context; earlier replacement-choice gates below are historical. Exact authority persists for USD20 average daily with existing Maximize Clicks checkedUSD0.20 maximum CPC, preserved US/English/Search-only/October10 end and source content, original pause before replacement activation. No cap raise, uncapped bidding, billing, tracking, shared-asset or peer change.
+
+Root task01a0d13a created only replacement wizard draft `DLM | GADS | US | EN | Search | 202609 | Daily`, campaign-form ID281499254360335 / draft10215473139, in its own Chrome tab475226553 after disclosed IAB control failure. This is not a published campaign ID or serving receipt. Google now displays “Confirm it's you” and “Changes failed to save.” Review shows USD20/day with Value is required, blank location summary and asset-optimization mismatch; all desired settings require saved-state reconciliation after verification. No ads/keywords were transferred, original24273103416 was not paused or otherwise changed by this execution, and no replacement activation occurred. Single API fallback stopped on OAuth400 invalid_grant; no credential changes or alternate authentication bypass.
+
+Owner next action: complete the Google identity check in the preserved Chrome DLM activation tab, then report completion. This is a platform access dependency, not another launch approval. Next3:1resume the same draft and reconcile/save/reopen all settings;2fresh-source copy/reconcile six groups/ads,48keywords, negatives and assets while replacement nonserving;3verify effective cap/modifiers, pause/read original, enable/read replacement. Independent activation_review DID_NOT_BUILD_OR_EXECUTE confirms this resume boundary. Overall sales, eligibility and serving remain unverified. Global paid-control NONE and READ_ONLY_MARKETING_RECONCILIATION remain unchanged outside this exact owner scope. Local shared-record interval RELEASED after closeout. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-google-activation-budget/ACTIVATION_HANDOFF.json` and `.md`. Continue canonical `ops/prompts/paid-growth-ai-army-continuation-prompt.md`, anchor `2026-09-23-google-activation-identity-handoff`.
+
+source_live_evidence_as_of: 2026-09-24T02:53:35.635563+00:00
+live_state_mode: VERIFIED_NATIVE_IDENTITY_BLOCK__DRAFT_SETTINGS_UNVERIFIED
+effective_approval_policy: CURRENT_USER_EXACT20DAILY_CAPPED_ACTIVATION
+approved_external_scope: NECESSARY_DAILY_REPLACEMENT_AND_SOURCE_PAUSE
+decision_depends_on_uncertain_state: true
+material_decision: MATERIAL_LAUNCH_BLOCKED_IDENTITY_CHECK
+independent_verifier: activation_review
+verifier_independence: DID_NOT_BUILD_OR_EXECUTE
+decision_changing_evidence: user identity verification and exact persistent draft settings/content
+if_evidence_supports_recommendation: complete authorized correct-budget capped launch
+if_evidence_opposes_recommendation: preserve nonserving state and resolve exact demonstrated blocker
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-24-email-retention-launch-prep
+
+Owner request: start email and repeat sales — abandoned-checkout, welcome (discount code), post-purchase "complete the family set" automations, then an October past-buyer holiday email.
+
+Live read-only Shopify readback (2026-09-24): 2026 = 143 orders / 132 buying customers / 6 returning (4.5%) / USD9,116.76 net. Subscribed customers 10,606; subscribed buyers last-order-2026 82, since-2024 307, all-time 5,218. Abandoned checkouts 30d: 14. No welcome/first-order discount exists although the theme publicly promises "Get 10% off your first order" (customer-truth gap). All 41 `Christmas Pajamas` products are ARCHIVED; 1 of 238 active products is holiday-type, so the holiday line is not live. `customersCount` ignores orders_count/email_marketing_state filters — use segment queries.
+
+Result: `PREPARED_LOCAL__ADMIN_ENABLEMENT_BLOCKED`. No external write succeeded. `WELCOME10` (10%, once per customer) creation was denied by the session permission classifier; not retried or worked around. Task-owned in-app browser lands on Shopify login; marketing automations are admin-UI-only. Plan, consent rule, copy for all four sends, tiered October audience and success measures: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-email-retention/EMAIL_RETENTION_PLAN.md`.
+
+Next: owner signs in to Shopify admin in the in-app browser and allows the WELCOME10 discount write; then enable welcome + abandoned-checkout + complete-the-set automations and read back each as Active. October email stays gated on a live reviewed holiday collection and owner go on final content/audience.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-24-holiday-pivot-readiness
+
+- task_entities: 7241063825505, 7234945155169, 7230717886561, 7232295043169, christmas-sweaters, PROB-2026-09-24-PDP-BACK-LINK-DOUBLE-ESCAPE
+- task_stage: BLOCKED
+- next_action_id: OWNER_APPROVE_HOLIDAY_RESTORE_LIST
+
+Why: the owner asked to pivot to the holidays (Christmas pajamas, family sweaters, October demand). The owner also said the cable-knit sweater page needs work before ads because it had 72 visitors and 0 add-to-carts.
+
+Read-only live Shopify findings (2026-09-24):
+- The sweater page's 72 sessions had 100% bounce and an average of about 0.01 s per session. 65 were direct with no UTM tags and 61 fell on Sep 9–10. The same bursts hit the cartoon-pajama and one-shoulder-swimsuit pages on the same days. This looks like automated traffic, so it is not evidence about the page's photos, price or sizing.
+- Oct–Dec 2025: USD2,381 gross, of which about USD1,870 was holiday products. Holiday sales started in the weeks of Oct 6–20.
+- 0 ACTIVE Christmas products. All 10 holiday products that sold last season, including the cable-knit sweater that actually sold (`7234945155169`), were ARCHIVED around 2026-05-01.
+
+Changed:
+- Local theme fix only: the PDP back link showed a literal `&amp;`. Switched to `escape_once` in two snippets. Not committed, because the Git/index claim held by task `01a088c3` forbids new theme changes. Shopify CLI is BLOCKED locally (node dyld `libsimdjson.29` missing), so theme check was NOT RUN.
+- Wrote the readiness packet with the restore list and gates G1–G4: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-holiday-pivot/README.md`.
+- Added a problem tracker row.
+
+Guardrails: no product, feed, ad, spend or theme-publish writes. The licensed-character (Grinch) design is gated on the owner confirming the supplier has the rights.
+
+Next: owner approves or edits the restore list. Then check each product with the supplier and run the listing checks, restore to ACTIVE, and read back storefront, collections, feeds and Pinterest grouping. Paid holiday traffic stays gated by `ops/marketing/`. This also unblocks the October email, which the 2026-09-24 email anchor gated on having a live holiday collection.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-24-holiday-line-sourcing-captcha-stop
+
+Owner chose to source a new holiday line (not revive the 41 archived Christmas pajamas) for the October past-buyer email. Lane was unclaimed; earlier-today reviewed Opportunity Scout job 3839f4f0228f was complete (0 verified). Opened the dedicated helper Chrome via dashboard `/api/open-1688-browser` and ran dashboard detail checks on 5 unverified family Christmas pajama leads: 989011278121 (12y smr factory) and 988913643690 (7y, smr reseller) survive as Test/66 with full Dad/Mom/Kids/Baby range, 95% cotton, dropship yes, ¥18–25, but no size chart or consistent stock proof; 1083920823413, 1080011501650, 1080770657831 rejected (tenure/IP). Two further exact searches stopped on a 1688 CAPTCHA/punish page; not bypassed. No Shopify write. Details: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-email-retention/EMAIL_RETENTION_PLAN.md` § Holiday line sourcing.
+
+Next: owner clears the 1688 CAPTCHA in the helper Chrome window; then re-run the two searches, capture size charts for the two survivors, browse the smr factory store for more Christmas designs, and build draft packages via the canonical listing workflow (drafts only).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-24-christmas-redirects-to-pajamas
+
+The owner approved in chat pointing the old Christmas redirects at the Pajamas collection. The earlier note estimated 38 redirects. A full read of all 4,131 Shopify URL redirects found 74 whose target was `/collections/christmas-pajamas`. All 74 are old paths for archived Christmas products or collection-scoped product paths. The storefront `products.json` returned 0 products for `christmas-pajamas` and 22 for `pajamas`. No open claim covered redirects.
+
+Changed (external write, owner-approved): used `urlRedirectUpdate` to change the target on all 74 redirects from `/collections/christmas-pajamas` to `/collections/pajamas`. The redirect IDs and paths are unchanged. Result: 74/74 succeeded with no userErrors. LIVE_VERIFIED: the Admin readback shows all 74 now target `/collections/pajamas`, with 0 redirects left pointing at `christmas-pajamas`. Four sampled public URLs, including one `/en-jp/` path and one collection-scoped path, followed through to `/collections/pajamas` with HTTP 200. No product, collection, theme, feed, ad or spend change.
+
+Rollback: set each ID in the before-state file back to `/collections/christmas-pajamas`, for example if the new holiday line fills that collection. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-holiday-pivot/christmas_redirects_{before,apply,readback}_20260924.json`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-24-qualified-shopper-conversion-headline
+
+The owner asked for store conversion to be measured on real shoppers instead of total visits. From now on the headline is purchases ÷ qualified-shopper sessions, where qualified means **mobile OR Google search-referred**. The all-session rate is kept only as a diagnostic.
+
+LIVE read (Shopify connector ShopifyQL, aggregate only, no PII), 2026-08-25 to 2026-09-23:
+- Qualified: 2,342 sessions / 106 carts / 22 checkouts / 9 purchases = 0.38%.
+- Excluded: 3,210 sessions (57.8%) / 25 carts / 22 checkouts / 0 purchases.
+- All sessions: 5,552 / 9 purchases = 0.16%. All 9 purchases are inside the qualified segment.
+- US desktop alone was 3,023 sessions with 0 purchases.
+
+The owner's "about 70% bots, 0.1%" matches the older August8–September4 window. The excluded traffic is still NOT a proven bot diagnosis: its 22 checkout starts with 0 completions are unexplained, and could be scripted checkout probing or a desktop checkout obstacle. Nine qualified purchases is below 30, so the rate is directional.
+
+Changed (local only, not committed):
+- New `ops/scripts/qualified_shopper_conversion.py` prints the two queries and computes the report. It warns if the excluded segment ever contains purchases.
+- New test `ops/tests/test_qualified_shopper_conversion.py`: PASS.
+- New evidence file `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-qualified-shopper-baseline/shopify_sessions_20260825_20260923.json`.
+- `ops/marketing/daily_scorecard.md`: new top section plus a threshold rule.
+- `ops/GROWTH_NORTH_STAR.md`: weekly-routine definition updated.
+
+The local Admin token lacks `read_reports`, so the queries run through the Shopify connector. No scope change was made. No external writes.
+
+Next: diagnose the 22 desktop checkout starts with 0 completions. Use a checkout-step breakdown by device and country, and a public no-payment desktop checkout QA. This separates a real desktop checkout bug from probing traffic.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-24-family-matching-outfits-seo-target
+
+- task_entities: Shopify collections `33122287713` (`new-women-outfits`, target) and `377555589` (`matching-outfits`); theme MAIN `133290917985`; commit `b3950ea`; Articles 559472050273, 559662497889, 559662268513, 559652503649, 559471427681, 559654207585, 559661908065, 559653290081, 559662399585, 559652110433
+- task_stage: VERIFY
+- next_action_id: GSC_RECHECK_FAMILY_MATCHING_OUTFITS_2026_10_22
+
+Why: the owner asked to go after the Google query "family matching outfits". The owner reported 1,662 impressions a month at position ~14.5 with 6 clicks; GSC was not re-read here because it needs a Google sign-in. The owner asked for one collection page to target the query, with its title, H1, 150–300 words of copy, and links from the homepage and the blog.
+
+Decision: the target is `/collections/new-women-outfits`, not `matching-outfits`. Its 86 live products are all whole-family sets and tops. It already had the menu, homepage, PDP, Pinterest-lane and ad-headline links. Both pages had the H1 "Family Matching Outfits", so they were competing for the query. Every page also had a stray "Shipping Policy" H1 from the cart drawer.
+
+Changed (LIVE_VERIFIED):
+- Theme commit `b3950ea` on `main` touches 6 files: the English locale, the collection SEO fallback and content snippets, the hero banner, the homepage template and the cart drawer.
+  - The target has the new title and meta description plus 253 words of new copy.
+  - `matching-outfits` is retitled "Matching Outfits for Mom, Dad and Kids" and links to the target.
+  - The homepage hero button reads "Shop Family Matching Outfits".
+  - The policy H1 in the drawer is now an H2.
+- The GitHub sync did not apply the commit for 9+ minutes. Live was confirmed equal to `b19a219`, then the same 6 files were written with `themeFilesUpsert`. All 6 checksums now match `b3950ea`.
+- 10 English articles got one intro-paragraph link, "family matching outfits" → the target. Only the `body_html` translations the edit made outdated were re-registered, with the new digest and the same value. All 10 are VERIFIED.
+
+Validation:
+- `shopify theme check` with nvm Node 22: 0 offenses. Homebrew node is still broken (missing `libsimdjson`).
+- `git diff --check` passes.
+- Live HTML, desktop and 375px mobile browser checks pass. The German and Spanish articles still render their translations.
+
+Coordination: the 2026-09-22 Git/index claim (task `01a088c3`) is complete per `2026-09-22-project-main-sync/RESULT.md`, which says future changes should go through main and the live theme. Theme commits followed on 2026-09-23. The peer's uncommitted `escape_once` edits in `snippets/breadcrumbs.liquid` and `snippets/buy-box-similar-styles.liquid` were left local and are not included here. No product, redirect, feed, ad or spend writes were made.
+
+Evidence and rollback: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-family-matching-outfits-seo/`.
+
+Next: around 2026-10-22, re-read GSC for the query "family matching outfits" by page: position, clicks, and which URL ranks. If `matching-outfits` or `popular-family-matching` still gets impressions for the query, differentiate `popular-family-matching`, which has the same tag rule.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-24-404-redirects-and-desktop-checkout-qa
+
+- task_entities: UrlRedirect 394110599265, 394110632033, 394110664801, 394110697569, 394110730337, 394110763105, 394110795873, 394110828641, 394111156321, 394110861409, 394111189089, 394110894177, 394110926945, 394110959713, 394110992481, 394111025249, 394111058017, 394111090785, 394111123553; deleted products 7537920999521, 7537120870497, 7607766483041; variant 44046788395105
+- task_stage: VERIFY
+- next_action_id: OWNER_DESKTOP_PAID_TEST_ORDER_2026_09
+
+Why: the owner asked for a desktop test order to rule out a checkout problem, and for redirects for the 404 page (owner figure: 258 views in 90 days). This also covers the no-payment desktop checkout QA that anchor `2026-09-24-qualified-shopper-conversion-headline` named as next.
+
+404 source: GA4 was not readable (built-in browser not signed in to Google), so the 258 figure was not re-read. Instead, Shopify 90-day landing sessions (1,000 paths) were checked with cookie-free public GETs. Found 145 landing sessions on 19 product/collection paths returning 404, plus 82 on `/orders/<token>` order-status links. Those need the `?key=` query that analytics strips, so they are not redirect candidates. The top three were deleted, not archived: blue-check family set (53), blue-butterfly family set (46) and ivory-meadow dresses (12). There was no worklog record of the deletions. Nine were collection-scoped paths like `/collections/swimsuits/products/<h>`. Their root `/products/<h>` already had redirects, but Shopify matches exact paths, so the scoped forms still 404'd. Parallel checking caused Shopify 429s; those paths were re-checked one at a time.
+
+Changed (external write, owner-requested, LIVE_VERIFIED): created 19 `urlRedirectCreate` rows. Each targets an existing category collection with live products, following existing precedent (family sets → family-sets, dresses → mother-daughter-matching-dresses, swim → swimsuits, daddy tees → daddy-and-me). Two creates targeting `/collections/mommy-and-me` were rejected, because a dormant redirect `341409038433` has that path as its source. Those two use `/collections/matching-outfits` instead. The Christmas PJ redirect was then repointed to `/collections/pajamas`, to match same-day anchor `2026-09-24-christmas-redirects-to-pajamas`, since christmas-pajamas has 0 live products. No existing redirect, product, theme, feed, ad or setting was changed.
+
+Verified:
+- The Admin readback by ID matches all 19.
+- Public checks: 41/41 PASS (root plus `/he` and `/fr`), with 301s to locale-preserving targets.
+- Every target has 6–79 live products.
+
+Checkout QA (desktop 1440x900, built-in browser): add to cart → cart → one-page checkout works. Address validation ran, Free/Priority shipping rates loaded, and card/Shop Pay/PayPal/USDC plus 4 express wallets rendered. The only console error is the benign `/private_access_tokens` 401. The test stopped before Pay now with placeholder data, no card and no order. The cart was cleared. ShopifyQL 30d: desktop human 8 checkouts / 0 completed, mobile human 23 / 10, desktop bot 15 checkouts on 13 cart adds. Payment submission on desktop remains unverified. Observation: "Email me with news and offers" appeared pre-checked (unconfirmed setting, not changed).
+
+Evidence and rollback (`urlRedirectDelete` per ID): `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-404-redirects-checkout-test/`.
+
+Next: the owner places one real desktop order (then cancels/refunds) to test payment submission. Optionally, re-read GA4 404 page views in about 30 days to confirm the drop.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-24-collection-h1-and-family-pajamas-rule
+
+The owner asked (in chat) to fix two issues: every collection page's first H1 was "Shipping Policy", and `/collections/family-pajamas` ("Family Matching Pajamas") showed no products.
+
+1. H1: the cause was the shipping-policy body (which contains its own `<h1>`) rendered inside the hidden cart drawer on every page. The fix (`<h1>`→`<h2>` in `snippets/cart-drawer.liquid`) was already in commit b3950ea. Shopify's GitHub sync applied it to MAIN theme 133290917985 at 03:01:15Z (bot commit 89f34ff). LIVE_VERIFIED: all six b3950ea theme files match HEAD in Admin. `/collections/{family-pajamas,new-women-outfits,mommy-and-me,all,pajamas}`, `/es/collections/family-pajamas` and a pajama PDP each render exactly one H1, which is the page's own title. The homepage still has 2 H1s, one of them empty (likely the logo); not changed.
+2. Collection: the smart rule was `TYPE = Family Matching AND TAG = Pajamas`, which matched 57 products, all ARCHIVED. The 21 active pajama sets use type `Matching Family Pajamas`. Changed (external write, owner-requested, via the Shopify connector `update-collection`): the rule is now `TYPE = Matching Family Pajamas AND TAG = Pajamas`. LIVE_VERIFIED: Admin productsCount is 21 and storefront `products.json` returns 21. Before the rule change, the grid showed a recovery link to `/collections/pajamas` because the count was 0. After it, the grid rendered empty: `snippets/collection-grid-product-visible.liquid` hides products whose category is Mommy and Me on family-branch handles, and all 21 sets are Mommy and Me. Commit d1122fd (merge f417957) adds an exception for the `family-pajamas` handle, since its rule already scopes the collection. Theme sync and live grid readback: see the addendum below this entry.
+
+Rollback: set the rule back to the before-state in `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-collection-h1-and-pajama-rule/family-pajamas.before.json`, and revert d1122fd. Not run: `shopify theme check`, because the local CLI's Node fails to load libsimdjson.
+
+Residual risks:
+- `family-pajamas` now largely duplicates `/collections/pajamas` (21 of its 22 products), and both H1s read "Matching Family Pajamas".
+- The collection's description and SEO meta still say "Free shipping + 30-day returns", and the description promises holiday pajamas and "parents" sizing, which the mom-and-kid sets may not support.
+- PROBLEM_TRACKER line ~721 says family-pajamas redirects to pajamas; that no longer matches live.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-24-mobile-cart-to-checkout-diagnosis
+
+- task_entities: PROB-2026-09-24-MOBILE-CART-TO-CHECKOUT, PROB-2026-09-06-CART-RETURN-DISPLAY, snippets/cart-drawer.liquid, 44046788395105
+- task_stage: DIAGNOSE
+- next_action_id: OWNER_ADMIN_ABANDONED_CHECKOUT_AND_CONSENT_SETTINGS
+
+Why: the owner forwarded an outside review. It said 72% of mobile carts never reach checkout, and asked for a phone test of the cart and checkout plus a check on the abandoned-checkout email.
+
+Findings (LIVE_VERIFIED, read-only):
+- The 90-day mobile funnel is 362 carts → 101 checkouts → 28 orders, matching the review exactly.
+- The drop depends on the source. Google-search mobile goes 233 → 46 (20%); direct goes 111 → 51 (46%). The same drawer serves both, so this is not a cart UI blocker.
+- Non-US checkouts complete 14/70; Italy 8 → 0.
+- Phone test, 375 px, no payment or personal data, no order:
+  - US: $32.99 USD, free standard shipping, and checkout total all match the drawer.
+  - Italy: €29,95 with no VAT or shipping added, and "10 - 14 giorni" delivery.
+  - Express wallets appear at checkout.
+  - Back from checkout kept the cart at 1 item.
+- The drawer and PDP have no express-pay buttons; only `/cart` does. A local drawer change passed theme check (0 offenses) but was REVERTED. The 248 px wallet stack would shrink the cart lines to 12 px on an 812 px phone.
+- The checkout "email me news and offers" box is pre-ticked (seen on the IT checkout). That is weak GDPR consent for the email plan's SUBSCRIBED rule.
+- Abandoned-checkout automation is still BLOCKED:
+  - The built-in browser shows the Shopify login page, and the API has no read path.
+  - 29 abandoned checkouts with contact info in 90 days; 0 email-referred orders in 365 days.
+
+Changed: no theme, Shopify, feed, ad or spend change. The test cart line was removed. Added the evidence file `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-cart-to-checkout/README.md` and the problem row `PROB-2026-09-24-MOBILE-CART-TO-CHECKOUT`.
+
+Next: the owner signs in to Shopify admin, confirms Marketing → Automations → abandoned checkout is Active, and unticks Settings → Checkout → "Preselect the sign-up option". Then compare Google-listing prices with the per-piece PDP/cart prices for the top Google-landing products.
+
+Addendum: Shopify synced d1122fd to MAIN at 03:16:19Z, and the Admin copy of the snippet matches HEAD. LIVE_VERIFIED: `/collections/family-pajamas` and `/es/collections/family-pajamas` each render 21 grid items, all of them the active pajama sets, with one H1. `/collections/pajamas` (22), `/collections/new-women-outfits` and `/collections/mommy-and-me` render their grids with one H1 each. Next owner action: decide whether `family-pajamas` should stay a near-duplicate of `/collections/pajamas` or be merged with a redirect, and correct its "Free shipping + 30-day returns" copy.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-24-christmas-homepage-menu-season-gate
+
+- task_entities: collection `christmas-pajamas`; theme MAIN `133290917985`; commit `94d538f`; `snippets/christmas-season-collection.liquid`; `sections/seasonal-collection.liquid`
+- task_stage: VERIFY
+- next_action_id: VERIFY_CHRISTMAS_LINKS_LIVE_2026_10_15
+
+Why: the owner asked to put Christmas on the homepage and in the menu from mid-October. Internal links tell Google the Christmas page matters, and the links show the seasonal category to people already on the site.
+
+Premise check: `christmas-pajamas` has 0 live products today. All holiday products were archived; a new line is being sourced (anchors `2026-09-24-holiday-pivot-readiness` and `2026-09-24-holiday-line-sourcing-captcha-stop`). The 74 old Christmas redirects were repointed to `/collections/pajamas`. Linking an empty page from every page would hurt shoppers and SEO. So the links are gated on the date AND on the collection having products.
+
+Changed (commit `94d538f` on `main`, 40 files):
+- New `snippets/christmas-season-collection.liquid` is the single source of truth. It returns the `christmas-pajamas` handle only when all three hold: the date is Oct 15–Dec 25 (shop timezone), `collection-storefront-visible` is true, and the main menu does not already link the collection at the top level. Otherwise it returns nothing.
+- `snippets/header-mega-menu.liquid` (desktop) and `snippets/header-drawer.liquid` (mobile) put a "Christmas" item first while the gate is open.
+- New `sections/seasonal-collection.liquid`, added to `templates/index.json` right after the hero as `seasonal_christmas`. While the gate is open it shows the collection title (Shopify-translated) linked to the collection, 4 product cards, and a "View all" button. It is empty otherwise.
+- New locale key `sections.home_category_copy.christmas` in all 35 storefront locales. Each diff adds only that key, and the JSON otherwise matches.
+- Today's rendered output is unchanged. The peer's uncommitted `breadcrumbs`/`buy-box-similar-styles` edits were not included.
+
+Validation:
+- `shopify theme check` (nvm Node 22): 276 files, 0 offenses.
+- `git diff --check` passes.
+- liquidjs render of the gate: 12/12 cases pass. Off on Sep 24, Oct 14, Dec 26 and Jan 5. On for Oct 15, Dec 1 and Dec 25. Off with 0 products or a missing collection. Off when the menu already links the collection. On with an unrelated menu link and with no menu passed.
+- In-app browser DOM-injection layout check on live: 7 top-level items fit on one row at 1280px and at 990px (the narrowest mega-menu width). The 375px drawer item matches the existing items, with no horizontal overflow.
+
+Limits:
+- The in-season render was not seen on a real Shopify render, because the gate is closed today and the collection is empty.
+- The Shopify page cache can delay the switch on/off by a little.
+- The desktop dropdown menu type is not covered; the header uses `mega`.
+- The window and handle are constants in the snippet. To change the season, edit that one file.
+
+Sync result (corrected):
+- A 23:24 probe `?section_id=template--17118394024033__seasonal_christmas` returned 200 with an empty body. That was a FALSE POSITIVE, now STALE_OR_SUPERSEDED.
+- A re-probe returns 404, the same as a bogus section id. Peer session "Family matching outfits SEO" also read Admin at about 03:25Z: MAIN had no `seasonal-collection`/`christmas-season-collection` files and the pre-94d538f `index.json`.
+- The peer upserted `locales/en.default.json` from `bfe9f22`, so the English `christmas` key is live. The other 39 files of `94d538f` are NOT live: the GitHub sync stalled.
+- Admin read, MAIN 133290917985 (updatedAt 03:25:00Z, processing=false, processingFailed=false):
+  - `seasonal-collection` and `christmas-season-collection` are absent.
+  - `index.json`, `header-drawer`, `header-mega-menu`, `fr.json` and `de.json` checksums equal the `94d538f^` versions, so live has no drift beyond this change.
+  - `en.default.json` equals `origin/main` HEAD.
+- This session cannot write MAIN: the Shopify connector blocks live-theme file writes, and Admin-token access was denied. It did not ask a peer to write for it.
+- BLOCKED on one of two owner-side steps:
+  1. Admin → Online Store → Themes → dresslikemommy/main → "Reset to latest commit". Safe, because live equals main apart from the stalled commits.
+  2. Wait for the GitHub sync to apply `94d538f`.
+
+Next (2026-10-15, or as soon as the new holiday line is ACTIVE in `christmas-pajamas`, whichever is later):
+- Read back live `/`, `/fr/` and 375px mobile. Expect a "Christmas" first menu item and the homepage seasonal section with product cards linking to `/collections/christmas-pajamas`.
+- If the new line goes into a different collection, change `season_handle` in `snippets/christmas-season-collection.liquid`.
+- Consider reverting the 74 redirects to `christmas-pajamas` (rollback file in the `2026-09-24-holiday-pivot` packet).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-24-family-matching-outfits-page1-links
+
+- task_entities: collection `33122287713` (`new-women-outfits`, target), `377555589` (`matching-outfits`); commits `bfe9f22`, `cb6f0ea`; `PROB-2026-09-24-GITHUB-THEME-SYNC-STALL-AND-SYNC-BACK-REVERT`
+- task_stage: VERIFY
+- next_action_id: GSC_RECHECK_FAMILY_MATCHING_OUTFITS_2026_10_22
+
+Why: the owner asked again to move "family matching outfits" onto page 1: the page's title, H1 and intro around the exact phrase, plus links from the homepage and product pages. Anchor `2026-09-24-family-matching-outfits-seo-target` had already shipped the title, H1, intro and homepage parts. This pass closed the product-page link gap.
+
+Changed (LIVE_VERIFIED):
+- `bfe9f22`:
+  - The English `sections.breadcrumbs.cat_family_matching` label is now "Family Matching Outfits". Product-page breadcrumbs, collection breadcrumbs and family branch pills now link to the target with the exact phrase.
+  - The blog-article family button now points to `new-women-outfits` instead of `matching-outfits`.
+  - The "Family Matching hub" links on the dresses and vacation-set collections now read "Browse family matching outfits" and point to the target.
+- The label drives `parent_collection_handle` through `handleize`. For family-branch pages that handle is overridden to the hub, so routing is unchanged.
+- The GitHub sync stalled again, so the 3 files were upserted to MAIN. Checksums match `bfe9f22`.
+- Shopify SEO fields now match the theme text (the theme still overrides them):
+  - target seo.title "Family Matching Outfits for Mom, Dad and Kids | Dress Like Mommy";
+  - `matching-outfits` seo.title "Matching Outfits for Mom, Dad and Kids | Dress Like Mommy".
+  - This removes the latent cannibalization if the `force_theme_seo` list is ever edited, and removes the unverified "Free shipping + 30-day returns" and "Shipping included" meta claims. Collection `title` fields were left alone because the translation session fec0a3 is active.
+- Incident: the upsert's Shopify sync-back commit `04aa621` reverted peer commit `0135453` in two files. It was restored with the normal revert `cb6f0ea`. The peer session c4f74d was informed; `0135453` is still not live and is theirs to release.
+
+Validation:
+- `shopify theme check` (nvm Node 22): 0 offenses.
+- Live anchor tally: a product page, `family-tops`, `dresses`, `family-sets`, `matching-outfits` and an article all link to the target with "Family Matching Outfits" or "Browse family matching outfits". No Liquid errors.
+- Desktop product-page breadcrumb and 375px pill row checked with no page overflow.
+- The mobile intro is hidden by the UX owner's critical CSS (products first). It was deliberately not overridden. The 200-word lower block is visible on mobile.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-family-matching-outfits-seo/` (`collections_seo_{before,after}.json`, `theme_live_before_bfe9f22/`).
+
+Next: re-read GSC around 2026-10-22 for the query "family matching outfits" by page.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-24-merchant-shipping-returns-annotation-packet
+
+- task_entities: Merchant `513542500`; Shopify refund policy `14695685`, Terms `14695813`, shipping policy `29845782625`; MC `returnpolicy9309759641` (Austria only)
+- task_stage: BLOCKED
+- next_action_id: MC_SHIPPING_RETURNS_BEFORE_STATE_READ_US_AU_CA_GB
+
+Why: the owner asked for a read-only check of Merchant Center shipping and return settings for US/AU/CA/GB, plus an approval packet for $0 shipping and 30-day returns annotations. The goal is Google's free-delivery and return labels on those listings.
+
+Observed (read-only, no external write):
+- Shopify `LIVE_VERIFIED`: "Free Standard Shipping" is 0.00 USD with no conditions for US/AU/CA/GB and for rest of world. Priority is 12.99 USD for 0–5 lb.
+- Refund policy: 30 days, new condition, customer pays return shipping. Terms still conflicts on sale/personalized final sale and on the postage exception.
+- MC before-state `BLOCKED`:
+  - `gcloud` token → `403 ACCESS_TOKEN_SCOPE_INSUFFICIENT` on Merchant API shipping/returns and on Content API.
+  - The built-in browser was redirected to Google sign-in (`ACCESS_RECOVERY_REQUIRED`). No credentials were entered.
+
+Packet: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-merchant-shipping-returns-annotations/APPROVAL_PACKET.md`
+- A "free returns" claim is excluded because it is untrue.
+- The return policy is gated on reconciling Terms and on a swimwear `return_policy_label` exception. That label belongs to the feed writer.
+- Transit days need owner confirmation.
+
+Next: owner restores Merchant access (browser sign-in or a content-scoped token). Then read the before-state and request exact approval for (A) $0 shipping services.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-25-popular-family-matching-canonical
+
+- task_entities: collections `popular-family-matching`, `new-women-outfits`, `family-sets`, `matching-family-vacation-outfits`; theme MAIN `133290917985`; commits `0135453`, `04aa621` (Shopify sync-back), `cb6f0ea` (peer restore)
+- task_stage: VERIFY
+- next_action_id: LIVE_SYNC_THEME_LIQUID_0135453
+
+Why: the owner pasted an outside SEO review of the query "family matching outfits".
+
+Checked against the live site (public reads):
+- Claim 1 is CONFIRMED in part. `popular-family-matching` and `new-women-outfits` list the same 86 live products, not 275, and both pages self-canonicalize.
+- Claim 2 is STALE. The target already renders about 200–250 words of theme copy with 5 links. It was missing links to sweaters and pajamas; the Christmas collections have 0 live products, so they got no link.
+- Claim 3 is REJECTED. The theme maps `family-sets` to "Family Vacation Outfits" on purpose: the breadcrumb vacation branch uses it. Renaming it "Family Matching Sets" would add another page competing with the target. What remains open is that `matching-family-vacation-outfits` (104 products, 36 shared with family-sets) also has the H1 "Family Vacation Outfits".
+
+Changed:
+- Commit `0135453` on main. `layout/theme.liquid` now sets the canonical of `popular-family-matching` to `new-women-outfits`, localized through `collection.url`. The English season tip links to `family-sweaters` (7) and `family-pajamas` (21).
+- Theme check: 0 offenses. `git diff --check`: passes.
+- Shopify sync-back `04aa621` reverted part of the commit. The peer session restored it in `cb6f0ea`; origin/main matches `0135453` for these files.
+
+Live status:
+- en.default.json and the snippet match HEAD by md5; the links render live (LIVE_VERIFIED).
+- `layout/theme.liquid` on MAIN still has the md5 from before `0135453`. The canonical is NOT live (the GitHub sync stalled for 10+ minutes). It was not upserted: the Shopify MCP blocks writes to the MAIN theme, and the other session is also writing to this theme.
+
+Next: once `theme.liquid` syncs, or the owner approves an upsert of the byte-identical HEAD file, check that `/collections/popular-family-matching` and `/es/collections/popular-family-matching` canonicalize to the target.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-24-eu-collection-translations
+
+- task_entities: locales `da`, `no`, `nl`, `el`; 46 Shopify COLLECTION resources; theme MAIN `133290917985`; commits `a2517b6`, `86a4223`, `73a43fa`; Shopify sync-back `e8aed27`
+- task_stage: VERIFY
+- next_action_id: NATIVE_REVIEW_OLDER_COLLECTION_BODIES_DA_NO_NL_EL
+
+Why: the owner asked for the Danish, Norwegian, Dutch and Greek store versions to have translated collection titles and descriptions ("put effort into the European markets that already find you").
+
+Found:
+- Shopify translation records existed for every field. But 59 were outdated, 127 current values still had English collection names ("Mommy and Me Dresses"), and about 150 meta titles translated the brand literally ("Klæd dig som mor", "Ντύσου σαν τη μαμά").
+- Theme `collection_seo` keys in these locales missed the September 24 English changes, and `da`/`no`/`el` had English phrases left in them.
+- Public pages before the change: 114 titles, 17 H1s and 4 meta descriptions out of 172 had English or a translated brand.
+
+Changed (owner-requested, LIVE_VERIFIED):
+- Shopify `translationsRegister`: 317 values, 166 mutations, 0 userErrors.
+  - 59 retranslated from the current English.
+  - 127 minimal fixes for English leftovers.
+  - 131 brand restorations to "Dress Like Mommy".
+- Theme commits `a2517b6`, `86a4223` and `73a43fa` on `main`: da/no/nl/el locale files only.
+- The GitHub→Shopify sync stalled for more than 10 minutes, as it did earlier today. So `themeFilesUpsert` wrote files byte-identical to `main` HEAD:
+  - the 4 locale files;
+  - `snippets/collection-seo-content.liquid` and `locales/en.default.json`, both from peer commit `cb6f0ea`. The translated season tip needs `family_sweaters_url` and `family_pajamas_url`.
+  - Peer `theme.liquid` (`0135453`) was NOT touched.
+
+Verified:
+- Shopify readback: 317/317 exact. English source digests are unchanged, with 0 unplanned changes. Across all 46 collections × 4 locales: 0 missing, outdated, English-leftover or translated-brand fields.
+- Live theme: the files parse identically to HEAD.
+- Public: 172/172 pages return HTTP 200 with the correct `lang`. Titles, H1s and meta descriptions show 0 English or translated brand.
+- `git diff --check` passes, and the locale JSON round-trips.
+
+Not certified: the older translated bodies have not had a human native review, and `aria-label`s are still English. The English copy's "Free shipping + 30-day returns" and the Christmas-pajamas "most popular" line were translated faithfully; whether those claims are supported is an English-source question.
+
+Evidence and rollback: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-eu-collection-translations/RESULT.md`.
+
+Next: around 2026-10-22, compare GSC clicks and impressions for `/da/`, `/no/`, `/nl/` and `/el/` collection URLs against the prior 28 days, then decide whether to fund a native review of the older bodies.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-25-cart-delivery-returns-visibility
+
+- task_entities: PROB-2026-09-24-MOBILE-CART-TO-CHECKOUT (part 4); commit `e3d0e07`; theme MAIN `133290917985`; `snippets/delivery-estimate-copy.liquid`, `snippets/cart-drawer.liquid`, `sections/main-cart-footer.liquid`, `snippets/pdp-purchase-confidence.liquid`, `locales/ar.json`, `locales/th.json`
+- task_stage: BLOCKED
+- next_action_id: DEPLOY_E3D0E07_LIQUID_TO_MAIN
+
+Why: the owner asked to fix three suspected causes of Google carts not becoming orders: shipping cost that only appears at checkout, long delivery time, and a weak or missing return policy.
+
+Findings (LIVE_VERIFIED, read-only):
+- 30-day Google-search funnel: 1,413 sessions → 69 cart → 11 checkout → 4 orders. The leak is in the cart itself (58/69).
+- Shipping cost: DISPROVEN. Standard shipping is $0 in both zones; Priority $12.99 is optional. Checkout shows "Free Standard Shipping — FREE", which matches the drawer.
+- Delivery time: never shown before checkout. The PDP row said "See shipping options at checkout" and the drawer estimate was hidden. The localized "Estimated delivery: 12-16 days" (all 35 locales, FAQ schema) stopped rendering after `9ee5c13`. Carrier-delivered orders took 9.3–12.6 days (n=3), so 12-16 days is conservative.
+- Returns: the 30-day policy exists but was missing from the drawer. The ar/th "30-day returns" strings meant financial yield.
+
+Changed:
+- Commit `e3d0e07` on `main` (6 files) shows the estimate on the PDP, drawer and /cart, adds "30-day returns" to the drawer trust strip, and fixes the ar/th wording.
+- Theme Check: 277 files, 0 offenses. `git diff --check` passes.
+- Test cart cleared to 0.
+
+Blocked:
+- The GitHub→theme sync skipped `e3d0e07`, though it applied later peer commits at 03:35Z. MAIN still holds the pre-change checksums. This is the same sync stall the translation anchor saw earlier.
+- A scoped `shopify theme push --only` of the 4 Liquid files was refused by the session permission classifier (production deploy). It was not retried through another tool.
+- The live Liquid equals git `e3d0e07~1`, so a scoped push is safe; the locale JSONs differ (Shopify reformats them).
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-cart-to-checkout/README.md` section 5.
+
+Next: the owner approves the scoped deploy of the 4 Liquid files (or re-syncs the theme from GitHub in Admin). Then verify the PDP, drawer and /cart at 375×812 and 1280 across US/IT/DA.

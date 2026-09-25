@@ -187,12 +187,12 @@
       class="product-breadcrumb__back-link"
       data-back-to-results
       data-back-to-results-fallback="{{ back_to_results_url }}"
-      data-back-to-results-label-default="{{ back_to_results_label | escape }}"
+      data-back-to-results-label-default="{{ back_to_results_label | escape_once }}"
       data-back-to-results-template="{{ 'sections.product_navigation.back_to_context' | t: context: '__CONTEXT__' | escape }}"
       data-back-to-search-results-label="{{ 'sections.product_navigation.back_to_search_results' | t | escape }}"
       rel="prev"
-      aria-label="{{ back_to_results_label | escape }}"
-      title="{{ back_to_results_label | escape }}"
+      aria-label="{{ back_to_results_label | escape_once }}"
+      title="{{ back_to_results_label | escape_once }}"
     >
       <span data-back-to-results-label>{{ back_to_results_label }}</span>
     </a>
@@ -200,8 +200,8 @@
       <a
         href="{{ similar_styles_collection.url }}"
         class="product-breadcrumb__browse-link"
-        aria-label="{{ similar_styles_aria_label | escape }}"
-        title="{{ similar_styles_aria_label | escape }}"
+        aria-label="{{ similar_styles_aria_label | escape_once }}"
+        title="{{ similar_styles_aria_label | escape_once }}"
       >
         {{ similar_styles_label }}
       </a>

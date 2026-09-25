@@ -113,7 +113,7 @@ The growth sprint is "done enough" when:
 - Merchant/feed blockers for the paid cohort are resolved or safely isolated.
 - Conversion tracking is trusted for ROAS decisions.
 - Paid landing pages for active markets are clean enough to convert.
-- There is a weekly optimization routine using spend, CPC, conversion rate, CPA, ROAS, search terms, product performance, country performance, and return risk.
+- There is a weekly optimization routine using spend, CPC, qualified-shopper conversion rate (mobile OR Google search sessions; all-session rate is diagnostic only), CPA, ROAS, search terms, product performance, country performance, and return risk.
 - The owner can look at reporting and know which markets/products/campaigns are making money, which are learning, and which should be killed.
 - Every remaining blocker has at least two grounded recovery paths tried or ruled out, evidence, and one exact next unblock action.
 
