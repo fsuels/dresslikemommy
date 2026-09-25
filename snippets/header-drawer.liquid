@@ -21,6 +21,26 @@
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
+              {%- capture christmas_handle -%}{%- render 'christmas-season-collection', menu: section.settings.menu -%}{%- endcapture -%}
+              {%- assign christmas_handle = christmas_handle | strip -%}
+              {%- if christmas_handle != blank -%}
+                {%- assign christmas_is_current = false -%}
+                {%- if collection.handle == christmas_handle -%}
+                  {%- assign christmas_is_current = true -%}
+                {%- endif -%}
+                <li class="menu-drawer__main-item">
+                  <a
+                    id="HeaderDrawer-seasonal-christmas"
+                    href="{% render 'storefront-localized-url', url: collections[christmas_handle].url %}"
+                    class="menu-drawer__menu-item menu-drawer__menu-item--top-level list-menu__item link link--text focus-inset{% if christmas_is_current %} menu-drawer__menu-item--active{% endif %}"
+                    {% if christmas_is_current %}
+                      aria-current="page"
+                    {% endif %}
+                  >
+                    {{ 'sections.home_category_copy.christmas' | t }}
+                  </a>
+                </li>
+              {%- endif -%}
               {%- for link in section.settings.menu.links -%}
                 {%- if section.settings.hide_blog_link_in_primary_nav and link.url contains '/blogs/' -%}
                   {% continue %}

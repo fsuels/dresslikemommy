@@ -1,0 +1,37 @@
+{%- comment -%}
+  Single source for the seasonal Christmas homepage/menu links.
+  Echoes the Christmas collection handle while the season window is open
+  (shop timezone, inclusive MMDD range) and the collection has storefront
+  products; echoes nothing otherwise, so an empty collection is never linked.
+  Pass `menu` to also echo nothing when that menu already links the collection
+  at the top level (avoids a duplicate item if one is added in Shopify admin).
+
+  Usage:
+  {%- capture christmas_handle -%}{%- render 'christmas-season-collection', menu: section.settings.menu -%}{%- endcapture -%}
+{%- endcomment -%}
+{%- liquid
+  assign season_handle = 'christmas-pajamas'
+  assign season_start_mmdd = 1015
+  assign season_end_mmdd = 1225
+
+  assign today_mmdd = 'now' | date: '%m%d' | plus: 0
+  if today_mmdd >= season_start_mmdd and today_mmdd <= season_end_mmdd
+    assign season_collection = collections[season_handle]
+    if season_collection != blank
+      capture season_collection_visible
+        render 'collection-storefront-visible', collection_resource: season_collection
+      endcapture
+      assign season_collection_visible = season_collection_visible | strip
+      assign season_path = '/collections/' | append: season_handle
+      assign season_in_menu = false
+      for menu_link in menu.links
+        if menu_link.url contains season_path
+          assign season_in_menu = true
+        endif
+      endfor
+      if season_collection_visible == 'true' and season_in_menu == false
+        echo season_handle
+      endif
+    endif
+  endif
+-%}

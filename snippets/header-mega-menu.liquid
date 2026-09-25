@@ -7,6 +7,32 @@
 
 <nav class="header__inline-menu">
   <ul class="list-menu list-menu--inline" role="list">
+    {%- capture christmas_handle -%}{%- render 'christmas-season-collection', menu: section.settings.menu -%}{%- endcapture -%}
+    {%- assign christmas_handle = christmas_handle | strip -%}
+    {%- if christmas_handle != blank -%}
+      {%- assign christmas_is_current = false -%}
+      {%- if collection.handle == christmas_handle -%}
+        {%- assign christmas_is_current = true -%}
+      {%- endif -%}
+      <li>
+        <a
+          id="HeaderMenu-seasonal-christmas"
+          href="{% render 'storefront-localized-url', url: collections[christmas_handle].url %}"
+          class="header__menu-item list-menu__item link link--text focus-inset"
+          {% if christmas_is_current %}
+            aria-current="page"
+          {% endif %}
+        >
+          <span
+            {%- if christmas_is_current %}
+              class="header__active-menu-item"
+            {% endif %}
+          >
+            {{- 'sections.home_category_copy.christmas' | t -}}
+          </span>
+        </a>
+      </li>
+    {%- endif -%}
     {%- for link in section.settings.menu.links -%}
       {%- if section.settings.hide_blog_link_in_primary_nav and link.url contains '/blogs/' -%}
         {% continue %}

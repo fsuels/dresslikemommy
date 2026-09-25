@@ -1,0 +1,137 @@
+{%- comment -%}
+  Seasonal homepage spotlight. Renders only while the season snippet returns a
+  collection (in-season window and storefront products present); outputs nothing otherwise.
+{%- endcomment -%}
+{%- capture seasonal_handle -%}{%- render 'christmas-season-collection' -%}{%- endcapture -%}
+{%- assign seasonal_handle = seasonal_handle | strip -%}
+
+{%- if seasonal_handle != blank -%}
+  {%- assign seasonal_collection = collections[seasonal_handle] -%}
+
+  {{ 'component-card.css' | asset_url | stylesheet_tag }}
+  {{ 'component-price.css' | asset_url | stylesheet_tag }}
+  {{ 'template-collection.css' | asset_url | stylesheet_tag }}
+
+  {%- style -%}
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+      padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+    }
+
+    @media screen and (min-width: 750px) {
+      .section-{{ section.id }}-padding {
+        padding-top: {{ section.settings.padding_top }}px;
+        padding-bottom: {{ section.settings.padding_bottom }}px;
+      }
+    }
+  {%- endstyle -%}
+
+  <div class="color-{{ section.settings.color_scheme }} isolate gradient">
+    <div class="collection section-{{ section.id }}-padding" id="seasonal-collection-{{ section.id }}">
+      <div class="collection__title title-wrapper title-wrapper--no-top-margin page-width">
+        <h2 class="title {{ section.settings.heading_size }}">
+          <a href="{{ seasonal_collection.url }}" class="full-unstyled-link">{{ seasonal_collection.title | escape }}</a>
+        </h2>
+      </div>
+
+      <ul
+        class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--4-col-desktop grid--2-col-tablet-down page-width"
+        role="list"
+      >
+        {%- for product in seasonal_collection.products limit: section.settings.products_to_show -%}
+          <li class="grid__item">
+            {% render 'card-product',
+              card_product: product,
+              lazy_load: true,
+              media_aspect_ratio: 'adapt',
+              image_shape: 'default',
+              show_secondary_image: false,
+              show_vendor: false,
+              show_rating: false,
+              section_id: section.id,
+              quick_add: 'none'
+            %}
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      <div class="center collection__view-all">
+        <a
+          href="{{ seasonal_collection.url }}"
+          class="button"
+          aria-label="{{ 'sections.featured_collection.view_all_label' | t: collection_name: seasonal_collection.title | escape }}"
+        >
+          {{ 'sections.featured_collection.view_all' | t }}
+        </a>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Seasonal collection",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Shows the seasonal collection set in snippets/christmas-season-collection.liquid only during its date window and only when it has products."
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        { "value": "h2", "label": "Small" },
+        { "value": "h1", "label": "Medium" },
+        { "value": "h0", "label": "Large" }
+      ],
+      "default": "h1",
+      "label": "Heading size"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 8,
+      "step": 2,
+      "default": 4,
+      "label": "Products to show"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Seasonal collection"
+    }
+  ]
+}
+{% endschema %}
