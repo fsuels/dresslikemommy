@@ -2,7 +2,7 @@
 
 ## Homepage seasonal hero (Halloween & winter) claim — 2026-09-25
 
-Status: RELEASE_APPROVED__PUSHING_TO_MAIN (owner approved in chat 2026-09-25: "publish the hero"). Anchor: `2026-09-25-seasonal-homepage-hero-halloween-winter`. Owner request (September25, chat): improve the homepage hero image for the current season, Halloween and winter. The root Claude Code session is the sole writer for this scope only:
+Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED (2026-09-25 20:38 UTC). The owner approved in chat ("publish the hero"). Commit `5074fd8` was pushed to `main`. The GitHub sync stalled for more than 12 minutes, so the 13 files were upserted byte-identical to MAIN `133290917985`. The before-state equalled `3019324`, and the after-state equals `5074fd8`. Sync-back commit `9a09846` has 0 file changes. The 21 language homepages are LIVE_VERIFIED. Peer commit `e3d0e07` was not touched. Anchor: `2026-09-25-seasonal-homepage-hero-halloween-winter`. Owner request (September25, chat): improve the homepage hero image for the current season, Halloween and winter. The root Claude Code session is the sole writer for this scope only:
 - `sections/hero-banner.liquid`, `templates/index.json` (the `hero_banner_main` section only), new `snippets/hero-seasonal-copy.liquid`, and new `assets/hero-halloween-*` and `assets/hero-winter-*` files.
 
 The art uses published product photos only (Halloween family pajamas and family sweaters). No product, collection, translation-register, feed, ad or spend writes. The old hero assets stay in `assets/` for rollback. Release to `main` and the live theme was approved by the owner in chat. The peer listing session's uncommitted coordination rows are preserved and are not committed by this session.

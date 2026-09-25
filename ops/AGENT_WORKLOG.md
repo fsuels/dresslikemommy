@@ -54072,3 +54072,34 @@ Not done / risks:
 Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-25-seasonal-homepage-hero/` (README, before/after screens, sweep summary, reusable art generator and QA harness).
 
 Next: the owner approves the release. Then commit the hero files and assets, push to `main`, and read back the live homepage on desktop and mobile (EN, ES, DE, JA, AR). This goes first because nothing customer-facing changes until the release lands.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-25-seasonal-homepage-hero-live
+
+- task_entities: commit `5074fd8`; sync-back `9a09846`; theme MAIN `133290917985`; `sections/hero-banner.liquid`; `templates/index.json`; `snippets/hero-seasonal-copy.liquid`; assets `hero-halloween-*`, `hero-winter-*`
+- task_stage: VERIFY
+- problem_ids: none opened (the recurring GitHub→theme sync stall is noted below)
+- next_action_id: SWAP_HERO_HALLOWEEN_SLIDE_AFTER_OCT_31
+
+Why: in chat on 2026-09-25 the owner said "publish the hero" for anchor `2026-09-25-seasonal-homepage-hero-halloween-winter`.
+
+Done (LIVE_VERIFIED):
+- Pushed `5074fd8` to `main` at 20:23Z. It contains only this session's files plus this session's hunks in the coordination file and worklog; other sessions' uncommitted rows and anchors were left unstaged.
+- The GitHub→theme sync did not apply it for 12+ minutes. This is the same stall as `e3d0e07` and the 2026-09-24 releases.
+- Before-state: theme `133290917985` is role MAIN. Live `hero-banner.liquid` and `index.json` equalled `3019324`, and the 11 new files were absent.
+- `themeFilesUpsert` wrote the 13 files byte-identical to `5074fd8` at 20:38Z: assets, snippet and section first, then `index.json`. There were 0 userErrors.
+- After-state: all 13 files equal `5074fd8`.
+- Shopify sync-back `9a09846` has 0 file changes, and local main was fast-forwarded to it. Nothing was reverted; `e3d0e07` was not touched and is still not live.
+- Public readback of all 21 language homepages:
+  - new hero and localized copy present, with correct CTA and slide-link targets, so there are no stale Translate & Adapt link translations;
+  - 0 Liquid errors;
+  - all 10 assets return HTTP 200;
+  - desktop 1440 and mobile 375 match the approved design;
+  - the only console error is Shopify's own `/sf_private_access_tokens` 401.
+
+Not done / risks:
+- The Halloween slide, eyebrow and CTA stay live after October 31 until someone changes them.
+- The GitHub→theme sync stall keeps recurring. Each release now needs a scoped, byte-identical upsert fallback: verify the before-state first, and upsert only files equal to current HEAD, to avoid sync-back reverts.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-25-seasonal-homepage-hero/release/` (before/after state, live readback, pre-release theme copies) and `tools/theme_release_upsert.py`, `tools/live_readback.py`.
+
+Next: on or after 2026-11-01, switch the hero to a winter/Christmas edition by adding a new `seasonal_copy` edition and slides; the Christmas sweater drafts are candidates once published. This goes first because the live hero's Halloween messaging goes stale then.

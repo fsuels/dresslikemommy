@@ -2,7 +2,7 @@
 
 Owner request (chat, 2026-09-25): improve the homepage hero image for the current season, Halloween and winter.
 
-## What changed (local, not yet released)
+## What changed (LIVE since 2026-09-25 20:38 UTC)
 
 - `templates/index.json` → `hero_banner_main` only. The summer beach slides were replaced by two art-directed slides:
   1. **Halloween.** A midnight-plum sky with a crescent moon, and a trio of arched frames:
@@ -61,10 +61,21 @@ Owner request (chat, 2026-09-25): improve the homepage hero image for the curren
 - New slide blocks have no translated alt text, so the seasonal copy set now includes translated alts for 20 languages. English uses each slide's own detailed `image_alt`.
 - Not run: `shopify theme dev`, which needs an owner Shopify CLI login (device code). A live readback happens after release.
 
-## Release and rollback
+## Release (done, owner approved in chat: "publish the hero")
 
-- Release (owner approval required): commit the hero files and assets, push to `fsuels/dresslikemommy` `main`, and let the Shopify GitHub sync update MAIN. Then read back `/`, `/es`, `/de`, `/ja` and `/ar` on desktop and mobile.
-- Rollback: restore `hero_banner_main` in `templates/index.json` from the previous commit. The old slides use the old assets, and the new settings default to prior behavior.
+- Commit `5074fd8` was pushed to `main` at 20:23 UTC. The GitHub→Shopify sync did not apply it within 12 minutes, the same stall seen in earlier releases.
+- Before-state (`release/before_state.json`): theme `133290917985` is role MAIN. The live `sections/hero-banner.liquid` and `templates/index.json` were identical to the pre-release `3019324`, and the 11 new files were absent. Live copies are saved in `release/theme_before/`.
+- `themeFilesUpsert` (`tools/theme_release_upsert.py`) wrote the 13 files byte-identical to `5074fd8` at 20:38 UTC, in two batches: assets, snippet and section, then `index.json`. There were 0 userErrors.
+- After-state (`release/after_state.json`): all 13 live files equal `5074fd8`.
+- Shopify's sync-back commit `9a09846` has 0 file changes, so nothing was reverted. Peer commit `e3d0e07` (cart delivery/returns) was not touched and is still not live.
+- Public readback (`release/live_readback.json`, `tools/live_readback.py`) covered all 21 language homepages:
+  - The new hero, localized copy, and CTA and slide-link targets are correct on every locale, so there are no stale link translations.
+  - There are 0 Liquid errors, and all 10 hero assets return HTTP 200.
+- Live browser check at desktop 1440 and mobile 375 matches the approved design. The only console error is Shopify's own `/sf_private_access_tokens` 401, which is unrelated.
+
+## Rollback
+
+- Revert `5074fd8` and push. If the sync stalls again, `themeFilesUpsert` the two files in `release/theme_before/` (byte-identical to `3019324`). The new assets and snippet can stay; they are unused once `index.json` is restored. The old slides use the old assets, and the new settings default to prior behavior.
 
 ## Next season
 
