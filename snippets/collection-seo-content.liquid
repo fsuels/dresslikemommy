@@ -13,8 +13,6 @@
   assign swimsuits_url = routes.collections_url | append: '/swimsuits'
   assign couples_url = routes.collections_url | append: '/couples'
   assign family_matching_outfits_url = routes.collections_url | append: '/new-women-outfits'
-  assign family_sweaters_url = routes.collections_url | append: '/family-sweaters'
-  assign family_pajamas_url = routes.collections_url | append: '/family-pajamas'
 
   if collections['dresses'] != blank
     assign dresses_url = collections['dresses'].url
@@ -52,12 +50,6 @@
   if collections['new-women-outfits'] != blank
     assign family_matching_outfits_url = collections['new-women-outfits'].url
   endif
-  if collections['family-sweaters'] != blank
-    assign family_sweaters_url = collections['family-sweaters'].url
-  endif
-  if collections['family-pajamas'] != blank
-    assign family_pajamas_url = collections['family-pajamas'].url
-  endif
 -%}
 
 {%- case field -%}
@@ -68,7 +60,7 @@
           echo 'sections.collection_seo.rich_parts.new_women_outfits.part_1_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
           echo 'sections.collection_seo.rich_parts.new_women_outfits.part_2_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
           echo 'sections.collection_seo.rich_parts.new_women_outfits.part_3_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
-          echo 'sections.collection_seo.rich_parts.new_women_outfits.part_4_html' | t: family_sweaters_url: family_sweaters_url, family_pajamas_url: family_pajamas_url, dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.new_women_outfits.part_4_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
           echo 'sections.collection_seo.rich_parts.new_women_outfits.part_5_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
           echo 'sections.collection_seo.rich_parts.new_women_outfits.part_6_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
           echo 'sections.collection_seo.rich_parts.new_women_outfits.part_7_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
