@@ -12,6 +12,7 @@
   assign trunks_url = routes.collections_url | append: '/trunks'
   assign swimsuits_url = routes.collections_url | append: '/swimsuits'
   assign couples_url = routes.collections_url | append: '/couples'
+  assign family_matching_outfits_url = routes.collections_url | append: '/new-women-outfits'
 
   if collections['dresses'] != blank
     assign dresses_url = collections['dresses'].url
@@ -46,6 +47,9 @@
   if collections['couples'] != blank
     assign couples_url = collections['couples'].url
   endif
+  if collections['new-women-outfits'] != blank
+    assign family_matching_outfits_url = collections['new-women-outfits'].url
+  endif
 -%}
 
 {%- case field -%}
@@ -65,7 +69,7 @@
         when 'matching-outfits', 'family-matching', 'family-matching-outfits'
           echo 'sections.collection_seo.rich_parts.family_matching.part_1_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
           echo 'sections.collection_seo.rich_parts.family_matching.part_2_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
-          echo 'sections.collection_seo.rich_parts.family_matching.part_3_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.family_matching.part_3_html' | t: family_matching_outfits_url: family_matching_outfits_url, dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
         when 'dresses', 'mother-daughter-matching-dresses'
           echo 'sections.collection_seo.rich_parts.dresses.part_1_html' | t: matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url
           echo 'sections.collection_seo.rich_parts.dresses.part_2_html' | t: matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url

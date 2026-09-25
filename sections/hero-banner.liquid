@@ -522,7 +522,7 @@
       endcapture
       assign hero_button_label = hero_button_label | strip
     endif
-    if hero_secondary_button_label == 'Shop Family Matching'
+    if hero_secondary_button_label == 'Shop Family Matching' or hero_secondary_button_label == 'Shop Family Matching Outfits'
       capture hero_secondary_button_label
         render 'home-category-localized-copy', copy_key: 'family-matching', fallback: hero_secondary_button_label
       endcapture
