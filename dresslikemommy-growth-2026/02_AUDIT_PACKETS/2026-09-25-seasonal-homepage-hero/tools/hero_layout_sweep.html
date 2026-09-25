@@ -1,0 +1,119 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Hero layout sweep</title>
+<style>body{font:13px/1.4 system-ui;margin:16px} iframe{position:absolute;left:-99999px;top:0;border:0} table{border-collapse:collapse} td,th{border:1px solid #ccc;padding:3px 6px} .bad{background:#fdd} .ok{background:#dfd}</style>
+</head><body>
+<h1>Hero layout sweep</h1>
+<div id="status">running…</div>
+<table id="out"><thead><tr><th>lang</th><th>width</th><th>issues</th></tr></thead><tbody></tbody></table>
+<script>
+const LANGS = ['en','es','fr','ar','nl','de','hi','it','ja','ko','pl','pt','ru','sv','da','no','el','ro','fi','he','cs'];
+const WIDTHS = [[320, 640], [375, 812], [430, 932], [768, 1024], [1024, 768], [1280, 800], [1440, 900]];
+const ART_W = 1520, ART_H = 1100;
+const ARCH = { left: 142 / ART_W, right: 1378 / ART_W, top: 62 / ART_H, bottom: 998 / ART_H };
+
+function drawnArt(img, win) {
+  const r = img.getBoundingClientRect();
+  const s = Math.min(r.width / ART_W, r.height / ART_H);
+  const dw = ART_W * s, dh = ART_H * s;
+  const x = r.left + (r.width - dw) / 2, y = r.top + r.height - dh;
+  return { left: x + ARCH.left * dw, right: x + ARCH.right * dw, top: y + ARCH.top * dh, bottom: y + ARCH.bottom * dh };
+}
+
+function measure(win, W) {
+  const d = win.document;
+  const issues = [];
+  const hero = d.querySelector('.hero-banner');
+  if (!hero) return ['NO HERO'];
+  const mobile = W < 750;
+  d.querySelectorAll('.hero-banner__cta').forEach((a) => {
+    if (a.scrollWidth > a.clientWidth + 1) issues.push('cta overflow: ' + a.textContent.trim());
+  });
+  const eyebrow = d.querySelector('.hero-banner__eyebrow');
+  if (eyebrow && win.getComputedStyle(eyebrow).display !== 'none') {
+    const span = eyebrow.querySelector('span');
+    const range = d.createRange(); range.selectNodeContents(span);
+    const lines = new Set([...range.getClientRects()].map((r) => Math.round(r.top))).size;
+    if (lines > 1) issues.push('eyebrow wraps (' + lines + ' lines)');
+  }
+  const art = d.querySelector('.hero-banner__slide.is-active .hero-banner__art');
+  if (!art) issues.push('no active art');
+  const a = art ? drawnArt(art, win) : null;
+  const heading = d.querySelector('.hero-banner__heading');
+  const hr = heading.getBoundingClientRect();
+  const controls = d.querySelector('.hero-banner__controls').getBoundingClientRect();
+  if (a) {
+    if (mobile) {
+      if (hr.bottom > a.top - 8) issues.push(`heading within 8px of arches (gap ${Math.round(a.top - hr.bottom)}px)`);
+    } else {
+      let right = 0;
+      d.querySelectorAll('.hero-banner__content > *').forEach((el) => {
+        if (win.getComputedStyle(el).display === 'none') return;
+        el.querySelectorAll('*').forEach((c) => { const cr = c.getBoundingClientRect(); if (cr.width && cr.bottom > a.top) right = Math.max(right, cr.right); });
+        const er = el.getBoundingClientRect(); if (er.bottom > a.top) {
+          const range = d.createRange(); range.selectNodeContents(el);
+          [...range.getClientRects()].forEach((rr) => { if (rr.bottom > a.top) right = Math.max(right, rr.right); });
+        }
+      });
+      if (right > a.left - 12) issues.push(`text reaches arches (gap ${Math.round(a.left - right)}px)`);
+    }
+    if (controls.top < a.bottom + 4 && controls.right > a.left && controls.left < a.right) issues.push(`controls within 4px of arches (gap ${Math.round(controls.top - a.bottom)}px)`);
+  }
+  if (mobile) {
+    const actions = d.querySelector('.hero-banner__actions').getBoundingClientRect();
+    if (actions.top < controls.bottom + 2) issues.push(`CTA card covers controls by ${Math.round(controls.bottom + 2 - actions.top)}px`);
+    // The card must clear the first visible content of the next section.
+    let sec = hero.closest('.shopify-section').nextElementSibling, nextTop = null;
+    while (sec && nextTop === null) {
+      const vis = [...sec.querySelectorAll('*')].find((el) => { const r = el.getBoundingClientRect(); return r.height > 0 && r.width > 0 && win.getComputedStyle(el).visibility !== 'hidden'; });
+      if (vis) nextTop = vis.getBoundingClientRect().top;
+      sec = sec.nextElementSibling;
+    }
+    if (nextTop !== null) {
+      const gap = Math.round(nextTop - actions.bottom);
+      if (gap < 8) issues.push(`CTA card within 8px of next section (gap ${gap}px)`);
+      win.__cardGap = gap;
+    }
+  }
+  if (d.documentElement.scrollWidth > W + 1) issues.push('page overflows horizontally ' + d.documentElement.scrollWidth);
+  const heroRect = hero.getBoundingClientRect();
+  return issues.length ? issues : ['ok (hero ' + Math.round(heroRect.height) + 'px' + (mobile ? ', card gap ' + win.__cardGap + 'px' : '') + ')'];
+}
+
+function loadFrame(lang, W, H) {
+  return new Promise((resolve) => {
+    const f = document.createElement('iframe');
+    f.width = W; f.height = H;
+    f.src = lang + '.html';
+    f.onload = async () => {
+      // decode() can stall while the pane is hidden; poll for completion with a cap instead.
+      const imgs = [...f.contentDocument.querySelectorAll('.hero-banner img')].filter((i) => !i.closest('template'));
+      for (let t = 0; t < 40 && imgs.some((i) => !i.complete); t++) await new Promise((r) => setTimeout(r, 100));
+      await new Promise((r) => setTimeout(r, 200));
+      resolve(f);
+    };
+    document.body.appendChild(f);
+  });
+}
+
+(async () => {
+  const tbody = document.querySelector('#out tbody');
+  const results = [];
+  for (const [W, H] of WIDTHS) {
+    const frames = await Promise.all(LANGS.map((l) => loadFrame(l, W, H)));
+    frames.forEach((f, i) => {
+      let res;
+      try { res = measure(f.contentWindow, W); } catch (e) { res = ['ERROR ' + e.message]; }
+      results.push({ lang: LANGS[i], W, res });
+      const tr = document.createElement('tr');
+      const bad = !res[0].startsWith('ok');
+      tr.className = bad ? 'bad' : 'ok';
+      tr.innerHTML = `<td>${LANGS[i]}</td><td>${W}</td><td>${res.join('; ')}</td>`;
+      tbody.appendChild(tr);
+      f.remove();
+    });
+  }
+  window.__sweep = results;
+  document.getElementById('status').textContent = 'done: ' + results.filter((r) => !r.res[0].startsWith('ok')).length + ' problem rows of ' + results.length;
+})();
+</script>
+</body></html>

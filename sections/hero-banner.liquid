@@ -1,3 +1,6 @@
+{%- liquid
+  assign hero_text_scrim = section.settings.text_scrim_opacity | default: 64 | at_least: section.settings.overlay_opacity
+-%}
 {%- style -%}
   .hero-banner {
     position: relative;
@@ -46,6 +49,34 @@
     inset: 0;
     background: rgba(0,0,0,{{ section.settings.overlay_opacity | divided_by: 100.0 }});
     z-index: 1;
+    pointer-events: none;
+  }
+  /* Transparent foreground art (e.g. arched photo frames), never cropped. */
+  .hero-banner__art {
+    position: absolute;
+    z-index: 1;
+    right: 2%;
+    bottom: 1.4rem;
+    width: 96%;
+    height: 60%;
+    object-fit: contain;
+    object-position: center bottom;
+    pointer-events: none;
+  }
+  .hero-banner__slide-link {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: block;
+  }
+  /* base.css hides every empty link (a:empty { display: none }); keep the click-through overlays. */
+  .hero-banner a.hero-banner__slide-link,
+  .hero-banner a.hero-banner__surface-link {
+    display: block;
+  }
+  .hero-banner__slide-link:focus-visible {
+    outline: 3px solid rgba(255, 255, 255, 0.95);
+    outline-offset: -8px;
   }
   .hero-banner__surface-link {
     position: absolute;
@@ -67,12 +98,38 @@
     max-width: 700px;
     pointer-events: none;
   }
+  .hero-banner__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin: 0 0 16px;
+    padding: 0.55rem 1.1rem;
+    border: 1px solid rgba(240, 196, 128, 0.55);
+    border-radius: 999px;
+    background: rgba(18, 10, 26, 0.35);
+    color: #f4d49b;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    line-height: 1.2;
+    text-transform: uppercase;
+    backdrop-filter: blur(8px);
+  }
+  .hero-banner__eyebrow-icon {
+    flex: none;
+    width: 10px;
+    height: 10px;
+  }
+  .hero-banner__heading-break {
+    display: none;
+  }
   .hero-banner__heading {
     color: {{ section.settings.text_color }};
     font-size: clamp(28px, 5vw, 48px);
     font-weight: 700;
     line-height: 1.2;
     margin: 0 0 12px;
+    text-wrap: balance;
   }
   .hero-banner__subheading {
     color: {{ section.settings.text_color }};
@@ -271,6 +328,73 @@
     .hero-banner__subheading {
       text-shadow: 0 1px 8px rgba(0,0,0,0.5), 0 1px 2px rgba(0,0,0,0.3);
     }
+    /* Art slides: the background may crop (per-slide position), the art never does. */
+    .hero-banner__slide--art .hero-banner__image {
+      object-position: var(--hero-slide-desktop-position, center center);
+    }
+    .hero-banner__art {
+      right: 3%;
+      bottom: 1rem;
+      width: 52%;
+      height: calc(97% - 1rem);
+      object-position: center bottom;
+    }
+    /* Controls sit centered under the arches, clear of the text column. */
+    .hero-banner--art .hero-banner__controls {
+      left: auto;
+      right: 29%;
+      bottom: 0.9rem;
+      transform: translateX(50%);
+    }
+    /* !important: theme-inline-body-static-05.css forces a dark pill on every .hero-banner__cta. */
+    .hero-banner--buttons-seasonal .hero-banner__cta--primary {
+      background: #fbf2e4 !important;
+      color: #24152e !important;
+      box-shadow: 0 12px 30px rgba(8, 4, 14, 0.35) !important;
+      padding: 16px 32px !important;
+      letter-spacing: 2px !important;
+    }
+    .hero-banner--buttons-seasonal .hero-banner__cta--primary:hover {
+      background: #fff9f0 !important;
+      box-shadow: 0 14px 34px rgba(240, 190, 110, 0.4) !important;
+    }
+    .hero-banner--buttons-seasonal .hero-banner__cta--secondary {
+      background: rgba(251, 242, 228, 0.08) !important;
+      color: #fbf2e4 !important;
+      border: 1px solid rgba(251, 242, 228, 0.6) !important;
+      box-shadow: none !important;
+      padding: 15px 22px !important;
+      font-size: 11px !important;
+      letter-spacing: 1.8px !important;
+      backdrop-filter: blur(8px);
+    }
+    .hero-banner--buttons-seasonal .hero-banner__cta--secondary:hover {
+      background: rgba(251, 242, 228, 0.18) !important;
+      box-shadow: 0 10px 26px rgba(240, 190, 110, 0.25) !important;
+    }
+  }
+
+  /* Narrower desktops/tablets: the width-limited art is shorter, so lift it clear of the controls. */
+  @media screen and (min-width: 750px) and (max-width: 1399px) {
+    .hero-banner__art {
+      bottom: 3.6rem;
+      height: calc(97% - 3.6rem);
+    }
+  }
+
+  /* Long translated labels wrap inside the text column instead of running into the art. */
+  @media screen and (min-width: 750px) {
+    .hero-banner--art .hero-banner__cta {
+      max-width: 100%;
+      white-space: normal;
+      text-align: center;
+    }
+  }
+
+  @media screen and (min-width: 750px) and (max-width: 989px) {
+    .hero-banner__eyebrow {
+      letter-spacing: 0.12em;
+    }
   }
 
   {%- if request.page_type == 'index' and section.index == 1 -%}
@@ -283,9 +407,29 @@
         max-width: min(46rem, 42%);
       }
 
+      #shopify-section-{{ section.id }} .hero-banner--art .hero-banner__content {
+        max-width: min(58rem, 43%);
+      }
+
+      #shopify-section-{{ section.id }} .hero-banner--art .hero-banner__heading {
+        font-size: clamp(30px, 3.3vw, 46px);
+        line-height: 1.08;
+        letter-spacing: -0.01em;
+      }
+
+      #shopify-section-{{ section.id }} .hero-banner--art .hero-banner__heading-break {
+        display: inline;
+      }
+
+      #shopify-section-{{ section.id }} .hero-banner--art .hero-banner__subheading {
+        max-width: 54rem;
+        font-size: 17px;
+        line-height: 1.55;
+      }
+
       #shopify-section-{{ section.id }} .hero-banner__overlay {
         display: block;
-        background: linear-gradient(90deg, rgba(0, 0, 0, {{ section.settings.overlay_opacity | at_least: 64 | divided_by: 100.0 }}) 0%, rgba(0, 0, 0, {{ section.settings.overlay_opacity | at_least: 64 | divided_by: 100.0 }}) 48%, rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.0 }}) 72%);
+        background: linear-gradient(90deg, rgba(0, 0, 0, {{ hero_text_scrim | divided_by: 100.0 }}) 0%, rgba(0, 0, 0, {{ hero_text_scrim | divided_by: 100.0 }}) 48%, rgba(0, 0, 0, {{ section.settings.overlay_opacity | divided_by: 100.0 }}) 72%);
       }
 
       #shopify-section-{{ section.id }} .hero-banner__heading {
@@ -341,6 +485,98 @@
         font-size: 10px !important;
         letter-spacing: 0.1em !important;
       }
+
+      {%- if section.settings.show_mobile_heading -%}
+        /*
+          Eyebrow + headline over the top of a fixed-height image stage; the CTA card sits in normal
+          flow just below it (overlapping the stage edge by 1rem). Longer translated labels grow the
+          section instead of covering the controls or the next section.
+        */
+        #shopify-section-{{ section.id }} {
+          margin-bottom: 1.2rem;
+        }
+
+        #shopify-section-{{ section.id }} .hero-banner {
+          --hero-stage-h: clamp(410px, 112vw, 480px);
+          display: block;
+          min-height: 0;
+          background: transparent;
+        }
+
+        #shopify-section-{{ section.id }} .hero-banner__slides,
+        #shopify-section-{{ section.id }} .hero-banner__overlay {
+          bottom: auto;
+          height: var(--hero-stage-h);
+        }
+
+        #shopify-section-{{ section.id }} .hero-banner__slides {
+          background-color: {{ section.settings.bg_color }};
+        }
+
+        #shopify-section-{{ section.id }} .hero-banner__controls {
+          top: calc(var(--hero-stage-h) - 1.4rem - 44px);
+          bottom: auto;
+        }
+
+        #shopify-section-{{ section.id }} .hero-banner__content {
+          position: relative;
+          inset: auto;
+          display: grid;
+          grid-template-rows: calc(var(--hero-stage-h) - 2.4rem) auto;
+          justify-items: center;
+          width: 100%;
+          padding: 1.4rem 1.6rem 0;
+        }
+
+        #shopify-section-{{ section.id }} .hero-banner__intro {
+          grid-row: 1;
+          align-self: start;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
+        #shopify-section-{{ section.id }} .hero-banner__actions {
+          grid-row: 2;
+          width: min(100%, 32rem);
+          margin: 0 auto;
+        }
+
+        #shopify-section-{{ section.id }} .hero-banner__eyebrow {
+          display: inline-flex;
+          margin-bottom: 0.7rem;
+          padding: 0.45rem 0.9rem;
+          font-size: 10px;
+          letter-spacing: 0.18em;
+        }
+
+        @media screen and (max-width: 359px) {
+          #shopify-section-{{ section.id }} .hero-banner__eyebrow {
+            padding: 0.4rem 0.75rem;
+            font-size: 9px;
+            letter-spacing: 0.1em;
+          }
+        }
+
+        #shopify-section-{{ section.id }} .hero-banner__heading {
+          position: static !important;
+          width: auto;
+          height: auto;
+          margin: 0;
+          overflow: visible;
+          clip: auto;
+          clip-path: none;
+          white-space: normal;
+          font-size: clamp(21px, 6vw, 26px);
+          line-height: 1.12;
+          text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
+        }
+
+        #shopify-section-{{ section.id }} .hero-banner__art {
+          bottom: 4.6rem;
+          height: 57%;
+        }
+      {%- endif -%}
     }
   {%- endif -%}
 
@@ -373,6 +609,19 @@
 
     .hero-banner__trust-pill {
       flex: 1 1 calc(50% - 10px);
+    }
+
+    .hero-banner__eyebrow {
+      display: none;
+    }
+
+    .hero-banner--art .hero-banner__controls {
+      bottom: 1.4rem;
+    }
+
+    .hero-banner--buttons-seasonal .hero-banner__cta--primary,
+    .hero-banner--buttons-seasonal .hero-banner__cta--primary:hover {
+      background: linear-gradient(135deg, #2b1838 0%, #43245a 100%) !important;
     }
 
     .hero-banner__heading {
@@ -433,6 +682,19 @@
         padding: 0.85rem 0.5rem !important;
         font-size: 10px !important;
         letter-spacing: 0.06em !important;
+        /* Long single words in some languages (e.g. Finnish) must wrap, not overflow the pill. */
+        hyphens: auto;
+        overflow-wrap: anywhere;
+        /*
+          The three buttons stretch to the tallest label; a full pill radius would turn tall
+          buttons into circles and push the first line outside the shape. Center the label and
+          use a softer radius.
+        */
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        border-radius: 2rem !important;
       }
 
       #shopify-section-{{ section.id }} .hero-banner__trust {
@@ -535,6 +797,43 @@
       assign hero_tertiary_button_label = hero_tertiary_button_label | strip
     endif
   endif
+
+  assign hero_eyebrow = section.settings.eyebrow | strip
+  assign hero_heading = section.settings.heading
+  assign hero_heading_html = section.settings.heading
+  assign hero_subheading_html = section.settings.subheading
+  assign hero_seasonal_copy = section.settings.seasonal_copy | default: 'none'
+  if hero_seasonal_copy != 'none'
+    # Pre-translated copy: Translate & Adapt would keep serving the previous
+    # season's translations of the text settings on non-English routes.
+    capture hero_eyebrow
+      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'eyebrow', lang: hero_language_code
+    endcapture
+    capture hero_heading
+      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'heading', lang: hero_language_code
+    endcapture
+    capture hero_subheading
+      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'subheading', lang: hero_language_code
+    endcapture
+    capture hero_button_label
+      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'cta_primary', lang: hero_language_code
+    endcapture
+    capture hero_secondary_button_label
+      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'cta_secondary', lang: hero_language_code
+    endcapture
+    capture hero_tertiary_button_label
+      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'cta_tertiary', lang: hero_language_code
+    endcapture
+    assign hero_eyebrow = hero_eyebrow | strip
+    assign hero_heading = hero_heading | strip
+    # On desktop each sentence starts a new line ("Spooky nights. / Snowy mornings. / ...").
+    assign hero_heading_html = hero_heading | escape | replace: '. ', '.<br class="hero-banner__heading-break"> '
+    assign hero_subheading_html = hero_subheading | strip | escape
+    assign hero_button_label = hero_button_label | strip
+    assign hero_secondary_button_label = hero_secondary_button_label | strip
+    assign hero_tertiary_button_label = hero_tertiary_button_label | strip
+  endif
+
   assign hero_heading_tag = 'h2'
   assign hero_image_loading = 'lazy'
   assign hero_image_fetchpriority = 'low'
@@ -553,12 +852,21 @@
     assign hero_button_scroll_target = hero_button_link | remove_first: '#'
   endif
 
+  assign hero_has_art = false
+  assign hero_has_slide_links = false
   for block in section.blocks
     if block.type == 'slide'
       assign block_theme_asset = block.settings.theme_asset | strip
       assign block_mobile_theme_asset = block.settings.mobile_theme_asset | strip
       if block.settings.image != blank or block.settings.mobile_image != blank or block_theme_asset != blank or block_mobile_theme_asset != blank
         assign hero_slide_count = hero_slide_count | plus: 1
+        assign block_art_theme_asset = block.settings.art_theme_asset | strip
+        if block_art_theme_asset != blank
+          assign hero_has_art = true
+        endif
+        if block.settings.link != blank
+          assign hero_has_slide_links = true
+        endif
       endif
     endif
   endfor
@@ -569,11 +877,11 @@
 -%}
 
 <div
-  class="hero-banner"
+  class="hero-banner hero-banner--buttons-{{ section.settings.button_style | default: 'dark' }}{% if hero_has_art %} hero-banner--art{% endif %}"
   id="HeroBanner-{{ section.id }}"
   role="region"
   aria-roledescription="carousel"
-  aria-label="{{ section.settings.heading | default: shop.name | escape }}"
+  aria-label="{{ hero_heading | strip_html | default: shop.name | escape }}"
   data-autoplay-interval="{{ section.settings.autoplay_interval | default: 5 | times: 1000 }}"
 >
   <div class="hero-banner__slides" id="HeroBannerSlides-{{ section.id }}">
@@ -620,10 +928,45 @@
         endif
 
         assign slide_alt = block.settings.image_alt | default: slide_image.alt | default: slide_mobile_image.alt | default: section.settings.heading | default: shop.name | strip
+        if hero_seasonal_copy != 'none' and hero_language_code != 'en'
+          # New slide blocks have no Translate & Adapt alt text yet; use the edition's translated alt.
+          assign slide_alt_key = 'alt_' | append: hero_rendered_slide_index
+          capture slide_seasonal_alt
+            render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: slide_alt_key, lang: hero_language_code
+          endcapture
+          assign slide_alt = slide_seasonal_alt | strip | default: slide_alt
+        endif
+        assign slide_art_base = block.settings.art_theme_asset | strip
+        assign slide_image_alt = slide_alt
+        if slide_art_base != blank
+          # The art layer carries the description; the sky behind it is decorative.
+          assign slide_image_alt = ''
+        endif
+
+        assign slide_link = ''
+        if hero_has_slide_links
+          assign slide_link = block.settings.link | default: ''
+          assign slide_link_path_prefix = slide_link | slice: 0, 13
+          if slide_link_path_prefix == '/collections/'
+            assign slide_link = slide_link | replace_first: '/collections', routes.collections_url
+          endif
+          if slide_link == blank and hero_button_link_first_char != '#'
+            assign slide_link = hero_button_link
+          endif
+        endif
+        assign slide_link_label = slide_alt
+        if slide_link == hero_button_link
+          assign slide_link_label = hero_button_label
+        elsif slide_link == hero_secondary_button_link
+          assign slide_link_label = hero_secondary_button_label
+        elsif slide_link == hero_tertiary_button_link
+          assign slide_link_label = hero_tertiary_button_label
+        endif
+        assign slide_link_label = slide_link_label | default: slide_alt
         assign slide_desktop_img_width = slide_image.width
         assign slide_desktop_img_height = slide_image.height
         if slide_image == blank
-          if slide_theme_asset == 'hero-desktop.jpg' or slide_theme_asset == 'hero-family-boardwalk-premium.jpg'
+          if slide_theme_asset == 'hero-desktop.jpg' or slide_theme_asset == 'hero-family-boardwalk-premium.jpg' or slide_theme_asset == 'hero-halloween-sky.jpg' or slide_theme_asset == 'hero-winter-sky.jpg'
             assign slide_desktop_img_width = 2400
             assign slide_desktop_img_height = 1000
           endif
@@ -640,7 +983,7 @@
         endif
       -%}
       <div
-        class="hero-banner__slide{% if hero_rendered_slide_index == 1 %} is-active{% endif %}"
+        class="hero-banner__slide{% if slide_art_base != blank %} hero-banner__slide--art{% endif %}{% if hero_rendered_slide_index == 1 %} is-active{% endif %}"
         id="HeroBannerSlide-{{ section.id }}-{{ hero_rendered_slide_index }}"
         role="group"
         aria-roledescription="slide"
@@ -685,7 +1028,7 @@
                 {{ slide_mobile_image | image_url: width: slide_mobile_src_width }} {{ slide_mobile_src_width }}w
               "
               sizes="100vw"
-              alt="{{ slide_alt | escape }}"
+              alt="{{ slide_image_alt | escape }}"
               loading="{{ slide_loading }}"
               fetchpriority="{{ slide_fetchpriority }}"
               decoding="async"
@@ -696,7 +1039,7 @@
             <img
               class="hero-banner__image"
               src="{{ slide_mobile_theme_asset | asset_url }}"
-              alt="{{ slide_alt | escape }}"
+              alt="{{ slide_image_alt | escape }}"
               loading="{{ slide_loading }}"
               fetchpriority="{{ slide_fetchpriority }}"
               decoding="async"
@@ -705,8 +1048,30 @@
             >
           {%- endif -%}
         </picture>
+        {%- if slide_art_base != blank -%}
+          <img
+            class="hero-banner__art"
+            src="{{ slide_art_base | append: '-1140.webp' | asset_url }}"
+            srcset="{{ slide_art_base | append: '-760.webp' | asset_url }} 760w, {{ slide_art_base | append: '-1140.webp' | asset_url }} 1140w, {{ slide_art_base | append: '-1520.webp' | asset_url }} 1520w"
+            sizes="(min-width: 750px) 52vw, 96vw"
+            alt="{{ slide_alt | escape }}"
+            loading="{{ slide_loading }}"
+            fetchpriority="{{ slide_fetchpriority }}"
+            decoding="async"
+            width="1520"
+            height="1100"
+            onerror="this.hidden = true;"
+          >
+        {%- endif -%}
         {%- if hero_rendered_slide_index > 1 -%}
           </template>
+        {%- endif -%}
+        {%- if slide_link != blank -%}
+          <a
+            href="{{ slide_link | escape }}"
+            class="hero-banner__slide-link"
+            aria-label="{{ slide_link_label | strip_html | escape }}"
+          ></a>
         {%- endif -%}
       </div>
     {%- endfor -%}
@@ -746,7 +1111,7 @@
     {%- endif -%}
   </div>
   <div class="hero-banner__overlay"></div>
-  {%- if hero_button_link != blank and hero_button_link_first_char != '#' -%}
+  {%- if hero_button_link != blank and hero_button_link_first_char != '#' and hero_has_slide_links == false -%}
     <a
       href="{{ hero_button_link | escape }}"
       class="hero-banner__surface-link"
@@ -754,11 +1119,21 @@
     ></a>
   {%- endif -%}
   <div class="hero-banner__content">
-    {%- if section.settings.heading != blank -%}
-      <{{ hero_heading_tag }} class="hero-banner__heading">{{ section.settings.heading }}</{{ hero_heading_tag }}>
-    {%- endif -%}
-    {%- if section.settings.subheading != blank -%}
-      <p class="hero-banner__subheading">{{ section.settings.subheading }}</p>
+    <div class="hero-banner__intro">
+      {%- if hero_eyebrow != blank -%}
+        <p class="hero-banner__eyebrow">
+          <svg class="hero-banner__eyebrow-icon" aria-hidden="true" focusable="false" viewBox="0 0 16 16">
+            <path d="M8 0 9.3 6.7 16 8 9.3 9.3 8 16 6.7 9.3 0 8 6.7 6.7Z" fill="currentColor"/>
+          </svg>
+          <span>{{ hero_eyebrow | escape }}</span>
+        </p>
+      {%- endif -%}
+      {%- if hero_heading_html != blank -%}
+        <{{ hero_heading_tag }} class="hero-banner__heading">{{ hero_heading_html }}</{{ hero_heading_tag }}>
+      {%- endif -%}
+    </div>
+    {%- if hero_subheading_html != blank -%}
+      <p class="hero-banner__subheading">{{ hero_subheading_html }}</p>
     {%- endif -%}
     <div class="hero-banner__actions">
       {%- if section.settings.button_label != blank -%}
@@ -906,15 +1281,16 @@
         }, autoplayInterval);
       }
 
-      function loadSlideImage(slide) {
+      function loadSlideImages(slide) {
         const pictureTemplate = slide.querySelector('template[data-hero-slide-picture]');
         if (pictureTemplate) {
           const picture = pictureTemplate.content.cloneNode(true);
-          const image = picture.querySelector('img');
-          if (image) image.loading = 'eager';
+          picture.querySelectorAll('img').forEach((image) => {
+            image.loading = 'eager';
+          });
           pictureTemplate.replaceWith(picture);
         }
-        return slide.querySelector('img');
+        return Array.from(slide.querySelectorAll('img'));
       }
 
       async function showSlide(index) {
@@ -922,15 +1298,19 @@
         const requestId = ++slideRequestId;
         if (nextIndex === activeIndex) return;
 
-        const image = loadSlideImage(slides[nextIndex]);
-        if (image) {
-          try {
-            await image.decode();
-          } catch {
-            if (!image.complete || image.naturalWidth === 0) return;
-          }
-        }
+        /* Wait for the background and art to decode; a failed art layer is not fatal (it hides itself). */
+        const images = loadSlideImages(slides[nextIndex]);
+        const results = await Promise.allSettled(images.map((image) => image.decode()));
+        const failed = results.some(
+          (result, i) =>
+            result.status === 'rejected' &&
+            !images[i].classList.contains('hero-banner__art') &&
+            (!images[i].complete || images[i].naturalWidth === 0)
+        );
+        if (failed) return;
         if (requestId !== slideRequestId) return;
+
+        const slideHadFocus = slides[activeIndex].contains(document.activeElement);
 
         slides[activeIndex].classList.remove('is-active');
         slides[activeIndex].setAttribute('aria-hidden', 'true');
@@ -941,6 +1321,15 @@
         slides[activeIndex].classList.add('is-active');
         slides[activeIndex].setAttribute('aria-hidden', 'false');
         dots[activeIndex].setAttribute('aria-current', 'true');
+
+        /*
+          Keep keyboard focus when the focused slide link is swapped out (arrow keys). The incoming
+          slide is still visibility:hidden at the start of its transition, so focus it a beat later.
+        */
+        if (slideHadFocus) {
+          const nextLink = slides[activeIndex].querySelector('.hero-banner__slide-link');
+          if (nextLink) window.setTimeout(() => nextLink.focus({ preventScroll: true }), 80);
+        }
       }
 
       function handleUserNavigation(index) {
@@ -1138,6 +1527,12 @@
     },
     {
       "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "info": "Short label above the heading. Leave blank to hide."
+    },
+    {
+      "type": "text",
       "id": "heading",
       "default": "Matching Outfits for Every Family Moment",
       "label": "Heading"
@@ -1182,6 +1577,46 @@
       "label": "Third button link"
     },
     {
+      "type": "select",
+      "id": "seasonal_copy",
+      "label": "Seasonal copy",
+      "options": [
+        {
+          "value": "none",
+          "label": "Use the text settings above"
+        },
+        {
+          "value": "halloween_winter",
+          "label": "Halloween & winter edit"
+        }
+      ],
+      "default": "none",
+      "info": "Replaces the eyebrow, heading, subheading and button labels with pre-translated copy in every store language. Button links still come from the settings above."
+    },
+    {
+      "type": "select",
+      "id": "button_style",
+      "label": "Button style",
+      "options": [
+        {
+          "value": "dark",
+          "label": "Dark"
+        },
+        {
+          "value": "seasonal",
+          "label": "Seasonal (cream on desktop, plum on mobile)"
+        }
+      ],
+      "default": "dark"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_heading",
+      "default": false,
+      "label": "Show eyebrow and heading on mobile",
+      "info": "Homepage hero only."
+    },
+    {
       "type": "checkbox",
       "id": "show_trust",
       "default": true,
@@ -1212,6 +1647,17 @@
       "default": 30,
       "unit": "%",
       "label": "Overlay darkness"
+    },
+    {
+      "type": "range",
+      "id": "text_scrim_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 1,
+      "default": 64,
+      "unit": "%",
+      "label": "Desktop text-side shade",
+      "info": "Homepage hero only. Darkens the left side behind the text; never lighter than the overlay."
     },
     {
       "type": "range",
@@ -1276,6 +1722,18 @@
           "id": "mobile_theme_asset",
           "label": "Mobile theme asset filename",
           "info": "Uses the desktop theme asset if left blank."
+        },
+        {
+          "type": "text",
+          "id": "art_theme_asset",
+          "label": "Foreground art base name",
+          "info": "Optional transparent art shown uncropped over the background. Expects NAME-760.webp, NAME-1140.webp and NAME-1520.webp (1520×1100) in /assets, for example hero-halloween-art."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Slide link",
+          "info": "Where a click on this slide goes. Uses the first button link if left blank."
         },
         {
           "type": "text",

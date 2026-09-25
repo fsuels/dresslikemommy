@@ -1,0 +1,50 @@
+{
+ "generated": "2026-09-25",
+ "harness": "tools/render_hero_harness.js + tools/hero_layout_sweep.html",
+ "cases": 147,
+ "problem_rows": 0,
+ "checks": [
+  "cta label overflow",
+  "eyebrow wraps",
+  "mobile heading vs arch top (>=8px)",
+  "desktop text vs arches (>=12px)",
+  "controls vs arch bottoms (>=4px)",
+  "mobile CTA card vs controls (>=2px)",
+  "horizontal page overflow",
+  "mobile CTA card vs next section (>=8px)"
+ ],
+ "languages": [
+  "en",
+  "es",
+  "fr",
+  "ar",
+  "nl",
+  "de",
+  "hi",
+  "it",
+  "ja",
+  "ko",
+  "pl",
+  "pt",
+  "ru",
+  "sv",
+  "da",
+  "no",
+  "el",
+  "ro",
+  "fi",
+  "he",
+  "cs"
+ ],
+ "widths": [
+  320,
+  375,
+  430,
+  768,
+  1024,
+  1280,
+  1440
+ ],
+ "mobile_card_gap_px": 12,
+ "keyboard_test": "tools/hero_keyboard_test.js: arrow keys switch slides with focus following the slide link; Tab order CTAs then controls; a broken art file hides itself and the carousel still advances; 0 JS errors"
+}

@@ -1,5 +1,12 @@
 # Agent Coordination Registry
 
+## Homepage seasonal hero (Halloween & winter) claim — 2026-09-25
+
+Status: RELEASE_APPROVED__PUSHING_TO_MAIN (owner approved in chat 2026-09-25: "publish the hero"). Anchor: `2026-09-25-seasonal-homepage-hero-halloween-winter`. Owner request (September25, chat): improve the homepage hero image for the current season, Halloween and winter. The root Claude Code session is the sole writer for this scope only:
+- `sections/hero-banner.liquid`, `templates/index.json` (the `hero_banner_main` section only), new `snippets/hero-seasonal-copy.liquid`, and new `assets/hero-halloween-*` and `assets/hero-winter-*` files.
+
+The art uses published product photos only (Halloween family pajamas and family sweaters). No product, collection, translation-register, feed, ad or spend writes. The old hero assets stay in `assets/` for rollback. Release to `main` and the live theme was approved by the owner in chat. The peer listing session's uncommitted coordination rows are preserved and are not committed by this session.
+
 ## Danish, Norwegian, Dutch and Greek collection translations claim — 2026-09-24
 
 Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED (2026-09-24 ~23:45 EDT). 317 Shopify translation values were registered and read back exactly. Theme commits `a2517b6`, `86a4223` and `73a43fa` were upserted to MAIN after the GitHub sync stalled; the six upserted files are identical to `main`. All 172 public pages pass. Anchor: `2026-09-24-eu-collection-translations`. Owner request (September24): "Make sure the Danish, Norwegian, Dutch and Greek versions of your store have translated collection titles and descriptions." The root Claude Code session is the sole writer for this scope only:

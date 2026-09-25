@@ -54026,3 +54026,49 @@ Noticed, not fixed:
 Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-peter-rabbit-trademark-rename/README.md`, `BEFORE_STATE.json` (rollback) and `MANUAL_TRANSLATION_PAYLOADS.json`.
 
 Next: the Merchant feed owner rebuilds and promotes the US feed and re-uploads AU from current Shopify, then rebuilds the Pinterest URL feeds and runs the strict grouping check.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-25-seasonal-homepage-hero-halloween-winter
+
+- task_entities: `templates/index.json` section `hero_banner_main`; `sections/hero-banner.liquid`; `snippets/hero-seasonal-copy.liquid`; assets `hero-halloween-*`, `hero-winter-*`; collections `family-pajamas`, `family-sweaters`, `new-women-outfits`
+- task_stage: HANDOFF
+- problem_ids: none opened
+- next_action_id: OWNER_APPROVE_RELEASE_SEASONAL_HOMEPAGE_HERO
+
+Why: on 2026-09-25 the owner asked to restyle the homepage hero for the current season, Halloween and winter. The live hero still showed summer beach-boardwalk slides.
+
+Done:
+- IMPLEMENTED, locally only; not committed or pushed:
+  - Two art-directed slides built from published product photos:
+    - Halloween: pumpkin-ghost, boo-stripe and spooky-skeleton pajamas. Links to `family-pajamas`, whose grid opens with all 6 Halloween sets.
+    - Winter: cable-horse, red cable-knit cardigans and cable-knit heart sweaters. Links to `family-sweaters`, which contains all 3.
+  - Each slide has a full-bleed sky plus a transparent arch-frame art layer that is never cropped. Sky JPGs are about 110 KB; art WebPs come in 760/1140/1520 widths.
+  - Eyebrow, H1 "Spooky nights. Snowy mornings. Matching families.", subheading, and CTAs for Halloween pajamas, cozy sweaters, and Family Matching Outfits. The third keeps the 2026-09-24 SEO exact-anchor link.
+  - The copy comes pre-translated for all 21 storefront languages from `snippets/hero-seasonal-copy.liquid` via the `seasonal_copy` setting. Reason: Translate & Adapt would keep serving the old season's translations of the edited section settings.
+  - The section is backward compatible. New settings default to prior behavior: `eyebrow`, `seasonal_copy`, `button_style`, `show_mobile_heading`, `text_scrim_opacity`, and slide `art_theme_asset`/`link`. The slider now decodes every image in a slide before fading it in.
+- VERIFIED locally:
+  - `shopify theme check`: 278 files, 0 offenses. `git diff --check` is clean. The 2 hero inline scripts pass `node --check`.
+  - A real Liquid render (liquidjs bundled in the installed Shopify CLI) into script-free copies of the live homepage, all 21 languages. Localized copy and locale-prefixed links were confirmed.
+  - An automated layout sweep of 21 languages × 7 widths (320–1440): 147 cases, 0 problems on the final build.
+  - Browser checks at 1920/1440/1280/1024/768/430/375/320, including German, French, Finnish, Arabic and Japanese. No console errors.
+- Also fixed a pre-existing bug. Dawn's `a:empty { display: none }` in `assets/base.css` hid the hero's click-anywhere overlay link, so clicking the live hero image did nothing. The new overlays use a more specific `display: block` rule. VERIFIED: `elementFromPoint` on the arches and on the sky returns the slide link to the right collection.
+- An independent verifier reviewed the change. All 5 of its findings were fixed and re-verified:
+  - range default off-step (64 on a step of 5), a Shopify deploy blocker that Theme Check misses; the step is now 1
+  - arrow-key focus loss
+  - an empty slide-link name in other configurations
+  - the carousel freezing on a missing art file
+  - the phone CTA card overlapping the next section, by up to 28px
+  The phone layout now uses a fixed image stage with the card in normal flow; the gap is 12px in all 63 phone cases.
+- QA fix: stretched phone CTAs became circles that clipped long labels (Italian). They now use a 2rem radius with centered labels.
+- Translated slide alt text was added for 20 languages, because new slide blocks have no Translate & Adapt alts.
+- VERIFIED: a headless Chromium keyboard test (`tools/hero_keyboard_test.js`) and a final sweep of 147 cases with 0 problems.
+- Checked and not an issue: the live French announcement bar's "retours faciles sous 30 jours" matches the refund policy's 30-day window.
+
+Not done / risks:
+- Translate & Adapt link fields are translatable (`button_link` in the March export, 0 translated values). Stale link translations are unlikely, but check CTA and slide-link targets on the release readback.
+- `shopify theme dev` was NOT RUN: the CLI asked for an owner device-code login. The Homebrew `node@22` is broken (missing `libsimdjson.29.dylib`); use nvm Node 20.
+- There is no live readback until release. The slide image alts are English on non-English routes until Translate & Adapt translations exist.
+- The Halloween slide and CTA stay until someone changes them. Plan a post-October-31 swap to the winter/Christmas edit.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-25-seasonal-homepage-hero/` (README, before/after screens, sweep summary, reusable art generator and QA harness).
+
+Next: the owner approves the release. Then commit the hero files and assets, push to `main`, and read back the live homepage on desktop and mobile (EN, ES, DE, JA, AR). This goes first because nothing customer-facing changes until the release lands.
