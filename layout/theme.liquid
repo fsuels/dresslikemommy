@@ -26,6 +26,13 @@
     if request.page_type == 'product' and resolved_canonical_url contains '?'
       assign resolved_canonical_url = resolved_canonical_url | split: '?' | first
     endif
+    comment
+      popular-family-matching lists the same products as new-women-outfits,
+      the page targeting "family matching outfits"; point its canonical there.
+    endcomment
+    if request.page_type == 'collection' and collection.handle == 'popular-family-matching' and collections['new-women-outfits'] != blank
+      assign resolved_canonical_url = request.origin | append: collections['new-women-outfits'].url
+    endif
 
     assign parameterized_product_noindex = false
     if request.page_type == 'product'
