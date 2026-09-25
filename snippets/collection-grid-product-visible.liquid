@@ -186,5 +186,10 @@
     assign product_visible = true
   endif
 
+  # family-pajamas' smart rule (type Matching Family Pajamas + tag Pajamas) already scopes it; the pajama sets are tagged Mommy and Me.
+  if current_collection_handle == 'family-pajamas'
+    assign product_visible = true
+  endif
+
   echo product_visible
 -%}
