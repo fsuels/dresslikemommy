@@ -1,0 +1,6 @@
+query CatalogDanishPriority($ids:[ID!]!) { translatableResourcesByIds(resourceIds:$ids,first:10) { nodes { resourceId translatableContent { key value digest locale type } global:translations(locale:"da") { key value locale outdated updatedAt market { id } } m0:translations(locale:"da",marketId:"gid://shopify/Market/22986424417") { key value locale outdated updatedAt market { id } }
+m1:translations(locale:"da",marketId:"gid://shopify/Market/22986326113") { key value locale outdated updatedAt market { id } }
+m2:translations(locale:"da",marketId:"gid://shopify/Market/544800865") { key value locale outdated updatedAt market { id } }
+m3:translations(locale:"da",marketId:"gid://shopify/Market/544866401") { key value locale outdated updatedAt market { id } }
+m4:translations(locale:"da",marketId:"gid://shopify/Market/22986260577") { key value locale outdated updatedAt market { id } }
+m5:translations(locale:"da",marketId:"gid://shopify/Market/544735329") { key value locale outdated updatedAt market { id } } } pageInfo { hasNextPage endCursor } } }

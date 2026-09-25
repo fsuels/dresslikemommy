@@ -78,7 +78,7 @@
     "timestamp_limit": "First execution clock after message, not exact user sendtime",
     "ambient_signed_download_URL_excluded": true
   },
-  "updated_at_utc": "2026-09-21T21:54:54.746068+00:00",
+  "updated_at_utc": "2026-09-22T21:02:43.049787+00:00",
   "translation_coverage": "Fresh complete US/es source September15 03:23:50.568UTC:238ACTIVEparents/4925variants,1186global selected translation records and0market overrides. One required Tropical body remains stale; two optional stale fields remain. 4718offers/231parents pass source/publication/required-translation checks after162six-hold and22unavailable omissions. Two public numeric variant links fail preselection, so no Spanish feed was built or submitted. This is not an all-language semantic audit; earlier all-locale metadata is retained in dated history.",
   "local_lifecycle": "Existing reviewed local US refresh/promotion path is live and current-source verified. Daily task heartbeat remains active; existing US Google24hour fetch and48hour stale-source guard unchanged. AU remains manual. Dedicated read-only cloud credential grant and cloud synchronization remain unactivated; no permission expansion.",
   "latest_contained_release": {
@@ -570,7 +570,7 @@
         {
           "action": "Shopify global French title only",
           "product": "7229130801249",
-          "value": "Robes d\u2019\u00e9t\u00e9 assorties m\u00e8re-fille en mousseline beige",
+          "value": "Robes d’été assorties mère-fille en mousseline beige",
           "status": "Providerindependent31/31andlivepublicH1 verified; nootherfields changed",
           "receipt": "french_title_7229130801249.saved_receipt_20260911.json"
         },
@@ -857,5 +857,36 @@
     "refresh_due": false,
     "external_writes": 0,
     "parent_acceptance_anchor": "2026-09-21-ceo-us-au-refresh-received"
+  },
+  "latest_heartbeat_control_20260922": {
+    "at_utc": "2026-09-22T21:02:43.049787+00:00",
+    "status": "BLOCKED_REFRESH_DUE_BEFORE_NEXT_RUN__RUNTIME_GOAL_USAGE_LIMITED",
+    "runtime_goal_status": "usageLimited",
+    "artifact": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260922/refresh_runtime_hold_2100.json",
+    "sha256": "77934a13b9601e5127c26bd0e0f2ad6bb30d09364872363c97c243dec5a0032b",
+    "refresh_needed_before_next_heartbeat": true,
+    "source_expired_now": false,
+    "external_writes": 0,
+    "notification_decision": "NOTIFY",
+    "next_action": "Resume or extend the saved goal through its supported user controls so existing-source refresh can execute.",
+    "parent_handoff": {
+      "status": "BLOCKED_PARENT_TASK_ARCHIVED",
+      "artifact": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260922/runtime_hold_parent_handoff_2103.json",
+      "sha256": "c4a94df2a3bc38639ddea7cac261d1e74c5024925440f2888f89679c7303b0ff"
+    }
+  },
+  "latest_heartbeat_control_20260923": {
+    "at_utc": "2026-09-23T21:03:17.900623+00:00",
+    "status": "BLOCKED_REFRESH_OVERDUE__US_48H_LIMIT_IMMINENT__GOAL_USAGE_LIMITED",
+    "runtime_goal_status": "usageLimited",
+    "artifact": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-merchant-expert-audit/recovery_20260923/refresh_runtime_hold_2101.json",
+    "sha256": "d8e89f44f977a66c50cac27896708cd2118fd1b5a07acb468bb45fbc86baf5a7",
+    "refresh_due": true,
+    "source_expired_now": false,
+    "US_unchanged_48h_guard_expiry_utc": "2026-09-23T21:22:35.148000+00:00",
+    "external_writes": 0,
+    "notification_decision": "NOTIFY",
+    "next_action": "Resume or extend the saved goal through supported user controls, then perform fresh reviewed US/AU source refresh.",
+    "parent_handoff_status": "PRIOR_BLOCKED_PARENT_TASK_ARCHIVED_NO_RETRY"
   }
 }

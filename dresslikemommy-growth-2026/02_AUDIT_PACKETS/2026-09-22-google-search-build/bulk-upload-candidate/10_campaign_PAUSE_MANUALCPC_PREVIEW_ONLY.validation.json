@@ -1,0 +1,92 @@
+{
+  "status": "PASS_WITH_LIMITS_LOCAL_NARROW_EDIT_CANDIDATE_ONLY",
+  "file": "10_campaign_PAUSE_MANUALCPC_PREVIEW_ONLY.csv",
+  "csvRows": 1,
+  "csvSha256": "d90f353d2be037bdb3bb698e5dd73410b9cbe98f4397b68c95654e446f7d3114",
+  "sourceUrl": "https://www.gstatic.com/adwords/campaignmgmt/templates/campaign_template.csv",
+  "sourceSha256": "2591e9ac5c35ef36d320978c2bf61cbe5ff3af899cf7fc8487bd3a356e8355ae",
+  "proposedRow": {
+    "Row Type": "Campaign",
+    "Action": "Edit",
+    "Campaign status": "Paused",
+    "Campaign ID": "281499249292033",
+    "Campaign": "DLM | GADS | US | EN | Search | 202609",
+    "Bid strategy type": "Manual CPC"
+  },
+  "identityBasis": "Campaign ID281499249292033 and exact name were supplied from the parent's observed existing wizard draft. The native template explicitly supports Campaign ID. This worker has not independently validated native ID/name resolution; Preview must confirm both refer to the same entity.",
+  "explicitOmissions": [
+    "Budget",
+    "Budget type",
+    "Campaign start date",
+    "Campaign end date",
+    "Campaign type",
+    "Networks",
+    "Location",
+    "Language",
+    "EU political ads",
+    "Tracking template",
+    "Final URL suffix",
+    "All CPC/CPA/ROAS amounts"
+  ],
+  "nativePreview": "NOT_RUN_BY_WORKER",
+  "nativeApply": "NOT_RUN",
+  "parentEvidence": {
+    "addPreview": "09 Add returned0successful/1error: exact-name entity already exists.",
+    "effect": "Supersedes the inference from the campaign list that a new campaign was required. Existing draft is discoverable to the importer by name; effective entity status and Edit semantics still need qualification.",
+    "groupPreview": "Prior6Successful/0Errors was Preview only; no group Apply reported."
+  },
+  "preApplyChecks": [
+    "Native Preview resolves ID and exact name consistently and proposes only Paused plus Manual CPC on the intended existing entity.",
+    "Root reads back USD and the existing draft's selected Campaign Total210/provisional setup dates independently; this file cannot alter budget or dates.",
+    "Do not apply a preview that creates, enables, duplicates, removes, changes another entity, or silently changes unspecified fields."
+  ],
+  "renameInspection": {
+    "sourceUrl": "https://www.gstatic.com/adwords/campaignmgmt/templates/ad_group_template.csv",
+    "supportedHeaders": [
+      "Row Type",
+      "Action",
+      "Ad group status",
+      "Campaign ID",
+      "Campaign",
+      "Ad group ID",
+      "Ad group"
+    ],
+    "actionEditAdvertised": true,
+    "newNameHeaderPresent": false,
+    "correctNameValueHeader": "Ad group",
+    "requiredUnknown": "Existing original Ad group1 ID must be read back; do not invent or substitute the campaign ID.",
+    "nonExecutableProposal": {
+      "Row Type": "Ad group",
+      "Action": "Edit",
+      "Ad group status": "Paused",
+      "Campaign ID": "281499249292033",
+      "Campaign": "DLM | GADS | US | EN | Search | 202609",
+      "Ad group ID": null,
+      "Ad group": "Mommy & Me Dresses"
+    },
+    "omittedImmutableField": "Ad group type is explicitly immutable after creation, so omit it.",
+    "qualification": "Header-supported ID-targeted rename proposal only. No rename CSV or native preview has been created; verify ID/name semantics in the current upload flow before applying."
+  },
+  "authority": "Exact current user paused-build scope only; no activation or account/billing/tracking action.",
+  "independentLocalReadback": {
+    "status": "PASS",
+    "checks": [
+      "One exact six-column Edit row",
+      "Exact ID/name/Paused/Manual CPC strings preserved",
+      "All budget, date and targeting columns omitted",
+      "Hash matches",
+      "All headers appear in native template"
+    ],
+    "nativePreview": "NOT_RUN_BY_WORKER",
+    "externalApply": "NOT_RUN_BY_WORKER"
+  },
+  "latestParentReadback": {
+    "basis": "Parent-reported native existing draft UI, not independently inspected by worker",
+    "budgetType": "Campaign Total",
+    "budget": 210,
+    "start": "2026-09-22",
+    "end": "2026-09-28",
+    "review": "All changes saved; Campaign total:$210.00",
+    "effect": "Parent reports budget setup now saved; this narrow file does not repeat or modify that setup."
+  }
+}

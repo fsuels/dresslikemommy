@@ -1,0 +1,1646 @@
+{
+  "status": "PASS_WITH_LIMITS",
+  "reviewed_at_utc": "2026-09-22T18:28:40.449799+00:00",
+  "independence": "Reviewer did not execute external writes/browser actions; verified native export files independently of operator summaries.",
+  "completion": "PARTIAL_FOUR_RSA_SAVES_BLOCKED",
+  "checks_run": 349,
+  "checks_passed": 349,
+  "defects": [],
+  "sources": {
+    "native_search_keyword_report_20260922_1415.csv": {
+      "sha256": "8158a63bbf05c75506b66ad595a30aba3b968830f54c3e480e0b4434dd11f910",
+      "title": "Search keyword report",
+      "window": "\"September 22, 2026 - September 22, 2026\"",
+      "included_rows": 48,
+      "excluded_summary_rows": 6,
+      "columns": [
+        "Keyword status",
+        "Keyword",
+        "Match type",
+        "Draft change",
+        "Ad group",
+        "Status",
+        "Status reasons",
+        "Currency code",
+        "Max. CPC",
+        "Final URL",
+        "Clicks",
+        "Impr.",
+        "CTR",
+        "Avg. CPC",
+        "Cost",
+        "Conv. rate",
+        "Conversions",
+        "Cost / conv."
+      ],
+      "summary_filter": "Exclude only rows containing an explicit Total: label in any report field; keyword report totals appear in Match type."
+    },
+    "native_negative_keyword_report_20260922_1417.csv": {
+      "sha256": "c60c143c03e32aea7a7e924b4d1d1a14dc975bc897e5f82c9f1e3d9175017944",
+      "title": "Negative keyword report",
+      "window": "All time",
+      "included_rows": 67,
+      "excluded_summary_rows": 0,
+      "columns": [
+        "Negative keyword",
+        "Keyword or list",
+        "Campaign",
+        "Ad group",
+        "Level",
+        "Match type"
+      ]
+    },
+    "native_asset_association_report_20260922.csv": {
+      "sha256": "715317fe0caeb76624bed2f59d3ccc868ffc55e6dcedf0233638a38c27a87159",
+      "title": "Asset association report",
+      "window": "\"September 22, 2026 - September 22, 2026\"",
+      "included_rows": 20,
+      "excluded_summary_rows": 0,
+      "columns": [
+        "Asset status",
+        "Asset",
+        "Asset type",
+        "Campaign",
+        "Ad group",
+        "Level",
+        "Status",
+        "Status reason",
+        "Draft change",
+        "Added by",
+        "Last updated",
+        "Clicks",
+        "Impr.",
+        "CTR",
+        "Currency code",
+        "Avg. CPC",
+        "Cost"
+      ]
+    },
+    "native_ad_report_20260922.csv": {
+      "sha256": "faacb173df63e4a1ccffe086a63a4e4829e47021ddc6d04f951bc5c88b5b1899",
+      "title": "Ad report",
+      "window": "\"September 22, 2026 - September 22, 2026\"",
+      "included_rows": 2,
+      "excluded_summary_rows": 1,
+      "columns": [
+        "Ad status",
+        "Final URL",
+        "Headline 1",
+        "Headline 1 position",
+        "Headline 2",
+        "Headline 2 position",
+        "Headline 3",
+        "Headline 3 position",
+        "Headline 4",
+        "Headline 4 position",
+        "Headline 5",
+        "Headline 5 position",
+        "Headline 6",
+        "Headline 6 position",
+        "Headline 7",
+        "Headline 7 position",
+        "Headline 8",
+        "Headline 8 position",
+        "Headline 9",
+        "Headline 9 position",
+        "Headline 10",
+        "Headline 10 position",
+        "Headline 11",
+        "Headline 11 position",
+        "Headline 12",
+        "Headline 12 position",
+        "Headline 13",
+        "Headline 13 position",
+        "Headline 14",
+        "Headline 14 position",
+        "Headline 15",
+        "Headline 15 position",
+        "Description 1",
+        "Description 1 position",
+        "Description 2",
+        "Description 2 position",
+        "Description 3",
+        "Description 3 position",
+        "Description 4",
+        "Description 4 position",
+        "Path 1",
+        "Path 2",
+        "Mobile final URL",
+        "Tracking template",
+        "Final URL suffix",
+        "Custom parameter",
+        "Ad group",
+        "Status",
+        "Status reasons",
+        "Draft change",
+        "Ad strength",
+        "Ad strength improvements",
+        "Ad type",
+        "Clicks",
+        "Impr.",
+        "CTR",
+        "Currency code",
+        "Avg. CPC",
+        "Cost",
+        "Conv. rate",
+        "Conversions",
+        "Cost / conv."
+      ]
+    }
+  },
+  "payload_sha256": "ed907007d8f22b6e6dca41119f3167a0df7302a859ba464825685c8ae82502ce",
+  "results": {
+    "keywords": {
+      "rows": 48,
+      "per_group": {
+        "Family Matching Outfits": 8,
+        "Mommy & Me Dresses": 8,
+        "Family Matching Shirts": 8,
+        "Mommy & Me Pajamas": 8,
+        "Father & Son Shirts": 8,
+        "Mommy & Me Outfits": 8
+      },
+      "match_types": {
+        "Phrase match": 24,
+        "Exact match": 24
+      },
+      "all_paused": true,
+      "all_usd": true,
+      "bid_check": "PASS"
+    },
+    "negatives": {
+      "rows": 67,
+      "scope_counts": {
+        "Ad group": 41,
+        "Campaign": 26
+      },
+      "exact_match": true,
+      "status_field": "NOT_EXPORTED"
+    },
+    "assets": {
+      "requested_associations": 19,
+      "sitelinks": 14,
+      "distinct_sitelink_content": 6,
+      "campaign_callouts": 4,
+      "snippet": 1,
+      "requested_asset_statuses": {
+        "Enabled": 19
+      },
+      "separate_inherited_account_call": 1
+    },
+    "saved_rsas": {
+      "rows": 2,
+      "groups": [
+        "Family Matching Outfits",
+        "Mommy & Me Dresses"
+      ],
+      "all_paused": true,
+      "headlines_per_ad": 12,
+      "descriptions_per_ad": 4,
+      "first_description_pin": 1,
+      "missing_saved_groups": [
+        "Family Matching Shirts",
+        "Mommy & Me Pajamas",
+        "Father & Son Shirts",
+        "Mommy & Me Outfits"
+      ]
+    }
+  },
+  "authority_review": {
+    "authorized": "Exact six-group build, keep paused,210USD Campaign Total over7days; no activation.",
+    "authority_basis": "Current parent-supplied user scope supersedes the original payload's unselected-budget snapshot.",
+    "setup_dates": "Sep22-28 are provisional editable setup dates, not activation approval.",
+    "consistent_export_evidence": "All48keywords and2saved ads are Paused and report campaign-paused reasons.",
+    "budget_amount_type_period": "NOT_INDEPENDENTLY_VERIFIED_FROM_THESE_EXPORTS: campaign budget/date columns are absent. Parent's separate campaign-settings readback owns210CampaignTotal/seven-day proof.",
+    "action_history": "Full historical no-activation action audit is not established by saved exports."
+  },
+  "limits": [
+    "Saved-export review only; no fresh browser/account read by reviewer.",
+    "Keyword and ad exports lack campaign ID/name columns; exact campaign scope relies on parent-supplied export provenance. Negative and asset exports explicitly name campaign but omit ID.",
+    "48keywords,2ads and19requested assets show Draft change=Yes: saved draft evidence, not launch or editorial approval.",
+    "Negative export omits status; do not claim each negative Paused or effective from this file.",
+    "19requested assets have Enabled asset status; parent campaign paused reasons are separate. One inherited Account Call is outside requested new assets; phone value omitted.",
+    "Four remaining RSAs have no saved rows. Parent reports wizard entry blocked by new authentication; unsaved content is not independently verified.",
+    "Editorial Pending/Under review, purchase measurement, category/shipping readiness and future activation remain separate."
+  ],
+  "operator_verification_comparison": [
+    {
+      "file": "native_asset_verification.json",
+      "sha256": "d0a7b86694ee6869f4bb19091a3813671bf01545209a3c7b6a4efa24f5e0d5e8",
+      "operator_status": "PASS",
+      "independent_comparison": "AGREES"
+    },
+    {
+      "file": "native_keyword_verification.json",
+      "sha256": "9407921f20de0814f6c90218323d9f981950a52813f0bfc3c6d1be4f532502fa",
+      "operator_status": "PASS",
+      "independent_comparison": "AGREES"
+    },
+    {
+      "file": "native_negative_verification.json",
+      "sha256": "2203bed7b40dccd53af936d7b87c7115be064c47a6d45884b600b5065cd7066e",
+      "operator_status": "PASS",
+      "independent_comparison": "AGREES"
+    }
+  ],
+  "next_action": "After normal Google verification, save the four remaining RSAs and export/review all six. Keep campaign/positive entities paused.",
+  "checks": [
+    {
+      "check": "native_search_keyword_report_20260922_1415.csv rectangular rows",
+      "passed": true
+    },
+    {
+      "check": "native_negative_keyword_report_20260922_1417.csv rectangular rows",
+      "passed": true
+    },
+    {
+      "check": "native_asset_association_report_20260922.csv rectangular rows",
+      "passed": true
+    },
+    {
+      "check": "native_ad_report_20260922.csv rectangular rows",
+      "passed": true
+    },
+    {
+      "check": "67 negatives",
+      "passed": true
+    },
+    {
+      "check": "Exact negative scopes/text/matches",
+      "passed": true
+    },
+    {
+      "check": "26campaign41group negatives",
+      "passed": true
+    },
+    {
+      "check": "Direct keyword exclusions",
+      "passed": true
+    },
+    {
+      "check": "14 sitelink associations",
+      "passed": true
+    },
+    {
+      "check": "Exact sitelink scopes/text/descriptions/URLs",
+      "passed": true
+    },
+    {
+      "check": "Six sitelink definitions",
+      "passed": true
+    },
+    {
+      "check": "Four exact campaign callouts",
+      "passed": true
+    },
+    {
+      "check": "One snippet",
+      "passed": true
+    },
+    {
+      "check": "Exact snippet group/header/values",
+      "passed": true
+    },
+    {
+      "check": "19 requested assets are draft changes",
+      "passed": true
+    },
+    {
+      "check": "Assets are Enabled separately from parent state",
+      "passed": true
+    },
+    {
+      "check": "One separate inherited Account Call",
+      "passed": true
+    },
+    {
+      "check": "Exactly two expected saved RSAs",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits RSA Paused",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits saved draft USD",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits parents paused",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline1",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline2",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline3",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline4",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline5",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline6",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline7",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline8",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline9",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline10",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline11",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline12",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned1",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned2",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned3",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned4",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned5",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned6",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned7",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned8",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned9",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned10",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned11",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned12",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned13",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned14",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits headline unpinned15",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits unused headline blank13",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits unused headline blank14",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits unused headline blank15",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits description1",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits description2",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits description3",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits description4",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits description1 pin1",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits description unpinned2",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits description unpinned3",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits description unpinned4",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits final URL",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits paths",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits no added tracking",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses RSA Paused",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses saved draft USD",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses parents paused",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline2",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline3",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline4",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline5",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline6",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline7",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline8",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline9",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline10",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline11",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline12",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned2",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned3",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned4",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned5",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned6",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned7",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned8",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned9",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned10",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned11",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned12",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned13",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned14",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses headline unpinned15",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses unused headline blank13",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses unused headline blank14",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses unused headline blank15",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses description1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses description2",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses description3",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses description4",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses description1 pin1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses description unpinned2",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses description unpinned3",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses description unpinned4",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses final URL",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses paths",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses no added tracking",
+      "passed": true
+    },
+    {
+      "check": "48 keywords",
+      "passed": true
+    },
+    {
+      "check": "Exact keyword/group/match multiset",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Outfits', 'family matching outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Outfits', 'family matching outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Outfits', 'family matching outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Outfits', 'family matching outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Outfits', 'family matching outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Outfits', 'matching family outfits for pictures', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Outfits', 'matching family outfits for pictures', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Outfits', 'matching family outfits for pictures', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Outfits', 'matching family outfits for pictures', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Outfits', 'matching family outfits for pictures', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Dresses', 'mommy and me floral dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Dresses', 'mommy and me floral dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Dresses', 'mommy and me floral dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Dresses', 'mommy and me floral dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Dresses', 'mommy and me floral dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Outfits', 'matching family dress and shirt', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Outfits', 'matching family dress and shirt', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Outfits', 'matching family dress and shirt', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Outfits', 'matching family dress and shirt', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Outfits', 'matching family dress and shirt', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Dresses', 'mother daughter matching dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Dresses', 'mother daughter matching dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Dresses', 'mother daughter matching dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Dresses', 'mother daughter matching dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Dresses', 'mother daughter matching dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Dresses', 'mommy and me dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Dresses', 'mommy and me dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Dresses', 'mommy and me dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Dresses', 'mommy and me dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Dresses', 'mommy and me dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Dresses', 'mommy and me maxi dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Dresses', 'mommy and me maxi dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Dresses', 'mommy and me maxi dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Dresses', 'mommy and me maxi dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Dresses', 'mommy and me maxi dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Outfits', 'matching family dress and shirt', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Outfits', 'matching family dress and shirt', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Outfits', 'matching family dress and shirt', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Outfits', 'matching family dress and shirt', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Outfits', 'matching family dress and shirt', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Outfits', 'matching family vacation outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Outfits', 'matching family vacation outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Outfits', 'matching family vacation outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Outfits', 'matching family vacation outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Outfits', 'matching family vacation outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Outfits', 'matching family outfits for pictures', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Outfits', 'matching family outfits for pictures', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Outfits', 'matching family outfits for pictures', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Outfits', 'matching family outfits for pictures', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Outfits', 'matching family outfits for pictures', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Dresses', 'mommy and me floral dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Dresses', 'mommy and me floral dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Dresses', 'mommy and me floral dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Dresses', 'mommy and me floral dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Dresses', 'mommy and me floral dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Dresses', 'mommy and me maxi dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Dresses', 'mommy and me maxi dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Dresses', 'mommy and me maxi dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Dresses', 'mommy and me maxi dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Dresses', 'mommy and me maxi dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Dresses', 'mommy and me dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Dresses', 'mommy and me dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Dresses', 'mommy and me dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Dresses', 'mommy and me dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Dresses', 'mommy and me dresses', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Outfits', 'family matching outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Outfits', 'family matching outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Outfits', 'family matching outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Outfits', 'family matching outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Outfits', 'family matching outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Outfits', 'matching family vacation outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Outfits', 'matching family vacation outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Outfits', 'matching family vacation outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Outfits', 'matching family vacation outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Outfits', 'matching family vacation outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Dresses', 'mother daughter matching dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Dresses', 'mother daughter matching dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Dresses', 'mother daughter matching dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Dresses', 'mother daughter matching dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Dresses', 'mother daughter matching dresses', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Shirts', 'family matching shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Shirts', 'family matching shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Shirts', 'family matching shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Shirts', 'family matching shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Shirts', 'family matching shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Shirts', 'family matching tops', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Shirts', 'family matching tops', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Shirts', 'family matching tops', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Shirts', 'family matching tops', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Shirts', 'family matching tops', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Shirts', 'matching family button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Shirts', 'matching family button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Shirts', 'matching family button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Shirts', 'matching family button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Shirts', 'matching family button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Shirts', 'matching family button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Shirts', 'matching family button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Shirts', 'matching family button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Shirts', 'matching family button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Shirts', 'matching family button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Shirts', 'family matching shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Shirts', 'family matching shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Shirts', 'family matching shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Shirts', 'family matching shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Shirts', 'family matching shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Shirts', 'family matching tops', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Shirts', 'family matching tops', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Shirts', 'family matching tops', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Shirts', 'family matching tops', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Shirts', 'family matching tops', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Shirts', 'matching family t shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Shirts', 'matching family t shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Shirts', 'matching family t shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Shirts', 'matching family t shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Shirts', 'matching family t shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Family Matching Shirts', 'matching family t shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Family Matching Shirts', 'matching family t shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Family Matching Shirts', 'matching family t shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Family Matching Shirts', 'matching family t shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Family Matching Shirts', 'matching family t shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Pajamas', 'mommy and me long sleeve pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Pajamas', 'mommy and me long sleeve pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Pajamas', 'mommy and me long sleeve pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Pajamas', 'mommy and me long sleeve pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Pajamas', 'mommy and me long sleeve pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Pajamas', 'mommy and me long sleeve pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Pajamas', 'mommy and me long sleeve pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Pajamas', 'mommy and me long sleeve pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Pajamas', 'mommy and me long sleeve pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Pajamas', 'mommy and me long sleeve pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Pajamas', 'mother daughter matching pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Pajamas', 'mother daughter matching pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Pajamas', 'mother daughter matching pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Pajamas', 'mother daughter matching pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Pajamas', 'mother daughter matching pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Pajamas', 'mommy and me short sleeve pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Pajamas', 'mommy and me short sleeve pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Pajamas', 'mommy and me short sleeve pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Pajamas', 'mommy and me short sleeve pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Pajamas', 'mommy and me short sleeve pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Pajamas', 'mommy and me pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Pajamas', 'mommy and me pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Pajamas', 'mommy and me pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Pajamas', 'mommy and me pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Pajamas', 'mommy and me pajamas', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Pajamas', 'mother daughter matching pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Pajamas', 'mother daughter matching pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Pajamas', 'mother daughter matching pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Pajamas', 'mother daughter matching pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Pajamas', 'mother daughter matching pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Pajamas', 'mommy and me pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Pajamas', 'mommy and me pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Pajamas', 'mommy and me pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Pajamas', 'mommy and me pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Pajamas', 'mommy and me pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Pajamas', 'mommy and me short sleeve pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Pajamas', 'mommy and me short sleeve pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Pajamas', 'mommy and me short sleeve pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Pajamas', 'mommy and me short sleeve pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Pajamas', 'mommy and me short sleeve pajamas', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Father & Son Shirts', 'father son matching shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Father & Son Shirts', 'father son matching shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Father & Son Shirts', 'father son matching shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Father & Son Shirts', 'father son matching shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Father & Son Shirts', 'father son matching shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Outfits', 'mother daughter matching outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Outfits', 'mother daughter matching outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Outfits', 'mother daughter matching outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Outfits', 'mother daughter matching outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Outfits', 'mother daughter matching outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Father & Son Shirts', 'father son matching button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Father & Son Shirts', 'father son matching button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Father & Son Shirts', 'father son matching button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Father & Son Shirts', 'father son matching button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Father & Son Shirts', 'father son matching button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Father & Son Shirts', 'father son matching hawaiian shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Father & Son Shirts', 'father son matching hawaiian shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Father & Son Shirts', 'father son matching hawaiian shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Father & Son Shirts', 'father son matching hawaiian shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Father & Son Shirts', 'father son matching hawaiian shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Father & Son Shirts', 'father son matching shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Father & Son Shirts', 'father son matching shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Father & Son Shirts', 'father son matching shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Father & Son Shirts', 'father son matching shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Father & Son Shirts', 'father son matching shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Outfits', 'mommy and me outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Outfits', 'mommy and me outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Outfits', 'mommy and me outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Outfits', 'mommy and me outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Outfits', 'mommy and me outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Outfits', 'mommy and me matching sets', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Outfits', 'mommy and me matching sets', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Outfits', 'mommy and me matching sets', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Outfits', 'mommy and me matching sets', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Outfits', 'mommy and me matching sets', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Outfits', 'mommy and me matching sets', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Outfits', 'mommy and me matching sets', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Outfits', 'mommy and me matching sets', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Outfits', 'mommy and me matching sets', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Outfits', 'mommy and me matching sets', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Outfits', 'mommy and me outfits for pictures', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Outfits', 'mommy and me outfits for pictures', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Outfits', 'mommy and me outfits for pictures', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Outfits', 'mommy and me outfits for pictures', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Outfits', 'mommy and me outfits for pictures', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Father & Son Shirts', 'daddy and me button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Father & Son Shirts', 'daddy and me button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Father & Son Shirts', 'daddy and me button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Father & Son Shirts', 'daddy and me button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Father & Son Shirts', 'daddy and me button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Outfits', 'mommy and me outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Outfits', 'mommy and me outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Outfits', 'mommy and me outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Outfits', 'mommy and me outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Outfits', 'mommy and me outfits', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Father & Son Shirts', 'daddy and me button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Father & Son Shirts', 'daddy and me button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Father & Son Shirts', 'daddy and me button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Father & Son Shirts', 'daddy and me button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Father & Son Shirts', 'daddy and me button up shirts', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Outfits', 'mother daughter matching outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Outfits', 'mother daughter matching outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Outfits', 'mother daughter matching outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Outfits', 'mother daughter matching outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Outfits', 'mother daughter matching outfits', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Mommy & Me Outfits', 'mommy and me outfits for pictures', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Mommy & Me Outfits', 'mommy and me outfits for pictures', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Mommy & Me Outfits', 'mommy and me outfits for pictures', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Mommy & Me Outfits', 'mommy and me outfits for pictures', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Mommy & Me Outfits', 'mommy and me outfits for pictures', 'Phrase match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Father & Son Shirts', 'father son matching hawaiian shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Father & Son Shirts', 'father son matching hawaiian shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Father & Son Shirts', 'father son matching hawaiian shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Father & Son Shirts', 'father son matching hawaiian shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Father & Son Shirts', 'father son matching hawaiian shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword Paused ('Father & Son Shirts', 'father son matching button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword USD ('Father & Son Shirts', 'father son matching button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword saved draft ('Father & Son Shirts', 'father son matching button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword parent paused ('Father & Son Shirts', 'father son matching button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "Keyword exact CPC ('Father & Son Shirts', 'father son matching button up shirts', 'Exact match')",
+      "passed": true
+    },
+    {
+      "check": "All excluded keyword rows explicitly labelled Total",
+      "passed": true
+    }
+  ],
+  "method_correction": "Initial first-column-only summary filtering incorrectly included six keyword totals labelled in Match type. Corrected to inspect explicit Total labels across fields and reran all keyword inventory/status/currency/bid checks. No account data changed; initial apparent extras were report summaries."
+}

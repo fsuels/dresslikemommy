@@ -1,0 +1,107 @@
+{
+  "schema": "pinterest_baseline_final_verification_v1",
+  "verified_at_utc": "2026-09-23T13:22:47.041Z",
+  "status": "BASELINE_ACCEPTED_WITH_LIMITS__CANONICAL_COMPLETE__INTERVAL_RELEASED",
+  "anchor": "2026-09-23-pinterest-baseline-and-observation-windows",
+  "independent_review": {
+    "reviewer": "receipt_review",
+    "verdict": "PASS_WITH_LIMITS",
+    "grouped_checks": 25,
+    "sha256": "3bdee53f9a731b716af9e390c57d2dfcb76df2c72d1d6e24987f4598bbff4539",
+    "scope": "Saved-source consistency only; did not build or execute live reads. Raw-ID/time distinctness, date filter/pagination and validation runtime remain root-reported."
+  },
+  "root_verification": {
+    "seven_canonical_inverse_sha_checks": "PASS including exact closing delta; all unrelated before-state bytes preserved",
+    "review_source_hash_bindings": "PASS",
+    "paid_control": "UNCHANGED NONE / STALE_READBACK_REQUIRED / autonomous_action_ready=false",
+    "content_register": "13 rows retained. P2-P4 measurement fields/observation windows updated; other10rows exact. as_of updated,2newmeasurementfields. No native record mutation.",
+    "render_marketing_cockpit": {
+      "exit_code": 0,
+      "output": "Rendered ops/marketing/operator_cockpit.html"
+    },
+    "integration_audit": {
+      "exit_code": 0,
+      "tracked": 25,
+      "integrated": 25,
+      "side_document_risks": 0,
+      "generated_at_local": "2026-09-23 09:21"
+    },
+    "checks": [
+      {
+        "command": "check_continuity_integrity.py --strict",
+        "chunk_id": "c08302",
+        "wall_time_seconds": 3.835609083,
+        "exit_code": 0,
+        "original_token_count": 336,
+        "output": "# Continuity Integrity Check\n\n- PASS canonical_worklog: ops/AGENT_WORKLOG.md has 53185 lines; latest anchor 2026-09-23-pinterest-baseline-and-observation-windows\n- PASS alternate_worklogs: ops/AGENT_WORKLOG_utf8.md quarantined; 39 unique historical session titles compared\n- PASS prompt_anchor_policy: prompt resolves latest anchor from worklog; current worklog latest is 2026-09-23-pinterest-baseline-and-observation-windows\n- PASS spend_authority_agreement: core files agree on standing record APPROVED_ACTIVE; semantic control determines effective action authority\n- PASS marketing_semantic_freshness: stale command layer is explicitly fail-closed; oldest readback 2026-09-05, next action read-only reconciliation\n- PASS cockpit_freshness: ops/marketing/operator_cockpit.html is newer than cockpit sources\n- PASS marketing_integration_audit: marketing integration audit reports 0 side-document risks\n- PASS pinterest_feed_grouping: fix-in-progress mode (no freshness marker yet); guardrail reports 0 FAIL snapshot(s) to remediate\n- PASS listing_localization_workflow: synchronous closeout is wired into canonical listing workflow files with immediate translation and strict audits\n- PASS agent_bootstrap_parity: AGENTS.md and CLAUDE.md are byte-identical; instruction budgets pass (root=9584, root+paid-growth=16319 bytes)\n\nCONTINUITY_OK\n"
+      },
+      {
+        "command": "git diff --check -- own paths",
+        "chunk_id": "579e1b",
+        "wall_time_seconds": 0.000005917,
+        "exit_code": 0,
+        "original_token_count": 0,
+        "output": ""
+      },
+      {
+        "command": "compile_task_context.py --query 'continue Pinterest' --format brief",
+        "chunk_id": "30e0a6",
+        "wall_time_seconds": 2.691212416,
+        "exit_code": 0,
+        "original_token_count": 2783,
+        "output": "# Session context: continue Pinterest\n\nRetrieval: OK\nContext is not external-write approval, transferred ownership, or a current live readback.\n\nAuthority — ops/marketing/current_marketing_state.md:374-384\n- approved_external_scope: NONE\n- autonomous_action_ready: false\n- control_as_of: 2026-09-05\n- effective_approval_policy: FRESH_ACTION_TIME_APPROVAL_REQUIRED\n- live_readback_fresh_until: EXPIRED\n- live_state_mode: STALE_READBACK_REQUIRED\n- next_best_action: READ_ONLY_MARKETING_RECONCILIATION\n- source_live_evidence_as_of: 2026-06-01\n- supersedes_execution_readiness_below: true\n\nBusiness goal — ops/GROWTH_NORTH_STAR.md:5-20\n## Owner's Goal In Plain English\n\nThe owner wants Dress Like Mommy to make more money, not just get more traffic.\n\nThe set goal is to build and run a profitable paid-growth machine for Dress Like Mommy: Google Ads and Pinterest campaigns active across every viable language/market, executed expertly and safely, aiming for as many profitable conversions as possible at about `650% ROAS`.\n\nThis is not an audit project. Audits, packets, trackers, and readbacks exist only to support action that can make sales happen: building controlled campaigns, enabling exact-approved tests, improving targeting/copy/assets/landing pages, removing blockers, monitoring performance, adding evidence-backed negatives, scaling winners, and killing waste.\n\nThe goal is aggressive but intelligent growth:\n\n- Increase sales.\n- Increase profit.\n- Maintain or move toward about `650% ROAS`.\n- Avoid expensive wasted clicks.\n- Use Google Ads, Pinterest, Merchant Center, Shopify, website CRO, tracking, feed quality, languages, and international markets together.\n- Use subagents in parallel where possible so work moves fast without conflict.\n\nCurrent pinterest tasks (3); repo-known, not live proof\n\nTA-11 — Sunshine organic Pin published — ops/marketing/action_queue.md:302\n- Priority: P1\n- Status: YELLOW\n- Action: TA-11 Sunshine product-detail Pin publication completed\n- Owner agent: root Pinterest task01a08704; release_verifier\n- Lane: Free traffic\n- Checkpoint: Completed\n- Checkpoint date: 2026-09-10\n- Owner input: None\n- Gate: Exactly one authorized publication and persisted saved/public checks complete; growth measurement remains separate\n- Completed milestone: Pin343118065387544334 published; description corrected on same Pin, all fields reloaded, actual tagged product clickthrough passed. Existing lifestyle Pin preserved\n- Next step: Do not republish. Measure first7/14/30complete dates on Sep18/Sep25/Oct11 through TA-20; exclude QA and keep later drafts local until their gates pass\n- Evidence/source: 2026-09-09-pinterest-expert-audit/SUNSHINE_EXECUTION_20260910.json; CLOSEOUT_INDEPENDENT_REVIEW_20260910.md; anchor2026-09-10-pinterest-organic-release-and-source-repair\n- Identity metadata: 2026-09-06-ceo-turnaround-french-pin-and-product-released — ops/AGENT_WORKLOG.md:47794-47822\n\nTA-12 — Finish Pinterest measurement acceptance without duplicate tag or guessed IDs — ops/marketing/action_queue.md:305\n- Priority: P1\n- Status: YELLOW\n- Action: TA-12 Finish Pinterest managed-integration and consent acceptance\n- Owner agent: root Pinterest task01a08704; UX release integrator; independent consent/release reviewers\n- Lane: Free + paid\n- Checkpoint: Current health/source prerequisite refreshed; acceptance incomplete\n- Checkpoint date: 2026-09-15\n- Owner input: Existing exact temporary consent QA authorization for that separate test\n- Gate: Tag payment ProductID100% with low match; CAPI0%; current English source populated; affected event/catalog identity unverified\n- Completed milestone: Sep15 health updatedSep13: bothFair. English source05:20EDT4924accepted/0failed/277warnings. Known-ID filter reports19matches with no item rows; warning detail also empty. No business/privacy change or failed-download retry\n- Next step: Obtain a supported affected literal ID plus accepted catalog item/group/market join before repair; do not repeat unchanged failed/empty paths. Separately execute the existing consent plan only after approval and ordinary restoration control; real purchase/dedup remains open\n- Evidence/source: current_marketing_state.md; 2026-09-09-pinterest-expert-audit/MORNING_OPERATOR_RECEIPT_20260915.json; NEXT_TRACKING_TEST_20260911.md; PROB-2026-09-09-PINTEREST-MEASUREMENT-ACCEPTANCE\n\nTA-25 — Continue daily qualified buyer acquisition and verified contribution — ops/marketing/action_queue.md:306\n- Priority: P1\n- Status: YELLOW\n- Action: TA-25 Operate Pinterest daily and follow each content cohort\n- Owner agent: root Pinterest task01a08704 sole publisher; TA-20 cross-source buyer reports\n- Lane: Free traffic\n- Checkpoint: FIRST_WEEK_BASELINE_VERIFIED_WITH_LIMITS; THREE_SCHEDULED; seven-day queue\n- Checkpoint date: 2026-09-23\n- Owner input: None for routine authorized organic operation; consequential gates remain exact\n- Gate: Three native schedules; no publication due today; qualified-buyer and TA12 acceptance remain incomplete\n- Completed milestone: September14–20 baseline: Pinterest Organic for claimed www.dresslikemommy.com reports312impressions,6engagements,0outboundclicks,1save, audience254/engaged5 (UTC, estimated; saved Pins and real-time estimates excluded). Shopify Pinterest source/referrer union reports0sessions/cart/reached/completed-checkout sessions (America/New_York), with32all-source groups/1,982sessions as a report control. Reused TA20 GA4 evidence is datedSeptember21, has no Pinterest rows and was not refreshed. Exact order-created-window read at2026-09-23T13:14:42.892Z qualifies3distinct PAID, non-test, noncancelled store orders:2direct first/last visits withoutUTMs,1missing first/last visits. No observed Pinterest match. Qualified human visits, true Pinterest purchases/revenue, actual costs and contribution remain UNKNOWN. No cross-source addition or zero-denominator ratio. The unfiltered351page-visit conversion preview is excluded. Native queue refreshed2026-09-23T13:06:14.032Z: P6/3849568157896098688 September24 01:30PM, N2/3858290826238337152 September27 02:00PM, N4/3881480438074766784 September30 02:00PM. Titles/boards/identities unchanged, native timezone UNKNOWN; approximately7calendar days ahead. No publication is due today and no duplicate/new submission was made. P2–P4 now have explicit post-verification observation dates September22–28, earliest review September29 subject to source availability, following September21 public existence verification. These are not inferred publication clocks. PinterestUTC and Shopify/GA4NewYork are separate. P5 September23–29UTC/earliestSeptember30 and all TA20 article/gift/Sunshine clocks remain. Compare October5–11 using identical definitions and retain October14 cycle assessment.\n- Next step: Verify P6 public acceptance after its displayed September24 schedule, because it is the next due submission; preserve P6/N2/N4 without resubmission and maintain qualified content within3originalPins/rolling168hours. TA12 consent/ID/catalog/purchase gates, N3 source gate, paidNONE and existing heartbeat are unchanged.\n- Evidence/source: BASELINE_READBACK_20260923.md; BASELINE_ASSESSMENT_20260923.json; BASELINE_ORDERS_20260923.json; CONTENT_REGISTER_20260911.json; N4_NATIVE_EXECUTION_20260922.json\n\nCurrent coordination claims (6)\nRead the complete allowed/blocked actions and notes at these source rows before acting; these summaries confer no scope.\n- Current owner Pinterest expert audit and growth setup [TA-25]: `DAILY_OPERATOR_ACTIVE__P1_P5_PUBLIC__THREE_SCHEDULED__TRACKING_ACCEPTANCE_GATED`; owner root01a08704 sole Pinterest writer; receipt_review independent saved-evidence verifier; peer UX/theme claims preserved — ops/AGENT_COORDINATION.md:147\n- Finished-growth publication under explicit owner request [TA-11]: `SUPERSEDED_BY_CURRENT_UX_RELEASE__PIN_COMPLETE`; owner root01a08223 historical preparation complete; UX01a088c3 owns current combined theme; Pinterest01a08704 owns completed Pin and tracking — ops/AGENT_COORDINATION.md:154\n- Sunshine product-detail organic creative [TA-11]: `PUBLICATION_COMPLETED__MEASUREMENT_WITH_EXISTING_OWNER`; owner root01a08223 asset preparation complete; Pinterest01a08704 sole publication/repair operator; original copy/visual reviews and native execution receipts retained — ops/AGENT_COORDINATION.md:165\n- Pinterest organic distribution recovery [channel scope]: `HANDOFF_SOURCE_100_VERIFIED_CONTENT_IMPACT_GATED`; owner root owns shared state and future separately authorized actions; historical_google_access_paths completed/released exact catalog tab475224128 source100 diagnosis; root organic destination tab475224352 is separate — ops/AGENT_COORDINATION.md:193\n- Revenue-first organic buying guide and release priority [TA-11]: `HANDOFF_GUIDE_VERIFIED_AND_MAPPED`; owner root owns creative, exact Pin mapping and shared state; independent reviewer read-only — ops/AGENT_COORDINATION.md:194\n- Prior marketing execution and access reconciliation [channel scope]: `HANDOFF_LOCAL_HISTORY_VERIFIED`; owner Codex `/root`, September5 EDT / September6 UTC; owner explicitly requests the earlier AI's access and marketing work — ops/AGENT_COORDINATION.md:202\nOlder coordination records: 64 separated from current scope. Complete JSON retains every older identity/status/source; no old lock is cleared or scope revived.\n\nQueue/claim gate comparisons remain unresolved; inspect the paired sources before taking over work:\n- TA-11: queue ops/marketing/action_queue.md:302; claim ops/AGENT_COORDINATION.md:154; claim status `SUPERSEDED_BY_CURRENT_UX_RELEASE__PIN_COMPLETE`\n- TA-11: queue ops/marketing/action_queue.md:302; claim ops/AGENT_COORDINATION.md:165; claim status `PUBLICATION_COMPLETED__MEASUREMENT_WITH_EXISTING_OWNER`\n- TA-11: queue ops/marketing/action_queue.md:302; claim ops/AGENT_COORDINATION.md:194; claim status `HANDOFF_GUIDE_VERIFIED_AND_MAPPED`\n- TA-25: queue ops/marketing/action_queue.md:306; claim ops/AGENT_COORDINATION.md:147; claim status `DAILY_OPERATOR_ACTIVE__P1_P5_PUBLIC__THREE_SCHEDULED__TRACKING_ACCEPTANCE_GATED`\n\nRecent channel/related anchors (6 of 144 relevant records; source text available in JSON):\n- 2026-09-23-pinterest-baseline-and-observation-windows — ops/AGENT_WORKLOG.md:53163-53185 [REPO_KNOWN]\n- 2026-09-22-pinterest-n4-halloween-scheduled — ops/AGENT_WORKLOG.md:53064-53093 [REPO_KNOWN]\n- 2026-09-22-pinterest-p5-public-fields-verified — ops/AGENT_WORKLOG.md:53026-53052 [REPO_KNOWN]\n- 2026-09-22-ceo-google-organic-order-verified — ops/AGENT_WORKLOG.md:52617-52655 [REPO_KNOWN]\n- 2026-09-21-ceo-organic-outcomes-and-local-sync-verified — ops/AGENT_WORKLOG.md:52443-52463 [REPO_KNOWN]\n- 2026-09-15-ceo-ca-gb-launch-path-and-channel-readbacks — ops/AGENT_WORKLOG.md:52348-52374 [REPO_KNOWN]\n\nReview the sourced tasks and existing owner claims; resume the applicable unfinished step without replaying completed work. Broad Shopify inventory does not select a product or release.\n\nDefault --format json retains complete task/claim/anchor records. This brief selects fields explicitly; it does not replace source review.\n"
+      }
+    ]
+  },
+  "sha256": {
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/BASELINE_NATIVE_20260923.json": "335e1679846ea90022b286ec336a382f81f86867932b933efbb712716a3d005d",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/BASELINE_SHOPIFY_20260923.json": "05edbaeff80911015141812411c42c7152753a2e5eab0bc336afc71ebb8fe07f",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/BASELINE_ORDERS_20260923.json": "fd91a52042e5c8ef9bcf47719b2dc2313a9f6359ae77bc9655e82b8db7a24177",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/BASELINE_ASSESSMENT_20260923.json": "242e3b78c4699ad3e240db8217cafa8a142011af4a508c1326937bc0936986af",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/BASELINE_READBACK_20260923.md": "a70c34b45e7d4e4f808c9d61292a7386495e0d55072b59ca6d136bbb500ed561",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/BASELINE_INDEPENDENT_REVIEW_20260923.md": "3bdee53f9a731b716af9e390c57d2dfcb76df2c72d1d6e24987f4598bbff4539",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/BASELINE_CANONICAL_BEFORE_20260923.json": "72c0a05184255a286d7c431d6eea9ad4dfce7ea3d0123d77bb69134bf23e2045",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/BASELINE_CLOSING_DELTA_20260923.json": "e64e3a0ac9561c7af9b483453be5f5c66384e88abbd16c64373d6fbe2c6d50af",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/BASELINE_REGISTER_BEFORE_20260923.json": "fee46407dfd74259f3aa88289be391bb9bbede136ed1b299968ef21517380294",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-pinterest-expert-audit/CONTENT_REGISTER_20260911.json": "72575c12800ce6114eeec5780d381cca3c4357c4f5b8348b0b595697ed05107a",
+    "ops/marketing/action_queue.md": "71d56e3aa2f47a1a8a65da63588ad3462c746dab4a809925082fc1fea175fc35",
+    "ops/marketing/current_marketing_state.md": "196c79740e0b84c9c3e8fa994728c08e0ed9a66d3d0ddea67cff8a913e624a3a",
+    "ops/marketing/daily_scorecard.md": "3ee69d3b9e9f8abd7efcf8458ba78672d075a3e5398405d20bd1675bba1aecb1",
+    "ops/marketing/decision_log.md": "e1725e0a4e94bcc9076406e527ff3f3b0f3b0d56462d64e86c2df0afd63f3216",
+    "ops/marketing/operator_cockpit.md": "a491543d3784a11bf0bc3bc5dd30fae961bfcf2fce2857f6b86e4440a9de3441",
+    "ops/marketing/operator_cockpit.html": "9dd85954b7349ebd43f027c4cec1b30336e3874a696014105a02b93ee5345060",
+    "ops/marketing/command_layer_integration_audit.md": "93d3dbae8fd4877a478f5c58139c3104e497f3e70735bf95721d4143de1fccde",
+    "ops/AGENT_COORDINATION.md": "16467da7780a813efbfcfeaaf907f28c1ea970cb6924b42994e42dcf844176fd",
+    "ops/AGENT_WORKLOG.md": "e1bd1199a06d052a398332411ab23358e682e466773e8c5f94b4ace734232249"
+  },
+  "coordination": {
+    "former_parent": "Archived; not resumed or unarchived",
+    "peer_non_use": [
+      "X01a0915d confirmed own lane",
+      "UX01a088c3 confirmed own lane"
+    ],
+    "interval": "RELEASED",
+    "scope": "Own TA25/claim and dated baseline annotations only; no peer ownership transfer"
+  },
+  "external_business_writes": 0,
+  "current_run_storefront_visits": 0,
+  "measurement_limit": "No attributed commercial success established; native312impressions/0outboundclicks/1save UTC, Shopify0reportedPinterest sessions NY;3paidnoncancelledstoreorders have direct/missing journeys. Qualifiedhumans, truePinterest purchases/revenue/cost/contribution UNKNOWN.",
+  "next_action": "Verify P6 actual public receipt after displayed September24 01:30PM, native timezone unexposed; preserve existing schedules without resubmission. P2-P4 postverification review no earlier thanSeptember29, P5September30 subject to data availability.",
+  "rollback": "No external business delta. Local exact replacement and register before records retained; check intervening changes before applying rollback.",
+  "continuation_prompt": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+  "browser_handoff": {
+    "task_id": "01a08704-8176-7171-b6f5-928a09d7c3f9",
+    "browser": "Codex IAB2",
+    "tabs": {
+      "1": "Scheduled Pins queue, retained handoff",
+      "5": "P5 public receipt, retained deliverable",
+      "8": "N4 scheduled receipt, retained deliverable",
+      "9": "Exact baseline native report, retained handoff"
+    }
+  },
+  "tool_limitations": [
+    "IAB content.export unsupported; no native downloaded report or local screenshot claimed",
+    "Homebrew Node library error recovered using configured bundled Node; no installation",
+    "No consent/test-order/known-ID blocked-path retry"
+  ]
+}

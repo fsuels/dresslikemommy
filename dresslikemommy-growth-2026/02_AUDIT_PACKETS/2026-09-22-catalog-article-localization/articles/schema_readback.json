@@ -1,0 +1,1832 @@
+{
+  "QueryRoot": {
+    "name": "QueryRoot",
+    "kind": "OBJECT",
+    "description": "The schema's entry-point for queries. This acts as the public, top-level API from which all queries must start.",
+    "fields": [
+      {
+        "name": "articles",
+        "description": "Returns a paginated list of articles from the shop's blogs. [`Article`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Article) objects are blog posts that contain content like text, images, and tags.\n\nSupports [cursor-based pagination](https://shopify.dev/docs/api/usage/pagination-graphql) to control the number of articles returned and their order. Use the [`query`](https://shopify.dev/docs/api/admin-graphql/latest/queries/articles#arguments-query) argument to filter results by specific criteria.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ArticleConnection",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        "args": [
+          {
+            "name": "first",
+            "description": "The first `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "after",
+            "description": "The elements that come after the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "last",
+            "description": "The last `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "before",
+            "description": "The elements that come before the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "reverse",
+            "description": "Reverse the order of the underlying list.",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "sortKey",
+            "description": "Sort the underlying list using a key. If your query is slow or returns an error, then [try specifying a sort key that matches the field used in the search](https://shopify.dev/api/usage/pagination-graphql#search-performance-considerations).",
+            "type": {
+              "name": "ArticleSortKeys",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          {
+            "name": "query",
+            "description": "A filter made up of terms, connectives, modifiers, and comparators.\n| name | type | description | acceptable_values | default_value | example_use |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n| default | string | Filter by a case-insensitive search of multiple fields in a document. | | | - `query=Bob Norman`<br/> - `query=handle:summer-collection-announcement` |\n| author | string | Filter by the author of the article. |\n| blog_id | string | Filter by the ID of the blog the article belongs to. | | | - `blog_id:1234`<br/> - `blog_id:>=1234`<br/> - `blog_id:<=1234` |\n| blog_title | string |\n| created_at | time | Filter by the date and time when the article was created. | | | - `created_at:>'2020-10-21T23:39:20Z'`<br/> - `created_at:<now`<br/> - `created_at:<=2024` |\n| handle | string | Filter by the article's handle. | | | - `handle:summer-collection-announcement`<br/> - `handle:how-to-guide` |\n| id | id | Filter by `id` range. | | | - `id:1234`<br/> - `id:>=1234`<br/> - `id:<=1234` |\n| published_at | time | Filter by the date and time when the article was published. | | | - `published_at:>'2020-10-21T23:39:20Z'`<br/> - `published_at:<now`<br/> - `published_at:<=2024` |\n| published_status | string | Filter by published status |\n| tag | string | Filter objects by the `tag` field. | | | - `tag:my_tag` |\n| tag_not | string | Filter by objects that don’t have the specified tag. | | | - `tag_not:my_tag` |\n| title | string | Filter by the title of the article. | | | - `title:summer-collection`<br/> - `title:green hoodie` |\n| updated_at | time | Filter by the date and time when the article was last updated. | | | - `updated_at:>'2020-10-21T23:39:20Z'`<br/> - `updated_at:<now`<br/> - `updated_at:<=2024` |\nYou can apply one or more filters to a query. Learn more about [Shopify API search syntax](https://shopify.dev/api/usage/search-syntax).\n",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "blogs",
+        "description": "Returns a paginated list of the shop's [`Blog`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Blog) objects. Blogs serve as containers for [`Article`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Article) objects and provide content management capabilities for the store's editorial content.\n\nSupports [cursor-based pagination](https://shopify.dev/docs/api/usage/pagination-graphql) to control the number of blogs returned and their order. Use the [`query`](https://shopify.dev/docs/api/admin-graphql/latest/queries/blogs#arguments-query) argument to filter results by specific criteria.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "BlogConnection",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        "args": [
+          {
+            "name": "first",
+            "description": "The first `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "after",
+            "description": "The elements that come after the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "last",
+            "description": "The last `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "before",
+            "description": "The elements that come before the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "reverse",
+            "description": "Reverse the order of the underlying list.",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "sortKey",
+            "description": "Sort the underlying list using a key. If your query is slow or returns an error, then [try specifying a sort key that matches the field used in the search](https://shopify.dev/api/usage/pagination-graphql#search-performance-considerations).",
+            "type": {
+              "name": "BlogSortKeys",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          {
+            "name": "query",
+            "description": "A filter made up of terms, connectives, modifiers, and comparators.\n| name | type | description | acceptable_values | default_value | example_use |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n| default | string | Filter by a case-insensitive search of multiple fields in a document. | | | - `query=Bob Norman`<br/> - `query=title:green hoodie` |\n| created_at | time |\n| handle | string |\n| id | id | Filter by `id` range. | | | - `id:1234`<br/> - `id:>=1234`<br/> - `id:<=1234` |\n| title | string |\n| updated_at | time |\nYou can apply one or more filters to a query. Learn more about [Shopify API search syntax](https://shopify.dev/api/usage/search-syntax).\n",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "blogsCount",
+        "description": "Count of blogs. Limited to a maximum of 10000 by default.",
+        "type": {
+          "name": "Count",
+          "kind": "OBJECT",
+          "ofType": null
+        },
+        "args": [
+          {
+            "name": "query",
+            "description": "A filter made up of terms, connectives, modifiers, and comparators.\n| name | type | description | acceptable_values | default_value | example_use |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n| default | string | Filter by a case-insensitive search of multiple fields in a document. | | | - `query=Bob Norman`<br/> - `query=title:green hoodie` |\n| created_at | time |\n| handle | string |\n| id | id | Filter by `id` range. | | | - `id:1234`<br/> - `id:>=1234`<br/> - `id:<=1234` |\n| title | string |\n| updated_at | time |\nYou can apply one or more filters to a query. Learn more about [Shopify API search syntax](https://shopify.dev/api/usage/search-syntax).\n",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "limit",
+            "description": "The upper bound on count value before returning a result. Use `null` to have no limit.",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "nodes",
+        "description": "Returns the list of nodes (any objects that implement the\n[Node](https://shopify.dev/api/admin-graphql/latest/interfaces/Node)\ninterface) with the given IDs, in accordance with the\n[Relay specification](https://relay.dev/docs/guides/graphql-server-specification/#object-identification).",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": "Node",
+              "kind": "INTERFACE",
+              "ofType": null
+            }
+          }
+        },
+        "args": [
+          {
+            "name": "ids",
+            "description": "The IDs of the Nodes to return.",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": null,
+                "kind": "LIST",
+                "ofType": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "ID",
+                    "kind": "SCALAR",
+                    "ofType": null
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "shopLocales",
+        "description": "Returns the locales enabled on a shop. Each locale represents a language for translations and determines how content displays to customers in different markets.\n\nUse the optional `published` argument to filter for only the locales that are visible to customers. The response includes the ISO locale code, whether it's the shop's primary locale, and which [`MarketWebPresence`](https://shopify.dev/docs/api/admin-graphql/latest/objects/MarketWebPresence) objects use each locale.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "ShopLocale",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            }
+          }
+        },
+        "args": [
+          {
+            "name": "published",
+            "description": "Return only published locales.",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "translatableResourcesByIds",
+        "description": "Returns a paginated list of [`TranslatableResource`](https://shopify.dev/docs/api/admin-graphql/latest/objects/TranslatableResource) objects for the specified resource IDs. Each resource provides translatable content and digest values needed for the [`translationsRegister`](https://shopify.dev/docs/api/admin-graphql/latest/mutations/translationsRegister) mutation.\n\nLearn more about [managing translated content](https://shopify.dev/docs/apps/build/markets/manage-translated-content).",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "TranslatableResourceConnection",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        "args": [
+          {
+            "name": "resourceIds",
+            "description": "Return only resources for given IDs.",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": null,
+                "kind": "LIST",
+                "ofType": {
+                  "name": null,
+                  "kind": "NON_NULL",
+                  "ofType": {
+                    "name": "ID",
+                    "kind": "SCALAR",
+                    "ofType": null
+                  }
+                }
+              }
+            }
+          },
+          {
+            "name": "first",
+            "description": "The first `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "after",
+            "description": "The elements that come after the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "last",
+            "description": "The last `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "before",
+            "description": "The elements that come before the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "reverse",
+            "description": "Reverse the order of the underlying list.",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      }
+    ],
+    "inputFields": null,
+    "enumValues": null
+  },
+  "Blog": {
+    "name": "Blog",
+    "kind": "OBJECT",
+    "description": "A blog for publishing articles in the online store. Stores can have multiple blogs to organize content by topic or purpose.\n\nEach blog contains articles with their associated comments, tags, and metadata. The comment policy controls whether readers can post comments and whether moderation is required. Blogs use customizable URL handles and can apply alternate templates for specialized layouts.",
+    "fields": [
+      {
+        "name": "articles",
+        "description": "List of the blog's articles.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ArticleConnection",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        "args": [
+          {
+            "name": "first",
+            "description": "The first `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "after",
+            "description": "The elements that come after the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "last",
+            "description": "The last `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "before",
+            "description": "The elements that come before the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "reverse",
+            "description": "Reverse the order of the underlying list.",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "articlesCount",
+        "description": "Count of articles. Limited to a maximum of 10000 by default.",
+        "type": {
+          "name": "Count",
+          "kind": "OBJECT",
+          "ofType": null
+        },
+        "args": [
+          {
+            "name": "limit",
+            "description": "The upper bound on count value before returning a result. Use `null` to have no limit.",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "commentPolicy",
+        "description": "Indicates whether readers can post comments to the blog and if comments are moderated or not.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "CommentPolicy",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "createdAt",
+        "description": "The date and time when the blog was created.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "events",
+        "description": "The paginated list of events associated with the host subject.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "EventConnection",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        "args": [
+          {
+            "name": "first",
+            "description": "The first `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "after",
+            "description": "The elements that come after the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "last",
+            "description": "The last `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "before",
+            "description": "The elements that come before the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "reverse",
+            "description": "Reverse the order of the underlying list.",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "sortKey",
+            "description": "Sort the underlying list using a key. If your query is slow or returns an error, then [try specifying a sort key that matches the field used in the search](https://shopify.dev/api/usage/pagination-graphql#search-performance-considerations).",
+            "type": {
+              "name": "EventSortKeys",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          {
+            "name": "query",
+            "description": "A filter made up of terms, connectives, modifiers, and comparators.\n| name | type | description | acceptable_values | default_value | example_use |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n| action | string | The action that occured. | | | - `action:create` |\n| comments | boolean | Whether or not to include [comment-events](https://shopify.dev/api/admin-graphql/latest/objects/CommentEvent) in your search, passing `false` will exclude comment-events, any other value will include comment-events. | | | - `false`<br/> - `true` |\n| created_at | time | Filter by the date and time when the event occurred. Event data is retained for 1 year. | | | - `created_at:>2025-10-21`<br/> - `created_at:<now` |\n| id | id | Filter by `id` range. | | | - `id:1234`<br/> - `id:>=1234`<br/> - `id:<=1234` |\n| subject_type | string | The resource type affected by this event. See [EventSubjectType](https://shopify.dev/api/admin-graphql/latest/enums/EventSubjectType) for possible values. | | | - `PRODUCT_VARIANT`<br/> - `PRODUCT`<br/> - `COLLECTION` |\nYou can apply one or more filters to a query. Learn more about [Shopify API search syntax](https://shopify.dev/api/usage/search-syntax).\n",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "feed",
+        "description": "FeedBurner provider details. Any blogs that aren't already integrated with FeedBurner can't use the service.",
+        "type": {
+          "name": "BlogFeed",
+          "kind": "OBJECT",
+          "ofType": null
+        },
+        "args": []
+      },
+      {
+        "name": "handle",
+        "description": "A unique, human-friendly string for the blog. If no handle is specified, a handle will be generated automatically from the blog title.\nThe handle is customizable and is used by the Liquid templating language to refer to the blog.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "id",
+        "description": "A globally-unique ID.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "metafield",
+        "description": "A [custom field](https://shopify.dev/docs/apps/build/custom-data),\nincluding its `namespace` and `key`, that's associated with a Shopify resource\nfor the purposes of adding and storing additional information.",
+        "type": {
+          "name": "Metafield",
+          "kind": "OBJECT",
+          "ofType": null
+        },
+        "args": [
+          {
+            "name": "namespace",
+            "description": "The container the metafield belongs to. If omitted, the app-reserved namespace will be used.",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "key",
+            "description": "The key for the metafield.",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "metafields",
+        "description": "A list of [custom fields](https://shopify.dev/docs/apps/build/custom-data)\nthat a merchant associates with a Shopify resource.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "MetafieldConnection",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        "args": [
+          {
+            "name": "namespace",
+            "description": "The metafield namespace to filter by. If omitted, all metafields are returned.",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "keys",
+            "description": "List of keys of metafields in the format `namespace.key`, will be returned in the same format.",
+            "type": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          {
+            "name": "first",
+            "description": "The first `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "after",
+            "description": "The elements that come after the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "last",
+            "description": "The last `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "before",
+            "description": "The elements that come before the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "reverse",
+            "description": "Reverse the order of the underlying list.",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "tags",
+        "description": "A list of tags associated with the 200 most recent blog articles.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "templateSuffix",
+        "description": "The name of the template a blog is using if it's using an alternate template.\nReturns `null` if a blog is using the default blog.liquid template.",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        },
+        "args": []
+      },
+      {
+        "name": "title",
+        "description": "The title of the blog.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "translations",
+        "description": "The published translations associated with the resource.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "Translation",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            }
+          }
+        },
+        "args": [
+          {
+            "name": "locale",
+            "description": "Filters translations locale.",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "name": "marketId",
+            "description": "Filters translations by market ID. Use this argument to retrieve content specific to a market.",
+            "type": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "updatedAt",
+        "description": "The date and time when the blog was update.",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        },
+        "args": []
+      }
+    ],
+    "inputFields": null,
+    "enumValues": null
+  },
+  "Article": {
+    "name": "Article",
+    "kind": "OBJECT",
+    "description": "An article that contains content, author information, and metadata. Articles belong to a [`Blog`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Blog) and can include HTML-formatted body text, summary text, and an associated image. Merchants publish articles to share content, drive traffic, and engage customers.\n\nArticles can be organized with tags and published immediately or scheduled for future publication using the [`publishedAt`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Article#field-Article.fields.publishedAt) timestamp. The API manages comments on articles when the blog's comment policy enables them.",
+    "fields": [
+      {
+        "name": "author",
+        "description": "The name of the author of the article.",
+        "type": {
+          "name": "ArticleAuthor",
+          "kind": "OBJECT",
+          "ofType": null
+        },
+        "args": []
+      },
+      {
+        "name": "blog",
+        "description": "The blog containing the article.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Blog",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "body",
+        "description": "The text of the article's body, complete with HTML markup.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "HTML",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "comments",
+        "description": "List of the article's comments.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "CommentConnection",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        "args": [
+          {
+            "name": "first",
+            "description": "The first `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "after",
+            "description": "The elements that come after the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "last",
+            "description": "The last `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "before",
+            "description": "The elements that come before the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "reverse",
+            "description": "Reverse the order of the underlying list.",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "query",
+            "description": "A filter made up of terms, connectives, modifiers, and comparators.\n| name | type | description | acceptable_values | default_value | example_use |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n| default | string | Filter by a case-insensitive search of multiple fields in a document. | | | - `query=Bob Norman`<br/> - `query=title:green hoodie` |\n| created_at | time | Filter by the date and time when the comment was created. | | | - `created_at:>'2020-10-21T23:39:20Z'`<br/> - `created_at:<now`<br/> - `created_at:<=2024` |\n| id | id | Filter by `id` range. | | | - `id:1234`<br/> - `id:>=1234`<br/> - `id:<=1234` |\n| published_at | time | Filter by the date and time when the comment was published. | | | - `published_at:>'2020-10-21T23:39:20Z'`<br/> - `published_at:<now`<br/> - `published_at:<=2024` |\n| published_status | string | Filter by published status | - `any`<br/> - `published`<br/> - `unpublished` | | - `published_status:any`<br/> - `published_status:published`<br/> - `published_status:unpublished` |\n| status | string |\n| updated_at | time | Filter by the date and time when the comment was last updated. | | | - `updated_at:>'2020-10-21T23:39:20Z'`<br/> - `updated_at:<now`<br/> - `updated_at:<=2024` |\nYou can apply one or more filters to a query. Learn more about [Shopify API search syntax](https://shopify.dev/api/usage/search-syntax).\n",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "commentsCount",
+        "description": "Count of comments. Limited to a maximum of 10000 by default.",
+        "type": {
+          "name": "Count",
+          "kind": "OBJECT",
+          "ofType": null
+        },
+        "args": [
+          {
+            "name": "query",
+            "description": "A filter made up of terms, connectives, modifiers, and comparators.\n| name | type | description | acceptable_values | default_value | example_use |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n| default | string | Filter by a case-insensitive search of multiple fields in a document. | | | - `query=Bob Norman`<br/> - `query=title:green hoodie` |\n| created_at | time | Filter by the date and time when the comment was created. | | | - `created_at:>'2020-10-21T23:39:20Z'`<br/> - `created_at:<now`<br/> - `created_at:<=2024` |\n| id | id | Filter by `id` range. | | | - `id:1234`<br/> - `id:>=1234`<br/> - `id:<=1234` |\n| published_at | time | Filter by the date and time when the comment was published. | | | - `published_at:>'2020-10-21T23:39:20Z'`<br/> - `published_at:<now`<br/> - `published_at:<=2024` |\n| published_status | string | Filter by published status | - `any`<br/> - `published`<br/> - `unpublished` | | - `published_status:any`<br/> - `published_status:published`<br/> - `published_status:unpublished` |\n| status | string |\n| updated_at | time | Filter by the date and time when the comment was last updated. | | | - `updated_at:>'2020-10-21T23:39:20Z'`<br/> - `updated_at:<now`<br/> - `updated_at:<=2024` |\nYou can apply one or more filters to a query. Learn more about [Shopify API search syntax](https://shopify.dev/api/usage/search-syntax).\n",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "limit",
+            "description": "The upper bound on count value before returning a result. Use `null` to have no limit.",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "createdAt",
+        "description": "The date and time (ISO 8601 format) when the article was created.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "DateTime",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "defaultCursor",
+        "description": "A default [cursor](https://shopify.dev/api/usage/pagination-graphql) that returns the single next record, sorted ascending by ID.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "events",
+        "description": "The paginated list of events associated with the host subject.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "EventConnection",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        "args": [
+          {
+            "name": "first",
+            "description": "The first `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "after",
+            "description": "The elements that come after the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "last",
+            "description": "The last `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "before",
+            "description": "The elements that come before the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "reverse",
+            "description": "Reverse the order of the underlying list.",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "sortKey",
+            "description": "Sort the underlying list using a key. If your query is slow or returns an error, then [try specifying a sort key that matches the field used in the search](https://shopify.dev/api/usage/pagination-graphql#search-performance-considerations).",
+            "type": {
+              "name": "EventSortKeys",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          {
+            "name": "query",
+            "description": "A filter made up of terms, connectives, modifiers, and comparators.\n| name | type | description | acceptable_values | default_value | example_use |\n| ---- | ---- | ---- | ---- | ---- | ---- |\n| action | string | The action that occured. | | | - `action:create` |\n| comments | boolean | Whether or not to include [comment-events](https://shopify.dev/api/admin-graphql/latest/objects/CommentEvent) in your search, passing `false` will exclude comment-events, any other value will include comment-events. | | | - `false`<br/> - `true` |\n| created_at | time | Filter by the date and time when the event occurred. Event data is retained for 1 year. | | | - `created_at:>2025-10-21`<br/> - `created_at:<now` |\n| id | id | Filter by `id` range. | | | - `id:1234`<br/> - `id:>=1234`<br/> - `id:<=1234` |\n| subject_type | string | The resource type affected by this event. See [EventSubjectType](https://shopify.dev/api/admin-graphql/latest/enums/EventSubjectType) for possible values. | | | - `PRODUCT_VARIANT`<br/> - `PRODUCT`<br/> - `COLLECTION` |\nYou can apply one or more filters to a query. Learn more about [Shopify API search syntax](https://shopify.dev/api/usage/search-syntax).\n",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "handle",
+        "description": "A unique, human-friendly string for the article that's automatically generated from the article's title.\nThe handle is used in the article's URL.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "id",
+        "description": "A globally-unique ID.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "image",
+        "description": "The image associated with the article.",
+        "type": {
+          "name": "Image",
+          "kind": "OBJECT",
+          "ofType": null
+        },
+        "args": []
+      },
+      {
+        "name": "isPublished",
+        "description": "Whether or not the article is visible.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Boolean",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "metafield",
+        "description": "A [custom field](https://shopify.dev/docs/apps/build/custom-data),\nincluding its `namespace` and `key`, that's associated with a Shopify resource\nfor the purposes of adding and storing additional information.",
+        "type": {
+          "name": "Metafield",
+          "kind": "OBJECT",
+          "ofType": null
+        },
+        "args": [
+          {
+            "name": "namespace",
+            "description": "The container the metafield belongs to. If omitted, the app-reserved namespace will be used.",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "key",
+            "description": "The key for the metafield.",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "metafields",
+        "description": "A list of [custom fields](https://shopify.dev/docs/apps/build/custom-data)\nthat a merchant associates with a Shopify resource.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "MetafieldConnection",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        "args": [
+          {
+            "name": "namespace",
+            "description": "The metafield namespace to filter by. If omitted, all metafields are returned.",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "keys",
+            "description": "List of keys of metafields in the format `namespace.key`, will be returned in the same format.",
+            "type": {
+              "name": null,
+              "kind": "LIST",
+              "ofType": {
+                "name": null,
+                "kind": "NON_NULL",
+                "ofType": {
+                  "name": "String",
+                  "kind": "SCALAR",
+                  "ofType": null
+                }
+              }
+            }
+          },
+          {
+            "name": "first",
+            "description": "The first `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "after",
+            "description": "The elements that come after the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "last",
+            "description": "The last `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "before",
+            "description": "The elements that come before the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "reverse",
+            "description": "Reverse the order of the underlying list.",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "publishedAt",
+        "description": "The date and time (ISO 8601 format) when the article became or will become visible.\nReturns null when the article isn't visible.",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        },
+        "args": []
+      },
+      {
+        "name": "summary",
+        "description": "A summary of the article, which can include HTML markup.\nThe summary is used by the online store theme to display the article on other pages, such as the home page or the main blog page.",
+        "type": {
+          "name": "HTML",
+          "kind": "SCALAR",
+          "ofType": null
+        },
+        "args": []
+      },
+      {
+        "name": "tags",
+        "description": "A comma-separated list of tags.\nTags are additional short descriptors formatted as a string of comma-separated values.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "templateSuffix",
+        "description": "The name of the template an article is using if it's using an alternate template.\nIf an article is using the default `article.liquid` template, then the value returned is `null`.",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        },
+        "args": []
+      },
+      {
+        "name": "title",
+        "description": "The title of the article.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "translations",
+        "description": "The published translations associated with the resource.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "Translation",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            }
+          }
+        },
+        "args": [
+          {
+            "name": "locale",
+            "description": "Filters translations locale.",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "name": "marketId",
+            "description": "Filters translations by market ID. Use this argument to retrieve content specific to a market.",
+            "type": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "updatedAt",
+        "description": "The date and time (ISO 8601 format) when the article was last updated.",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        },
+        "args": []
+      }
+    ],
+    "inputFields": null,
+    "enumValues": null
+  },
+  "TranslatableResource": {
+    "name": "TranslatableResource",
+    "kind": "OBJECT",
+    "description": "A resource in Shopify that contains fields available for translation into different languages. Accesses the resource's translatable content, existing [`Translation`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Translation) objects, and any nested resources that can also be translated.\n\nThe [`TranslatableContent`](https://shopify.dev/docs/api/admin-graphql/latest/objects/TranslatableContent) includes field keys, values, and digest hashes needed when [registering translations](https://shopify.dev/docs/api/admin-graphql/latest/mutations/translationsRegister).\n\nYou can retrieve translations for specific [`Locale`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Locale) and [`Market`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Market) configurations. Each translation includes an `outdated` flag indicating whether the original content has changed since that translation was last updated.\n\nLearn more about [managing translated content](https://shopify.dev/docs/apps/build/markets/manage-translated-content).",
+    "fields": [
+      {
+        "name": "nestedTranslatableResources",
+        "description": "Nested translatable resources under the current resource.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "TranslatableResourceConnection",
+            "kind": "OBJECT",
+            "ofType": null
+          }
+        },
+        "args": [
+          {
+            "name": "resourceType",
+            "description": "Return only resources of a type.",
+            "type": {
+              "name": "TranslatableResourceType",
+              "kind": "ENUM",
+              "ofType": null
+            }
+          },
+          {
+            "name": "first",
+            "description": "The first `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "after",
+            "description": "The elements that come after the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "last",
+            "description": "The last `n` elements from the [paginated list](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "Int",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "before",
+            "description": "The elements that come before the specified [cursor](https://shopify.dev/api/usage/pagination-graphql).",
+            "type": {
+              "name": "String",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "reverse",
+            "description": "Reverse the order of the underlying list.",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "resourceId",
+        "description": "GID of the resource.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "ID",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "translatableContent",
+        "description": "Translatable content.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "TranslatableContent",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            }
+          }
+        },
+        "args": [
+          {
+            "name": "marketId",
+            "description": "Filters translatable content by market ID. Use this argument to retrieve translatable content specific to a market.",
+            "type": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      },
+      {
+        "name": "translations",
+        "description": "Translatable content translations (includes unpublished locales).",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "Translation",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            }
+          }
+        },
+        "args": [
+          {
+            "name": "locale",
+            "description": "Filters translations by locale.",
+            "type": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "String",
+                "kind": "SCALAR",
+                "ofType": null
+              }
+            }
+          },
+          {
+            "name": "outdated",
+            "description": "Filters by outdated translations.",
+            "type": {
+              "name": "Boolean",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          },
+          {
+            "name": "marketId",
+            "description": "Filters translations by market ID. Use this argument to retrieve content specific to a market.",
+            "type": {
+              "name": "ID",
+              "kind": "SCALAR",
+              "ofType": null
+            }
+          }
+        ]
+      }
+    ],
+    "inputFields": null,
+    "enumValues": null
+  },
+  "Translation": {
+    "name": "Translation",
+    "kind": "OBJECT",
+    "description": "A localized version of a field on a resource. Translations enable merchants to provide content in multiple languages for [`Product`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Product) objects, [`Collection`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Collection) objects, and other store resources.\n\nEach translation specifies the locale, the field being translated (identified by its key), and the translated value. Translations can be market-specific, allowing different content for the same language across different markets, or available globally when no [`Market`](https://shopify.dev/docs/api/admin-graphql/latest/objects/Market) is specified. The `outdated` flag indicates whether the original content has changed since this translation was last updated.\n\nLearn more about [managing translated content](https://shopify.dev/docs/apps/build/markets/manage-translated-content).",
+    "fields": [
+      {
+        "name": "key",
+        "description": "On the resource that this translation belongs to, the reference to the value being translated.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "locale",
+        "description": "ISO code of the translation locale.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "market",
+        "description": "The market that the translation is specific to. Null value means the translation is available in all markets.",
+        "type": {
+          "name": "Market",
+          "kind": "OBJECT",
+          "ofType": null
+        },
+        "args": []
+      },
+      {
+        "name": "outdated",
+        "description": "Whether the original content has changed since this translation was updated.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Boolean",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "updatedAt",
+        "description": "The date and time when the translation was updated.",
+        "type": {
+          "name": "DateTime",
+          "kind": "SCALAR",
+          "ofType": null
+        },
+        "args": []
+      },
+      {
+        "name": "value",
+        "description": "Translation value.",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        },
+        "args": []
+      }
+    ],
+    "inputFields": null,
+    "enumValues": null
+  },
+  "TranslatableContent": {
+    "name": "TranslatableContent",
+    "kind": "OBJECT",
+    "description": "Translatable content of a resource's field.",
+    "fields": [
+      {
+        "name": "digest",
+        "description": "Hash digest representation of the content value.",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        },
+        "args": []
+      },
+      {
+        "name": "key",
+        "description": "The resource field that's being translated.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "locale",
+        "description": "Locale of the content.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "type",
+        "description": "Type of the translatable content.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "LocalizableContentType",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "value",
+        "description": "Content value.",
+        "type": {
+          "name": "String",
+          "kind": "SCALAR",
+          "ofType": null
+        },
+        "args": []
+      }
+    ],
+    "inputFields": null,
+    "enumValues": null
+  },
+  "ShopLocale": {
+    "name": "ShopLocale",
+    "kind": "OBJECT",
+    "description": "A locale that's been enabled on a shop.",
+    "fields": [
+      {
+        "name": "locale",
+        "description": "The locale ISO code.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "marketWebPresences",
+        "description": "The market web presences that use the locale.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": null,
+            "kind": "LIST",
+            "ofType": {
+              "name": null,
+              "kind": "NON_NULL",
+              "ofType": {
+                "name": "MarketWebPresence",
+                "kind": "OBJECT",
+                "ofType": null
+              }
+            }
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "name",
+        "description": "The human-readable locale name.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "String",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "primary",
+        "description": "Whether the locale is the default locale for the shop.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Boolean",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "published",
+        "description": "Whether the locale is visible to buyers.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Boolean",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      }
+    ],
+    "inputFields": null,
+    "enumValues": null
+  },
+  "Count": {
+    "name": "Count",
+    "kind": "OBJECT",
+    "description": "A numeric count with precision information indicating whether the count is exact or an estimate.",
+    "fields": [
+      {
+        "name": "count",
+        "description": "The count of elements.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "Int",
+            "kind": "SCALAR",
+            "ofType": null
+          }
+        },
+        "args": []
+      },
+      {
+        "name": "precision",
+        "description": "The count's precision, or the exactness of the value.",
+        "type": {
+          "name": null,
+          "kind": "NON_NULL",
+          "ofType": {
+            "name": "CountPrecision",
+            "kind": "ENUM",
+            "ofType": null
+          }
+        },
+        "args": []
+      }
+    ],
+    "inputFields": null,
+    "enumValues": null
+  },
+  "ArticleSortKeys": {
+    "name": "ArticleSortKeys",
+    "kind": "ENUM",
+    "description": "The set of valid sort keys for the Article query.",
+    "fields": null,
+    "inputFields": null,
+    "enumValues": [
+      {
+        "name": "AUTHOR",
+        "description": "Sort by the `author` value."
+      },
+      {
+        "name": "BLOG_TITLE",
+        "description": "Sort by the `blog_title` value."
+      },
+      {
+        "name": "ID",
+        "description": "Sort by the `id` value."
+      },
+      {
+        "name": "PUBLISHED_AT",
+        "description": "Sort by the `published_at` value."
+      },
+      {
+        "name": "TITLE",
+        "description": "Sort by the `title` value."
+      },
+      {
+        "name": "UPDATED_AT",
+        "description": "Sort by the `updated_at` value."
+      }
+    ]
+  }
+}

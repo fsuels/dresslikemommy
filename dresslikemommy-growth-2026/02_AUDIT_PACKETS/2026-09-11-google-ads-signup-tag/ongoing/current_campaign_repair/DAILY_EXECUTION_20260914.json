@@ -480,6 +480,349 @@
         "historical_fields_unchanged": true,
         "rollback": "Remove only this final routine_review_updates entry and serialize identically to restore the exact before hash."
       }
+    },
+    {
+      "decision_id": "ADS650-DAILY-REVIEW-20260923-1548",
+      "trigger_time_utc": "2026-09-23T15:48:51.687Z",
+      "recorded_at_utc": "2026-09-23T15:57:42.980575+00:00",
+      "review_ny_date": "2026-09-23",
+      "completed_reporting_date": "2026-09-22",
+      "reporting_window": {
+        "start": "2026-09-16",
+        "end": "2026-09-22",
+        "timezone_observed": "GMT-04:00 Eastern Time",
+        "selector": "Last 7 days"
+      },
+      "review_status": "COMPLETED_WITH_LIMITS__NO_NEW_EXECUTABLE_ACTION",
+      "source_live_evidence_as_of": "2026-06-01",
+      "source_live_evidence_as_of_scope": "Standing command control only. Current native campaign and exact Purchase readbacks were made September23 15:49-15:55UTC; parent measurement clocks are unchanged.",
+      "live_state_mode": "STALE_READBACK_REQUIRED",
+      "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+      "approved_external_scope": "NONE",
+      "identity": {
+        "expected_customer_id": "6509972886",
+        "observed_context_name": "DLM",
+        "observed_ocid": "8520129103",
+        "purchase_id_url_and_table_verified": "7760272273",
+        "limit": "Native customer number was not separately exposed. Accepted DLM/OCID mapping is reused; no account switch."
+      },
+      "native_campaign_readback": {
+        "notice": "None of your ads are running - Your campaigns and ad groups are paused or removed.",
+        "rows": [
+          {
+            "name": "DLM | GADS | US | EN | Search | 202609",
+            "status": "PAUSED",
+            "type": "SEARCH",
+            "displayed_budget_type": "CAMPAIGN_TOTAL",
+            "displayed_budget_usd": 210,
+            "displayed_dates": [
+              "2026-09-22",
+              "2026-09-28"
+            ],
+            "status_detail": "All ad groups are paused, All keywords are paused, +1",
+            "ownership": "01a0ca0f-2f5f-7d42-a1bf-1c350750efd5; read-only observation, no scope transfer"
+          },
+          {
+            "name": "Campaign #1",
+            "status": "REMOVED",
+            "type": "PERFORMANCE_MAX",
+            "displayed_daily_budget_usd": 5,
+            "limit": "Removal was independently established in September22 exact-ID and change-history review. This wake does not repeat that audit."
+          }
+        ],
+        "drafts_in_progress_displayed": 0,
+        "draft_label_limit": "The Search campaign appears as a paused campaign row with zero drafts in progress, while the September22 source owner describes its completed build as paused/unpublished. This report does not establish a publication event or authority to activate; retain the dated source wording separately from current row status.",
+        "performance_limit": "Campaign table exposed configuration fields only. Its USD0/day footer is a budget display, not actual spend. No fresh account-wide cost, CPC or ROAS claim is made.",
+        "overview_sample": "The Family Matching Shirts ad preview is Paused/Not eligible with 0 impressions and 0 clicks for the selected window. This is one sampled ad, not account totals."
+      },
+      "purchase_readback": {
+        "conversion_id": "7760272273",
+        "name": "Purchase",
+        "source": "Website",
+        "status": "AWAITING_CONVERSIONS",
+        "native_explanation": "Conversions have not been recorded within the last 7 days. This may be due to campaign inactivity.",
+        "primary": true,
+        "included_in_account_level_goals": true,
+        "count": "Every conversion",
+        "value_configuration": "Use different values; USD1 fallback if no value",
+        "click_through_window_days": 30,
+        "engaged_view_window_days": 3,
+        "view_through_window_days": 1,
+        "attribution": "Data-driven; Google paid channels",
+        "enhanced_conversions": "Not configured",
+        "data_source_label": "DLM / Manual event",
+        "reported_all_conversions": 0,
+        "reported_all_conversion_value": 0,
+        "summary_goal_context": "Purchase is account-default, primary actions1, campaigns1of1, Needs attention. Exact new Search campaign-to-action binding was not independently opened.",
+        "status_reconciliation": "Current exact-ID status agrees with the earlier September14 receiver receipt. It narrows the separate September22 build-owner inactive/unverified wording; no intervening repair or measurement failure is inferred.",
+        "measurement_limit": "The exact conversion ID is verified, but this is not an order-level ingestion, value/currency, consent, deduplication or paid attribution receipt. Zero attributed conversions during paused delivery do not prove receiver failure."
+      },
+      "metrics": {
+        "scope": "Exact Purchase7760272273 all-conversions row for September16-22",
+        "reported_all_conversions": 0,
+        "reported_all_conversion_value": 0,
+        "account_spend_usd": null,
+        "account_impressions": null,
+        "account_clicks": null,
+        "average_cpc": null,
+        "cpa": null,
+        "roas": null,
+        "retained_revenue": null,
+        "retained_profit": null,
+        "lag": "The selected period ends on the latest completed Eastern reporting date. Native reports are not real-time, and conversion attribution/revisions can lag. No completed-report label is used as proof that attribution is final."
+      },
+      "source_owner_updates": {
+        "search_owner_task": "01a0ca0f-2f5f-7d42-a1bf-1c350750efd5",
+        "search_owner_snapshot": "Latest completed turn01a0ca9e-1e5d-7ec1-b90c-9861df1c3c5b; notLoaded; revision2 unchanged. No new owner response.",
+        "source_receipts_unchanged": [
+          {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/READBACK.md",
+            "sha256": "3508482bfeec63ad121fcf9de36e77684d279ae945750d3675f2b5db299c5906"
+          },
+          {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/final_completion_checks.json",
+            "sha256": "65febebc0a126d4198445466ecf94019df931bc90d5c367b20982a1181c27972"
+          },
+          {
+            "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/independent_six_ad_review.json",
+            "sha256": "68d641ec75391c18f8d8a7cceb69aa008a2882dc965927bb7eaab17e34f93167"
+          }
+        ],
+        "reused_receipt": "ADS650-SEARCH-OWNER-SOURCE-CONSUMED-20260922-1947; no repeat keyword, negative, RSA or asset audit.",
+        "current_state_sha256_at_review": "196c79740e0b84c9c3e8fa994728c08e0ed9a66d3d0ddea67cff8a913e624a3a",
+        "coordination_sha256_at_review": "16467da7780a813efbfcfeaaf907f28c1ea970cb6924b42994e42dcf844176fd",
+        "action_queue_sha256_at_review": "71d56e3aa2f47a1a8a65da63588ad3462c746dab4a809925082fc1fea175fc35",
+        "other_sources": "The September23 Pinterest baseline does not close any Google Ads purchase, basket-cost or buyer-route prerequisite. No new invoice-backed costs or order-level Ads receiver evidence was supplied. Preserve GA4, Shopify, Merchant, UX and other channel owners and their measurement clocks."
+      },
+      "browser": {
+        "task_id": "01a09194-4d2c-76f0-bbc2-ec2184e4ea5f",
+        "browser_id": "2",
+        "browser_type": "iab",
+        "initial_task_tabs": 0,
+        "report_tab_id": "3",
+        "temporary_report_closed": true,
+        "final_task_tabs": 0,
+        "save_attempts": 0,
+        "identity_attempts": 0,
+        "editor_reconstructed": false,
+        "business_write_controls_touched": false,
+        "report_only_interactions": [
+          "Campaigns list",
+          "Overview",
+          "Conversions summary",
+          "All conversion actions",
+          "Exact Purchase details"
+        ]
+      },
+      "native_evidence": [
+        {
+          "surface": "Campaigns",
+          "url": "https://ads.google.com/aw/campaigns?ocid=8520129103",
+          "observation": "Paused US Search and Removed Campaign #1; selected September16-22 Eastern window; no ads running; configuration-only campaign table."
+        },
+        {
+          "surface": "All conversion actions",
+          "url": "https://ads.google.com/aw/conversions/all?ocid=8520129103",
+          "observation": "Purchase Website Awaiting conversions Primary Every 30days IncludedYes Allconv0.00 Allconvvalue0.00; 3actions total, both YouTube actions excluded from account-level goals."
+        },
+        {
+          "surface": "Purchase details",
+          "url": "https://ads.google.com/aw/conversions/detail?ocid=8520129103&ctId=7760272273",
+          "observation": "Exact typeID7760272273 and Awaiting conversions; native inactivity explanation; variable value/USD1fallback, Every, data-driven Google paid channels, Enhanced conversions Not configured."
+        }
+      ],
+      "decision": {
+        "action": "HOLD_ACTIVATION__REUSE_COMPLETED_SEARCH_OWNER_BUILD",
+        "pending_action": "Use the existing owner candidate only after exact purchase receiver, actual basket costs, buyer/policy and current activation authority gates close. Retain reviewed PMax payload; do not retry its removed target.",
+        "alternative_rejected": "Rebuilding accepted drafts, repeating keyword research or retrying the removed campaign would not resolve any current prerequisite.",
+        "independent_lane": "One bounded source/native review found no independently executable authorized improvement. Exact-ID measurement readback is complete; no source-owner takeover or duplicate question/packet/agent/schedule.",
+        "financial_constraints": "USD0.15 CPC, approximately6.5x ROAS and30% all-in profit retained as constraints, not measured outcomes.",
+        "international": "No additional market is newly qualified. Preserve accepted all-market preparation and avoid distributing spend across unqualified countries."
+      },
+      "decision_depends_on_uncertain_state": true,
+      "decision_changing_evidence": "Order-level exact receiver and value/currency/consent/dedup evidence, actual costs, buyer/policy acceptance, and exact current launch authority from their existing owners.",
+      "if_evidence_supports_recommendation": "Continue the existing owner Search candidate without rebuilding accepted work.",
+      "if_evidence_opposes_recommendation": "Keep the campaign paused and evidence retained; do not import, enable or broaden markets.",
+      "material_decision": "NOT_MATERIAL",
+      "verification": "Sequential exact-ID check: the Purchase table row opens a URL with ctId7760272273, and the detail table independently displays the same conversion typeID and status. Historical audits were reused.",
+      "effects": {
+        "external_business_writes": 0,
+        "new_campaigns": 0,
+        "new_search_queries": 0,
+        "new_subagents": 0,
+        "goal_changes": 0,
+        "schedule_changes": 0,
+        "shared_canonical_edits": 0,
+        "parent_measurement_clock_changes": 0
+      },
+      "next_routine_review": "First eligible existing wake at or after2026-09-24 09:00 America/New_York. Earlier wakes check only new owner/source evidence or urgent serving/control/measurement changes.",
+      "canonical_integrator": "01a08223-036e-7fa3-8961-ecd297163fb5",
+      "canonical_integration_status": "PENDING_EXISTING_INTEGRATOR_UNAVAILABLE_PER_CURRENT_COORDINATION__NO_TAKEOVER",
+      "continuation_prompt": "ops/prompts/paid-growth-ai-army-continuation-prompt.md",
+      "notification": {
+        "decision": "DONT_NOTIFY",
+        "reason": "The completed Search build was already reported by its owner. Current paused delivery and Awaiting conversions do not create a new failure or executable action. No sales or profit improvement is claimed."
+      },
+      "append_only_revision": {
+        "before_sha256": "3944c5f3a5c2cbb4f99d7f1dac45baac4e097650e6456938e1cb7c796c48ed67",
+        "historical_fields_unchanged": true,
+        "rollback": "Remove only this final routine_review_updates entry and serialize identically to restore the exact before hash."
+      }
+    }
+  ],
+  "source_prerequisite_updates": [
+    {
+      "decision_id": "ADS650-SEARCH-OWNER-SOURCE-CONSUMED-20260922-1947",
+      "trigger_time_utc": "2026-09-22T19:47:17.085Z",
+      "recorded_at_utc": "2026-09-22T19:50:37.455040+00:00",
+      "source_evidence_as_of": "2026-09-22 19:42 UTC",
+      "evidence_label": "REPO_KNOWN",
+      "source_owner_task": "01a0ca0f-2f5f-7d42-a1bf-1c350750efd5",
+      "source_owner_anchor": "2026-09-22-google-search-six-ads-paused-complete",
+      "scope": "Consume the existing owner completed paused Search build; no new native audit, import, save, launch or ownership transfer.",
+      "source_receipts": [
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/READBACK.md",
+          "sha256": "3508482bfeec63ad121fcf9de36e77684d279ae945750d3675f2b5db299c5906"
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/final_completion_checks.json",
+          "sha256": "65febebc0a126d4198445466ecf94019df931bc90d5c367b20982a1181c27972"
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/independent_six_ad_review.json",
+          "sha256": "68d641ec75391c18f8d8a7cceb69aa008a2882dc965927bb7eaab17e34f93167"
+        }
+      ],
+      "source_bindings_verified": [
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/native_keyword_final_verification.json",
+          "sha256": "51766651b5363e306a9bb9ff3aaf74b87d65d9d73600d2e363725b8c863a5620",
+          "result": "PASS"
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/native_negative_final_verification.json",
+          "sha256": "c3a9c3a60ff9f073da6f2c9e19ffaba4b94c067b4405823e2a01ded81974a4b1",
+          "result": "PASS"
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/native_keyword_report_final_20260922.csv",
+          "sha256": "4f537beb5ef277b5c06bef833a734b12dff0ef65924958f11d88b7a22e3fe716",
+          "result": "PASS"
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/native_ad_group_report_final_20260922.csv",
+          "sha256": "809bd9bde07fba2a2100a611872687469aae1c6bee24246091640be9c6342597",
+          "result": "PASS"
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/native_negative_report_final_20260922.csv",
+          "sha256": "7560e64fac68e5faea29f5cb7945753497029202e642ba23accf2aa135ac6e33",
+          "result": "PASS"
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/native_ad_group_final_verification.json",
+          "sha256": "dc3c19c664b78676d727a0ba5684160a6d940f02c877935f5afc305440af3196",
+          "result": "PASS"
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/native_ad_report_six_paused_20260922.csv",
+          "sha256": "df71ba88c374f234d7acaaff9b77953817ddd78296ec578439be49bfb229e4d1",
+          "result": "PASS"
+        },
+        {
+          "path": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-22-google-search-build/payload.json",
+          "sha256": "ed907007d8f22b6e6dca41119f3167a0df7302a859ba464825685c8ae82502ce",
+          "result": "PASS"
+        }
+      ],
+      "source_review_result": "Eight current source/payload hash bindings match. Existing independent268/268 ad checks and group/keyword/negative PASS receipts are reused, not rerun or added to earlier349 checks.",
+      "search_build": {
+        "name": "DLM | GADS | US | EN | Search | 202609",
+        "ocid": "8520129103",
+        "draft_id": "10215314947",
+        "campaign_id": "281499249292033",
+        "status": "PAUSED_UNPUBLISHED_BUILD_COMPLETE",
+        "ad_groups": 6,
+        "paused_positive_keywords": 48,
+        "paused_rsas": 6,
+        "headlines": 72,
+        "descriptions": 24,
+        "negative_associations": 67,
+        "bid_strategy": "MANUAL_CPC",
+        "group_default_bids_usd": [
+          0.15,
+          0.12,
+          0.15,
+          0.15,
+          0.15,
+          0.1
+        ],
+        "saved_budget_type": "CAMPAIGN_TOTAL",
+        "saved_budget_usd": 210,
+        "provisional_setup_dates": [
+          "2026-09-22",
+          "2026-09-28"
+        ],
+        "budget_date_limit": "Saved paused configuration and provisional dates are not authority to activate or spend; future activation requires its current exact scope and readiness.",
+        "targeting_owner_verified": "US Presence, English, Google Search; Search Partners/Display off, no audiences, AI Max/text customization/final URL expansion off.",
+        "assets_owner_verified": "Earlier exact export verified14sitelink associations,4callouts and1snippet. Final native count20 includes an inherited account Call. No fresh asset export is inferred.",
+        "save_gate": "Owner reports normal user identity verification followed by saved six-ad readback. The historical Search save failure is closed; do not repeat its identity question or imports."
+      },
+      "measurement_cost_and_market_gates": {
+        "purchase_goal": "Owner reports Purchases sole goal with an inactive/unverified Purchase action. This receipt does not independently bind that label to action7760272273 or validate order/value/currency/dedup/consent/receiver acceptance.",
+        "actual_basket_costs": "UNKNOWN; no invoice-backed shipping, landed cost, fees, FX, returns or retained contribution evidence was supplied.",
+        "buyer_and_policy_acceptance": "Still required by the existing owner before activation; paused copy/export matching is not destination, checkout or editorial approval.",
+        "international": "This is a US/English draft only. No additional market or language is newly qualified.",
+        "sales_and_profit": "NOT_ESTABLISHED; no serving, spend, purchase, revenue, CPA, ROAS or profit result follows from draft completion."
+      },
+      "prior_target_disposition": {
+        "campaign_id": "24247604341",
+        "status": "REMOVED_FROM_SEPARATE_1547_NATIVE_REVIEW",
+        "action": "Retain the reviewed PMax payload; do not rebuild or retry its removed campaign editor. New Search owner explicitly did not alter this prior campaign.",
+        "question": "The earlier removal-intent question has no new direct answer in this task. Separate exact paused-build authority is not evidence identifying the actor or reason for removal; do not repeat the question on this wake."
+      },
+      "decision": {
+        "action": "ACCEPT_COMPLETED_SEARCH_BUILD_PREREQUISITE__HOLD_ACTIVATION",
+        "next_action": "Reuse this completed owner build if its next explicit scope arrives. Close purchase, costs, buyer/policy and current activation gates with existing owners; no repeated campaign construction or keyword work.",
+        "independent_work": "No new executable measurement/cost/buyer prerequisite was supplied. Do not dispatch duplicate owners or change peer surfaces."
+      },
+      "authority": {
+        "source_live_evidence_as_of": "2026-06-01",
+        "live_state_mode": "STALE_READBACK_REQUIRED",
+        "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+        "approved_external_scope": "NONE",
+        "source_exception": "Exact paused build authority fulfilled in the separate owning task; no transfer of its scope to this heartbeat."
+      },
+      "decision_depends_on_uncertain_state": true,
+      "decision_changing_evidence": "Verified exact purchase/cost/buyer prerequisites and a current explicit activation/readiness scope.",
+      "if_evidence_supports_recommendation": "Continue the exact existing owner candidate without rebuilding it.",
+      "if_evidence_opposes_recommendation": "Keep the build paused/unpublished and retained; do not activate, import or broaden markets.",
+      "material_decision": "NOT_MATERIAL_NO_NEW_LIVE_ACTION_OR_SPEND_RECOMMENDATION",
+      "independent_verifier": "Existing six-ad source reviewer who did not operate the browser; this heartbeat verifies retained source bindings only.",
+      "verifier_independence": "DID_NOT_BUILD_OR_EXECUTE_SEARCH_BUILD",
+      "daily_review_clock": "September22 daily review remains ADS650-DAILY-REVIEW-20260922-1547 for completed report dateSeptember21; this source-consumption wake does not advance any daily/reporting/attribution clock.",
+      "canonical_integration": "Source owner already recorded its completed build in current_marketing_state, action_queue and its own coordination claim. This heartbeat updates only its existing packet; it does not take over shared integration or resume the archived former parent.",
+      "effects": {
+        "external_business_writes": 0,
+        "browser_sessions_opened": 0,
+        "native_queries": 0,
+        "new_campaigns_by_this_wake": 0,
+        "new_agents": 0,
+        "new_questions": 0,
+        "goal_changes": 0,
+        "schedule_changes": 0,
+        "shared_canonical_edits": 0
+      },
+      "notification": {
+        "decision": "DONT_NOTIFY",
+        "reason": "Completed paused build is already reported by its source owner. This is downstream source reconciliation only; no new executable action or sales result."
+      },
+      "append_only_revision": {
+        "before_sha256": "be8966492e91d37eb73710bd629c720deb2a09905c70996f723e5739a7d7fb28",
+        "historical_fields_unchanged": true,
+        "rollback": "Remove only source_prerequisite_updates to restore the prior exact JSON serialization; before hash verified."
+      }
     }
   ]
 }

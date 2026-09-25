@@ -1,0 +1,39 @@
+{
+  "status": "PASS_LOCAL_TEXT_ONLY",
+  "counts": {
+    "groups": 8,
+    "positive_keywords": 144,
+    "headlines": 120,
+    "descriptions": 32,
+    "campaign_portuguese_phrase_negatives": 141,
+    "campaign_english_phrase_negatives": 86,
+    "campaign_temporary_exact_negatives": 17,
+    "group_negatives": 76,
+    "conditional_group_routing_negatives": 48,
+    "nonconditional_group_negatives": 28,
+    "callouts": 6,
+    "sitelinks": 8,
+    "sitelink_group_associations": 32,
+    "structured_snippets": 8,
+    "image_pairs_available": 0
+  },
+  "character_maxima": {
+    "headlines": 30,
+    "descriptions": 89,
+    "paths": 11,
+    "snippet_values": 22,
+    "keywords": 44,
+    "callouts": 25,
+    "sitelink_titles": 21,
+    "sitelink_descriptions": 34
+  },
+  "character_limit_errors": [],
+  "literal_positive_negative_conflicts": [],
+  "accent_folded_literal_positive_negative_conflicts": [],
+  "duplicate_text_match_rows": [],
+  "cross_group_duplicate_positive_text_match_rows": [],
+  "source_preserved_text_values": 702,
+  "method": "Casefolded whitespace-normalized Exact equality or contiguous word-bounded Phrase containment against campaign and own-group negatives; repeated with accents removed as a sensitivity check. Exact/Phrase positive pairs are intentional.",
+  "limits_basis": "Attachment limits; no external policy/specification verification by this local worker.",
+  "limitations": "Does not reproduce Microsoft semantic or punctuation matching, account/shared negatives, eligibility, live routing or demand. No image captions available."
+}

@@ -1,0 +1,119 @@
+{
+  "schema": "pinterest_baseline_assessment_v1",
+  "as_of_utc": "2026-09-23T13:15:57.231817+00:00",
+  "owner": "01a08704-8176-7171-b6f5-928a09d7c3f9",
+  "stage": "VERIFY",
+  "decision_id": "OBS-TA25-BASELINE-20260923",
+  "material_decision": "NOT_MATERIAL",
+  "objective_reference": "DAILY_OPERATING_GOAL_20260914.md",
+  "baseline": {
+    "date_from": "2026-09-14",
+    "date_to": "2026-09-20",
+    "complete_dates": 7,
+    "comparison_from": "2026-10-05",
+    "comparison_to": "2026-10-11",
+    "earliest_comparison_review": "2026-10-12 subject to reporting availability",
+    "cycle_review": "2026-10-14",
+    "qualification_definition": "A measured Pinterest-referred session reaching a relevant product page or an explicitly recorded shopping action. Native outbound clicks and engaged sessions remain separate diagnostics.",
+    "shopify_session_scope": "Shopify native sessions metric, not unique people. Acquisition union: utm_source='pinterest' OR referrer_name='pinterest'. Grouped by landing_page_path, referrer_source/name and all four UTMs. Sessionization/consent completeness and human identity were not independently validated.",
+    "shopify_reporting_timezone": "America/New_York (store connector displays EDT; existing canonical store timezone)",
+    "shopify_reported_pinterest_sessions": 0,
+    "shopify_reported_cart_sessions": 0,
+    "shopify_reported_checkout_reached_sessions": 0,
+    "shopify_reported_checkout_completed_sessions": 0,
+    "shopify_matching_landing_rows": 0,
+    "shopify_all_source_control_rows": 32,
+    "shopify_all_source_control_sessions": 1982,
+    "qualified_human_visits": null,
+    "qualified_session_measurement": "NOT_ESTABLISHED; no matching session rows to qualify; zero native report values do not prove zero real visitors",
+    "conversion_rate": null,
+    "denominator_note": "Zero measured Pinterest sessions; no conversion or engagement ratio calculated.",
+    "ga4": {
+      "evidence_label": "REPO_KNOWN",
+      "source": "../2026-09-09-organic-growth/daily-operation-20260921/GA4_PIN_DIAGNOSTICS.json",
+      "sha256": "3f362704f993313f1d7f2bc21c8bca7c80d50c01bf76c27856c49c4cbd144482",
+      "record": "reports[1]",
+      "captured_at_utc": "2026-09-21T20:44:25.033Z",
+      "property": "330266838",
+      "timezone": "America/New_York",
+      "filter": "Session source / medium table search contains pinterest",
+      "returned_rows": 0,
+      "displayed_metrics": {
+        "sessions": 0,
+        "engaged_sessions": 0,
+        "event_count": 0,
+        "key_events": 0,
+        "reported_total_revenue_usd": 0
+      },
+      "limits": "Reused dated TA20 evidence; not refreshed today. Despite P1 label, filter is broad Pinterest. No exact content attribution, product-action/session join or complete consent coverage."
+    },
+    "pinterest_native": {
+      "source": "BASELINE_NATIVE_20260923.json",
+      "timezone": "UTC",
+      "impressions": 312,
+      "engagements": 6,
+      "outbound_clicks": 0,
+      "saves": 1,
+      "total_audience": 254,
+      "engaged_audience": 5,
+      "limits": "Store claimed-domain Organic, all formats/sources, saved Pins excluded and real-time estimates excluded. Still estimated; not directly joined or added to Shopify/GA4.",
+      "conversion_preview_excluded": true
+    },
+    "purchases": {
+      "distinct_paid_noncancelled_attributed_purchases": null,
+      "attributed_merchandise_revenue": null,
+      "actual_product_cost": null,
+      "actual_fulfillment_cost": null,
+      "actual_payment_cost": null,
+      "actual_ad_cost_for_attributed_purchases": null,
+      "contribution": null,
+      "production_service_cost": null,
+      "report_findings": "No Pinterest order-referrer category in the exact-window sales report. Blank source shows three reported orders/USD172.78 net merchandise sales. Google row is zero orders/-USD31.98 reversal activity, not a new negative order. These are not Pinterest sales or a paid/noncancelled order-level join. The separate order-level read qualifies three orders for lifecycle only; aggregate financial totals are not joined to those identities or to Pinterest.",
+      "order_level_source": "BASELINE_ORDERS_20260923.json",
+      "all_store_baseline_distinct_paid_noncancelled_orders": 3,
+      "observed_first_or_last_visit_pinterest_matches": 0,
+      "order_level_findings": "Fresh exact-created-window read at2026-09-23T13:14:42.892Z returned3 distinct orders, all non-test, PAID and noncancelled, with no next page. Two have direct first/last visits with no UTMs; one has ready=true but both visits null. No observed Pinterest match. Do not relabel direct or missing visits as Pinterest, or claim true Pinterest purchases are zero. Full intermediate journeys and actual costs remain unassessed."
+    },
+    "qa": {
+      "identifiable_matching_rows_excluded": 0,
+      "reason": "No matching Pinterest rows. No arbitrary subtraction from empty or aggregate data. Untagged QA, lost referrals and consent loss remain possible; native operator views cannot be isolated.",
+      "current_run_storefront_visits": 0,
+      "current_run_fake_events_or_orders": 0
+    },
+    "status": "MEASURED_BASELINE_FROZEN_WITH_LIMITS; commercial success UNKNOWN"
+  },
+  "decision": {
+    "selected": "Preserve the reviewed three-Pin native queue and cadence; verify P6 after its September24 displayed schedule. No additional submission required solely to manufacture progress.",
+    "alternative": "Replace or duplicate low-volume Pins or accelerate publishing.",
+    "reason": "Seven calendar days of qualified scheduled content already exists. Seven-date discovery data has zero outbound clicks and does not isolate which creative/landing change would improve qualified buyers. No evidence supports scaling, deleting or rewriting released Pins.",
+    "max_additional_spend_usd": 0,
+    "rollback": "No external business mutation. Revert only these local evidence/canonical annotations after checking intervening changes; preserve original receipts and published Pins."
+  },
+  "next_reviews": {
+    "P6_publication": "After native September24 01:30PM; timezone unknown, use actual public receipt",
+    "P2_P3_P4_observation": "Adopt September22\u201328 complete dates after September21 public verification; earliest review September29 subject to source availability. Native UTC and Shopify/GA4 NewYork are parallel separate windows, not an inferred publication clock.",
+    "P5_observation": "Existing September23\u201329 UTC; earliest September30",
+    "N2_publication": "After native September27 02:00PM; timezone unknown",
+    "N4_publication": "After native September30 02:00PM; then verify saved alt/AI fields",
+    "TA20": "Existing article/gift/Sunshine reviews remain with their original owner, unchanged and not duplicated."
+  },
+  "authority": {
+    "source_live_evidence_as_of": "2026-06-01",
+    "live_state_mode": "STALE_READBACK_REQUIRED",
+    "effective_approval_policy": "FRESH_ACTION_TIME_APPROVAL_REQUIRED",
+    "approved_external_scope": "NONE",
+    "autonomous_action_ready": false,
+    "next_action_id": "READ_ONLY_MARKETING_RECONCILIATION",
+    "organic_scope": "Existing user daily organic execution and native submission mandate; no publication required this run.",
+    "decision_depends_on_uncertain_state": true,
+    "decision_changing_evidence": "Actual due publication receipt, meaningful qualified buyer cohort, or new independent tracking/source authority.",
+    "if_evidence_supports_recommendation": "Execute next due readback and maintain qualified source-reviewed queue within 3/168hours.",
+    "if_evidence_opposes_recommendation": "Retain evidence-backed hold; do not duplicate or bypass source/consent/spend gates."
+  },
+  "limits": [
+    "P2\u2013P5 actual publication timestamps unknown; never infer them from scheduled record IDs.",
+    "TA12 consent QA rejection and missing affected ID/catalog join are unchanged; no retry.",
+    "No Pinterest tracking, paid, catalog, Shopify or financial write.",
+    "Existing N3 source/destination gate and broader Organic after-review handoff remain unresolved."
+  ]
+}

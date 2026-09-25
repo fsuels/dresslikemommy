@@ -1,0 +1,6 @@
+query HelpPagesByHandle {
+ pages(first: 20, query: "handle:about-us OR handle:shipping-info OR handle:return-policy OR handle:faqs OR handle:track-your-order OR handle:contact-us") {
+  nodes { id handle title isPublished }
+  pageInfo { hasNextPage endCursor }
+ }
+}

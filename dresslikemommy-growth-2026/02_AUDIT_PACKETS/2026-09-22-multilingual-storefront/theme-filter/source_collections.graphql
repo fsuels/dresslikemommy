@@ -1,0 +1,5 @@
+query DaddyFilterSourceCollections {
+  all: collectionByIdentifier(identifier: {handle: "daddy-me"}) { id handle title products(first: 250) { nodes { id handle title productType } pageInfo { hasNextPage endCursor } } }
+  tees: collectionByIdentifier(identifier: {handle: "daddy-me-t-shirts"}) { id handle title products(first: 250) { nodes { id handle title productType } pageInfo { hasNextPage endCursor } } }
+  shirts: collectionByIdentifier(identifier: {handle: "daddy-me-shirts"}) { id handle title products(first: 250) { nodes { id handle title productType } pageInfo { hasNextPage endCursor } } }
+}

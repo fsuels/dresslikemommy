@@ -1,0 +1,34 @@
+{
+  "recorded_at_utc": "2026-09-23T18:20:24.487605+00:00",
+  "checks": [
+    {
+      "command": "python3 ops/scripts/render_marketing_cockpit.py",
+      "exit_code": 0,
+      "result": "Rendered ops/marketing/operator_cockpit.html"
+    },
+    {
+      "command": "python3 ops/scripts/audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "exit_code": 0,
+      "tracked": 25,
+      "integrated": 25,
+      "side_document_risks": 0
+    },
+    {
+      "command": "bundled python3 ops/scripts/check_continuity_integrity.py --strict",
+      "exit_code": 0,
+      "result": "CONTINUITY_OK",
+      "checks_passed": 10
+    },
+    {
+      "command": "git diff --check -- scoped Dutch packet and canonical files",
+      "exit_code": 0
+    }
+  ],
+  "campaign_completion": false,
+  "remaining_gates": [
+    "Microsoft account-status rejection",
+    "Draft group",
+    "283 obsolete keyword rows; permanent-deletion action-time confirmation",
+    "One image crop"
+  ]
+}

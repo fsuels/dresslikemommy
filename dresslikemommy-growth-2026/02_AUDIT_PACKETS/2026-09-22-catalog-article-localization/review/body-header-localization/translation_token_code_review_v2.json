@@ -1,0 +1,114 @@
+{
+  "status": "PASS_NARROW_PROTECTED_TOKEN_CHANGE",
+  "sourceFile": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py",
+  "sourceSHA256": "c349051565c4dee94a7eb3f013cad45aa8a48d8c9749426be714eb8237ac99a3",
+  "independentMockProbes": [
+    {
+      "name": "lost",
+      "pass": true,
+      "reason": "Translation changed a protected token count"
+    },
+    {
+      "name": "duplicate",
+      "pass": true,
+      "reason": "Translation changed a protected token count"
+    },
+    {
+      "name": "mangled",
+      "pass": true,
+      "reason": "Translation changed a protected token count"
+    },
+    {
+      "name": "reordered",
+      "pass": true,
+      "reason": "Translation reordered protected HTML"
+    },
+    {
+      "name": "residual_at_boundary",
+      "pass": true,
+      "reason": "Translation contains an unrecognized placeholder"
+    },
+    {
+      "name": "raw_html_unknown_token",
+      "pass": true,
+      "reason": "Translation introduced unprotected HTML"
+    },
+    {
+      "name": "raw_html_added",
+      "pass": true,
+      "reason": "Translation introduced unprotected HTML"
+    },
+    {
+      "name": "non_text",
+      "pass": true,
+      "reason": "Translation response must be text"
+    },
+    {
+      "name": "clean_html",
+      "pass": true,
+      "observed": "<p>Hello <strong>world</strong></p>"
+    },
+    {
+      "name": "grammar_reordering_with_duplicate_glossary",
+      "pass": true,
+      "observed": "blau klein klein"
+    },
+    {
+      "name": "cache_alt_token_detected",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "name": "cache_boundary_token_detected",
+      "pass": true,
+      "observed": true
+    },
+    {
+      "name": "supplier_filename_allowed",
+      "pass": true,
+      "observed": false
+    },
+    {
+      "name": "bad_alt_cache_retried_and_replaced",
+      "pass": true,
+      "observed": "<img alt=\"Hello\" src=\"x.jpg\">"
+    },
+    {
+      "name": "historic_missing_tag_cache_unchanged_preexisting",
+      "pass": true,
+      "observed": "<p>Hallo"
+    },
+    {
+      "name": "atomic_batch_result",
+      "pass": true,
+      "observed": {
+        "<b>A</b>": "SAFE:<b>A</b>",
+        "<em>B</em>": "SAFE:<em>B</em>"
+      }
+    },
+    {
+      "name": "atomic_no_partial_cache_at_fallback",
+      "pass": true,
+      "observed": [
+        {},
+        {}
+      ]
+    }
+  ],
+  "independentProbeCount": 17,
+  "regressionTest": {
+    "command": "python3 ops/tests/test_translation_utils_token_integrity.py",
+    "exitCode": 0,
+    "result": "ok",
+    "fileSHA256": "9d88f748f7f37d947d651f9227e5d4901e161b0596086e5acc283bc2c449d5ce",
+    "providerCalls": 0
+  },
+  "priorBlockersResolved": [
+    "Placeholders in cached alt text and separated visible boundaries are detected while supplier URL strings remain excluded.",
+    "Fresh unprotected HTML and unknown token remnants are rejected before restore/cache."
+  ],
+  "residualPreexistingLimitation": "Historic cache entries with missing HTML but no remaining placeholder still bypass structural validation. Not introduced by this diff; no new regression found in current scope.",
+  "providerCalls": 0,
+  "sourceEdits": 0,
+  "testEdits": 0
+}

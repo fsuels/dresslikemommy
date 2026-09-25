@@ -1,0 +1,138 @@
+{
+  "checked_at": "2026-09-23T16:56:47.343117+00:00",
+  "campaign_id": "506255983",
+  "account_id": "477439",
+  "new_permanent_deletions_confirmation": "EXECUTED_CURRENT_USER_DIRECTIVE",
+  "already_approved_remaining_group_negatives": 0,
+  "additional_positive_paused_english": 153,
+  "additional_campaign_english": 86,
+  "additional_group_english": 10,
+  "positive_id_ranges_inclusive": [
+    {
+      "group": "Looks mãe e filha",
+      "first": "79577796717918",
+      "last": "79577796717938",
+      "count": 21
+    },
+    {
+      "group": "Camisas e camisetas em família",
+      "first": "79509077679745",
+      "last": "79509077679762",
+      "count": 18
+    },
+    {
+      "group": "Camisas pai e filho",
+      "first": "79440359820495",
+      "last": "79440359820509",
+      "count": 15
+    },
+    {
+      "group": "Roupas combinando em família",
+      "first": "79371638504090",
+      "last": "79371638504109",
+      "count": 20
+    },
+    {
+      "group": "Pijamas mãe e filha",
+      "first": "79302920198084",
+      "last": "79302920198100",
+      "count": 17
+    },
+    {
+      "group": "Moda praia mãe e filha",
+      "first": "79234199694054",
+      "last": "79234199694071",
+      "count": 18
+    },
+    {
+      "group": "Suéteres e moletons em família",
+      "first": "79165479910823",
+      "last": "79165479910845",
+      "count": 23
+    },
+    {
+      "group": "Vestidos mãe e filha",
+      "first": "79096762066523",
+      "last": "79096762066543",
+      "count": 21
+    }
+  ],
+  "positive_dom_readback": {
+    "unique_rows": 296,
+    "Portuguese_enabled": 144,
+    "English_paused": 152,
+    "note": "All296 identified DOM rows. UI overall297 includes unexplained extra; native report downloaded unrelatedDE rows and is excluded. Search found missing virtualized PT phrase."
+  },
+  "campaign_negative_native_count": 244,
+  "target": {
+    "positive": 144,
+    "campaign_negative": 158,
+    "group_negative": 66
+  },
+  "negative_plan_superseded": "Original payload deliberately included English; old244/76 completeness is not PT-only verification.",
+  "resolved_previous_unknown": "FamilyShirts31stillpresent in fresh export; prior Delete did not persist.",
+  "approved_112_delete_attempt": {
+    "status": "VERIFIED_APPLIED",
+    "selection_verified": 112,
+    "after_native_rows": 76,
+    "remaining_intended_portuguese": 66,
+    "remaining_additional_english": 10,
+    "missing_portuguese": 0,
+    "evidence": "negative_group_after_approved_112_removals.csv",
+    "earlier_timeout_resolved": true
+  },
+  "image_association_removals": [
+    {
+      "asset_id": "8864942534737",
+      "group_id": "1271037249032874",
+      "result": "VERIFIED_REMOVED_FROM_TARGET_GROUP",
+      "readback": "12remaining PTcaption associations; oldEnglish rowabsent; originalshared assetnotdeleted"
+    },
+    {
+      "asset_id": "8864942534758",
+      "group_id": "1268838225800024",
+      "result": "VERIFIED_REMOVED_FROM_TARGET_GROUP",
+      "readback": "11remaining PTcaptioned associations; English rowabsent; originalsharedassetnotdeleted"
+    }
+  ],
+  "local_checks": {
+    "strict_continuity": "PASS10checksCONTINUITY_OK",
+    "scoped_git_diff_check": "PASS",
+    "note": "Local continuity checks do not substitute for native account readback or pending additional deletion approval."
+  },
+  "group_negative_before_cleanup_count": 188,
+  "group_negative_current_native_count": 66,
+  "independent_review": {
+    "reviewer": "paused_build_review",
+    "local_payload_and_native_negative_export": "PASS144/158/66targets;76current=66PT+10EN;112removalreconciled;152positiveIDrangeand248scopearithmeticPASS",
+    "root_ui_evidence": "Root readbacks; reviewer didnot independentlycontrolbrowser",
+    "stale188_current_count": "Corrected tobeforestate;current76",
+    "remaining_limitations": [
+      "248permanent removalsawaitconfirmation",
+      "pajamassitelink/snippetandrejected2imagereplacementsremaineditorialexceptions"
+    ]
+  },
+  "approval_basis": "User replied to exact248removal request by explicitly reiterating instruction to fix remaining English and put Portuguese; proceeding in unchanged scoped target.",
+  "positive_cleanup_final": {
+    "removed_english_copies": 153,
+    "extra_discovered": {
+      "id": "79234199694054",
+      "group": "Moda praia mãe e filha",
+      "text": "mommy and me swimsuits",
+      "match": "Exact"
+    },
+    "scope": "Latest explicit user reiteration covers English target keywords in same campaign; one missed copied entry discovered by full153Pausedfilter. No new destination/actionkind.",
+    "verified_after": {
+      "total": 144,
+      "status": "Enabled under Paused campaign",
+      "paused_filtered_results": 0,
+      "text_match_group_fingerprint": "68c1dab5",
+      "matches_portuguese_payload": true
+    },
+    "earlier297_vs296_discrepancy": "RESOLVED: one missed EnglishExactswimkeyword;153English+144Portuguese=297 before,144after."
+  },
+  "campaign_negative_current_native_count": 158,
+  "remaining_cleanup_records": 0,
+  "final_verification": "portuguese_only_final_verification.json",
+  "additional_cleanup_result": "VERIFIED153positive+86campaignnegative+10groupnegative removed;249total after discovering one missedEnglishswimExact."
+}

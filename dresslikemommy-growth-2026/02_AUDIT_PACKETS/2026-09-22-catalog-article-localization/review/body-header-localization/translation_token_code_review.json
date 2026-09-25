@@ -1,0 +1,146 @@
+{
+  "status": "INDEPENDENT_READ_ONLY_REVIEW_WITH_OFFLINE_MOCKS",
+  "sourceFile": "/Users/fsuels/Projects/dresslikemommy/ops/scripts/translation_utils.py",
+  "sourceFileSHA256": "e2f7305df12c15eec11d61780f9ad864e6139e5d002230e0ea7c7aff8961fec9",
+  "providerCalls": 0,
+  "sourceEdits": 0,
+  "testEdits": 0,
+  "changedScopeReadFromGitDiff": true,
+  "functionLines": {
+    "_contains_placeholder_tokens": 204,
+    "_restore_checked": 249,
+    "_translate_single_uncached": 384,
+    "translate_many": 450
+  },
+  "probes": [
+    {
+      "name": "lost_html_token",
+      "returned": null,
+      "exception": "ValueError: Translation changed a protected token count",
+      "expected": "ValueError"
+    },
+    {
+      "name": "duplicated_html_token",
+      "returned": null,
+      "exception": "ValueError: Translation changed a protected token count",
+      "expected": "ValueError"
+    },
+    {
+      "name": "mangled_html_token",
+      "returned": null,
+      "exception": "ValueError: Translation changed a protected token count",
+      "expected": "ValueError"
+    },
+    {
+      "name": "reordered_html_tokens",
+      "returned": null,
+      "exception": "ValueError: Translation reordered protected HTML",
+      "expected": "ValueError"
+    },
+    {
+      "name": "legitimate_glossary_grammar_reordering",
+      "returned": "blau klein",
+      "exception": null,
+      "expected": "blau klein"
+    },
+    {
+      "name": "fresh_unknown_token_inside_invented_html",
+      "returned": "<p>Hello <strong>world</strong></p><span title=\"QZXTOKEN99999QXZ\">X</span>",
+      "exception": null,
+      "expected": "Reject unexpected placeholder and unexpected raw HTML"
+    },
+    {
+      "name": "fresh_unprotected_html_added",
+      "returned": "<i><p>Hello <strong>world</strong></p></i>",
+      "exception": null,
+      "expected": "Reject changed HTML structure"
+    },
+    {
+      "name": "cache_detector_token_in_alt",
+      "returned": false,
+      "exception": null,
+      "expected": "True"
+    },
+    {
+      "name": "cache_detector_supplier_filename",
+      "returned": false,
+      "exception": null,
+      "expected": "False"
+    },
+    {
+      "name": "cache_detector_adjacent_visible_token",
+      "returned": false,
+      "exception": null,
+      "expected": "True"
+    },
+    {
+      "name": "legacy_cache_missing_closing_tag_returned",
+      "returned": "<p>Hallo",
+      "exception": null,
+      "expected": "Document pre-existing cache structural limitation"
+    },
+    {
+      "name": "new_cache_token_alt_regression",
+      "returned": "<img alt=\"QZXTOKEN00005QXZ\" src=\"x.jpg\">",
+      "exception": null,
+      "expected": "Reject damaged-placeholder cache entry, previously detected by whole-value scan"
+    },
+    {
+      "name": "bad_second_batch_item_does_not_cache_first_before_fallback",
+      "returned": {
+        "<b>A</b>": "SAFE:<b>A</b>",
+        "<em>B</em>": "SAFE:<em>B</em>"
+      },
+      "exception": null,
+      "expected": "Both originals absent when fallback starts",
+      "fallback_observations": [
+        {
+          "text": "<b>A</b>",
+          "cache_at_fallback": {}
+        },
+        {
+          "text": "<em>B</em>",
+          "cache_at_fallback": {}
+        }
+      ]
+    }
+  ],
+  "findings": [
+    {
+      "priority": "P1",
+      "scope": "NEW_REGRESSION_CACHE_AND_FRESH_UNKNOWN_TOKEN_FILTER",
+      "summary": "Stripping all HTML tags from placeholder detection hides genuine token remnants inside visible alt text or malformed tags, while concatenating removed tags can hide adjacent boundary-sensitive fragments.",
+      "examples": [
+        "cache_detector_token_in_alt",
+        "cache_detector_adjacent_visible_token",
+        "new_cache_token_alt_regression"
+      ],
+      "recommendation": "Separate provider-response token validation from cached visible-content filtering. In provider residual text, reject token remnants without stripping markup/URLs. In cache filtering, preserve whitespace at stripped boundaries and inspect alt text while excluding supplier URL values."
+    },
+    {
+      "priority": "P2",
+      "scope": "NEW_VALIDATOR_COVERAGE_GAP_NOT_NEW_PROVIDER_BEHAVIOR",
+      "summary": "A provider can add literal HTML outside protected tokens and still pass counts/order; restored HTML is then no longer the protected source structure.",
+      "examples": [
+        "fresh_unknown_token_inside_invented_html",
+        "fresh_unprotected_html_added"
+      ],
+      "recommendation": "Reject raw HTML tokens left outside expected protected tokens, or compare exact restored HTML token sequence to the pre-protection source token sequence before cache write."
+    },
+    {
+      "priority": "P2",
+      "scope": "PRE_EXISTING_CACHE_LIMITATION",
+      "summary": "Old cache values lacking protected HTML are returned without structural validation because no placeholder remains. This predates the diff; new fresh-result guard does not repair historic cache corruption.",
+      "examples": [
+        "legacy_cache_missing_closing_tag_returned"
+      ],
+      "recommendation": "Either validate cached source-to-value protected structure or explicitly version/invalidate old cache entries in a separate migration."
+    }
+  ],
+  "passingAreas": [
+    "Missing, duplicated, mangled and reordered expected HTML tokens rejected.",
+    "Glossary token reordering with same multiplicities allowed.",
+    "Entire HTTP batch token restoration validated before first successful cache write; second-item failure sends both to fallback without poisoning first item.",
+    "Supplier URL fragments can be excluded without blocking clean cache entries."
+  ]
+}

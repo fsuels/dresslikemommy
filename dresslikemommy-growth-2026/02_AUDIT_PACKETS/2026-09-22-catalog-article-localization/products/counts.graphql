@@ -1,0 +1,1 @@
+query CatalogAuditCounts { published: productsCount(query: "status:active published_status:published", limit: null) { count precision } active: productsCount(query: "status:active", limit: null) { count precision } shopLocales(published: true) { locale name primary published } }

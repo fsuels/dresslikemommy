@@ -1,0 +1,191 @@
+{
+  "reviewed_at_utc": "2026-09-23T16:40:48.384435+00:00",
+  "verdict": "PASS_CHECKPOINT_CONSISTENCY__OVERALL_PARTIAL_BROWSER_INPUT_BLOCKED",
+  "target_campaign_id": "506256066",
+  "checks_passed": 27,
+  "checks_total": 27,
+  "checks": [
+    {
+      "check": "Exact authorized account",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "New target identity recorded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Source remains distinct",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Exact target name matches payload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Campaign pause recorded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Partial blocked accurately labelled",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Eight groups, eight unique indices",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Eight distinct native group IDs",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Group1 name and language match payload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Group2 name and language match payload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Group3 name and language match payload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Group4 name and language match payload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Group5 name and language match payload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Group6 name and language match payload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Group7 name and language match payload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Group8 name and language match payload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Additional generic group origin scoped to target copy",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "German campaign setting matches payload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Germany presence-only setting matches intended payload",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Fresh expanded country verification explicitly remains pending",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Monetary drift distinguished from root edit",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "No activation or budget/bid edit asserted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "No content completion falsely asserted",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Source peer shared preservation recorded",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Resume existing target, no duplicate build",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "Copy verification complete only for group-level mapping",
+      "passed": true,
+      "detail": null
+    },
+    {
+      "check": "All six remaining localization/verification lanes recorded",
+      "passed": true,
+      "detail": null
+    }
+  ],
+  "evidence_basis": "Independent local review of root-authored checkpoint and superseding EXECUTION.md section against the reviewed payload. Native reads are root evidence; reviewer did not inspect the live account.",
+  "source_sha256": {
+    "creation_checkpoint_20260923.json": "cb9dbf066ad692d457000b40dedfcdf806922f1f2c5cb413e818f376efb3b9af",
+    "payload/campaign_payload.json": "dfd3f2a181aa65f4d1b560758f09ea9e96f5c32ea8d3a7c7ed79c47e4e23c797"
+  },
+  "verified_by_root_not_reperformed_by_reviewer": [
+    "Target506256066 saved paused from checked paused-copy submission",
+    "Eight unique German-named/German-language groups matching payload indices",
+    "Copied monetary configuration10USD/day, MaxClicks,0.20USD CPC cap",
+    "Campaign German; Germany/presence-only save readback with expanded fresh country verification still pending"
+  ],
+  "remaining_work": [
+    "Translate eight copied RSAs and URLs/tracking",
+    "Replace copied English positives with 144 German positives",
+    "Reconcile all 230 campaign and 49 group negatives by exact tuple and level",
+    "Localize sitelinks/callouts/snippets",
+    "Preserve and verify image IDs/crops; translate available actual captions without shared-source edits",
+    "Perform independent full saved after-state verification",
+    "Recover side-browser input and clear inherited Status contains Paused keyword display filter before inventory reconciliation",
+    "Fresh expanded Germany/presence-only readback",
+    "Resolve missing source image-caption pair material from actual live source assets without inventing descriptions or mutating shared originals"
+  ],
+  "issues_or_limits": [
+    {
+      "severity": "BLOCKER",
+      "finding": "Browser input is blocked; all ad/keyword/negative/extension/image-caption localization remains incomplete."
+    },
+    {
+      "severity": "VERIFICATION_GAP",
+      "finding": "Germany/presence-only is reported saved, but expanded fresh country read remains pending."
+    },
+    {
+      "severity": "EVIDENCE_LIMIT",
+      "finding": "No raw native group/settings export is supplied in this checkpoint. This verifies local mapping consistency and truthful qualification, not an independent live read."
+    },
+    {
+      "severity": "OBSERVED_DRIFT",
+      "finding": "Native copied budget10USD/day supersedes earlier20USD snapshot. No root budget edit or cause/actor is inferred; retain10while paused unless separately instructed."
+    },
+    {
+      "severity": "PRELAUNCH_GATE",
+      "finding": "31conditional Exact category-routing negatives require eligible destination-group verification. Keep campaign paused through full content and after-state reconciliation."
+    }
+  ],
+  "next_action": "Recover user-assigned Microsoft side tab and continue existing campaign506256066; do not recreate campaign or recopy groups and do not repeat approval for already authorized paused localization.",
+  "launch_authority_inferred": false,
+  "reviewer_external_actions": false
+}

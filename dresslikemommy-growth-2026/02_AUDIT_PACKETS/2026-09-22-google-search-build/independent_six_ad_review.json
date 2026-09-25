@@ -1,0 +1,1121 @@
+{
+  "status": "PASS",
+  "scope": "Independent comparison of the new six-ad native export to the unchanged requested payload only.",
+  "reviewed_at_utc": "2026-09-22T19:39:14.047983+00:00",
+  "reviewer_independence": "Reviewer did not save, pause or otherwise operate the ads or browser. No external or canonical write performed.",
+  "source": {
+    "file": "native_ad_report_six_paused_20260922.csv",
+    "sha256": "df71ba88c374f234d7acaaff9b77953817ddd78296ec578439be49bfb229e4d1",
+    "report_title": "Ad report",
+    "report_window": "\"September 22, 2026 - September 22, 2026\"",
+    "raw_data_rows": 7,
+    "included_ad_rows": 6,
+    "excluded_total_rows": 1,
+    "filter": "Exclude only records containing an explicit Total: label in a report field; empty values and the native -- placeholder are normalized only for optional empty/pin fields."
+  },
+  "payload": {
+    "file": "payload.json",
+    "sha256": "ed907007d8f22b6e6dca41119f3167a0df7302a859ba464825685c8ae82502ce"
+  },
+  "checks_run": 268,
+  "checks_passed": 268,
+  "defects": [],
+  "verified_counts": {
+    "saved_ad_rows": 6,
+    "distinct_expected_groups": 6,
+    "exact_headlines": 72,
+    "exact_descriptions": 24,
+    "paused_ad_rows": 6,
+    "draft_change_yes_rows": 6,
+    "description1_pin1_rows": 6
+  },
+  "groups": [
+    "Mommy & Me Pajamas",
+    "Father & Son Shirts",
+    "Mommy & Me Dresses",
+    "Family Matching Outfits",
+    "Mommy & Me Outfits",
+    "Family Matching Shirts"
+  ],
+  "limits": [
+    "This verifies the supplied saved export, not a new independent authenticated browser retrieval.",
+    "Draft change=Yes is preserved; six saved Paused draft RSA records are not a publication, activation or editorial approval receipt.",
+    "This ad export lacks campaign identity columns. Exact campaign provenance remains the parent-owned download context.",
+    "Campaign budget, period, bidding, targeting, ad-group/keyword state, negatives and asset associations are outside this narrow review and were not reverified.",
+    "The previous349-check/two-ad review remains unchanged as historical evidence."
+  ],
+  "checks": [
+    {
+      "check": "Rectangular CSV entity rows",
+      "passed": true
+    },
+    {
+      "check": "Exactly six saved ad rows",
+      "passed": true
+    },
+    {
+      "check": "Exactly one saved ad for each of six expected groups",
+      "passed": true
+    },
+    {
+      "check": "Only explicit Total summary rows excluded",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: Paused status",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: Draft change Yes",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: Responsive search ad type",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 2",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 3",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 4",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 5",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 6",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 7",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 8",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 9",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 10",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 11",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 12",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: unused headline 13 empty",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: unused headline 14 empty",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: unused headline 15 empty",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 1 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 2 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 3 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 4 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 5 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 6 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 7 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 8 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 9 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 10 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 11 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 12 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 13 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 14 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: headline 15 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: description 1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: description 2",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: description 3",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: description 4",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: description1 pinned1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: description2 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: description3 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: description4 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: exact final URL",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: exact path1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Pajamas: exact path2",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: Paused status",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: Draft change Yes",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: Responsive search ad type",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 1",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 2",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 3",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 4",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 5",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 6",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 7",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 8",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 9",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 10",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 11",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 12",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: unused headline 13 empty",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: unused headline 14 empty",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: unused headline 15 empty",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 1 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 2 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 3 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 4 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 5 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 6 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 7 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 8 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 9 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 10 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 11 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 12 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 13 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 14 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: headline 15 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: description 1",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: description 2",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: description 3",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: description 4",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: description1 pinned1",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: description2 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: description3 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: description4 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: exact final URL",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: exact path1",
+      "passed": true
+    },
+    {
+      "check": "Father & Son Shirts: exact path2",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: Paused status",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: Draft change Yes",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: Responsive search ad type",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 2",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 3",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 4",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 5",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 6",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 7",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 8",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 9",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 10",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 11",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 12",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: unused headline 13 empty",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: unused headline 14 empty",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: unused headline 15 empty",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 1 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 2 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 3 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 4 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 5 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 6 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 7 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 8 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 9 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 10 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 11 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 12 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 13 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 14 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: headline 15 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: description 1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: description 2",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: description 3",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: description 4",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: description1 pinned1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: description2 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: description3 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: description4 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: exact final URL",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: exact path1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Dresses: exact path2",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: Paused status",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: Draft change Yes",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: Responsive search ad type",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 1",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 2",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 3",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 4",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 5",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 6",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 7",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 8",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 9",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 10",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 11",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 12",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: unused headline 13 empty",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: unused headline 14 empty",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: unused headline 15 empty",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 1 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 2 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 3 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 4 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 5 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 6 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 7 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 8 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 9 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 10 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 11 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 12 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 13 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 14 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: headline 15 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: description 1",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: description 2",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: description 3",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: description 4",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: description1 pinned1",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: description2 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: description3 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: description4 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: exact final URL",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: exact path1",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Outfits: exact path2",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: Paused status",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: Draft change Yes",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: Responsive search ad type",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 2",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 3",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 4",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 5",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 6",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 7",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 8",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 9",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 10",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 11",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 12",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: unused headline 13 empty",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: unused headline 14 empty",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: unused headline 15 empty",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 1 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 2 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 3 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 4 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 5 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 6 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 7 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 8 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 9 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 10 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 11 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 12 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 13 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 14 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: headline 15 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: description 1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: description 2",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: description 3",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: description 4",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: description1 pinned1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: description2 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: description3 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: description4 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: exact final URL",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: exact path1",
+      "passed": true
+    },
+    {
+      "check": "Mommy & Me Outfits: exact path2",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: Paused status",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: Draft change Yes",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: Responsive search ad type",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 1",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 2",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 3",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 4",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 5",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 6",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 7",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 8",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 9",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 10",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 11",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 12",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: unused headline 13 empty",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: unused headline 14 empty",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: unused headline 15 empty",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 1 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 2 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 3 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 4 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 5 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 6 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 7 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 8 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 9 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 10 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 11 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 12 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 13 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 14 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: headline 15 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: description 1",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: description 2",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: description 3",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: description 4",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: description1 pinned1",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: description2 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: description3 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: description4 unpinned",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: exact final URL",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: exact path1",
+      "passed": true
+    },
+    {
+      "check": "Family Matching Shirts: exact path2",
+      "passed": true
+    }
+  ]
+}

@@ -1,0 +1,97 @@
+{
+  "verdict": "PASS_WITH_GATES",
+  "reviewed_at_utc": "2026-09-22T18:46:06.605318+00:00",
+  "reviewer": "paused_build_review",
+  "method": "Independent standard-library checks; producer script not executed; manual inspection of all RSA text, negative scopes and sampled category products. No browser or external actions.",
+  "payload_sha256": "7146af497e5315f01e1bf997b3c09a1873def943193e11c307ebf0da26be2ec1",
+  "attachment_sha256_matches": true,
+  "selected_source_text_fields_tested": 710,
+  "missing_source_text_fields": [],
+  "character_limit_errors": [],
+  "literal_conflicts_punctuation_normalized_and_accent_sensitivity": [],
+  "within_scope_duplicates": [],
+  "routing_without_accent_equivalent_recipient_positive": [],
+  "counts": {
+    "groups": 8,
+    "positives": 144,
+    "headlines": 120,
+    "descriptions": 32,
+    "campaign_negatives": 244,
+    "category_group_negatives": 28,
+    "conditional_routing_negatives": 48
+  },
+  "landing_local_evidence": [
+    {
+      "group": 1,
+      "http": 200,
+      "url": "https://www.dresslikemommy.com/pt/collections/dresses",
+      "lang": "pt-BR",
+      "first_page_unique_products": 36
+    },
+    {
+      "group": 2,
+      "http": 200,
+      "url": "https://www.dresslikemommy.com/pt/collections/new-women-outfits",
+      "lang": "pt-BR",
+      "first_page_unique_products": 36
+    },
+    {
+      "group": 3,
+      "http": 200,
+      "url": "https://www.dresslikemommy.com/pt/collections/family-tops",
+      "lang": "pt-BR",
+      "first_page_unique_products": 36
+    },
+    {
+      "group": 4,
+      "http": 200,
+      "url": "https://www.dresslikemommy.com/pt/collections/pajamas",
+      "lang": "pt-BR",
+      "first_page_unique_products": 22
+    },
+    {
+      "group": 5,
+      "http": 200,
+      "url": "https://www.dresslikemommy.com/pt/collections/daddy-me-shirts",
+      "lang": "pt-BR",
+      "first_page_unique_products": 23
+    },
+    {
+      "group": 6,
+      "http": 200,
+      "url": "https://www.dresslikemommy.com/pt/collections/mommy-and-me",
+      "lang": "pt-BR",
+      "first_page_unique_products": 36
+    },
+    {
+      "group": 7,
+      "http": 200,
+      "url": "https://www.dresslikemommy.com/pt/collections/swimsuits",
+      "lang": "pt-BR",
+      "first_page_unique_products": 35
+    },
+    {
+      "group": 8,
+      "http": 200,
+      "url": "https://www.dresslikemommy.com/pt/collections/family-sweaters",
+      "lang": "pt-BR",
+      "first_page_unique_products": 7
+    }
+  ],
+  "text_blockers": [],
+  "gates": [
+    "Root verifies target506255983 remains Paused and original source506254907 unchanged; saved target state not independently inspected by this local review.",
+    "Keep48 conditional routing negatives Exact and group-specific. Apply only after the actual recipient groups and destinations meet the stated readiness condition; do not equate copied or Paused recipients with active-and-apt. The28 category exclusions are independent.",
+    "Preserve source images and shared assets. Missing image captions require original visible caption/image mapping before target-only translation.",
+    "Reconcile all inherited English positives, negatives, text extensions and ad-level suffixes against the final Portuguese target; source-present strings and brand/slugs are not unintended English residue.",
+    "Tracking suffix candidate is conditional on current inheritance/tagging readback.",
+    "Do not infer activation, current stock/paired sizes/shipping/checkout or profitability from category pages or this text review."
+  ],
+  "notes": [
+    "No unsupported free shipping, free returns, guaranteed delivery, UV protection, stocked warehouse, discount or personalization promise in the supplied ad copy.",
+    "Portuguese copy intentionally uses supplied Brazilian vocabulary for both Brazil and Portugal.",
+    "review.md URL-unverified language is superseded at HTTP/source level by landing_readback.json: all8 /pt destinations return200 and html langpt-BR. Root rendered verification remains separate.",
+    "Group5 landing heading says Camisetas pai e filho, while returned product samples are button-down shirts; supplied Camisas ad text/category negatives correctly reflect those samples.",
+    "Literal safety does not reproduce Microsoft semantic matching or inherited shared negative associations."
+  ]
+}

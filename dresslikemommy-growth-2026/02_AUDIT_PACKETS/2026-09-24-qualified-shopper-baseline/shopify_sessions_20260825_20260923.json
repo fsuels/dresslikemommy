@@ -1,0 +1,50 @@
+{
+  "source": "Authenticated Shopify connector run-analytics-query; shop dresslikemommy-com.myshopify.com",
+  "captured": "2026-09-24",
+  "window": "2026-08-25 to 2026-09-23 (30 complete dates, shop timezone)",
+  "scope": "Aggregate sessions only; no customer PII. Excluded traffic is low-intent or unverified, not a proven bot diagnosis.",
+  "total": {
+    "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout, conversion_rate SINCE 2026-08-25 UNTIL 2026-09-23",
+    "columns": [
+      {"name": "sessions", "dataType": "INTEGER"},
+      {"name": "sessions_with_cart_additions", "dataType": "INTEGER"},
+      {"name": "sessions_that_reached_checkout", "dataType": "INTEGER"},
+      {"name": "sessions_that_completed_checkout", "dataType": "INTEGER"},
+      {"name": "conversion_rate", "dataType": "PERCENT"}
+    ],
+    "rows": [["5552", "131", "44", "9", "0.0016210374639769453"]]
+  },
+  "qualified": {
+    "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout, conversion_rate WHERE session_device_type = 'mobile' OR (referrer_source = 'search' AND referrer_name = 'google') SINCE 2026-08-25 UNTIL 2026-09-23",
+    "columns": [
+      {"name": "sessions", "dataType": "INTEGER"},
+      {"name": "sessions_with_cart_additions", "dataType": "INTEGER"},
+      {"name": "sessions_that_reached_checkout", "dataType": "INTEGER"},
+      {"name": "sessions_that_completed_checkout", "dataType": "INTEGER"},
+      {"name": "conversion_rate", "dataType": "PERCENT"}
+    ],
+    "rows": [["2342", "106", "22", "9", "0.003842869342442357"]]
+  },
+  "supporting_breakdowns": {
+    "by_device": {
+      "desktop": [3375, 34, 22, 0],
+      "mobile": [2158, 97, 22, 9],
+      "tablet": [18, 0, 0, 0],
+      "other": [1, 0, 0, 0],
+      "columns": ["sessions", "carts", "reached_checkout", "completed_checkout"]
+    },
+    "google_search_by_device": {
+      "mobile": [990, 55, 11, 4],
+      "desktop": [180, 9, 0, 0],
+      "tablet": [4, 0, 0, 0]
+    },
+    "top_device_country": {
+      "desktop United States": [3023, 20, null, 0],
+      "mobile United States": [994, 43, null, 6],
+      "desktop Singapore": [61, 0, null, 0],
+      "desktop China": [28, 0, null, 0],
+      "mobile China": [49, 0, null, 0]
+    },
+    "union_check": "mobile 2158 + Google desktop 180 + Google tablet 4 = 2342 qualified sessions; matches the OR query."
+  }
+}

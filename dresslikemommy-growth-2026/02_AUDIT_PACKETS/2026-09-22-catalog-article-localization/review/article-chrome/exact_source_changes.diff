@@ -1,0 +1,1479 @@
+--- a/sections/main-article.liquid
++++ b/sections/main-article.liquid
+@@ -5,12 +5,12 @@
+ {%- liquid
+   assign journal_label = blog.title
+   if blog.handle == 'news'
+-    assign journal_label = 'Style Journal'
++    assign journal_label = 'storefront.journal.title' | t
+   endif
+ -%}
+ 
+ <article class="article-template" itemscope itemtype="https://schema.org/BlogPosting">
+-  <nav class="article-template__breadcrumb page-width page-width--narrow" aria-label="breadcrumbs">
++  <nav class="article-template__breadcrumb page-width page-width--narrow" aria-label="{{ 'storefront.article.breadcrumbs_label' | t }}">
+     <a href="{{ routes.root_url }}">{{ 'sections.breadcrumbs.home' | t }}</a>
+     <span aria-hidden="true">&rsaquo;</span>
+     <a href="{{ blog.url }}">{{ journal_label }}</a>
+@@ -120,12 +120,12 @@
+                 <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                   <span itemprop="name">{{ article.author }}</span>
+                 </span>
+-                <span class="article-template__author-credential">Family Fashion Editor</span>
++                <span class="article-template__author-credential">{{ 'storefront.article.author_credential' | t }}</span>
+               {%- endif -%}
+             </div>
+           {%- endif -%}
+           <div class="article-template__read-time">
+-            <span>{{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} min read</span>
++            <span>{{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} {{ 'storefront.journal.read_time' | t }}</span>
+           </div>
+         </header>
+ 
+@@ -135,8 +135,8 @@
+           itemprop="articleBody"
+           {{ block.shopify_attributes }}
+         >
+-          <nav class="article-toc" aria-label="Table of contents">
+-            <p class="article-toc__label">In this article</p>
++          <nav class="article-toc" aria-label="{{ 'storefront.article.contents_aria_label' | t }}">
++            <p class="article-toc__label">{{ 'storefront.article.contents_label' | t }}</p>
+             <ol class="article-toc__list" id="article-toc-list"></ol>
+           </nav>
+           {{ article.content }}
+@@ -163,9 +163,9 @@
+             var paragraphs = content.querySelectorAll('p');
+             if (paragraphs.length < 6) return;
+             var ctaData = document.querySelector('.article-template__inline-cta-data');
+-            var ctaText = ctaData && ctaData.getAttribute('data-inline-cta-text') || 'Ready to start matching?';
+-            var ctaLabel = ctaData && ctaData.getAttribute('data-inline-cta-label') || 'Shop Matching Outfits';
+-            var ctaUrl = ctaData && ctaData.getAttribute('data-inline-cta-url') || '/collections/matching-outfits';
++            var ctaText = ctaData && ctaData.getAttribute('data-inline-cta-text') || {% if request.locale.iso_code == 'en' %}{{ 'Ready to start matching?' | json }}{% else %}{{ 'storefront.article.inline_cta_text' | t | json }}{% endif %};
++            var ctaLabel = ctaData && ctaData.getAttribute('data-inline-cta-label') || {% if request.locale.iso_code == 'en' %}{{ 'Shop Matching Outfits' | json }}{% else %}{{ 'storefront.article.inline_cta_label' | t | json }}{% endif %};
++            var ctaUrl = ctaData && ctaData.getAttribute('data-inline-cta-url') || {{ routes.collections_url | append: '/matching-outfits' | json }};
+             var midPoint = Math.floor(paragraphs.length * 0.4);
+             var cta = document.createElement('div');
+             cta.className = 'article-cta-inline';
+@@ -238,7 +238,7 @@
+                     data-style-journal-destination-handle="{{ recommended_product.handle | escape }}"
+                     data-style-journal-destination-title="{{ recommended_product.title | escape }}"
+                   >
+-                    Shop now <span aria-hidden="true">&rarr;</span>
++                    {{ 'storefront.menu.shop_now' | t }} <span aria-hidden="true">&rarr;</span>
+                   </a>
+                 </div>
+               </article>
+@@ -250,8 +250,8 @@
+         {%- if recommended_products_markup != blank -%}
+           <section class="article-template__recommended-products page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+             <div class="article-template__recommended-card">
+-              <p class="article-template__recommended-eyebrow">Shop the edit</p>
+-              <h2 class="article-template__recommended-title">Recommended products from this guide</h2>
++              <p class="article-template__recommended-eyebrow">{{ 'storefront.menu.shop_edit' | t }}</p>
++              <h2 class="article-template__recommended-title">{{ 'storefront.article.recommended_products' | t }}</h2>
+               <div class="article-template__recommended-grid">
+                 {{ recommended_products_markup }}
+               </div>
+@@ -278,23 +278,23 @@
+         {{ article.author | slice: 0 }}
+       </div>
+       <div class="article-template__author-info">
+-        <p class="article-template__author-label">Written by</p>
++        <p class="article-template__author-label">{{ 'storefront.article.written_by' | t }}</p>
+         <h3 class="article-template__author-name" itemprop="author" itemscope itemtype="https://schema.org/Person">
+           <span itemprop="name">{{ article.author }}</span>
+         </h3>
+-        <p class="article-template__author-bio">Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.</p>
++        <p class="article-template__author-bio">{{ 'storefront.article.author_bio' | t }}</p>
+       </div>
+     </div>
+   </section>
+ 
+   <section class="article-template__social-proof page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+     <div class="article-template__testimonial-card">
+-      <p class="article-template__testimonial-label">Shop the look</p>
+-      <h2 class="article-template__testimonial-title">Ready to compare matching outfits?</h2>
+-      <p class="article-template__testimonial-text">Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.</p>
++      <p class="article-template__testimonial-label">{{ 'storefront.article.shop_look' | t }}</p>
++      <h2 class="article-template__testimonial-title">{{ 'storefront.article.compare_title' | t }}</h2>
++      <p class="article-template__testimonial-text">{{ 'storefront.article.compare_body' | t }}</p>
+       <div class="article-template__testimonial-actions">
+-        <a href="{{ routes.collections_url }}/mommy-and-me" class="button">Mommy &amp; Me</a>
+-        <a href="{{ routes.collections_url }}/matching-outfits" class="button button--secondary">Family Matching</a>
++        <a href="{{ routes.collections_url }}/mommy-and-me" class="button">{% if request.locale.iso_code == 'en' %}Mommy &amp; Me{% else %}{{ 'sections.breadcrumbs.cat_mommy_me' | t }}{% endif %}</a>
++        <a href="{{ routes.collections_url }}/matching-outfits" class="button button--secondary">{{ 'sections.breadcrumbs.cat_family_matching' | t }}</a>
+       </div>
+     </div>
+   </section>
+@@ -311,8 +311,8 @@
+   {%- elsif blog.articles_count > 1 -%}
+     <section class="article-template__related page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+       <div class="article-template__related-header">
+-        <p class="article-template__related-eyebrow">Continue reading</p>
+-        <h2 class="article-template__related-title">More from {{ journal_label }}</h2>
++        <p class="article-template__related-eyebrow">{{ 'storefront.article.continue_reading' | t }}</p>
++        <h2 class="article-template__related-title">{{ 'storefront.article.more_from' | t: journal: journal_label }}</h2>
+       </div>
+       <div class="article-template__related-grid">
+         {%- liquid
+--- a/snippets/style-journal-internal-links.liquid
++++ b/snippets/style-journal-internal-links.liquid
+@@ -2,6 +2,7 @@
+   assign mode = mode | default: ''
+   assign collections_root = routes.collections_url
+   assign journal_blog = blogs['news']
++  assign journal_label = 'storefront.journal.title' | t
+ 
+   assign article_context_handle = article.handle | default: ''
+   assign collection_context_handle = collection.handle | default: ''
+@@ -421,9 +422,40 @@
+     assign collection_link_3_caption = collection_link_3_caption | strip
+   endif
+ 
++  if request.locale.iso_code != 'en'
++    assign collection_link_1_title = ''
++    assign collection_link_1_caption = ''
++    if collection_link_1_object != blank
++      capture collection_link_1_title
++        render 'collection-seo-fallback', collection: collection_link_1_object, field: 'display_title'
++      endcapture
++      assign collection_link_1_title = collection_link_1_title | strip
++      assign collection_link_1_caption = 'storefront.collection_fallback_description' | t: title: collection_link_1_title
++    endif
++    assign collection_link_2_title = ''
++    assign collection_link_2_caption = ''
++    if collection_link_2_object != blank
++      capture collection_link_2_title
++        render 'collection-seo-fallback', collection: collection_link_2_object, field: 'display_title'
++      endcapture
++      assign collection_link_2_title = collection_link_2_title | strip
++      assign collection_link_2_caption = 'storefront.collection_fallback_description' | t: title: collection_link_2_title
++    endif
++    assign collection_link_3_title = ''
++    assign collection_link_3_caption = ''
++    if collection_link_3_object != blank
++      capture collection_link_3_title
++        render 'collection-seo-fallback', collection: collection_link_3_object, field: 'display_title'
++      endcapture
++      assign collection_link_3_title = collection_link_3_title | strip
++      assign collection_link_3_caption = 'storefront.collection_fallback_description' | t: title: collection_link_3_title
++    endif
++  endif
++
+   assign inline_cta_url = collection_link_1_url | default: collections_root
+-  assign inline_cta_label = collection_link_1_title | default: 'Shop matching collections'
+-  assign inline_cta_text = 'Ready to shop the looks from this guide?'
++  assign inline_cta_fallback_label = 'storefront.article.inline_cta_label' | t
++  assign inline_cta_label = collection_link_1_title | default: inline_cta_fallback_label
++  assign inline_cta_text = 'storefront.article.inline_cta_text' | t
+   assign inline_cta_collection_handle = collection_link_1_handle | default: ''
+ 
+   assign related_article_1_handle = ''
+@@ -694,28 +726,13 @@
+   endif
+ 
+   if guide_link_1_title != blank and guide_link_1_caption == blank
+-    capture guide_link_1_caption
+-      echo 'Read '
+-      echo guide_link_1_title
+-      echo ' before you shop.'
+-    endcapture
+-    assign guide_link_1_caption = guide_link_1_caption | strip
++    assign guide_link_1_caption = 'storefront.article.guide_caption' | t: title: guide_link_1_title
+   endif
+   if guide_link_2_title != blank and guide_link_2_caption == blank
+-    capture guide_link_2_caption
+-      echo 'Read '
+-      echo guide_link_2_title
+-      echo ' before you shop.'
+-    endcapture
+-    assign guide_link_2_caption = guide_link_2_caption | strip
++    assign guide_link_2_caption = 'storefront.article.guide_caption' | t: title: guide_link_2_title
+   endif
+   if guide_link_3_title != blank and guide_link_3_caption == blank
+-    capture guide_link_3_caption
+-      echo 'Read '
+-      echo guide_link_3_title
+-      echo ' before you shop.'
+-    endcapture
+-    assign guide_link_3_caption = guide_link_3_caption | strip
++    assign guide_link_3_caption = 'storefront.article.guide_caption' | t: title: guide_link_3_title
+   endif
+ -%}
+ 
+@@ -723,8 +740,8 @@
+   <div
+     class="article-template__inline-cta-data"
+     hidden
+-    data-inline-cta-text="{{ inline_cta_text | escape }}"
+-    data-inline-cta-label="{{ inline_cta_label | escape }}"
++    data-inline-cta-text="{{ inline_cta_text | escape_once }}"
++    data-inline-cta-label="{{ inline_cta_label | escape_once }}"
+     data-inline-cta-url="{{ inline_cta_url | escape }}"
+     data-inline-cta-collection-handle="{{ inline_cta_collection_handle | escape }}"
+     data-inline-cta-article-handle="{{ article_context_handle | escape }}"
+@@ -733,8 +750,8 @@
+   {%- if inline_cta_url != blank -%}
+     <section class="article-template__recommended-products page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+       <div class="article-template__recommended-card article-template__recommended-card--fallback">
+-        <p class="article-template__recommended-eyebrow">Shop the collection</p>
+-        <h2 class="article-template__recommended-title">{{ inline_cta_text | escape }}</h2>
++        <p class="article-template__recommended-eyebrow">{{ 'storefront.article.shop_collection' | t }}</p>
++        <h2 class="article-template__recommended-title">{{ inline_cta_text | escape_once }}</h2>
+         <a
+           href="{{ inline_cta_url }}"
+           class="article-template__recommended-fallback-link button"
+@@ -743,9 +760,9 @@
+           data-style-journal-link-placement="article_recommended_products_fallback"
+           data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
+           data-style-journal-destination-handle="{{ inline_cta_collection_handle | escape }}"
+-          data-style-journal-destination-title="{{ inline_cta_label | escape }}"
++          data-style-journal-destination-title="{{ inline_cta_label | escape_once }}"
+         >
+-          {{ inline_cta_label | escape }}
++          {{ inline_cta_label | escape_once }}
+         </a>
+       </div>
+     </section>
+@@ -754,8 +771,8 @@
+   {%- if collection_link_1_url != blank or collection_link_2_url != blank or collection_link_3_url != blank -%}
+     <section class="article-template__shop-links page-width page-width--narrow">
+       <div class="article-template__shop-card">
+-        <p class="article-template__shop-eyebrow">Shop the collections</p>
+-        <h2 class="article-template__shop-title">Build the look from this guide</h2>
++        <p class="article-template__shop-eyebrow">{{ 'storefront.article.shop_collections' | t }}</p>
++        <h2 class="article-template__shop-title">{{ 'storefront.article.build_look' | t }}</h2>
+         <div class="article-template__shop-grid">
+           {%- if collection_link_1_url != blank -%}
+             <a
+@@ -766,11 +783,11 @@
+               data-style-journal-link-placement="article_endcap"
+               data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
+               data-style-journal-destination-handle="{{ collection_link_1_handle | escape }}"
+-              data-style-journal-destination-title="{{ collection_link_1_title | escape }}"
++              data-style-journal-destination-title="{{ collection_link_1_title | escape_once }}"
+             >
+               <span class="article-template__shop-link-copy">
+-                <span class="article-template__shop-link-title">{{ collection_link_1_title | escape }}</span>
+-                <span class="article-template__shop-link-caption">{{ collection_link_1_caption | escape }}</span>
++                <span class="article-template__shop-link-title">{{ collection_link_1_title | escape_once }}</span>
++                <span class="article-template__shop-link-caption">{{ collection_link_1_caption | escape_once }}</span>
+               </span>
+               <span class="article-template__shop-arrow" aria-hidden="true">&rarr;</span>
+             </a>
+@@ -784,11 +801,11 @@
+               data-style-journal-link-placement="article_endcap"
+               data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
+               data-style-journal-destination-handle="{{ collection_link_2_handle | escape }}"
+-              data-style-journal-destination-title="{{ collection_link_2_title | escape }}"
++              data-style-journal-destination-title="{{ collection_link_2_title | escape_once }}"
+             >
+               <span class="article-template__shop-link-copy">
+-                <span class="article-template__shop-link-title">{{ collection_link_2_title | escape }}</span>
+-                <span class="article-template__shop-link-caption">{{ collection_link_2_caption | escape }}</span>
++                <span class="article-template__shop-link-title">{{ collection_link_2_title | escape_once }}</span>
++                <span class="article-template__shop-link-caption">{{ collection_link_2_caption | escape_once }}</span>
+               </span>
+               <span class="article-template__shop-arrow" aria-hidden="true">&rarr;</span>
+             </a>
+@@ -802,11 +819,11 @@
+               data-style-journal-link-placement="article_endcap"
+               data-style-journal-source-article-handle="{{ article_context_handle | escape }}"
+               data-style-journal-destination-handle="{{ collection_link_3_handle | escape }}"
+-              data-style-journal-destination-title="{{ collection_link_3_title | escape }}"
++              data-style-journal-destination-title="{{ collection_link_3_title | escape_once }}"
+             >
+               <span class="article-template__shop-link-copy">
+-                <span class="article-template__shop-link-title">{{ collection_link_3_title | escape }}</span>
+-                <span class="article-template__shop-link-caption">{{ collection_link_3_caption | escape }}</span>
++                <span class="article-template__shop-link-title">{{ collection_link_3_title | escape_once }}</span>
++                <span class="article-template__shop-link-caption">{{ collection_link_3_caption | escape_once }}</span>
+               </span>
+               <span class="article-template__shop-arrow" aria-hidden="true">&rarr;</span>
+             </a>
+@@ -819,8 +836,8 @@
+   {%- if related_article_1 != blank or related_article_2 != blank or related_article_3 != blank -%}
+     <section class="article-template__related page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+       <div class="article-template__related-header">
+-        <p class="article-template__related-eyebrow">Continue reading</p>
+-        <h2 class="article-template__related-title">More from Style Journal</h2>
++        <p class="article-template__related-eyebrow">{{ 'storefront.article.continue_reading' | t }}</p>
++        <h2 class="article-template__related-title">{{ 'storefront.article.more_from' | t: journal: journal_label }}</h2>
+       </div>
+       <div class="article-template__related-grid">
+         {%- if related_article_1 != blank and related_article_1.handle != article_context_handle -%}
+@@ -897,11 +914,11 @@
+     <div class="collection-hero__journal">
+       <div class="collection-hero__journal-header">
+         <div>
+-          <p class="collection-hero__journal-eyebrow">Style Journal</p>
+-          <h2 class="collection-hero__journal-title">Read the guide before you shop</h2>
++          <p class="collection-hero__journal-eyebrow">{{ journal_label }}</p>
++          <h2 class="collection-hero__journal-title">{{ 'storefront.article.read_before_shop' | t }}</h2>
+         </div>
+         {%- if journal_blog != blank -%}
+-          <a href="{{ journal_blog.url }}" class="collection-hero__journal-all">View all guides</a>
++          <a href="{{ journal_blog.url }}" class="collection-hero__journal-all">{{ 'storefront.article.view_all_guides' | t }}</a>
+         {%- endif -%}
+       </div>
+       <div class="collection-hero__journal-links">
+@@ -917,7 +934,7 @@
+             data-style-journal-destination-title="{{ guide_link_1_title | escape }}"
+           >
+             <span class="collection-hero__journal-link-title">{{ guide_link_1_title | escape }}</span>
+-            <span class="collection-hero__journal-link-caption">{{ guide_link_1_caption | escape }}</span>
++            <span class="collection-hero__journal-link-caption">{{ guide_link_1_caption | escape_once }}</span>
+           </a>
+         {%- endif -%}
+         {%- if guide_link_2_url != blank -%}
+@@ -932,7 +949,7 @@
+             data-style-journal-destination-title="{{ guide_link_2_title | escape }}"
+           >
+             <span class="collection-hero__journal-link-title">{{ guide_link_2_title | escape }}</span>
+-            <span class="collection-hero__journal-link-caption">{{ guide_link_2_caption | escape }}</span>
++            <span class="collection-hero__journal-link-caption">{{ guide_link_2_caption | escape_once }}</span>
+           </a>
+         {%- endif -%}
+         {%- if guide_link_3_url != blank -%}
+@@ -947,7 +964,7 @@
+             data-style-journal-destination-title="{{ guide_link_3_title | escape }}"
+           >
+             <span class="collection-hero__journal-link-title">{{ guide_link_3_title | escape }}</span>
+-            <span class="collection-hero__journal-link-caption">{{ guide_link_3_caption | escape }}</span>
++            <span class="collection-hero__journal-link-caption">{{ guide_link_3_caption | escape_once }}</span>
+           </a>
+         {%- endif -%}
+       </div>
+--- a/locales/en.default.json
++++ b/locales/en.default.json
+@@ -1162,6 +1162,28 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   }
+ }
+--- a/locales/ar.json
++++ b/locales/ar.json
+@@ -4112,6 +4112,28 @@
+     "home_title": "فساتين للأم وابنتها | ملابس عائلية متناسقة",
+     "home_description": "تسوق فساتين الأم وابنتها والملابس المتناسقة للأم وطفلها وللعائلة للصور والعطلات واللحظات اليومية.",
+     "collection_fallback_description": "تصفح {{ title }} على Dress Like Mommy. قارن الأنماط وتحقق من الأحجام وتفاصيل المنتج في كل صفحة منتج.",
+-    "collection_fallback_body_html": "<p>تصفح {{ title }} وقارن الأنماط في المجموعة.</p><p>افتح كل صفحة منتج للتحقق من الخيارات المتاحة ودليل الحجم وتفاصيل المنتج قبل الاختيار.</p>"
++    "collection_fallback_body_html": "<p>تصفح {{ title }} وقارن الأنماط في المجموعة.</p><p>افتح كل صفحة منتج للتحقق من الخيارات المتاحة ودليل الحجم وتفاصيل المنتج قبل الاختيار.</p>",
++    "article": {
++      "breadcrumbs_label": "مسار التنقل",
++      "author_credential": "محرّر أزياء الأسرة",
++      "contents_label": "في هذا المقال",
++      "contents_aria_label": "جدول المحتويات",
++      "recommended_products": "منتجات موصى بها من هذا الدليل",
++      "written_by": "بقلم",
++      "author_bio": "يُعدّ فريق التحرير في Dress Like Mommy أدلة تسوّق عملية للإطلالات العائلية المتناسقة، وأزياء الأم وطفلها، وأزياء الأب وطفله، وملابس السباحة، والبيجامات، والإطلالات الموسمية المناسبة للتصوير.",
++      "shop_look": "تسوّق الإطلالة",
++      "compare_title": "هل أنت مستعد لمقارنة الإطلالات المتناسقة؟",
++      "compare_body": "تصفّح المجموعات الأساسية لأزياء الأم وطفلها، وأزياء الأب وطفله، والأطقم العائلية المتناسقة، وملابس السباحة المناسبة للعطلات.",
++      "continue_reading": "تابع القراءة",
++      "more_from": "المزيد من {{ journal }}",
++      "inline_cta_text": "هل أنت مستعد لتسوّق الإطلالات الواردة في هذا الدليل؟",
++      "inline_cta_label": "تسوّق مجموعات الأزياء المتناسقة",
++      "shop_collection": "تسوّق المجموعة",
++      "shop_collections": "تسوّق المجموعات",
++      "build_look": "نسّق إطلالتك من هذا الدليل",
++      "guide_caption": "اقرأ {{ title }} قبل التسوّق.",
++      "read_before_shop": "اقرأ الدليل قبل التسوّق",
++      "view_all_guides": "عرض جميع الأدلة"
++    }
+   }
+ }
+--- a/locales/cs.json
++++ b/locales/cs.json
+@@ -1157,7 +1157,29 @@
+     "home_title": "Šaty pro maminku a dceru | Sladěné rodinné oblečení",
+     "home_description": "Nakupujte šaty pro maminku a dceru, sladěné oblečení pro maminku a dítě i celou rodinu na focení, dovolenou a běžné dny.",
+     "collection_fallback_description": "Procházet {{ title }} na Dress Like Mommy. Porovnejte styly a zkontrolujte velikosti a podrobnosti o produktu na každé stránce produktu.",
+-    "collection_fallback_body_html": "<p>Prohlédněte si {{ title }} a porovnejte styly v kolekci.</p><p>Před výběrem otevřete jednotlivé stránky produktů a ověřte dostupné varianty, průvodce velikostmi a podrobnosti o produktu.</p>"
++    "collection_fallback_body_html": "<p>Prohlédněte si {{ title }} a porovnejte styly v kolekci.</p><p>Před výběrem otevřete jednotlivé stránky produktů a ověřte dostupné varianty, průvodce velikostmi a podrobnosti o produktu.</p>",
++    "article": {
++      "breadcrumbs_label": "Drobečková navigace",
++      "author_credential": "Redaktor rodinné módy",
++      "contents_label": "V tomto článku",
++      "contents_aria_label": "Obsah článku",
++      "recommended_products": "Doporučené produkty z tohoto průvodce",
++      "written_by": "Autor článku",
++      "author_bio": "Redakce Dress Like Mommy připravuje praktické nákupní průvodce sladěnými rodinnými outfity, oblečením pro maminky a děti, oblečením pro tatínky a děti, plavkami, pyžamy a sezónními styly vhodnými na focení.",
++      "shop_look": "Nakupujte tento styl",
++      "compare_title": "Chcete porovnat sladěné outfity?",
++      "compare_body": "Prohlédněte si hlavní kolekce oblečení pro maminky a děti, stylů pro tatínky a děti, sladěných rodinných souprav a plavek na dovolenou.",
++      "continue_reading": "Pokračovat ve čtení",
++      "more_from": "Další články: {{ journal }}",
++      "inline_cta_text": "Chcete nakupovat outfity z tohoto průvodce?",
++      "inline_cta_label": "Prohlédnout sladěné kolekce",
++      "shop_collection": "Prohlédnout kolekci",
++      "shop_collections": "Prohlédnout kolekce",
++      "build_look": "Sestavte si outfit podle tohoto průvodce",
++      "guide_caption": "Před nákupem si přečtěte {{ title }}.",
++      "read_before_shop": "Před nákupem si přečtěte průvodce",
++      "view_all_guides": "Zobrazit všechny průvodce"
++    }
+   },
+   "shopify": {
+     "page_titles": {
+--- a/locales/da.json
++++ b/locales/da.json
+@@ -1157,7 +1157,29 @@
+     "home_title": "Kjoler til mor og datter | Matchende familietøj",
+     "home_description": "Find kjoler til mor og datter, matchende tøj til mor og barn og matchende familietøj til billeder, ferier og hverdagens øjeblikke.",
+     "collection_fallback_description": "Se {{ title }} hos Dress Like Mommy. Sammenlign modellerne, og se størrelser og produktdetaljer på hver produktside.",
+-    "collection_fallback_body_html": "<p>Se udvalget af {{ title }}, og sammenlign modellerne i kollektionen.</p><p>Åbn den enkelte produktside for at se de tilgængelige varianter, størrelsesguiden og produktdetaljerne, før du vælger.</p>"
++    "collection_fallback_body_html": "<p>Se udvalget af {{ title }}, og sammenlign modellerne i kollektionen.</p><p>Åbn den enkelte produktside for at se de tilgængelige varianter, størrelsesguiden og produktdetaljerne, før du vælger.</p>",
++    "article": {
++      "breadcrumbs_label": "Brødkrummenavigation",
++      "author_credential": "Redaktør for familiemode",
++      "contents_label": "I denne artikel",
++      "contents_aria_label": "Indholdsfortegnelse",
++      "recommended_products": "Anbefalede produkter fra denne guide",
++      "written_by": "Skrevet af",
++      "author_bio": "Redaktionen hos Dress Like Mommy laver praktiske shoppingguider til matchende familietøj, mor og barn-looks, far og barn-outfits, badetøj, pyjamasser og sæsonens styles til fotografering.",
++      "shop_look": "Shop looket",
++      "compare_title": "Klar til at sammenligne matchende outfits?",
++      "compare_body": "Se de vigtigste kollektioner med mor og barn-outfits, far og barn-styles, matchende familiesæt og badetøj til ferien.",
++      "continue_reading": "Læs videre",
++      "more_from": "Mere fra {{ journal }}",
++      "inline_cta_text": "Klar til at shoppe lookene fra denne guide?",
++      "inline_cta_label": "Se matchende kollektioner",
++      "shop_collection": "Se kollektionen",
++      "shop_collections": "Se kollektionerne",
++      "build_look": "Skab looket fra denne guide",
++      "guide_caption": "Læs {{ title }}, før du shopper.",
++      "read_before_shop": "Læs guiden, før du shopper",
++      "view_all_guides": "Se alle guider"
++    }
+   },
+   "shopify": {
+     "page_titles": {
+--- a/locales/de.json
++++ b/locales/de.json
+@@ -1162,6 +1162,28 @@
+     "home_title": "Kleider für Mutter und Tochter | Familienoutfits im Partnerlook",
+     "home_description": "Entdecken Sie Kleider für Mutter und Tochter sowie Partnerlooks für Mama und Kind und die ganze Familie für Fotos, Urlaub und Alltag.",
+     "collection_fallback_description": "Durchsuchen Sie {{ title }} und Dress Like Mommy. Vergleichen Sie Stile und prüfen Sie die Größen und Produktdetails auf jeder Produktseite.",
+-    "collection_fallback_body_html": "<p>Durchsuchen Sie {{ title }} und vergleichen Sie die Stile in der Kollektion.</p><p>Öffnen Sie jede Produktseite, um die verfügbaren Optionen, die Größentabelle und die Produktdetails zu überprüfen, bevor Sie sich entscheiden.</p>"
++    "collection_fallback_body_html": "<p>Durchsuchen Sie {{ title }} und vergleichen Sie die Stile in der Kollektion.</p><p>Öffnen Sie jede Produktseite, um die verfügbaren Optionen, die Größentabelle und die Produktdetails zu überprüfen, bevor Sie sich entscheiden.</p>",
++    "article": {
++      "breadcrumbs_label": "Brotkrümelnavigation",
++      "author_credential": "Redakteur für Familienmode",
++      "contents_label": "In diesem Artikel",
++      "contents_aria_label": "Inhaltsverzeichnis",
++      "recommended_products": "Empfohlene Produkte aus diesem Ratgeber",
++      "written_by": "Geschrieben von",
++      "author_bio": "Das Redaktionsteam von Dress Like Mommy erstellt praktische Einkaufsratgeber für Familienoutfits im Partnerlook, Looks für Mama und Kind, Outfits für Papa und Kind, Bademode, Schlafanzüge und saisonale Styles für Fotos.",
++      "shop_look": "Den Look shoppen",
++      "compare_title": "Bereit, Outfits im Partnerlook zu vergleichen?",
++      "compare_body": "Entdecken Sie die wichtigsten Kollektionen mit Outfits für Mama und Kind, Styles für Papa und Kind, aufeinander abgestimmten Familiensets und Bademode für den Urlaub.",
++      "continue_reading": "Weiterlesen",
++      "more_from": "Weitere Artikel: {{ journal }}",
++      "inline_cta_text": "Bereit, die Looks aus diesem Ratgeber zu shoppen?",
++      "inline_cta_label": "Partnerlook-Kollektionen entdecken",
++      "shop_collection": "Die Kollektion entdecken",
++      "shop_collections": "Die Kollektionen entdecken",
++      "build_look": "Den Look aus diesem Ratgeber zusammenstellen",
++      "guide_caption": "Lesen Sie vor dem Einkauf {{ title }}.",
++      "read_before_shop": "Lesen Sie den Ratgeber vor dem Einkauf",
++      "view_all_guides": "Alle Ratgeber ansehen"
++    }
+   }
+ }
+--- a/locales/el.json
++++ b/locales/el.json
+@@ -1157,7 +1157,29 @@
+     "home_title": "Φορέματα για μαμά και κόρη | Ταιριαστά οικογενειακά σύνολα",
+     "home_description": "Αγοράστε φορέματα για μαμά και κόρη, ταιριαστά ρούχα για μαμά και παιδί και οικογενειακά σύνολα για φωτογραφίες, διακοπές και καθημερινές στιγμές.",
+     "collection_fallback_description": "Περιηγηθείτε στο {{ title }} στο Dress Like Mommy. Συγκρίνετε στυλ και ελέγξτε τα μεγέθη και τις λεπτομέρειες του προϊόντος σε κάθε σελίδα προϊόντος.",
+-    "collection_fallback_body_html": "<p>Δείτε τη συλλογή {{ title }} και συγκρίνετε τα στυλ της.</p><p>Ανοίξτε κάθε σελίδα προϊόντος για να ελέγξετε τις διαθέσιμες επιλογές, τον οδηγό μεγεθών και τις λεπτομέρειες του προϊόντος πριν επιλέξετε.</p>"
++    "collection_fallback_body_html": "<p>Δείτε τη συλλογή {{ title }} και συγκρίνετε τα στυλ της.</p><p>Ανοίξτε κάθε σελίδα προϊόντος για να ελέγξετε τις διαθέσιμες επιλογές, τον οδηγό μεγεθών και τις λεπτομέρειες του προϊόντος πριν επιλέξετε.</p>",
++    "article": {
++      "breadcrumbs_label": "Διαδρομή πλοήγησης",
++      "author_credential": "Συντάκτης οικογενειακής μόδας",
++      "contents_label": "Σε αυτό το άρθρο",
++      "contents_aria_label": "Πίνακας περιεχομένων",
++      "recommended_products": "Προτεινόμενα προϊόντα από αυτόν τον οδηγό",
++      "written_by": "Συντάχθηκε από",
++      "author_bio": "Η συντακτική ομάδα του Dress Like Mommy δημιουργεί πρακτικούς οδηγούς αγορών για ασορτί οικογενειακά σύνολα, εμφανίσεις για μαμά και παιδί, σύνολα για μπαμπά και παιδί, μαγιό, πιτζάμες και εποχιακά στιλ κατάλληλα για φωτογραφίες.",
++      "shop_look": "Αγοράστε την εμφάνιση",
++      "compare_title": "Είστε έτοιμοι να συγκρίνετε ασορτί σύνολα;",
++      "compare_body": "Περιηγηθείτε στις βασικές συλλογές με σύνολα για μαμά και παιδί, στιλ για μπαμπά και παιδί, ασορτί οικογενειακά σετ και μαγιό για διακοπές.",
++      "continue_reading": "Συνεχίστε την ανάγνωση",
++      "more_from": "Περισσότερα από το {{ journal }}",
++      "inline_cta_text": "Είστε έτοιμοι να αγοράσετε τις εμφανίσεις αυτού του οδηγού;",
++      "inline_cta_label": "Δείτε τις ασορτί συλλογές",
++      "shop_collection": "Δείτε τη συλλογή",
++      "shop_collections": "Δείτε τις συλλογές",
++      "build_look": "Δημιουργήστε την εμφάνιση αυτού του οδηγού",
++      "guide_caption": "Διαβάστε το {{ title }} πριν ψωνίσετε.",
++      "read_before_shop": "Διαβάστε τον οδηγό πριν ψωνίσετε",
++      "view_all_guides": "Δείτε όλους τους οδηγούς"
++    }
+   },
+   "shopify": {
+     "page_titles": {
+--- a/locales/es.json
++++ b/locales/es.json
+@@ -1174,6 +1174,28 @@
+     "home_title": "Vestidos para madre e hija | Conjuntos familiares a juego",
+     "home_description": "Compra vestidos para madre e hija, ropa a juego para mamá y peques y conjuntos familiares para fotos, vacaciones y momentos cotidianos.",
+     "collection_fallback_description": "Busque {{ title }} en Dress Like Mommy. Compare estilos y verifique tamaños y detalles del producto en cada página de producto.",
+-    "collection_fallback_body_html": "<p>Examine {{ title }} y compare estilos en la colección.</p><p>Abra cada página de producto para verificar las opciones disponibles, la guía de tallas y los detalles del producto antes de elegir.</p>"
++    "collection_fallback_body_html": "<p>Examine {{ title }} y compare estilos en la colección.</p><p>Abra cada página de producto para verificar las opciones disponibles, la guía de tallas y los detalles del producto antes de elegir.</p>",
++    "article": {
++      "breadcrumbs_label": "Ruta de navegación",
++      "author_credential": "Editor de moda familiar",
++      "contents_label": "En este artículo",
++      "contents_aria_label": "Índice",
++      "recommended_products": "Productos recomendados de esta guía",
++      "written_by": "Escrito por",
++      "author_bio": "El equipo editorial de Dress Like Mommy crea guías de compra prácticas sobre conjuntos a juego para la familia, looks para mamá e hijos, conjuntos para papá e hijos, ropa de baño, pijamas y estilos de temporada ideales para las fotos.",
++      "shop_look": "Compra el look",
++      "compare_title": "¿Quieres comparar conjuntos a juego?",
++      "compare_body": "Explora las colecciones principales de conjuntos para mamá e hijos, estilos para papá e hijos, conjuntos familiares a juego y ropa de baño para las vacaciones.",
++      "continue_reading": "Sigue leyendo",
++      "more_from": "Más de {{ journal }}",
++      "inline_cta_text": "¿Quieres comprar los looks de esta guía?",
++      "inline_cta_label": "Explora las colecciones a juego",
++      "shop_collection": "Explora la colección",
++      "shop_collections": "Explora las colecciones",
++      "build_look": "Crea el look de esta guía",
++      "guide_caption": "Lee {{ title }} antes de comprar.",
++      "read_before_shop": "Lee la guía antes de comprar",
++      "view_all_guides": "Ver todas las guías"
++    }
+   }
+ }
+--- a/locales/fi.json
++++ b/locales/fi.json
+@@ -1157,7 +1157,29 @@
+     "home_title": "Äidin ja tyttären mekot | Yhteensopivat perheasut",
+     "home_description": "Osta äidin ja tyttären mekkoja sekä äidin ja lapsen ja koko perheen yhteensopivia asuja kuvauksiin, lomalle ja arkeen.",
+     "collection_fallback_description": "Selaa {{ title }} osoitteessa Dress Like Mommy. Vertaa tyylejä ja tarkista koot ja tuotetiedot jokaiselta tuotesivulta.",
+-    "collection_fallback_body_html": "<p>Selaa kokoelmaa {{ title }} ja vertaa sen tyylejä.</p><p>Avaa kunkin tuotteen sivu ja tarkista saatavilla olevat vaihtoehdot, koko-opas ja tuotetiedot ennen valintaa.</p>"
++    "collection_fallback_body_html": "<p>Selaa kokoelmaa {{ title }} ja vertaa sen tyylejä.</p><p>Avaa kunkin tuotteen sivu ja tarkista saatavilla olevat vaihtoehdot, koko-opas ja tuotetiedot ennen valintaa.</p>",
++    "article": {
++      "breadcrumbs_label": "Murupolku",
++      "author_credential": "Perhemuodin toimittaja",
++      "contents_label": "Tässä artikkelissa",
++      "contents_aria_label": "Sisällysluettelo",
++      "recommended_products": "Tämän oppaan suositellut tuotteet",
++      "written_by": "Kirjoittaja",
++      "author_bio": "Dress Like Mommyn toimitus laatii käytännöllisiä ostosoppaita koko perheen yhteensopivista asuista, äidin ja lapsen tyyleistä, isän ja lapsen asuista, uima-asuista, pyjamista ja kuvauksiin sopivista kausityyleistä.",
++      "shop_look": "Osta tämä tyyli",
++      "compare_title": "Haluatko vertailla yhteensopivia asuja?",
++      "compare_body": "Tutustu keskeisiin mallistoihin: äidin ja lapsen asut, isän ja lapsen tyylit, koko perheen yhteensopivat asusetit ja lomalle sopivat uima-asut.",
++      "continue_reading": "Jatka lukemista",
++      "more_from": "Lisää julkaisusta {{ journal }}",
++      "inline_cta_text": "Haluatko ostaa tämän oppaan asuja?",
++      "inline_cta_label": "Tutustu yhteensopiviin mallistoihin",
++      "shop_collection": "Tutustu mallistoon",
++      "shop_collections": "Tutustu mallistoihin",
++      "build_look": "Kokoa tämän oppaan tyyli",
++      "guide_caption": "Lue {{ title }} ennen ostoksia.",
++      "read_before_shop": "Lue opas ennen ostoksia",
++      "view_all_guides": "Katso kaikki oppaat"
++    }
+   },
+   "shopify": {
+     "page_titles": {
+--- a/locales/fr.json
++++ b/locales/fr.json
+@@ -1174,6 +1174,28 @@
+     "home_title": "Robes mère-fille | Tenues familiales assorties",
+     "home_description": "Découvrez des robes mère-fille, des tenues assorties pour maman et enfant et des vêtements familiaux pour les photos, les vacances et le quotidien.",
+     "collection_fallback_description": "Parcourez {{ title }} sur Dress Like Mommy. Comparez les styles et vérifiez les tailles et les détails du produit sur chaque page produit.",
+-    "collection_fallback_body_html": "<p>Parcourez {{ title }} et comparez les styles de la collection.</p><p>Ouvrez chaque page de produit pour vérifier les options disponibles, le guide des tailles et les détails du produit avant de choisir.</p>"
++    "collection_fallback_body_html": "<p>Parcourez {{ title }} et comparez les styles de la collection.</p><p>Ouvrez chaque page de produit pour vérifier les options disponibles, le guide des tailles et les détails du produit avant de choisir.</p>",
++    "article": {
++      "breadcrumbs_label": "Fil d’Ariane",
++      "author_credential": "Rédacteur mode familiale",
++      "contents_label": "Dans cet article",
++      "contents_aria_label": "Sommaire",
++      "recommended_products": "Produits recommandés dans ce guide",
++      "written_by": "Rédigé par",
++      "author_bio": "L’équipe éditoriale de Dress Like Mommy crée des guides d’achat pratiques sur les tenues familiales assorties, les looks maman-enfant, les tenues papa-enfant, les maillots de bain, les pyjamas et les styles de saison adaptés aux séances photo.",
++      "shop_look": "Acheter ce look",
++      "compare_title": "Prêt à comparer des tenues assorties ?",
++      "compare_body": "Parcourez les principales collections de tenues maman-enfant, de styles papa-enfant, d’ensembles familiaux assortis et de maillots de bain pour les vacances.",
++      "continue_reading": "Poursuivre la lecture",
++      "more_from": "Autres articles : {{ journal }}",
++      "inline_cta_text": "Prêt à acheter les looks de ce guide ?",
++      "inline_cta_label": "Découvrir les collections assorties",
++      "shop_collection": "Découvrir la collection",
++      "shop_collections": "Découvrir les collections",
++      "build_look": "Composer le look de ce guide",
++      "guide_caption": "Lisez {{ title }} avant de faire vos achats.",
++      "read_before_shop": "Lisez le guide avant de faire vos achats",
++      "view_all_guides": "Voir tous les guides"
++    }
+   }
+ }
+--- a/locales/he.json
++++ b/locales/he.json
+@@ -4480,6 +4480,28 @@
+     "home_title": "שמלות לאמא ולבת | לבוש משפחתי תואם",
+     "home_description": "קנו שמלות לאמא ולבת, לבוש תואם לאמא ולילד ולבוש משפחתי תואם לתמונות, לחופשות ולרגעי היום־יום.",
+     "collection_fallback_description": "עיינו ב־{{ title }} ב־Dress Like Mommy. השוו דגמים ובדקו מידות ופרטי מוצר בכל עמוד מוצר.",
+-    "collection_fallback_body_html": "<p>עיינו ב־{{ title }} והשוו בין הדגמים בקולקציה.</p><p>פתחו כל עמוד מוצר כדי לבדוק את האפשרויות הזמינות, מדריך המידות ופרטי המוצר לפני הבחירה.</p>"
++    "collection_fallback_body_html": "<p>עיינו ב־{{ title }} והשוו בין הדגמים בקולקציה.</p><p>פתחו כל עמוד מוצר כדי לבדוק את האפשרויות הזמינות, מדריך המידות ופרטי המוצר לפני הבחירה.</p>",
++    "article": {
++      "breadcrumbs_label": "נתיב ניווט",
++      "author_credential": "עורך אופנת המשפחה",
++      "contents_label": "במאמר הזה",
++      "contents_aria_label": "תוכן העניינים",
++      "recommended_products": "מוצרים מומלצים מהמדריך הזה",
++      "written_by": "נכתב על ידי",
++      "author_bio": "צוות העריכה של Dress Like Mommy יוצר מדריכי קנייה שימושיים לתלבושות משפחתיות תואמות, למראה מתואם לאמא ולילדים, לתלבושות לאבא ולילדים, לבגדי ים, לפיג׳מות ולסגנונות עונתיים שמתאימים לצילומים.",
++      "shop_look": "קנו את פריטי הלבוש",
++      "compare_title": "רוצים להשוות תלבושות תואמות?",
++      "compare_body": "עיינו בקולקציות המרכזיות של תלבושות לאמא ולילדים, סגנונות לאבא ולילדים, סטים משפחתיים תואמים ובגדי ים לחופשה.",
++      "continue_reading": "המשך קריאה",
++      "more_from": "עוד מתוך {{ journal }}",
++      "inline_cta_text": "רוצים לקנות את התלבושות מהמדריך הזה?",
++      "inline_cta_label": "גלו קולקציות תואמות",
++      "shop_collection": "גלו את הקולקציה",
++      "shop_collections": "גלו את הקולקציות",
++      "build_look": "הרכיבו את התלבושת מהמדריך הזה",
++      "guide_caption": "קראו את {{ title }} לפני הקנייה.",
++      "read_before_shop": "קראו את המדריך לפני הקנייה",
++      "view_all_guides": "לכל המדריכים"
++    }
+   }
+ }
+--- a/locales/hi.json
++++ b/locales/hi.json
+@@ -1162,6 +1162,28 @@
+     "home_title": "माँ-बेटी की ड्रेस | परिवार के मैचिंग कपड़े",
+     "home_description": "फ़ोटो, छुट्टियों और रोज़मर्रा के पलों के लिए माँ-बेटी की ड्रेस, माँ और बच्चे के मैचिंग कपड़े और पूरे परिवार के मैचिंग कपड़े खरीदें।",
+     "collection_fallback_description": "Dress Like Mommy पर {{ title }} ब्राउज़ करें। शैलियों की तुलना करें और प्रत्येक उत्पाद पृष्ठ पर आकार और उत्पाद विवरण जांचें।",
+-    "collection_fallback_body_html": "<p>{{ title }} ब्राउज़ करें और संग्रह में शैलियों की तुलना करें। </p><p> चुनने से पहले उपलब्ध विकल्पों, आकार गाइड और उत्पाद विवरण की जांच करने के लिए प्रत्येक उत्पाद पृष्ठ खोलें। </p>"
++    "collection_fallback_body_html": "<p>{{ title }} ब्राउज़ करें और संग्रह में शैलियों की तुलना करें। </p><p> चुनने से पहले उपलब्ध विकल्पों, आकार गाइड और उत्पाद विवरण की जांच करने के लिए प्रत्येक उत्पाद पृष्ठ खोलें। </p>",
++    "article": {
++      "breadcrumbs_label": "नेविगेशन पथ",
++      "author_credential": "परिवार के फ़ैशन संपादक",
++      "contents_label": "इस लेख में",
++      "contents_aria_label": "विषय-सूची",
++      "recommended_products": "इस गाइड के सुझाए गए उत्पाद",
++      "written_by": "लेखक",
++      "author_bio": "Dress Like Mommy की संपादकीय टीम परिवार के मैचिंग कपड़ों, माँ और बच्चों के लुक, पिता और बच्चों के कपड़ों, स्विमवियर, पजामों और तस्वीरों के लिए उपयुक्त मौसमी स्टाइल के लिए व्यावहारिक शॉपिंग गाइड तैयार करती है।",
++      "shop_look": "यह लुक खरीदें",
++      "compare_title": "क्या आप मैचिंग कपड़ों की तुलना करना चाहते हैं?",
++      "compare_body": "माँ और बच्चों के कपड़ों, पिता और बच्चों के स्टाइल, परिवार के मैचिंग सेट और छुट्टियों के लिए स्विमवियर के मुख्य कलेक्शन देखें।",
++      "continue_reading": "आगे पढ़ें",
++      "more_from": "{{ journal }} से और लेख",
++      "inline_cta_text": "क्या आप इस गाइड के लुक खरीदना चाहते हैं?",
++      "inline_cta_label": "मैचिंग कलेक्शन देखें",
++      "shop_collection": "कलेक्शन देखें",
++      "shop_collections": "कलेक्शन देखें",
++      "build_look": "इस गाइड का लुक तैयार करें",
++      "guide_caption": "खरीदारी से पहले {{ title }} पढ़ें।",
++      "read_before_shop": "खरीदारी से पहले गाइड पढ़ें",
++      "view_all_guides": "सभी गाइड देखें"
++    }
+   }
+ }
+--- a/locales/it.json
++++ b/locales/it.json
+@@ -1174,6 +1174,28 @@
+     "home_title": "Abiti per mamma e figlia | Look coordinati per la famiglia",
+     "home_description": "Acquista abiti per mamma e figlia, look coordinati per mamma e bambini e abbigliamento per tutta la famiglia per foto, vacanze e momenti quotidiani.",
+     "collection_fallback_description": "Sfoglia {{ title }} su Dress Like Mommy. Confronta gli stili e controlla le taglie e i dettagli del prodotto su ciascuna pagina del prodotto.",
+-    "collection_fallback_body_html": "<p>Sfoglia {{ title }} e confronta gli stili della collezione.</p><p>Apri ciascuna pagina del prodotto per verificare le opzioni disponibili, la guida alle taglie e i dettagli del prodotto prima di scegliere.</p>"
++    "collection_fallback_body_html": "<p>Sfoglia {{ title }} e confronta gli stili della collezione.</p><p>Apri ciascuna pagina del prodotto per verificare le opzioni disponibili, la guida alle taglie e i dettagli del prodotto prima di scegliere.</p>",
++    "article": {
++      "breadcrumbs_label": "Percorso di navigazione",
++      "author_credential": "Redattore di moda per la famiglia",
++      "contents_label": "In questo articolo",
++      "contents_aria_label": "Indice",
++      "recommended_products": "Prodotti consigliati in questa guida",
++      "written_by": "Scritto da",
++      "author_bio": "La redazione di Dress Like Mommy crea guide pratiche all’acquisto di outfit coordinati per la famiglia, look mamma e bambino, outfit papà e bambino, costumi da bagno, pigiami e stili stagionali adatti alle foto.",
++      "shop_look": "Acquista il look",
++      "compare_title": "Vuoi confrontare gli outfit coordinati?",
++      "compare_body": "Esplora le collezioni principali di outfit mamma e bambino, stili papà e bambino, completi coordinati per la famiglia e costumi da bagno per le vacanze.",
++      "continue_reading": "Continua a leggere",
++      "more_from": "Altri articoli da {{ journal }}",
++      "inline_cta_text": "Vuoi acquistare i look di questa guida?",
++      "inline_cta_label": "Scopri le collezioni coordinate",
++      "shop_collection": "Scopri la collezione",
++      "shop_collections": "Scopri le collezioni",
++      "build_look": "Crea il look di questa guida",
++      "guide_caption": "Leggi {{ title }} prima di fare acquisti.",
++      "read_before_shop": "Leggi la guida prima di fare acquisti",
++      "view_all_guides": "Vedi tutte le guide"
++    }
+   }
+ }
+--- a/locales/ja.json
++++ b/locales/ja.json
+@@ -1162,6 +1162,28 @@
+     "home_title": "ママと娘のおそろいワンピース | 家族のおそろいコーデ",
+     "home_description": "写真撮影、バケーション、日常のひとときに、ママと娘のワンピース、ママと子どもや家族のおそろいコーデをお選びください。",
+     "collection_fallback_description": "Dress Like Mommy で {{ title }} を閲覧します。各製品ページでスタイルを比較し、サイズと製品の詳細を確認してください。",
+-    "collection_fallback_body_html": "<p>{{ title }} を参照して、コレクション内のスタイルを比較してください。</p><p>各製品ページを開いて、選択する前に利用可能なオプション、サイズ ガイド、製品の詳細を確認してください。</p>"
++    "collection_fallback_body_html": "<p>{{ title }} を参照して、コレクション内のスタイルを比較してください。</p><p>各製品ページを開いて、選択する前に利用可能なオプション、サイズ ガイド、製品の詳細を確認してください。</p>",
++    "article": {
++      "breadcrumbs_label": "パンくずリスト",
++      "author_credential": "ファミリーファッション編集者",
++      "contents_label": "この記事の内容",
++      "contents_aria_label": "目次",
++      "recommended_products": "このガイドのおすすめ商品",
++      "written_by": "執筆者",
++      "author_bio": "Dress Like Mommyの編集チームは、家族のおそろいコーデ、ママと子どものコーデ、パパと子どものコーデ、水着、パジャマ、写真撮影にぴったりの季節のスタイルについて、実用的なお買い物ガイドを作成しています。",
++      "shop_look": "このコーデを購入",
++      "compare_title": "おそろいコーデを比べてみませんか？",
++      "compare_body": "ママと子どものコーデ、パパと子どものスタイル、家族のおそろいセット、バカンス向け水着の主要コレクションをご覧ください。",
++      "continue_reading": "続きを読む",
++      "more_from": "{{ journal }}の他の記事",
++      "inline_cta_text": "このガイドのコーデを購入しませんか？",
++      "inline_cta_label": "おそろいコレクションを見る",
++      "shop_collection": "コレクションを見る",
++      "shop_collections": "コレクション一覧を見る",
++      "build_look": "このガイドのコーデを組み合わせる",
++      "guide_caption": "お買い物の前に「{{ title }}」をお読みください。",
++      "read_before_shop": "お買い物の前にガイドを読む",
++      "view_all_guides": "すべてのガイドを見る"
++    }
+   }
+ }
+--- a/locales/ko.json
++++ b/locales/ko.json
+@@ -1162,6 +1162,28 @@
+     "home_title": "엄마와 딸의 커플 원피스 | 패밀리룩",
+     "home_description": "사진 촬영, 휴가, 일상의 순간을 위한 엄마와 딸의 커플 원피스, 엄마와 아이의 커플룩, 패밀리룩을 쇼핑하세요.",
+     "collection_fallback_description": "Dress Like Mommy에서 {{ title }} 컬렉션을 둘러보세요. 스타일을 비교하고 각 제품 페이지에서 사이즈와 제품 정보를 확인하세요.",
+-    "collection_fallback_body_html": "<p>{{ title }} 컬렉션을 둘러보고 스타일을 비교하세요.</p><p>선택하기 전에 각 제품 페이지에서 구매 가능한 옵션, 사이즈 가이드, 제품 정보를 확인하세요.</p>"
++    "collection_fallback_body_html": "<p>{{ title }} 컬렉션을 둘러보고 스타일을 비교하세요.</p><p>선택하기 전에 각 제품 페이지에서 구매 가능한 옵션, 사이즈 가이드, 제품 정보를 확인하세요.</p>",
++    "article": {
++      "breadcrumbs_label": "탐색 경로",
++      "author_credential": "패밀리 패션 에디터",
++      "contents_label": "이 글의 내용",
++      "contents_aria_label": "목차",
++      "recommended_products": "이 가이드의 추천 상품",
++      "written_by": "작성자",
++      "author_bio": "Dress Like Mommy 편집팀은 가족 시밀러룩, 엄마와 아이의 스타일, 아빠와 아이의 의상, 수영복, 잠옷, 사진 촬영에 어울리는 계절별 스타일을 위한 실용적인 쇼핑 가이드를 만듭니다.",
++      "shop_look": "이 스타일 쇼핑하기",
++      "compare_title": "시밀러룩을 비교해 보시겠어요?",
++      "compare_body": "엄마와 아이의 의상, 아빠와 아이의 스타일, 가족 시밀러룩 세트, 휴가용 수영복의 주요 컬렉션을 둘러보세요.",
++      "continue_reading": "계속 읽기",
++      "more_from": "{{ journal }}의 다른 글",
++      "inline_cta_text": "이 가이드의 스타일을 쇼핑해 보시겠어요?",
++      "inline_cta_label": "시밀러룩 컬렉션 보기",
++      "shop_collection": "컬렉션 보기",
++      "shop_collections": "컬렉션 둘러보기",
++      "build_look": "이 가이드의 스타일 완성하기",
++      "guide_caption": "쇼핑하기 전에 {{ title }} 가이드를 읽어 보세요.",
++      "read_before_shop": "쇼핑하기 전에 가이드 읽기",
++      "view_all_guides": "모든 가이드 보기"
++    }
+   }
+ }
+--- a/locales/nl.json
++++ b/locales/nl.json
+@@ -1162,6 +1162,28 @@
+     "home_title": "Jurken voor moeder en dochter | Bijpassende gezinsoutfits",
+     "home_description": "Shop jurken voor moeder en dochter en bijpassende kleding voor mama en kind en het hele gezin voor foto's, vakanties en dagelijkse momenten.",
+     "collection_fallback_description": "Blader door {{ title }} op Dress Like Mommy. Vergelijk stijlen en controleer maten en productdetails op elke productpagina.",
+-    "collection_fallback_body_html": "<p> Blader door {{ title }} en vergelijk stijlen in de collectie.</p><p>Open elke productpagina om de beschikbare opties, de maattabel en productgegevens te bekijken voordat u een keuze maakt.</p>"
++    "collection_fallback_body_html": "<p> Blader door {{ title }} en vergelijk stijlen in de collectie.</p><p>Open elke productpagina om de beschikbare opties, de maattabel en productgegevens te bekijken voordat u een keuze maakt.</p>",
++    "article": {
++      "breadcrumbs_label": "Broodkruimelpad",
++      "author_credential": "Redacteur gezinsmode",
++      "contents_label": "In dit artikel",
++      "contents_aria_label": "Inhoudsopgave",
++      "recommended_products": "Aanbevolen producten uit deze gids",
++      "written_by": "Geschreven door",
++      "author_bio": "De redactie van Dress Like Mommy maakt praktische koopgidsen voor bijpassende gezinsoutfits, looks voor moeder en kind, outfits voor vader en kind, badmode, pyjama’s en seizoensstijlen die geschikt zijn voor foto’s.",
++      "shop_look": "Shop de look",
++      "compare_title": "Klaar om bijpassende outfits te vergelijken?",
++      "compare_body": "Bekijk de belangrijkste collecties met outfits voor moeder en kind, stijlen voor vader en kind, bijpassende gezinssets en badmode voor op vakantie.",
++      "continue_reading": "Verder lezen",
++      "more_from": "Meer uit {{ journal }}",
++      "inline_cta_text": "Klaar om de looks uit deze gids te shoppen?",
++      "inline_cta_label": "Bekijk bijpassende collecties",
++      "shop_collection": "Bekijk de collectie",
++      "shop_collections": "Bekijk de collecties",
++      "build_look": "Stel de look uit deze gids samen",
++      "guide_caption": "Lees {{ title }} voordat je gaat shoppen.",
++      "read_before_shop": "Lees de gids voordat je gaat shoppen",
++      "view_all_guides": "Bekijk alle gidsen"
++    }
+   }
+ }
+--- a/locales/no.json
++++ b/locales/no.json
+@@ -4415,6 +4415,28 @@
+     "home_title": "Kjoler til mor og datter | Matchende familieantrekk",
+     "home_description": "Kjøp kjoler til mor og datter og matchende klær til mamma og barn og hele familien til bilder, ferier og hverdagsøyeblikk.",
+     "collection_fallback_description": "Bla gjennom {{ title }} på Dress Like Mommy. Sammenlign stiler og sjekk størrelser og produktdetaljer på hver produktside.",
+-    "collection_fallback_body_html": "<p>Se {{ title }}, og sammenlign modellene i kolleksjonen.</p><p>Åpne hver produktside for å se tilgjengelige alternativer, størrelsesguiden og produktdetaljene før du velger.</p>"
++    "collection_fallback_body_html": "<p>Se {{ title }}, og sammenlign modellene i kolleksjonen.</p><p>Åpne hver produktside for å se tilgjengelige alternativer, størrelsesguiden og produktdetaljene før du velger.</p>",
++    "article": {
++      "breadcrumbs_label": "Brødsmulenavigasjon",
++      "author_credential": "Redaktør for familiemote",
++      "contents_label": "I denne artikkelen",
++      "contents_aria_label": "Innholdsfortegnelse",
++      "recommended_products": "Anbefalte produkter fra denne guiden",
++      "written_by": "Skrevet av",
++      "author_bio": "Redaksjonen i Dress Like Mommy lager praktiske handleguider for matchende familieantrekk, stiler for mor og barn, antrekk for far og barn, badetøy, pysjamaser og sesongens stiler som passer til fotografering.",
++      "shop_look": "Handle stilen",
++      "compare_title": "Klar til å sammenligne matchende antrekk?",
++      "compare_body": "Se hovedkolleksjonene med antrekk for mor og barn, stiler for far og barn, matchende familiesett og badetøy til ferien.",
++      "continue_reading": "Les videre",
++      "more_from": "Mer fra {{ journal }}",
++      "inline_cta_text": "Klar til å handle stilene fra denne guiden?",
++      "inline_cta_label": "Se matchende kolleksjoner",
++      "shop_collection": "Se kolleksjonen",
++      "shop_collections": "Se kolleksjonene",
++      "build_look": "Sett sammen stilen fra denne guiden",
++      "guide_caption": "Les {{ title }} før du handler.",
++      "read_before_shop": "Les guiden før du handler",
++      "view_all_guides": "Se alle guider"
++    }
+   }
+ }
+--- a/locales/pl.json
++++ b/locales/pl.json
+@@ -1186,6 +1186,28 @@
+     "home_title": "Sukienki dla mamy i córki | Dopasowane stroje rodzinne",
+     "home_description": "Kupuj sukienki dla mamy i córki oraz dopasowane ubrania dla mamy i dziecka i całej rodziny do zdjęć, na wakacje i codzienne chwile.",
+     "collection_fallback_description": "Przeglądaj {{ title }} w Dress Like Mommy. Porównaj style i sprawdź rozmiary oraz szczegóły produktu na każdej stronie produktu.",
+-    "collection_fallback_body_html": "<p>Przeglądaj {{ title }} i porównuj style w kolekcji.</p><p>Otwórz każdą stronę produktu, aby przed wyborem sprawdzić dostępne opcje, przewodnik po rozmiarach i szczegóły produktu.</p>"
++    "collection_fallback_body_html": "<p>Przeglądaj {{ title }} i porównuj style w kolekcji.</p><p>Otwórz każdą stronę produktu, aby przed wyborem sprawdzić dostępne opcje, przewodnik po rozmiarach i szczegóły produktu.</p>",
++    "article": {
++      "breadcrumbs_label": "Ścieżka nawigacji",
++      "author_credential": "Redaktor mody rodzinnej",
++      "contents_label": "W tym artykule",
++      "contents_aria_label": "Spis treści",
++      "recommended_products": "Produkty polecane w tym poradniku",
++      "written_by": "Autor tekstu",
++      "author_bio": "Redakcja Dress Like Mommy tworzy praktyczne poradniki zakupowe dotyczące dopasowanych strojów rodzinnych, stylizacji dla mamy i dziecka, strojów dla taty i dziecka, strojów kąpielowych, piżam i sezonowych stylizacji odpowiednich do zdjęć.",
++      "shop_look": "Kup tę stylizację",
++      "compare_title": "Chcesz porównać dopasowane stroje?",
++      "compare_body": "Przejrzyj główne kolekcje strojów dla mamy i dziecka, stylizacji dla taty i dziecka, dopasowanych zestawów rodzinnych i strojów kąpielowych na wakacje.",
++      "continue_reading": "Czytaj dalej",
++      "more_from": "Więcej artykułów: {{ journal }}",
++      "inline_cta_text": "Chcesz kupić stylizacje z tego poradnika?",
++      "inline_cta_label": "Zobacz dopasowane kolekcje",
++      "shop_collection": "Zobacz kolekcję",
++      "shop_collections": "Zobacz kolekcje",
++      "build_look": "Stwórz stylizację z tego poradnika",
++      "guide_caption": "Przed zakupem przeczytaj {{ title }}.",
++      "read_before_shop": "Przed zakupem przeczytaj poradnik",
++      "view_all_guides": "Zobacz wszystkie poradniki"
++    }
+   }
+ }
+--- a/locales/pt-BR.json
++++ b/locales/pt-BR.json
+@@ -1174,6 +1174,28 @@
+     "home_title": "Vestidos para mãe e filha | Looks combinando em família",
+     "home_description": "Compre vestidos para mãe e filha, roupas combinando para mãe e criança e looks para toda a família para fotos, férias e momentos do dia a dia.",
+     "collection_fallback_description": "Procure {{ title }} em Dress Like Mommy. Compare estilos e verifique tamanhos e detalhes de produtos na página de cada produto.",
+-    "collection_fallback_body_html": "<p>Navegue {{ title }} e compare estilos na coleção.</p><p>Abra cada página de produto para verificar as opções disponíveis, o guia de tamanhos e detalhes do produto antes de escolher.</p>"
++    "collection_fallback_body_html": "<p>Navegue {{ title }} e compare estilos na coleção.</p><p>Abra cada página de produto para verificar as opções disponíveis, o guia de tamanhos e detalhes do produto antes de escolher.</p>",
++    "article": {
++      "breadcrumbs_label": "Caminho de navegação",
++      "author_credential": "Editor de moda para a família",
++      "contents_label": "Neste artigo",
++      "contents_aria_label": "Índice",
++      "recommended_products": "Produtos recomendados neste guia",
++      "written_by": "Escrito por",
++      "author_bio": "A equipe editorial da Dress Like Mommy cria guias práticos de compras sobre looks combinando para a família, looks de mãe e filhos, roupas de pai e filhos, moda praia, pijamas e estilos da estação adequados para fotos.",
++      "shop_look": "Compre o look",
++      "compare_title": "Quer comparar looks combinando?",
++      "compare_body": "Explore as principais coleções de roupas de mãe e filhos, estilos de pai e filhos, conjuntos combinando para a família e moda praia para as férias.",
++      "continue_reading": "Continue lendo",
++      "more_from": "Mais de {{ journal }}",
++      "inline_cta_text": "Quer comprar os looks deste guia?",
++      "inline_cta_label": "Explore as coleções combinando",
++      "shop_collection": "Explore a coleção",
++      "shop_collections": "Explore as coleções",
++      "build_look": "Monte o look deste guia",
++      "guide_caption": "Leia {{ title }} antes de comprar.",
++      "read_before_shop": "Leia o guia antes de comprar",
++      "view_all_guides": "Ver todos os guias"
++    }
+   }
+ }
+--- a/locales/ro.json
++++ b/locales/ro.json
+@@ -1157,7 +1157,29 @@
+     "home_title": "Rochii pentru mamă și fiică | Ținute asortate pentru familie",
+     "home_description": "Cumpără rochii pentru mamă și fiică, haine asortate pentru mamă și copil și ținute de familie pentru fotografii, vacanțe și momente de zi cu zi.",
+     "collection_fallback_description": "Răsfoiți {{ title }} la Dress Like Mommy. Comparați stilurile și verificați dimensiunile și detaliile produsului pe fiecare pagină a produsului.",
+-    "collection_fallback_body_html": "<p>Răsfoiți {{ title }} și comparați stilurile din colecție.</p><p>Ochideți fiecare pagină de produs pentru a verifica opțiunile disponibile, ghidul de mărimi și detaliile produsului înainte de a alege.</p>"
++    "collection_fallback_body_html": "<p>Răsfoiți {{ title }} și comparați stilurile din colecție.</p><p>Ochideți fiecare pagină de produs pentru a verifica opțiunile disponibile, ghidul de mărimi și detaliile produsului înainte de a alege.</p>",
++    "article": {
++      "breadcrumbs_label": "Traseu de navigare",
++      "author_credential": "Redactor de modă pentru familie",
++      "contents_label": "În acest articol",
++      "contents_aria_label": "Cuprins",
++      "recommended_products": "Produse recomandate în acest ghid",
++      "written_by": "Scris de",
++      "author_bio": "Echipa editorială Dress Like Mommy creează ghiduri practice de cumpărături pentru ținute asortate de familie, stiluri pentru mamă și copil, ținute pentru tată și copil, costume de baie, pijamale și stiluri de sezon potrivite pentru fotografii.",
++      "shop_look": "Cumpără această ținută",
++      "compare_title": "Vrei să compari ținute asortate?",
++      "compare_body": "Explorează colecțiile principale de ținute pentru mamă și copil, stiluri pentru tată și copil, seturi asortate de familie și costume de baie pentru vacanță.",
++      "continue_reading": "Continuă lectura",
++      "more_from": "Mai multe din {{ journal }}",
++      "inline_cta_text": "Vrei să cumperi ținutele din acest ghid?",
++      "inline_cta_label": "Descoperă colecțiile asortate",
++      "shop_collection": "Descoperă colecția",
++      "shop_collections": "Descoperă colecțiile",
++      "build_look": "Creează ținuta din acest ghid",
++      "guide_caption": "Citește {{ title }} înainte de cumpărături.",
++      "read_before_shop": "Citește ghidul înainte de cumpărături",
++      "view_all_guides": "Vezi toate ghidurile"
++    }
+   },
+   "shopify": {
+     "page_titles": {
+--- a/locales/ru.json
++++ b/locales/ru.json
+@@ -1186,6 +1186,28 @@
+     "home_title": "Платья для мамы и дочки | Парные семейные наряды",
+     "home_description": "Выбирайте платья для мамы и дочки, парную одежду для мамы и ребёнка и всей семьи для фотографий, отпуска и повседневных моментов.",
+     "collection_fallback_description": "Просмотрите {{ title }} по адресу Dress Like Mommy. Сравните стили, проверьте размеры и подробную информацию о продукте на каждой странице продукта.",
+-    "collection_fallback_body_html": "<p>Просмотрите {{ title }} и сравните стили в коллекции.</p><p>Откройте каждую страницу продукта, чтобы проверить доступные варианты, таблицу размеров и подробную информацию о продукте, прежде чем сделать выбор.</p>"
++    "collection_fallback_body_html": "<p>Просмотрите {{ title }} и сравните стили в коллекции.</p><p>Откройте каждую страницу продукта, чтобы проверить доступные варианты, таблицу размеров и подробную информацию о продукте, прежде чем сделать выбор.</p>",
++    "article": {
++      "breadcrumbs_label": "Навигационная цепочка",
++      "author_credential": "Редактор семейной моды",
++      "contents_label": "В этой статье",
++      "contents_aria_label": "Содержание",
++      "recommended_products": "Рекомендуемые товары из этого руководства",
++      "written_by": "Автор",
++      "author_bio": "Редакция Dress Like Mommy составляет практические руководства по выбору семейных комплектов в едином стиле, образов для мамы и ребёнка, нарядов для папы и ребёнка, купальников, пижам и сезонных образов для фотосъёмок.",
++      "shop_look": "Купить этот образ",
++      "compare_title": "Хотите сравнить наряды в едином стиле?",
++      "compare_body": "Посмотрите основные коллекции нарядов для мамы и ребёнка, образов для папы и ребёнка, семейных комплектов в едином стиле и купальников для отпуска.",
++      "continue_reading": "Читать дальше",
++      "more_from": "Другие статьи: {{ journal }}",
++      "inline_cta_text": "Хотите купить наряды из этого руководства?",
++      "inline_cta_label": "Посмотреть коллекции в едином стиле",
++      "shop_collection": "Посмотреть коллекцию",
++      "shop_collections": "Посмотреть коллекции",
++      "build_look": "Создайте образ из этого руководства",
++      "guide_caption": "Перед покупкой прочитайте {{ title }}.",
++      "read_before_shop": "Прочитайте руководство перед покупкой",
++      "view_all_guides": "Посмотреть все руководства"
++    }
+   }
+ }
+--- a/locales/sv.json
++++ b/locales/sv.json
+@@ -1162,6 +1162,28 @@
+     "home_title": "Klänningar för mamma och dotter | Matchande familjekläder",
+     "home_description": "Köp klänningar för mamma och dotter samt matchande kläder för mamma och barn och hela familjen för foton, semester och vardagsstunder.",
+     "collection_fallback_description": "Bläddra bland {{ title }} på Dress Like Mommy. Jämför stilar och kontrollera storlekar och produktdetaljer på varje produktsida.",
+-    "collection_fallback_body_html": "<p>Bläddra bland {{ title }} och jämför stilarna i kollektionen.</p><p>Öppna varje produktsida för att se tillgängliga alternativ, storleksguiden och produktinformationen innan du väljer.</p>"
++    "collection_fallback_body_html": "<p>Bläddra bland {{ title }} och jämför stilarna i kollektionen.</p><p>Öppna varje produktsida för att se tillgängliga alternativ, storleksguiden och produktinformationen innan du väljer.</p>",
++    "article": {
++      "breadcrumbs_label": "Brödsmulenavigering",
++      "author_credential": "Redaktör för familjemode",
++      "contents_label": "I den här artikeln",
++      "contents_aria_label": "Innehållsförteckning",
++      "recommended_products": "Rekommenderade produkter från den här guiden",
++      "written_by": "Skriven av",
++      "author_bio": "Redaktionen på Dress Like Mommy tar fram praktiska shoppingguider för matchande familjekläder, stilar för mamma och barn, kläder för pappa och barn, badkläder, pyjamasar och säsongens stilar som passar för fotografering.",
++      "shop_look": "Shoppa stilen",
++      "compare_title": "Vill du jämföra matchande kläder?",
++      "compare_body": "Utforska de viktigaste kollektionerna med kläder för mamma och barn, stilar för pappa och barn, matchande familjeset och badkläder för semestern.",
++      "continue_reading": "Läs vidare",
++      "more_from": "Mer från {{ journal }}",
++      "inline_cta_text": "Vill du shoppa stilarna från den här guiden?",
++      "inline_cta_label": "Se matchande kollektioner",
++      "shop_collection": "Se kollektionen",
++      "shop_collections": "Se kollektionerna",
++      "build_look": "Skapa stilen från den här guiden",
++      "guide_caption": "Läs {{ title }} innan du handlar.",
++      "read_before_shop": "Läs guiden innan du handlar",
++      "view_all_guides": "Se alla guider"
++    }
+   }
+ }
+--- a/locales/hu.json
++++ b/locales/hu.json
+@@ -1157,7 +1157,29 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   },
+   "shopify": {
+     "page_titles": {
+--- a/locales/id.json
++++ b/locales/id.json
+@@ -1162,6 +1162,28 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   }
+ }
+--- a/locales/nb.json
++++ b/locales/nb.json
+@@ -1157,7 +1157,29 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   },
+   "shopify": {
+     "page_titles": {
+--- a/locales/th.json
++++ b/locales/th.json
+@@ -1162,6 +1162,28 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   }
+ }
+--- a/locales/tr.json
++++ b/locales/tr.json
+@@ -1162,6 +1162,28 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   }
+ }
+--- a/locales/vi.json
++++ b/locales/vi.json
+@@ -1162,6 +1162,28 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   }
+ }
+--- a/locales/zh-CN.json
++++ b/locales/zh-CN.json
+@@ -1162,6 +1162,28 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   }
+ }
+--- a/locales/zh-TW.json
++++ b/locales/zh-TW.json
+@@ -1162,6 +1162,28 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   }
+ }
+--- a/locales/hr-HR.json
++++ b/locales/hr-HR.json
+@@ -1169,7 +1169,29 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   },
+   "shopify": {
+     "page_titles": {
+--- a/locales/pt-PT.json
++++ b/locales/pt-PT.json
+@@ -1169,7 +1169,29 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   },
+   "shopify": {
+     "page_titles": {
+--- a/locales/ro-RO.json
++++ b/locales/ro-RO.json
+@@ -1169,7 +1169,29 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   },
+   "shopify": {
+     "page_titles": {
+--- a/locales/lt-LT.json
++++ b/locales/lt-LT.json
+@@ -1181,7 +1181,29 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   },
+   "shopify": {
+     "page_titles": {
+--- a/locales/sk-SK.json
++++ b/locales/sk-SK.json
+@@ -1181,7 +1181,29 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   },
+   "shopify": {
+     "page_titles": {
+--- a/locales/sl-SI.json
++++ b/locales/sl-SI.json
+@@ -1181,7 +1181,29 @@
+     "home_title": "Mommy and Me Dresses | Family Matching Outfits",
+     "home_description": "Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.",
+     "collection_fallback_description": "Browse {{ title }} at Dress Like Mommy. Compare styles and check sizes and product details on each product page.",
+-    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>"
++    "collection_fallback_body_html": "<p>Browse {{ title }} and compare styles in the collection.</p><p>Open each product page to check available options, the size guide, and product details before choosing.</p>",
++    "article": {
++      "breadcrumbs_label": "breadcrumbs",
++      "author_credential": "Family Fashion Editor",
++      "contents_label": "In this article",
++      "contents_aria_label": "Table of contents",
++      "recommended_products": "Recommended products from this guide",
++      "written_by": "Written by",
++      "author_bio": "Dress Like Mommy's editorial team builds practical shopping guides for family matching outfits, mommy and me looks, daddy and me outfits, swimwear, pajamas, and photo-ready seasonal styles.",
++      "shop_look": "Shop the look",
++      "compare_title": "Ready to compare matching outfits?",
++      "compare_body": "Browse the core collections for mommy and me outfits, daddy and me styles, family matching sets, and vacation-ready swimwear.",
++      "continue_reading": "Continue reading",
++      "more_from": "More from {{ journal }}",
++      "inline_cta_text": "Ready to shop the looks from this guide?",
++      "inline_cta_label": "Shop matching collections",
++      "shop_collection": "Shop the collection",
++      "shop_collections": "Shop the collections",
++      "build_look": "Build the look from this guide",
++      "guide_caption": "Read {{ title }} before you shop.",
++      "read_before_shop": "Read the guide before you shop",
++      "view_all_guides": "View all guides"
++    }
+   },
+   "shopify": {
+     "page_titles": {

@@ -1,0 +1,13 @@
+# Swedish product-body candidate handoff
+
+All 124 assigned rows have a disposition. No external write, provider call, Git operation, or source product edit was performed.
+
+- 99 complete Swedish proposals in `qualified_candidates.json`, frozen in batches `01_v3`, `02`–`08`; 77 pass strict source structural checks. The other 22 preserve benign existing HTML differences: 21 comment-only and one relocated size table. Separate table/body verification passes.
+- 2 complete translated drafts remain held in `legacy_image_hold_candidates.json`: products 7227375714401 and 7227378925665 retain supplier images absent from the current English source. Exact source/before/draft and suggested source-aligned image-only reconciliation are recorded. No attributes were changed.
+- 23 rows remain source/measurement-held: 17 infant age-label mismatches, 2 substantive Sunshine Stripe/Raglan measurement conflicts, and 4 concrete source issues (inconsistent kg/lb conversions 7227630649441; unsupported sizing extrapolation/return promise 7229128441953; contradictory mom/daughter bundle contents 7497751986273; internal SKU instruction 7502791671905). `existing_table_structure_proposals.json` records exact source/before cell differences, including proposed label corrections requiring source/option review. `new_source_blockers.json` records source issues. Measurements were never silently changed.
+
+Checks actually run: `build_candidates.py`, `classify_existing_differences.py`, `finalize_checks.py`. Final validation passes: 124 local export source/digest/before bindings; all 101 authored drafts preserve baseline HTML events, attributes, comments, scripts, and source numerical/table/unit facts. The frozen batch values equal the consolidated 99 proposals. `qualified_inverse.json` supplies exact reversals with expected current-value hash guards.
+
+All retained visible text nodes were reviewed for mixed English/Swedish label residues. Thirteen mixed labels/prose spans plus existing age-label English were repaired. Printed garment slogans, brand names, unit abbreviations and size codes remain intentional. English image/accessibility attributes were preserved as instructed: 45 nonempty Latin-script attributes are recorded in `retained_visible_nodes_review.json`; not all are necessarily English. These are a separate remaining localization limitation.
+
+Ordinary source claims were translated faithfully; no independent supplier/material assurance is implied. Batches 01_v3, 02 and 03 have independent meaning-review passes from the product owner. Remaining batches are awaiting that review. Root alone integrates and applies after fresh live source-digest/before checks; local bindings are not a live freshness or storefront verification claim.

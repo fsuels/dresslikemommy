@@ -1,0 +1,1 @@
+query ExactLocaleBaseline($ids:[ID!]!,$locale:String!){translatableResourcesByIds(resourceIds:$ids,first:9){nodes{resourceId translatableContent{key value digest locale} translations(locale:$locale){key value outdated locale market{id}}} pageInfo{hasNextPage endCursor}}}

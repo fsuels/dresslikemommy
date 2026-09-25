@@ -1,0 +1,245 @@
+{
+  "schema_version": 1,
+  "automation_id": "run-dress-like-mommy-x-organic-pilot",
+  "trigger_utc": "2026-09-23T13:01:51.125Z",
+  "started_at_utc": "2026-09-23T13:02:17Z",
+  "task_stage": "VERIFY",
+  "status": "NO_IDENTIFIED_X_RESULT__R008_PLANNED__PUBLISHER_HOLD",
+  "source_context": {
+    "canonical_task": "ops/marketing/action_queue.md:308; TA-24",
+    "claim": "ops/AGENT_COORDINATION.md:136; sole owner 01a0915d-9105-7833-9d4b-eb467ab0ebbd",
+    "latest_relevant_anchor": "2026-09-22-ceo-halloween-link-and-pinterest-state",
+    "latest_operation_read": "operations/2026-09-22-afternoon.json",
+    "current_readback_read": "proactive-20260911/READBACK.md",
+    "automation_receipt_read": "proactive-20260911/AUTOMATION_APPLIED.json"
+  },
+  "report_dates": {
+    "since": "2026-09-22",
+    "until": "2026-09-22",
+    "completeness": "Completed local calendar day; subject to later reporting revisions",
+    "timezone": "EDT",
+    "timezone_evidence": "Shopify get_shop_info observed September22; retained in operations/2026-09-22-morning.json; not re-read today"
+  },
+  "reports": {
+    "campaign": {
+      "key": "campaign",
+      "requested_query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'x' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' GROUP BY utm_content SINCE 2026-09-22 UNTIL 2026-09-22",
+      "isError": false,
+      "data": {
+        "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'x' AND utm_medium = 'social' AND utm_campaign = 'organic_202609' GROUP BY utm_content SINCE 2026-09-22 UNTIL 2026-09-22",
+        "columns": [],
+        "rows": [],
+        "rowCount": 0,
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      },
+      "received_at_utc": "2026-09-23T13:02:55.834Z"
+    },
+    "referrers": {
+      "key": "referrers",
+      "requested_query": "FROM sessions SHOW sessions GROUP BY referrer_source, referrer_name SINCE 2026-09-22 UNTIL 2026-09-22 ORDER BY sessions DESC LIMIT 100",
+      "isError": false,
+      "data": {
+        "query": "FROM sessions SHOW sessions GROUP BY referrer_source, referrer_name SINCE 2026-09-22 UNTIL 2026-09-22 ORDER BY sessions DESC LIMIT 100",
+        "columns": [
+          {
+            "name": "referrer_source",
+            "dataType": "STRING"
+          },
+          {
+            "name": "referrer_name",
+            "dataType": "STRING"
+          },
+          {
+            "name": "sessions",
+            "dataType": "INTEGER"
+          }
+        ],
+        "rows": [
+          [
+            "direct",
+            "",
+            "167"
+          ],
+          [
+            "search",
+            "google",
+            "39"
+          ],
+          [
+            "unknown",
+            "themediatrust",
+            "9"
+          ],
+          [
+            "search",
+            "bing",
+            "8"
+          ],
+          [
+            "unknown",
+            "msn",
+            "6"
+          ],
+          [
+            "search",
+            "duckduckgo",
+            "4"
+          ],
+          [
+            "search",
+            "yahoo!",
+            "4"
+          ],
+          [
+            "unknown",
+            "mensjournal",
+            "2"
+          ],
+          [
+            "unknown",
+            "ok",
+            "1"
+          ],
+          [
+            "unknown",
+            "aviationa2z",
+            "1"
+          ],
+          [
+            "unknown",
+            "rawstory",
+            "1"
+          ],
+          [
+            "unknown",
+            "amazon-adsystem",
+            "1"
+          ],
+          [
+            "unknown",
+            "word",
+            "1"
+          ],
+          [
+            "unknown",
+            "similarsearch",
+            "1"
+          ],
+          [
+            "unknown",
+            "onemileatatime",
+            "1"
+          ]
+        ],
+        "rowCount": 15,
+        "chartHint": {
+          "type": "bar",
+          "xAxisColumnIndex": 0,
+          "yAxisColumnIndices": [
+            2
+          ],
+          "yAxisFormat": "number"
+        },
+        "summaryMetric": {
+          "label": "sessions",
+          "value": "246"
+        },
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      },
+      "received_at_utc": "2026-09-23T13:02:55.803Z"
+    }
+  },
+  "source_acceptance": {
+    "passed": 10,
+    "total": 10,
+    "checks": {
+      "campaign_no_error": true,
+      "campaign_shop": true,
+      "campaign_exact_query": true,
+      "campaign_row_count": true,
+      "referrers_no_error": true,
+      "referrers_shop": true,
+      "referrers_exact_query": true,
+      "referrers_row_count": true,
+      "referrer_sum": true,
+      "referrer_not_limited": true
+    }
+  },
+  "interpretation": {
+    "campaign": "No rows returned for the exact X/social/organic_202609 campaign and date.",
+    "referrers": "Fifteen returned categories reconcile to246 store sessions; none names X/Twitter/t.co. Store total is not credited to X.",
+    "qualified_x_sessions": null,
+    "product_progression": null,
+    "confirmed_x_orders": null,
+    "contribution": null,
+    "limits": "Absent report rows/markers do not prove zero real clicks/orders. Direct, unknown, reporting delay and mixed acquisition remain unresolved. Funnel sessions are not paid orders.",
+    "known_operator_qa": "One untagged rendered guide visit on September22 afternoon may enter general article/direct reports; no analytics session ID exists, so no numerical subtraction or exact source assignment is made. It is not treated as a buyer.",
+    "cohorts": "X, article, Sunshine/Pinterest and parent full-sales clocks stay separate; no guide visitor is double counted.",
+    "new_order_query": "NOT RUN; September22 order inspection remains the latest. No fresh X signal justifies repeating private-order retrieval today."
+  },
+  "publication": {
+    "historical_r001_url": "https://x.com/dresslikemommy/status/2098481955721380021",
+    "historical_r001_published_utc": "2026-09-11T18:41:00Z",
+    "historical_native_submissions": 7,
+    "current_pending_count": null,
+    "elapsed_planned_items": "R002-R007; PUBLICATION UNVERIFIED",
+    "today_item": "DLM-X-202609-R008",
+    "today_planned_local": "2026-09-23T12:15:00-04:00",
+    "today_planned_utc": "2026-09-23T16:15:00Z",
+    "today_status": "PLANNED_TIME_NOT_YET_DUE__CURRENT_PLATFORM_STATE_UNVERIFIED",
+    "actual_platform_receipt": null,
+    "future_planned_count": 1,
+    "last_item_in_original_plan": true,
+    "automatic_extension": false,
+    "duplicate_or_backfill_attempts": 0
+  },
+  "decision": {
+    "action": "Hold additional publication with exact existing connection evidence; retain initial baseline and reviewed local options.",
+    "reason": "Current attribution does not select a winning topic or justify extra originals. Original R008 has not reached its planned time and must not be duplicated.",
+    "new_drafts": 0,
+    "next_assessment_local": "2026-09-23T16:00:00-04:00",
+    "next_decision_checkpoint": "2026-09-26",
+    "october12_checkpoint_preserved": true
+  },
+  "connection": {
+    "supported_callable_x_publisher_observed": 0,
+    "observation_scope": "Enabled tool metadata and current approved-connection records; no credential/account setup search",
+    "buffer_status": "Existing reviewed proposal, authorization pending, not connected",
+    "repeated_owner_question": false,
+    "website_automation_or_fallback": false,
+    "browser_use": "NOT RUN; this morning heartbeat explicitly selects the connected read-only analytics tool."
+  },
+  "mutation_counts": {
+    "x": 0,
+    "shopify": 0,
+    "shared_canonical": 0,
+    "automation": 0,
+    "goal": 0,
+    "new_ads_subscriptions_or_service_charges_usd": 0
+  },
+  "effort": {
+    "prior_known_calendar_week_minutes": 22.07,
+    "prior_known_rolling_seven_day_minutes": 22.07,
+    "weekly_limit": 120,
+    "setup_minutes": null,
+    "limitations": "Previous failed wakes, setup, brief coordination and pre-first-clock processing remain incompletely measured. No full cap certification; current run elapsed clock added at closeout.",
+    "elapsed_wall_minutes": 3.64,
+    "known_recorded_current_calendar_week_minutes": 25.71,
+    "known_recorded_rolling_seven_day_minutes": 25.71,
+    "counting_note": "This run counted once from first observed work clock through local closeout. Final postflight seconds are not separately measured. Earlier unquantified gaps remain explicit."
+  },
+  "verification": {
+    "preservation": "PASS:13/13",
+    "strict_continuity": "PASS: exit0, CONTINUITY_OK,10 checks for the observed shared snapshot",
+    "scoped_diff": "PASS: exit0, no output"
+  },
+  "notification": {
+    "decision": "DONT_NOTIFY",
+    "reason": "No new verified buyer/traffic/order result or changed owner action. Existing connection question remains pending once."
+  },
+  "completed_at_utc": "2026-09-23T13:05:55.363596+00:00",
+  "parent_notification": {
+    "sent": false,
+    "reason": "Routine unchanged result retained in own packet; no shared canonical write or archived-parent wake."
+  }
+}

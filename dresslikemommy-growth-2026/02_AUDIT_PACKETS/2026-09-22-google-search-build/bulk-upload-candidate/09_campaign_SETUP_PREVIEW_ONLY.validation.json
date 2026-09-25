@@ -1,0 +1,145 @@
+{
+  "status": "PASS_WITH_LIMITS_LOCAL_SETUP_CANDIDATE_ONLY",
+  "file": "09_campaign_SETUP_PREVIEW_ONLY.csv",
+  "csvRows": 1,
+  "csvSha256": "ed2608afd16a42f98f9b2e524b25425986a82a4798794e4e37ed5325ee9d016e",
+  "sourceUrl": "https://www.gstatic.com/adwords/campaignmgmt/templates/campaign_template.csv",
+  "sourceSha256": "2591e9ac5c35ef36d320978c2bf61cbe5ff3af899cf7fc8487bd3a356e8355ae",
+  "authority": {
+    "basis": "Parent reports current user selected $210 campaign total over seven days and said keep paused.",
+    "scope": "EXACT_CAMPAIGN_PAUSED_SETUP_ONLY",
+    "activationApproved": false,
+    "accountCurrencyVerified": false,
+    "datesOrigin": "Parent-stated provisional editable setup dates only if required; not owner-approved activation dates.",
+    "setupStart": "2026-09-22",
+    "setupEnd": "2026-09-28",
+    "inclusiveCalendarDays": 7,
+    "currencyEvidenceAtGeneration": "UNVERIFIED_BY_WORKER",
+    "currentParentCurrencyReadback": "USD_VERIFIED_AS_REPORTED_BY_PARENT"
+  },
+  "addProposal": {
+    "row": {
+      "Row Type": "Campaign",
+      "Action": "Add",
+      "Campaign status": "Paused",
+      "Campaign": "DLM | GADS | US | EN | Search | 202609",
+      "Campaign type": "Search",
+      "Networks": "Google search",
+      "Budget": 210,
+      "Budget type": "Campaign Total",
+      "Bid strategy type": "Manual CPC",
+      "Campaign start date": "2026-09-22",
+      "Campaign end date": "2026-09-28",
+      "Language": "en",
+      "Location": "United States",
+      "EU political ads": "No"
+    },
+    "executionStatus": "NOT_UPLOADED_NOT_PREVIEWED_NOT_APPLIED",
+    "useOnlyIf": "Fresh native identity/readback establishes that a new paused campaign is required and does not duplicate the existing exact-name target.",
+    "currentDisposition": "AVAILABLE_FOR_PARENT_NATIVE_PREVIEW_AFTER_REPORTED_IDENTITY_AND_USD_READBACK; NOT_APPLIED"
+  },
+  "narrowEditAlternative": {
+    "status": "NON_EXECUTABLE_PROPOSAL_ID_AND_BUDGET_TYPE_UNRESOLVED",
+    "row": {
+      "Row Type": "Campaign",
+      "Action": "Edit",
+      "Campaign status": "Paused",
+      "Campaign ID": null,
+      "Campaign": "DLM | GADS | US | EN | Search | 202609",
+      "Budget": 210,
+      "Bid strategy type": "Manual CPC",
+      "Campaign start date": "2026-09-22",
+      "Campaign end date": "2026-09-28"
+    },
+    "executionStatus": "NOT_EXPORTED_AS_EDIT_CSV_NOT_APPLIED",
+    "requiredBeforeExport": [
+      "Resolve and read back exact native Campaign ID rather than assuming the wizard creation ID is a saved campaign ID.",
+      "Verify existing target budget type is already Campaign Total; never apply Budget=210 to an unresolved or Daily target.",
+      "Verify normal browser bulk Edit applies to this resolved target and accepts the requested dates/Manual CPC.",
+      "Read back paused state and USD account currency before Apply."
+    ],
+    "intentionallyOmitted": [
+      "Campaign type is creation-only; no campaign-type change proposed.",
+      "Budget type is omitted from Edit; this is not a daily-to-total conversion recipe.",
+      "Networks, Language, Location and EU political ads are preserved in narrow Edit rather than replacing settings already configured."
+    ]
+  },
+  "supportedTemplateFacts": {
+    "actionAdd": true,
+    "actionEdit": true,
+    "pausedCampaignStatus": true,
+    "budgetTypeCampaignTotal": true,
+    "manualCpcAdd": true,
+    "manualCpcEdit": true,
+    "startAndEndDateHeaders": true,
+    "requiredOnCreate": [
+      "Campaign",
+      "Campaign type",
+      "Budget",
+      "EU political ads"
+    ]
+  },
+  "unsupportedOrUnverified": [
+    "Wizard-draft update semantics and actual resolved target ID/status are not established by generic schema support.",
+    "Changing an existing Daily campaign to Campaign Total is not supported by the supplied source; do not infer it from a Budget type column.",
+    "USD currency must be confirmed before Apply; budget and CPC amounts remain preview-only until then.",
+    "Presence-only targeting, campaign purchase goal, AI Max/text customization/final URL expansion are not expressed by this CSV and require native verification.",
+    "Provisional September22-28 dates must be revisited before any eventual activation; creation with a past start date is disallowed by native template.",
+    "No campaign enablement, funding-source confirmation or billing action is authorized."
+  ],
+  "independentReviewOfParentPreview": {
+    "verdict": "PASS_WITH_LIMITS_REPORTED_PREVIEW_ONLY",
+    "evidenceBasis": "Parent reports native Preview of01_ad_groups.PREVIEW_ONLY.csv returned6Successful/0Errors; worker independently read candidate and verified all6 Ad group status values are Paused.",
+    "acceptedScope": "Six rows passed the reported preview validation against the exact campaign name.",
+    "notEstablished": [
+      "Apply execution",
+      "Persisted six ad groups",
+      "Resolved campaign ID or effective parent status",
+      "USD currency",
+      "New campaign necessity",
+      "Wizard-draft immutability",
+      "Campaign launch readiness"
+    ],
+    "externalApplyReported": false
+  },
+  "oldArtifactHandling": "Existing payload, eight candidates, campaign stub and manifest are unchanged historical targets; this sidecar narrowly records the user's new budget selection without silently rewriting them.",
+  "independentLocalReadback": {
+    "status": "PASS_WITH_LIMITS",
+    "assertions": 22,
+    "checks": [
+      "one Add candidate row only",
+      "Row Type",
+      "Action",
+      "Campaign status",
+      "Campaign",
+      "Campaign type",
+      "Networks",
+      "Budget",
+      "Budget type",
+      "Bid strategy type",
+      "Campaign start date",
+      "Campaign end date",
+      "Language",
+      "Location",
+      "EU political ads",
+      "all headers native-supported",
+      "seven inclusive provisional dates",
+      "candidate hash",
+      "six parent-preview candidate groups paused",
+      "Edit target unresolved and non-executable",
+      "no invented budget-type conversion",
+      "currency and activation gates retained"
+    ],
+    "nativeCampaignPreview": "NOT_RUN_BY_WORKER",
+    "externalApply": "NOT_RUN_BY_WORKER"
+  },
+  "latestParentEvidence": {
+    "status": "PARENT_REPORTED_NATIVE_READBACK_NOT_INDEPENDENTLY_INSPECTED",
+    "currency": "USD",
+    "currencySource": "Native Campaign report.csv downloaded at13:37:31ET per parent",
+    "campaignTable": "Unfiltered native table with all campaign/group statuses shows only removed Campaign#1 and no saved/live exact-name campaign.",
+    "existingWizardDraft": "10215314947 remains unpublished and is preserved.",
+    "effect": "The parent has reported clearing the USD and no-matching-saved-campaign questions for the next normal Add preview. No Apply is reported. Six successful group-preview rows alone did not establish an existing target.",
+    "supersedes": "Earlier currency-unknown qualification in this local generation snapshot, for parent execution decisions only."
+  }
+}

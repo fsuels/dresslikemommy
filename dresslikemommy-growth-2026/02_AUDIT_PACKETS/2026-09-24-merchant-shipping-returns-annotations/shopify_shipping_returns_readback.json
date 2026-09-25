@@ -1,0 +1,229 @@
+{
+ "read_at_utc": "2026-09-24",
+ "source": "Shopify Admin GraphQL 2025-07 read-only",
+ "policies": [
+  {
+   "type": "CONTACT_INFORMATION",
+   "title": "Contact",
+   "url": "https://checkout.shopify.com/15571635/policies/31171805281.html?locale=en",
+   "updatedAt": "2026-01-26T15:44:01-05:00"
+  },
+  {
+   "type": "PRIVACY_POLICY",
+   "title": "Privacy policy",
+   "url": "https://checkout.shopify.com/15571635/policies/14695749.html?locale=en",
+   "updatedAt": "2026-01-28T15:14:12-05:00"
+  },
+  {
+   "type": "REFUND_POLICY",
+   "title": "Refund policy",
+   "url": "https://checkout.shopify.com/15571635/policies/14695685.html?locale=en",
+   "updatedAt": "2026-01-26T14:46:23-05:00"
+  },
+  {
+   "type": "SHIPPING_POLICY",
+   "title": "Shipping",
+   "url": "https://checkout.shopify.com/15571635/policies/29845782625.html?locale=en",
+   "updatedAt": "2026-05-09T02:26:47-04:00"
+  },
+  {
+   "type": "TERMS_OF_SERVICE",
+   "title": "Terms of service",
+   "url": "https://checkout.shopify.com/15571635/policies/14695813.html?locale=en",
+   "updatedAt": "2026-05-09T02:26:47-04:00"
+  }
+ ],
+ "ships_to_count": 237,
+ "target_countries_present": [
+  "US",
+  "AU",
+  "CA",
+  "GB"
+ ],
+ "delivery_profiles": {
+  "nodes": [
+   {
+    "name": "General profile",
+    "default": true,
+    "profileLocationGroups": [
+     {
+      "locationGroupZones": {
+       "nodes": [
+        {
+         "zone": {
+          "name": "Countries Epacket",
+          "countries": [
+           {
+            "code": {
+             "countryCode": "US",
+             "restOfWorld": false
+            }
+           },
+           {
+            "code": {
+             "countryCode": "AU",
+             "restOfWorld": false
+            }
+           },
+           {
+            "code": {
+             "countryCode": "CA",
+             "restOfWorld": false
+            }
+           },
+           {
+            "code": {
+             "countryCode": "FR",
+             "restOfWorld": false
+            }
+           },
+           {
+            "code": {
+             "countryCode": "IL",
+             "restOfWorld": false
+            }
+           },
+           {
+            "code": {
+             "countryCode": "NO",
+             "restOfWorld": false
+            }
+           },
+           {
+            "code": {
+             "countryCode": "RU",
+             "restOfWorld": false
+            }
+           },
+           {
+            "code": {
+             "countryCode": "SA",
+             "restOfWorld": false
+            }
+           },
+           {
+            "code": {
+             "countryCode": "UA",
+             "restOfWorld": false
+            }
+           },
+           {
+            "code": {
+             "countryCode": "GB",
+             "restOfWorld": false
+            }
+           }
+          ]
+         },
+         "methodDefinitions": {
+          "nodes": [
+           {
+            "name": "Free Standard Shipping",
+            "active": true,
+            "rateProvider": {
+             "price": {
+              "amount": "0.0",
+              "currencyCode": "USD"
+             }
+            },
+            "methodConditions": []
+           },
+           {
+            "name": "Priority Shipping",
+            "active": true,
+            "rateProvider": {
+             "price": {
+              "amount": "12.99",
+              "currencyCode": "USD"
+             }
+            },
+            "methodConditions": [
+             {
+              "field": "TOTAL_WEIGHT",
+              "operator": "GREATER_THAN_OR_EQUAL_TO",
+              "conditionCriteria": {
+               "__typename": "Weight",
+               "value": 0.0,
+               "unit": "POUNDS"
+              }
+             },
+             {
+              "field": "TOTAL_WEIGHT",
+              "operator": "LESS_THAN_OR_EQUAL_TO",
+              "conditionCriteria": {
+               "__typename": "Weight",
+               "value": 5.0,
+               "unit": "POUNDS"
+              }
+             }
+            ]
+           }
+          ]
+         }
+        },
+        {
+         "zone": {
+          "name": "Rest of world",
+          "countries": [
+           {
+            "code": {
+             "countryCode": null,
+             "restOfWorld": true
+            }
+           }
+          ]
+         },
+         "methodDefinitions": {
+          "nodes": [
+           {
+            "name": "Free Standard Shipping",
+            "active": true,
+            "rateProvider": {
+             "price": {
+              "amount": "0.0",
+              "currencyCode": "USD"
+             }
+            },
+            "methodConditions": []
+           },
+           {
+            "name": "Priority Shipping",
+            "active": true,
+            "rateProvider": {
+             "price": {
+              "amount": "12.99",
+              "currencyCode": "USD"
+             }
+            },
+            "methodConditions": [
+             {
+              "field": "TOTAL_WEIGHT",
+              "operator": "GREATER_THAN_OR_EQUAL_TO",
+              "conditionCriteria": {
+               "__typename": "Weight",
+               "value": 0.0,
+               "unit": "POUNDS"
+              }
+             },
+             {
+              "field": "TOTAL_WEIGHT",
+              "operator": "LESS_THAN_OR_EQUAL_TO",
+              "conditionCriteria": {
+               "__typename": "Weight",
+               "value": 5.0,
+               "unit": "POUNDS"
+              }
+             }
+            ]
+           }
+          ]
+         }
+        }
+       ]
+      }
+     }
+    ]
+   }
+  ]
+ }
+}

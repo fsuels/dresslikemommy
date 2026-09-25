@@ -1,0 +1,1 @@
+query CatalogInventory($after:String) { products(first:50, after:$after, sortKey:ID, query:"status:active published_status:published") { nodes { id handle status onlineStoreUrl updatedAt variantsCount { count precision } options { id name position optionValues { id name hasVariants } } } pageInfo { hasNextPage endCursor } } }

@@ -1,0 +1,481 @@
+{
+  "schema": "pinterest_goal_baseline_shopify_v1",
+  "read_date": "2026-09-23",
+  "owner": "01a08704-8176-7171-b6f5-928a09d7c3f9",
+  "store": {
+    "domain": "www.dresslikemommy.com",
+    "currency": "USD",
+    "timezone_displayed": "EDT"
+  },
+  "reports": [
+    {
+      "key": "pinterest_baseline_sessions",
+      "read_at_utc": "2026-09-23T13:06:39.355Z",
+      "result": {
+        "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'pinterest' OR referrer_name = 'pinterest' GROUP BY landing_page_path, referrer_source, referrer_name, utm_source, utm_medium, utm_campaign, utm_content SINCE 2026-09-14 UNTIL 2026-09-20 ORDER BY sessions DESC LIMIT 100",
+        "columns": [],
+        "rows": [],
+        "rowCount": 0,
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      },
+      "is_error": false
+    },
+    {
+      "key": "baseline_order_referrers",
+      "read_at_utc": "2026-09-23T13:06:39.355Z",
+      "result": {
+        "query": "FROM sales SHOW orders, gross_sales, discounts, sales_reversals, net_sales GROUP BY order_referrer_source, order_referrer_name SINCE 2026-09-14 UNTIL 2026-09-20 ORDER BY orders DESC LIMIT 100",
+        "columns": [
+          {
+            "name": "order_referrer_source",
+            "dataType": "STRING"
+          },
+          {
+            "name": "order_referrer_name",
+            "dataType": "STRING"
+          },
+          {
+            "name": "orders",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "gross_sales",
+            "dataType": "MONEY"
+          },
+          {
+            "name": "discounts",
+            "dataType": "MONEY"
+          },
+          {
+            "name": "sales_reversals",
+            "dataType": "MONEY"
+          },
+          {
+            "name": "net_sales",
+            "dataType": "MONEY"
+          }
+        ],
+        "rows": [
+          [
+            "",
+            "",
+            "3",
+            "172.78",
+            "0",
+            "0",
+            "172.78"
+          ],
+          [
+            "search",
+            "google",
+            "0",
+            "0",
+            "0",
+            "-31.98",
+            "-31.98"
+          ]
+        ],
+        "rowCount": 2,
+        "chartHint": {
+          "type": "bar",
+          "xAxisColumnIndex": 0,
+          "yAxisColumnIndices": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "yAxisFormat": "money",
+          "currencyCode": "USD"
+        },
+        "summaryMetric": {
+          "label": "gross_sales",
+          "value": "172.78"
+        },
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      },
+      "is_error": false
+    },
+    {
+      "key": "baseline_all_sources",
+      "read_at_utc": "2026-09-23T13:06:59.020Z",
+      "result": {
+        "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout GROUP BY referrer_source, referrer_name, utm_source SINCE 2026-09-14 UNTIL 2026-09-20 ORDER BY sessions DESC LIMIT 100",
+        "columns": [
+          {
+            "name": "referrer_source",
+            "dataType": "STRING"
+          },
+          {
+            "name": "referrer_name",
+            "dataType": "STRING"
+          },
+          {
+            "name": "utm_source",
+            "dataType": "STRING"
+          },
+          {
+            "name": "sessions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_with_cart_additions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_reached_checkout",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_completed_checkout",
+            "dataType": "INTEGER"
+          }
+        ],
+        "rows": [
+          [
+            "direct",
+            "",
+            "",
+            "1457",
+            "8",
+            "4",
+            "2"
+          ],
+          [
+            "search",
+            "google",
+            "",
+            "274",
+            "16",
+            "2",
+            "0"
+          ],
+          [
+            "direct",
+            "",
+            "chatgpt.com",
+            "50",
+            "7",
+            "1",
+            "0"
+          ],
+          [
+            "unknown",
+            "msn",
+            "bing",
+            "49",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "direct",
+            "",
+            "bing",
+            "38",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "unknown",
+            "themediatrust",
+            "bing",
+            "15",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "search",
+            "duckduckgo",
+            "bing",
+            "14",
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "search",
+            "duckduckgo",
+            "",
+            "11",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "unknown",
+            "imdb",
+            "bing",
+            "11",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "search",
+            "bing",
+            "bing",
+            "10",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "search",
+            "yahoo!",
+            "",
+            "8",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "search",
+            "bing",
+            "",
+            "7",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "search",
+            "yahoo!",
+            "bing",
+            "6",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "unknown",
+            "chatgpt",
+            "chatgpt.com",
+            "6",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "search",
+            "google",
+            "google",
+            "4",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "unknown",
+            "microsoft",
+            "",
+            "3",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "unknown",
+            "fashiontopchoice",
+            "bing",
+            "2",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "unknown",
+            "similarsearch",
+            "bing",
+            "2",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "social",
+            "facebook",
+            "",
+            "2",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "unknown",
+            "dailymail",
+            "bing",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "search",
+            "ecosia",
+            "bing",
+            "1",
+            "1",
+            "0",
+            "0"
+          ],
+          [
+            "unknown",
+            "balrampartapsingh",
+            "",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "search",
+            "yandex",
+            "yandexsmartcamera",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "unknown",
+            "ssl-images-amazon",
+            "bing",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "unknown",
+            "kagi",
+            "",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "unknown",
+            "amazon-adsystem",
+            "bing",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "paid",
+            "outbrain",
+            "",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "unknown",
+            "eurogamer",
+            "bing",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "search",
+            "ecosia",
+            "",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "direct",
+            "",
+            "shop_app",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "unknown",
+            "get-moment",
+            "bing",
+            "1",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "unknown",
+            "storage",
+            "bing",
+            "1",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "rowCount": 32,
+        "chartHint": {
+          "type": "bar",
+          "xAxisColumnIndex": 0,
+          "yAxisColumnIndices": [
+            3,
+            4,
+            5,
+            6
+          ],
+          "yAxisFormat": "number"
+        },
+        "summaryMetric": {
+          "label": "sessions",
+          "value": "1,982"
+        },
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      },
+      "is_error": false
+    },
+    {
+      "key": "baseline_pinterest_totals",
+      "read_at_utc": "2026-09-23T13:07:24.796Z",
+      "result": {
+        "query": "FROM sessions SHOW sessions, sessions_with_cart_additions, sessions_that_reached_checkout, sessions_that_completed_checkout WHERE utm_source = 'pinterest' OR referrer_name = 'pinterest' SINCE 2026-09-14 UNTIL 2026-09-20",
+        "columns": [
+          {
+            "name": "sessions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_with_cart_additions",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_reached_checkout",
+            "dataType": "INTEGER"
+          },
+          {
+            "name": "sessions_that_completed_checkout",
+            "dataType": "INTEGER"
+          }
+        ],
+        "rows": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "rowCount": 1,
+        "shopDomain": "dresslikemommy-com.myshopify.com"
+      },
+      "is_error": false
+    }
+  ]
+}

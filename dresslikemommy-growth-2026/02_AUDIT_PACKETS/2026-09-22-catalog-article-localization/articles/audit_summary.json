@@ -1,0 +1,46 @@
+{
+  "status": "FULL_READ_ONLY_AUDIT_COMPLETE",
+  "blogs": 1,
+  "allArticles": 259,
+  "publishedArticles": 67,
+  "excludedArticles": 192,
+  "nonEnglishLocales": 20,
+  "localeArticlePairs": 1340,
+  "sourceFields": 268,
+  "fieldLocaleRows": 5360,
+  "flaggedFields": 499,
+  "flagCounts": {
+    "OUTDATED_SOURCE_CHANGED": 155,
+    "WRONG_LANGUAGE_SUSPECT_HIGH_CONFIDENCE": 75,
+    "WRONG_LANGUAGE_SUSPECT_MODERATE_CONFIDENCE": 2,
+    "UNCHANGED_ENGLISH_SOURCE_PASSAGE_REVIEW": 48,
+    "SOURCE_ENGLISH_IDENTICAL": 9,
+    "MISSING": 302
+  },
+  "classificationCounts": {
+    "DEFECT_OR_REVIEW_NEEDED": 499,
+    "PRESENT_NO_PRIMARY_FLAG_SEMANTICS_UNVERIFIED": 2601,
+    "EXCLUDED_ROUTING_HANDLE": 1340,
+    "EMPTY_SOURCE_NO_TRANSLATION_NEEDED": 920
+  },
+  "bodySourceWords": 36634,
+  "languageDetector": {
+    "method": "Apple NaturalLanguage NLLanguageRecognizer on-device",
+    "rows": 2567,
+    "networkCalls": 0,
+    "resultStatus": "INFERRED_NEEDS_MANUAL_REVIEW"
+  },
+  "rawSourceFiles": 4,
+  "rawTranslationFiles": 80,
+  "paginationExhausted": true,
+  "externalWrites": false,
+  "translationProviderCalls": 0,
+  "notes": [
+    "Missing/empty/source-English-identical are verified mechanically against exact source and existing value. Outdated is an API source-change flag, not proof the existing translation has wrong meaning.",
+    "Language detection is probabilistic and separately reviewable; no automatic overwrite is authorized from a language label.",
+    "No-flag fields are not certified semantically perfect. This is an exhaustive structural/language audit, not a manual sentence-by-sentence translation review.",
+    "All source fields retained; handle fields excluded from translation-defect selection. Empty source does not require a translation.",
+    "Halloween source-body editorial history preserved; former owner archived per parent. Parent owns translation-only decisions after fresh source review, no English source changes here.",
+    "Every ledger row references the raw source/digest/before record; no credentials persisted."
+  ]
+}

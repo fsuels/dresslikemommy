@@ -1,0 +1,39 @@
+{
+  "status": "PASS_WITH_AUTHENTICATION_LIMIT",
+  "as_of": "2026-09-22 18:25 UTC",
+  "commands": [
+    {
+      "command": "render_marketing_cockpit.py",
+      "result": "PASS"
+    },
+    {
+      "command": "audit_marketing_command_integration.py --write-report --fail-on-risk",
+      "result": "PASS:25files,0risks"
+    },
+    {
+      "command": "check_continuity_integrity.py --strict",
+      "result": "CONTINUITY_OK"
+    },
+    {
+      "command": "git diff --check (own exact packet/canonical paths)",
+      "result": "PASS"
+    }
+  ],
+  "native_receipt_sha256": {
+    "native_campaign_report_20260922_133731.csv": "19fae518f9398a8421099e39648f272d0bb50b46d9eb7506f5b212664b695ed6",
+    "native_ad_report_20260922.csv": "faacb173df63e4a1ccffe086a63a4e4829e47021ddc6d04f951bc5c88b5b1899",
+    "native_negative_verification.json": "2203bed7b40dccd53af936d7b87c7115be064c47a6d45884b600b5065cd7066e",
+    "native_search_keyword_report_20260922_1415.csv": "8158a63bbf05c75506b66ad595a30aba3b968830f54c3e480e0b4434dd11f910",
+    "native_keyword_verification.json": "9407921f20de0814f6c90218323d9f981950a52813f0bfc3c6d1be4f532502fa",
+    "native_asset_association_report_20260922.csv": "715317fe0caeb76624bed2f59d3ccc868ffc55e6dcedf0233638a38c27a87159",
+    "native_negative_keyword_report_20260922_1417.csv": "c60c143c03e32aea7a7e924b4d1d1a14dc975bc897e5f82c9f1e3d9175017944",
+    "native_asset_verification.json": "d0a7b86694ee6869f4bb19091a3813671bf01545209a3c7b6a4efa24f5e0d5e8"
+  },
+  "overall_build": "PARTIAL: last4RSAforms are unsaved behind freshGoogleverification; campaignPaused/unpublished",
+  "independent_review": {
+    "status": "PASS_WITH_LIMITS",
+    "checks_passed": 349,
+    "checks_run": 349,
+    "root_all_source_and_payload_hashes": "PASS"
+  }
+}

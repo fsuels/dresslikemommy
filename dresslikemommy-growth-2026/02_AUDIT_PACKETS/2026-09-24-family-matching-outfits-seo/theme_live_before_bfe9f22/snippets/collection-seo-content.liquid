@@ -1,0 +1,151 @@
+{%- liquid
+  assign collection_handle = collection.handle | default: ''
+
+  assign dresses_url = routes.collections_url | append: '/dresses'
+  assign family_swimsuits_url = routes.collections_url | append: '/family-swimsuits'
+  assign family_sets_url = routes.collections_url | append: '/family-sets'
+  assign daddy_me_url = routes.collections_url | append: '/daddy-me'
+  assign daddy_me_tshirts_url = routes.collections_url | append: '/daddy-me-t-shirts'
+  assign daddy_me_shirts_url = routes.collections_url | append: '/daddy-me-shirts'
+  assign matching_outfits_url = routes.collections_url | append: '/matching-outfits'
+  assign mommy_and_me_url = routes.collections_url | append: '/mommy-and-me'
+  assign trunks_url = routes.collections_url | append: '/trunks'
+  assign swimsuits_url = routes.collections_url | append: '/swimsuits'
+  assign couples_url = routes.collections_url | append: '/couples'
+  assign family_matching_outfits_url = routes.collections_url | append: '/new-women-outfits'
+
+  if collections['dresses'] != blank
+    assign dresses_url = collections['dresses'].url
+  endif
+  if collections['family-swimsuits'] != blank
+    assign family_swimsuits_url = collections['family-swimsuits'].url
+  endif
+  if collections['family-sets'] != blank
+    assign family_sets_url = collections['family-sets'].url
+  endif
+  if collections['daddy-me'] != blank
+    assign daddy_me_url = collections['daddy-me'].url
+  endif
+  if collections['daddy-me-t-shirts'] != blank
+    assign daddy_me_tshirts_url = collections['daddy-me-t-shirts'].url
+  endif
+  if collections['daddy-me-shirts'] != blank
+    assign daddy_me_shirts_url = collections['daddy-me-shirts'].url
+  endif
+  if collections['matching-outfits'] != blank
+    assign matching_outfits_url = collections['matching-outfits'].url
+  endif
+  if collections['mommy-and-me'] != blank
+    assign mommy_and_me_url = collections['mommy-and-me'].url
+  endif
+  if collections['trunks'] != blank
+    assign trunks_url = collections['trunks'].url
+  endif
+  if collections['swimsuits'] != blank
+    assign swimsuits_url = collections['swimsuits'].url
+  endif
+  if collections['couples'] != blank
+    assign couples_url = collections['couples'].url
+  endif
+  if collections['new-women-outfits'] != blank
+    assign family_matching_outfits_url = collections['new-women-outfits'].url
+  endif
+-%}
+
+{%- case field -%}
+  {%- when 'rich_content' -%}
+    {%- liquid
+      case collection_handle
+        when 'new-women-outfits'
+          echo 'sections.collection_seo.rich_parts.new_women_outfits.part_1_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.new_women_outfits.part_2_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.new_women_outfits.part_3_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.new_women_outfits.part_4_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.new_women_outfits.part_5_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.new_women_outfits.part_6_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.new_women_outfits.part_7_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.new_women_outfits.part_8_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.new_women_outfits.part_9_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
+        when 'matching-outfits', 'family-matching', 'family-matching-outfits'
+          echo 'sections.collection_seo.rich_parts.family_matching.part_1_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.family_matching.part_2_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.family_matching.part_3_html' | t: family_matching_outfits_url: family_matching_outfits_url, dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
+        when 'dresses', 'mother-daughter-matching-dresses'
+          echo 'sections.collection_seo.rich_parts.dresses.part_1_html' | t: matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url
+          echo 'sections.collection_seo.rich_parts.dresses.part_2_html' | t: matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url
+          echo 'sections.collection_seo.rich_parts.dresses.part_3_html' | t: matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url
+        when 'maxi-dresses'
+          echo 'sections.collection_seo.rich_parts.maxi_dresses.part_1_html' | t: dresses_url: dresses_url, mommy_and_me_url: mommy_and_me_url
+          echo 'sections.collection_seo.rich_parts.maxi_dresses.part_2_html' | t: dresses_url: dresses_url, mommy_and_me_url: mommy_and_me_url
+          echo 'sections.collection_seo.rich_parts.maxi_dresses.part_3_html' | t: dresses_url: dresses_url, mommy_and_me_url: mommy_and_me_url
+        when 'mommy-and-me'
+          echo 'sections.collection_seo.rich_parts.mommy_and_me.part_1_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url
+          echo 'sections.collection_seo.rich_parts.mommy_and_me.part_2_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url
+          echo 'sections.collection_seo.rich_parts.mommy_and_me.part_3_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url
+        when 'family-swimsuits'
+          echo 'sections.collection_seo.rich_parts.family_swimsuits.part_1_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
+          echo 'sections.collection_seo.rich_parts.family_swimsuits.part_2_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
+          echo 'sections.collection_seo.rich_parts.family_swimsuits.part_3_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
+          echo 'sections.collection_seo.rich_parts.family_swimsuits.part_4_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
+          echo 'sections.collection_seo.rich_parts.family_swimsuits.part_5_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
+          echo 'sections.collection_seo.rich_parts.family_swimsuits.part_6_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
+          echo 'sections.collection_seo.rich_parts.family_swimsuits.part_7_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
+          echo 'sections.collection_seo.rich_parts.family_swimsuits.part_8_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
+        when 'family-sets', 'matching-family-vacation-outfits'
+          echo 'sections.collection_seo.rich_parts.family_sets.part_1_html' | t: family_swimsuits_url: family_swimsuits_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url
+          echo 'sections.collection_seo.rich_parts.family_sets.part_2_html' | t: family_swimsuits_url: family_swimsuits_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url
+          echo 'sections.collection_seo.rich_parts.family_sets.part_3_html' | t: family_swimsuits_url: family_swimsuits_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url
+        when 'daddy-me', 'daddy-and-me'
+          echo 'sections.collection_seo.rich_parts.daddy_me.part_1_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
+          echo 'sections.collection_seo.rich_parts.daddy_me.part_2_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
+          echo 'sections.collection_seo.rich_parts.daddy_me.part_3_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
+          echo 'sections.collection_seo.rich_parts.daddy_me.part_4_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
+          echo 'sections.collection_seo.rich_parts.daddy_me.part_5_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
+          echo 'sections.collection_seo.rich_parts.daddy_me.part_6_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
+          echo 'sections.collection_seo.rich_parts.daddy_me.part_7_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
+          echo 'sections.collection_seo.rich_parts.daddy_me.part_8_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
+          echo 'sections.collection_seo.rich_parts.daddy_me.part_9_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
+        when 'daddy-me-t-shirts'
+          echo 'sections.collection_seo.rich_parts.daddy_me_tshirts.part_1_html' | t: daddy_me_url: daddy_me_url, daddy_me_shirts_url: daddy_me_shirts_url
+          echo 'sections.collection_seo.rich_parts.daddy_me_tshirts.part_2_html' | t: daddy_me_url: daddy_me_url, daddy_me_shirts_url: daddy_me_shirts_url
+          echo 'sections.collection_seo.rich_parts.daddy_me_tshirts.part_3_html' | t: daddy_me_url: daddy_me_url, daddy_me_shirts_url: daddy_me_shirts_url
+          echo 'sections.collection_seo.rich_parts.daddy_me_tshirts.part_4_html' | t: daddy_me_url: daddy_me_url, daddy_me_shirts_url: daddy_me_shirts_url
+          echo 'sections.collection_seo.rich_parts.daddy_me_tshirts.part_5_html' | t: daddy_me_url: daddy_me_url, daddy_me_shirts_url: daddy_me_shirts_url
+          echo 'sections.collection_seo.rich_parts.daddy_me_tshirts.part_6_html' | t: daddy_me_url: daddy_me_url, daddy_me_shirts_url: daddy_me_shirts_url
+        when 'daddy-me-shirts'
+          echo 'sections.collection_seo.rich_parts.daddy_me_shirts.part_1_html' | t: daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url
+          echo 'sections.collection_seo.rich_parts.daddy_me_shirts.part_2_html' | t: daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url
+          echo 'sections.collection_seo.rich_parts.daddy_me_shirts.part_3_html' | t: daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url
+          echo 'sections.collection_seo.rich_parts.daddy_me_shirts.part_4_html' | t: daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url
+          echo 'sections.collection_seo.rich_parts.daddy_me_shirts.part_5_html' | t: daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url
+          echo 'sections.collection_seo.rich_parts.daddy_me_shirts.part_6_html' | t: daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url
+          echo 'sections.collection_seo.rich_parts.daddy_me_shirts.part_7_html' | t: daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url
+          echo 'sections.collection_seo.rich_parts.daddy_me_shirts.part_8_html' | t: daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url
+        when 'couples'
+          echo 'sections.collection_seo.rich_parts.couples.part_1_html' | t: couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.couples.part_2_html' | t: couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.couples.part_3_html' | t: couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.couples.part_4_html' | t: couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.couples.part_5_html' | t: couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.couples.part_6_html' | t: couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.couples.part_7_html' | t: couples_url: couples_url
+        when 'matching-couples-t-shirts'
+          echo 'sections.collection_seo.rich_parts.couples_tshirts.part_1_html' | t: couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.couples_tshirts.part_2_html' | t: couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.couples_tshirts.part_3_html' | t: couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.couples_tshirts.part_4_html' | t: couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.couples_tshirts.part_5_html' | t: couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.couples_tshirts.part_6_html' | t: couples_url: couples_url
+          echo 'sections.collection_seo.rich_parts.couples_tshirts.part_7_html' | t: couples_url: couples_url
+        when 'mommy-and-me-easter-dresses', 'easter-matching-outfits', 'spring-matching-outfits'
+          echo 'sections.collection_seo.rich_parts.spring_matching.part_1_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
+          echo 'sections.collection_seo.rich_parts.spring_matching.part_2_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
+          echo 'sections.collection_seo.rich_parts.spring_matching.part_3_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
+          echo 'sections.collection_seo.rich_parts.spring_matching.part_4_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
+          echo 'sections.collection_seo.rich_parts.spring_matching.part_5_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
+          echo 'sections.collection_seo.rich_parts.spring_matching.part_6_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
+          echo 'sections.collection_seo.rich_parts.spring_matching.part_7_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
+          echo 'sections.collection_seo.rich_parts.spring_matching.part_8_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
+      endcase
+    -%}
+{%- endcase -%}

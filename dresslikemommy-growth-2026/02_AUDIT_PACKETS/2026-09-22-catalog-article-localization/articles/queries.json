@@ -1,0 +1,6 @@
+{
+  "blogs": "query ArticleAuditBlogs($after:String){shopLocales(published:true){locale name primary published} blogs(first:50,after:$after){nodes{id title handle articlesCount(limit:null){count precision}} pageInfo{hasNextPage endCursor}}}",
+  "articles": "query ArticleAuditInventory($after:String){articles(first:50,after:$after,sortKey:ID){nodes{id handle title blog{id title handle} isPublished publishedAt updatedAt} pageInfo{hasNextPage endCursor}}}",
+  "translations": "query ArticleAuditTranslations($ids:[ID!]!,$locale:String!,$after:String){translatableResourcesByIds(resourceIds:$ids,first:20,after:$after){nodes{resourceId translatableContent{key value digest locale} translations(locale:$locale){key value locale outdated updatedAt market{id}}} pageInfo{hasNextPage endCursor}}}",
+  "source": "query ArticleAuditSources($ids:[ID!]!){nodes(ids:$ids){... on Article{id handle title body summary blog{id title handle} isPublished publishedAt updatedAt}}}"
+}

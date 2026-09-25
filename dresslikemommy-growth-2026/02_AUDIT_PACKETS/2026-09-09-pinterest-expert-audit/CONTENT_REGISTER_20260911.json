@@ -1,6 +1,6 @@
 {
   "schema": "dlm.pinterest.organic-capacity-reconciliation.v1",
-  "as_of_utc": "2026-09-22T13:06:29.211357+00:00",
+  "as_of_utc": "2026-09-23T20:22:47.280950+00:00",
   "classification": "EVIDENCE_AND_ASSET_REGISTER_NOT_AN_AUTOMATION_OR_SECOND_TASK_QUEUE",
   "command_layer": "ops/marketing/action_queue.md; existing TA-11 completion and TA-20 measurement/organic owners preserved",
   "capacity": "At most 3 total Pins per rolling 168 hours. P1-P6 were scheduled once on September 11 under current owner authority after reconciling the three September 6 Pins and Sunshine September 10. Remaining concepts are candidates, not an approved schedule or quota.",
@@ -65,20 +65,34 @@
       "scheduled_timezone_basis": "America/New_York inferred from current host EDT; native UI has no timezone label",
       "published_pin_id": "343118065387581115",
       "actual_publication_at": null,
-      "measurement_cohort_status": "PUBLIC_EXISTENCE_VERIFIED_20260921; actual publication timestamp UNKNOWN; no backdated or replacement release clock asserted; preserve owning cohort decisions",
+      "measurement_cohort_status": "PUBLIC_EXISTENCE_VERIFIED_20260921; actual publication timestamp UNKNOWN. Explicit post-verification observation window September22–28, earliest review September29 subject to reporting availability; not a reconstructed release clock. Native UTC and Shopify/GA4 America/New_York remain separate.",
       "native_receipt": "NATIVE_SCHEDULED_READBACKS_20260911.json",
       "latest_queue_readback_at": "2026-09-14T18:47:28.557025+00:00",
       "latest_queue_readback": "DAILY_NATIVE_QUEUE_READBACK_20260914.json",
       "public_url": "https://www.pinterest.com/pin/343118065387581115/",
       "publication_verification_date": "2026-09-21",
-      "publication_receipt": "PUBLICATION_AND_COHORT_RECEIPT_20260921.json"
+      "publication_receipt": "PUBLICATION_AND_COHORT_RECEIPT_20260921.json",
+      "observation_windows": [
+        {
+          "complete_reporting_dates": 7,
+          "date_from": "2026-09-22",
+          "date_to": "2026-09-28",
+          "earliest_review_date": "2026-09-29",
+          "clock_basis": "First complete date after September21 public existence verification; actual publication time UNKNOWN",
+          "source_timezones": {
+            "Pinterest": "UTC",
+            "Shopify_GA4": "America/New_York"
+          },
+          "comparison_rule": "Separate source windows; no cross-source addition or direct session join"
+        }
+      ]
     },
     {
       "slot": 4,
       "id": "P3",
       "format": "image",
       "source": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/pins.json",
-      "status": "PUBLISHED_VERIFIED_20260921_ACTUAL_TIME_UNKNOWN",
+      "status": "PRIVATE_BOARD_CONTAINMENT_VERIFIED__SOURCE_UNRESOLVED",
       "pin_id": "343118065387595533",
       "title": "Pastel Floral Mommy and Me Dresses for Photo Days",
       "tracking_url": "https://www.dresslikemommy.com/products/pastel-bloom-mommy-and-me-dresses?utm_source=pinterest&utm_medium=social&utm_campaign=organic_202609&utm_content=p3",
@@ -93,13 +107,36 @@
       "scheduled_timezone_basis": "America/New_York inferred from current host EDT; native UI has no timezone label",
       "published_pin_id": "343118065387595533",
       "actual_publication_at": null,
-      "measurement_cohort_status": "PUBLIC_EXISTENCE_VERIFIED_20260921; actual publication timestamp UNKNOWN; no backdated or replacement release clock asserted; preserve owning cohort decisions",
+      "measurement_cohort_status": "INTERRUPTED_SOURCE_QUARANTINE_20260923; planned September22-28 window retained historically but not an unchanged seven-date cohort; original publication time UNKNOWN",
       "native_receipt": "NATIVE_SCHEDULED_READBACKS_20260911.json",
       "latest_queue_readback_at": "2026-09-14T18:47:28.557025+00:00",
       "latest_queue_readback": "DAILY_NATIVE_QUEUE_READBACK_20260914.json",
       "public_url": "https://www.pinterest.com/pin/343118065387595533/",
       "publication_verification_date": "2026-09-21",
-      "publication_receipt": "PUBLICATION_AND_COHORT_RECEIPT_20260921.json"
+      "publication_receipt": "PUBLICATION_AND_COHORT_RECEIPT_20260921.json",
+      "observation_windows": [
+        {
+          "complete_reporting_dates": 7,
+          "date_from": "2026-09-22",
+          "date_to": "2026-09-28",
+          "earliest_review_date": "2026-09-29",
+          "clock_basis": "First complete date after September21 public existence verification; actual publication time UNKNOWN",
+          "source_timezones": {
+            "Pinterest": "UTC",
+            "Shopify_GA4": "America/New_York"
+          },
+          "comparison_rule": "Separate source windows; no cross-source addition or direct session join",
+          "status": "INTERRUPTED_BY_SOURCE_CONTAINMENT",
+          "interrupted_at_utc": "2026-09-23T20:15:18.711Z"
+        }
+      ],
+      "native_board": "Source Review Hold",
+      "prior_native_board": "Mommy & Me Matching Outfits",
+      "private_board_id": "343118134050386510",
+      "private_board_url": "https://www.pinterest.com/dresslikemommy/source-review-hold/",
+      "containment_at_utc": "2026-09-23T20:15:18.711Z",
+      "containment_receipt": "PASTEL_CONTAINMENT_EXECUTION_20260923.json",
+      "current_visibility": "OWNED_PRIVATE_BOARD_VERIFIED; unauthenticated URL, resaves and caches UNKNOWN"
     },
     {
       "slot": 5,
@@ -121,21 +158,35 @@
       "scheduled_timezone_basis": "America/New_York inferred from current host EDT; native UI has no timezone label",
       "published_pin_id": "343118065387616411",
       "actual_publication_at": null,
-      "measurement_cohort_status": "PUBLIC_EXISTENCE_VERIFIED_20260921; actual publication timestamp UNKNOWN; no backdated or replacement release clock asserted; preserve owning cohort decisions",
+      "measurement_cohort_status": "PUBLIC_EXISTENCE_VERIFIED_20260921; actual publication timestamp UNKNOWN. Explicit post-verification observation window September22–28, earliest review September29 subject to reporting availability; not a reconstructed release clock. Native UTC and Shopify/GA4 America/New_York remain separate.",
       "native_receipt": "NATIVE_SCHEDULED_READBACKS_20260911.json",
       "latest_queue_readback_at": "2026-09-14T18:47:28.557025+00:00",
       "latest_queue_readback": "DAILY_NATIVE_QUEUE_READBACK_20260914.json",
       "public_url": "https://www.pinterest.com/pin/343118065387616411/",
       "publication_verification_date": "2026-09-21",
-      "publication_receipt": "PUBLICATION_AND_COHORT_RECEIPT_20260921.json"
+      "publication_receipt": "PUBLICATION_AND_COHORT_RECEIPT_20260921.json",
+      "observation_windows": [
+        {
+          "complete_reporting_dates": 7,
+          "date_from": "2026-09-22",
+          "date_to": "2026-09-28",
+          "earliest_review_date": "2026-09-29",
+          "clock_basis": "First complete date after September21 public existence verification; actual publication time UNKNOWN",
+          "source_timezones": {
+            "Pinterest": "UTC",
+            "Shopify_GA4": "America/New_York"
+          },
+          "comparison_rule": "Separate source windows; no cross-source addition or direct session join"
+        }
+      ]
     },
     {
       "slot": 6,
       "id": "P5",
       "format": "image",
       "source": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/pins.json",
-      "status": "NATIVE_SCHEDULED_VERIFIED_NOT_YET_PUBLIC",
-      "pin_id": null,
+      "status": "PUBLISHED_VERIFIED_20260922_ACTUAL_TIME_UNKNOWN",
+      "pin_id": "343118065387631697",
       "title": "Matching Mother-Daughter Dresses: Choose Each Size",
       "tracking_url": "https://www.dresslikemommy.com/products/vibrant-rainbow-maxi-dress-set-for-mom-and-daughter-colorful-summer-matching-outfits?utm_source=pinterest&utm_medium=social&utm_campaign=organic_202609&utm_content=p5",
       "user_plan_alignment": "Reuse the existing buyer-planning/product concept, not a duplicate new copy calendar",
@@ -147,19 +198,42 @@
       "scheduled_date": "2026-09-22",
       "scheduled_native_display": "Tue, 9/22 01:30 PM",
       "scheduled_timezone_basis": "America/New_York inferred from current host EDT; native UI has no timezone label",
-      "published_pin_id": null,
+      "published_pin_id": "343118065387631697",
       "actual_publication_at": null,
-      "measurement_cohort_status": "WAIT_FOR_VERIFIED_PUBLICATION; do not start outcomes clock from submission date",
+      "measurement_cohort_status": "PUBLIC_EXISTENCE_VERIFIED_20260922; actual publication timestamp UNKNOWN; observation windows start Sep23 UTC after verification, not a reconstructed release clock",
       "native_receipt": "NATIVE_SCHEDULED_READBACKS_20260911.json",
-      "latest_queue_readback_at": "2026-09-22T13:06:29.211357+00:00",
-      "latest_queue_readback": "MORNING_OPERATOR_RECEIPT_20260922.json"
+      "latest_queue_readback_at": "2026-09-22T20:10:16.844271+00:00",
+      "latest_queue_readback": "P5_PUBLICATION_RECEIPT_20260922.json",
+      "public_url": "https://www.pinterest.com/pin/343118065387631697/",
+      "publication_verification_date": "2026-09-22",
+      "publication_receipt": "P5_PUBLICATION_RECEIPT_20260922.json",
+      "observation_windows": [
+        {
+          "complete_reporting_dates": 7,
+          "date_from": "2026-09-23",
+          "date_to": "2026-09-29",
+          "earliest_review_date": "2026-09-30"
+        },
+        {
+          "complete_reporting_dates": 14,
+          "date_from": "2026-09-23",
+          "date_to": "2026-10-06",
+          "earliest_review_date": "2026-10-07"
+        },
+        {
+          "complete_reporting_dates": 30,
+          "date_from": "2026-09-23",
+          "date_to": "2026-10-22",
+          "earliest_review_date": "2026-10-23"
+        }
+      ]
     },
     {
       "slot": 7,
       "id": "P6",
       "format": "image",
       "source": "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-09-organic-growth/pins.json",
-      "status": "NATIVE_SCHEDULED_VERIFIED_NOT_YET_PUBLIC",
+      "status": "STILL_SCHEDULED__SOURCE_HOLD__DELETE_CONFIRMATION_PENDING",
       "pin_id": null,
       "title": "Pastel Mother-Daughter Photo Outfits: Build Your Look",
       "tracking_url": "https://www.dresslikemommy.com/products/pastel-bloom-mommy-and-me-dresses?utm_source=pinterest&utm_medium=social&utm_campaign=organic_202609&utm_content=p6",
@@ -176,8 +250,12 @@
       "actual_publication_at": null,
       "measurement_cohort_status": "WAIT_FOR_VERIFIED_PUBLICATION; do not start outcomes clock from submission date",
       "native_receipt": "NATIVE_SCHEDULED_READBACKS_20260911.json",
-      "latest_queue_readback_at": "2026-09-22T13:06:29.211357+00:00",
-      "latest_queue_readback": "MORNING_OPERATOR_RECEIPT_20260922.json"
+      "latest_queue_readback_at": "2026-09-22T20:10:16.844271+00:00",
+      "latest_queue_readback": "P5_PUBLICATION_RECEIPT_20260922.json",
+      "source_hold_receipt": "PASTEL_CONTAINMENT_EXECUTION_20260923.json",
+      "source_accuracy": "UNRESOLVED_CHILD_SKIRT_PROPORTIONS",
+      "native_containment": "NOT_IMPLEMENTED; only native Publish now/Delete exposed, exact permanent-delete confirmation pending",
+      "next_action": "Resolve pending exact deletion confirmation before displayedSeptember24 01:30PM; fresh-read target, do not duplicate or infer new public ID."
     },
     {
       "slot": 8,
@@ -244,8 +322,8 @@
       "native_receipt": "N2_NATIVE_EXECUTION_20260914.json",
       "superseded_candidate_only_date": "2026-10-04",
       "destination_revision_receipt": "N2_DESTINATION_RELEASE_ACCEPTANCE_20260915.json",
-      "latest_queue_readback_at": "2026-09-22T13:06:29.211357+00:00",
-      "latest_queue_readback": "MORNING_OPERATOR_RECEIPT_20260922.json"
+      "latest_queue_readback_at": "2026-09-22T20:10:16.844271+00:00",
+      "latest_queue_readback": "P5_PUBLICATION_RECEIPT_20260922.json"
     },
     {
       "slot": 12,
@@ -259,15 +337,48 @@
       "dependency": "Validate a guide that actually compares the depicted purchasable options",
       "user_plan_alignment": "User concept12; no invented destination",
       "pin_id": null
+    },
+    {
+      "slot": 13,
+      "id": "N4",
+      "format": "image",
+      "title": "Family Halloween Outfits: Plan Daytime and Evening Layers",
+      "status": "NATIVE_SCHEDULED_VERIFIED_NOT_YET_PUBLIC",
+      "asset": "creative/n4_halloween_day_evening_v1.png",
+      "asset_sha256": "f280043c50a555f1bd436556a147842a884b160fdbe795dabb4a12c2b2eca36f",
+      "source": "N4_HALLOWEEN_DAY_EVENING_20260922.json",
+      "source_review": "N4_HALLOWEEN_SOURCE_REVIEW_20260922.md",
+      "prepublication_review": "N4_HALLOWEEN_PREPUBLICATION_REVIEW_20260922.md",
+      "tracking_url": "https://www.dresslikemommy.com/blogs/news/halloween-family-matching-costume-ideas?utm_source=pinterest&utm_medium=social&utm_campaign=organic_202609&utm_content=n4",
+      "dependency": "Narrow English Halloween editorial source, current actual shopping links and distinct daytime/evening creative accepted. Broader TA20 after-review remains incomplete; no product factual certification.",
+      "user_plan_alignment": "Seasonal qualified-buyer planning with a distinct daytime/evening decision; existing N3 remains held",
+      "pin_id": null,
+      "published_pin_id": null,
+      "actual_publication_at": null,
+      "native_board": "Matching Family Halloween Costumes",
+      "scheduled_record_id": "3881480438074766784",
+      "scheduled_record_url": "https://www.pinterest.com/dresslikemommy/scheduled-pin/3881480438074766784/",
+      "scheduled_date": "2026-09-30",
+      "scheduled_native_display": "Wed, 9/30 02:00 PM",
+      "scheduled_timezone_basis": "Native UI timezone not explicitly exposed; not a confirmed NewYork instant",
+      "measurement_cohort_status": "WAIT_FOR_VERIFIED_PUBLICATION; no clock from submission",
+      "native_receipt": "N4_NATIVE_EXECUTION_20260922.json",
+      "latest_queue_readback_at": "2026-09-22T20:34:23.325363+00:00",
+      "latest_queue_readback": "N4_NATIVE_EXECUTION_20260922.json",
+      "saved_alt_ai_readback": "NOT_EXPOSED_IN_SCHEDULED_DETAIL; exact pre-submit field states verified; check actual public Pin"
     }
   ],
   "deferred_user_concepts": "Additional Coral Blossom, seasonal/vacation and alternative style concepts remain a source-qualified backlog, not extra simultaneous posts. No evidence of demand, fulfilled stock, or assets is inferred from the supplied examples.",
   "latest_production_update_utc": "2026-09-11T19:06:46.616761+00:00",
   "previous_plan_snapshot": "CONTENT_REGISTER_20260911_PLAN_ARCHIVE.json",
-  "latest_native_update_utc": "2026-09-14T20:35:22.979030+00:00",
+  "latest_native_update_utc": "2026-09-22T20:34:23.325363+00:00",
   "native_receipt": "NATIVE_SUBMISSION_EXECUTION_20260911.json",
-  "latest_reconciliation_update_utc": "2026-09-22T13:06:29.211357+00:00",
-  "reconciliation_receipt": "MORNING_OPERATOR_RECEIPT_20260922.json",
-  "latest_native_addition_receipt": "N2_NATIVE_EXECUTION_20260914.json",
-  "latest_native_queue_count": 3
+  "latest_reconciliation_update_utc": "2026-09-22T20:34:23.325363+00:00",
+  "reconciliation_receipt": "N4_NATIVE_EXECUTION_20260922.json",
+  "latest_native_addition_receipt": "N4_NATIVE_EXECUTION_20260922.json",
+  "latest_native_queue_count": 3,
+  "latest_measurement_update_utc": "2026-09-23T13:15:57.231817+00:00",
+  "latest_measurement_receipt": "BASELINE_ASSESSMENT_20260923.json",
+  "latest_containment_update_utc": "2026-09-23T20:22:47.280950+00:00",
+  "latest_containment_receipt": "PASTEL_CONTAINMENT_EXECUTION_20260923.json"
 }

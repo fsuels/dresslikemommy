@@ -1,0 +1,74 @@
+{
+  "schema": "pinterest_baseline_orders_redacted_v1",
+  "read_started_at_utc": "2026-09-23T13:14:42.196Z",
+  "read_completed_at_utc": "2026-09-23T13:14:42.892Z",
+  "query": "query PinterestBaselineOrders($first: Int!, $after: String, $query: String!) {\n  orders(first: $first, after: $after, query: $query) {\n    nodes {\n      id\n      createdAt\n      test\n      cancelledAt\n      displayFinancialStatus\n      customerJourneySummary {\n        ready\n        firstVisit { source sourceType utmParameters { source medium campaign content } }\n        lastVisit { source sourceType utmParameters { source medium campaign content } }\n      }\n    }\n    pageInfo { hasNextPage endCursor }\n  }\n}",
+  "window": {
+    "from_utc_inclusive": "2026-09-14T04:00:00Z",
+    "to_utc_exclusive": "2026-09-21T04:00:00Z",
+    "local_reporting_dates": "2026-09-14 through 2026-09-20",
+    "timezone": "America/New_York"
+  },
+  "schema_and_validation": "QueryRoot, Order, CustomerJourneySummary, CustomerVisit, UTMParameters inspected; skill docs search plus CLI and connector validation passed revision1",
+  "returned_count": 3,
+  "distinct_id_count": 3,
+  "duplicate_id_count": 0,
+  "has_next_page": false,
+  "rows": [
+    {
+      "row": 1,
+      "created_within_window": true,
+      "test": false,
+      "cancelled": false,
+      "financial_status": "PAID",
+      "qualifies_paid_noncancelled": true,
+      "journey_available": true,
+      "journey_ready": true,
+      "first_visit": null,
+      "last_visit": null
+    },
+    {
+      "row": 2,
+      "created_within_window": true,
+      "test": false,
+      "cancelled": false,
+      "financial_status": "PAID",
+      "qualifies_paid_noncancelled": true,
+      "journey_available": true,
+      "journey_ready": true,
+      "first_visit": {
+        "source": "direct",
+        "sourceType": null,
+        "utmParameters": null
+      },
+      "last_visit": {
+        "source": "direct",
+        "sourceType": null,
+        "utmParameters": null
+      }
+    },
+    {
+      "row": 3,
+      "created_within_window": true,
+      "test": false,
+      "cancelled": false,
+      "financial_status": "PAID",
+      "qualifies_paid_noncancelled": true,
+      "journey_available": true,
+      "journey_ready": true,
+      "first_visit": {
+        "source": "direct",
+        "sourceType": null,
+        "utmParameters": null
+      },
+      "last_visit": {
+        "source": "direct",
+        "sourceType": null,
+        "utmParameters": null
+      }
+    }
+  ],
+  "privacy": "Order IDs and exact creation/cancellation timestamps used transiently for deduplication, filtering and lifecycle checks; omitted from durable receipt. No names, email, address, order names or referrer URLs queried. Rows are arbitrary labels, not stable customer identities.",
+  "limits": "First/last available journey observations only; not all intermediate moments, causal attribution or proof of complete coverage. Actual cost/profit not established. No monetary data queried absent a Pinterest match.",
+  "external_mutations": 0
+}

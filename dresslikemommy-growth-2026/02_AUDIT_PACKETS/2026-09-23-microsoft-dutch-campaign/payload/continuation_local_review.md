@@ -1,0 +1,3 @@
+# Independent local continuation review
+
+Reviewer: dutch_payload. Native UI was not independently inspected. All eight live_progress names match the payload; corrected swimsuit/sweater ID mapping is consistent. PARTIAL only. Seven group-level Success rows do not resolve aggregate copy child errors. Owner has resolved Netherlands, but targeting has not been applied/read back. Finish bidding parity, eighth Draft, ads144positives,202campaign/all45group negatives, localized URLs/assets and full native verification. Do not re-Paste. Old baseline/acceptance are historical. Parser must not overwrite resolved geography/suffix on rerun.

@@ -1,0 +1,1 @@
+query CatalogLinkedOptionValues($ids:[ID!]!) { nodes(ids:$ids) { ... on ProductOptionValue { id name hasVariants linkedMetafieldValue } } }

@@ -1,0 +1,1294 @@
+[
+  {
+    "file": "native_campaign_template.csv",
+    "url": "https://www.gstatic.com/adwords/campaignmgmt/templates/campaign_template.csv",
+    "sha256": "2591e9ac5c35ef36d320978c2bf61cbe5ff3af899cf7fc8487bd3a356e8355ae",
+    "tables": {
+      "CSV": [
+        [
+          "Row Type",
+          "Action",
+          "Campaign status",
+          "Campaign ID",
+          "Campaign",
+          "Campaign type",
+          "Networks",
+          "Budget",
+          "Delivery method",
+          "Budget type",
+          "Bid strategy type",
+          "Bid strategy",
+          "Campaign start date",
+          "Campaign end date",
+          "Language",
+          "Location",
+          "Exclusion",
+          "Devices",
+          "Label",
+          "Target CPA",
+          "Target ROAS",
+          "Display URL option",
+          "Website description",
+          "Target Impression Share",
+          "Max CPC Bid Limit for Target IS",
+          "Location Goal for Target IS",
+          "Tracking template",
+          "Final URL suffix",
+          "Custom parameter",
+          "Inventory type",
+          "Campaign subtype",
+          "Video ad formats",
+          "EU political ads"
+        ],
+        [
+          "# Optional.\nSupported values: Campaign",
+          "Optional.\nSupported values: Add; Edit; Remove",
+          "Optional.\nSupported values: Enabled; Paused; Removed",
+          "Optional.\nExample(s): 1234",
+          "Required.\nExample(s): Shoe campaign",
+          "Required on create.\nSupported values (Add): Search; Display; Video\nSupported values (Edit): Unknown; Search; Display; Shopping; Video; App; Smart; Hotel; Demand Gen; Performance Max",
+          "Optional.\nSupported values: Google search; Search partners; Display Network; Google TV; YouTube videos",
+          "Required on create.\nExample(s): 10.00",
+          "Optional.\nSupported values: Standard",
+          "Optional.\nSupported values: Daily; Campaign Total; Monthly",
+          "Optional.\nSupported values (Add): CPC (enhanced); Manual CPC; cpc; Viewable CPM; cpm; CPA (target); Maximize clicks; Target ROAS; Target CPA; Maximize Conversions; Maximize Conversion Value; Target CPC; Target CPM; CPC%; Target Impression Share; Commission; Invalid; Target Position; Share of voice; Target CPV; Fixed CPM\nSupported values (Edit): CPC (enhanced); Manual CPC; cpc; Viewable CPM; cpm; Enhanced CPC; CPA (target); Target search page location; Maximize clicks; Target ROAS; Target CPA; Maximize Conversions; Maximize Conversion Value; Target Outranking Share; Target CPC; Target CPM; CPC%; Target Impression Share; Commission; Invalid; Target Position; Share of voice; Target CPV; Fixed CPM",
+          "Optional.\nPortfolio bid strategy name, if applicable.\nExample(s): my bid strategy\nSupports remove_value",
+          "Optional.\nStart date cannot be in the past when creating a new campaign.\nExample(s): 2028-02-29",
+          "Optional.\nExample(s): 2028-12-31\nSupports remove_value",
+          "Optional.\nA list of values separated by semicolons. Ignored and must be empty for Shopping campaigns.\nExample(s): en; zh_hk:excluded",
+          "Optional.\nA list of values separated by semicolons.\nExample(s): 20 | mi | Seattle, Washington, United States : -5% ; Taipei City, Taiwan : +10% ; Montréal, Québec, Canada ; 600 | km | Redmond, Washington, United States:removed\nSupports remove_value",
+          "Optional.\nA list of values separated by semicolons.\nExample(s): 20 | mi | Seattle, Washington, United States ; Taipei City, Taiwan ; Montréal, Québec, Canada ; 600 | km | Redmond, Washington, United States:removed\nSupports remove_value",
+          "Optional.\nA list of values separated by semicolons.\nExample(s): Computers:+10%; Mobile devices with full browsers:-5%; Tablets with full browsers:+15%",
+          "Optional.\nA list of values separated by semicolons.\nExample(s): label 1; label 2; label 3 [123-456-7890]\nSupports remove_value",
+          "Optional.\nExample(s): 10.00\nSupports remove_value",
+          "Optional.\nExample(s): 12%\nSupports remove_value",
+          "Optional.\nRequired for creating Search campaigns in Google Ads Pharmaceutical Accounts.\nSupported values: Ad Display URL; Website Description",
+          "Optional.\nSupported values: Prescription treatment website; Prescription treatment website (Spanish); Prescription device website; Prescription device website (Spanish); Medical device website; Medical device website (Spanish); Preventative treatment website; Preventative treatment website (Spanish); Prescription contraception website; Prescription contraception website (Spanish); Prescription vaccine website; Prescription vaccine website (Spanish); Prescription product website; Prescription product website (Spanish)\nSupports remove_value",
+          "Optional.\nExample(s): 15%\nSupports remove_value",
+          "Optional.\nExample(s): 10.00\nSupports remove_value",
+          "Optional.\nSupported values: Anywhere on results page; Top of results page; Absolute top of results page\nSupports remove_value",
+          "Optional.\nExample(s): http://www.abc.com/tracking?param1=create&url={lpurl}\nSupports remove_value",
+          "Optional.\nExample(s): x=y\nSupports remove_value",
+          "Optional.\nExample(s): {_color}=red ; {_bg}=blue\nSupports remove_value",
+          "Optional.\nSupported values: Expanded inventory; Standard inventory; Limited inventory",
+          "Optional.\nSupported values: Non-skippable; Drive conversions; Standard",
+          "Optional.\nA list of formats separated by semicolons.\nSupported values: In-stream; In-feed; Shorts",
+          "Required on create.\nSupported values: Yes; No"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "native_ad_group_template.csv",
+    "url": "https://www.gstatic.com/adwords/campaignmgmt/templates/ad_group_template.csv",
+    "sha256": "0fd54c9b0c8e3cc050e2c0712699734fee6d4b22ae9347f6bbcae56a5a1ea0df",
+    "tables": {
+      "CSV": [
+        [
+          "Row Type",
+          "Action",
+          "Ad group status",
+          "Campaign ID",
+          "Campaign",
+          "Ad group ID",
+          "Ad group",
+          "Ad group type",
+          "Ad rotation",
+          "Default max. CPC",
+          "CPC%",
+          "Max. CPM",
+          "Max. CPV",
+          "Target CPA",
+          "Target CPM",
+          "TrueView target CPV",
+          "Label",
+          "Tracking template",
+          "Final URL suffix",
+          "Custom parameter",
+          "Target ROAS"
+        ],
+        [
+          "# Optional.\nSupported values: Ad group",
+          "Optional.\nSupported values: Add; Edit; Remove",
+          "Optional.\nSupported values: Enabled; Paused; Removed",
+          "Optional.\nExample(s): 1234",
+          "Required.\nExample(s): Shoe campaign",
+          "Optional.\nExample(s): 1234",
+          "Required.\nExample(s): Shoe ad group",
+          "Optional.\nThe value cannot be edited after creation.\nSupported values: Standard; Dynamic; Display; Display engagement; Shopping - Product; Shopping - Showcase; Shopping - Smart; In-stream; In-feed video; Bumper; Non-skippable; Hotel; Hotels - Property promotion; Efficient reach; Responsive video ad",
+          "Optional.\nSupported values: Optimize; Do not optimize\nSupports remove_value",
+          "Optional.\nExample(s): 12.34",
+          "Optional.\nExample(s): 12.3%",
+          "Optional.\nExample(s): 12.34",
+          "Optional.\nExample(s): 12.34",
+          "Optional.\nExample(s): 12.34",
+          "Optional.\nExample(s): 12.34",
+          "Optional.\nExample(s): 12.34",
+          "Optional.\nA list of values separated by semicolons.\nExample(s): label 1; label 2; label 3 [123-456-7890]\nSupports remove_value",
+          "Optional.\nExample(s): http://www.abc.com/tracking?param1=create&url={lpurl}\nSupports remove_value",
+          "Optional.\nExample(s): x=y\nSupports remove_value",
+          "Optional.\nExample(s): {_color}=red ; {_bg}=blue\nSupports remove_value",
+          "Optional.\nExample(s): 12%\nSupports remove_value"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "native_responsive_search_ad_template.csv",
+    "url": "https://www.gstatic.com/adwords/campaignmgmt/templates/responsive_search_ad_template.csv",
+    "sha256": "777bf42499e7f5c6223eadd7364e0a1c5946e4dc99a8df89ab270f4a3f459ac4",
+    "tables": {
+      "CSV": [
+        [
+          "# Assets can be shown in any order, so make sure that they make sense individually or in combination, and don’t violate our policies or local law."
+        ],
+        [
+          "# IMPORTANT: For each responsive search ad, provide at least 5 distinct headlines that do not repeat the same or similar phrases. Providing redundant headlines will restrict our ability to generate combinations."
+        ],
+        [
+          "Row Type",
+          "Action",
+          "Ad status",
+          "Campaign ID",
+          "Campaign",
+          "Ad group ID",
+          "Ad group",
+          "Ad ID",
+          "Ad type",
+          "Label",
+          "Headline 1",
+          "Headline 2",
+          "Headline 3",
+          "Headline 4",
+          "Headline 5",
+          "Headline 6",
+          "Headline 7",
+          "Headline 8",
+          "Headline 9",
+          "Headline 10",
+          "Headline 11",
+          "Headline 12",
+          "Headline 13",
+          "Headline 14",
+          "Headline 15",
+          "Description 1",
+          "Description 2",
+          "Description 3",
+          "Description 4",
+          "Headline 1 position",
+          "Headline 2 position",
+          "Headline 3 position",
+          "Headline 4 position",
+          "Headline 5 position",
+          "Headline 6 position",
+          "Headline 7 position",
+          "Headline 8 position",
+          "Headline 9 position",
+          "Headline 10 position",
+          "Headline 11 position",
+          "Headline 12 position",
+          "Headline 13 position",
+          "Headline 14 position",
+          "Headline 15 position",
+          "Description 1 position",
+          "Description 2 position",
+          "Description 3 position",
+          "Description 4 position",
+          "Path 1",
+          "Path 2",
+          "Final URL",
+          "Mobile final URL",
+          "Tracking template",
+          "Final URL suffix",
+          "Custom parameter"
+        ],
+        [
+          "# Optional.\nSupported values: Ad",
+          "Optional.\nSupported values: Add; Edit; Remove",
+          "Optional.\nSupported values: Enabled; Paused; Removed",
+          "Optional.\nExample(s): 1234",
+          "Required.\nExample(s): Shoe campaign",
+          "Optional.\nExample(s): 1234",
+          "Required.\nExample(s): Shoe ad group",
+          "Required on edit.\nExample(s): 1234",
+          "Required on create.\nSupported values: Responsive search ad",
+          "Optional.\nA list of values separated by semicolons.\nExample(s): label 1; label 2; label 3 [123-456-7890]\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 1\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 2\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 3\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 4\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 5\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 6\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 7\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 8\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 9\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 10\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 11\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 12\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 13\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 14\nSupports remove_value",
+          "Optional.\nMaximum 30 characters.\nExample(s): headline 15\nSupports remove_value",
+          "Optional.\nMaximum 90 characters.\nExample(s): description 1\nSupports remove_value",
+          "Optional.\nMaximum 90 characters.\nExample(s): description 2\nSupports remove_value",
+          "Optional.\nMaximum 90 characters.\nExample(s): description 3\nSupports remove_value",
+          "Optional.\nMaximum 90 characters.\nExample(s): description 4\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2; 3\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2\nSupports remove_value",
+          "Optional.\nSupported values: 1; 2\nSupports remove_value",
+          "Optional.\nExample(s): path 1\nSupports remove_value",
+          "Optional.\nExample(s): path 2\nSupports remove_value",
+          "Required on create.\nExample(s): http://www.example.com ; https://www.example.org",
+          "Optional.\nExample(s): http://m.example.com ; https://m.example.org\nSupports remove_value",
+          "Optional.\nExample(s): http://www.abc.com/tracking?param1=create&url={lpurl}\nSupports remove_value",
+          "Optional.\nExample(s): x=y\nSupports remove_value",
+          "Optional.\nExample(s): {_color}=red ; {_bg}=blue\nSupports remove_value"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "native_keyword_template.csv",
+    "url": "https://www.gstatic.com/adwords/campaignmgmt/templates/keyword_template.csv",
+    "sha256": "d7fed842e6ada4d9ed2a364cd34b1684137b6410ae482b164b57a74a70c10aa7",
+    "tables": {
+      "CSV": [
+        [
+          "Row Type",
+          "Action",
+          "Keyword status",
+          "Campaign ID",
+          "Campaign",
+          "Ad group ID",
+          "Ad group",
+          "Keyword ID",
+          "Keyword",
+          "Type",
+          "Label",
+          "Default max. CPC",
+          "Max. CPV",
+          "Final URL",
+          "Mobile final URL",
+          "Final URL suffix",
+          "Tracking template",
+          "Custom parameter"
+        ],
+        [
+          "# Optional.\nSupported values: Keyword",
+          "Optional.\nSupported values: Add; Edit; Remove",
+          "Optional.\nSupported values: Enabled; Removed; Paused",
+          "Optional.\nExample(s): 1234",
+          "Required.\nExample(s): Shoe campaign",
+          "Optional.\nExample(s): 1234",
+          "Required.\nExample(s): Shoe ad group",
+          "Optional.\nExample(s): 1234",
+          "Required on create.\nExample(s): buy frisbee",
+          "Optional.\nSupported values: Exact match; Phrase match; Broad match",
+          "Optional.\nA list of values separated by semicolons.\nExample(s): label 1; label 2; label 3 [123-456-7890]\nSupports remove_value",
+          "Optional.\nExample(s): 12.34\nSupports remove_value",
+          "Optional.\nExample(s): 12.34\nSupports remove_value",
+          "Optional.\nExample(s): http://www.example.com ; https://www.example.org\nSupports remove_value",
+          "Optional.\nExample(s): http://m.example.com ; https://m.example.org\nSupports remove_value",
+          "Optional.\nExample(s): x=y\nSupports remove_value",
+          "Optional.\nExample(s): http://www.abc.com/tracking?param1=create&url={lpurl}\nSupports remove_value",
+          "Optional.\nExample(s): {_color}=red ; {_bg}=blue\nSupports remove_value"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "native_ad_group_negative_keyword_template.csv",
+    "url": "https://www.gstatic.com/adwords/campaignmgmt/templates/ad_group_negative_keyword_template.csv",
+    "sha256": "0b7505761d1b97878bfad8e8f3077bc8edba7e3505e49aa8c6fda23782a97421",
+    "tables": {
+      "CSV": [
+        [
+          "Row Type",
+          "Action",
+          "Keyword status",
+          "Level",
+          "Campaign ID",
+          "Campaign",
+          "Ad group ID",
+          "Ad group",
+          "Keyword ID",
+          "Negative keyword",
+          "Type"
+        ],
+        [
+          "# Optional.\nSupported values: Negative keyword",
+          "Optional.\nSupported values: Add; Edit; Remove",
+          "Optional.\nSupported values: Enabled; Removed; Paused",
+          "Optional.\nSupported values: Ad group; Campaign",
+          "Optional.\nExample(s): 1234",
+          "Required.\nExample(s): Shoe campaign",
+          "Optional.\nExample(s): 1234",
+          "Required.\nExample(s): Shoe ad group",
+          "Optional.\nExample(s): 1234",
+          "Required on create.\nExample(s): cat",
+          "Optional.\nSupported values: Exact match; Phrase match; Broad match"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "help_create_campaign.xlsx",
+    "url": "https://storage.googleapis.com/support-kms-prod/lx4kKazVwHuqcFVQPZAKJJ5EUQAV5VBBMrn2",
+    "sha256": "5ab1b7f08e981b1fdf8211c2a97eadb63a7a660a82a6d1ae3d0a26bafbabfa40",
+    "tables": {
+      "(Template) Create New Campaign": [
+        [
+          "# Optional.\n Supported values: Add; Edit; Remove.",
+          "# Optional.\n Supported values: Enabled; Paused; Removed.",
+          "#Optional \nunless uploading to multiple accounts on MCC Level",
+          "#Required\nExample(s): Shoe campaign.",
+          "#Required on create.\n Supported values (Add): Search; Display; Video.\n Supported values (Edit): Unknown; Search; Display; Shopping; Video; App; Smart; Hotel.",
+          "#Optional.\n Supported values: Google search; Search partners; Display Network; YouTube search; YouTube videos.",
+          "#Optional.\n Example(s): 10.00.",
+          "#Optional.\n Supported values: Daily; Campaign Total; Monthly.",
+          "#Required on create.\n Supported values (Add): CPC (enhanced); Manual CPC; cpc; Viewable CPM; cpm; CPA (target); Maximize clicks; Target ROAS; Target CPA; Maximize Conversions; Manual CPV; cpv; Target CPM; CPC%; Target Impression Share; Commission; Invalid; Target Position.",
+          "#Optional.\n Portfolio bid strategy name, if applicable.\n Example(s): my bid strategy.",
+          "#Optional.\n Example(s): 2024-02-29.",
+          "#Optional.\n Example(s): 2024-05-31.",
+          "#Optional.\n Example(s): en:+10%; fr:-5%; zh_tw;",
+          "#Optional.\n Example(s): 20 | mi | Seattle, Washington, United States : -5% ; Taipei City, Taiwan : +10% ; Montréal, Québec, Canada ; 600 | km | Redmond, Washington\n\nSee All Valid Location codes here: https://developers.google.com/google-ads/api/reference/data/geotargets",
+          "#Optional.\n Example(s): 20 | mi | Seattle, Washington, United States ; Taipei City, Taiwan ; Montréal, Québec, Canada ; 600 | km | Redmond, Washington\n\nSee All Valid Location codes here: https://developers.google.com/google-ads/api/reference/data/geotargets",
+          "#Optional.\n Example(s): Computers:+10%; Mobile devices with full browsers:-5%; Tablets with full browsers:+15%.",
+          "#Optional.\n Example(s): label 1; label 2; label 3 [123-456-7890].\n Supports remove_value.",
+          "#Optional.\n Example(s): 10.00.\n Supports remove_value.",
+          "#Optional.\n Example(s): 12%.\n Supports remove_value.",
+          "#Optional.\n Example(s): 15%.\n Supports remove_value.",
+          "#Optional.\n Example(s): 10.00.\n Supports remove_value.",
+          "#Optional.\n Supported values: Anywhere on results page; Top of results page; Absolute top of results page.\n Supports remove_value.",
+          "#Optional.\n Example(s): http://www.abc.com/tracking?param1=create&url={lpurl}.\n Supports remove_value.",
+          "#Optional.\n Example(s): x=y.\n Supports remove_value.",
+          "#Optional.\n Example(s): {_color}=red ; {_bg}=blue.\n Supports remove_value.",
+          "#Optional.\n Supported values: None; MOAT; Double Verify; Integral Ad Science; comScore; Telemetry.\n Supports remove_value.",
+          "#Optional.\n Supported values: Expanded inventory; Standard inventory; Limited inventory.",
+          "#Optional.\n Supported values: Non-skippable; Drive conversions; Sequence; Mobile app; App engagement; Smart; Gmail display campaign; Engagement; Manufacturer; Comparison Listing; Shopping - Partners; Standard."
+        ],
+        [
+          "Action",
+          "Campaign status",
+          "Customer ID",
+          "Campaign",
+          "Campaign type",
+          "Networks",
+          "Budget",
+          "Budget type",
+          "Bid strategy type",
+          "Bid strategy",
+          "Campaign start date",
+          "Campaign end date",
+          "Language",
+          "Location",
+          "Exclusion",
+          "Devices",
+          "Label",
+          "Target CPA",
+          "Target ROAS",
+          "Target Impression Share",
+          "Max CPC Bid Limit for Target IS",
+          "Location Goal for Target IS",
+          "Tracking template",
+          "Final URL suffix",
+          "Custom parameter",
+          "Viewability vendor",
+          "Inventory type",
+          "Campaign subtype"
+        ]
+      ],
+      "(Example) Create New Campaign": [
+        [
+          "Action",
+          "Campaign status",
+          "Customer ID",
+          "Campaign",
+          "Campaign type",
+          "Networks",
+          "Budget",
+          "Budget type",
+          "Bid strategy type",
+          "Campaign start date",
+          "Campaign end date",
+          "Language",
+          "Location",
+          "Devices",
+          "Tracking template"
+        ],
+        [
+          "Add",
+          "Enabled",
+          "123-456-7890",
+          "Shoe Campaign",
+          "Search",
+          "Google Search",
+          10,
+          "Daily",
+          "Manual CPC",
+          "2024-02-29 00:00:00",
+          "2024-05-31 00:00:00",
+          "en:+10%; fr:-5%; zh_tw;",
+          "20 | mi | Seattle, Washington, United States : -5% ; Taipei City, Taiwan : +10% ; Montréal, Québec, Canada ; 600 | km | Redmond, Washington",
+          "Computers:+10%; Mobile devices with full browsers:-5%; Tablets with full browsers:+15%",
+          "http://www.abc.com/tracking?param1=create&url={lpurl}."
+        ]
+      ]
+    }
+  },
+  {
+    "file": "help_create_sitelink.csv",
+    "url": "https://storage.googleapis.com/support-kms-prod/er1LbgoAEsIctW1koPH6f4fDr7NNVDCKWPvh",
+    "sha256": "78a14f6ee1a67403af6cb7d4f671f801e1a6716208878c1958339fcd31d51382",
+    "tables": {
+      "CSV": [
+        [
+          "# This is a template for a sample upload to modify sitelinks assets. Please alter the data to suit your account."
+        ],
+        [
+          "# We recommend that you use the new Mobile final URL, Tracking template, and Custom parameter columns. Additional optional columns are: Start date, End date, and Scheduling."
+        ],
+        [
+          "Row Type",
+          "Action",
+          "Asset action",
+          "Customer ID",
+          "Level",
+          "Campaign ID",
+          "Campaign",
+          "Ad group ID",
+          "Ad group",
+          "Item ID",
+          "Sitelink text",
+          "Final URL",
+          "Mobile final URL",
+          "Final URL suffix",
+          "Description",
+          "Description 2",
+          "Tracking template",
+          "Custom parameter",
+          "Schedules",
+          "Start date",
+          "End date",
+          "Scheduling",
+          "Device preference type",
+          "Row tag"
+        ],
+        [
+          "# Required.\nSupported values: Sitelink.",
+          "Optional.\nSupported values: Add; Edit; Remove.",
+          "Optional.\nSupported values: Create new; Use existing; Edit.",
+          "Optional.\nExample(s): 123-456-7890.",
+          "Optional.\nSupported values: Ad group; Campaign.",
+          "Optional.\nExample(s): 1234.",
+          "Required.\nExample(s): Shoe campaign.",
+          "Optional.\nExample(s): 1234.",
+          "Required.\nExample(s): Shoe ad group.",
+          "Required on edit.\nExample(s): 1234.",
+          "Required on create.\nExample(s): Order Online Now.",
+          "Required on create.\nExample(s): http://www.example.com ; https://www.example.org.",
+          "Optional.\nExample(s): http://m.example.com ; https://m.example.org.\nSupports remove_value.",
+          "Optional.\nExample(s): x=y.\nSupports remove_value.",
+          "Optional.\nExample(s): Free next day delivery.",
+          "Optional.\nExample(s): with orders above $50.",
+          "Optional.\nExample(s): {lpurl}?cat={_category}.",
+          "Optional.\nExample(s): {_color}=red ; {_bg}=blue.\nSupports remove_value.",
+          "Optional.\nExample(s): Monday, 08:00 AM - 05:15 PM.",
+          "Optional.\nExample(s): 2024-02-29.",
+          "Optional.\nExample(s): 2024-02-29.",
+          "Optional.\nExample(s): Monday, 08:00 AM - 05:15 PM.",
+          "Optional.\nSupported values: Mobile.",
+          "Optional.\nExample(s): foo."
+        ]
+      ]
+    }
+  },
+  {
+    "file": "help_create_callout.csv",
+    "url": "https://storage.googleapis.com/support-kms-prod/Tqa4nGJSfFLXLSuw0Z4G17HVZJ1nAQMpYH37",
+    "sha256": "8cbef6402171ab5c967ce93a8760d2b394fd29b11d5727a59345ab74e33683d9",
+    "tables": {
+      "CSV": [
+        [
+          "### INSTRUCTIONS ###"
+        ],
+        [
+          "# This is a template for a sample upload to modify callouts"
+        ],
+        [
+          "# Please alter the data to suit your account"
+        ],
+        [
+          "# Additional optional columns are: Start date",
+          " End date",
+          " Device Preference",
+          " and Scheduling"
+        ],
+        [
+          "# For more information on using this template",
+          " visit https://support.google.com/adwords/answer/2477116#editex"
+        ],
+        [],
+        [
+          "### TEMPLATE ###"
+        ],
+        [
+          "Row type",
+          "Action",
+          "Campaign",
+          "Ad group",
+          "Callout text"
+        ],
+        [
+          "Callout extension",
+          "add",
+          "My Campaign #1",
+          "",
+          "Over 100 Locations"
+        ],
+        [
+          "Callout extension",
+          "add",
+          "My Campaign #1",
+          "",
+          "24-7 customer service"
+        ],
+        [
+          "Callout extension",
+          "add",
+          "My Campaign #1",
+          "My Ad Group #1",
+          "Price matching"
+        ],
+        [
+          "Callout extension",
+          "remove",
+          "My Campaign #1",
+          "My Ad Group #1",
+          "Price matching"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "help_create_snippet.csv",
+    "url": "https://storage.googleapis.com/support-kms-prod/EotlZJ2OljTMZYsB4Qx0a14sIJYwvqTU8Gpu",
+    "sha256": "18d37c9f419a627700e6a12169a724465a91278ded57512ba9b0d90cae86dc8c",
+    "tables": {
+      "CSV": [
+        [
+          "### INSTRUCTIONS ###"
+        ],
+        [
+          "# This is a template for a sample upload to modify structured snippet assets"
+        ],
+        [
+          "# Please alter the data to suit your account"
+        ],
+        [
+          "# Additional optional columns are: Start date",
+          " End date",
+          " Device Preference",
+          " and Scheduling"
+        ],
+        [
+          "# For more information on using this template",
+          " visit https://support.google.com/adwords/answer/2477116#editex"
+        ],
+        [],
+        [
+          "### TEMPLATE ###"
+        ],
+        [
+          "Action",
+          "Campaign",
+          "Ad group",
+          "Structured snippet header",
+          "Structured snippet values"
+        ],
+        [
+          "add",
+          "My Campaign #1",
+          "",
+          "Brands",
+          "Nest;Nexus;Chromebook"
+        ],
+        [
+          "add",
+          "My Campaign #1",
+          "",
+          "Degree programs",
+          "Business administration;Accounting;HR management"
+        ],
+        [
+          "add",
+          "My Campaign #1",
+          "My Ad Group #1",
+          "Destinations",
+          "Paris;Berlin;London"
+        ],
+        [
+          "remove",
+          "My Campaign #1",
+          "My Ad Group #1",
+          "Destinations",
+          "Paris;Berlin;London"
+        ]
+      ]
+    }
+  },
+  {
+    "file": "help_create_keywords.xlsx",
+    "url": "https://storage.googleapis.com/support-kms-prod/ZPXjGm9HgYzegUH8aExrVUm3tHTp5rrvAc9a",
+    "sha256": "70c156af8357fc410e9908c07db1d8b07e4621a738b658893200eb5026d5bd3d",
+    "tables": {
+      "(Template) Add Keyword(s)": [
+        [
+          "# Optional.\n Supported values: Add; Edit; Remove.",
+          "# Optional.\n Supported values: Enabled; Removed; Paused.",
+          "#Optional \nunless uploading to multiple accounts on MCC Level\n\nYou can specify either the Account Name in the \"Account\" column or the Account's ID in the \"Customer ID\" Column (Example: 123-456-7890)\nNote: Please use one or the other rather than both. If you use both, they must match in referring to the same account ",
+          null,
+          "#required \nUse either Campaign ID or Campaign (by name)\nNote: Please use one or the other rather than both. If you use both, they must match in referring to the same campaign ",
+          null,
+          "#required \nUse either Ad group ID or Ad group (by name)\nNote: If you use both, they both must be correct\n\nIf you use Ad group ID then there is no need to specific Campaign or Campaign ID        ",
+          null,
+          "# Optional.\n Example(s): 1234.",
+          "# Required on create.\n Example(s): buy frisbee.",
+          "# Optional.\n Supported values: Exact match; Phrase match; Broad match.",
+          "# Optional.\n Example(s): label 1; label 2; label 3 [123-456-7890].\n To remove an exisiting label input \"remove_value\"",
+          "# Optional.\n Example(s): 12.34.\n To remove an exisiting bid input \"remove_value\"",
+          " # Optional.\n Example(s): 12.34.\n To remove an exisiting bid input \"remove_value\"",
+          "# Optional.\n Example(s): https://www.example.com ; https://www.example.org.\n To remove an exisiting Final URL input \"remove_value\"",
+          "# Optional.\n Example(s): https://m.example.com ; https://m.example.org.\n To remove an exisiting Mobile Final URL input \"remove_value\"",
+          "# Optional.\n Example(s): https://www.abc.com/tracking?param1=create&url={lpurl}.\n  To remove an exisiting Tracking Template input \"remove_value\"",
+          "# Optional.\n Example(s): x=y.\n  To remove an exisiting Final URL Suffix input \"remove_value\"",
+          "# Optional.\n Example(s): {_color}=red ; {_bg}=blue.\n  To remove an exisiting Custom Parameter input \"remove_value\""
+        ],
+        [
+          "Action",
+          "Keyword status",
+          "Account",
+          "Customer ID",
+          "Campaign ID",
+          "Campaign",
+          "Ad group ID",
+          "Ad group",
+          "Keyword ID",
+          "Keyword",
+          "Match Type",
+          "Label",
+          "Default max. CPC",
+          "Max. CPV",
+          "Final URL",
+          "Mobile final URL",
+          "Tracking template",
+          "Final URL suffix",
+          "Custom parameter",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          "Add"
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ],
+      "(Example) Add to Ad Group": [
+        [
+          "Action",
+          "Keyword status",
+          "Customer ID",
+          "Ad group ID",
+          "Keyword",
+          "Match Type",
+          "Default max. CPC",
+          "Final URL",
+          "Mobile final URL",
+          "Tracking template"
+        ],
+        [
+          "Add",
+          "Enabled",
+          "123-456-7890",
+          987654321987.0,
+          "shoes",
+          "Exact Match",
+          12.5,
+          "https://www.example.com",
+          "https://m.example.com",
+          "http://www.example.com/tracking?param1=create&url={lpurl}."
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  {
+    "file": "help_create_ad_groups.xlsx",
+    "url": "https://storage.googleapis.com/support-kms-prod/eSiqsHfH2KNrnD4wnYuMX49DlTkbbz2C10Bs",
+    "sha256": "74e9da0753bdabcaf979603f92a7885f284c6bd3549d58ca26f7dea16c25e45e",
+    "tables": {
+      "(Template) Create new Ad Group": [
+        [
+          "# Required.\n Supported values: Add; Edit; Remove.",
+          "#Optional \nunless uploading to multiple accounts on MCC Level",
+          "#Required \nUse either Campaign ID or Campaign (by name)\nNote: If you use both, they both must be correct",
+          null,
+          "#Required\n\nDesired Name of new Ad Group",
+          "#Optional \n Supported values: Enabled; Paused\n\nDefaults to Enabled if omitted",
+          "#Optional\n\nDefines the ad group type"
+        ],
+        [
+          "Action",
+          "Customer ID",
+          "Campaign",
+          "Campaign ID",
+          "Ad group",
+          "Status",
+          "Ad group type"
+        ],
+        [
+          "Add",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "(Example) Create new Ad Group": [
+        [
+          "Action",
+          "Customer ID",
+          "Campaign ID",
+          "Ad group",
+          "Status",
+          "Ad group type"
+        ],
+        [
+          "Add",
+          "123-456-7890",
+          9876543,
+          "New Ad Group 1",
+          "Paused",
+          "Dynamic"
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "(Example 2) Create new Ad Group": [
+        [
+          "Action",
+          "Customer ID",
+          "Campaign",
+          "Ad group"
+        ],
+        [
+          "Add",
+          "123-456-7890",
+          "Shoe campaign",
+          "New Ad Group 1"
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "file": "help_create_rsa.xlsx",
+    "url": "https://storage.googleapis.com/support-kms-prod/4AQnEPOMnm95I6VILqWdg1xypQ9KlaXG2IgY",
+    "sha256": "947f25721789965a34b6cc40cb53a8e6e9ed579bab107565750ed94fbf82111c",
+    "tables": {
+      "(Template) Create RSA": [
+        [
+          "#Optional.\n",
+          "#Optional.\n Supported values: Enabled; Paused\n\nDefault: Enabled",
+          "#Optional.\n Example(s): 123-456-7890.",
+          "#Optional\nRequired If using Ad group (by name)\nCan be left out if using Ad group ID\n\nUse either Campaign ID or Campaign (by name)\nNote: If you use both, they both must be correct       ",
+          null,
+          "# Required if used in combination with Campaign/Campaign ID\nNot needed if Ad Group ID is used",
+          "#Optional\n\nCan be used instead of Campaign/Campaign ID + Ad group combination",
+          "#Required",
+          "#Optional.\n Example(s): label 1; label 2; label 3 [123-456-7890].",
+          "#Required\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\nExample(s): headline 1.",
+          "#Required\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\nExample(s): headline 2.",
+          "#Required\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\n Example(s): headline 3.",
+          "#Optional\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\n Example(s): headline 4.",
+          "#Optional\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\n Example(s): headline 5.",
+          "#Optional\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\n Example(s): headline 6.",
+          "#Optional\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\n Example(s): headline 7.",
+          "#Optional\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\n Example(s): headline 8.",
+          "#Optional\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\n Example(s): headline 9.",
+          "#Optional\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\n Example(s): headline 10.",
+          "#Optional\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\n Example(s): headline 11.",
+          "#Optional\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\n Example(s): headline 12.",
+          "#Optional\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\n Example(s): headline 13.",
+          "#Optional\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\n Supports remove_value.",
+          "#Optional\n\nMinimum of 3 headlines required.\nMaximum of 15 optional\n Supports remove_value.",
+          "#Required\n\nMinimum of 2 descriptions required\nMaximum of 4 descriptions optional\n Example(s): description 1.",
+          "#Required\n\nMinimum of 2 descriptions required\nMaximum of 4 descriptions optional\n Example(s): description 2.",
+          "#Optional\n\nMinimum of 2 descriptions required\nMaximum of 4 descriptions optional\n Example(s): description 3.",
+          "#Optional\n\nMinimum of 2 descriptions required\nMaximum of 4 descriptions optional\n Example(s): description 4.",
+          "#Optional\n\nPins Headline 1 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Headline 2 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Headline 3 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Headline 4 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Headline 5 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Headline 6 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Headline 7 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Headline 8 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Headline 9 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Headline 10 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Headline 11 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Headline 12 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Headline 13 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Headline 14 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Headline 15 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Description 1 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Description 2 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Description 3 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional\n\nPins Description 4 in a specific position\n Supported values: 1; 2; 3.",
+          "#Optional.\n Example(s): path 1.",
+          "#Optional\n Example(s): path 2.",
+          "#Required\n Example(s): https://www.example.com ; http://www.example.org.\nNote: including \"https://\" or \"http://\" prefix is required",
+          "#Optional.\n Example(s): https://m.example.com ; https://m.example.org.\nNote: including \"https://\" or \"http://\" prefix is required",
+          "#Optional.\n Example(s): http://www.abc.com/tracking?param1=create&url={lpurl}.",
+          "#Optional.\n Example(s): x=y.",
+          "#Optional.\n Example(s): {_color}=red ; {_bg}=blue."
+        ],
+        [
+          "Action",
+          "Ad status",
+          "Customer ID",
+          "Campaign ID",
+          "Campaign",
+          "Ad group",
+          "Ad group ID",
+          "Ad type",
+          "Label",
+          "Headline 1",
+          "Headline 2",
+          "Headline 3",
+          "Headline 4",
+          "Headline 5",
+          "Headline 6",
+          "Headline 7",
+          "Headline 8",
+          "Headline 9",
+          "Headline 10",
+          "Headline 11",
+          "Headline 12",
+          "Headline 13",
+          "Headline 14",
+          "Headline 15",
+          "Description",
+          "Description 2",
+          "Description 3",
+          "Description 4",
+          "Headline 1 position",
+          "Headline 2 position",
+          "Headline 3 position",
+          "Headline 4 position",
+          "Headline 5 position",
+          "Headline 6 position",
+          "Headline 7 position",
+          "Headline 8 position",
+          "Headline 9 position",
+          "Headline 10 position",
+          "Headline 11 position",
+          "Headline 12 position",
+          "Headline 13 position",
+          "Headline 14 position",
+          "Headline 15 position",
+          "Description 1 position",
+          "Description 2 position",
+          "Description 3 position",
+          "Description 4 position",
+          "Path 1",
+          "Path 2",
+          "Final URL",
+          "Mobile final URL",
+          "Tracking template",
+          "Final URL suffix",
+          "Custom parameter"
+        ],
+        [
+          "Add",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          "Responsive search ad",
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ]
+      ],
+      "(Example) Create RSA": [
+        [
+          "Action",
+          "Ad status",
+          "Customer ID",
+          "Campaign",
+          "Ad group",
+          "Ad type",
+          "Headline 1",
+          "Headline 2",
+          "Headline 3",
+          "Description",
+          "Description 2",
+          "Final URL"
+        ],
+        [
+          "Add",
+          "Paused",
+          "123-456-7890",
+          "Shoe Campaign",
+          "Sandals",
+          "Responsive search ad",
+          "This is the first headline",
+          "This is the second headline",
+          "This is the third headline",
+          "This is the first description",
+          "This is the second description",
+          "www.example.com"
+        ]
+      ],
+      "(Example 2) Create RSA": [
+        [
+          "Action",
+          "Ad status",
+          "Customer ID",
+          "Ad group ID",
+          "Ad type",
+          "Headline 1",
+          "Headline 1 position",
+          "Headline 2",
+          "Headline 3",
+          "Headline 4",
+          "Description",
+          "Description 2",
+          "Description 3",
+          "Final URL",
+          "Mobile final URL"
+        ],
+        [
+          "Add",
+          "Enabled",
+          "123-456-7890",
+          9876543210,
+          "Responsive search ad",
+          "This is the first headline",
+          1,
+          "This is the second headline",
+          "This is the third headline",
+          "This is the fourth headline",
+          "This is the first description",
+          "This is the second description",
+          "This is the third description",
+          "https://www.example.com",
+          "https://m.example.com"
+        ]
+      ]
+    }
+  }
+]

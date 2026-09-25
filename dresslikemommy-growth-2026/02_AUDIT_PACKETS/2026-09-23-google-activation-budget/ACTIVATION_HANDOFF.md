@@ -1,0 +1,13 @@
+# Google activation identity handoff
+
+## Google activation security handoff — September23 evening
+
+Superseding status: PARTIAL_BLOCKED_GOOGLE_IDENTITY_VERIFICATION. The user's latest “so make the campaign active!” authorizes the previously explained daily-budget replacement in context; earlier replacement-choice gates below are historical. Exact authority persists for USD20 average daily with existing Maximize Clicks checkedUSD0.20 maximum CPC, preserved US/English/Search-only/October10 end and source content, original pause before replacement activation. No cap raise, uncapped bidding, billing, tracking, shared-asset or peer change.
+
+Root task01a0d13a created only replacement wizard draft `DLM | GADS | US | EN | Search | 202609 | Daily`, campaign-form ID281499254360335 / draft10215473139, in its own Chrome tab475226553 after disclosed IAB control failure. This is not a published campaign ID or serving receipt. Google now displays “Confirm it's you” and “Changes failed to save.” Review shows USD20/day with Value is required, blank location summary and asset-optimization mismatch; all desired settings require saved-state reconciliation after verification. No ads/keywords were transferred, original24273103416 was not paused or otherwise changed by this execution, and no replacement activation occurred. Single API fallback stopped on OAuth400 invalid_grant; no credential changes or alternate authentication bypass.
+
+Owner next action: complete the Google identity check in the preserved Chrome DLM activation tab, then report completion. This is a platform access dependency, not another launch approval. Next3:1resume the same draft and reconcile/save/reopen all settings;2fresh-source copy/reconcile six groups/ads,48keywords, negatives and assets while replacement nonserving;3verify effective cap/modifiers, pause/read original, enable/read replacement. Independent activation_review DID_NOT_BUILD_OR_EXECUTE confirms this resume boundary. Overall sales, eligibility and serving remain unverified. Global paid-control NONE and READ_ONLY_MARKETING_RECONCILIATION remain unchanged outside this exact owner scope. Local shared-record interval RELEASED after closeout. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-23-google-activation-budget/ACTIVATION_HANDOFF.json` and `.md`. Continue canonical `ops/prompts/paid-growth-ai-army-continuation-prompt.md`, anchor `2026-09-23-google-activation-identity-handoff`.
+
+Observed at 2026-09-24T02:53:35.635563+00:00.
+
+Local closeout: cockpit rendered, integration25/25 with0risks, strict CONTINUITY_OK and scoped git diff --check passed. These are local record checks, not campaign activation proof.

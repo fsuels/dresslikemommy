@@ -1,0 +1,238 @@
+{
+  "status": "LOCAL_ONLY_NOT_UPLOADED_NOT_APPLIED",
+  "payloadSha256": "ed907007d8f22b6e6dca41119f3167a0df7302a859ba464825685c8ae82502ce",
+  "campaign": "DLM | GADS | US | EN | Search | 202609",
+  "files": [
+    {
+      "file": "01_ad_groups.PREVIEW_ONLY.csv",
+      "rowCount": 6,
+      "headers": [
+        "Row Type",
+        "Action",
+        "Ad group status",
+        "Campaign",
+        "Ad group",
+        "Ad group type",
+        "Default max. CPC"
+      ],
+      "statusColumn": "Ad group status",
+      "sourceFile": "native_ad_group_template.csv",
+      "sourceUrl": "https://www.gstatic.com/adwords/campaignmgmt/templates/ad_group_template.csv",
+      "schemaStatus": "MATCHES_NATIVE_ADVERTISED_TEMPLATE_HEADERS",
+      "sha256": "2bc515892ff7c94c2824b6a86813e326a335fb87db1fa04d6a4100efc0ef70e5",
+      "gates": [
+        "Parent campaign must resolve to the intended saved paused campaign.",
+        "USD account currency must be verified before applying bids.",
+        "Native Preview must accept Manual CPC and each row."
+      ]
+    },
+    {
+      "file": "02_keywords.PREVIEW_ONLY.csv",
+      "rowCount": 48,
+      "headers": [
+        "Row Type",
+        "Action",
+        "Keyword status",
+        "Campaign",
+        "Ad group",
+        "Keyword",
+        "Type",
+        "Default max. CPC"
+      ],
+      "statusColumn": "Keyword status",
+      "sourceFile": "native_keyword_template.csv",
+      "sourceUrl": "https://www.gstatic.com/adwords/campaignmgmt/templates/keyword_template.csv",
+      "schemaStatus": "MATCHES_NATIVE_ADVERTISED_TEMPLATE_HEADERS",
+      "sha256": "1b79a45b8dde65c72b3fe40efd308dc9553be1b52bc0aefa9190ac38b2f154f7",
+      "gates": [
+        "USD currency and intended paused parent must be verified.",
+        "Phrase bids intentionally inherit the ad-group default; exact bids explicitly override it.",
+        "Do not duplicate already saved draft keywords."
+      ]
+    },
+    {
+      "file": "03_responsive_search_ads.PREVIEW_ONLY.csv",
+      "rowCount": 6,
+      "headers": [
+        "Row Type",
+        "Action",
+        "Ad status",
+        "Campaign",
+        "Ad group",
+        "Ad type",
+        "Headline 1",
+        "Headline 2",
+        "Headline 3",
+        "Headline 4",
+        "Headline 5",
+        "Headline 6",
+        "Headline 7",
+        "Headline 8",
+        "Headline 9",
+        "Headline 10",
+        "Headline 11",
+        "Headline 12",
+        "Description 1",
+        "Description 2",
+        "Description 3",
+        "Description 4",
+        "Description 1 position",
+        "Path 1",
+        "Path 2",
+        "Final URL"
+      ],
+      "statusColumn": "Ad status",
+      "sourceFile": "native_responsive_search_ad_template.csv",
+      "sourceUrl": "https://www.gstatic.com/adwords/campaignmgmt/templates/responsive_search_ad_template.csv",
+      "schemaStatus": "MATCHES_NATIVE_ADVERTISED_TEMPLATE_HEADERS",
+      "sha256": "3ba304e15ddd1d0c4943f6a3ac1c4a962b0f6c7020c61f587f4629098e5fc1b5",
+      "gates": [
+        "All headline and remaining-description positions are omitted and stay unpinned on creation.",
+        "Reconcile already saved dress RSA before any Add action."
+      ]
+    },
+    {
+      "file": "04_campaign_negatives.PREVIEW_ONLY.csv",
+      "rowCount": 26,
+      "headers": [
+        "Row Type",
+        "Action",
+        "Keyword status",
+        "Level",
+        "Campaign",
+        "Ad group",
+        "Negative keyword",
+        "Type"
+      ],
+      "statusColumn": "Keyword status",
+      "sourceFile": "native_ad_group_negative_keyword_template.csv",
+      "sourceUrl": "https://www.gstatic.com/adwords/campaignmgmt/templates/ad_group_negative_keyword_template.csv",
+      "schemaStatus": "MATCHES_NATIVE_ADVERTISED_TEMPLATE_HEADERS",
+      "sha256": "c626685c5238da53839244c9bd07ff1e0b9fa5511fdafcdb3969ac34b4e25f84",
+      "gates": [
+        "The native template explicitly supports Level=Campaign but generically labels Ad group required; campaign-level rows deliberately leave Ad group blank and require Preview validation.",
+        "Paused negative rows are candidates only: do not claim exclusions are effective without native readback."
+      ]
+    },
+    {
+      "file": "05_ad_group_negatives.PREVIEW_ONLY.csv",
+      "rowCount": 41,
+      "headers": [
+        "Row Type",
+        "Action",
+        "Keyword status",
+        "Level",
+        "Campaign",
+        "Ad group",
+        "Negative keyword",
+        "Type"
+      ],
+      "statusColumn": "Keyword status",
+      "sourceFile": "native_ad_group_negative_keyword_template.csv",
+      "sourceUrl": "https://www.gstatic.com/adwords/campaignmgmt/templates/ad_group_negative_keyword_template.csv",
+      "schemaStatus": "MATCHES_NATIVE_ADVERTISED_TEMPLATE_HEADERS",
+      "sha256": "c8cb7b8f3ccd61a471a227a232e4d05ffbd39d5948d2b93353581a26867aaacf",
+      "gates": [
+        "All negative rows explicitly say Paused as requested; native support/semantics must be read back.",
+        "Receiving-group and deliberate-traffic-exclusion gates from payload.json remain prerequisites to any later effective routing."
+      ]
+    },
+    {
+      "file": "06_sitelink_associations.HELP_TEMPLATE_PREVIEW_ONLY.csv",
+      "rowCount": 14,
+      "headers": [
+        "Row Type",
+        "Action",
+        "Asset action",
+        "Level",
+        "Campaign",
+        "Ad group",
+        "Sitelink text",
+        "Description",
+        "Description 2",
+        "Final URL"
+      ],
+      "statusColumn": null,
+      "sourceFile": "help_create_sitelink.csv",
+      "sourceUrl": "https://storage.googleapis.com/support-kms-prod/er1LbgoAEsIctW1koPH6f4fDr7NNVDCKWPvh",
+      "schemaStatus": "MATCHES_OFFICIAL_HELP_TEMPLATE_HEADERS",
+      "sha256": "f0f65dab480aaee51d48ccca05a7198f19749cd65c0d0715f914292ee3e14577",
+      "uniqueContentDefinitions": 6,
+      "gates": [
+        "Six distinct content definitions are repeated across 14 requested associations, following Google's multiple-row guidance.",
+        "Actual unique asset object count/deduplication is unverified. Inspect inherited/existing assets before applying to avoid duplicates.",
+        "No asset status column is advertised here: these associations must stay confined to the exact verified paused campaign.",
+        "Destination and advertised-selection clearance remain required."
+      ]
+    },
+    {
+      "file": "07_callouts.HELP_TEMPLATE_PREVIEW_ONLY.csv",
+      "rowCount": 4,
+      "headers": [
+        "Row type",
+        "Action",
+        "Campaign",
+        "Ad group",
+        "Callout text"
+      ],
+      "statusColumn": null,
+      "sourceFile": "help_create_callout.csv",
+      "sourceUrl": "https://storage.googleapis.com/support-kms-prod/Tqa4nGJSfFLXLSuw0Z4G17HVZJ1nAQMpYH37",
+      "schemaStatus": "MATCHES_OFFICIAL_HELP_LEGACY_TEMPLATE_HEADERS_REQUIRES_NATIVE_PREVIEW",
+      "sha256": "0546b71bda8d7255992a2d1835b9de9d0e80d8ecc0aa57cb6270d7c4a683fc89",
+      "gates": [
+        "Blank Ad group follows the official campaign-level example; campaign scope is the explicit proposed operator inference in payload.json.",
+        "Parent reports four callouts already saved in the draft. Reconcile those instead of blindly adding these rows.",
+        "No supported status field exists in this template; only associate with the exact verified paused parent."
+      ]
+    },
+    {
+      "file": "08_structured_snippet.HELP_TEMPLATE_PREVIEW_ONLY.csv",
+      "rowCount": 1,
+      "headers": [
+        "Action",
+        "Campaign",
+        "Ad group",
+        "Structured snippet header",
+        "Structured snippet values"
+      ],
+      "statusColumn": null,
+      "sourceFile": "help_create_snippet.csv",
+      "sourceUrl": "https://storage.googleapis.com/support-kms-prod/EotlZJ2OljTMZYsB4Qx0a14sIJYwvqTU8Gpu",
+      "schemaStatus": "MATCHES_OFFICIAL_HELP_TEMPLATE_HEADERS_REQUIRES_NATIVE_PREVIEW",
+      "sha256": "346850c19b59f99e54ab1bd1ac52ca07f1d20e10589a69801ac82450f9e513ae",
+      "gates": [
+        "Only Mommy & Me Outfits receives this association.",
+        "No status field is advertised; parent campaign must be verified paused.",
+        "Destination/category clearance remains required."
+      ]
+    }
+  ],
+  "counts": {
+    "campaignCsvRows": 0,
+    "campaignStubRows": 1,
+    "adGroups": 6,
+    "positiveKeywords": 48,
+    "rsas": 6,
+    "headlines": 72,
+    "descriptions": 24,
+    "campaignNegatives": 26,
+    "adGroupNegatives": 41,
+    "uniqueSitelinkContents": 6,
+    "sitelinkAssociations": 14,
+    "callouts": 4,
+    "snippets": 1
+  },
+  "unsupportedOrUnverified": [
+    "No executable campaign CSV: budget type/amount/dates and USD currency remain unknown.",
+    "Advanced location Presence-only setting lacks a verified column in the downloaded native campaign schema.",
+    "Purchases-only campaign goal, conversion action identity/deduplication, consent and completed-order validity lack verified upload fields.",
+    "AI Max, text customization and final URL expansion toggles lack verified upload fields; do not infer paused bulk-created campaign defaults.",
+    "Native asset status columns are unverified/absent in the supplied asset templates. Asset rows require a verified paused parent.",
+    "Campaign-negative blank Ad group and all negative Paused status semantics need native Preview/readback; no claim of effective exclusions.",
+    "Callout/structured-snippet templates on the official Help page contain legacy examples and require current native Preview.",
+    "Sitelink asset object deduplication is unverified; 14 association rows carry six distinct definitions.",
+    "Existing draft contents and four already saved callouts require deduplication/reconciliation before Add; no claim that these files can amend the wizard draft.",
+    "No native upload or Preview has run for these files; schema-supported candidates are not platform acceptance or publication receipts."
+  ]
+}

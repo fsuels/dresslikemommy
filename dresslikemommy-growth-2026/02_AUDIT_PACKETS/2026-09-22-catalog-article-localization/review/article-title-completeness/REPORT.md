@@ -1,0 +1,11 @@
+Confidence: H for exhaustive author coverage and frozen-source bindings; final independent meaning approval is separately owned.
+
+All 1,340 published article title tuples (67 articles × 20 non-English languages) were manually read against the current frozen English titles. The inventory reconciles 178 titles with recorded successful releases and root's applied overlay. This preserves the root's broader German/Dutch swimwear wording. No English source, API, provider, Git, browser, or canonical files were changed.
+
+175 full-title corrections were authored across 19 languages, with 1,165 effective titles retained. Swedish's 67 titles require no additional correction. The author candidates are frozen in candidate_batch_01.json (81), candidate_batch_02.json (94), and candidates_all.json (175). The independent reviewer is article_de_complete; it has identified four precise refinements and is preparing a final independently reviewed index. Do not release the original four values when the independent index is available.
+
+Findings include mixed-English German/Dutch/Italian/Polish/Greek text, Czech custom-made-pajama wording absent from source, Korean Mother's Day incorrectly changed to Parents' Day, omitted matching-outfit meaning, holiday wording incorrectly changed to vacations, corrupted underscores and narrowed swimsuit categories. Ordinary native fashion loans and established holiday names remain where appropriate.
+
+checks.json passes complete raw-file, source-value, opaque digest, raw-before and effective-before bindings. Each candidate includes the exact expected before-value hash, source digest and its provenance. One correction uses a prior applied title as its before value; the remaining 174 use unchanged raw values. Numeric tokens match except audit813, where English January correctly becomes Korean 1월. No title measurements, years or quantities are invented.
+
+coverage_ledger.json records every tuple and whether it was retained or corrected; checks.json records counts, hashes and before provenance. Source-policy disputes in article bodies do not create blanket title holds. Root must perform fresh source/before/publication guards, integrate the independently approved values, release, sync and verify live.

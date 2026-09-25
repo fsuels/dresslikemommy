@@ -1,0 +1,1934 @@
+{
+  "result": "PASS_LOCAL_WITH_DOCUMENTED_LIMITATIONS",
+  "source_sha256": "46aa62a912cc20f9e88d037e045da5c8ba6c1b88e5a5db5df437fb3565e3aa05",
+  "counts": {
+    "groups": 8,
+    "positive_keywords": 144,
+    "headlines": 120,
+    "descriptions": 32,
+    "campaign_polish_phrase_negatives": 145,
+    "campaign_english_phrase_negatives": 84,
+    "campaign_phrase_negatives": 229,
+    "campaign_exact_negatives": 18,
+    "campaign_total_negatives": 247,
+    "group_negatives": 64,
+    "conditional_group_negatives": 31,
+    "sitelinks": 8,
+    "sitelink_associations": 32,
+    "callouts": 6,
+    "structured_snippets": 8,
+    "supplied_image_text_pairs": 0
+  },
+  "errors": [],
+  "within_scope_duplicate_keyword_entries": [],
+  "cross_group_duplicate_positive_entries": [],
+  "literal_positive_negative_conflicts": [],
+  "discrepancies": [
+    {
+      "field": "image_text_pairs",
+      "attachment_claimed": 160,
+      "actually_supplied": 0,
+      "action": "Parent must read existing native image text or obtain actual attachment; do not fabricate."
+    },
+    {
+      "field": "target_market",
+      "attachment": "US",
+      "current_request": "PL",
+      "action": "Current explicit Poland/Polish scope wins."
+    },
+    {
+      "field": "campaign_name_settings_row",
+      "attachment": "`DLM",
+      "action": "Malformed pasted table row; use exact current user campaign name."
+    }
+  ],
+  "validation_scope": "Counts; Unicode character lengths against attachment-stated limits; within-scope casefold duplicate tuples; token-normalized literal Phrase/Exact exclusion checks. No live or semantic matching validation.",
+  "length_checks": [
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Sukienki dla mamy i córki",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Takie same sukienki dla Was",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Odkryj sukienki mama i ja",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Kwiatowe wzory dla Was obu",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Długie sukienki w jednym stylu",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Sukienki na wspólne zdjęcia",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Każda sukienka osobno",
+      "length": 21,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Wybierz rozmiar dla każdej",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Falbanki i kwiatowe wzory",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Sukienki na wyjątkowe chwile",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Wasze stylizacje na wakacje",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Znajdź Wasz ulubiony wzór",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Świętujcie urodziny razem",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Zobacz pasujące sukienki",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "headlines",
+      "text": "Kupuj w Dress Like Mommy",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "descriptions",
+      "text": "Odkryj sukienki dla mamy i córki. Wybierz każdą sukienkę i jej rozmiar osobno.",
+      "length": 78,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "descriptions",
+      "text": "Takie same sukienki dla mamy i córki w kwiaty i z falbankami. Porównaj oba rozmiary.",
+      "length": 84,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "descriptions",
+      "text": "Sukienki mama i ja na wakacje, urodziny i wspólne zdjęcia. Wybierz Wasz ulubiony fason.",
+      "length": 87,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "descriptions",
+      "text": "Sprawdź wymiary i przewidywaną dostawę przed zamówieniem na konkretną okazję.",
+      "length": 77,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "path_1",
+      "text": "mama-i-corka",
+      "length": 12,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "path_2",
+      "text": "sukienki",
+      "length": 8,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "snippet_value",
+      "text": "Kwiatowe",
+      "length": 8,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "snippet_value",
+      "text": "Z falbankami",
+      "length": 12,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki dla mamy i córki",
+      "field": "snippet_value",
+      "text": "Maxi",
+      "length": 4,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Jednakowe ubrania dla rodziny",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Ten sam styl dla całej rodziny",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Połącz koszule i sukienki",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Stroje na rodzinne zdjęcia",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Stwórz wspólną stylizację",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Dla mamy, taty i dzieci",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Każda rzecz kupowana osobno",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Dobierz rozmiar dla każdego",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Wspólny styl na wakacje",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Dla dorosłych i dla dzieci",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Wybierzcie wspólne wzory",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Ubrania na chwile razem",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Stylizacje na zjazd rodzinny",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Odkryj pasujące ubrania",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "headlines",
+      "text": "Kupuj w Dress Like Mommy",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "descriptions",
+      "text": "Jednakowe ubrania dla rodziny na zdjęcia i wakacje. Wybierz każdą rzecz i rozmiar osobno.",
+      "length": 89,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "descriptions",
+      "text": "Pasujące ubrania dla rodziny: koszule i sukienki. Stwórz stylizację dla każdej osoby.",
+      "length": 85,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "descriptions",
+      "text": "Takie same ubrania dla całej rodziny. Porównaj wzory i wybierz rzeczy oraz rozmiary.",
+      "length": 84,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "descriptions",
+      "text": "Sprawdź wymiary każdej osoby i przewidywaną dostawę przed zamówieniem na zdjęcia.",
+      "length": 81,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "path_1",
+      "text": "rodzina",
+      "length": 7,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "path_2",
+      "text": "ubrania",
+      "length": 7,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "snippet_value",
+      "text": "Sukienki",
+      "length": 8,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "snippet_value",
+      "text": "Koszule",
+      "length": 7,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla całej rodziny",
+      "field": "snippet_value",
+      "text": "Komplety",
+      "length": 8,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Koszule dla całej rodziny",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Jednakowe koszulki rodzinne",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Pasujące bluzki dla rodziny",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Odkryj koszule i T-shirty",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Jeden wzór dla dużych i małych",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Koszulki na rodzinne zdjęcia",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Każda rzecz kupowana osobno",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Porównaj rozmiary dla każdego",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Kwiaty i paski dla rodziny",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Dla dorosłych i dla dzieci",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Ten sam styl na wakacjach",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Znajdź Wasz ulubiony wzór",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Ubrania na wspólne dni",
+      "length": 22,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Zobacz rodzinne koszule",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "headlines",
+      "text": "Kupuj w Dress Like Mommy",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "descriptions",
+      "text": "Odkryj jednakowe koszule dla rodziny. Wybierz każdą rzecz i każdy rozmiar osobno.",
+      "length": 81,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "descriptions",
+      "text": "Jednakowe koszulki dla rodziny i koszule na guziki na wspólne zdjęcia oraz wakacje.",
+      "length": 83,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "descriptions",
+      "text": "Jednakowe bluzki dla rodziny w kwiaty lub paski. Porównaj modele i wymiary przed zakupem.",
+      "length": 89,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "descriptions",
+      "text": "Sprawdź rozmiary dla dorosłych i dzieci oraz przewidywaną dostawę przed zakupem.",
+      "length": 80,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "path_1",
+      "text": "rodzina",
+      "length": 7,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "path_2",
+      "text": "koszule",
+      "length": 7,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "snippet_value",
+      "text": "Koszule",
+      "length": 7,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "snippet_value",
+      "text": "Koszulki",
+      "length": 8,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki rodzinne",
+      "field": "snippet_value",
+      "text": "Bluzki",
+      "length": 6,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Jednakowe piżamy mama i córka",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Takie same piżamy dla Was",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Odkryj piżamy mama i ja",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Krótki lub długi rękaw",
+      "length": 22,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Piżamy z tym samym wzorem",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Wybierzcie ulubione wzory",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Komplet piżamy dla każdej",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Wybierz każdy rozmiar osobno",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Wspólny styl na odpoczynek",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Piżamy krótkie i długie",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Razem przy śniadaniu",
+      "length": 20,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Piżamy dla mamy i jej córki",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Sprawdź tabelę rozmiarów",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Znajdź Wasze nowe piżamy",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "headlines",
+      "text": "Kupuj w Dress Like Mommy",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "descriptions",
+      "text": "Jednakowe piżamy dla mamy i córki. Wybierz osobny komplet i rozmiar dla każdej z Was.",
+      "length": 85,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "descriptions",
+      "text": "Takie same piżamy dla mamy i córki z krótkim lub długim rękawem i pasującymi wzorami.",
+      "length": 85,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "descriptions",
+      "text": "Piżamy mama i ja z szortami lub długimi spodniami. Porównaj wzory i wymiary obu rozmiarów.",
+      "length": 90,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "descriptions",
+      "text": "Sprawdź rozmiar każdej osoby i opcje dostawy przed zakończeniem zakupów w sklepie.",
+      "length": 82,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "path_1",
+      "text": "mama-i-corka",
+      "length": 12,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "path_2",
+      "text": "pizamy",
+      "length": 6,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "snippet_value",
+      "text": "Piżamy z krótkim rękawem",
+      "length": 24,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "snippet_value",
+      "text": "Piżamy z długim rękawem",
+      "length": 23,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy dla mamy i córki",
+      "field": "snippet_value",
+      "text": "Piżamy z szortami",
+      "length": 17,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Jednakowe koszule tata i syn",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Koszule dla taty i syna",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Hawajskie koszule dla obu",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Tata i syn w tym samym stylu",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Tropikalne wzory dla Was",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Koszule na guziki dla obu",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Każda koszula osobno",
+      "length": 20,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Porównaj rozmiary dla obu",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Razem na rodzinnym zdjęciu",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Koszule na Wasze wakacje",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Krótki rękaw dla taty i syna",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Wspólny wzór dla taty i syna",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Koszule męskie i chłopięce",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Wybierzcie ulubiony wzór",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "headlines",
+      "text": "Kupuj w Dress Like Mommy",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "descriptions",
+      "text": "Jednakowe koszule dla taty i syna. Wybierz każdą koszulę i jej rozmiar osobno.",
+      "length": 78,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "descriptions",
+      "text": "Takie same koszule dla taty i syna na guziki, z tropikalnymi wzorami na zdjęcia i wakacje.",
+      "length": 90,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "descriptions",
+      "text": "Odkryj hawajskie koszule dla taty i syna. Porównaj wzory i wymiary przed wyjazdem.",
+      "length": 82,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "descriptions",
+      "text": "Sprawdź rozmiary i przewidywany termin dostawy przed zamówieniem na konkretną okazję.",
+      "length": 85,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "path_1",
+      "text": "tata-i-syn",
+      "length": 10,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "path_2",
+      "text": "koszule",
+      "length": 7,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "snippet_value",
+      "text": "Hawajski",
+      "length": 8,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "snippet_value",
+      "text": "Tropikalny",
+      "length": 10,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Koszule dla taty i syna",
+      "field": "snippet_value",
+      "text": "Kwiatowy",
+      "length": 8,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Jednakowe ubrania mama i córka",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Takie same ubrania dla Was",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Odkryj kolekcję mama i ja",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Dwie stylizacje w jednym stylu",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Łącz sukienki i komplety",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Wybierz każdą rzecz osobno",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Jeden wzór dla mamy i córki",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Gotowe na wspólną sesję",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Wasze stylizacje na wakacje",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Dobierz rozmiar każdej osoby",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Pasujące bluzki i spódnice",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Świętujcie urodziny w duecie",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Stwórz Wasz ulubiony zestaw",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Porównaj Wasze wymiary",
+      "length": 22,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "headlines",
+      "text": "Kupuj w Dress Like Mommy",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "descriptions",
+      "text": "Jednakowe ubrania dla mamy i córki. Wybierz każdą rzecz i jej rozmiar osobno.",
+      "length": 77,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "descriptions",
+      "text": "Takie same ubrania dla mamy i córki: sukienki, bluzki i spódnice. Połącz ulubione wzory.",
+      "length": 88,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "descriptions",
+      "text": "Ubrania mama i ja na zdjęcia, urodziny i wakacje. Porównaj modele i rozmiary dla Was obu.",
+      "length": 89,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "descriptions",
+      "text": "Cena dotyczy wybranego artykułu. Sprawdź wymiary i termin dostawy przed zakupem.",
+      "length": 80,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "path_1",
+      "text": "mama-i-corka",
+      "length": 12,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "path_2",
+      "text": "stylizacje",
+      "length": 10,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "snippet_value",
+      "text": "Sukienki",
+      "length": 8,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "snippet_value",
+      "text": "Komplety",
+      "length": 8,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje dla mamy i córki",
+      "field": "snippet_value",
+      "text": "Spódnice",
+      "length": 8,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Stroje kąpielowe mama i córka",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Jednakowe kostiumy dla Was",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Moda kąpielowa mama i ja",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Odkryj bikini i kostiumy",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Stroje ze spódniczką dla obu",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Wzory na dni nad basenem",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Razem w tym samym stylu",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Każdy kostium kupujesz osobno",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Porównaj rozmiary dla obu",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Jeden styl na wakacjach",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Kwiaty i falbanki dla Was",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Znajdź Wasze nowe kostiumy",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Bikini dla mamy i córki",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Sprawdź warunki zwrotów",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "headlines",
+      "text": "Kupuj w Dress Like Mommy",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "descriptions",
+      "text": "Jednakowe stroje kąpielowe dla mamy i córki. Wybierz każdy kostium i rozmiar osobno.",
+      "length": 84,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "descriptions",
+      "text": "Odkryj takie same kostiumy kąpielowe dla mamy i córki, bikini oraz modele ze spódniczką.",
+      "length": 88,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "descriptions",
+      "text": "Stroje kąpielowe mama i ja w kwiaty i z falbankami. Porównaj wzory i oba rozmiary.",
+      "length": 82,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "descriptions",
+      "text": "Przeczytaj warunki zwrotów strojów kąpielowych i sprawdź termin dostawy przed wyjazdem.",
+      "length": 87,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "path_1",
+      "text": "mama-i-corka",
+      "length": 12,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "path_2",
+      "text": "stroje",
+      "length": 6,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "snippet_value",
+      "text": "Bikini",
+      "length": 6,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "snippet_value",
+      "text": "Stroje jednoczęściowe",
+      "length": 21,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe mama i córka",
+      "field": "snippet_value",
+      "text": "Tankini",
+      "length": 7,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Jednakowe swetry dla rodziny",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Swetry dla całej rodziny",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Takie same swetry mama i córka",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Kardigany w jednym stylu",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Odkryj bluzy i swetry",
+      "length": 21,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Serduszka i wzory w warkocze",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Ubrania na chłodniejsze dni",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Każdy sweter kupujesz osobno",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Wybierz rozmiar dla każdego",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Razem na rodzinnym zdjęciu",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Dzianiny w rodzinnym stylu",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Sprawdź tabelę rozmiarów",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Znajdź Wasze nowe swetry",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Wspólny styl na weekend",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "headlines",
+      "text": "Kupuj w Dress Like Mommy",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "descriptions",
+      "text": "Jednakowe swetry dla rodziny na zdjęcia i chłodniejsze dni. Każdą rzecz wybierasz osobno.",
+      "length": 89,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "descriptions",
+      "text": "Takie same swetry dla całej rodziny, kardigany i bluzy. Porównaj modele oraz rozmiary.",
+      "length": 86,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "descriptions",
+      "text": "Odkryj jednakowe swetry dla mamy i córki w serduszka i warkocze na wspólne chwile.",
+      "length": 82,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "descriptions",
+      "text": "Sprawdź wymiary każdej osoby i przewidywany termin dostawy przed rodzinną sesją zdjęciową.",
+      "length": 90,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "path_1",
+      "text": "rodzina",
+      "length": 7,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "path_2",
+      "text": "swetry",
+      "length": 6,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "snippet_value",
+      "text": "Swetry",
+      "length": 6,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "snippet_value",
+      "text": "Kardigany",
+      "length": 9,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Swetry i bluzy dla rodziny",
+      "field": "snippet_value",
+      "text": "Bluzy z kapturem",
+      "length": 16,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki mama i córka",
+      "field": "sitelink_text",
+      "text": "Sukienki mama i córka",
+      "length": 21,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki mama i córka",
+      "field": "sitelink_description_1",
+      "text": "Odkryj pasujące sukienki",
+      "length": 24,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Sukienki mama i córka",
+      "field": "sitelink_description_2",
+      "text": "Wybierz Wasze rozmiary osobno",
+      "length": 29,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla rodziny",
+      "field": "sitelink_text",
+      "text": "Ubrania dla rodziny",
+      "length": 19,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla rodziny",
+      "field": "sitelink_description_1",
+      "text": "Połącz sukienki i koszule",
+      "length": 25,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Ubrania dla rodziny",
+      "field": "sitelink_description_2",
+      "text": "Wybierz rzeczy dla każdej osoby",
+      "length": 31,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki",
+      "field": "sitelink_text",
+      "text": "Koszule i koszulki",
+      "length": 18,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki",
+      "field": "sitelink_description_1",
+      "text": "Koszule i koszulki w jednym stylu",
+      "length": 33,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Koszule i koszulki",
+      "field": "sitelink_description_2",
+      "text": "Porównaj rozmiary i wzory",
+      "length": 25,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy mama i córka",
+      "field": "sitelink_text",
+      "text": "Piżamy mama i córka",
+      "length": 19,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy mama i córka",
+      "field": "sitelink_description_1",
+      "text": "Odkryj krótki i długi rękaw",
+      "length": 27,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Piżamy mama i córka",
+      "field": "sitelink_description_2",
+      "text": "Komplet piżamy dla każdej osoby",
+      "length": 31,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Koszule tata i syn",
+      "field": "sitelink_text",
+      "text": "Koszule tata i syn",
+      "length": 18,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Koszule tata i syn",
+      "field": "sitelink_description_1",
+      "text": "Tropikalne wzory dla Was obu",
+      "length": 28,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Koszule tata i syn",
+      "field": "sitelink_description_2",
+      "text": "Pasujące koszule na guziki",
+      "length": 26,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje mama i córka",
+      "field": "sitelink_text",
+      "text": "Stylizacje mama i córka",
+      "length": 23,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje mama i córka",
+      "field": "sitelink_description_1",
+      "text": "Odkryj sukienki i komplety",
+      "length": 26,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Stylizacje mama i córka",
+      "field": "sitelink_description_2",
+      "text": "Stwórz Wasze własne stylizacje",
+      "length": 30,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe",
+      "field": "sitelink_text",
+      "text": "Stroje kąpielowe",
+      "length": 16,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe",
+      "field": "sitelink_description_1",
+      "text": "Bikini, kostiumy i tankini",
+      "length": 26,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Stroje kąpielowe",
+      "field": "sitelink_description_2",
+      "text": "Sprawdź wymiary i zasady zwrotu",
+      "length": 31,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Swetry dla rodziny",
+      "field": "sitelink_text",
+      "text": "Swetry dla rodziny",
+      "length": 18,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Swetry dla rodziny",
+      "field": "sitelink_description_1",
+      "text": "Odkryj swetry, kardigany i bluzy",
+      "length": 32,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Swetry dla rodziny",
+      "field": "sitelink_description_2",
+      "text": "Porównaj rozmiary przed zakupem",
+      "length": 31,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "campaign",
+      "field": "callout",
+      "text": "Dobierz każdy rozmiar",
+      "length": 21,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "campaign",
+      "field": "callout",
+      "text": "Każda rzecz osobno",
+      "length": 18,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "campaign",
+      "field": "callout",
+      "text": "Wspólny styl dla rodziny",
+      "length": 24,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "campaign",
+      "field": "callout",
+      "text": "Odkryj pasujące wzory",
+      "length": 21,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "campaign",
+      "field": "callout",
+      "text": "Dla dużych i małych",
+      "length": 19,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "campaign",
+      "field": "callout",
+      "text": "Porównaj wymiary",
+      "length": 16,
+      "limit": 25,
+      "pass": true
+    }
+  ],
+  "per_group_counts": [
+    {
+      "index": 1,
+      "name": "Sukienki dla mamy i córki",
+      "positive": 17,
+      "positive_exact": 7,
+      "positive_phrase": 10,
+      "negative": 10,
+      "negative_match_types": {
+        "Phrase": 10
+      },
+      "conditional": false,
+      "headlines": 15,
+      "descriptions": 4
+    },
+    {
+      "index": 2,
+      "name": "Ubrania dla całej rodziny",
+      "positive": 20,
+      "positive_exact": 9,
+      "positive_phrase": 11,
+      "negative": 10,
+      "negative_match_types": {
+        "Exact": 10
+      },
+      "conditional": true,
+      "headlines": 15,
+      "descriptions": 4
+    },
+    {
+      "index": 3,
+      "name": "Koszule i koszulki rodzinne",
+      "positive": 18,
+      "positive_exact": 7,
+      "positive_phrase": 11,
+      "negative": 6,
+      "negative_match_types": {
+        "Exact": 6
+      },
+      "conditional": false,
+      "headlines": 15,
+      "descriptions": 4
+    },
+    {
+      "index": 4,
+      "name": "Piżamy dla mamy i córki",
+      "positive": 17,
+      "positive_exact": 7,
+      "positive_phrase": 10,
+      "negative": 0,
+      "negative_match_types": {},
+      "conditional": false,
+      "headlines": 15,
+      "descriptions": 4
+    },
+    {
+      "index": 5,
+      "name": "Koszule dla taty i syna",
+      "positive": 15,
+      "positive_exact": 7,
+      "positive_phrase": 8,
+      "negative": 9,
+      "negative_match_types": {
+        "Phrase": 9
+      },
+      "conditional": false,
+      "headlines": 15,
+      "descriptions": 4
+    },
+    {
+      "index": 6,
+      "name": "Stylizacje dla mamy i córki",
+      "positive": 16,
+      "positive_exact": 7,
+      "positive_phrase": 9,
+      "negative": 21,
+      "negative_match_types": {
+        "Exact": 21
+      },
+      "conditional": true,
+      "headlines": 15,
+      "descriptions": 4
+    },
+    {
+      "index": 7,
+      "name": "Stroje kąpielowe mama i córka",
+      "positive": 18,
+      "positive_exact": 6,
+      "positive_phrase": 12,
+      "negative": 0,
+      "negative_match_types": {},
+      "conditional": false,
+      "headlines": 15,
+      "descriptions": 4
+    },
+    {
+      "index": 8,
+      "name": "Swetry i bluzy dla rodziny",
+      "positive": 23,
+      "positive_exact": 12,
+      "positive_phrase": 11,
+      "negative": 8,
+      "negative_match_types": {
+        "Phrase": 8
+      },
+      "conditional": false,
+      "headlines": 15,
+      "descriptions": 4
+    }
+  ]
+}

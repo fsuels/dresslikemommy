@@ -1,0 +1,717 @@
+{{ 'component-card.css' | asset_url | stylesheet_tag }}
+{{ 'component-article-card.css' | asset_url | stylesheet_tag }}
+{{ 'section-blog-post.css' | asset_url | stylesheet_tag }}
+
+{%- liquid
+  assign journal_label = blog.title
+  if blog.handle == 'news'
+    assign journal_label = 'storefront.journal.title' | t
+  endif
+-%}
+
+<article class="article-template" itemscope itemtype="https://schema.org/BlogPosting">
+  <nav class="article-template__breadcrumb page-width page-width--narrow" aria-label="{{ 'storefront.article.breadcrumbs_label' | t }}">
+    <a href="{{ routes.root_url }}">{{ 'sections.breadcrumbs.home' | t }}</a>
+    <span aria-hidden="true">&rsaquo;</span>
+    <a href="{{ blog.url }}">{{ journal_label }}</a>
+    <span aria-hidden="true">&rsaquo;</span>
+    <span>{{ article.title | escape }}</span>
+  </nav>
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when '@app' -%}
+        <div class="page-width page-width--narrow">
+          {% render block %}
+        </div>
+      {%- when 'featured_image' -%}
+        {%- if article.image or blog.handle == 'news' -%}
+          <div
+            class="article-template__hero-container{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+            {{ block.shopify_attributes }}
+          >
+            {%- if blog.handle == 'news' -%}
+              {%- capture article_fallback_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
+              {%- capture article_fallback_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
+              {%- capture article_fallback_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
+              {%- capture article_fallback_image_alt -%}{% render 'article-featured-image-fallback', article: article, field: 'alt' %}{%- endcapture -%}
+              <div class="article-template__hero-{{ block.settings.image_height }} media article-template__hero-fallback" itemprop="image">
+                {% comment %}theme-check-disable RemoteAsset{% endcomment %}
+                <img
+                  src="{{ article_fallback_image_url | strip }}"
+                  loading="eager"
+                  fetchpriority="high"
+                  width="{{ article_fallback_image_width | strip | default: 1200 }}"
+                  height="{{ article_fallback_image_height | strip | default: 1500 }}"
+                  alt="{{ article_fallback_image_alt | strip | default: article.title | escape }}"
+                >
+                {% comment %}theme-check-enable RemoteAsset{% endcomment %}
+              </div>
+            {%- elsif article.image -%}
+              <div
+                class="article-template__hero-{{ block.settings.image_height }} media"
+                itemprop="image"
+                {% if block.settings.image_height == 'adapt' and article.image %}
+                  style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
+                {% endif %}
+              >
+                <img
+                  srcset="
+                    {% if article.image.width >= 350 %}{{ article.image | image_url: width: 350 }} 350w,{% endif %}
+                    {% if article.image.width >= 750 %}{{ article.image | image_url: width: 750 }} 750w,{% endif %}
+                    {% if article.image.width >= 1100 %}{{ article.image | image_url: width: 1100 }} 1100w,{% endif %}
+                    {% if article.image.width >= 1500 %}{{ article.image | image_url: width: 1500 }} 1500w,{% endif %}
+                    {% if article.image.width >= 2200 %}{{ article.image | image_url: width: 2200 }} 2200w,{% endif %}
+                    {% if article.image.width >= 3000 %}{{ article.image | image_url: width: 3000 }} 3000w,{% endif %}
+                    {{ article.image | image_url }} {{ article.image.width }}w
+                  "
+                  sizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 }}px, (min-width: 750px) calc(100vw - 10rem), 100vw"
+                  src="{{ article.image | image_url: width: 1100 }}"
+                  loading="eager"
+                  fetchpriority="high"
+                  width="{{ article.image.width }}"
+                  height="{{ article.image.height }}"
+                  alt="{{ article.image.alt | default: article.title | escape }}"
+                >
+              </div>
+            {%- else -%}
+              {%- capture article_fallback_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
+              {%- capture article_fallback_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
+              {%- capture article_fallback_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
+              {%- capture article_fallback_image_alt -%}{% render 'article-featured-image-fallback', article: article, field: 'alt' %}{%- endcapture -%}
+              <div class="article-template__hero-{{ block.settings.image_height }} media article-template__hero-fallback" itemprop="image">
+                {% comment %}theme-check-disable RemoteAsset{% endcomment %}
+                <img
+                  src="{{ article_fallback_image_url | strip }}"
+                  loading="eager"
+                  fetchpriority="high"
+                  width="{{ article_fallback_image_width | strip | default: 1200 }}"
+                  height="{{ article_fallback_image_height | strip | default: 1500 }}"
+                  alt="{{ article_fallback_image_alt | strip | default: article.title | escape }}"
+                >
+                {% comment %}theme-check-enable RemoteAsset{% endcomment %}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+
+      {%- when 'title' -%}
+        <header
+          class="article-template__header page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          <p class="article-template__eyebrow">{{ journal_label }}</p>
+          <h1
+            class="article-template__title"
+            itemprop="headline"
+          >
+            {{ article.title | escape }}
+          </h1>
+          {%- if block.settings.blog_show_date or block.settings.blog_show_author -%}
+            <div class="article-template__meta caption-with-letter-spacing">
+              {%- if block.settings.blog_show_date -%}
+                <span
+                  class="{% if block.settings.blog_show_author %}circle-divider{% endif %}"
+                  itemprop="dateCreated pubdate datePublished"
+                >
+                  {{- article.published_at | time_tag: format: 'date' -}}
+                </span>
+              {%- endif -%}
+              {%- if block.settings.blog_show_author -%}
+                <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                  <span itemprop="name">{{ article.author }}</span>
+                </span>
+                <span class="article-template__author-credential">{{ 'storefront.article.author_credential' | t }}</span>
+              {%- endif -%}
+            </div>
+          {%- endif -%}
+          <div class="article-template__read-time">
+            <span>{{ article.content | strip_html | split: ' ' | size | divided_by: 200 | at_least: 1 }} {{ 'storefront.journal.read_time' | t }}</span>
+          </div>
+        </header>
+
+      {%- when 'content' -%}
+        <div
+          class="article-template__content page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          itemprop="articleBody"
+          {{ block.shopify_attributes }}
+        >
+          <nav class="article-toc" aria-label="{{ 'storefront.article.contents_aria_label' | t }}">
+            <p class="article-toc__label">{{ 'storefront.article.contents_label' | t }}</p>
+            <ol class="article-toc__list" id="article-toc-list"></ol>
+          </nav>
+          {{ article.content }}
+        </div>
+        {% render 'style-journal-internal-links', mode: 'article_inline_cta_data', article: article %}
+        <script>
+          (function() {
+            var content = document.querySelector('.article-template__content');
+            var tocList = document.getElementById('article-toc-list');
+            if (!content || !tocList) return;
+            var headings = content.querySelectorAll('h2');
+            if (headings.length < 2) { var toc = content.querySelector('.article-toc'); if (toc) toc.style.display = 'none'; return; }
+            headings.forEach(function(h, i) {
+              var id = 'section-' + (i + 1); h.setAttribute('id', id);
+              var li = document.createElement('li'); var a = document.createElement('a');
+              a.href = '#' + id; a.textContent = h.textContent; li.appendChild(a); tocList.appendChild(li);
+            });
+          })();
+        </script>
+        <script>
+          (function() {
+            var content = document.querySelector('.article-template__content');
+            if (!content) return;
+            var paragraphs = content.querySelectorAll('p');
+            if (paragraphs.length < 6) return;
+            var ctaData = document.querySelector('.article-template__inline-cta-data');
+            var ctaText = ctaData && ctaData.getAttribute('data-inline-cta-text') || {% if request.locale.iso_code == 'en' %}{{ 'Ready to start matching?' | json }}{% else %}{{ 'storefront.article.inline_cta_text' | t | json }}{% endif %};
+            var ctaLabel = ctaData && ctaData.getAttribute('data-inline-cta-label') || {% if request.locale.iso_code == 'en' %}{{ 'Shop Matching Outfits' | json }}{% else %}{{ 'storefront.article.inline_cta_label' | t | json }}{% endif %};
+            var ctaUrl = ctaData && ctaData.getAttribute('data-inline-cta-url') || {{ routes.collections_url | append: '/matching-outfits' | json }};
+            var midPoint = Math.floor(paragraphs.length * 0.4);
+            var cta = document.createElement('div');
+            cta.className = 'article-cta-inline';
+            var ctaCopy = document.createElement('p');
+            ctaCopy.className = 'article-cta-inline__text';
+            ctaCopy.textContent = ctaText;
+            var ctaLink = document.createElement('a');
+            ctaLink.href = ctaUrl;
+            ctaLink.className = 'article-cta-inline__button button';
+            ctaLink.textContent = ctaLabel;
+            if (ctaData) {
+              ctaLink.setAttribute('data-style-journal-link', 'true');
+              ctaLink.setAttribute('data-style-journal-link-type', 'collection');
+              ctaLink.setAttribute('data-style-journal-link-placement', 'article_inline_cta');
+              ctaLink.setAttribute('data-style-journal-source-article-handle', ctaData.getAttribute('data-inline-cta-article-handle') || '');
+              ctaLink.setAttribute('data-style-journal-destination-handle', ctaData.getAttribute('data-inline-cta-collection-handle') || '');
+              ctaLink.setAttribute('data-style-journal-destination-title', ctaLabel);
+            }
+            cta.appendChild(ctaCopy);
+            cta.appendChild(ctaLink);
+            paragraphs[midPoint].parentNode.insertBefore(cta, paragraphs[midPoint].nextSibling);
+          })();
+        </script>
+        {%- liquid
+          assign recommended_products = article.metafields.custom.recommended_products.value
+        -%}
+        {%- capture recommended_products_markup -%}
+            {%- if recommended_products != blank -%}
+              {%- for recommended_product in recommended_products limit: 3 -%}
+                {%- if recommended_product == blank or recommended_product.url == blank -%}
+                  {% continue %}
+                {%- endif -%}
+                {%- capture recommended_product_alt -%}
+                  {% render 'product-image-alt', product: recommended_product, media: recommended_product.featured_media %}
+                {%- endcapture -%}
+                {%- assign recommended_product_alt = recommended_product_alt | strip -%}
+              <article class="article-template__recommended-product">
+                <a href="{{ recommended_product.url }}" class="article-template__recommended-product-image">
+                  {%- if recommended_product.featured_media -%}
+                    <img
+                      srcset="
+                        {%- if recommended_product.featured_media.width >= 320 -%}{{ recommended_product.featured_media | image_url: width: 320 }} 320w,{%- endif -%}
+                        {%- if recommended_product.featured_media.width >= 480 -%}{{ recommended_product.featured_media | image_url: width: 480 }} 480w,{%- endif -%}
+                        {%- if recommended_product.featured_media.width >= 640 -%}{{ recommended_product.featured_media | image_url: width: 640 }} 640w,{%- endif -%}
+                        {{ recommended_product.featured_media | image_url }} {{ recommended_product.featured_media.width }}w
+                      "
+                      sizes="(min-width: 990px) 22rem, (min-width: 750px) calc((100vw - 12rem) / 3), calc(100vw - 7rem)"
+                      src="{{ recommended_product.featured_media | image_url: width: 480 }}"
+                      alt="{{ recommended_product_alt | escape }}"
+                      loading="lazy"
+                      width="{{ recommended_product.featured_media.width }}"
+                      height="{{ recommended_product.featured_media.height }}"
+                    >
+                  {%- else -%}
+                    {{ 'product-apparel-2' | placeholder_svg_tag: 'article-template__recommended-product-placeholder placeholder-svg' }}
+                  {%- endif -%}
+                </a>
+                <div class="article-template__recommended-product-info">
+                  <h3 class="article-template__recommended-product-title">
+                    <a href="{{ recommended_product.url }}">{{ recommended_product.title | escape }}</a>
+                  </h3>
+                  {% render 'price', product: recommended_product, use_variant: true, price_class: 'article-template__recommended-price' %}
+                  <a
+                    href="{{ recommended_product.url }}"
+                    class="article-template__recommended-product-link"
+                    data-style-journal-link="true"
+                    data-style-journal-link-type="product"
+                    data-style-journal-link-placement="article_recommended_products"
+                    data-style-journal-source-article-handle="{{ article.handle | escape }}"
+                    data-style-journal-destination-handle="{{ recommended_product.handle | escape }}"
+                    data-style-journal-destination-title="{{ recommended_product.title | escape }}"
+                  >
+                    {{ 'storefront.menu.shop_now' | t }} <span aria-hidden="true">&rarr;</span>
+                  </a>
+                </div>
+              </article>
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endcapture -%}
+        {%- assign recommended_products_markup = recommended_products_markup | strip -%}
+
+        {%- if recommended_products_markup != blank -%}
+          <section class="article-template__recommended-products page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            <div class="article-template__recommended-card">
+              <p class="article-template__recommended-eyebrow">{{ 'storefront.menu.shop_edit' | t }}</p>
+              <h2 class="article-template__recommended-title">{{ 'storefront.article.recommended_products' | t }}</h2>
+              <div class="article-template__recommended-grid">
+                {{ recommended_products_markup }}
+              </div>
+            </div>
+          </section>
+        {%- else -%}
+          {% render 'style-journal-internal-links', mode: 'article_inline_cta_block', article: article %}
+        {%- endif -%}
+
+      {%- when 'share' -%}
+        <div
+          class="article-template__social-sharing page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          {{ block.shopify_attributes }}
+        >
+          {% assign share_url = request.origin | append: article.url %}
+          {% render 'share-button', block: block, share_link: share_url %}
+        </div>
+    {%- endcase -%}
+  {%- endfor -%}
+
+  <section class="article-template__author page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <div class="article-template__author-card">
+      <div class="article-template__author-avatar" aria-hidden="true">
+        {{ article.author | slice: 0 }}
+      </div>
+      <div class="article-template__author-info">
+        <p class="article-template__author-label">{{ 'storefront.article.written_by' | t }}</p>
+        <h3 class="article-template__author-name" itemprop="author" itemscope itemtype="https://schema.org/Person">
+          <span itemprop="name">{{ article.author }}</span>
+        </h3>
+        <p class="article-template__author-bio">{{ 'storefront.article.author_bio' | t }}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="article-template__social-proof page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <div class="article-template__testimonial-card">
+      <p class="article-template__testimonial-label">{{ 'storefront.article.shop_look' | t }}</p>
+      <h2 class="article-template__testimonial-title">{{ 'storefront.article.compare_title' | t }}</h2>
+      <p class="article-template__testimonial-text">{{ 'storefront.article.compare_body' | t }}</p>
+      <div class="article-template__testimonial-actions">
+        <a href="{{ routes.collections_url }}/mommy-and-me" class="button">{% if request.locale.iso_code == 'en' %}Mommy &amp; Me{% else %}{{ 'sections.breadcrumbs.cat_mommy_me' | t }}{% endif %}</a>
+        <a href="{{ routes.collections_url }}/matching-outfits" class="button button--secondary">{{ 'sections.breadcrumbs.cat_family_matching' | t }}</a>
+      </div>
+    </div>
+  </section>
+
+  {% render 'style-journal-internal-links', mode: 'article_collection_links', article: article %}
+
+  {%- capture explicit_related_articles_markup -%}
+    {% render 'style-journal-internal-links', mode: 'article_related_articles', article: article %}
+  {%- endcapture -%}
+  {%- assign explicit_related_articles_markup = explicit_related_articles_markup | strip -%}
+
+  {%- if explicit_related_articles_markup != blank -%}
+    {{ explicit_related_articles_markup }}
+  {%- elsif blog.articles_count > 1 -%}
+    <section class="article-template__related page-width{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+      <div class="article-template__related-header">
+        <p class="article-template__related-eyebrow">{{ 'storefront.article.continue_reading' | t }}</p>
+        <h2 class="article-template__related-title">{{ 'storefront.article.more_from' | t: journal: journal_label }}</h2>
+      </div>
+      <div class="article-template__related-grid">
+        {%- liquid
+          assign related_articles_rendered = 0
+          assign related_articles_seen = '|' | append: article.id | append: '|'
+          assign primary_related_tag = article.tags.first | strip
+        -%}
+        {%- if primary_related_tag != blank -%}
+          {%- for related_article in blog.articles -%}
+            {%- assign related_article_token = '|' | append: related_article.id | append: '|' -%}
+            {%- if related_articles_seen contains related_article_token -%}
+              {% continue %}
+            {%- endif -%}
+            {%- unless related_article.tags contains primary_related_tag -%}
+              {% continue %}
+            {%- endunless -%}
+            <div class="article-template__related-item">
+              {%- render 'article-card',
+                blog: blog,
+                article: related_article,
+                media_height: 'medium',
+                media_aspect_ratio: 1.2,
+                show_image: true,
+                show_date: true,
+                show_author: false,
+                show_excerpt: true
+              -%}
+            </div>
+            {%- assign related_articles_rendered = related_articles_rendered | plus: 1 -%}
+            {%- assign related_articles_seen = related_articles_seen | append: related_article.id | append: '|' -%}
+            {%- if related_articles_rendered == 3 -%}
+              {% break %}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+        {%- if related_articles_rendered < 3 -%}
+          {%- for related_article in blog.articles -%}
+            {%- assign related_article_token = '|' | append: related_article.id | append: '|' -%}
+            {%- if related_articles_seen contains related_article_token -%}
+              {% continue %}
+            {%- endif -%}
+            <div class="article-template__related-item">
+              {%- render 'article-card',
+                blog: blog,
+                article: related_article,
+                media_height: 'medium',
+                media_aspect_ratio: 1.2,
+                show_image: true,
+                show_date: true,
+                show_author: false,
+                show_excerpt: true
+              -%}
+            </div>
+            {%- assign related_articles_rendered = related_articles_rendered | plus: 1 -%}
+            {%- assign related_articles_seen = related_articles_seen | append: related_article.id | append: '|' -%}
+            {%- if related_articles_rendered == 3 -%}
+              {% break %}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </section>
+  {%- endif -%}
+
+  <div class="article-template__back element-margin-top center{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <a href="{{ blog.url }}" class="article-template__link link animate-arrow">
+      <span class="icon-wrap">{% render 'icon-arrow' %}</span>
+      {{ 'blogs.article.back_to_blog' | t: title: blog.title }}
+    </a>
+  </div>
+  {%- if blog.comments_enabled? -%}
+    <div class="article-template__comment-wrapper background-secondary">
+      <div
+        id="comments"
+        class="page-width page-width--narrow{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+      >
+        {%- if article.comments_count > 0 -%}
+          {%- assign anchor_id = '#Comments-' | append: article.id -%}
+
+          <h2 id="Comments-{{ article.id }}" tabindex="-1">
+            {{ 'blogs.article.comments' | t: count: article.comments_count }}
+          </h2>
+          {% paginate article.comments by 5 %}
+            <div class="article-template__comments">
+              {%- if comment.status == 'pending' and comment.content -%}
+                <article id="{{ comment.id }}" class="article-template__comments-comment">
+                  {{ comment.content }}
+                  <footer class="right">
+                    <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span>
+                  </footer>
+                </article>
+              {%- endif -%}
+
+              {%- for comment in article.comments -%}
+                <article id="{{ comment.id }}" class="article-template__comments-comment">
+                  {{ comment.content }}
+                  <footer class="right">
+                    <span class="circle-divider caption-with-letter-spacing">{{ comment.author }}</span
+                    ><span class="caption-with-letter-spacing">
+                      {{- comment.created_at | time_tag: format: 'date' -}}
+                    </span>
+                  </footer>
+                </article>
+              {%- endfor -%}
+              {% render 'pagination', paginate: paginate, anchor: anchor_id %}
+            </div>
+          {% endpaginate %}
+        {%- endif -%}
+        {% form 'new_comment', article %}
+          {%- liquid
+            assign post_message = 'blogs.article.success'
+            if blog.moderated? and comment.status == 'unapproved'
+              assign post_message = 'blogs.article.success_moderated'
+            endif
+          -%}
+          <h2>{{ 'blogs.article.comment_form_title' | t }}</h2>
+          {%- if form.errors -%}
+            <div class="form__message" role="alert">
+              <h3 class="form-status caption-large text-body" tabindex="-1" autofocus>
+                {% render 'icon-error' %}
+                {{ 'templates.contact.form.error_heading' | t }}
+              </h3>
+            </div>
+            <ul class="form-status-list caption-large">
+              {%- for field in form.errors -%}
+                <li>
+                  <a href="#CommentForm-{{ field }}" class="link">
+                    {%- if form.errors.translated_fields[field] contains 'author' -%}
+                      {{ 'blogs.article.name' | t }}
+                    {%- elsif form.errors.translated_fields[field] contains 'body' -%}
+                      {{ 'blogs.article.message' | t }}
+                    {%- else -%}
+                      {{ form.errors.translated_fields[field] }}
+                    {%- endif -%}
+                    {{ form.errors.messages[field] }}
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          {%- elsif form.posted_successfully? -%}
+            <div class="form-status-list form__message" role="status">
+              <h3 class="form-status" tabindex="-1" autofocus>
+                {% render 'icon-success' %}
+                {{ post_message | t }}
+              </h3>
+            </div>
+          {%- endif -%}
+
+          <div
+            {% if blog.moderated? == false %}
+              class="article-template__comments-fields"
+            {% endif %}
+          >
+            <div class="article-template__comment-fields">
+              <div class="field field--with-error">
+                <input
+                  type="text"
+                  name="comment[author]"
+                  id="CommentForm-author"
+                  class="field__input"
+                  autocomplete="name"
+                  value="{{ form.author }}"
+                  aria-required="true"
+                  required
+                  {% if form.errors contains 'author' %}
+                    aria-invalid="true"
+                    aria-describedby="CommentForm-author-error"
+                  {% endif %}
+                  placeholder="{{ 'blogs.article.name' | t }}"
+                >
+                <label class="field__label" for="CommentForm-author">
+                  {{- 'blogs.article.name' | t }}
+                  <span aria-hidden="true">*</span></label
+                >
+                {%- if form.errors contains 'author' -%}
+                  <small id="CommentForm-author-error">
+                    <span class="form__message">
+                      {%- render 'icon-error' -%}
+                      {{- 'blogs.article.name' | t }}
+                      {{ form.errors.messages.author }}.</span
+                    >
+                  </small>
+                {%- endif -%}
+              </div>
+              <div class="field field--with-error">
+                <input
+                  type="email"
+                  name="comment[email]"
+                  id="CommentForm-email"
+                  autocomplete="email"
+                  class="field__input"
+                  value="{{ form.email }}"
+                  autocorrect="off"
+                  autocapitalize="off"
+                  aria-required="true"
+                  required
+                  {% if form.errors contains 'email' %}
+                    aria-invalid="true"
+                    aria-describedby="CommentForm-email-error"
+                  {% endif %}
+                  placeholder="{{ 'blogs.article.email' | t }}"
+                >
+                <label class="field__label" for="CommentForm-email">
+                  {{- 'blogs.article.email' | t }}
+                  <span aria-hidden="true">*</span></label
+                >
+                {%- if form.errors contains 'email' -%}
+                  <small id="CommentForm-email-error">
+                    <span class="form__message">
+                      {%- render 'icon-error' -%}
+                      {{- 'blogs.article.email' | t }}
+                      {{ form.errors.messages.email }}.</span
+                    >
+                  </small>
+                {%- endif -%}
+              </div>
+            </div>
+            <div class="field field--with-error">
+              <textarea
+                rows="5"
+                name="comment[body]"
+                id="CommentForm-body"
+                class="text-area field__input"
+                aria-required="true"
+                required
+                {% if form.errors contains 'body' %}
+                  aria-invalid="true"
+                  aria-describedby="CommentForm-body-error"
+                {% endif %}
+                placeholder="{{ 'blogs.article.message' | t }}"
+              >{{ form.body }}</textarea>
+              <label class="form__label field__label" for="CommentForm-body">
+                {{- 'blogs.article.message' | t }}
+                <span aria-hidden="true">*</span></label
+              >
+            </div>
+            {%- if form.errors contains 'body' -%}
+              <small id="CommentForm-body-error">
+                <span class="form__message">
+                  {%- render 'icon-error' -%}
+                  {{- 'blogs.article.message' | t }}
+                  {{ form.errors.messages.body }}.</span
+                >
+              </small>
+            {%- endif -%}
+          </div>
+          {%- if blog.moderated? -%}
+            <p class="article-template__comment-warning caption">{{ 'blogs.article.moderated' | t }}</p>
+          {%- endif -%}
+          <input type="submit" class="button" value="{{ 'blogs.article.post' | t }}">
+        {% endform %}
+      </div>
+    </div>
+  {%- endif -%}
+  {% render 'article-enhanced-schema', article: article, blog: blog %}
+</article>
+
+{%- liquid
+  assign article_schema_image_url = blank
+  assign article_schema_image_width = blank
+  assign article_schema_image_height = blank
+
+  if blog.handle == 'news' or article.image == blank
+    capture article_schema_image_url
+      render 'article-featured-image-fallback', article: article, field: 'url'
+    endcapture
+    capture article_schema_image_width
+      render 'article-featured-image-fallback', article: article, field: 'width'
+    endcapture
+    capture article_schema_image_height
+      render 'article-featured-image-fallback', article: article, field: 'height'
+    endcapture
+    assign article_schema_image_url = article_schema_image_url | strip
+    assign article_schema_image_width = article_schema_image_width | strip
+    assign article_schema_image_height = article_schema_image_height | strip
+  else
+    assign article_schema_image_url = article.image | image_url: width: 1920 | prepend: 'https:'
+    assign article_schema_image_width = 1920
+    assign article_schema_image_height = 1920 | divided_by: article.image.aspect_ratio | round
+  endif
+-%}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "articleBody": {{ article.content | strip_html | json }},
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": {{ request.origin | append: page.url | json }}
+    },
+    "headline": {{ article.title | json }},
+    {% if article.excerpt != blank %}
+      "description": {{ article.excerpt | strip_html | json }},
+    {% endif %}
+    {% if article_schema_image_url != blank %}
+      "image": [
+        {{ article_schema_image_url | json }}
+      ],
+    {% endif %}
+    "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "dateCreated": {{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
+    "author": {
+      "@type": "Person",
+      "name": {{ article.author | json }}
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": {{ shop.name | json }}
+    }
+  }
+</script>
+
+{% schema %}
+{
+  "name": "t:sections.main-article.name",
+  "tag": "section",
+  "class": "section",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "featured_image",
+      "name": "t:sections.main-article.blocks.featured_image.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "select",
+          "id": "image_height",
+          "options": [
+            {
+              "value": "adapt",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__1.label"
+            },
+            {
+              "value": "small",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__2.label"
+            },
+            {
+              "value": "medium",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__3.label"
+            },
+            {
+              "value": "large",
+              "label": "t:sections.main-article.blocks.featured_image.settings.image_height.options__4.label"
+            }
+          ],
+          "default": "adapt",
+          "label": "t:sections.main-article.blocks.featured_image.settings.image_height.label",
+          "info": "t:sections.main-article.blocks.featured_image.settings.image_height.info"
+        }
+      ]
+    },
+    {
+      "type": "title",
+      "name": "t:sections.main-article.blocks.title.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "blog_show_date",
+          "default": true,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_date.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "blog_show_author",
+          "default": false,
+          "label": "t:sections.main-article.blocks.title.settings.blog_show_author.label"
+        }
+      ]
+    },
+    {
+      "type": "content",
+      "name": "t:sections.main-article.blocks.content.name",
+      "limit": 1
+    },
+    {
+      "type": "share",
+      "name": "t:sections.main-article.blocks.share.name",
+      "limit": 2,
+      "settings": [
+        {
+          "type": "text",
+          "id": "share_label",
+          "label": "t:sections.main-article.blocks.share.settings.text.label",
+          "default": "Share"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-article.blocks.share.settings.featured_image_info.content"
+        },
+        {
+          "type": "paragraph",
+          "content": "t:sections.main-article.blocks.share.settings.title_info.content"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

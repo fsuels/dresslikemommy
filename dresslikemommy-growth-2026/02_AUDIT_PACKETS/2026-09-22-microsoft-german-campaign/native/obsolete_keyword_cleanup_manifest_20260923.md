@@ -1,0 +1,351 @@
+# German campaign obsolete keyword cleanup
+
+Target: DLM | MS | DE | DE | Search | 202609 (506256066), account477439.
+
+Remove340obsolete copied records:153paused positive keywords,11campaign negatives and176group negatives. Preserve144German positives,230intended campaign negatives and49intended group negatives. Source US campaign and shared assets are excluded.
+
+## Positive keywords
+- Familienoutfits im Partnerlook | Exact | family matching outfits | Paused
+- Familienoutfits im Partnerlook | Phrase | family matching outfits | Paused
+- Familienoutfits im Partnerlook | Exact | matching outfits for family | Paused
+- Familienoutfits im Partnerlook | Phrase | matching outfits for family | Paused
+- Familienoutfits im Partnerlook | Exact | matching family clothing | Paused
+- Familienoutfits im Partnerlook | Phrase | matching family clothing | Paused
+- Familienoutfits im Partnerlook | Exact | matching family outfits for pictures | Paused
+- Familienoutfits im Partnerlook | Phrase | matching family outfits for pictures | Paused
+- Familienoutfits im Partnerlook | Phrase | matching family vacation outfits | Paused
+- Familienoutfits im Partnerlook | Phrase | matching hawaiian family outfits | Paused
+- Familienoutfits im Partnerlook | Phrase | matching family shirt and dress | Paused
+- Familienoutfits im Partnerlook | Phrase | matching outfits for mom dad and kids | Paused
+- Familienoutfits im Partnerlook | Phrase | coordinating family outfits | Paused
+- Familienoutfits im Partnerlook | Exact | family photo outfits | Paused
+- Familienoutfits im Partnerlook | Exact | family beach picture outfits | Paused
+- Familienoutfits im Partnerlook | Exact | matching family cruise outfits | Paused
+- Familienoutfits im Partnerlook | Exact | family reunion outfits | Paused
+- Familienoutfits im Partnerlook | Phrase | mother son matching outfits | Paused
+- Familienoutfits im Partnerlook | Phrase | dad and daughter matching outfits | Paused
+- Familienoutfits im Partnerlook | Exact | family matching outfits with baby | Paused
+- Hemden für Vater und Sohn | Exact | father son matching shirts | Paused
+- Hemden für Vater und Sohn | Phrase | father son matching shirts | Paused
+- Hemden für Vater und Sohn | Exact | dad and son matching shirts | Paused
+- Hemden für Vater und Sohn | Phrase | dad and son matching shirts | Paused
+- Hemden für Vater und Sohn | Exact | daddy and me button up shirts | Paused
+- Hemden für Vater und Sohn | Phrase | daddy and me button up shirts | Paused
+- Hemden für Vater und Sohn | Exact | father son matching hawaiian shirts | Paused
+- Hemden für Vater und Sohn | Phrase | father son matching hawaiian shirts | Paused
+- Hemden für Vater und Sohn | Exact | father son matching button down shirts | Paused
+- Hemden für Vater und Sohn | Phrase | father son matching button down shirts | Paused
+- Hemden für Vater und Sohn | Phrase | men and boys matching shirts | Paused
+- Hemden für Vater und Sohn | Phrase | father son matching short sleeve shirts | Paused
+- Hemden für Vater und Sohn | Phrase | father son matching tropical shirts | Paused
+- Hemden für Vater und Sohn | Exact | father son shirts for family photos | Paused
+- Hemden für Vater und Sohn | Exact | father son matching vacation shirts | Paused
+- Schlafanzüge für Mutter und Tochter | Exact | mommy and me pajamas | Paused
+- Schlafanzüge für Mutter und Tochter | Phrase | mommy and me pajamas | Paused
+- Schlafanzüge für Mutter und Tochter | Exact | mother daughter matching pajamas | Paused
+- Schlafanzüge für Mutter und Tochter | Phrase | mother daughter matching pajamas | Paused
+- Schlafanzüge für Mutter und Tochter | Exact | mom and daughter pajamas | Paused
+- Schlafanzüge für Mutter und Tochter | Phrase | mom and daughter pajamas | Paused
+- Schlafanzüge für Mutter und Tochter | Exact | mommy and me short sleeve pajamas | Paused
+- Schlafanzüge für Mutter und Tochter | Phrase | mommy and me short sleeve pajamas | Paused
+- Schlafanzüge für Mutter und Tochter | Exact | mommy and me long sleeve pajamas | Paused
+- Schlafanzüge für Mutter und Tochter | Phrase | mommy and me long sleeve pajamas | Paused
+- Schlafanzüge für Mutter und Tochter | Exact | mommy and me pajama sets | Paused
+- Schlafanzüge für Mutter und Tochter | Phrase | mommy and me pajama sets | Paused
+- Schlafanzüge für Mutter und Tochter | Phrase | mommy and me pajama shorts | Paused
+- Schlafanzüge für Mutter und Tochter | Phrase | mommy and me matching sleepwear | Paused
+- Schlafanzüge für Mutter und Tochter | Phrase | mommy and me pyjamas | Paused
+- Schlafanzüge für Mutter und Tochter | Phrase | mom and daughter matching pjs | Paused
+- Schlafanzüge für Mutter und Tochter | Exact | mother daughter sleepover pajamas | Paused
+- Familienpullover und Hoodies | Exact | family matching sweaters | Paused
+- Familienpullover und Hoodies | Phrase | family matching sweaters | Paused
+- Familienpullover und Hoodies | Exact | matching sweaters for family | Paused
+- Familienpullover und Hoodies | Phrase | matching sweaters for family | Paused
+- Familienpullover und Hoodies | Exact | mommy and me sweaters | Paused
+- Familienpullover und Hoodies | Phrase | mommy and me sweaters | Paused
+- Familienpullover und Hoodies | Exact | matching family knit sweaters | Paused
+- Familienpullover und Hoodies | Phrase | matching family knit sweaters | Paused
+- Familienpullover und Hoodies | Exact | family matching pullovers | Paused
+- Familienpullover und Hoodies | Phrase | family matching pullovers | Paused
+- Familienpullover und Hoodies | Exact | matching family cardigans | Paused
+- Familienpullover und Hoodies | Phrase | matching family cardigans | Paused
+- Familienpullover und Hoodies | Phrase | matching family cable knit sweaters | Paused
+- Familienpullover und Hoodies | Exact | matching family hoodies | Paused
+- Familienpullover und Hoodies | Phrase | matching family hoodies | Paused
+- Familienpullover und Hoodies | Exact | matching family sweatshirts | Paused
+- Familienpullover und Hoodies | Phrase | matching family sweatshirts | Paused
+- Familienpullover und Hoodies | Exact | mommy and me cardigans | Paused
+- Familienpullover und Hoodies | Phrase | mommy and me cardigans | Paused
+- Familienpullover und Hoodies | Phrase | mother daughter matching sweaters | Paused
+- Familienpullover und Hoodies | Exact | matching sweaters for family photos | Paused
+- Familienpullover und Hoodies | Exact | matching family fall outfits | Paused
+- Familienpullover und Hoodies | Exact | matching sweaters for christmas photos | Paused
+- Outfits für Mutter und Tochter | Exact | mommy and me dresses | Paused
+- Outfits für Mutter und Tochter | Phrase | mommy and me dresses | Paused
+- Outfits für Mutter und Tochter | Exact | mother daughter matching dresses | Paused
+- Outfits für Mutter und Tochter | Phrase | mother daughter matching dresses | Paused
+- Outfits für Mutter und Tochter | Exact | matching dresses for mom and daughter | Paused
+- Outfits für Mutter und Tochter | Phrase | matching dresses for mom and daughter | Paused
+- Outfits für Mutter und Tochter | Exact | mommy and me floral dresses | Paused
+- Outfits für Mutter und Tochter | Phrase | mommy and me floral dresses | Paused
+- Outfits für Mutter und Tochter | Exact | mother daughter floral dresses | Paused
+- Outfits für Mutter und Tochter | Exact | matching floral dresses for mom and daughter | Paused
+- Outfits für Mutter und Tochter | Exact | mommy and me pink dresses | Paused
+- Outfits für Mutter und Tochter | Phrase | mother daughter floral dresses | Paused
+- Outfits für Mutter und Tochter | Phrase | mommy and me maxi dresses | Paused
+- Outfits für Mutter und Tochter | Phrase | mommy and me sundresses | Paused
+- Outfits für Mutter und Tochter | Phrase | mommy and me ruffle dresses | Paused
+- Outfits für Mutter und Tochter | Phrase | mommy and me smocked dresses | Paused
+- Outfits für Mutter und Tochter | Phrase | mother daughter matching white dresses | Paused
+- Outfits für Mutter und Tochter | Phrase | mommy and me beach dresses | Paused
+- Outfits für Mutter und Tochter | Exact | mommy and me birthday dresses | Paused
+- Outfits für Mutter und Tochter | Exact | mother daughter matching dresses for pictures | Paused
+- Outfits für Mutter und Tochter | Exact | mommy and me toddler dresses | Paused
+- Kleider für Mutter und Tochter | Exact | mommy and me dresses | Paused
+- Kleider für Mutter und Tochter | Phrase | mommy and me dresses | Paused
+- Kleider für Mutter und Tochter | Exact | mother daughter matching dresses | Paused
+- Kleider für Mutter und Tochter | Phrase | mother daughter matching dresses | Paused
+- Kleider für Mutter und Tochter | Exact | matching dresses for mom and daughter | Paused
+- Kleider für Mutter und Tochter | Phrase | matching dresses for mom and daughter | Paused
+- Kleider für Mutter und Tochter | Exact | mommy and me floral dresses | Paused
+- Kleider für Mutter und Tochter | Phrase | mommy and me floral dresses | Paused
+- Kleider für Mutter und Tochter | Exact | mother daughter floral dresses | Paused
+- Kleider für Mutter und Tochter | Exact | matching floral dresses for mom and daughter | Paused
+- Kleider für Mutter und Tochter | Exact | mommy and me pink dresses | Paused
+- Kleider für Mutter und Tochter | Phrase | mother daughter floral dresses | Paused
+- Kleider für Mutter und Tochter | Phrase | mommy and me maxi dresses | Paused
+- Kleider für Mutter und Tochter | Phrase | mommy and me sundresses | Paused
+- Kleider für Mutter und Tochter | Phrase | mommy and me ruffle dresses | Paused
+- Kleider für Mutter und Tochter | Phrase | mommy and me smocked dresses | Paused
+- Kleider für Mutter und Tochter | Phrase | mother daughter matching white dresses | Paused
+- Kleider für Mutter und Tochter | Phrase | mommy and me beach dresses | Paused
+- Kleider für Mutter und Tochter | Exact | mommy and me birthday dresses | Paused
+- Kleider für Mutter und Tochter | Exact | mother daughter matching dresses for pictures | Paused
+- Kleider für Mutter und Tochter | Exact | mommy and me toddler dresses | Paused
+- Familienhemden und T-Shirts | Exact | family matching shirts | Paused
+- Familienhemden und T-Shirts | Phrase | family matching shirts | Paused
+- Familienhemden und T-Shirts | Exact | matching shirts for family | Paused
+- Familienhemden und T-Shirts | Phrase | matching shirts for family | Paused
+- Familienhemden und T-Shirts | Exact | matching family button up shirts | Paused
+- Familienhemden und T-Shirts | Phrase | matching family button up shirts | Paused
+- Familienhemden und T-Shirts | Exact | family matching tops | Paused
+- Familienhemden und T-Shirts | Phrase | family matching tops | Paused
+- Familienhemden und T-Shirts | Exact | matching family t shirts | Paused
+- Familienhemden und T-Shirts | Phrase | matching family t shirts | Paused
+- Familienhemden und T-Shirts | Phrase | matching family hawaiian shirts | Paused
+- Familienhemden und T-Shirts | Phrase | matching family striped shirts | Paused
+- Familienhemden und T-Shirts | Phrase | family matching shirts for pictures | Paused
+- Familienhemden und T-Shirts | Phrase | mom and son matching shirts | Paused
+- Familienhemden und T-Shirts | Phrase | father son matching t shirts | Paused
+- Familienhemden und T-Shirts | Phrase | dad and son matching tees | Paused
+- Familienhemden und T-Shirts | Exact | family reunion matching shirts | Paused
+- Familienhemden und T-Shirts | Exact | matching family cruise shirts | Paused
+- Bademode für Mutter und Tochter | Exact | mommy and me swimsuits | Paused
+- Bademode für Mutter und Tochter | Phrase | mommy and me swimsuits | Paused
+- Bademode für Mutter und Tochter | Exact | mother daughter matching swimsuits | Paused
+- Bademode für Mutter und Tochter | Phrase | mother daughter matching swimsuits | Paused
+- Bademode für Mutter und Tochter | Exact | mommy and me bathing suits | Paused
+- Bademode für Mutter und Tochter | Phrase | mommy and me bathing suits | Paused
+- Bademode für Mutter und Tochter | Exact | mom and daughter matching swimwear | Paused
+- Bademode für Mutter und Tochter | Phrase | mom and daughter matching swimwear | Paused
+- Bademode für Mutter und Tochter | Exact | mommy and me one piece swimsuits | Paused
+- Bademode für Mutter und Tochter | Phrase | mommy and me one piece swimsuits | Paused
+- Bademode für Mutter und Tochter | Exact | mommy and me swim dresses | Paused
+- Bademode für Mutter und Tochter | Phrase | mommy and me swim dresses | Paused
+- Bademode für Mutter und Tochter | Phrase | mommy and me matching bikinis | Paused
+- Bademode für Mutter und Tochter | Phrase | mommy and me two piece swimsuits | Paused
+- Bademode für Mutter und Tochter | Phrase | mommy and me matching tankinis | Paused
+- Bademode für Mutter und Tochter | Phrase | mommy and me long sleeve swimsuits | Paused
+- Bademode für Mutter und Tochter | Phrase | mommy and me floral swimsuits | Paused
+- Bademode für Mutter und Tochter | Phrase | mommy and me ruffle swimsuits | Paused
+
+## Campaign negatives
+- bulk | Phrase
+- custom made | Phrase
+- dresslikemommy | Exact
+- dresslikemommy.com | Exact
+- free download | Phrase
+- free downloads | Phrase
+- next day delivery | Phrase
+- overnight shipping | Phrase
+- personalized | Phrase
+- same day delivery | Phrase
+- wholesale | Phrase
+
+## Group negatives
+- Bademode für Mutter und Tochter | cardigan | Phrase
+- Bademode für Mutter und Tochter | cardigans | Phrase
+- Bademode für Mutter und Tochter | hoodie | Phrase
+- Bademode für Mutter und Tochter | hoodies | Phrase
+- Bademode für Mutter und Tochter | nightwear | Phrase
+- Bademode für Mutter und Tochter | pajama | Phrase
+- Bademode für Mutter und Tochter | pajamas | Phrase
+- Bademode für Mutter und Tochter | pj | Phrase
+- Bademode für Mutter und Tochter | pjs | Phrase
+- Bademode für Mutter und Tochter | pyjama | Phrase
+- Bademode für Mutter und Tochter | pyjamas | Phrase
+- Bademode für Mutter und Tochter | sleepwear | Phrase
+- Bademode für Mutter und Tochter | sweater | Phrase
+- Bademode für Mutter und Tochter | sweaters | Phrase
+- Bademode für Mutter und Tochter | sweatshirt | Phrase
+- Bademode für Mutter und Tochter | sweatshirts | Phrase
+- Familienhemden und T-Shirts | bathing suit | Phrase
+- Familienhemden und T-Shirts | bathing suits | Phrase
+- Familienhemden und T-Shirts | bikini | Phrase
+- Familienhemden und T-Shirts | bikinis | Phrase
+- Familienhemden und T-Shirts | cardigan | Phrase
+- Familienhemden und T-Shirts | cardigans | Phrase
+- Familienhemden und T-Shirts | daddy and me button up shirts | Exact
+- Familienhemden und T-Shirts | family matching sweaters | Exact
+- Familienhemden und T-Shirts | father son matching button down shirts | Exact
+- Familienhemden und T-Shirts | father son matching hawaiian shirts | Exact
+- Familienhemden und T-Shirts | hoodie | Phrase
+- Familienhemden und T-Shirts | hoodies | Phrase
+- Familienhemden und T-Shirts | matching family hoodies | Exact
+- Familienhemden und T-Shirts | matching family sweatshirts | Exact
+- Familienhemden und T-Shirts | nightwear | Phrase
+- Familienhemden und T-Shirts | pajama | Phrase
+- Familienhemden und T-Shirts | pajamas | Phrase
+- Familienhemden und T-Shirts | pj | Phrase
+- Familienhemden und T-Shirts | pjs | Phrase
+- Familienhemden und T-Shirts | pyjama | Phrase
+- Familienhemden und T-Shirts | pyjamas | Phrase
+- Familienhemden und T-Shirts | sleepwear | Phrase
+- Familienhemden und T-Shirts | sweater | Phrase
+- Familienhemden und T-Shirts | sweaters | Phrase
+- Familienhemden und T-Shirts | sweatshirt | Phrase
+- Familienhemden und T-Shirts | sweatshirts | Phrase
+- Familienhemden und T-Shirts | swim suit | Phrase
+- Familienhemden und T-Shirts | swim suits | Phrase
+- Familienhemden und T-Shirts | swimsuit | Phrase
+- Familienhemden und T-Shirts | swimsuits | Phrase
+- Familienhemden und T-Shirts | swimwear | Phrase
+- Familienoutfits im Partnerlook | bathing suit | Phrase
+- Familienoutfits im Partnerlook | bathing suits | Phrase
+- Familienoutfits im Partnerlook | bikini | Phrase
+- Familienoutfits im Partnerlook | bikinis | Phrase
+- Familienoutfits im Partnerlook | cardigan | Phrase
+- Familienoutfits im Partnerlook | cardigans | Phrase
+- Familienoutfits im Partnerlook | family matching shirts | Exact
+- Familienoutfits im Partnerlook | family matching sweaters | Exact
+- Familienoutfits im Partnerlook | family matching tops | Exact
+- Familienoutfits im Partnerlook | hoodie | Phrase
+- Familienoutfits im Partnerlook | hoodies | Phrase
+- Familienoutfits im Partnerlook | matching family hoodies | Exact
+- Familienoutfits im Partnerlook | matching family sweatshirts | Exact
+- Familienoutfits im Partnerlook | matching family t shirts | Exact
+- Familienoutfits im Partnerlook | matching shirts for family | Exact
+- Familienoutfits im Partnerlook | matching sweaters for family | Exact
+- Familienoutfits im Partnerlook | nightwear | Phrase
+- Familienoutfits im Partnerlook | pajama | Phrase
+- Familienoutfits im Partnerlook | pajamas | Phrase
+- Familienoutfits im Partnerlook | pj | Phrase
+- Familienoutfits im Partnerlook | pjs | Phrase
+- Familienoutfits im Partnerlook | pyjama | Phrase
+- Familienoutfits im Partnerlook | pyjamas | Phrase
+- Familienoutfits im Partnerlook | shirt | Phrase
+- Familienoutfits im Partnerlook | shirts | Phrase
+- Familienoutfits im Partnerlook | sleepwear | Phrase
+- Familienoutfits im Partnerlook | sweater | Phrase
+- Familienoutfits im Partnerlook | sweaters | Phrase
+- Familienoutfits im Partnerlook | sweatshirt | Phrase
+- Familienoutfits im Partnerlook | sweatshirts | Phrase
+- Familienoutfits im Partnerlook | swim suit | Phrase
+- Familienoutfits im Partnerlook | swim suits | Phrase
+- Familienoutfits im Partnerlook | swimsuit | Phrase
+- Familienoutfits im Partnerlook | swimsuits | Phrase
+- Familienoutfits im Partnerlook | swimwear | Phrase
+- Familienoutfits im Partnerlook | t-shirt | Phrase
+- Familienoutfits im Partnerlook | t-shirts | Phrase
+- Familienoutfits im Partnerlook | tee | Phrase
+- Familienoutfits im Partnerlook | tees | Phrase
+- Hemden für Vater und Sohn | bathing suit | Phrase
+- Hemden für Vater und Sohn | bathing suits | Phrase
+- Hemden für Vater und Sohn | bikini | Phrase
+- Hemden für Vater und Sohn | bikinis | Phrase
+- Hemden für Vater und Sohn | cardigan | Phrase
+- Hemden für Vater und Sohn | cardigans | Phrase
+- Hemden für Vater und Sohn | hoodie | Phrase
+- Hemden für Vater und Sohn | hoodies | Phrase
+- Hemden für Vater und Sohn | nightwear | Phrase
+- Hemden für Vater und Sohn | pajama | Phrase
+- Hemden für Vater und Sohn | pajamas | Phrase
+- Hemden für Vater und Sohn | pj | Phrase
+- Hemden für Vater und Sohn | pjs | Phrase
+- Hemden für Vater und Sohn | pyjama | Phrase
+- Hemden für Vater und Sohn | pyjamas | Phrase
+- Hemden für Vater und Sohn | sleepwear | Phrase
+- Hemden für Vater und Sohn | sweater | Phrase
+- Hemden für Vater und Sohn | sweaters | Phrase
+- Hemden für Vater und Sohn | sweatshirt | Phrase
+- Hemden für Vater und Sohn | sweatshirts | Phrase
+- Hemden für Vater und Sohn | swim suit | Phrase
+- Hemden für Vater und Sohn | swim suits | Phrase
+- Hemden für Vater und Sohn | swimsuit | Phrase
+- Hemden für Vater und Sohn | swimsuits | Phrase
+- Hemden für Vater und Sohn | swimwear | Phrase
+- Kleider für Mutter und Tochter | bathing suit | Phrase
+- Kleider für Mutter und Tochter | bathing suits | Phrase
+- Kleider für Mutter und Tochter | bikini | Phrase
+- Kleider für Mutter und Tochter | bikinis | Phrase
+- Kleider für Mutter und Tochter | christmas pajamas | Phrase
+- Kleider für Mutter und Tochter | christmas pyjamas | Phrase
+- Kleider für Mutter und Tochter | halloween costume | Phrase
+- Kleider für Mutter und Tochter | halloween costumes | Phrase
+- Kleider für Mutter und Tochter | nightwear | Phrase
+- Kleider für Mutter und Tochter | pajama | Phrase
+- Kleider für Mutter und Tochter | pajamas | Phrase
+- Kleider für Mutter und Tochter | pj | Phrase
+- Kleider für Mutter und Tochter | pjs | Phrase
+- Kleider für Mutter und Tochter | pyjama | Phrase
+- Kleider für Mutter und Tochter | pyjamas | Phrase
+- Kleider für Mutter und Tochter | sleepwear | Phrase
+- Kleider für Mutter und Tochter | swim suit | Phrase
+- Kleider für Mutter und Tochter | swim suits | Phrase
+- Kleider für Mutter und Tochter | swimdress | Phrase
+- Kleider für Mutter und Tochter | swimdresses | Phrase
+- Kleider für Mutter und Tochter | swimsuit | Phrase
+- Kleider für Mutter und Tochter | swimsuits | Phrase
+- Kleider für Mutter und Tochter | swimwear | Phrase
+- Outfits für Mutter und Tochter | bathing suit | Phrase
+- Outfits für Mutter und Tochter | bathing suits | Phrase
+- Outfits für Mutter und Tochter | bikini | Phrase
+- Outfits für Mutter und Tochter | bikinis | Phrase
+- Outfits für Mutter und Tochter | christmas pajamas | Phrase
+- Outfits für Mutter und Tochter | christmas pyjamas | Phrase
+- Outfits für Mutter und Tochter | halloween costume | Phrase
+- Outfits für Mutter und Tochter | halloween costumes | Phrase
+- Outfits für Mutter und Tochter | nightwear | Phrase
+- Outfits für Mutter und Tochter | pajama | Phrase
+- Outfits für Mutter und Tochter | pajamas | Phrase
+- Outfits für Mutter und Tochter | pj | Phrase
+- Outfits für Mutter und Tochter | pjs | Phrase
+- Outfits für Mutter und Tochter | pyjama | Phrase
+- Outfits für Mutter und Tochter | pyjamas | Phrase
+- Outfits für Mutter und Tochter | sleepwear | Phrase
+- Outfits für Mutter und Tochter | swim dress | Phrase
+- Outfits für Mutter und Tochter | swim dresses | Phrase
+- Outfits für Mutter und Tochter | swim suit | Phrase
+- Outfits für Mutter und Tochter | swim suits | Phrase
+- Outfits für Mutter und Tochter | swimdress | Phrase
+- Outfits für Mutter und Tochter | swimdresses | Phrase
+- Outfits für Mutter und Tochter | swimsuit | Phrase
+- Outfits für Mutter und Tochter | swimsuits | Phrase
+- Outfits für Mutter und Tochter | swimwear | Phrase
+- Schlafanzüge für Mutter und Tochter | bathing suit | Phrase
+- Schlafanzüge für Mutter und Tochter | bathing suits | Phrase
+- Schlafanzüge für Mutter und Tochter | bikini | Phrase
+- Schlafanzüge für Mutter und Tochter | bikinis | Phrase
+- Schlafanzüge für Mutter und Tochter | cardigan | Phrase
+- Schlafanzüge für Mutter und Tochter | cardigans | Phrase
+- Schlafanzüge für Mutter und Tochter | hoodie | Phrase
+- Schlafanzüge für Mutter und Tochter | hoodies | Phrase
+- Schlafanzüge für Mutter und Tochter | sweater | Phrase
+- Schlafanzüge für Mutter und Tochter | sweaters | Phrase
+- Schlafanzüge für Mutter und Tochter | sweatshirt | Phrase
+- Schlafanzüge für Mutter und Tochter | sweatshirts | Phrase
+- Schlafanzüge für Mutter und Tochter | swim suit | Phrase
+- Schlafanzüge für Mutter und Tochter | swim suits | Phrase
+- Schlafanzüge für Mutter und Tochter | swimsuit | Phrase
+- Schlafanzüge für Mutter und Tochter | swimsuits | Phrase
+- Schlafanzüge für Mutter und Tochter | swimwear | Phrase

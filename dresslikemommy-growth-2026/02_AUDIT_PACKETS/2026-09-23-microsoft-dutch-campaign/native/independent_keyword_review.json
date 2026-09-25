@@ -1,0 +1,439 @@
+{
+  "verdict": "PASS_WITH_GATES",
+  "as_of_utc": "2026-09-23T18:19:11.444625+00:00",
+  "scope": "Independent saved-file keyword reconciliation only; no browser, account, live readback, or other-area verification",
+  "identity": {
+    "verified_campaign_name": "DLM | MS | NL | NL | Search | 202609",
+    "campaign_id_506255078": "ROOT_CONTEXT_ONLY_NOT_PRESENT_IN_EXPORTS",
+    "account_id": "NOT_PRESENT_IN_EXPORTS",
+    "ad_group_ids": "NOT_PRESENT_IN_EXPORTS"
+  },
+  "method": "Decode native files according to BOM. Locate real headers. Exclude only the four named aggregate positive-report footer rows with dash campaign/keyword. Compare exact unnormalized campaign, ad-group, keyword text and match-type tuples with Counters, preserving scope and multiplicity. Compare entire cleanup row dictionaries against independently computed extras, including status and every exported column.",
+  "input_hashes": {
+    "payload/campaign_payload.json": "3adb347878b578f1f5dfc97e9ef26e208c42e970e85aac72670ad44044018c83",
+    "native/positive_keywords_20260923.csv": "64a4c79f43509302277d2caccf051c0d2f106c6c31bf2f2b0fbffdc0fb577ea2",
+    "native/campaign_negatives_20260923.csv": "6d31edf0d394df04d75e1521f22ae8ce41b67d5bbef7ab44f87c15959896939a",
+    "native/group_negatives_20260923.csv": "17e3339f9f3b6c4ca41fc4e996c092c0b08677070404bcd676c74d6f42886d3c",
+    "native/keyword_export_reconciliation.json": "64bbb20ebef2d56875e9b372cdaed43522f9616b8ce592911a7a03e36f7968fe",
+    "native/obsolete_keyword_cleanup_rows.json": "f32d63c2a7d75a87af4611f4ab3c0973fc5ef2fb5c0c2059e85fb3dd332306e2"
+  },
+  "files": {
+    "positive_keywords_20260923.csv": {
+      "encoding": "utf-8-sig",
+      "delimiter": ",",
+      "header_line_one_based": 4,
+      "sha256": "64a4c79f43509302277d2caccf051c0d2f106c6c31bf2f2b0fbffdc0fb577ea2",
+      "native_rows": 276,
+      "expected_rows": 144,
+      "desired_present": 144,
+      "missing_count": 0,
+      "missing_tuples": [],
+      "extra_count": 132,
+      "duplicate_count": 0,
+      "duplicate_tuples": [],
+      "excluded_aggregate_footer_rows": 4,
+      "excluded_footer_statuses": [
+        "Search total",
+        "Audience total",
+        "Deleted items total",
+        "Overall total"
+      ],
+      "campaign_names": [
+        "DLM | MS | NL | NL | Search | 202609"
+      ],
+      "native_match_types": {
+        "Exact": 120,
+        "Phrase": 156
+      },
+      "desired_match_types": {
+        "Exact": 62,
+        "Phrase": 82
+      },
+      "extra_match_types": {
+        "Exact": 58,
+        "Phrase": 74
+      },
+      "checks": {
+        "all_rows_have_complete_columns": true,
+        "all_campaign_names_exact": true,
+        "all_group_names_expected": true,
+        "match_types_supported": true,
+        "expected_payload_has_no_duplicate_tuples": true,
+        "full_desired_coverage": true,
+        "native_has_no_duplicate_tuples": true,
+        "cleanup_full_rows_exactly_equal_extras": true,
+        "cleanup_contains_no_desired_tuple": true,
+        "all_desired_keywords_enabled": true,
+        "all_extra_keywords_paused": true
+      },
+      "desired_statuses": {
+        "Enabled": 144
+      },
+      "extra_statuses": {
+        "Paused": 132
+      },
+      "delivery_statuses": {
+        "Campaign paused": 259,
+        "Disapproved": 1,
+        "Draft ad group": 16
+      },
+      "groups": [
+        {
+          "group": "Jurken voor moeder en dochter",
+          "expected": 17,
+          "desired_present": 17,
+          "extra": 21
+        },
+        {
+          "group": "Matching familiekleding",
+          "expected": 20,
+          "desired_present": 20,
+          "extra": 20
+        },
+        {
+          "group": "Overhemden en T-shirts voor families",
+          "expected": 18,
+          "desired_present": 18,
+          "extra": 18
+        },
+        {
+          "group": "Pyjama’s voor moeder en dochter",
+          "expected": 17,
+          "desired_present": 17,
+          "extra": 17
+        },
+        {
+          "group": "Overhemden voor vader en zoon",
+          "expected": 15,
+          "desired_present": 15,
+          "extra": 15
+        },
+        {
+          "group": "Matching outfits voor moeder en dochter",
+          "expected": 16,
+          "desired_present": 16,
+          "extra": 0
+        },
+        {
+          "group": "Badkleding voor moeder en dochter",
+          "expected": 18,
+          "desired_present": 18,
+          "extra": 18
+        },
+        {
+          "group": "Matching familietruien en hoodies",
+          "expected": 23,
+          "desired_present": 23,
+          "extra": 23
+        }
+      ],
+      "root_reconciliation_comparison": {
+        "native_rows": true,
+        "expected": true,
+        "missing": true,
+        "extra_count": true,
+        "duplicate_count": true,
+        "sha256": true,
+        "campaign": true,
+        "excluded_aggregate_footer_rows": true,
+        "desired_statuses": true,
+        "extra_statuses": true
+      },
+      "delivery_exceptions": [
+        {
+          "Status": "Paused",
+          "Keyword": "mom and son matching shirts",
+          "Ad group": "Overhemden en T-shirts voor families",
+          "Match type": "Phrase",
+          "Delivery": "Disapproved"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "matching outfits moeder dochter",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Exact",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "matching outfits moeder dochter",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Phrase",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "dezelfde kleding moeder en dochter",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Exact",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "dezelfde kleding moeder en dochter",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Phrase",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "mama en ik outfits",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Exact",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "mama en ik outfits",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Phrase",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "matching kleding mama en dochter",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Exact",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "matching kleding mama en dochter",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Phrase",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "matching sets moeder dochter",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Phrase",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "top en rok set moeder dochter",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Phrase",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "tweedelige sets moeder dochter",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Phrase",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "matching kleding moeder dochter vakantie",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Phrase",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "afgestemde outfits moeder dochter",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Phrase",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "outfits moeder dochter fotoshoot",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Exact",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "outfits moeder dochter verjaardag",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Exact",
+          "Delivery": "Draft ad group"
+        },
+        {
+          "Status": "Enabled",
+          "Keyword": "mini me outfits",
+          "Ad group": "Matching outfits voor moeder en dochter",
+          "Match type": "Exact",
+          "Delivery": "Draft ad group"
+        }
+      ]
+    },
+    "campaign_negatives_20260923.csv": {
+      "encoding": "utf-16",
+      "delimiter": "\t",
+      "header_line_one_based": 1,
+      "sha256": "6d31edf0d394df04d75e1521f22ae8ce41b67d5bbef7ab44f87c15959896939a",
+      "native_rows": 202,
+      "expected_rows": 202,
+      "desired_present": 202,
+      "missing_count": 0,
+      "missing_tuples": [],
+      "extra_count": 0,
+      "duplicate_count": 0,
+      "duplicate_tuples": [],
+      "excluded_aggregate_footer_rows": 0,
+      "excluded_footer_statuses": [],
+      "campaign_names": [
+        "DLM | MS | NL | NL | Search | 202609"
+      ],
+      "native_match_types": {
+        "Phrase": 193,
+        "Exact": 9
+      },
+      "desired_match_types": {
+        "Phrase": 193,
+        "Exact": 9
+      },
+      "extra_match_types": {},
+      "checks": {
+        "all_rows_have_complete_columns": true,
+        "all_campaign_names_exact": true,
+        "all_group_names_expected": true,
+        "match_types_supported": true,
+        "expected_payload_has_no_duplicate_tuples": true,
+        "full_desired_coverage": true,
+        "native_has_no_duplicate_tuples": true,
+        "cleanup_full_rows_exactly_equal_extras": true,
+        "cleanup_contains_no_desired_tuple": true
+      },
+      "root_reconciliation_comparison": {
+        "native_rows": true,
+        "expected": true,
+        "missing": true,
+        "extra_count": true,
+        "duplicate_count": true,
+        "sha256": true,
+        "campaign": true,
+        "excluded_aggregate_footer_rows": true
+      }
+    },
+    "group_negatives_20260923.csv": {
+      "encoding": "utf-16",
+      "delimiter": "\t",
+      "header_line_one_based": 1,
+      "sha256": "17e3339f9f3b6c4ca41fc4e996c092c0b08677070404bcd676c74d6f42886d3c",
+      "native_rows": 196,
+      "expected_rows": 45,
+      "desired_present": 45,
+      "missing_count": 0,
+      "missing_tuples": [],
+      "extra_count": 151,
+      "duplicate_count": 0,
+      "duplicate_tuples": [],
+      "excluded_aggregate_footer_rows": 0,
+      "excluded_footer_statuses": [],
+      "campaign_names": [
+        "DLM | MS | NL | NL | Search | 202609"
+      ],
+      "native_match_types": {
+        "Phrase": 157,
+        "Exact": 39
+      },
+      "desired_match_types": {
+        "Phrase": 20,
+        "Exact": 25
+      },
+      "extra_match_types": {
+        "Phrase": 137,
+        "Exact": 14
+      },
+      "checks": {
+        "all_rows_have_complete_columns": true,
+        "all_campaign_names_exact": true,
+        "all_group_names_expected": true,
+        "match_types_supported": true,
+        "expected_payload_has_no_duplicate_tuples": true,
+        "full_desired_coverage": true,
+        "native_has_no_duplicate_tuples": true,
+        "cleanup_full_rows_exactly_equal_extras": true,
+        "cleanup_contains_no_desired_tuple": true
+      },
+      "groups": [
+        {
+          "group": "Jurken voor moeder en dochter",
+          "expected": 6,
+          "desired_present": 6,
+          "extra": 23
+        },
+        {
+          "group": "Matching familiekleding",
+          "expected": 8,
+          "desired_present": 8,
+          "extra": 39
+        },
+        {
+          "group": "Overhemden en T-shirts voor families",
+          "expected": 6,
+          "desired_present": 6,
+          "extra": 31
+        },
+        {
+          "group": "Pyjama’s voor moeder en dochter",
+          "expected": 0,
+          "desired_present": 0,
+          "extra": 17
+        },
+        {
+          "group": "Overhemden voor vader en zoon",
+          "expected": 6,
+          "desired_present": 6,
+          "extra": 25
+        },
+        {
+          "group": "Matching outfits voor moeder en dochter",
+          "expected": 11,
+          "desired_present": 11,
+          "extra": 0
+        },
+        {
+          "group": "Badkleding voor moeder en dochter",
+          "expected": 0,
+          "desired_present": 0,
+          "extra": 16
+        },
+        {
+          "group": "Matching familietruien en hoodies",
+          "expected": 8,
+          "desired_present": 8,
+          "extra": 0
+        }
+      ],
+      "root_reconciliation_comparison": {
+        "native_rows": true,
+        "expected": true,
+        "missing": true,
+        "extra_count": true,
+        "duplicate_count": true,
+        "sha256": true,
+        "campaign": true,
+        "excluded_aggregate_footer_rows": true
+      }
+    }
+  },
+  "findings": [
+    {
+      "severity": "GATE",
+      "evidence": "saved positive-keyword export",
+      "detail": "All16 desired keywords in Matching outfits voor moeder en dochter are Enabled at keyword level but Delivery=Draft ad group. Keyword coverage does not establish usable group readiness."
+    },
+    {
+      "severity": "OBSERVED_EXTRA_STATUS",
+      "evidence": "saved positive-keyword export",
+      "detail": "Paused English extra mom and son matching shirts, Phrase, Overhemden en T-shirts voor families has Delivery=Disapproved. No current Dutch desired keyword has this delivery label."
+    }
+  ],
+  "manual_language_review": "All132 extra positive rows reviewed by unique phrase grouped across the seven copied groups; phrases are English. No extra positive belongs to the eighth mother/daughter-outfits group.",
+  "gates": [
+    "All16 desired mother/daughter-outfit keywords have saved Delivery=Draft ad group; this is not a complete paused ad-group build.",
+    "All151 extra group-negative rows remain outside the desired45 and unresolved; their absence or deletion is not verified.",
+    "All132 English extra positives remain present but are Paused; cleanup completion is not verified.",
+    "Root reports platform rejection of original Draft group Draft-to-Paused change and all business writes stopped pending user; this review does not authorize or attempt recovery, retry, deletion, or activation.",
+    "No independent verification of RSAs, text assets, images/crops, geography, bids, group completion, or root-reported UI facts.",
+    "No semantic negative-conflict, editorial, serving, conversion or sales claim."
+  ],
+  "external_actions_by_reviewer": 0,
+  "reconciliation_failures": []
+}

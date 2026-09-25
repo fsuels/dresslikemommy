@@ -1,0 +1,19 @@
+{
+  "status": "PASS",
+  "localeCleanup": "locale_cleanup_independent.json",
+  "existingRunnerCases": 13,
+  "sharedLabelCases": 12,
+  "runnerEvidence": "shared_label_runner_cases_result.json",
+  "runnerSHA256": "f7dbbf61275deaf7a9b9130d1470a57aae5b7d9888a3066ab7385e2237ed8ee3",
+  "queryPath": "tooling/shared_label_release_query.graphql",
+  "querySHA256": "0cf3226a44066edb977302f6d85ec9670e4fd4a6f6943b3cdfeb1fdcef75380f",
+  "queryReadReview": "Selects Product id/status/onlineStoreUrl, option ID, option-value ID, hasVariants and linkedMetafieldValue; all20locale aliases and pagination/current-source/translation fields present. Batches capped at5resources. Parent reports schema validation and equality to in-memory execution string; independently read source only.",
+  "sharedScopeFields": 12,
+  "sharedResources": 6,
+  "scopeEvidence": "Every selected mapping resolves to ACTIVE/onlineStoreUrl product plus exact existing option/value with hasVariants true and linkedMetafieldValue exact resource in persisted fresh root readback.",
+  "limits": [
+    "No connector calls, browser, Git, index or source writes by reviewer.",
+    "Local mocked execution is not a production write or live after-state; root retains live verification.",
+    "Root provided native3400leaf limit; independent check confirms current Hebrew3397, all35files<=3400."
+  ]
+}

@@ -1,0 +1,2077 @@
+{
+  "result": "PASS_LOCAL_TEXT_EXTRACTION",
+  "source_sha256": "4076a4ba64d62b9c979c8e1e921c12e52afa2311963906698044890b8bc4b52d",
+  "counts": {
+    "ad_groups": 8,
+    "positive_keywords": 144,
+    "positive_by_match_type": {
+      "Exact": 62,
+      "Phrase": 82
+    },
+    "headlines": 120,
+    "descriptions": 32,
+    "campaign_negative_sets": {
+      "dutch_phrase": 111,
+      "english_phrase": 82,
+      "temporary_exact": 9
+    },
+    "campaign_negatives": 202,
+    "group_negatives": 45,
+    "group_negatives_by_match_type": {
+      "Phrase": 20,
+      "Exact": 25
+    },
+    "callouts": 6,
+    "sitelinks": 8,
+    "sitelink_associations": 32,
+    "structured_snippets": 8,
+    "delivered_image_pairs": 0,
+    "groups": [
+      {
+        "number": 1,
+        "name": "Jurken voor moeder en dochter",
+        "positives": 17,
+        "negatives": 6,
+        "negative_match_counts": {
+          "Phrase": 6
+        }
+      },
+      {
+        "number": 2,
+        "name": "Matching familiekleding",
+        "positives": 20,
+        "negatives": 8,
+        "negative_match_counts": {
+          "Exact": 8
+        }
+      },
+      {
+        "number": 3,
+        "name": "Overhemden en T-shirts voor families",
+        "positives": 18,
+        "negatives": 6,
+        "negative_match_counts": {
+          "Exact": 6
+        }
+      },
+      {
+        "number": 4,
+        "name": "Pyjama’s voor moeder en dochter",
+        "positives": 17,
+        "negatives": 0,
+        "negative_match_counts": {}
+      },
+      {
+        "number": 5,
+        "name": "Overhemden voor vader en zoon",
+        "positives": 15,
+        "negatives": 6,
+        "negative_match_counts": {
+          "Phrase": 6
+        }
+      },
+      {
+        "number": 6,
+        "name": "Matching outfits voor moeder en dochter",
+        "positives": 16,
+        "negatives": 11,
+        "negative_match_counts": {
+          "Exact": 11
+        }
+      },
+      {
+        "number": 7,
+        "name": "Badkleding voor moeder en dochter",
+        "positives": 18,
+        "negatives": 0,
+        "negative_match_counts": {}
+      },
+      {
+        "number": 8,
+        "name": "Matching familietruien en hoodies",
+        "positives": 23,
+        "negatives": 8,
+        "negative_match_counts": {
+          "Phrase": 8
+        }
+      }
+    ]
+  },
+  "structural_checks": {
+    "ad_groups": true,
+    "positive_keywords": true,
+    "headlines": true,
+    "descriptions": true,
+    "campaign_negatives": true,
+    "group_negatives": true,
+    "callouts": true,
+    "sitelinks": true,
+    "sitelink_associations": true,
+    "structured_snippets": true,
+    "campaign_negative_set_counts": true,
+    "each_group_rsa_fields": true,
+    "sitelink_mapping_resolves": true,
+    "extensions_group_names_resolve": true
+  },
+  "limits_basis": "Attachment-stated RSA, path, callout and sitelink limits; snippet value check uses 25-character candidate limit, not a current API verification.",
+  "length_checks": [
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 1,
+      "text": "Matching moeder-dochterjurken",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 2,
+      "text": "Dezelfde jurk voor jullie twee",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 3,
+      "text": "Ontdek onze mama en ik-jurken",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 4,
+      "text": "Bloemenprints voor allebei",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 5,
+      "text": "Lange jurken in dezelfde stijl",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 6,
+      "text": "Jurken voor jullie fotoshoot",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 7,
+      "text": "Elke jurk apart verkrijgbaar",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 8,
+      "text": "Kies voor ieder de juiste maat",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 9,
+      "text": "Ruches en bloemen ontdekken",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 10,
+      "text": "Jurken voor speciale momenten",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 11,
+      "text": "Match jullie vakantielooks",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 12,
+      "text": "Vind jullie favoriete print",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 13,
+      "text": "Samen een verjaardag vieren",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 14,
+      "text": "Ontdek bijpassende jurken",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "headlines",
+      "index": 15,
+      "text": "Shop bij Dress Like Mommy",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "descriptions",
+      "index": 1,
+      "text": "Ontdek matching jurken voor moeder en dochter. Kies elke jurk en maat apart voor jullie.",
+      "length": 88,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "descriptions",
+      "index": 2,
+      "text": "Dezelfde jurken voor moeder en dochter met bloemen en ruches. Vergelijk jullie maten.",
+      "length": 85,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "descriptions",
+      "index": 3,
+      "text": "Mama en ik-jurken voor vakantie, verjaardagen en foto's. Vind jullie favoriete model.",
+      "length": 85,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "descriptions",
+      "index": 4,
+      "text": "Controleer jullie maten en de verwachte bezorging voordat je voor een gelegenheid bestelt.",
+      "length": 90,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "path1",
+      "text": "moeder-dochter",
+      "length": 14,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "path2",
+      "text": "jurken",
+      "length": 6,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 1,
+      "text": "Matching familiekleding",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 2,
+      "text": "Dezelfde look voor het gezin",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 3,
+      "text": "Combineer overhemden en jurken",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 4,
+      "text": "Jullie look voor familiefoto's",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 5,
+      "text": "Stel jullie familielook samen",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 6,
+      "text": "Voor mama, papa en de kinderen",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 7,
+      "text": "Elk kledingstuk apart te koop",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 8,
+      "text": "Kies voor iedereen de maat",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 9,
+      "text": "Samen in matching vakantielook",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 10,
+      "text": "Voor ouders en kinderen",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 11,
+      "text": "Deel jullie favoriete prints",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 12,
+      "text": "Outfits voor momenten samen",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 13,
+      "text": "Looks voor de familiereünie",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 14,
+      "text": "Ontdek bijpassende gezinslooks",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "headlines",
+      "index": 15,
+      "text": "Shop bij Dress Like Mommy",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "descriptions",
+      "index": 1,
+      "text": "Shop matching familiekleding voor foto's en vakantie. Kies elk artikel en elke maat apart.",
+      "length": 90,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "descriptions",
+      "index": 2,
+      "text": "Bijpassende kleding voor het gezin met jurken en overhemden. Stel jullie looks samen.",
+      "length": 85,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "descriptions",
+      "index": 3,
+      "text": "Dezelfde kleding voor de hele familie: vergelijk prints en kies de items voor iedereen.",
+      "length": 87,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "descriptions",
+      "index": 4,
+      "text": "Controleer ieders maten en de verwachte bezorging voordat je voor een gelegenheid bestelt.",
+      "length": 90,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "path1",
+      "text": "familie",
+      "length": 7,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "path2",
+      "text": "matching-looks",
+      "length": 14,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 1,
+      "text": "Matching familieshirts",
+      "length": 22,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 2,
+      "text": "T-shirts voor de hele familie",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 3,
+      "text": "Bijpassende bovenkleding",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 4,
+      "text": "Overhemden en T-shirts shoppen",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 5,
+      "text": "Een print voor groot en klein",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 6,
+      "text": "Shirts voor familiefoto's",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 7,
+      "text": "Elk kledingstuk apart te koop",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 8,
+      "text": "Vergelijk alle maten",
+      "length": 20,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 9,
+      "text": "Ontdek bloemen en strepen",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 10,
+      "text": "Voor volwassenen en kinderen",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 11,
+      "text": "Samen in matching vakantielook",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 12,
+      "text": "Vind jullie favoriete print",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 13,
+      "text": "Kleding voor dagen samen",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 14,
+      "text": "Ontdek jullie familieshirts",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "headlines",
+      "index": 15,
+      "text": "Shop bij Dress Like Mommy",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "descriptions",
+      "index": 1,
+      "text": "Shop matching overhemden voor de familie. Kies elk kledingstuk en iedere maat apart.",
+      "length": 84,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "descriptions",
+      "index": 2,
+      "text": "Matching T-shirts voor de familie en overhemden met knopen voor foto's en vakanties.",
+      "length": 84,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "descriptions",
+      "index": 3,
+      "text": "Ontdek matching bovenkleding met bloemen en strepen. Vergelijk modellen en afmetingen.",
+      "length": 86,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "descriptions",
+      "index": 4,
+      "text": "Controleer de maten voor volwassenen en kinderen en de bezorging voordat je bestelt.",
+      "length": 84,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "path1",
+      "text": "familie",
+      "length": 7,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "path2",
+      "text": "overhemden",
+      "length": 10,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 1,
+      "text": "Matching pyjama's mama en mini",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 2,
+      "text": "Dezelfde pyjama voor jullie",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 3,
+      "text": "Ontdek mama en ik-pyjama's",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 4,
+      "text": "Korte of lange mouwen",
+      "length": 21,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 5,
+      "text": "Pyjama's in dezelfde print",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 6,
+      "text": "Deel jullie favoriete patronen",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 7,
+      "text": "Een pyjamaset per persoon",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 8,
+      "text": "Kies iedere maat apart",
+      "length": 22,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 9,
+      "text": "Samen ontspannen in stijl",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 10,
+      "text": "Pyjama's met short of broek",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 11,
+      "text": "Samen matchen bij het ontbijt",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 12,
+      "text": "Nachtkleding voor mama en mini",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 13,
+      "text": "Bekijk eerst de maattabel",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 14,
+      "text": "Vind jullie volgende pyjama",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "headlines",
+      "index": 15,
+      "text": "Shop bij Dress Like Mommy",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "descriptions",
+      "index": 1,
+      "text": "Ontdek matching pyjama's voor moeder en dochter. Kies per persoon een set en eigen maat.",
+      "length": 88,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "descriptions",
+      "index": 2,
+      "text": "Dezelfde pyjama voor moeder en dochter met korte of lange mouwen en bijpassende prints.",
+      "length": 87,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "descriptions",
+      "index": 3,
+      "text": "Mama en ik-pyjama's met short of lange broek. Vergelijk de prints en jullie afmetingen.",
+      "length": 87,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "descriptions",
+      "index": 4,
+      "text": "Controleer voor ieder de maat en bekijk de bezorgopties voordat je online bestelt.",
+      "length": 82,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "path1",
+      "text": "moeder-dochter",
+      "length": 14,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "path2",
+      "text": "pyjamas",
+      "length": 7,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 1,
+      "text": "Matching vader-zoonoverhemden",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 2,
+      "text": "Dezelfde overhemden voor twee",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 3,
+      "text": "Hawaii-overhemden voor jullie",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 4,
+      "text": "Papa en zoon in dezelfde stijl",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 5,
+      "text": "Tropische prints voor samen",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 6,
+      "text": "Met knopen voor vader en zoon",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 7,
+      "text": "Elk overhemd apart te koop",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 8,
+      "text": "Vergelijk jullie beide maten",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 9,
+      "text": "Samen op de familiefoto",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 10,
+      "text": "Overhemden voor de vakantie",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 11,
+      "text": "Korte mouwen voor jullie twee",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 12,
+      "text": "Een print voor vader en zoon",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 13,
+      "text": "Voor heren en jongens",
+      "length": 21,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 14,
+      "text": "Kies jullie favoriete print",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "headlines",
+      "index": 15,
+      "text": "Shop bij Dress Like Mommy",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "descriptions",
+      "index": 1,
+      "text": "Shop matching overhemden voor vader en zoon. Kies elk overhemd en iedere maat apart.",
+      "length": 84,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "descriptions",
+      "index": 2,
+      "text": "Overhemden voor papa en zoon met knopen en tropische prints voor vakantie en foto's.",
+      "length": 84,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "descriptions",
+      "index": 3,
+      "text": "Ontdek Hawaii-overhemden voor vader en zoon. Vergelijk prints en maten voor jullie reis.",
+      "length": 88,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "descriptions",
+      "index": 4,
+      "text": "Controleer jullie maten en de bezorgtermijn voordat je voor een gelegenheid bestelt.",
+      "length": 84,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "path1",
+      "text": "vader-en-zoon",
+      "length": 13,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "path2",
+      "text": "overhemden",
+      "length": 10,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 1,
+      "text": "Matching moeder-dochteroutfits",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 2,
+      "text": "Dezelfde kleding voor twee",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 3,
+      "text": "Ontdek onze mama en ik-outfits",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 4,
+      "text": "Twee looks in dezelfde stijl",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 5,
+      "text": "Combineer jurken en sets",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 6,
+      "text": "Kies elk kledingstuk apart",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 7,
+      "text": "Een print voor mama en mini",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 8,
+      "text": "Klaar voor jullie fotoshoot",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 9,
+      "text": "Jullie looks voor de vakantie",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 10,
+      "text": "Kies voor ieder de eigen maat",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 11,
+      "text": "Ontdek matching tops en rokken",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 12,
+      "text": "Samen in stijl jarig zijn",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 13,
+      "text": "Stel jullie eigen look samen",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 14,
+      "text": "Vergelijk jullie afmetingen",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "headlines",
+      "index": 15,
+      "text": "Shop bij Dress Like Mommy",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "descriptions",
+      "index": 1,
+      "text": "Ontdek matching outfits voor moeder en dochter. Kies elk kledingstuk en iedere maat apart.",
+      "length": 90,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "descriptions",
+      "index": 2,
+      "text": "Dezelfde kleding voor moeder en dochter: combineer jurken, tops en rokken in jullie stijl.",
+      "length": 90,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "descriptions",
+      "index": 3,
+      "text": "Mama en ik-outfits voor foto's, verjaardagen en vakantie. Vergelijk de modellen en maten.",
+      "length": 89,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "descriptions",
+      "index": 4,
+      "text": "De prijs geldt voor het gekozen artikel. Controleer de maten en bezorging voor aankoop.",
+      "length": 87,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "path1",
+      "text": "moeder-dochter",
+      "length": 14,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "path2",
+      "text": "outfits",
+      "length": 7,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 1,
+      "text": "Matching moeder-dochterbadmode",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 2,
+      "text": "Dezelfde badpakken voor twee",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 3,
+      "text": "Badkleding voor mama en mij",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 4,
+      "text": "Ontdek bikini's en badpakken",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 5,
+      "text": "Badpakken met rokje voor twee",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 6,
+      "text": "Prints voor dagen bij het bad",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 7,
+      "text": "Samen in matching strandlooks",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 8,
+      "text": "Elk artikel apart verkrijgbaar",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 9,
+      "text": "Vergelijk jullie beide maten",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 10,
+      "text": "Dezelfde look op vakantie",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 11,
+      "text": "Bloemen en ruches voor allebei",
+      "length": 30,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 12,
+      "text": "Ontdek jullie nieuwe badpak",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 13,
+      "text": "Bikini's voor mama en mini",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 14,
+      "text": "Lees de retourvoorwaarden",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "headlines",
+      "index": 15,
+      "text": "Shop bij Dress Like Mommy",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "descriptions",
+      "index": 1,
+      "text": "Ontdek matching badkleding voor moeder en dochter. Kies elk artikel en iedere maat apart.",
+      "length": 89,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "descriptions",
+      "index": 2,
+      "text": "Dezelfde badpakken voor moeder en dochter, bikini's en modellen met een rokje ontdekken.",
+      "length": 88,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "descriptions",
+      "index": 3,
+      "text": "Mama en ik-badkleding met bloemen en ruches. Vergelijk de prints en jullie maten.",
+      "length": 81,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "descriptions",
+      "index": 4,
+      "text": "Lees de retourvoorwaarden voor badkleding en controleer de bezorgtermijn voor jullie reis.",
+      "length": 90,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "path1",
+      "text": "moeder-dochter",
+      "length": 14,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "path2",
+      "text": "badkleding",
+      "length": 10,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 1,
+      "text": "Matching truien voor families",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 2,
+      "text": "Truien voor het hele gezin",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 3,
+      "text": "Matching moeder-dochtertruien",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 4,
+      "text": "Vesten in dezelfde stijl",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 5,
+      "text": "Ontdek hoodies en truien",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 6,
+      "text": "Hartjes en kabelpatronen",
+      "length": 24,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 7,
+      "text": "Looks voor de koelere dagen",
+      "length": 27,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 8,
+      "text": "Elke trui apart verkrijgbaar",
+      "length": 28,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 9,
+      "text": "Kies voor iedereen de maat",
+      "length": 26,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 10,
+      "text": "Samen op de familiefoto",
+      "length": 23,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 11,
+      "text": "Gebreide looks voor het gezin",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 12,
+      "text": "Bekijk eerst de maattabel",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 13,
+      "text": "Ontdek jullie volgende truien",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 14,
+      "text": "Dezelfde stijl in het weekend",
+      "length": 29,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "headlines",
+      "index": 15,
+      "text": "Shop bij Dress Like Mommy",
+      "length": 25,
+      "limit": 30,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "descriptions",
+      "index": 1,
+      "text": "Shop matching truien voor de familie voor foto's en koelere dagen. Kies elke trui apart.",
+      "length": 88,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "descriptions",
+      "index": 2,
+      "text": "Dezelfde truien voor het gezin, vesten en hoodies. Vergelijk modellen en maten voor ieder.",
+      "length": 90,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "descriptions",
+      "index": 3,
+      "text": "Ontdek matching truien voor moeder en dochter met hartjes en kabels voor momenten samen.",
+      "length": 88,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "descriptions",
+      "index": 4,
+      "text": "Controleer ieders maten en de bezorgtermijn voordat je voor jullie fotoshoot bestelt.",
+      "length": 85,
+      "limit": 90,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "path1",
+      "text": "familie",
+      "length": 7,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "path2",
+      "text": "truien",
+      "length": 6,
+      "limit": 15,
+      "pass": true
+    },
+    {
+      "scope": "callouts",
+      "index": 1,
+      "text": "Kies elke maat apart",
+      "length": 20,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "callouts",
+      "index": 2,
+      "text": "Elk artikel apart te koop",
+      "length": 25,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "callouts",
+      "index": 3,
+      "text": "Matching looks voor samen",
+      "length": 25,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "callouts",
+      "index": 4,
+      "text": "Ontdek bijpassende prints",
+      "length": 25,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "callouts",
+      "index": 5,
+      "text": "Voor groot en klein",
+      "length": 19,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "callouts",
+      "index": 6,
+      "text": "Vergelijk de afmetingen",
+      "length": 23,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Moeder-dochterjurken",
+      "field": "text",
+      "text": "Moeder-dochterjurken",
+      "length": 20,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Moeder-dochterjurken",
+      "field": "description1",
+      "text": "Ontdek bijpassende jurken",
+      "length": 25,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Moeder-dochterjurken",
+      "field": "description2",
+      "text": "Kies jullie maten apart",
+      "length": 23,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "text",
+      "text": "Matching familiekleding",
+      "length": 23,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "description1",
+      "text": "Combineer jurken en overhemden",
+      "length": 30,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "description2",
+      "text": "Kies de items voor iedereen",
+      "length": 27,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Familieshirts",
+      "field": "text",
+      "text": "Familieshirts",
+      "length": 13,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Familieshirts",
+      "field": "description1",
+      "text": "Overhemden en T-shirts combineren",
+      "length": 33,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Familieshirts",
+      "field": "description2",
+      "text": "Vergelijk maten en prints",
+      "length": 25,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Moeder-dochterpyjama’s",
+      "field": "text",
+      "text": "Moeder-dochterpyjama's",
+      "length": 22,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Moeder-dochterpyjama’s",
+      "field": "description1",
+      "text": "Ontdek korte en lange mouwen",
+      "length": 28,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Moeder-dochterpyjama’s",
+      "field": "description2",
+      "text": "Een pyjamaset per persoon",
+      "length": 25,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Vader-zoonoverhemden",
+      "field": "text",
+      "text": "Vader-zoonoverhemden",
+      "length": 20,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Vader-zoonoverhemden",
+      "field": "description1",
+      "text": "Tropische prints voor jullie twee",
+      "length": 33,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Vader-zoonoverhemden",
+      "field": "description2",
+      "text": "Overhemden met knopen combineren",
+      "length": 32,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Moeder-dochteroutfits",
+      "field": "text",
+      "text": "Moeder-dochteroutfits",
+      "length": 21,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Moeder-dochteroutfits",
+      "field": "description1",
+      "text": "Ontdek jurken en matching sets",
+      "length": 30,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Moeder-dochteroutfits",
+      "field": "description2",
+      "text": "Stel jullie eigen looks samen",
+      "length": 29,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Matching badkleding",
+      "field": "text",
+      "text": "Matching badkleding",
+      "length": 19,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Matching badkleding",
+      "field": "description1",
+      "text": "Bikini's, badpakken en tankini's",
+      "length": 32,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Matching badkleding",
+      "field": "description2",
+      "text": "Bekijk maten en retourvoorwaarden",
+      "length": 33,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien",
+      "field": "text",
+      "text": "Matching familietruien",
+      "length": 22,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien",
+      "field": "description1",
+      "text": "Ontdek truien, vesten en hoodies",
+      "length": 32,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien",
+      "field": "description2",
+      "text": "Vergelijk de maten voor je koopt",
+      "length": 32,
+      "limit": 35,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "structured_snippet_value",
+      "text": "Bloemen",
+      "length": 7,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "structured_snippet_value",
+      "text": "Ruches",
+      "length": 6,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Jurken voor moeder en dochter",
+      "field": "structured_snippet_value",
+      "text": "Maxi",
+      "length": 4,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "structured_snippet_value",
+      "text": "Jurken",
+      "length": 6,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "structured_snippet_value",
+      "text": "Overhemden",
+      "length": 10,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Matching familiekleding",
+      "field": "structured_snippet_value",
+      "text": "Sets",
+      "length": 4,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "structured_snippet_value",
+      "text": "Overhemden",
+      "length": 10,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "structured_snippet_value",
+      "text": "T-shirts",
+      "length": 8,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden en T-shirts voor families",
+      "field": "structured_snippet_value",
+      "text": "Tops",
+      "length": 4,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "structured_snippet_value",
+      "text": "Pyjama’s met korte mouwen",
+      "length": 25,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "structured_snippet_value",
+      "text": "Pyjama’s met lange mouwen",
+      "length": 25,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Pyjama’s voor moeder en dochter",
+      "field": "structured_snippet_value",
+      "text": "Pyjama met short",
+      "length": 16,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "structured_snippet_value",
+      "text": "Hawaii",
+      "length": 6,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "structured_snippet_value",
+      "text": "Tropisch",
+      "length": 8,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Overhemden voor vader en zoon",
+      "field": "structured_snippet_value",
+      "text": "Bloemen",
+      "length": 7,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "structured_snippet_value",
+      "text": "Jurken",
+      "length": 6,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "structured_snippet_value",
+      "text": "Sets",
+      "length": 4,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Matching outfits voor moeder en dochter",
+      "field": "structured_snippet_value",
+      "text": "Rokken",
+      "length": 6,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "structured_snippet_value",
+      "text": "Bikini’s",
+      "length": 8,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "structured_snippet_value",
+      "text": "Badpakken",
+      "length": 9,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Badkleding voor moeder en dochter",
+      "field": "structured_snippet_value",
+      "text": "Tankini’s",
+      "length": 9,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "structured_snippet_value",
+      "text": "Truien",
+      "length": 6,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "structured_snippet_value",
+      "text": "Vesten",
+      "length": 6,
+      "limit": 25,
+      "pass": true
+    },
+    {
+      "scope": "Matching familietruien en hoodies",
+      "field": "structured_snippet_value",
+      "text": "Hoodies",
+      "length": 7,
+      "limit": 25,
+      "pass": true
+    }
+  ],
+  "length_violations": [],
+  "duplicate_tuple_count": 0,
+  "duplicate_checks": {
+    "campaign_negatives": [],
+    "group_keywords": {
+      "Jurken voor moeder en dochter": [],
+      "Matching familiekleding": [],
+      "Overhemden en T-shirts voor families": [],
+      "Pyjama’s voor moeder en dochter": [],
+      "Overhemden voor vader en zoon": [],
+      "Matching outfits voor moeder en dochter": [],
+      "Badkleding voor moeder en dochter": [],
+      "Matching familietruien en hoodies": []
+    },
+    "group_negatives": {
+      "Jurken voor moeder en dochter": [],
+      "Matching familiekleding": [],
+      "Overhemden en T-shirts voor families": [],
+      "Pyjama’s voor moeder en dochter": [],
+      "Overhemden voor vader en zoon": [],
+      "Matching outfits voor moeder en dochter": [],
+      "Badkleding voor moeder en dochter": [],
+      "Matching familietruien en hoodies": []
+    }
+  },
+  "literal_conflict_count": 0,
+  "literal_conflicts": [],
+  "literal_conflict_method": "Case-folded word tokens; Exact requires full token equality, Phrase contiguous token sequence. Campaign plus own group checked for each supplied positive. Does not model Microsoft semantic matching.",
+  "live_readback_performed": false,
+  "changes_to_source_dutch_copy": 0
+}

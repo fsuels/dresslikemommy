@@ -1,0 +1,12 @@
+from pathlib import Path
+import json,hashlib,html,re,copy,importlib.util
+P=Path(__file__).parent;PACK=P.parents[2];f=P/'body_candidates.json';pr=PACK/'review/other-article-bodies/independent63/correction_proposals.json'
+sha=lambda s:hashlib.sha256(s.encode()).hexdigest();fsha=lambda f:hashlib.sha256(f.read_bytes()).hexdigest();write=lambda n,d:(P/n).write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n')
+proposals=json.loads(pr.read_text());assert fsha(f)==proposals['frozenCandidateFileSHA256'];rows=json.loads(f.read_text())['rows'];by={str(r['ledgerId']):r for r in rows};changes=[]
+for q in proposals['proposals']:
+ for use in q['uses']:
+  r=by[use['ledgerId']];old=html.escape(q['value'],quote=False);new=html.escape(q['correctedValue'],quote=False);assert r['locale']==q['locale'];assert r['value'].count(old)==1,(use,q['id']);r['value']=r['value'].replace(old,new);changes.append({'ledgerId':r['ledgerId'],'pairId':q['id'],'oldTextSHA256':q['oldTextSHA256'],'newTextSHA256':q['correctedTextSHA256']})
+spec=importlib.util.spec_from_file_location('o',PACK/'tooling/offline_translation.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m);checks=[];orig=json.loads(f.read_text())['rows']
+for r,o in zip(rows,orig):
+ assert re.findall('<[^>]+>',r['value'])==re.findall('<[^>]+>',o['value']);imgs=iter(re.findall(r'<img\b[^>]*>',r['sourceValue']));normalized=re.sub(r'<img\b[^>]*>',lambda _:next(imgs),r['value']);ck=m.verify_text(r['sourceValue'],normalized,r['locale']);assert not ck['errors'];r['valueSHA256']=sha(r['value']);r['reviewStatus']='INDEPENDENT_REVIEW_CORRECTIONS_APPLIED_PENDING_REVIEWER_READBACK';r['authorV1ValueSHA256']=sha(o['value']);r['independentReviewProposalsFile']=str(pr.relative_to(PACK));checks.append({'ledgerId':r['ledgerId'],'valueSHA256':r['valueSHA256'],'sourceAndBeforeUnchanged':all(r[k]==o[k]for k in ['sourceValue','sourceDigest','before']),'v1AllMarkupExact':True,'normalizedAltCheck':ck})
+write('body_candidates_v2.json',{'status':'63_COMPLETE_WITH_7_INDEPENDENT_ARABIC_PRECISION_CORRECTIONS','rows':rows});write('body_checks_v2.json',{'status':'PASS','rows':checks,'corrections':changes,'correctedRows':len(set(x['ledgerId']for x in changes)),'authorV1SHA256':fsha(f),'proposalSHA256':fsha(pr),'candidateV2SHA256':fsha(P/'body_candidates_v2.json')});print({'rows':len(rows),'nodes':len(changes),'correctedRows':len(set(x['ledgerId']for x in changes)),'sha256':fsha(P/'body_candidates_v2.json')})

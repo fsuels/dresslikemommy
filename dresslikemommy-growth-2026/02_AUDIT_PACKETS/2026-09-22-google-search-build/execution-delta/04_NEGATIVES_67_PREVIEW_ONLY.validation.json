@@ -1,0 +1,50 @@
+{
+  "status": "LOCAL_ONLY_PREVIEW_REQUIRED",
+  "file": "04_NEGATIVES_67_PREVIEW_ONLY.csv",
+  "rows": 67,
+  "headers": [
+    "Row Type",
+    "Action",
+    "Keyword status",
+    "Level",
+    "Campaign ID",
+    "Campaign",
+    "Ad group",
+    "Negative keyword",
+    "Type"
+  ],
+  "sha256": "8dd5fe60e489f8ba5eebbcb85ee6bb0e19b0c8392a1e1f3a87ae03b74f09ceba",
+  "sourceTemplate": "https://www.gstatic.com/adwords/campaignmgmt/templates/ad_group_negative_keyword_template.csv",
+  "scopeCounts": {
+    "Campaign": 26,
+    "Ad group": 41
+  },
+  "campaignId": "281499249292033",
+  "newChanges": "Campaign ID added; original negative text, match types, scopes and Paused statuses retained exactly.",
+  "nativePreview": "NOT_RUN_BY_WORKER",
+  "nativeApply": "NOT_RUN_BY_WORKER",
+  "limitation": "Native negative template advertises Paused status and Campaign level; actual negative-state semantics and blank Ad group for campaign-level rows require native Preview/readback. No effective-exclusion claim.",
+  "independentValidation": {
+    "status": "PASS_WITH_LIMITS",
+    "assertions": 362,
+    "negativeRows": 67,
+    "negativeTextScopeTypeStatusUnchanged": true,
+    "sitelinkAssociationRows": 14,
+    "uniqueSitelinkContentDefinitions": 6,
+    "snippetRows": 1,
+    "rsaRowsReviewed": 5,
+    "concreteRsaSchemaIssuesFound": []
+  },
+  "assetReview": {
+    "status": "PASS_LOCAL_CONTENT_AND_SCOPES",
+    "sitelinks": "14requested ad-group associations,6distinct definitions, exact text/URLs/lengths match payload.",
+    "snippet": "One Types snippet, Dresses;Pajamas;Matching Sets, only Mommy & Me Outfits.",
+    "limitations": "Actual asset-object deduplication, destination clearance and native acceptance are not established by this local review."
+  },
+  "rsaReview": {
+    "result": "NO_CONCRETE_LOCAL_NATIVE_SCHEMA_MISMATCH_FOUND",
+    "nativeSource": "https://www.gstatic.com/adwords/campaignmgmt/templates/responsive_search_ad_template.csv",
+    "details": "Five rows use only advertised native headers, RowTypeAd/ActionAdd/Paused/Responsive search ad, bound campaign ID/name,12headlines/4descriptions, Description1position1, correct paths and HTTPS final URLs. The current native schema uses Description1; the older Help example uses Description. Candidate correctly follows current native schema.",
+    "failureInterpretation": "Parent reports generic transient-error text twice. Local templates do not identify its cause; no cause inferred and no further import retries proposed."
+  }
+}

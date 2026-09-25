@@ -1,0 +1,1203 @@
+{
+  "status": "PASS_WITH_LIMITS",
+  "reviewer": "danish_scope_evidence",
+  "reviewedFields": 93,
+  "candidateFile": "ru-bodies/release_ready_for_peer_review.json",
+  "candidateSHA256": "79b4fd2d20c912bb3874a4f2ea5c2077dae22e9c73602e323e3dc4b6edc94d9c",
+  "inverseFile": "ru_final_reviewed_inverse.json",
+  "inverseSHA256": "2002557d89074d320b6f1b61683ff65ce3dd295dd6569267e150041bd3d9868d",
+  "authorAdjudicationSHA256": "e3b47f1d3b71704f9a625f11066207809403277fa996e61fd266e653e42f70d4",
+  "method": "Independent full visible-prose comparison across all final author batches (112 drafts), with acceptance limited to the 93 source-qualified rows. Reused already-read source text only on exact equality. Recomputed exact local source/digest/before and inverse binding, HTML/attributes, per-cell measurements/units/size codes, numbers, URLs and residue checks. Earlier per-batch reviews retained.",
+  "diagnosticNormalizations": [
+    "Ignore HTML comments only when comparing source structure; all candidate comment/tag/attribute events remain exactly equal to before, or source if translation was missing.",
+    "cm/in and Russian см/дюйм normalized in-memory to cm/inch; Russian кг/фунты to kg/lbs. Equivalent header units only; numbers unchanged.",
+    "Two exact Russian prose phrases use см. as abbreviation for see, not centimetres; diagnostic normalization removes this false unit token."
+  ],
+  "strictErrorCounts": {
+    "html_structure_or_attributes_changed": 19,
+    "table_cell_numbers_units_or_shape_changed": 5,
+    "measurement_units_changed_or_unrecognized": 7
+  },
+  "strictPassCount": 68,
+  "reports": [
+    {
+      "resourceId": "gid://shopify/Product/7108962254945",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "fe7ca1aca80c8c18f2857c6fc79136859727c671bc26bb8f4c419e93d9f0dd72",
+      "sourceDigest": "54162e2d6d43dd0bfc68f4e550c5457d30c7ea543745574b917819e10f1d74cb",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7108969037921",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "7a49b4ceef4d04191329f5c8ec7b798adc3ec0b9c7d48ab87e3ee2d9ed3f9512",
+      "sourceDigest": "da106f839a7c3dd16384bac6cfaf9044ac219dbe9987aa9b927f66ed05f751d1",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7108984799329",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "f0eaf6b04e405e922ae567f9598a21a51e6b5b4f963efd7ba2495a74b70b68f6",
+      "sourceDigest": "b4c423e15ff11d9fd6949faeb3c608ccc9ce550eae97d8b5b2ad4e418c048380",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7108986404961",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "478904ef219b8a95b96576e464f240fbfa6e19e484d040df4b9d74acde86cf4a",
+      "sourceDigest": "8da43a9ea7e137866e35c81e62cc3319e2ec34c35d6b4f5635cf7a0c42fd521b",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7108988764257",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "e15a150c4bb443b31a0d14ffd9def874376bedbccc3a6b053d8ec708f75ce9aa",
+      "sourceDigest": "8c2837b67b4241db650bc618eb1a8121225655865511b2d0b3aca8f4d343153c",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7108992860257",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "006540e27fd2bf3f73a3609e00eb6c178b7376917c5f10fc3634aff022e98672",
+      "sourceDigest": "784fa247c3d37fc7227d42d0e31998845542452c8fdf7f65c05cfbb5791b7823",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7108996530273",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "ceb0b76c12cb1c192fa746895d8e6cf92f96d9b695ed45c268f2034ee3ce53e9",
+      "sourceDigest": "28f9099ff1beabdbfd38b3372f300bb2b196f4affada687d681a13ed83b3a4e2",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109072257121",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "d051c57508b6ca65d4172106abbec07840bd0ba17131fd49bb789df159221e2a",
+      "sourceDigest": "8afdaf8eeebf7a198c4f41f5e30efd4f54bee7fbae29305fdd373504bdd385fc",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109083267169",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "5157759b48d9ad08eb32c69bfe303b71d8ef542e22e414be5273375f488d555b",
+      "sourceDigest": "44fd87bd5d708afbd2bbcfcb2a39e553005e0c1b15605604857beb068b5be715",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109084807265",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "8d7ed5a558bdafa48cdee174bbfe6463c40de1d20cea470c45052fbea91636e6",
+      "sourceDigest": "7af6b0b90b6ab666f7744af0aa369b84bf446a76e1317edb8dd7b45447d9a8b2",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109119705185",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "28ead157f7a4118155f855e699e4e278bb5a4c307a955ba9d4f210adabf1f236",
+      "sourceDigest": "b41646a70eb3d5f2101e99a831ae40328ecc7b31c0bbdb9eb82abf059f21c73e",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109122097249",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "c06b9e7e7a6ea4807fd1c51676ee9871ecf5b8d7059595ea7d1b5561bb34320a",
+      "sourceDigest": "21084781a606dd2a7ff7ca7e22e94dc3af1da940bddcc81d690a53fb23fb5d29",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109123670113",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "cf58c0b3818234ddae994241bfa4cd0d0e2f7b24f99993113a657cf41cd2d549",
+      "sourceDigest": "bb64c30266946dc14dba69fde9b9851e6bdc1db06fa74667ac53c718636ce37d",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109125537889",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "2cbba6137413053b87d1a9ad229ad8b139910342a7e4475b1303bbe227ea5370",
+      "sourceDigest": "943314ddd93362a2e8c93967d489442e2f7c3b3c809aaadf9b030c608bed7eab",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109267947617",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "fae2c548abc809a52557cd574d349e87abae62553cf4938d8ba4c05635fb6e63",
+      "sourceDigest": "9c0d1e1ede1ae1ad13ff35206c92a343f13a1d1d9fad660922f5ccad06af16f9",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109298487393",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "5127d6f663a81991ea3c618fc3a685caf99d97cc21f08c144a678085b2e0c243",
+      "sourceDigest": "32eafef0a0c27ef47b209b07909c2398fca8da6651bb31952d39487ae5191177",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109443256417",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "054491e6608c1b9f4a8fad79798676d9513e5b4ab1c40febb0f5c7e1cddb4bf9",
+      "sourceDigest": "4ae860a02b9cfdc714209b1b20fbf94a287561e3c97630b32c67822d08f6b3e2",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "English source for missing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109454135393",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "e7a420728fc16385692e35805e27ae34590466f478e7604581f90c4c872f6f69",
+      "sourceDigest": "ac97c69c32d8ed21f970f82ab055bfc585634dcbab312b5d3ab6cf7623735960",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109472288865",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "149a5b835ac24a05a40a513efcaf421f2a5ec896a25318be5c918f4c7812da62",
+      "sourceDigest": "9847aa43a395a2e0872c0d76de547e0df1efcea50a35403bf4e17296f1921548",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109481431137",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "aad9d4718400bc41cfdd29eb65e35b464f54d13f993b55db2cc3435c372b7d08",
+      "sourceDigest": "83bdf91e650abdae93adb86bebf697a7b50b0300ce875301557d9b0081a4fef1",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109502566497",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "4b26b585714afc224f06d03fceeb9299e8968521fae8b6f8a049ce7c30922962",
+      "sourceDigest": "2f2481c5c19414c60aefc2d77068c46f3ef8dce01cb123e806ba1a1a1bd05793",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109514395745",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "3127fde2a2574a6f60b2e6557fd1dd72ec3fab4a69fd5be029e9392531d40126",
+      "sourceDigest": "ae358f5e278cf8a5c11258750d9f26e1f8b815ff2dc6c9df781f1df1d306f854",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109517770849",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "b3bd133e344822eaa6e7581cee4085653dbc02521e8df0897c617a4ebda5ca28",
+      "sourceDigest": "2f3b4c805f1f3d191f0eb43085ff466ff61b7221decb581448d4b00ba61e755c",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7109986844769",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "b2749bada04741394dbff44a2ce4f304ea0432cbb6fcfd5c73f5808426a7799d",
+      "sourceDigest": "1050697477a6dd400f1c25111ebfcaf40c007abffefe67daa8e58ca5f1e9649c",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7110356631649",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "1fb1cacd2ffeaf342e4335b1081c97a4c232aeaff95122a8f2584173d106630b",
+      "sourceDigest": "dc81dcd8edfa7e307953d3a237c1f57f7857e15e0fd6ba8f64cf54b499ecd6e8",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7110361874529",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "669e8ad8f0d37fd368c64d23899a4105895fdc67a8767d83254e9fd4230ad808",
+      "sourceDigest": "12259ddb28e4bbc4a4f49b9074682144c59e668a957a2e96a502c9b0510e4523",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7110362136673",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "74e9a168e2f9c0524b70ee6be6faebec32ec195401e44c584f23081e1c3431c3",
+      "sourceDigest": "5df7df5561ca4f4c081c0e628bfe5c236a42b8e0a861cc902a1e1f12ca4f9f26",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7110363119713",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "ea266226661d3afae18d2a2662e68c6cbe652c6e42bd1303a634ea487cd1b586",
+      "sourceDigest": "c906b394edb4a806acdfa1c6ea0c74df82cd16d75b455845aa3700337641b7bf",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7110363775073",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "e971d16ea3934e1ea05c0e9d76194bcc9fa01b6da23709e3bc32823fa02e9ddb",
+      "sourceDigest": "3e166c9993791534bdcddf0d0a455ccd3184904b5e88ad552871883be0e6def1",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7110364856417",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "361054c04c062430b1a6c4ef0b40a647ee692ffe8336b22a7e9cdf86f6b5bd4c",
+      "sourceDigest": "3e62f9bc1a413e178df6461895e22da97455940b506cd2360f3575d782e591ef",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7110368919649",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "413fc89312afcf36f28eb39887ebce02921bb1e8608ea5eb804bc080098706db",
+      "sourceDigest": "9ce7bda858fd2e406db7f7ab35dec9d61998fa7a89fc372a7cb9522eb0a1b411",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227252670561",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "42a490ce7f6eb926e237b6371ce3a5430b4960bfdd6c80df80cdce960890211f",
+      "sourceDigest": "08a59ec40321e71100d66132cce060dfe2765f86f0d55272e4e9bd3681c4138b",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227254276193",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "a9dce62cf630a39a490ddda41125f7b950c9f471981619ab8ff4e9bc938a0de0",
+      "sourceDigest": "505fc0787d036467abe00fda5ca0247865009e299c6a76e2bf54744b28730290",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227270299745",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "fcb84ebafcfdae76cd335ab19d3b09aae192a796a13ce26cb8bf38cd2cdc2359",
+      "sourceDigest": "e2a69e580a16fc45780212766512bf2faf8ab12f8c98aad6becada97338cef5e",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed",
+        "table_cell_numbers_units_or_shape_changed",
+        "measurement_units_changed_or_unrecognized"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227270791265",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "39bd9220bc1feacee8cb6e81b933cbe96b1db4c250bfff779a6480e549264990",
+      "sourceDigest": "c5d31e68a9f0aba19d1fd62c4e38f293235d9b476e538fecbd1e1f8d1f34ffa9",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227355988065",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "ed59d4bd6d759430e87c2f08da769a49d5cd48ce71adb697b8ebc5247cd9e8d4",
+      "sourceDigest": "fa567b4291c91e69398b28137784d9f812342fc6b86303bb8d360d36b098b0dd",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "table_cell_numbers_units_or_shape_changed",
+        "measurement_units_changed_or_unrecognized"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227356282977",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "6646f58daa6b766aa20080bbf228136dff3258ead8db88cbff5995ed69128092",
+      "sourceDigest": "547c8c3ee912e5f06c896aedd8fa2dee1c9c813c433bab9e9f89efba0a340de8",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227374534753",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "23f7604ad66c698882a0c63dc2ba6c7e81134e191e0e260a8d4865be07c093c7",
+      "sourceDigest": "1766fdec216337e69208fb76d6ef8e3462b0fed3311abd8b1c38625b591cf4c7",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227435450465",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "28a50410865d63bc556cb2f984239dc4d044e0566b8d66045b1d37b298220222",
+      "sourceDigest": "b2d734571e260a6330cf9c47f1660f74a21c8d97d5555ac15418ff08d92269e9",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227436367969",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "e4ea5ae3e705a77294425afe03a3ae17f5a402d92e281ae746ab447c0997e0d7",
+      "sourceDigest": "bcc4918fb96c832e698954705d7aaaad42a60499d9626f75e56f76cd8206337c",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227438530657",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "754abd3a174183a86d68a432e93951e07760fe520bef174ed31477d3a6fa1217",
+      "sourceDigest": "b145b48b9105e444025a481de981eefeeb66016a5b0618c0e6067c9fcdfe55c4",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227439546465",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "6bc7db3c9c56a085d065d2a825df6c554ab25875023e453732f4206968e77363",
+      "sourceDigest": "5ba87ee095359ec211f365dc524d660c2fda6caa5b44739b1bd5001c3e1132b7",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227620982881",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "1c46d4b5275a1ba0d027bf7cc8d2682995394bf1ded7bf6123fcb773917b01cd",
+      "sourceDigest": "079f2a06b414815d4b17790f84e652ca7add97919c9a60ce43a679d86757ffde",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7227624554593",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "29eb9b78a42df435fa7610787f9cc5ec2743851909d8e18e65dd780848387ddf",
+      "sourceDigest": "e345746367e1a29cbe0f9962514102aecc29fbe0c00949ed28f0ef7ab15f928a",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7228773466209",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "e386ba602c642811a7767082dba47266e09aaa5a81cbf1c8977a46f1a4767158",
+      "sourceDigest": "54fefcf4631597d5a9ed3117c04d8849eb9843155c41886960340c1a2d2720ee",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7228788867169",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "40f7d6c55e1ea9eb00fcdc73477f2571f91dbcbb453a4d764e075272dec8f02f",
+      "sourceDigest": "7674c2673e851ef5450ac68459006835dc0c2b6a337fe7905368162e2b9699ea",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7229023846497",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "98719a50c0c58b8b26155db5968c1c1a11116eba48bb586289717d3b3596e2d8",
+      "sourceDigest": "3cd95e2d5f07055a4a010c0e3c12d28ff4f08ed159944ce42d6a7956414eae7d",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7229026304097",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "77e8f99d83693f75d68e3007ac92fb3c448b94c791b1b37941f3891f66201ffd",
+      "sourceDigest": "02334ca4ee954ed518401ec26a95765152aa1e2408f4ce0b9c4d0aa0066c02f3",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7229027876961",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "fdbf793e57984eb68bd60a9e584c2ed3d9f7f6a65dbc6629a34715ef5aca23b8",
+      "sourceDigest": "d1927bb03babd8bb9c418ce55ff1cb383395c4bc44fb29156c2cfb7b829fa63b",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7229130801249",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "af3912b58f8c81071a4b840c35f175b40d6172c62fc9c86cd9d70bf866ea889b",
+      "sourceDigest": "1de8db3b22551d9c35378ff200f32ea6f1f093d88c8b0c09868ee8a3b9d5d5fd",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7229132472417",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "c1a459c11b08d36b02f0937044d04f945619ca1ba0ae82438449824a1b267f23",
+      "sourceDigest": "d5f38e2eedef4ed684c649ec2a7b778e2cd2d75bb190bab0e6682edb998cf176",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7229259874401",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "25eade2d3a294be95ee018b78eb71a945873398d69a67d9cdf778e9e393d6468",
+      "sourceDigest": "ec36065b3d3475fd4541d0ce8c4d340ed109c663ab12132d7d14797e60144758",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7230323261537",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "217907ac70a4707811746a487f0726aa232b67875e4d775a48b7ead43e237106",
+      "sourceDigest": "0630f7984888bdacd11e58e5ee3293867a1d4eff2c6c842a0f6bc2e699c7be32",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7230332895329",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "68572c32d610bdbc3b1c0be79a3135e5d46a35f8b144e06a2788455bc1f112e3",
+      "sourceDigest": "6f0b9211093b2f2326564c5b9a9f2709ba3ff0e4304dafc643e8597b9db5a34f",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7230336729185",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "6ae29a067f1baa597f37fdfabc7e8fccc990544a4afa589c6e87d6b5fd644700",
+      "sourceDigest": "f369ee718f0f3597b2e998ed0ad50a7ca640d6aa44d371cb49de84dc98046c27",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7230338039905",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "2d6efe4ff3cc9354e6b97284564f9a206433ac9061bd400c3dd2ef4b859f7d44",
+      "sourceDigest": "472e83e0e71520802aeaf7c6c91afb36e4e9a3232310fa248c953dc0073c1ed6",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7230339711073",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "76c51ee34ee596b66163a7a67ee0b3d76e29c8395b80f699a05b4ddd6d89f652",
+      "sourceDigest": "8ed27cf49d3b37942e0d2d67acedd1b94e10dd4da5633a4f9657082e4135f45b",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7230342004833",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "39193cc11a3c7052a13f3da43a11b135a2a3b0895982becd4c7fe50fe46d41a5",
+      "sourceDigest": "5db15ca04d2351832c36268d4218c431c1f5891a8b5fbbc4a76b083c46382d17",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7230415863905",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "dd4201a5633458d4e8abc3d7779f48b3b7b0abdeaa821eefe00e5d537f8f937c",
+      "sourceDigest": "727753221fc5ccd255414351975055af63d3e3435eef758ad5b652680d5475b8",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7230418944097",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "6b51ff68fcb2588a392a25c1b0a49a9c504959bcb2bb65451c8a38d1c15a85f3",
+      "sourceDigest": "240e2a8bf34566aa6cd645b00b23b949762b3587c06d7042834809a316112d27",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7230423236705",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "b712acb79c6e50398e5950ae18fe9ac283ae306338cd6c8579c858541719f754",
+      "sourceDigest": "ebdbe4b81029a948e24bc37af15c77937954fc928c843c7647a600eef62ed70a",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7230424645729",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "948e463b09a18b7112b5702d083695af9fbb2eb8b3c405bc60307ea198f07cfa",
+      "sourceDigest": "28ce577430222b4aea99e9622697a41ba38939fecdc74b8218829c7c18a35940",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7230645239905",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "6d77cefaacd9a3e9ba1e0ac8dc9816e91827838a21e71c7e2ea83aa597928a65",
+      "sourceDigest": "04cd51e9633b534ba08c2ced4bb78f121e30a230535d0b17636bfdaa36a8f10e",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "html_structure_or_attributes_changed"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7241063825505",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "0f49c55c8c5480d5fabf69b685e59dacf73241c8d3ca7aaef26804595f160ade",
+      "sourceDigest": "faa76fa5b284f1c07ff3ee153902b8cd6f519e767e781641e25cf0c2c5e53465",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "table_cell_numbers_units_or_shape_changed",
+        "measurement_units_changed_or_unrecognized"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502178222177",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "dbdc045bc9bbcf099ee71b5b02267c9c8ff82cfe3d226021517f44b84eeb8333",
+      "sourceDigest": "d7c56a116a1f567b863ee8b9746828f866b3084d569f59f0871d8ba7c9d5d0de",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502187888737",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "7bde58ee0303bd96b568197863362147682166114e061bc6aef2009f80e89d3b",
+      "sourceDigest": "a73aeaa1ef19d8137557f9498df4a3e34e455815cad43e44c50ba29f13cc5d95",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502191788129",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "5f7230f3ac01fc1bca5e6256c383fcd5ab0e96bb31529b991b19cbb9bf348e79",
+      "sourceDigest": "1ae91c3cf392b4ad4f4783d0b0a6bf54c10089567b806258aef714b82d48aeec",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502192214113",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "b4f82f9d392e1b4580983b9b1398bdf3b57021f6a78b5263fffe4afa90c4cbf1",
+      "sourceDigest": "332ea7edb84ed377f6a2a3698355a9a994c325b30b4ee6c50b9fcfe95d2bac83",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502765097057",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "972e54553d26f5223ad0d3cc2971a7076fdde4092be835115caeb2558ba4ac2b",
+      "sourceDigest": "08148fcc4d2f03cb083d753d9df1b5cf4464b0a1c0bd41ac25b13e1ebcd5c1da",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502765949025",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "47e23d649cac1aea6512a4c81eafbd139150c3f4f3dabff885f56cef1deda068",
+      "sourceDigest": "8343a80e0d8f8354033f22975ca810ad0a1a47efb1e6cb1136c6198a02d16f1e",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502768210017",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "462b24c1e8f1d1d7f2e474702e73920ccd0d3c6e26d15b5eb57d43da4f6809bc",
+      "sourceDigest": "6e5019e24d5346e05cbf67a59ef3ffcd4c479f7df44ecdeeb82379baccd859b4",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502768439393",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "ff1b764275da5c586f277b747d22e0d82dc64dce6b2fae600db30c30cc8a55e6",
+      "sourceDigest": "549e559f38adad3cfedbb720e24cf6bd1cb764d0e3bb1e354ca49b7b5a9a21d6",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502769193057",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "4fa84e8c81dd64d5aa8e70dc40e9c283fb0e4395f65940cb935f390f42910c75",
+      "sourceDigest": "1eca9199d07f938173d00755a403a14b54f16c378a939bbf36dd2144c43b6587",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502770045025",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "a5b025b00b79db37c761f5b84bd02eb9c8e44835d0b0bf34c393a20149c2388f",
+      "sourceDigest": "d3e9e9ad069b5dcc2ede3884b9649fccbbe823915aa90af6f812fa0c18d8a358",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "measurement_units_changed_or_unrecognized"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502770602081",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "8e633c440e187eae6cf24810f1eacd928ca11eb324f8527446d27ae336385cad",
+      "sourceDigest": "366fea08c2e39f0a5a0d7b951be63b61669b9ea6753484cc0e3e3ab6128ae633",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502771519585",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "ea599fefb4c6b445d4a45f919900b0d4c906e3a3b647fed64b481e38aa67d055",
+      "sourceDigest": "c80dc082c794e074045367db95e50302172f7b3122d860c42f1404ccfe89b5a0",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502771781729",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "13733f4ddc15684c1e20e2b4b11f70ad22409991cac322dd2ae1b44c70d695d3",
+      "sourceDigest": "d9affbdb7f85e1fd328aafc8e8873f8e3212ea8e0b464074ba568f4fb9cf72cc",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502790656097",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "cef24339946014ac1d6f30806e978c5cdd60ac8a24eb526779aa91be7ff01ed5",
+      "sourceDigest": "22e10f8e14e4f4a9bc5f690684ecda5ba2c9ad0f361b7825d87650daf79038ec",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502791082081",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "f48a6c83b87a0193b7aedba7ef695d33497c4371bb53b2a55f278260cde715a3",
+      "sourceDigest": "b199d6065c711a27c06d730ae1889789a3016b81b688b0c364edc5a8c0881ba6",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502792622177",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "ada79d86fdf209c20daa3ffeee3d1e4408b9c39112d6262c70092ec63530da6e",
+      "sourceDigest": "9d7acb92911d14d9f8b71681305540356fdaae0128d3dc3868ba86914791b2b5",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502792949857",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "5bde13f3662363690d78a0ade9dc3bd2ceffbf193bf75b3b55aeb4129cdbd131",
+      "sourceDigest": "4cbd4e373b7e77b64bb774283a559f36f1eadfc7bb5b572ccb571b8cf5e89ce0",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502793179233",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "885159be610c1f2638404a162f3ede08e17795f9731f861e081a95798212c16d",
+      "sourceDigest": "9f68f9c40b3a5fea84223ee5911ba2e711b266fddb3b70a34298c6548f9e8a3d",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "measurement_units_changed_or_unrecognized"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502828601441",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "93b3e5797f4805c61de45eac4147e4587b734ccafdfeec39b3353700532a296d",
+      "sourceDigest": "f36d45bcc6f0ac310302cccc8eaa89b6e615db6cfa06294b2adf41a5d46bb1a9",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7502836007009",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "3851387f9d297ef78017e5d3c9edd752322fa0efaf7ae7079dc0391ba546d3b4",
+      "sourceDigest": "639693eeaf8bd229faaf85e595aab24b3a303863ab2b40dc80276058c452994e",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7505372282977",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "16a7906ebf38f04affd20271c5d86c98a0722580540e472d14a84da407bccc78",
+      "sourceDigest": "6a29f50fab653ffe1d460621b1680da1eed14b89e92e40fd60b156888f8b25fb",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7505374838881",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "a1b43d7fe02d6a64e293da6df7ec6a6482d30c06ce3831101ac8303175c80f83",
+      "sourceDigest": "cff0d2527b4453559c08e2f9403f392ea50d741debea30be118504f91a79c284",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7505375232097",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "0aefa8fbed200197c31f0f1ce551bf76644e6037f048675330ebbf0da51bc464",
+      "sourceDigest": "ae96dc230791fbb663388412a8dd46b1a76c5908315cea5d0e577176edc3b00a",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7510790733921",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "cb2d00a4ab633647f57f5f69f66691c518f078c4586f48f9782228a313f1d49f",
+      "sourceDigest": "a56f934691e801ed5ae65226efb6ac444c192ec10676e5ce96170505180c3a8a",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7510790996065",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "506227c0ab4fb9be6437c7aba92531cc8cd4ba2fc2e85d0fc0559d0781efed84",
+      "sourceDigest": "88597e91868f1d59c564c4f2448eebb58f815cba2d0ec974d5293a3f9bac9d32",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7510791159905",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "08f8180409b57ff494dda2e7f16d53d8ba15bb677b3a378a993a7750c51e860b",
+      "sourceDigest": "664836ffa676ff52238c25c65777d6cdf6185c3ffc4fde0021957ab8e1bab0da",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7510791258209",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "5289c2541f1d3ca0dfefe48fd1cd8b15ee24ccd4faecd6ba1b78725bf37d4e76",
+      "sourceDigest": "d08bb086bebbf3740991da255208de29eda0067db2bebd5b6114c5aa99218af7",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7516479848545",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "75787b4c277710d02360f27082e1e3d03958bfb0f6a78474d5a223dd2560bd99",
+      "sourceDigest": "8b24c02f927ad2ecbcaa88fe89e3b57e60508af00617587ff1cd44759a51fc33",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "table_cell_numbers_units_or_shape_changed",
+        "measurement_units_changed_or_unrecognized"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    },
+    {
+      "resourceId": "gid://shopify/Product/7577248596065",
+      "locale": "ru",
+      "key": "body_html",
+      "valueSHA256": "c56e6869a10e4e05acaa07c4ad5a9911461a999a9c982b9a61f0155a98f92a50",
+      "sourceDigest": "ba72afd5585d5f0f94b4fd9499555bdb4f6266eb1e8a48c053f87e3c8e1f52bb",
+      "localBindingAndInverse": "PASS",
+      "strictSourceFindings": [
+        "table_cell_numbers_units_or_shape_changed",
+        "measurement_units_changed_or_unrecognized"
+      ],
+      "normalizedDiagnostic": "PASS",
+      "markupBaseline": "existing translation",
+      "meaningReview": "PASS_WITH_LIMITS"
+    }
+  ],
+  "limits": [
+    "No live read or write. Parent must guard fresh source digest and exact current before value before release.",
+    "Nineteen completed drafts with substantive source/table issues and two malformed existing bodies remain held; four borrowed-name no-change fields excluded.",
+    "The corrected four-role wording in held Product 7229128441953 batch_06_v2 was independently checked as exactly the two requested phrase replacements; the source size-extrapolation/refund problem remains held.",
+    "Existing quoted slogans, design names, technical units and image alt attributes preserved; no native-speaker or full-catalog certification.",
+    "Source product and measurement claims are translated faithfully, not independently supplier-verified."
+  ]
+}
