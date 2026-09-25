@@ -370,7 +370,7 @@
     </span>
     <div class="dlm-pc-row__body">
       <p class="dlm-pc-row__title">{{ pc_shipping_headline }}</p>
-      <p class="dlm-pc-row__estimate">{{ pc_shipping_checkout }}</p>
+      <p class="dlm-pc-row__estimate">{{ standard_delivery_copy | default: pc_shipping_checkout }}</p>
       <p class="dlm-pc-row__action-row">
         <span class="dlm-pc-row__ships-to">{{ pc_ships_to }}</span>
         {%- if pc_currency_code != blank -%}

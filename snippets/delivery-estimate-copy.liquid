@@ -1,0 +1,15 @@
+{%- comment -%}
+  Outputs the localized standard delivery estimate, e.g. "Estimated delivery: 12-16 days".
+  Same keys and fallbacks as the PDP (sections/main-product.liquid) and product FAQ schema.
+{%- endcomment -%}
+{%- liquid
+  assign dec_intro = 'products.additional_info.estimated_delivery' | t
+  assign dec_window = 'products.additional_info.standard_delivery_window' | t
+  if dec_intro == blank or dec_intro contains 'translation missing'
+    assign dec_intro = 'Estimated delivery:'
+  endif
+  if dec_window == blank or dec_window contains 'translation missing' or dec_window contains 'business days'
+    assign dec_window = '12-16 days'
+  endif
+  echo dec_intro | append: ' ' | append: dec_window
+-%}

@@ -126,6 +126,7 @@
                   <span>{{ 'sections.cart.shipping_label' | t }}</span>
                   <span class="cart-page__shipping-free">{{ 'sections.cart.shipping_free' | t }}</span>
                 </div>
+                <p class="cart-page__shipping-note">{% render 'delivery-estimate-copy' %}</p>
                 <div class="cart-page__country-checker">
                   {% render 'shipping-country-checker-trigger', context: 'cart' %}
                 </div>
