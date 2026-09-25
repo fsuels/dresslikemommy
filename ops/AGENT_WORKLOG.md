@@ -53998,3 +53998,31 @@ Blocked:
 Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-cart-to-checkout/README.md` section 5.
 
 Next: the owner approves the scoped deploy of the 4 Liquid files (or re-syncs the theme from GitHub in Admin). Then verify the PDP, drawer and /cart at 375×812 and 1280 across US/IT/DA.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-25-peter-rabbit-trademark-rename
+
+- task_entities: Shopify products `7533379059809`, `7533454098529`, `7533454655585`; PROB-2026-09-25-PETER-RABBIT-FEED-PROPAGATION; `ops/scripts/rename_peter_rabbit_listings.py`
+- task_stage: HANDOFF
+- next_action_id: REBUILD_US_AU_MERCHANT_AND_PINTEREST_URL_FEEDS_FROM_CURRENT_SHOPIFY
+
+Why: the owner flagged "Peter Rabbit" in pajama listing names as a trademark risk for Merchant Center. In chat the owner approved the rename, new URLs with 301 redirects, and correcting the Autumn set to a long-sleeve title.
+
+Done (LIVE_VERIFIED):
+- The print artwork shows generic watercolor rabbits, so renaming is enough.
+- New names: Watercolor Bunny Garden (short-sleeve), Autumn Woodland Bunny (long-sleeve; photos and 56 cm mom sleeve contradicted the old "Short-Sleeve" title) and Eucalyptus Bunny Gauze (long-sleeve). New handles are live and the three old paths return 301 on /, /de/ and /en-au/.
+- English title, SEO, body, tags, Color value, `custom.pattern` and alt text now have 0 trademark hits.
+- 1,704 translations in 20 locales have 0 trademark hits and 0 outdated. The poller refreshed most fields. Google's free translate endpoint then returned 429, so 68 fields in cs/da/el/fi/he/ja/ko/sv were hand-written and registered.
+- The wrong-size SEO description (3Y/5Y/8Y) on 7533379059809 was corrected to 1–6Y.
+
+Not done:
+- US/AU Merchant feeds and Pinterest URL feeds are generated files that still hold the old titles and links. The US restore run `20260925T025242Z-us-restore-r3` belongs to another owner, so it was not touched.
+- The CDN image filenames on 7533379059809 still contain `peter-rabbit`. Renaming them needs approval because it changes `image_link`.
+
+Noticed, not fixed:
+- 7533379059809 is a raglan nightgown set, but its `custom.type` says "Two-Piece Pajama Set".
+- All three products have `marketing.best_seller=true`, which is an unverified bestseller signal.
+- Variant SKUs such as `DLM-VCF-KID2Y-CREAM` are reused across several products.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-peter-rabbit-trademark-rename/README.md`, `BEFORE_STATE.json` (rollback) and `MANUAL_TRANSLATION_PAYLOADS.json`.
+
+Next: the Merchant feed owner rebuilds and promotes the US feed and re-uploads AU from current Shopify, then rebuilds the Pinterest URL feeds and runs the strict grouping check.

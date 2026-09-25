@@ -1,5 +1,25 @@
 # Problem Tracker
 
+## PROB-2026-09-25-PETER-RABBIT-FEED-PROPAGATION
+
+Status: OPEN__FEED_OWNER_ACTION_REQUIRED. Priority P1 because Merchant Center can disapprove trademarked titles. Owner: Merchant feed owner (sole US/AU feed writer). Shopify rename completed by a Claude session on 2026-09-25.
+
+Symptom: Shopify products 7533379059809, 7533454098529 and 7533454655585 were renamed and re-handled on 2026-09-25 to remove "Peter Rabbit". Shopify is LIVE_VERIFIED clean in English and all 20 locales, and the old URLs 301 to the new ones. The generated feeds still carry the old titles and links:
+- US run `20260925T025242Z-us-restore-r3/candidate/us-en.tsv`: 26 matching rows, built before the rename.
+- `international_candidate/au-en.tsv`: 26 rows.
+- Pinterest URL feeds on `dlm-pinterest-feed-worker`: `pinterest-feed.tsv` has 156 rows; each paid-parent feed has 3.
+
+At 03:53Z the US Merchant Worker returned 503 `feed_manifest_invalid_or_stale`. That was not caused by this rename; the restore run was in progress.
+
+Fixed criteria:
+- The next promoted US feed and the next AU upload are rebuilt from current Shopify and contain 0 "Peter Rabbit" rows and the new handles.
+- Pinterest URL feeds are rebuilt the same way. `check_pinterest_feed_grouping.py --strict` passes.
+- Merchant shows the new titles for these item IDs.
+
+Optional follow-up needing owner approval: rename the 4 CDN image files `peter-rabbit-mommy-and-me-pajamas-0X.png` on 7533379059809. This changes `image_link`, so do it before a feed rebuild.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-24-peter-rabbit-trademark-rename/README.md`.
+
 ## PROB-2026-09-24-GITHUB-THEME-SYNC-STALL-AND-SYNC-BACK-REVERT
 
 Status: OPEN_WORKAROUND_DOCUMENTED. Priority P1 because it silently loses shipped work. Owner: Claude session c63fd9 (family matching outfits SEO); root cause still unowned.
