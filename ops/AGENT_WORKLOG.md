@@ -54103,3 +54103,23 @@ Not done / risks:
 Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-25-seasonal-homepage-hero/release/` (before/after state, live readback, pre-release theme copies) and `tools/theme_release_upsert.py`, `tools/live_readback.py`.
 
 Next: on or after 2026-11-01, switch the hero to a winter/Christmas edition by adding a new `seasonal_copy` edition and slides; the Christmas sweater drafts are candidates once published. This goes first because the live hero's Halloween messaging goes stale then.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-26-delivery-arrival-dates
+
+- task_entities: PROB-2026-09-24-MOBILE-CART-TO-CHECKOUT; commit `ffdc450`; theme MAIN `133290917985`; `assets/dlm-delivery-dates.js`, `snippets/delivery-estimate-copy.liquid`, `snippets/pdp-purchase-confidence.liquid`, `layout/theme.liquid`, `ops/tests/test_delivery_dates.mjs`
+- task_stage: HANDOFF
+- next_action_id: HOLIDAY_ORDER_BY_BADGES_BEFORE_2026-10-05
+
+Why: the owner asked for the 12-16 day shipping window to be shown more persuasively, as an estimated arrival date, on the product page and cart.
+
+Done (LIVE_VERIFIED):
+- The PDP shipping row, cart drawer and /cart now show a calendar range, e.g. "Estimated delivery: Thu, Oct 8 – Mon, Oct 12". It uses 12-16 calendar days, rolls Sunday to Monday, and follows the storefront locale. The day window stays as the no-JS fallback. The localized prefix is unchanged, so no new strings were needed.
+- 5 node tests pass. Theme Check: 278 files, 0 offenses. `git diff --check` passes.
+- The GitHub→theme sync applied `ffdc450`: all 4 live MAIN files are byte-equal to it. No manual upsert was run.
+- Live readback: EN PDP and drawer, IT PDP at 375×812 ("gio 08 – lun 12 ott", no overflow), DA markup, /cart footer. No console errors.
+
+Not run: a real add-to-cart drawer re-render. Adding a test item to the live cart was blocked by the session permission check; a simulated section re-render passed.
+
+Evidence and rollback: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-delivery-arrival-dates/README.md`.
+
+Next: add Halloween/Christmas "order by" badges to tagged products before about Oct 5 (Halloween cutoff Oct 15; Christmas about Dec 5). This goes first because the holiday cutoffs are time-bound. Around 2026-10-24, compare cart → checkout (baseline 69 → 11) against the prior 28 days.
