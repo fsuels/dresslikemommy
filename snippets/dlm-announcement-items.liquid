@@ -1,0 +1,26 @@
+{% comment %}
+  Splits a pipe-separated announcement ("A | B | C") into items with dot separators.
+  The original text stays in data-mobile-announcement-original for the mobile rotator.
+
+  Accepts:
+  - text: {String} Announcement text, already escaped when it comes from merchant input (required)
+
+  Usage:
+  {% render 'dlm-announcement-items', text: announcement_text %}
+{% endcomment %}
+
+{%- assign announcement_parts = text | split: '|' -%}
+<span data-mobile-announcement-original="{{ text | strip | escape_once }}">
+  {%- assign announcement_item_count = 0 -%}
+  {%- for announcement_part in announcement_parts -%}
+    {%- assign announcement_part_text = announcement_part | strip -%}
+    {%- if announcement_part_text == blank -%}
+      {% continue %}
+    {%- endif -%}
+    {%- if announcement_item_count > 0 -%}
+      <span class="announcement-bar__sep" aria-hidden="true"></span>
+    {%- endif -%}
+    <span class="announcement-bar__item">{{ announcement_part_text }}</span>
+    {%- assign announcement_item_count = announcement_item_count | plus: 1 -%}
+  {%- endfor -%}
+</span>

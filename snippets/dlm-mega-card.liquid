@@ -1,0 +1,107 @@
+{% comment %}
+  Renders one editorial image card for the curated header mega menu and mobile drawer.
+
+  Accepts:
+  - handle: {String} Collection handle the card links to (required)
+  - title: {String} Translated card title (required)
+  - eyebrow: {String} Translated small label above the title (optional)
+  - caption: {String} Translated one-line caption (optional)
+  - asset: {String} Theme asset filename used instead of the collection image (optional)
+  - image_handle: {String} Collection whose featured image is shown instead of the linked collection's (optional)
+  - sizes: {String} Image sizes attribute (optional)
+  - modifier: {String} Extra BEM modifier, for example 'drawer' (optional)
+  - defer_image: {Boolean} Hold the image in data attributes until dlm-mega-menu.js loads it (optional)
+
+  Usage:
+  {% render 'dlm-mega-card', handle: 'pajamas', title: label, eyebrow: eyebrow %}
+{% endcomment %}
+
+{%- liquid
+  assign card_collection = collections[handle]
+  assign card_visible = 'false'
+  if card_collection != blank
+    capture card_visible
+      render 'collection-storefront-visible', collection_resource: card_collection
+    endcapture
+    assign card_visible = card_visible | strip
+  endif
+-%}
+{%- if card_visible == 'true' -%}
+  {%- liquid
+    capture card_url
+      render 'storefront-localized-url', url: card_collection.url
+    endcapture
+    assign card_url = card_url | strip
+    assign card_sizes = sizes | default: '(min-width: 990px) 220px, 45vw'
+    assign card_image = card_collection.featured_image
+    if image_handle != blank and collections[image_handle].featured_image != blank
+      assign card_image = collections[image_handle].featured_image
+    endif
+    assign img_src = blank
+    assign img_srcset = blank
+    if asset != blank
+      assign img_src = asset | asset_url
+    elsif card_image != blank
+      assign img_src = card_image | image_url: width: 540, height: 675, crop: 'center'
+      capture img_srcset
+        echo card_image | image_url: width: 180, height: 225, crop: 'center'
+        echo ' 180w, '
+        echo card_image | image_url: width: 360, height: 450, crop: 'center'
+        echo ' 360w, '
+        echo card_image | image_url: width: 540, height: 675, crop: 'center'
+        echo ' 540w, '
+        echo card_image | image_url: width: 720, height: 900, crop: 'center'
+        echo ' 720w'
+      endcapture
+    endif
+  -%}
+  <a href="{{ card_url }}" class="dlm-mega-card{% if modifier != blank %} dlm-mega-card--{{ modifier }}{% endif %}">
+    <span class="dlm-mega-card__media">
+      {%- if img_src != blank -%}
+        {%- if defer_image -%}
+          <img
+            data-dlm-src="{{ img_src }}"
+            {% if img_srcset != blank %}
+              data-dlm-srcset="{{ img_srcset }}"
+            {% endif %}
+            sizes="{{ card_sizes }}"
+            width="720"
+            height="900"
+            alt=""
+            decoding="async"
+          >
+        {%- elsif asset != blank -%}
+          <img
+            src="{{ asset | asset_url }}"
+            sizes="{{ card_sizes }}"
+            width="720"
+            height="900"
+            alt=""
+            loading="lazy"
+            decoding="async"
+          >
+        {%- else -%}
+          {{
+            card_image
+            | image_url: width: 720, height: 900, crop: 'center'
+            | image_tag:
+              widths: '180, 360, 540, 720',
+              sizes: card_sizes,
+              alt: '',
+              loading: 'lazy',
+              decoding: 'async'
+          }}
+        {%- endif -%}
+      {%- endif -%}
+    </span>
+    <span class="dlm-mega-card__body">
+      {%- if eyebrow != blank -%}
+        <span class="dlm-mega-card__eyebrow">{{ eyebrow }}</span>
+      {%- endif -%}
+      <span class="dlm-mega-card__title">{{ title }}</span>
+      {%- if caption != blank -%}
+        <span class="dlm-mega-card__caption">{{ caption }}</span>
+      {%- endif -%}
+    </span>
+  </a>
+{%- endif -%}

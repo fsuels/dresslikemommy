@@ -88,24 +88,59 @@
       {%- if skip_nav_link -%}
         {% continue %}
       {%- endif -%}
-      <li>
-        {%- if use_family_visual_mega_menu and family_hub_destination_visible -%}
+      {%- liquid
+        assign dlm_mega_key = blank
+        assign dlm_link_current = link.current
+        assign normalized_link_url = link.url | split: '?' | first
+        if use_family_visual_mega_menu and family_hub_destination_visible
+          assign dlm_mega_key = 'family'
+        elsif normalized_link_title == 'shop' or normalized_link_url == '/' or normalized_link_url == '/collections/all'
+          assign dlm_mega_key = 'shop'
+          assign nav_link_url = routes.all_products_collection_url | append: '?sort_by=created-descending'
+          assign dlm_link_current = false
+          if collection.handle == 'all'
+            assign dlm_link_current = true
+          endif
+        elsif normalized_link_url contains '/collections/mommy-and-me'
+          assign dlm_mega_key = 'mommy'
+        elsif normalized_link_url contains '/collections/daddy-me' or normalized_link_url contains '/collections/daddy-and-me'
+          assign dlm_mega_key = 'daddy'
+        endif
+      -%}
+      <li{% if dlm_mega_key != blank %} class="dlm-nav__item" data-dlm-mega{% endif %}>
+        {%- if dlm_mega_key != blank -%}
+          {%- capture dlm_hub_url -%}{% render 'storefront-localized-url', url: nav_link_url %}{%- endcapture -%}
+          {%- assign dlm_hub_url = dlm_hub_url | strip -%}
           <a
             id="HeaderMenu-{{ link.handle }}"
-            href="{% render 'storefront-localized-url', url: nav_link_url %}"
+            href="{{ dlm_hub_url }}"
             class="header__menu-item list-menu__item link link--text focus-inset"
-            {% if link.current %}
+            {% if dlm_link_current %}
               aria-current="page"
             {% endif %}
           >
             <span
-              {%- if link.current or link.child_active %}
+              {%- if dlm_link_current %}
                 class="header__active-menu-item"
               {% endif %}
             >
               {{- nav_link_title -}}
             </span>
           </a>
+          <button
+            type="button"
+            class="dlm-nav__toggle"
+            aria-expanded="false"
+            aria-controls="DlmMega-{{ dlm_mega_key }}"
+            aria-label="{{ 'storefront.mega_menu.toggle' | t: name: nav_link_title }}"
+          >
+            <svg aria-hidden="true" focusable="false" width="10" height="6" viewBox="0 0 10 6" fill="none">
+              <path d="m1 1 4 4 4-4" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div id="DlmMega-{{ dlm_mega_key }}" class="dlm-mega" data-dlm-mega-panel>
+            {%- render 'dlm-mega-panel', key: dlm_mega_key, mode: 'desktop', label: nav_link_title, hub_url: dlm_hub_url -%}
+          </div>
         {%- elsif visible_child_count > 0 -%}
           <header-menu>
             <details id="Details-HeaderMenu-{{ forloop.index }}" class="mega-menu">
@@ -124,164 +159,9 @@
               </summary>
               <div
                 id="MegaMenu-Content-{{ forloop.index }}"
-                class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup{% if use_family_visual_mega_menu %} mega-menu__content--family{% endif %}"
+                class="mega-menu__content color-{{ section.settings.menu_color_scheme }} gradient motion-reduce global-settings-popup"
                 tabindex="-1"
               >
-                {%- if use_family_visual_mega_menu -%}
-                  <div class="mega-menu__family page-width">
-                    <div class="mega-menu__family-promo">
-                      {% render 'header-mega-menu-feature-card', menu_link: link, card_kind: 'promo' %}
-                    </div>
-                    <div class="mega-menu__family-main">
-                      <div class="mega-menu__family-header">
-                        <p class="mega-menu__family-kicker">Start Here</p>
-                        <p class="mega-menu__family-title">Pick a category and shop the best sellers first</p>
-                        <p class="mega-menu__family-copy">
-                          Start with mommy and me pajamas, family matching swimsuits, family vacation outfits, or matching dresses, then narrow into the category that fits the moment.
-                        </p>
-                      </div>
-
-                      {%- assign family_feature_card_count = 0 -%}
-                      <ul class="mega-menu__family-grid list-unstyled" role="list">
-                        {%- for childlink in link.links -%}
-                          {%- capture childlink_is_visible -%}
-                            {%- render 'nav-link-visible', link: childlink -%}
-                          {%- endcapture -%}
-                          {%- assign childlink_is_visible = childlink_is_visible | strip -%}
-                          {%- capture childlink_destination_is_visible -%}
-                            {%- render 'nav-link-destination-visible', link: childlink -%}
-                          {%- endcapture -%}
-                          {%- assign childlink_destination_is_visible = childlink_destination_is_visible | strip -%}
-                          {%- if childlink_is_visible != 'true' or childlink_destination_is_visible != 'true' -%}
-                            {% continue %}
-                          {%- endif -%}
-                          {%- assign family_feature_card_count = family_feature_card_count | plus: 1 -%}
-                          <li class="mega-menu__family-grid-item">
-                            {% render 'header-mega-menu-feature-card', menu_link: childlink, card_kind: 'feature' %}
-                          </li>
-                          {%- if family_feature_card_count >= 4 -%}
-                            {% break %}
-                          {%- endif -%}
-                        {%- endfor -%}
-                      </ul>
-
-                      <div class="mega-menu__family-links-group">
-                        <p class="mega-menu__family-links-title">Shop all family categories</p>
-                        <ul class="mega-menu__family-links list-unstyled" role="list">
-                          {%- for childlink in link.links -%}
-                            {%- capture childlink_is_visible -%}
-                              {%- render 'nav-link-visible', link: childlink -%}
-                            {%- endcapture -%}
-                            {%- assign childlink_is_visible = childlink_is_visible | strip -%}
-                            {%- if childlink_is_visible != 'true' -%}
-                              {% continue %}
-                            {%- endif -%}
-                            {%- capture childlink_destination_is_visible -%}
-                              {%- render 'nav-link-destination-visible', link: childlink -%}
-                            {%- endcapture -%}
-                            {%- assign childlink_destination_is_visible = childlink_destination_is_visible | strip -%}
-                            {%- assign childlink_url = childlink.url -%}
-                            {%- if childlink.handle contains 'pajamas' or childlink_url contains 'family-pajamas' -%}
-                              {%- assign childlink_url = '/collections/pajamas' -%}
-                            {%- endif -%}
-                            <li>
-                              {%- if childlink_destination_is_visible == 'true' -%}
-                                <a
-                                  id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-text"
-                                  href="{{ childlink_url | strip }}"
-                                  class="mega-menu__family-link"
-                                  {% if childlink.current %}
-                                    aria-current="page"
-                                  {% endif %}
-                                >
-                                  {{ childlink.title | escape }}
-                                </a>
-                              {%- else -%}
-                                <span class="mega-menu__family-link">{{ childlink.title | escape }}</span>
-                              {%- endif -%}
-                            </li>
-                          {%- endfor -%}
-                        </ul>
-                      </div>
-
-                      {%- if link.links.size > 0 -%}
-                        <div class="mega-menu__family-text-group">
-                          <p class="mega-menu__family-text-title">Browse all links</p>
-                          <ul class="mega-menu__family-text-grid list-unstyled" role="list">
-                            {%- for childlink in link.links -%}
-                            {%- capture childlink_is_visible -%}
-                                {%- render 'nav-link-visible', link: childlink -%}
-                              {%- endcapture -%}
-                              {%- assign childlink_is_visible = childlink_is_visible | strip -%}
-                              {%- if childlink_is_visible != 'true' -%}
-                                {% continue %}
-                              {%- endif -%}
-                              {%- capture childlink_visible_grandchild_count_raw -%}
-                                {%- render 'nav-link-visible-child-count', link: childlink -%}
-                              {%- endcapture -%}
-                              {%- capture childlink_destination_is_visible -%}
-                                {%- render 'nav-link-destination-visible', link: childlink -%}
-                              {%- endcapture -%}
-                              {%- assign childlink_destination_is_visible = childlink_destination_is_visible | strip -%}
-                              {%- assign childlink_visible_grandchild_count = childlink_visible_grandchild_count_raw | plus: 0 -%}
-                              {%- assign childlink_url = childlink.url -%}
-                              {%- if childlink.handle contains 'pajamas' or childlink_url contains 'family-pajamas' -%}
-                                {%- assign childlink_url = '/collections/pajamas' -%}
-                              {%- endif -%}
-                              <li>
-                                {%- if childlink_destination_is_visible == 'true' -%}
-                                  <a
-                                    id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-seo"
-                                    href="{{ childlink_url | strip }}"
-                                    class="mega-menu__family-text-link mega-menu__family-text-link--primary"
-                                    {% if childlink.current %}
-                                      aria-current="page"
-                                    {% endif %}
-                                  >
-                                    {{ childlink.title | escape }}
-                                  </a>
-                                {%- else -%}
-                                  <span class="mega-menu__family-text-link mega-menu__family-text-link--primary">
-                                    {{ childlink.title | escape }}
-                                  </span>
-                                {%- endif -%}
-                                {%- if childlink_visible_grandchild_count > 0 -%}
-                                  <ul class="mega-menu__family-text-sublist list-unstyled" role="list">
-                                    {%- for grandchildlink in childlink.links -%}
-                                      {%- capture grandchildlink_is_visible -%}
-                                        {%- render 'nav-link-visible', link: grandchildlink -%}
-                                      {%- endcapture -%}
-                                      {%- assign grandchildlink_is_visible = grandchildlink_is_visible | strip -%}
-                                      {%- if grandchildlink_is_visible != 'true' -%}
-                                        {% continue %}
-                                      {%- endif -%}
-                                      {%- assign grandchildlink_url = grandchildlink.url -%}
-                                      {%- if grandchildlink.handle contains 'pajamas' or grandchildlink_url contains 'family-pajamas' -%}
-                                        {%- assign grandchildlink_url = '/collections/pajamas' -%}
-                                      {%- endif -%}
-                                      <li>
-                                        <a
-                                          id="HeaderMenu-{{ link.handle }}-{{ childlink.handle }}-{{ grandchildlink.handle }}-seo"
-                                          href="{{ grandchildlink_url | strip }}"
-                                          class="mega-menu__family-text-link"
-                                          {% if grandchildlink.current %}
-                                            aria-current="page"
-                                          {% endif %}
-                                        >
-                                          {{ grandchildlink.title | escape }}
-                                        </a>
-                                      </li>
-                                    {%- endfor -%}
-                                  </ul>
-                                {%- endif -%}
-                              </li>
-                            {%- endfor -%}
-                          </ul>
-                        </div>
-                      {%- endif -%}
-                    </div>
-                  </div>
-                {%- else -%}
                   <ul
                     class="mega-menu__list page-width{% if link.levels == 1 %} mega-menu__list--condensed{% endif %}"
                     role="list"
@@ -347,7 +227,6 @@
                       </li>
                     {%- endfor -%}
                   </ul>
-                {%- endif -%}
               </div>
             </details>
           </header-menu>
@@ -372,4 +251,5 @@
       </li>
     {%- endfor -%}
   </ul>
+  <div class="dlm-mega-scrim" aria-hidden="true"></div>
 </nav>

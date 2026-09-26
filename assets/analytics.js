@@ -1184,6 +1184,7 @@ window.dataLayer = window.dataLayer || [];
     if (!link) return '';
 
     if (link.closest('.menu-drawer')) return 'drawer';
+    if (link.closest('.dlm-mega')) return 'mega';
     if (link.closest('.mega-menu__content--family')) return 'mega_family';
     if (link.closest('.mega-menu__content')) return 'mega';
     if (link.closest('.header__submenu')) return 'submenu';
@@ -1198,6 +1199,9 @@ window.dataLayer = window.dataLayer || [];
     if (link.classList.contains('header__menu-item')) return 'top';
     if (link.classList.contains('menu-drawer__menu-item--top-level')) return 'top';
     if (link.classList.contains('mega-menu__link')) return 'submenu';
+    if (link.classList.contains('dlm-mega__link') || link.classList.contains('dlm-drawer__link')) return 'submenu';
+    if (link.classList.contains('dlm-mega-card')) return 'feature';
+    if (link.classList.contains('dlm-mega__all')) return 'view_all';
     if (link.classList.contains('mega-menu__family-link')) return 'feature';
     if (link.classList.contains('mega-menu__family-text-link')) return 'text';
 

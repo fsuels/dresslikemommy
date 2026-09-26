@@ -141,13 +141,12 @@
             >
           {%- endif -%}
           <p class="announcement-bar__message h5">
-            <span>
-              {%- if single_announcement_is_default_promo -%}
-                {{ announcement_default_promo }}
-              {%- else -%}
-                {{ single_announcement_rendered_text | escape }}
-              {%- endif -%}
-            </span>
+            {%- if single_announcement_is_default_promo -%}
+              {%- render 'dlm-announcement-items', text: announcement_default_promo -%}
+            {%- else -%}
+              {%- assign single_announcement_escaped_text = single_announcement_rendered_text | escape -%}
+              {%- render 'dlm-announcement-items', text: single_announcement_escaped_text -%}
+            {%- endif -%}
             {%- if section.blocks.first.settings.link != blank -%}
               {% render 'icon-arrow' %}
             {%- endif -%}
@@ -220,13 +219,12 @@
                       >
                     {%- endif -%}
                     <p class="announcement-bar__message h5">
-                      <span>
-                        {%- if announcement_is_default_promo -%}
-                          {{ announcement_default_promo }}
-                        {%- else -%}
-                          {{ announcement_rendered_text | escape }}
-                        {%- endif -%}
-                      </span>
+                      {%- if announcement_is_default_promo -%}
+                        {%- render 'dlm-announcement-items', text: announcement_default_promo -%}
+                      {%- else -%}
+                        {%- assign announcement_escaped_text = announcement_rendered_text | escape -%}
+                        {%- render 'dlm-announcement-items', text: announcement_escaped_text -%}
+                      {%- endif -%}
                       {%- if block.settings.link != blank -%}
                         {% render 'icon-arrow' %}
                       {%- endif -%}

@@ -20,6 +20,30 @@
       <div class="menu-drawer__inner-container">
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
+            {%- capture dlm_rail -%}
+              {%- liquid
+                assign rail_sizes = '72px'
+                assign rail_label = 'storefront.mega_menu.pajamas' | t
+                render 'dlm-mega-card', handle: 'pajamas', image_handle: 'new-pajama-drop', title: rail_label, modifier: 'rail', sizes: rail_sizes, defer_image: true
+                assign rail_label = 'storefront.mega_menu.sweaters_short' | t
+                render 'dlm-mega-card', handle: 'family-sweaters', title: rail_label, modifier: 'rail', sizes: rail_sizes, defer_image: true
+                assign rail_label = 'storefront.mega_menu.dresses' | t
+                render 'dlm-mega-card', handle: 'mother-daughter-matching-dresses', title: rail_label, modifier: 'rail', sizes: rail_sizes, defer_image: true
+                assign rail_label = 'storefront.mega_menu.christmas_short' | t
+                render 'dlm-mega-card', handle: 'christmas-pajamas', title: rail_label, modifier: 'rail', sizes: rail_sizes, defer_image: true
+                assign rail_label = 'storefront.mega_menu.sets' | t
+                render 'dlm-mega-card', handle: 'family-sets', title: rail_label, modifier: 'rail', sizes: rail_sizes, defer_image: true
+                assign rail_label = 'storefront.mega_menu.swimsuits' | t
+                render 'dlm-mega-card', handle: 'swimsuits', title: rail_label, modifier: 'rail', sizes: rail_sizes, defer_image: true
+              -%}
+            {%- endcapture -%}
+            {%- assign dlm_rail = dlm_rail | strip -%}
+            {%- if dlm_rail != blank -%}
+              <div class="dlm-drawer-rail">
+                <p class="dlm-drawer__heading">{{ 'sections.home_category_copy.heading_category' | t }}</p>
+                <div class="dlm-drawer-rail__track">{{ dlm_rail }}</div>
+              </div>
+            {%- endif -%}
             <ul class="menu-drawer__menu has-submenu list-menu" role="list">
               {%- capture christmas_handle -%}{%- render 'christmas-season-collection', menu: section.settings.menu -%}{%- endcapture -%}
               {%- assign christmas_handle = christmas_handle | strip -%}
@@ -96,8 +120,50 @@
                 {%- if skip_nav_link -%}
                   {% continue %}
                 {%- endif -%}
-                <li class="menu-drawer__main-item{% if visible_child_count > 0 %} menu-drawer__main-item--parent{% endif %}">
-                  {%- if use_family_direct_link and family_hub_destination_visible -%}
+                {%- liquid
+                  assign dlm_mega_key = blank
+                  assign normalized_link_url = link.url | split: '?' | first
+                  if use_family_direct_link and family_hub_destination_visible
+                    assign dlm_mega_key = 'family'
+                  elsif normalized_link_title == 'shop' or normalized_link_url == '/' or normalized_link_url == '/collections/all'
+                    assign dlm_mega_key = 'shop'
+                    assign nav_link_url = routes.all_products_collection_url | append: '?sort_by=created-descending'
+                  elsif normalized_link_url contains '/collections/mommy-and-me'
+                    assign dlm_mega_key = 'mommy'
+                  elsif normalized_link_url contains '/collections/daddy-me' or normalized_link_url contains '/collections/daddy-and-me'
+                    assign dlm_mega_key = 'daddy'
+                  endif
+                -%}
+                <li class="menu-drawer__main-item{% if visible_child_count > 0 or dlm_mega_key != blank %} menu-drawer__main-item--parent{% endif %}">
+                  {%- if dlm_mega_key != blank -%}
+                    {%- capture dlm_hub_url -%}{% render 'storefront-localized-url', url: nav_link_url %}{%- endcapture -%}
+                    {%- assign dlm_hub_url = dlm_hub_url | strip -%}
+                    <details id="Details-menu-drawer-menu-item-{{ forloop.index }}">
+                      <summary
+                        id="HeaderDrawer-{{ link.handle }}"
+                        class="menu-drawer__menu-item menu-drawer__menu-item--top-level menu-drawer__menu-item--parent list-menu__item link link--text focus-inset"
+                      >
+                        {{ nav_link_title }}
+                        {% render 'icon-arrow' %}
+                        {% render 'icon-caret' %}
+                      </summary>
+                      <div
+                        id="link-{{ link.handle | escape }}"
+                        class="menu-drawer__submenu has-submenu gradient motion-reduce dlm-drawer__submenu"
+                        tabindex="-1"
+                      >
+                        <div class="menu-drawer__inner-submenu">
+                          <button class="menu-drawer__close-button link link--text focus-inset" aria-expanded="true">
+                            {% render 'icon-arrow' %}
+                            {{ nav_link_title }}
+                          </button>
+                          <ul class="menu-drawer__menu list-menu dlm-drawer__menu" role="list" tabindex="-1">
+                            {%- render 'dlm-mega-panel', key: dlm_mega_key, mode: 'drawer', label: nav_link_title, hub_url: dlm_hub_url -%}
+                          </ul>
+                        </div>
+                      </div>
+                    </details>
+                  {%- elsif use_family_direct_link and family_hub_destination_visible -%}
                     <a
                       id="HeaderDrawer-{{ link.handle }}"
                       href="{% render 'storefront-localized-url', url: nav_link_url %}"

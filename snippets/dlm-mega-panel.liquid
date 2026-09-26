@@ -1,0 +1,240 @@
+{% comment %}
+  Curated mega menu content for a top-level header link. The main menu has no
+  child links in Shopify admin, so the theme owns the category structure here.
+  Every link is hidden when its collection is missing or has no storefront products.
+
+  Accepts:
+  - key: {String} 'shop', 'mommy', 'daddy' or 'family' (required)
+  - mode: {String} 'desktop' for the header panel, 'drawer' for the mobile submenu (required)
+  - label: {String} Translated top-level label (required)
+  - hub_url: {String} Localized URL of the top-level destination (required)
+
+  Usage:
+  {% render 'dlm-mega-panel', key: 'mommy', mode: 'desktop', label: nav_link_title, hub_url: hub_url %}
+{% endcomment %}
+
+{%- liquid
+  assign t_prefix = 'storefront.mega_menu.'
+  assign card_1_asset = blank
+  assign card_2_asset = blank
+  assign card_1_image = blank
+  assign card_2_image = blank
+  assign column_3 = blank
+  assign heading_3 = blank
+
+  case key
+    when 'shop'
+      assign heading_1 = 'sections.home_category_copy.heading_category' | t
+      assign column_1 = 'pajamas:pajamas,family-sweaters:sweaters,dresses:dresses,family-sets:sets,family-tops:tops,swimsuits:swimsuits,rompers:rompers'
+      assign heading_2 = 'sections.home_category_copy.heading_occasion' | t
+      assign column_2 = 'christmas-pajamas:christmas_pajamas,fall-winter:fall_winter,new-pajama-drop:new_pajama_drop,formal-dresses:formal,matching-family-vacation-outfits:vacation'
+      assign heading_3 = 'storefront.mega_menu.heading_who' | t
+      assign column_3 = 'mommy-and-me:mommy_me,daddy-me:daddy_me,new-women-outfits:family_matching,couples:couples,new-arrivals:new_arrivals'
+      assign card_1_handle = 'pajamas'
+      assign card_1_title = 'storefront.mega_menu.pajamas' | t
+      assign card_1_eyebrow = 'storefront.menu.new_pajama_styles' | t
+      assign card_1_image = 'new-pajama-drop'
+      assign card_1_caption = 'sections.home_category_copy.caption_pajamas' | t
+      assign card_2_handle = 'family-sweaters'
+      assign card_2_title = 'storefront.mega_menu.sweaters' | t
+      assign card_2_eyebrow = 'storefront.menu.cold_weather_pick' | t
+      assign card_2_caption = 'storefront.mega_menu.caption_sweaters' | t
+    when 'mommy'
+      assign heading_1 = 'storefront.mega_menu.dresses' | t
+      assign column_1 = 'mother-daughter-matching-dresses:all_dresses,maxi-dresses:maxi,midi-dresses:midi,mini-dresses:mini,sundresses:sundresses,formal-dresses:formal'
+      assign heading_2 = 'storefront.mega_menu.heading_more' | t
+      assign column_2 = 'pajamas:pajamas,sweaters:coats,tops:tops,swimsuits:swimsuits,rompers:rompers,new-matching-outfits:new_arrivals'
+      assign card_1_handle = 'mother-daughter-matching-dresses'
+      assign card_1_asset = 'dlm-mega-mother-daughter-dresses.webp'
+      assign card_1_title = 'storefront.mega_menu.dresses' | t
+      assign card_1_eyebrow = 'storefront.mega_menu.eyebrow_dresses' | t
+      assign card_1_caption = 'sections.home_category_copy.caption_matching_dresses' | t
+      assign card_2_handle = 'pajamas'
+      assign card_2_title = 'storefront.mega_menu.pajamas' | t
+      assign card_2_eyebrow = 'storefront.menu.new_pajama_styles' | t
+      assign card_2_image = 'new-pajama-drop'
+      assign card_2_caption = 'sections.home_category_copy.caption_pajamas' | t
+    when 'daddy'
+      assign heading_1 = 'storefront.mega_menu.heading_styles' | t
+      assign column_1 = 'daddy-me-shirts:shirts,daddy-me-t-shirts:tshirts,trunks:swim_trunks,family-sweaters:sweaters,pajamas:pajamas'
+      assign heading_2 = 'storefront.mega_menu.heading_more' | t
+      assign column_2 = 'new-women-outfits:family_matching,family-sets:sets,christmas-pajamas:christmas_pajamas,matching-family-vacation-outfits:vacation'
+      assign card_1_handle = 'daddy-me'
+      assign card_1_title = 'sections.home_category_copy.daddy_me' | t
+      assign card_1_eyebrow = 'storefront.mega_menu.eyebrow_daddy' | t
+      assign card_1_caption = 'sections.home_category_copy.caption_daddy_me' | t
+      assign card_2_handle = 'family-sweaters'
+      assign card_2_title = 'storefront.mega_menu.sweaters' | t
+      assign card_2_eyebrow = 'storefront.menu.cold_weather_pick' | t
+      assign card_2_caption = 'storefront.mega_menu.caption_sweaters' | t
+    when 'family'
+      assign heading_1 = 'sections.home_category_copy.heading_category' | t
+      assign column_1 = 'pajamas:pajamas,christmas-pajamas:christmas_pajamas,family-sweaters:sweaters,family-sets:sets,family-tops:tops,family-swimsuits:swimsuits'
+      assign heading_2 = 'sections.home_category_copy.heading_occasion' | t
+      assign column_2 = 'fall-winter:fall_winter,matching-family-vacation-outfits:vacation,matching-hawaiian-outfits:hawaiian,couples:couples,daddy-me:daddy_me'
+      assign card_1_handle = 'family-sweaters'
+      assign card_1_title = 'storefront.mega_menu.sweaters' | t
+      assign card_1_eyebrow = 'storefront.menu.cold_weather_pick' | t
+      assign card_1_caption = 'storefront.mega_menu.caption_sweaters' | t
+      assign card_2_handle = 'christmas-pajamas'
+      assign card_2_title = 'storefront.mega_menu.christmas_pajamas' | t
+      assign card_2_eyebrow = 'storefront.mega_menu.eyebrow_holiday' | t
+      assign card_2_caption = 'sections.home_category_copy.caption_pajamas' | t
+  endcase
+
+  assign columns = column_1 | append: '#' | append: column_2
+  assign headings = heading_1 | append: '#' | append: heading_2
+  if column_3 != blank
+    assign columns = columns | append: '#' | append: column_3
+    assign headings = headings | append: '#' | append: heading_3
+  endif
+  assign columns = columns | split: '#'
+  assign headings = headings | split: '#'
+  case key
+    when 'mommy'
+      assign shop_all_name = 'sections.home_category_copy.mommy_me' | t
+    when 'daddy'
+      assign shop_all_name = 'sections.home_category_copy.daddy_me' | t
+    when 'family'
+      assign shop_all_name = 'sections.home_category_copy.family_matching' | t
+    else
+      assign shop_all_name = blank
+  endcase
+  if shop_all_name != blank
+    assign shop_all_label = 'storefront.mega_menu.shop_all_named' | t: name: shop_all_name
+  else
+    assign shop_all_label = 'storefront.mega_menu.shop_all' | t
+  endif
+-%}
+
+{%- capture link_groups -%}
+  {%- for column in columns -%}
+    {%- assign column_index = forloop.index0 -%}
+    {%- capture column_links -%}
+      {%- assign column_items = column | split: ',' -%}
+      {%- for column_item in column_items -%}
+        {%- assign item_parts = column_item | split: ':' -%}
+        {%- assign item_handle = item_parts[0] -%}
+        {%- assign item_key = item_parts[1] -%}
+        {%- assign item_collection = collections[item_handle] -%}
+        {%- if item_collection == blank -%}
+          {% continue %}
+        {%- endif -%}
+        {%- capture item_visible -%}
+          {%- render 'collection-storefront-visible', collection_resource: item_collection -%}
+        {%- endcapture -%}
+        {%- assign item_visible = item_visible | strip -%}
+        {%- if item_visible != 'true' -%}
+          {% continue %}
+        {%- endif -%}
+        {%- liquid
+          case item_key
+            when 'mommy_me'
+              assign item_label = 'sections.home_category_copy.mommy_me' | t
+            when 'daddy_me'
+              assign item_label = 'sections.home_category_copy.daddy_me' | t
+            when 'family_matching'
+              assign item_label = 'sections.home_category_copy.family_matching' | t
+            else
+              assign item_label_key = t_prefix | append: item_key
+              assign item_label = item_label_key | t
+          endcase
+          assign item_is_current = false
+          if collection.handle == item_handle
+            assign item_is_current = true
+          endif
+        -%}
+        <li>
+          <a
+            href="{% render 'storefront-localized-url', url: item_collection.url %}"
+            class="{% if mode == 'drawer' %}menu-drawer__menu-item list-menu__item link link--text focus-inset dlm-drawer__link{% else %}dlm-mega__link{% endif %}"
+            {% if item_is_current %}
+              aria-current="page"
+            {% endif %}
+          >
+            {{- item_label -}}
+          </a>
+        </li>
+      {%- endfor -%}
+    {%- endcapture -%}
+    {%- assign column_links = column_links | strip -%}
+    {%- if column_links != blank -%}
+      {%- if mode == 'drawer' -%}
+        <li class="dlm-drawer__group">
+          <p class="dlm-drawer__heading">{{ headings[column_index] }}</p>
+          <ul class="dlm-drawer__group-list list-unstyled" role="list">
+            {{- column_links -}}
+          </ul>
+        </li>
+      {%- else -%}
+        <div class="dlm-mega__col">
+          <p class="dlm-mega__heading">{{ headings[column_index] }}</p>
+          <ul class="dlm-mega__list list-unstyled" role="list">
+            {{- column_links -}}
+          </ul>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endfor -%}
+{%- endcapture -%}
+
+{%- capture cards -%}
+  {%- liquid
+    assign card_modifier = blank
+    assign card_defer = false
+    assign card_sizes = '(min-width: 1200px) 240px, 200px'
+    if mode == 'drawer'
+      assign card_modifier = 'drawer'
+      assign card_defer = true
+      assign card_sizes = '45vw'
+    endif
+    render 'dlm-mega-card', handle: card_1_handle, title: card_1_title, eyebrow: card_1_eyebrow, caption: card_1_caption, asset: card_1_asset, image_handle: card_1_image, sizes: card_sizes, modifier: card_modifier, defer_image: card_defer
+    render 'dlm-mega-card', handle: card_2_handle, title: card_2_title, eyebrow: card_2_eyebrow, caption: card_2_caption, asset: card_2_asset, image_handle: card_2_image, sizes: card_sizes, modifier: card_modifier, defer_image: card_defer
+  -%}
+{%- endcapture -%}
+{%- assign cards = cards | strip -%}
+
+{%- if mode == 'drawer' -%}
+  {%- if cards != blank -%}
+    <li class="dlm-drawer__cards">{{ cards }}</li>
+  {%- endif -%}
+  <li>
+    <a href="{{ hub_url }}" class="menu-drawer__menu-item list-menu__item link link--text focus-inset dlm-drawer__link dlm-drawer__link--all">
+      {{- shop_all_label -}}
+    </a>
+  </li>
+  {{ link_groups }}
+{%- else -%}
+  <div class="dlm-mega__inner page-width">
+    <div class="dlm-mega__cols dlm-mega__cols--{{ columns.size }}">
+      {{ link_groups }}
+    </div>
+    {%- if cards != blank -%}
+      <div class="dlm-mega__cards">{{ cards }}</div>
+    {%- endif -%}
+  </div>
+  <div class="dlm-mega__footer">
+    <div class="dlm-mega__footer-inner page-width">
+      <a href="{{ hub_url }}" class="dlm-mega__all">
+        <span>{{ shop_all_label }}</span>
+        <svg aria-hidden="true" focusable="false" width="14" height="10" viewBox="0 0 14 10" fill="none">
+          <path d="M8.5 1 13 5l-4.5 4M13 5H1" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+      <ul class="dlm-mega__trust list-unstyled" role="list">
+        <li>
+          <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7z"/><circle cx="7" cy="17.5" r="1.6"/><circle cx="17.5" cy="17.5" r="1.6"/></svg>
+          {{ 'sections.home_category_copy.trust_free_shipping' | t }}
+        </li>
+        <li>
+          <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5h18v7H3z"/><path d="M7 8.5v3M11 8.5v4M15 8.5v3M19 8.5v4"/></svg>
+          {{ 'sections.home_category_copy.trust_sizing_support' | t }}
+        </li>
+        <li>
+          <svg aria-hidden="true" focusable="false" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="9.5" rx="2"/><path d="M8 10.5V8a4 4 0 0 1 8 0v2.5"/></svg>
+          {{ 'storefront.mega_menu.secure_checkout' | t }}
+        </li>
+      </ul>
+    </div>
+  </div>
+{%- endif -%}
