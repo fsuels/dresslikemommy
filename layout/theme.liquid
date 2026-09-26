@@ -326,6 +326,10 @@
   <script defer src="{{ 'pubsub.js' | asset_url }}"></script>
   <script defer src="{{ 'global.js' | asset_url }}"></script>
   <script defer src="{{ 'dlm-delivery-dates.js' | asset_url }}"></script>
+  {%- if request.page_type == 'product' -%}
+    <script defer src="{{ 'dlm-holiday-order-by.js' | asset_url }}"></script>
+    {%- render 'dlm-family-builder' -%}
+  {%- endif -%}
   {%- if request.page_type == 'index' -%}
     <script defer src="{{ 'homepage-collection-card-images.js' | asset_url }}"></script>
   {%- endif -%}

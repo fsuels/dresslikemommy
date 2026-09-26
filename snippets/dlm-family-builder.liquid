@@ -1,0 +1,9 @@
+{%- comment -%}
+  Family list for the PDP matching-set builder. Adds "+ Add another family
+  member" and one "Add all to bag" request on top of the existing builder
+  (snippets/product-desktop-ux.liquid). JS builds its own markup and does
+  nothing on products without a Mother/Father/Child choice.
+  Render once, on product pages only (see the lane INTEGRATION.md).
+{%- endcomment -%}
+{{ 'dlm-family-builder.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'dlm-family-builder.js' | asset_url }}" defer="defer"></script>

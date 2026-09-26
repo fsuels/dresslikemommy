@@ -40,11 +40,29 @@
         {{ 'general.continue_shopping' | t }}
       </a>
 
-      {%- comment -%} Popular with Families — bestsellers for empty cart {%- endcomment -%}
+      {%- comment -%}
+        Empty-cart picks: newest available products from the header's New Arrivals
+        collection (sort order: newest first). The heading makes no popularity claim;
+        see dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-ux-ten-fixes/lanes/cart/.
+      {%- endcomment -%}
+      {%- assign empty_picks_collection = collections['new-arrivals'] -%}
+      {%- if empty_picks_collection.products_count > 0 -%}
       <div class="cart-page__empty-bestsellers">
-        <h2 class="cart-page__empty-section-title">{{ 'sections.cart.popular_with_families' | t }}</h2>
+        <h2 class="cart-page__empty-section-title">{{ 'sections.breadcrumbs.label_new_arrivals' | t }}</h2>
         <div class="cart-page__cross-sell-grid">
-          {%- for product in collections.all.products limit: 4 -%}
+          {%- assign empty_picks_count = 0 -%}
+          {%- for product in empty_picks_collection.products -%}
+            {%- if empty_picks_count >= 4 -%}{%- break -%}{%- endif -%}
+            {%- unless product.available -%}{%- continue -%}{%- endunless -%}
+            {%- assign empty_pick_in_cart = false -%}
+            {%- for item in cart.items -%}
+              {%- if item.product_id == product.id -%}
+                {%- assign empty_pick_in_cart = true -%}
+                {%- break -%}
+              {%- endif -%}
+            {%- endfor -%}
+            {%- if empty_pick_in_cart -%}{%- continue -%}{%- endif -%}
+            {%- assign empty_picks_count = empty_picks_count | plus: 1 -%}
             <a href="{{ product.url }}" class="cart-page__cross-sell-item">
               {%- if product.featured_image -%}
                 <div class="cart-page__cross-sell-img-wrap">
@@ -66,6 +84,7 @@
           {%- endfor -%}
         </div>
       </div>
+      {%- endif -%}
 
       {%- comment -%} Recently viewed — populated by JS {%- endcomment -%}
       <div class="cart-page__recently-viewed" id="CartPage-RecentlyViewed" style="display:none;">

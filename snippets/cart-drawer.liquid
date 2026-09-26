@@ -48,11 +48,29 @@
                 {% render 'shipping-country-checker-trigger', context: 'cart-empty' %}
               </div>
 
-              {%- comment -%} Popular with Families — bestsellers for empty cart {%- endcomment -%}
+              {%- comment -%}
+                Empty-cart picks: newest available products from the header's New Arrivals
+                collection (sort order: newest first). The heading makes no popularity claim;
+                see dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-ux-ten-fixes/lanes/cart/.
+              {%- endcomment -%}
+              {%- assign empty_picks_collection = collections['new-arrivals'] -%}
+              {%- if empty_picks_collection.products_count > 0 -%}
               <div class="cart-drawer__empty-bestsellers">
-                <h3 class="cart-drawer__empty-section-title">{{ 'sections.cart.popular_with_families' | t }}</h3>
+                <h3 class="cart-drawer__empty-section-title">{{ 'sections.breadcrumbs.label_new_arrivals' | t }}</h3>
                 <div class="cart-drawer__upsell-grid">
-                  {%- for product in collections.all.products limit: 3 -%}
+                  {%- assign empty_picks_count = 0 -%}
+                  {%- for product in empty_picks_collection.products -%}
+                    {%- if empty_picks_count >= 3 -%}{%- break -%}{%- endif -%}
+                    {%- unless product.available -%}{%- continue -%}{%- endunless -%}
+                    {%- assign empty_pick_in_cart = false -%}
+                    {%- for item in cart.items -%}
+                      {%- if item.product_id == product.id -%}
+                        {%- assign empty_pick_in_cart = true -%}
+                        {%- break -%}
+                      {%- endif -%}
+                    {%- endfor -%}
+                    {%- if empty_pick_in_cart -%}{%- continue -%}{%- endif -%}
+                    {%- assign empty_picks_count = empty_picks_count | plus: 1 -%}
                     <a href="{{ product.url }}" class="cart-drawer__upsell-item">
                       {%- if product.featured_image -%}
                         <img
@@ -72,6 +90,7 @@
                   {%- endfor -%}
                 </div>
               </div>
+              {%- endif -%}
 
               {%- comment -%} Recently viewed products — populated by JS from localStorage {%- endcomment -%}
               <div class="cart-drawer__recently-viewed" id="CartDrawer-RecentlyViewed" style="display:none;">
@@ -706,6 +725,7 @@
                 {%- if upsell_count >= 3 -%}{%- break -%}{%- endif -%}
                 {%- for product in collection.products limit: 6 -%}
                   {%- if upsell_count >= 3 -%}{%- break -%}{%- endif -%}
+                  {%- unless product.available -%}{%- continue -%}{%- endunless -%}
                   {%- assign in_cart = false -%}
                   {%- for item in cart.items -%}
                     {%- if item.product.id == product.id -%}
