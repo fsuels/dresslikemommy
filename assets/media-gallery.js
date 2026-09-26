@@ -371,8 +371,13 @@ if (!customElements.get('media-gallery')) {
         if (this.mobileViewportMql.matches) {
           const inset = this.getMobileCornerInsetPx();
           const roundedInset = Math.round(inset);
+          // The mobile info panel is pulled up over the gallery; lift the counter above it.
+          const infoWrapper = this.closest('.product')?.querySelector('.product__info-wrapper');
+          const overlap = infoWrapper
+            ? Math.max(0, this.elements.viewer.getBoundingClientRect().bottom - infoWrapper.getBoundingClientRect().top)
+            : 0;
           mediaProgress.style.setProperty('right', `${roundedInset}px`, 'important');
-          mediaProgress.style.setProperty('bottom', `${roundedInset}px`, 'important');
+          mediaProgress.style.setProperty('bottom', `${Math.round(overlap) + roundedInset}px`, 'important');
           mediaProgress.style.setProperty('left', 'auto', 'important');
           mediaProgress.style.setProperty('top', 'auto', 'important');
           mediaProgress.style.setProperty('max-width', `calc(100% - ${roundedInset * 2}px)`, 'important');

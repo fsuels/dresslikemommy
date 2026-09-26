@@ -731,7 +731,8 @@
         display: inline-flex !important;
         position: absolute !important;
         right: clamp(0.55rem, 2.4vw, 0.75rem) !important;
-        bottom: clamp(0.55rem, 2.4vw, 0.75rem) !important;
+        /* Clear the -2.9rem info-wrapper overlap so the image count stays visible. */
+        bottom: calc(2.9rem + clamp(0.55rem, 2.4vw, 0.75rem)) !important;
         left: auto !important;
         top: auto !important;
         z-index: 1 !important;
