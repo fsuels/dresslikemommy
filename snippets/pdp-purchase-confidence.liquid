@@ -24,11 +24,6 @@
     assign pc_shipping_headline = 'Standard shipping included'
   endif
 
-  assign pc_shipping_checkout = 'products.purchase_confidence.shipping_checkout' | t
-  if pc_shipping_checkout == blank or pc_shipping_checkout contains 'translation missing'
-    assign pc_shipping_checkout = 'See shipping options at checkout.'
-  endif
-
   # "Ships to {{ country }}" label — gives the orphan "USD" line context.
   if pc_country != blank
     assign pc_ships_to = 'products.purchase_confidence.ships_to_country' | t: country: pc_country
@@ -370,7 +365,7 @@
     </span>
     <div class="dlm-pc-row__body">
       <p class="dlm-pc-row__title">{{ pc_shipping_headline }}</p>
-      <p class="dlm-pc-row__estimate">{{ standard_delivery_copy | default: pc_shipping_checkout }}</p>
+      <p class="dlm-pc-row__estimate">{% render 'delivery-estimate-copy' %}</p>
       <p class="dlm-pc-row__action-row">
         <span class="dlm-pc-row__ships-to">{{ pc_ships_to }}</span>
         {%- if pc_currency_code != blank -%}

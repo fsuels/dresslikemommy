@@ -1,6 +1,8 @@
 {%- comment -%}
   Outputs the localized standard delivery estimate, e.g. "Estimated delivery: 12-16 days".
   Same keys and fallbacks as the PDP (sections/main-product.liquid) and product FAQ schema.
+  assets/dlm-delivery-dates.js turns the window into an arrival date range
+  ("Estimated delivery: Thu, Oct 8 – Mon, Oct 12"); the day window is the no-JS fallback.
 {%- endcomment -%}
 {%- liquid
   assign dec_intro = 'products.additional_info.estimated_delivery' | t
@@ -11,5 +13,5 @@
   if dec_window == blank or dec_window contains 'translation missing' or dec_window contains 'business days'
     assign dec_window = '12-16 days'
   endif
-  echo dec_intro | append: ' ' | append: dec_window
 -%}
+{{- dec_intro }} <strong class="dlm-delivery-window" data-dlm-delivery-window="{{ dec_window | escape }}">{{ dec_window }}</strong>
