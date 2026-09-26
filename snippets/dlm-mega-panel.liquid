@@ -83,13 +83,14 @@
   endcase
 
   assign columns = column_1 | append: '#' | append: column_2
-  assign headings = heading_1 | append: '#' | append: heading_2
+  # Headings are translated and HTML-escaped (Who's -> Who&#39;s), so they must not use '#' as the separator.
+  assign headings = heading_1 | append: '|~|' | append: heading_2
   if column_3 != blank
     assign columns = columns | append: '#' | append: column_3
-    assign headings = headings | append: '#' | append: heading_3
+    assign headings = headings | append: '|~|' | append: heading_3
   endif
   assign columns = columns | split: '#'
-  assign headings = headings | split: '#'
+  assign headings = headings | split: '|~|'
   case key
     when 'mommy'
       assign shop_all_name = 'sections.home_category_copy.mommy_me' | t
