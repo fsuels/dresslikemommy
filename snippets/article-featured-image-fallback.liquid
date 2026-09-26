@@ -194,6 +194,17 @@
   endcase
 
   assign image_url = image_asset | asset_url
+
+  # These articles' theme pictures did not match the topic; their Admin featured image was replaced with a verified product photo (2026-09-26).
+  assign article_image_handles = 'family-matching-outfits-spring-photos,mother-daughter-matching-swimsuits-complete-guide-for-summer,family-matching-pajamas-our-top-picks-for-cozy-nights,easter-sunday-family-matching-outfits,mommy-and-me-summer-dress-guide,mommy-and-me-back-to-school-style-guide,halloween-family-matching-costume-ideas,mommy-and-me-thanksgiving-style-guide,christmas-matching-family-pajamas,mommy-and-me-easter-outfit-ideas,end-of-summer-mommy-and-me-beach-style,floral-matching-outfits-for-spring' | split: ','
+  if article.image and article_image_handles contains article_handle
+    assign image_width = article.image.width | at_most: 1200
+    assign image_height = image_width | divided_by: article.image.aspect_ratio | round
+    assign image_url = article.image | image_url: width: image_width
+    if article.image.alt != blank
+      assign image_alt = article.image.alt
+    endif
+  endif
   assign image_url_origin = request.origin | default: shop.url
   if image_url_origin == blank
     assign image_origin_source = canonical_url | default: request.url | default: shop.url
