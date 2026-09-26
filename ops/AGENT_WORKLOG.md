@@ -54274,3 +54274,57 @@ Done:
   - Theme check 283 files, 0 offenses.
   - Preview upload and readback match.
   - At 375×812 the ladybug PDP photo is 373×665 on both live and preview v2 (identical); title at y=783 on both; no horizontal scroll.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-26-mommy-and-me-collection-order
+
+- task_entities: collection `gid://shopify/Collection/320794427489` (`/collections/mommy-and-me`), smart rule `TAG EQUALS "Mommy and Me"`
+- task_stage: DONE, LIVE_VERIFIED
+- next_action_id: none for this surface (manual order means new mom-and-child products land at the end; move them up at launch)
+
+Why: audit issue #10. The collection opened with 20+ dad-inclusive whole-family holiday sets because it was sorted `CREATED_DESC`. The owner approved the fix in chat on 2026-09-26.
+
+Done:
+- External write (Admin API via stored token, refreshed by the Dev Dashboard refresher):
+  - `collectionUpdate` sortOrder `CREATED_DESC` → `MANUAL`. The manual starting order matched the prior newest-first order.
+  - `collectionReorderProducts`: moved 32 products to the end, keeping their relative order.
+- The 32 moved products are those tagged "Daddy and Me", plus 6 members without a "Mommy and Me" tag: together-heart, playful-cat-parade, midnight-paint-splash, sky-daisy-doodle, coastal-banana-leaf, monochrome-palm family tops. Those 6 are adult-inclusive family tops, apparently in the collection through a stale smart-collection index.
+- VERIFIED:
+  - Admin readback: `MANUAL`; membership identical (456); first whole-family active product at position 107; first 12 are mom-and-daughter dresses and sets.
+  - Storefront `products.json` for `/collections/mommy-and-me` and `/de/collections/mommy-and-me`: 0 whole-family products in the first 24.
+- Before/after states and the exact moves: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-storefront-visual-polish/issue10_execution/`.
+- Rollback: `collectionUpdate(input:{id:"gid://shopify/Collection/320794427489", sortOrder: CREATED_DESC})` restores the exact prior order.
+
+Residual:
+- The new first rows are mostly summer mom-and-daughter dresses; the autumn and holiday assortment is mostly whole-family.
+- A seasonal boost (e.g. long-sleeve mommy-and-me pajamas and the star knit sweater dress to the top) is a possible owner follow-up.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-26-storefront-visual-polish-live-release
+
+- task_entities: commit `f5c932f` on `main`; theme MAIN `133290917985`; 53 files (the list in `tools/preview_theme.py`); previews v1 `156130115681` and v2 `156132278369`
+- task_stage: DONE, LIVE_VERIFIED
+- problem_ids: none opened
+- next_action_id: OWNER_CONFIRM_COMPARE_AT_PRICES
+
+Why: the owner said "do it" after confirming that "release it" means syncing to `main` and the live Shopify theme.
+
+Done:
+- Pushed `f5c932f`: only the polish theme files, lightweight packets, and this session's worklog/claim sections. Peer uncommitted work was left out.
+- The GitHub→Shopify sync dropped the push: 0/53 live files changed over 20 minutes of 30-second polling. This is the third drop today; see the header and UX anchors.
+- Fallback, disclosed to the owner: `tools/release_upsert.py`.
+  - `read`: all 53 live files byte- or JSON-equal to the parent commit, so no foreign live edits. Live before-copies were saved under `release/live_before/`.
+  - `upsert`: exact `git show f5c932f:<path>` bytes, with sections before `templates/index.json`.
+  - `verify`: live equals `f5c932f` for 53/53.
+- LIVE_VERIFIED on the live theme `133290917985`, checked without preview cookies via curl and via the browser after clearing preview:
+  - Home: 4 curated cards (pumpkin-ghost, star-knit dress, red cardigans, jingle-bells); "Pajamas" seasonal row; bold headings; 30 category-tile assets referenced; Halloween hero art loads.
+  - Collection: muted "-13%" chips, dark prices.
+  - Ladybug PDP at 375×812: original full-size photo (373×665); 21px title; "Show more" disclosure present.
+  - No "Liquid error" on any checked page; no horizontal scroll.
+  - `/collections/mommy-and-me`, `/de/…` and `/fr/…` open with navy-sprig, coral-blossom and red-tropical-leaf. The rendered page lagged the Admin sort change by about 5 minutes.
+- Notified peer sessions "Homepage card and badge fixes" and "Unbalanced footer layout" (overlapping surfaces) to rebase on `origin/main`.
+- Observed: a peer preview "DLM shop by occasion preview" (`156132933729`) still renders mommy-and-me newest-first. There is also an uncommitted peer occasion-tile edit in the shared `templates/index.json`. Both are left untouched.
+
+Open (owner):
+- Confirm compare-at prices are genuine former prices, because the "-X%" chips are now live.
+- "Contact US" → "Contact us" was applied LIVE by peer session "Unbalanced footer layout" with owner approval; see its anchor `2026-09-26-footer-contact-us-menu-title`. Nothing is pending here.
+- OK to delete previews v1 and v2.
+- Rollback: `git revert f5c932f` plus re-upload of `release/live_before/`, or the same `release_upsert.py` flow with the parent commit.

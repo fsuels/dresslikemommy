@@ -1,6 +1,6 @@
-# Approval packet — footer menu item "Contact US" → "Contact us" (NOT EXECUTED)
+# Approval packet — footer menu item "Contact US" → "Contact us" (EXECUTED 2026-09-26)
 
-Status: PREPARED, awaiting owner approval. Lane L6 made no Admin write.
+Status: EXECUTED 2026-09-26 on owner approval in chat ("fix this"). Before-state matched exactly; `menuUpdate` returned `userErrors: []`; Admin readback shows title `Contact us` on the same item id. LIVE_VERIFIED: `/` footer shows "Contact us"; `/de` "Kontaktieren Sie uns", `/fr` "Contactez-nous", `/es` "Contáctenos" still render. As predicted, those three translations are now flagged `outdated: true` (values unchanged, still served). Rollback below remains valid.
 
 ## Target (read-only Admin GraphQL readback, 2026-09-26, `footer_menus_readback_2026-09-26.jsonl`)
 
