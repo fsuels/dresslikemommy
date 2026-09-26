@@ -207,7 +207,8 @@
       {%- assign media_url = media_url | prepend: 'https:' -%}
     {%- endif -%}
     {%- if media_url != blank -%}
-      {%- capture product_images -%}{{ product_images }}{{ image_delim }}{{ media_url | json }}{%- endcapture -%}
+      {%- assign media_caption = media.alt | default: schema_product_title | strip_newlines | strip -%}
+      {%- capture product_images -%}{{ product_images }}{{ image_delim }}{"@type":"ImageObject","url":{{ media_url | json }},"contentUrl":{{ media_url | json }},"caption":{{ media_caption | json }}}{%- endcapture -%}
       {%- assign image_delim = ',' -%}
     {%- endif -%}
   {%- endfor -%}
