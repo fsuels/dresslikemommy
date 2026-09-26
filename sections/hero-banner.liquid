@@ -1,6 +1,53 @@
 {%- liquid
   assign hero_text_scrim = section.settings.text_scrim_opacity | default: 64 | at_least: section.settings.overlay_opacity
+
+  # First-slide preload (above-the-fold hero only). Emitted before the section's large style
+  # block so the browser can start the first slide's sky and art before it reaches the <img>
+  # tags. Theme-asset slides only; mirrors the <picture>/<img> selection below exactly.
+  assign hero_preload_sky = blank
+  assign hero_preload_mobile_sky = blank
+  assign hero_preload_art = blank
+  if section.index == 1
+    for block in section.blocks
+      if block.type != 'slide'
+        continue
+      endif
+      assign preload_theme_asset = block.settings.theme_asset | strip
+      assign preload_mobile_theme_asset = block.settings.mobile_theme_asset | strip
+      if block.settings.image == blank and block.settings.mobile_image == blank and preload_theme_asset == blank and preload_mobile_theme_asset == blank
+        continue
+      endif
+      if block.settings.image == blank and block.settings.mobile_image == blank
+        assign hero_preload_sky = preload_theme_asset | default: preload_mobile_theme_asset
+        assign hero_preload_mobile_sky = preload_mobile_theme_asset | default: preload_theme_asset
+      endif
+      assign hero_preload_art = block.settings.art_theme_asset | strip
+      break
+    endfor
+  endif
 -%}
+{%- if hero_preload_sky != blank -%}
+  {% comment %}theme-check-disable AssetPreload{% endcomment %}
+  {%- if hero_preload_mobile_sky != hero_preload_sky -%}
+    <link rel="preload" as="image" href="{{ hero_preload_sky | asset_url }}" media="(min-width: 750px)" fetchpriority="high">
+    <link rel="preload" as="image" href="{{ hero_preload_mobile_sky | asset_url }}" media="(max-width: 749px)" fetchpriority="high">
+  {%- else -%}
+    <link rel="preload" as="image" href="{{ hero_preload_sky | asset_url }}" fetchpriority="high">
+  {%- endif -%}
+  {% comment %}theme-check-enable AssetPreload{% endcomment %}
+{%- endif -%}
+{%- if hero_preload_art != blank -%}
+  {% comment %}theme-check-disable AssetPreload{% endcomment %}
+  <link
+    rel="preload"
+    as="image"
+    href="{{ hero_preload_art | append: '-1140.webp' | asset_url }}"
+    imagesrcset="{{ hero_preload_art | append: '-760.webp' | asset_url }} 760w, {{ hero_preload_art | append: '-1140.webp' | asset_url }} 1140w, {{ hero_preload_art | append: '-1520.webp' | asset_url }} 1520w"
+    imagesizes="(min-width: 750px) 52vw, 96vw"
+    fetchpriority="high"
+  >
+  {% comment %}theme-check-enable AssetPreload{% endcomment %}
+{%- endif -%}
 {%- style -%}
   .hero-banner {
     position: relative;
@@ -174,6 +221,70 @@
     transform: translateY(-2px) !important;
     opacity: 0.94;
     box-shadow: 0 8px 25px rgba(232, 93, 58, 0.3) !important;
+  }
+  /* Secondary = outline only. !important: theme-inline-body-static-05.css forces a dark pill on every .hero-banner__cta. */
+  .hero-banner--buttons-dark .hero-banner__cta--secondary {
+    background: transparent !important;
+    color: {{ section.settings.text_color }} !important;
+    border: 1px solid {{ section.settings.text_color | color_modify: 'alpha', 0.75 }} !important;
+    box-shadow: none !important;
+  }
+  .hero-banner--buttons-dark .hero-banner__cta--secondary:hover {
+    background: {{ section.settings.text_color | color_modify: 'alpha', 0.12 }} !important;
+    box-shadow: none !important;
+  }
+  /* Tertiary = text link with arrow, on its own line under the buttons. */
+  .hero-banner__more {
+    flex: 0 0 100%;
+    display: flex;
+    justify-content: center;
+    margin: -4px 0 0;
+  }
+  .hero-banner__link {
+    --hero-link-line: {{ section.settings.text_color | color_modify: 'alpha', 0.5 }};
+    position: relative;
+    z-index: 4;
+    display: inline-block;
+    padding: 10px 2px;
+    color: {{ section.settings.text_color }};
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .hero-banner__link span {
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.35em;
+    text-decoration-color: var(--hero-link-line);
+    transition: text-decoration-color 0.2s ease;
+  }
+  .hero-banner__link:hover span {
+    text-decoration-color: currentColor;
+  }
+  .hero-banner__link:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+  /* The arrow stays next to the last word when a long translated label wraps. */
+  .hero-banner__link .icon-arrow {
+    display: inline-block;
+    width: 14px;
+    height: 10px;
+    margin-inline-start: 0.7rem;
+    vertical-align: 0.05em;
+    transition: transform 0.2s ease;
+  }
+  .hero-banner__link:hover .icon-arrow {
+    transform: translateX(3px);
+  }
+  [dir='rtl'] .hero-banner__link .icon-arrow {
+    transform: scaleX(-1);
+  }
+  [dir='rtl'] .hero-banner__link:hover .icon-arrow {
+    transform: scaleX(-1) translateX(3px);
   }
   .hero-banner__trust {
     display: flex;
@@ -372,6 +483,16 @@
       background: rgba(251, 242, 228, 0.18) !important;
       box-shadow: 0 10px 26px rgba(240, 190, 110, 0.25) !important;
     }
+    .hero-banner__more {
+      justify-content: flex-start;
+    }
+    .hero-banner__link {
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+    }
+    .hero-banner--buttons-seasonal .hero-banner__link {
+      --hero-link-line: rgba(251, 242, 228, 0.55);
+      color: #fbf2e4;
+    }
   }
 
   /* Narrower desktops/tablets: the width-limited art is shorter, so lift it clear of the controls. */
@@ -477,14 +598,47 @@
         line-height: 1.2;
       }
 
+      /* On the light phone card: secondary is an outline, tertiary a dark text link. */
       #shopify-section-{{ section.id }} .hero-banner__cta--secondary {
-        background: rgba(255, 255, 255, 0.94) !important;
+        background: transparent !important;
         color: #1f1f1f !important;
-        border: 1px solid rgba(31, 31, 31, 0.12) !important;
-        box-shadow: 0 0.5rem 1.2rem rgba(16, 17, 17, 0.08) !important;
+        border: 1px solid rgba(31, 31, 31, 0.55) !important;
+        box-shadow: none !important;
         font-size: 10px !important;
         letter-spacing: 0.1em !important;
       }
+
+      #shopify-section-{{ section.id }} .hero-banner--buttons-seasonal .hero-banner__cta--secondary {
+        color: #2b1838 !important;
+        border-color: rgba(43, 24, 56, 0.6) !important;
+      }
+
+      #shopify-section-{{ section.id }} .hero-banner__cta--secondary:hover {
+        background: rgba(31, 31, 31, 0.06) !important;
+        box-shadow: none !important;
+      }
+
+      #shopify-section-{{ section.id }} .hero-banner__link {
+        --hero-link-line: rgba(31, 31, 31, 0.45);
+        color: #1f1f1f;
+        text-shadow: none;
+      }
+
+      #shopify-section-{{ section.id }} .hero-banner--buttons-seasonal .hero-banner__link {
+        --hero-link-line: rgba(43, 24, 56, 0.45);
+        color: #2b1838;
+      }
+
+      {%- unless section.settings.show_mobile_heading -%}
+        /* The tertiary link row makes the overhanging card ~3rem taller; hang it lower instead of over the controls. */
+        #shopify-section-{{ section.id }}:has(.hero-banner__more) {
+          margin-bottom: 10rem;
+        }
+
+        #shopify-section-{{ section.id }} .hero-banner__content:has(.hero-banner__more) {
+          bottom: -8.75rem;
+        }
+      {%- endunless -%}
 
       {%- if section.settings.show_mobile_heading -%}
         /*
@@ -668,11 +822,23 @@
     }
 
     {%- if request.page_type == 'index' and section.index == 1 -%}
+      /* Primary + secondary side by side; the tertiary text link on its own row beneath. */
       #shopify-section-{{ section.id }} .hero-banner__actions {
         flex-direction: row;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         gap: 0.5rem;
         padding: 0.85rem;
+      }
+
+      #shopify-section-{{ section.id }} .hero-banner__more {
+        flex: 1 0 100%;
+        margin: -0.2rem 0 -0.6rem;
+      }
+
+      #shopify-section-{{ section.id }} .hero-banner__link {
+        font-size: 12px;
+        text-align: center;
+        overflow-wrap: anywhere;
       }
 
       #shopify-section-{{ section.id }} .hero-banner__cta {
@@ -1157,12 +1323,12 @@
         </a>
       {%- endif -%}
       {%- if section.settings.tertiary_button_label != blank and hero_tertiary_button_link != blank -%}
-        <a
-          href="{{ hero_tertiary_button_link | escape }}"
-          class="hero-banner__cta hero-banner__cta--secondary"
-        >
-          {{ hero_tertiary_button_label | escape }}
-        </a>
+        <p class="hero-banner__more">
+          <a href="{{ hero_tertiary_button_link | escape }}" class="hero-banner__link">
+            <span>{{ hero_tertiary_button_label | escape }}</span>
+            {%- render 'icon-arrow' -%}
+          </a>
+        </p>
       {%- endif -%}
     </div>
     {%- if section.settings.show_trust -%}

@@ -76,7 +76,7 @@
     capture homepage_spotlight_product_candidates_json
       echo '['
 
-      if spotlight_rotation_collection != blank and spotlight_rotation_collection.products.size > 0
+      if spotlight_disable_rotation != true and spotlight_rotation_collection != blank and spotlight_rotation_collection.products.size > 0
         assign spotlight_candidate_products = spotlight_rotation_collection.products | sort: 'published_at' | reverse
         for candidate_product in spotlight_candidate_products limit: homepage_spotlight_product_candidate_limit
           assign candidate_variant = candidate_product.selected_or_first_available_variant

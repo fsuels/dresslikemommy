@@ -873,8 +873,10 @@ body.dlm-fit-modal-open {
     background: #1D8656;
   }
 
+  /* "Choose options" is still actionable (scrolls to the picker), so keep
+     the solid brand fill instead of a washed-out green that read as disabled. */
   .sticky-desktop-atc--matching-set.requires-options .sticky-desktop-atc__button {
-    background: #95bea6;
+    background: #1D8656;
   }
 
   .sticky-desktop-atc__button[disabled] {
@@ -2350,10 +2352,15 @@ html[lang^="fr"] .product__info-container--matching-set .product-matching-set__m
 .product__info-container--matching-set .product-matching-set__button::after {
   content: none;
 }
+/* "Pick a size" waiting state: a confident brand-tinted prompt at full
+   opacity (the old 50%-faded fill read as broken). Stays natively disabled
+   until a size is chosen; the enabled filled-green CTA above is unchanged. */
 .product__info-container--matching-set .product-matching-set__button[disabled] {
-  opacity: 0.5;
+  opacity: 1;
+  background: #eaf5ef;
+  color: #0f5235;
+  box-shadow: inset 0 0 0 0.15rem #1D8656;
   cursor: not-allowed;
-  box-shadow: none;
 }
 
 /* 11. Compact trust row directly under the CTA. */

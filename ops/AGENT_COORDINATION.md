@@ -1,5 +1,17 @@
 # Agent Coordination Registry
 
+## Storefront visual polish (16-issue audit) claim — 2026-09-26
+
+Status: ACTIVE_WRITE_CLAIM — PREVIEW_BUILT_AWAITING_OWNER_RELEASE (unpublished preview v2 `156132278369` from current MAIN, v1 `156130115681` superseded; created with owner approval; MAIN untouched; anchor `2026-09-26-storefront-visual-polish-preview`). Owner request (September26, chat): "create a plan and coordinate subagents to fix all 16 issues you found" from the same-day live visual audit of home, `/collections/mommy-and-me` and `/products/ladybug-dots-mommy-and-me-pajamas`. The root Claude Code session is the parent and sole committer; six subagents each write one disjoint file lane:
+- L1 homepage content: `templates/index.json` (not hero slide content), `sections/curated-product-grid.liquid`, `sections/seasonal-collection.liquid`, `snippets/home-spotlight-card.liquid` (rotation opt-out flag only).
+- L2 hero: `sections/hero-banner.liquid`, `snippets/hero-seasonal-copy.liquid`.
+- L3 tiles: `sections/category-icons.liquid`, new `assets/category-tile-*`.
+- L4 global styles/cards: `assets/base.css`, `snippets/card-product.liquid`, `snippets/price.liquid`, `assets/component-card.css`, `assets/component-price.css`, `config/settings_data.json`, `assets/theme-inline-head-static-03.css`, `assets/theme-inline-body-static-05.css` (Arial removal).
+- L5 PDP: `sections/main-product.liquid`, `snippets/product-media-gallery.liquid`, `snippets/buy-buttons.liquid`, `snippets/pdp-*.liquid`, `assets/section-main-product.css`, PDP-only component CSS.
+- L6 footer: `sections/footer.liquid`, `sections/footer-group.json`, `assets/section-footer.css`, `assets/component-newsletter.css`.
+
+No `locales/*.json`, product, collection, menu, translation, feed, ad, spend or live-theme writes by subagents. Shopify admin data items (collection sort order, footer menu label) are prepared as exact approval packets only. Release to `main`/MAIN needs owner approval in chat. The peer's dirty `snippets/jsonld-seo.liquid` and other uncommitted files are preserved and not committed. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-storefront-visual-polish/`.
+
 ## Homepage seasonal hero (Halloween & winter) claim — 2026-09-25
 
 Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED (2026-09-25 20:38 UTC). The owner approved in chat ("publish the hero"). Commit `5074fd8` was pushed to `main`. The GitHub sync stalled for more than 12 minutes, so the 13 files were upserted byte-identical to MAIN `133290917985`. The before-state equalled `3019324`, and the after-state equals `5074fd8`. Sync-back commit `9a09846` has 0 file changes. The 21 language homepages are LIVE_VERIFIED. Peer commit `e3d0e07` was not touched. Anchor: `2026-09-25-seasonal-homepage-hero-halloween-winter`. Owner request (September25, chat): improve the homepage hero image for the current season, Halloween and winter. The root Claude Code session is the sole writer for this scope only:

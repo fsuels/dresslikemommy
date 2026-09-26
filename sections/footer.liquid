@@ -32,19 +32,78 @@
     or section.settings.enable_follow_on_shop
   -%}
     {%- unless only_empty_brand -%}
-      <div class="footer__content-top page-width">
-        {%- if section.blocks.size > 0 -%}
-          {%- liquid
-            if section.blocks.size == 9
-              assign footer_grid_class = 'grid--3-col-tablet'
-            elsif section.blocks.size > 6
-              assign footer_grid_class = 'grid--4-col-desktop'
-            elsif section.blocks.size > 4
-              assign footer_grid_class = 'grid--3-col-tablet'
+      {%- liquid
+        # Layout: link columns + (optional) newsletter column share one grid on desktop.
+        # A short last menu column (<= 2 visible links, e.g. "Customer care") also hosts
+        # the Style Journal teaser so it does not sit half-empty or float below the grid.
+        assign footer_show_journal = false
+        if journal_blog != blank and section.settings.show_journal_link
+          assign footer_show_journal = true
+        endif
+
+        assign footer_journal_host = 0
+        if footer_show_journal
+          for block in section.blocks
+            if block.type == 'link_list' and block.settings.menu != blank
+              assign footer_block_position = forloop.index
+              assign footer_visible_links = 0
+              for link in block.settings.menu.links
+                assign footer_link_url = link.url | downcase
+                unless footer_link_url contains '/pages/size-guide'
+                  assign footer_visible_links = footer_visible_links | plus: 1
+                endunless
+              endfor
+              if footer_visible_links <= 2
+                assign footer_journal_host = footer_block_position
+              else
+                assign footer_journal_host = 0
+              endif
             endif
+          endfor
+        endif
+
+        assign footer_link_columns = section.blocks.size
+        if footer_show_journal and footer_journal_host == 0
+          assign footer_link_columns = footer_link_columns | plus: 1
+        endif
+
+        assign footer_has_aside = false
+        if section.settings.newsletter_enable
+          assign footer_has_aside = true
+        elsif section.settings.show_social and has_social_icons
+          assign footer_has_aside = true
+        elsif shop.features.follow_on_shop? and section.settings.enable_follow_on_shop
+          assign footer_has_aside = true
+        endif
+
+        assign footer_total_columns = footer_link_columns
+        if footer_has_aside
+          assign footer_total_columns = footer_total_columns | plus: 1
+        endif
+      -%}
+      {%- capture footer_journal_markup -%}
+        {%- if footer_show_journal -%}
+          {%- liquid
+            assign footer_journal_label = 'storefront.journal.title' | t
+            assign footer_journal_summary = 'storefront.journal.footer_summary' | t
           -%}
+          <h2 class="footer-block__heading inline-richtext">{{ footer_journal_label }}</h2>
+          <div class="footer-block__details-content rte">
+            <p>{{ footer_journal_summary }}</p>
+            <a href="{{ journal_blog.url }}" class="link link--text list-menu__item list-menu__item--link">
+              {{ 'storefront.journal.footer_cta' | t: title: footer_journal_label }} &rarr;
+            </a>
+          </div>
+        {%- endif -%}
+      {%- endcapture -%}
+      <div class="footer__content-top page-width">
+        <div
+          class="footer__layout{% if footer_has_aside and footer_link_columns <= 4 %} footer__layout--with-aside{% endif %}"
+          style="--footer-link-columns: {{ footer_link_columns | at_least: 1 }}; --footer-columns: {{ footer_total_columns | at_least: 1 }};"
+        >
+        {%- if section.blocks.size > 0 -%}
           <div
-            class="footer__blocks-wrapper grid grid--1-col grid--2-col grid--4-col-tablet {{ footer_grid_class }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+            class="footer__blocks-wrapper{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
             {% if settings.animations_reveal_on_scroll %}
               data-cascade
             {% endif %}
@@ -191,6 +250,11 @@
                         {%- endfor -%}
                       </ul>
                     {%- endif -%}
+                    {%- if footer_journal_host > 0 and forloop.index == footer_journal_host -%}
+                      <div class="footer-block__journal footer-block--journal">
+                        {{- footer_journal_markup -}}
+                      </div>
+                    {%- endif -%}
                   {%- when 'brand_information' -%}
                     <div class="footer-block__brand-info">
                       {%- if settings.brand_image != blank -%}
@@ -246,6 +310,15 @@
                 {%- endcase -%}
               </div>
             {%- endfor -%}
+            {%- if footer_show_journal and footer_journal_host == 0 -%}
+              <div class="footer-block grid__item footer-block--journal{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+                {{- footer_journal_markup -}}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- elsif footer_show_journal -%}
+          <div class="footer-block grid__item footer-block--journal{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+            {{- footer_journal_markup -}}
           </div>
         {%- endif -%}
 
@@ -257,24 +330,9 @@
           footer was duplicative and visually heavy.
         {%- endcomment -%}
 
-        {%- if journal_blog != blank and section.settings.show_journal_link -%}
-          {%- liquid
-            assign footer_journal_label = 'storefront.journal.title' | t
-            assign footer_journal_summary = 'storefront.journal.footer_summary' | t
-          -%}
-          <div class="footer-block grid__item footer-block--journal{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
-            <h2 class="footer-block__heading inline-richtext">{{ footer_journal_label }}</h2>
-            <div class="footer-block__details-content rte">
-              <p>{{ footer_journal_summary }}</p>
-              <a href="{{ journal_blog.url }}" class="link link--text list-menu__item list-menu__item--link">
-                {{ 'storefront.journal.footer_cta' | t: title: footer_journal_label }} &rarr;
-              </a>
-            </div>
-          </div>
-        {%- endif -%}
-
+        {%- if footer_has_aside -%}
         <div
-          class="footer-block--newsletter{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
+          class="footer-block--newsletter footer__aside{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
           {% if settings.animations_reveal_on_scroll %}
             data-cascade
           {% endif %}
@@ -361,6 +419,8 @@
           {%- if section.settings.show_social and has_social_icons -%}
             {%- render 'social-icons', class: 'footer__list-social' -%}
           {%- endif -%}
+        </div>
+        {%- endif -%}
         </div>
       </div>
     {%- endunless -%}

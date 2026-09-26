@@ -1,6 +1,7 @@
 .footer {
   border-top: 0.1rem solid rgba(var(--color-foreground), 0.16);
   color: rgba(var(--color-foreground), 0.9);
+  font-family: var(--font-body-family);
 }
 
 .footer:not(.color-scheme-1) {
@@ -59,8 +60,12 @@
 .footer-block__heading {
   margin: 0 0 1rem;
   color: rgb(var(--color-foreground));
+  font-family: var(--font-heading-family);
   font-size: 1.7rem;
   line-height: 1.35;
+  /* Long single words (e.g. German "Unternehmensinformationen") must wrap, not overflow. */
+  overflow-wrap: anywhere;
+  hyphens: auto;
 }
 
 .footer-block__details-content > :last-child {
@@ -81,22 +86,76 @@
 
 .footer-block--newsletter {
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 1.6rem 2.4rem;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.6rem;
   margin-top: 3rem;
 }
 
 .footer-block__newsletter {
-  flex: 1 1 28rem;
+  width: 100%;
   min-width: 0;
   text-align: left;
+}
+
+/* Style Journal teaser: folded under a short menu column, or its own column. */
+.footer-block__journal {
+  margin-top: 2.8rem;
+}
+
+.footer .footer-block--journal p {
+  margin: 0 0 0.6rem;
+  font-size: 1.3rem;
+  line-height: 1.6;
+  color: rgba(var(--color-foreground), 0.8);
+}
+
+/* Newsletter: left-aligned with its heading, one rounded outline (the input's own border). */
+.footer .newsletter-form {
+  align-items: stretch;
+  justify-content: flex-start;
+  margin: 0;
+  max-width: none;
 }
 
 .footer .newsletter-form__field-wrapper {
   width: 100%;
   max-width: 42rem;
+}
+
+.footer .newsletter-form .field::before,
+.footer .newsletter-form .field::after {
+  content: none;
+  display: none;
+}
+
+.footer .newsletter-form .field__label {
+  left: calc(var(--inputs-border-width) + 1.6rem);
+}
+
+.footer .newsletter-form .field__input:hover {
+  border-color: rgba(var(--color-foreground), 0.6) !important;
+}
+
+.footer .newsletter-form .field__input:focus,
+.footer .newsletter-form .field__input:focus-visible {
+  border-color: rgb(var(--color-foreground)) !important;
+  box-shadow: 0 0 0 0.1rem rgb(var(--color-foreground));
+  outline: 0;
+}
+
+.footer .newsletter-form__message {
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.footer .newsletter-form__message--success {
+  margin-top: 1.2rem;
+  font-family: var(--font-body-family);
+  font-size: 1.4rem !important;
+  font-weight: 400 !important;
+  letter-spacing: normal !important;
+  text-transform: none !important;
 }
 
 .footer .footer__list-social,
@@ -198,23 +257,31 @@
 }
 
 @media screen and (max-width: 749px) {
+  .footer .page-width,
   .footer__content-top {
-    padding-bottom: 2.8rem;
-    padding-left: calc(3rem / var(--font-body-scale));
-    padding-right: calc(3rem / var(--font-body-scale));
+    padding-left: 1.6rem;
+    padding-right: 1.6rem;
   }
 
-  .footer-block__heading {
+  .footer__content-top {
+    padding-bottom: 2.8rem;
+  }
+
+  .footer__blocks-wrapper .footer-block__heading {
     position: relative;
     display: flex;
     align-items: center;
     min-height: 4.4rem;
     margin-bottom: 0;
     padding: 0.8rem 3.2rem 0.8rem 0;
+  }
+
+  /* Accordion affordance only once the footer script made the heading a toggle. */
+  .footer-block__heading[aria-expanded] {
     cursor: pointer;
   }
 
-  .footer-block__heading::after {
+  .footer-block__heading[aria-expanded]::after {
     content: '+';
     position: absolute;
     top: 50%;
@@ -226,8 +293,18 @@
     line-height: 1;
   }
 
-  .footer-block__heading:not(.block-collapsed)::after {
-    content: '-';
+  .footer-block__heading[aria-expanded]:not(.block-collapsed)::after {
+    content: '\2212';
+  }
+
+  .footer-block__journal {
+    margin-top: 0;
+    padding-top: 1.6rem;
+    border-top: 0.1rem solid rgba(var(--color-foreground), 0.12);
+  }
+
+  .footer-block__heading:not(.block-collapsed) + .footer-block__details-content + .footer-block__journal {
+    margin-top: 1.2rem;
   }
 
   .footer-block__heading.block-collapsed + .footer-block__details-content {
@@ -255,7 +332,6 @@
 
   .footer-block--newsletter {
     margin-top: 2.4rem;
-    flex-direction: column;
     align-items: stretch;
     gap: 1.4rem;
   }
@@ -290,13 +366,26 @@
   .footer .list-payment {
     justify-content: center;
   }
+
+  /* Wrapped policy rows must not start with an orphan separator dot. */
+  .policies {
+    column-gap: 1.6rem;
+  }
+
+  .policies li + li::before {
+    content: none;
+  }
 }
 
 @media screen and (min-width: 750px) {
   .footer__blocks-wrapper {
-    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
     column-gap: 3.2rem;
     row-gap: 2.4rem;
+  }
+
+  .footer-block--newsletter {
+    margin-top: 4rem;
   }
 
   .footer-block {
@@ -320,5 +409,24 @@
 
   .footer__content-bottom-wrapper--center {
     justify-content: center;
+  }
+}
+
+/* Desktop: link columns and the newsletter share one grid with aligned tops. */
+@media screen and (min-width: 990px) {
+  .footer__layout--with-aside {
+    display: grid;
+    grid-template-columns: repeat(var(--footer-columns, 4), minmax(0, 1fr));
+    column-gap: 3.2rem;
+    align-items: start;
+  }
+
+  .footer__layout--with-aside > .footer__blocks-wrapper {
+    grid-column: span var(--footer-link-columns, 3);
+    grid-template-columns: repeat(var(--footer-link-columns, 3), minmax(0, 1fr));
+  }
+
+  .footer__layout--with-aside > .footer-block--newsletter {
+    margin-top: 0;
   }
 }

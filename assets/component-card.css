@@ -609,3 +609,41 @@
   }
 
 }
+
+/* 2026-09-26 storefront polish (lane L4) ------------------------------------------------
+   The !important flags below are only needed to outrank the legacy !important rules in
+   theme-inline-body-static-05.css (`.card .price-item--sale`, `.card .badge`,
+   `.card__heading a`) and template-collection.css; drop them if those rules are removed. */
+
+/* #9 Product card titles: up to 3 lines (was 2 on collection grids, 1 on mobile elsewhere).
+   Reserving 3 lines keeps title, price and card heights aligned across each grid row. */
+.card-wrapper .card:not(.card--horizontal) .card__content .card__information .card__heading a.full-unstyled-link {
+  display: -webkit-box !important;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  overflow: hidden;
+  white-space: normal !important;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  min-height: 4.2em;
+  min-height: 3lh;
+}
+
+/* #8 Card prices: the price uses the normal text color; a genuine discount is signalled only
+   by the small badge (rendered when compare_at_price > price, see card-product.liquid). */
+.card-wrapper .card-information .price .price-item--sale,
+.card-wrapper .card-information .price .price-item--regular {
+  color: rgb(var(--color-foreground)) !important;
+}
+
+/* #8 Sale badge: muted chip showing the real percentage instead of a loud black "SALE". */
+.card-wrapper .card .card__badge .badge.badge--sale {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  color: rgb(26, 26, 26) !important;
+  border: 1px solid rgba(26, 26, 26, 0.12);
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0 !important;
+  text-transform: none !important;
+}

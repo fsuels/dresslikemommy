@@ -114,7 +114,7 @@
 .product__description.rte.quick-add-hidden[data-product-description] .product-copy__body-list {
   display: grid !important;
   grid-template-columns: minmax(0, 1fr) !important;
-  gap: 1.1rem;
+  gap: 0.9rem;
   margin: 0 !important;
   padding: 0 !important;
   list-style: none !important;
@@ -127,6 +127,7 @@
   content: "";
 }
 
+/* Compact checklist rows (previously one shadowed card per point). */
 .product__description.rte.quick-add-hidden[data-product-description] > ul li,
 .product__description.rte.quick-add-hidden[data-product-description] > ol li,
 .product__description.rte.quick-add-hidden[data-product-description] .product-copy__highlights li,
@@ -134,13 +135,12 @@
   position: relative;
   display: flex !important;
   align-items: flex-start;
-  min-height: 100%;
   margin: 0 !important;
-  padding: 1.55rem 1.7rem 1.55rem 5.4rem !important;
-  border: 0.1rem solid #e2e8f0;
-  border-radius: 1.6rem;
-  background: linear-gradient(180deg, #ffffff 0%, #fffaf5 100%);
-  box-shadow: 0 1rem 2.8rem rgba(15, 23, 42, 0.05);
+  padding: 0 0 0 3rem !important;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
   color: #0f172a;
   list-style: none !important;
 }
@@ -154,15 +154,14 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  top: 1.45rem;
-  left: 1.55rem;
-  width: 2.4rem;
-  height: 2.4rem;
+  top: 0.3rem;
+  left: 0;
+  width: 1.9rem;
+  height: 1.9rem;
   border-radius: 999px;
-  background: linear-gradient(180deg, #f97316 0%, #fb923c 100%);
-  box-shadow: 0 0 0 0.45rem rgba(249, 115, 22, 0.12);
-  color: #ffffff;
-  font-size: 1.25rem;
+  background: #e8f5ee;
+  color: #146642;
+  font-size: 1.1rem;
   font-weight: 700;
   line-height: 1;
 }
@@ -177,7 +176,64 @@
   margin: 0 !important;
   color: #1f2937;
   font-size: 1.5rem;
-  line-height: 1.72;
+  line-height: 1.6;
+}
+
+/* "Why You'll Love It": the first points stay visible, the rest fold into a
+   native disclosure (built by snippets/pdp-highlights-compact.liquid). */
+.product__description.rte.quick-add-hidden[data-product-description] > .product-copy__more {
+  margin-top: -0.6rem !important;
+}
+
+.product__description.rte.quick-add-hidden[data-product-description] .product-copy__more > summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 0;
+  color: #146642;
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.4;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  cursor: pointer;
+  list-style: none;
+}
+
+.product__description.rte.quick-add-hidden[data-product-description] .product-copy__more > summary::-webkit-details-marker {
+  display: none;
+}
+
+.product__description.rte.quick-add-hidden[data-product-description] .product-copy__more > summary::after {
+  content: "";
+  width: 0.7rem;
+  height: 0.7rem;
+  margin-top: -0.3rem;
+  border-right: 0.18rem solid currentColor;
+  border-bottom: 0.18rem solid currentColor;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.product__description.rte.quick-add-hidden[data-product-description] .product-copy__more[open] > summary::after {
+  margin-top: 0.3rem;
+  transform: rotate(-135deg);
+}
+
+.product__description.rte.quick-add-hidden[data-product-description] .product-copy__more > summary:focus-visible {
+  outline: 0.2rem solid #146642;
+  outline-offset: 0.3rem;
+  border-radius: 0.4rem;
+}
+
+.product__description.rte.quick-add-hidden[data-product-description] .product-copy__more > ul {
+  margin-top: 0.9rem !important;
+}
+
+/* The description's own "Size Chart" heading is orphaned when its source
+   table is hidden in favour of the interactive size guide. */
+.product__description.rte.quick-add-hidden[data-product-description] :is(h2, h3, h4):has(+ table[data-size-chart-source-only]) {
+  display: none !important;
 }
 
 .product__description.rte.quick-add-hidden[data-product-description] .product-copy__table-card {
@@ -326,15 +382,15 @@
   .product__description.rte.quick-add-hidden[data-product-description] > ol li,
   .product__description.rte.quick-add-hidden[data-product-description] .product-copy__highlights li,
   .product__description.rte.quick-add-hidden[data-product-description] .product-copy__body-list li {
-    padding: 1.35rem 1.35rem 1.35rem 4.8rem !important;
+    padding: 0 0 0 2.9rem !important;
   }
 
   .product__description.rte.quick-add-hidden[data-product-description] > ul li::before,
   .product__description.rte.quick-add-hidden[data-product-description] > ol li::before,
   .product__description.rte.quick-add-hidden[data-product-description] .product-copy__highlights li::before,
   .product__description.rte.quick-add-hidden[data-product-description] .product-copy__body-list li::before {
-    top: 1.25rem;
-    left: 1.35rem;
+    top: 0.25rem;
+    left: 0;
   }
 
   .product__description.rte.quick-add-hidden[data-product-description] .product-copy__table,

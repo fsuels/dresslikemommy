@@ -11,11 +11,23 @@
   endif
   assign curated_collection_href = 'href="' | append: routes.collections_url | append: '/'
   assign curated_footer_body = section.settings.footer_body | replace: 'href="/collections/', curated_collection_href
+  comment
+    Count only cards that will actually render: a product that was deleted, unpublished,
+    or sold out resolves to blank/unavailable and is skipped below, so the grid layout
+    adapts to the real card count instead of leaving empty cells.
+  endcomment
   for block in section.blocks
-    if block.settings.product != blank
+    assign curated_block_product = block.settings.product
+    if curated_block_product != blank and curated_block_product.available and curated_block_product.selected_or_first_available_variant != blank
       assign visible_block_count = visible_block_count | plus: 1
     endif
   endfor
+  assign curated_grid_count_class = 'curated-product-grid__grid--even'
+  if visible_block_count == 1
+    assign curated_grid_count_class = 'curated-product-grid__grid--single'
+  elsif visible_block_count == 3
+    assign curated_grid_count_class = 'curated-product-grid__grid--three'
+  endif
 -%}
 
 {%- if visible_block_count > 0 -%}
@@ -25,6 +37,16 @@
       padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
       --home-spotlight-card-bg: {{ section.settings.card_background }};
       --home-hero-accent: {{ section.settings.accent_color }};
+    }
+
+    .curated-product-grid__heading {
+      margin: 0;
+    }
+
+    .curated-product-grid__grid--single {
+      grid-template-columns: minmax(0, 1fr);
+      max-width: 52rem;
+      margin-inline: auto;
     }
 
     .curated-product-grid__supporting-note {
@@ -92,6 +114,14 @@
       .curated-product-grid__footer-title {
         font-size: 1.9rem;
       }
+
+      .curated-product-grid__grid.curated-product-grid__grid--single {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .curated-product-grid__grid.curated-product-grid__grid--three {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
     }
   {%- endstyle -%}
 
@@ -107,7 +137,7 @@
       <div class="curated-product-grid__header">
         <div class="curated-product-grid__heading-group">
           {%- if section.settings.title != blank -%}
-            <h2 class="curated-product-grid__title inline-richtext {{ section.settings.heading_size }}">
+            <h2 class="curated-product-grid__heading inline-richtext {{ section.settings.heading_size }}">
               {%- if section.settings.button_link != blank -%}
                 <a href="{{ curated_button_url | escape }}" class="curated-product-grid__title-link">
                   {{ section.settings.title }}
@@ -122,7 +152,7 @@
               {{ section.settings.intro }}
             </div>
           {%- endif -%}
-          {%- if section.settings.supporting_note != blank -%}
+          {%- if section.settings.show_supporting_note and section.settings.supporting_note != blank -%}
             <div class="curated-product-grid__supporting-note rte">
               {{ section.settings.supporting_note }}
             </div>
@@ -143,13 +173,30 @@
         {%- endif -%}
       </div>
 
-      <div class="curated-product-grid__grid">
+      <div class="curated-product-grid__grid {{ curated_grid_count_class }}">
         {%- for block in section.blocks -%}
-          {%- if block.settings.product == blank -%}
-            {%- continue -%}
-          {%- endif -%}
+          {%- liquid
+            assign curated_block_product = block.settings.product
+            if curated_block_product == blank or curated_block_product.available == false or curated_block_product.selected_or_first_available_variant == blank
+              continue
+            endif
+          -%}
           {%- liquid
             assign spotlight_fetchpriority = 'low'
+
+            comment
+              Without a label, the card would fall back to an English-only "See all ..." link.
+              Use the collection title instead: it is store data and follows collection translations.
+            endcomment
+            assign curated_collection_link_label = block.settings.collection_link_label | strip
+            if curated_collection_link_label == blank and block.settings.secondary_collection != blank
+              assign curated_collection_link_label = block.settings.secondary_collection.title
+            endif
+
+            assign curated_disable_rotation = false
+            if block.settings.rotate_from_collection == false
+              assign curated_disable_rotation = true
+            endif
 
             assign spotlight_static_theme_asset = blank
             assign spotlight_static_theme_asset_alt = blank
@@ -164,7 +211,8 @@
               spotlight_theme_asset_alt: spotlight_static_theme_asset_alt,
               spotlight_collection: block.settings.secondary_collection,
               spotlight_rotation_collection: block.settings.secondary_collection,
-              spotlight_collection_link_label: block.settings.collection_link_label,
+              spotlight_disable_rotation: curated_disable_rotation,
+              spotlight_collection_link_label: curated_collection_link_label,
               lazy_load: true,
               spotlight_fetchpriority: spotlight_fetchpriority,
               section_id: section.id,
@@ -235,6 +283,12 @@
       "type": "richtext",
       "id": "intro",
       "label": "Intro"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_supporting_note",
+      "default": true,
+      "label": "Show condensed trust note"
     },
     {
       "type": "richtext",
@@ -314,14 +368,14 @@
         {
           "type": "text",
           "id": "badge",
-          "default": "Most loved",
-          "label": "Badge"
+          "label": "Badge",
+          "info": "Optional. Leave blank unless the text is translated for every storefront language."
         },
         {
           "type": "textarea",
           "id": "caption",
-          "default": "Use this slot for the products shoppers engage with most before purchase.",
-          "label": "Caption"
+          "label": "Caption",
+          "info": "Optional. Leave blank unless the text is translated for every storefront language."
         },
         {
           "type": "text",
@@ -339,6 +393,13 @@
           "id": "collection_link_label",
           "default": "See all matching looks",
           "label": "Secondary collection label"
+        },
+        {
+          "type": "checkbox",
+          "id": "rotate_from_collection",
+          "default": true,
+          "label": "Rotate through the newest products in the secondary collection",
+          "info": "Turn off to always show the product chosen above (for seasonal picks)."
         }
       ]
     }

@@ -54139,3 +54139,138 @@ Fix: on mobile the script now adds the measured gallery/info-wrapper overlap to 
 Done (LIVE_VERIFIED, 2026-09-26): the GitHub→theme sync applied `1ed8bab` within ~10 minutes (live `media-gallery.js?v=25977761371357859941790449228` contains the overlap logic; the CDN minifies it, so comment markers do not survive). Fresh 375px readback: pill inline `bottom: 37px`, ends at y=757 above the info panel at y=765, shows `1/4`; swipe handler `cycleActiveMedia` advances it to `2/4` and `3/4` in place. Desktop 1024px is unchanged (frame-based branch, `bottom: 31px`, inside the gallery). The only console errors are Shopify's own 401s.
 
 Next: none required for this fix. If the mobile info-wrapper overlap is ever removed, the JS overlap term drops to 0 automatically; only the CSS fallback `2.9rem` would need to follow it.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-26-storefront-visual-polish-preview
+
+- task_entities: session "storefront visual polish (16-issue audit)"; unpublished preview theme `156130115681` ("DLM visual polish preview 2026-09-26", duplicated from MAIN `133290917985`); lanes L1–L6 per `ops/AGENT_COORDINATION.md`; `templates/index.json` curated cards `pumpkin-ghost-family-matching-pajamas`, `matching-star-knit-sweater-dress-cozy-cream-family-outfit-for-mom-and-daughter`, `family-matching-red-cable-knit-cardigans-elegant-heart-button-design`, `jingle-bells-santa-family-matching-sweaters`; collection `mommy-and-me`; menu `footer-menu-3`
+- task_stage: BUILD done, VERIFY done on preview, release BLOCKED on owner approval
+- problem_ids: none opened
+- next_action_id: OWNER_APPROVE_RELEASE_VISUAL_POLISH
+
+Why: on 2026-09-26 the owner asked for all 16 issues from the same-day live visual audit (home, `/collections/mommy-and-me`, the ladybug PDP) to be fixed with coordinated subagents. They chose "preview, then ask me" for release, and "show me first" for the two admin-data items.
+
+Done (IMPLEMENTED; in the preview theme only, not committed or live):
+- Home:
+  - The curated grid shows 4 in-season cards. 3 handles had 404'd. New blocks have no badge or caption text, so no stale translations.
+  - New block setting `rotate_from_collection` (default true) plus a `spotlight_disable_rotation` flag in `snippets/home-spotlight-card.liquid`. Reason: the existing client-side rotation swapped curated picks for the newest products in the secondary collection (April pajamas). The 4 seasonal cards set it to false.
+  - `seasonal_christmas` gets a date-gated fallback (`pajamas`, 0901–1031), a page gutter, and the standard heading.
+  - Hero trust sentence off.
+  - Hero CTA hierarchy is primary, then secondary outline, then text link. The slide-1 image is preloaded (only a small gain; the real delay is 59–77 CSS/JS files before the images).
+  - Occasion grid columns follow the tile count.
+  - 10 curated, label-accurate tile photos use main images of available products, in 30 WebP files. They fall back to the old rotation.
+  - Trust strip is one compact row: 38px on mobile, down from ~190px.
+- Global:
+  - Button rings follow the pill radius.
+  - Prices use the normal text color.
+  - Sale badge is a muted chip showing the discount of the cheapest available variant, which is the shown "From" price. It is wrapped in `<bdi>`.
+  - Card titles clamp at 3 lines.
+  - Headings are `assistant_n7`.
+  - Arial is removed from `theme-inline-head-static-03/05.css`.
+- PDP:
+  - Mobile gallery capped at 4:5, with arrows and a counter; back/similar links on one line.
+  - Title is dominant over price.
+  - Disabled "Pick a size" button is solid and readable.
+  - "Why You'll Love It" is compact rows plus a native `<details>` "Show more (N)" using existing `products.facets.show_more` keys.
+- Footer:
+  - 4-column grid, with the journal under a sparse Customer Care column.
+  - One clean outline on the email field.
+  - A dead stale-id `custom_css` was removed.
+- VERIFIED:
+  - `shopify theme check` 283 files, 0 offenses; `git diff --check` clean.
+  - All 53 preview files match the working tree via checksum/JSON readback.
+  - In-app browser on the preview at 1024 and 375: home, collection, PDP and footer; no horizontal scroll.
+  - 12 collection cards' sale % matched the storefront JSON for the cheapest available variant.
+- An independent read-only reviewer found 0 blockers. These findings were fixed and re-verified:
+  - sale % taken from the wrong variant (Navy Sprig showed -35% next to $17.99, which is really -51%)
+  - desktop `nowrap` on card titles
+  - RTL `bdi` and `text-align:start`
+  - duplicate onesie on home (card 4 is now the Jingle Bells sweaters)
+  - the seasonal MMDD schema note
+
+Not done / gated:
+- #10 Mommy & Me order: the approval packet `lanes/L4-global/ISSUE10_MOMMY_AND_ME_SORT_APPROVAL_PACKET.md` proposes switching to manual order and moving the 27 "Daddy and Me"-tagged products to the end. Not executed. The UX ten-fix session's lane D also holds a sort-order packet; reconcile to one before execution.
+- #16 "Contact US" → "Contact us": packet `lanes/L6-footer/APPROVAL_PACKET_contact-us-menu-title.md`. Not executed.
+- Owner decision: 87/136 Mommy & Me products carry compare-at prices, mostly 13–16% above price. Confirm they are genuine former prices (FTC / EU Omnibus) before the % badges go live.
+- Release: themeFilesUpsert must send sections before `templates/index.json` in a separate batch, because Shopify silently drops new block settings validated against the old schema (observed on the preview).
+- Residual risks:
+  - Mobile PDP tall photos are top-cropped at 4:5 (zoom shows the full photo).
+  - The "Most-Loved" heading and intro copy is unchanged; changing it would need translations.
+  - "Standard shipping included" trust text has no translation key (pre-existing).
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-storefront-visual-polish/` (SHARED_BRIEF.md, lanes/L1–L6, tools/preview_theme.py, preview_theme.json).
+
+Next: the owner reviews `https://www.dresslikemommy.com/?preview_theme_id=156130115681` and approves the release. This goes first because nothing is live and both admin packets depend on it.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-26-storefront-visual-polish-mobile-photo-uncrop
+
+- task_entities: `sections/main-product.liquid` (mobile gallery); preview theme `156130115681`; Admin token `~/.config/dresslikemommy/admin-api-token.json`
+- task_stage: BUILD done, preview upload BLOCKED
+- next_action_id: OWNER_RESTORE_ADMIN_TOKEN_THEN_PREVIEW_UPLOAD
+
+Why: the owner checked the preview on a phone and reported that product-page photos were cut off at the bottom. Lane L5 had set a 4:5 frame with a top-anchored cover crop.
+
+Done:
+- IMPLEMENTED locally:
+  - Removed the 4:5 ratio cap and the cover crop.
+  - Mobile gallery photos use `object-fit: contain`, so they are never cropped.
+  - The frame keeps the tallest photo's ratio, with `max-height: 72svh !important`.
+- VERIFIED by simulating the exact CSS/variable change on the preview PDP at 375×812:
+  - The full photo shows, including the feet.
+  - The title starts at y=701, above the fold.
+  - The gallery slot is 595px, with no empty gap.
+  - No horizontal scroll.
+  - `shopify theme check` 283 files, 0 offenses.
+- Peer session "Mobile checkout test" committed `28a399a`: the hero links now point to `/collections/halloween-family-pajamas`, with owner approval. The same two values are in the shared working copy, so this release keeps them.
+
+Blocked:
+- The preview upload of `sections/main-product.liquid` and `templates/index.json` is not done.
+- The stored Admin API token returned HTTP 401 "Invalid API key or access token" twice on a read-only `shop` query. It had worked earlier the same day.
+- Per the repo rule, a stored-token 401 means the app token must be regenerated or reinstalled.
+
+Next: the owner restores the Admin token (regenerate or reinstall the custom app and save it to the same file). Then rerun `tools/preview_theme.py upsert sections/main-product.liquid templates/index.json` and `verify`, and re-check the mobile PDP. This goes first because the preview cannot show the fix until the token works.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-26-storefront-visual-polish-preview-v2
+
+- task_entities: preview theme v2 `156132278369` ("DLM visual polish preview v2 2026-09-26", duplicated from MAIN at `20fa203`); superseded preview v1 `156130115681` (kept, unpublished; delete after release with owner OK)
+- task_stage: VERIFY done on preview v2, release BLOCKED on owner approval
+- next_action_id: OWNER_APPROVE_RELEASE_VISUAL_POLISH
+
+Done:
+- The Admin token works again via the Dev Dashboard refresher (`refresh_shopify_admin_token.py --if-needed`: valid until 2026-09-27 21:05 UTC).
+- Preview v1 predated the peer header/mega-menu and UX ten-fix releases. So v2 was duplicated from the current MAIN, and the 53 polish files were upserted with sections before `templates/index.json`.
+- VERIFIED:
+  - Readback 53/53 match.
+  - `shopify theme check` 283 files, 0 offenses after the fast-forward to `20fa203`.
+  - No peer commit since `ffdc450` touched a polish file, except `28a399a` (Halloween hero links) and `1ed8bab` (PDP counter offset). Both are already in the working copy.
+  - Preview v2 at 375×812, ladybug and pumpkin-ghost PDPs: `object-fit: contain`, full photo including feet, title at y=701, no horizontal scroll.
+  - Home: 4 curated cards as intended; hero links point to `/collections/halloween-family-pajamas`.
+
+Next: the owner approves the release. Then commit only the polish files and push `main`, verify that the GitHub→Shopify sync landed on the live routes (re-trigger if the push is dropped), release the claim, and offer to delete previews v1 and v2.
+
+Update, guard approved by the owner (LIVE_VERIFIED): LaunchAgent `com.dresslikemommy.image-seo-guard` (template `ops/shopify/com.dresslikemommy.image-seo-guard.plist`) is loaded; it runs `image_seo.py guard --execute` every 900 s, exit 0. First run 21:35Z renamed 58 generic `ChatGPT_Image_…` files on listings created within 72 h to `<handle>-NN.png`. 0 errors; 58/58 renamed, alt preserved and new URLs load. The second run planned 0 updates. The live Jingle Bells PDP serves the new filenames. The old URLs now 404; the only remaining reference is the hidden Judge.me widget `data-image-url` cached at listing creation. Merchant/Pinterest feeds pick up new `image_link` on their next regeneration. One new image still needs vision alt (daily task not approved). Log: `~/Library/Logs/dresslikemommy/image-seo-guard.jsonl`. Rollback: `launchctl bootout gui/$UID/com.dresslikemommy.image-seo-guard`; renames are listed in `guard_first_run_renames.json`.
+
+Addendum 2026-09-26 (owner: "continue implementing all your recommendations", via the owner's Chrome):
+- FIXED / VERIFIED: the checkout email opt-in pre-tick changed from "All regions" (237/237) to "Regions recommended by Shopify" = United States only. Saved, then confirmed after a fresh reload. Rollback: Edit regions → "Regions you choose" → all.
+- Payments, read-only:
+  - Managed payment methods is ON. Bancontact is already enabled and MB WAY is rolling out.
+  - iDEAL | Wero shows "You aren't eligible". Klarna, BLIK, P24 and MobilePay are not offered to the US account.
+  - Nothing more could be enabled.
+- iDEAL gate: there is no LEGAL_NOTICE policy (`shopPolicies`), and the Payments page shows an "11.42% chargeback rate" (Sidekick says "good standing"; the conflict is unresolved).
+- A drafted legal notice awaits owner approval before publication.
+- The Chrome tab was closed. No payment, billing, provider or account setting was changed besides the opt-in regions.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-26-storefront-visual-polish-mobile-photo-original-size
+
+- task_entities: `sections/main-product.liquid` mobile gallery; preview v2 `156132278369`
+- task_stage: VERIFY done on preview v2, release BLOCKED on owner approval
+- next_action_id: OWNER_APPROVE_RELEASE_VISUAL_POLISH
+
+Owner feedback (2026-09-26, chat): they did not like the 72svh-capped, contained mobile photo because "original mobile the image was bigger", and the new version wasted space. Durable preference: on mobile PDPs, keep the original full-width photo at its natural ratio; do not shrink or cap it to lift the title above the fold.
+
+Done:
+- Removed the mobile gallery height cap and `contain` override. The mobile gallery code is now identical to `main` (the 4:5 crop was already gone).
+- The other PDP polish is kept: arrows, counter, one-line back link, title/price hierarchy, "Pick a size" style, and compact highlights.
+- VERIFIED:
+  - Theme check 283 files, 0 offenses.
+  - Preview upload and readback match.
+  - At 375×812 the ladybug PDP photo is 373×665 on both live and preview v2 (identical); title at y=783 on both; no horizontal scroll.

@@ -11,3 +11,27 @@
        transform: inherit;
    }
 }
+
+/* 2026-09-26 storefront polish (lane L4) ------------------------------------------------ */
+
+/* #4 Buttons: the theme draws buttons as pills (theme-inline-body-static-05.css sets
+   border-radius: 50px), while Dawn's ::before/::after rings kept --buttons-radius (0), which
+   drew a square ring around the rounded pill. Rings now follow the button's own radius. */
+.button::before,
+.button::after,
+.customer button::before,
+.customer button::after,
+.shopify-challenge__button::before,
+.shopify-challenge__button::after {
+  border-radius: inherit;
+}
+
+/* Secondary buttons already draw a real border (static-05), so the Dawn ring would be a
+   second outline just inside it. Make the ring transparent in every state (hover rules only
+   change its spread). Keyboard focus still gets the element's :focus-visible outline and
+   box-shadow, which follow the pill radius. */
+a.button--secondary::after,
+button.button--secondary::after {
+  --border-opacity: 0;
+  --alpha-button-background: 0;
+}

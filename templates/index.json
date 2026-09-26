@@ -55,7 +55,7 @@
         "seasonal_copy": "halloween_winter",
         "button_style": "seasonal",
         "show_mobile_heading": true,
-        "show_trust": true,
+        "show_trust": false,
         "trust_line": "Standard shipping included, express options shown at checkout, secure checkout, and helpful sizing support.",
         "height": 500,
         "overlay_opacity": 0,
@@ -70,7 +70,10 @@
     "seasonal_christmas": {
       "type": "seasonal-collection",
       "settings": {
-        "heading_size": "h1",
+        "fallback_collection": "pajamas",
+        "fallback_start_mmdd": 901,
+        "fallback_end_mmdd": 1031,
+        "heading_size": "h2",
         "products_to_show": 4,
         "color_scheme": "scheme-1",
         "padding_top": 36,
@@ -194,62 +197,67 @@
     "curated_product_grid_main": {
       "type": "curated-product-grid",
       "blocks": {
-        "product_card_tie_dye": {
+        "product_card_pumpkin_ghost": {
           "type": "product_card",
           "settings": {
-            "product": "mommy-daughter-matching-tie-dye-dress",
-            "badge": "Most Loved",
-            "caption": "A soft mommy-and-me maxi set for easy matching on birthdays, casual outings, and vacation days.",
+            "rotate_from_collection": false,
+            "product": "pumpkin-ghost-family-matching-pajamas",
+            "badge": "",
+            "caption": "",
             "button_label": "Shop This Look",
-            "secondary_collection": "dresses",
-            "collection_link_label": "Shop mother daughter wedding guest dresses"
+            "secondary_collection": "pajamas",
+            "collection_link_label": ""
           }
         },
-        "product_card_hawaiian": {
+        "product_card_star_knit": {
           "type": "product_card",
           "settings": {
-            "product": "family-matching-hawaiian-shirt-and-floral-dress",
-            "badge": "Vacation Favorite",
-            "caption": "The coordinated floral look to lead with when shoppers want one outfit for family photos, dinners, and beach days.",
+            "rotate_from_collection": false,
+            "product": "matching-star-knit-sweater-dress-cozy-cream-family-outfit-for-mom-and-daughter",
+            "badge": "",
+            "caption": "",
             "button_label": "Shop This Look",
-            "secondary_collection": "family-sets",
-            "collection_link_label": "Shop matching family vacation outfits"
+            "secondary_collection": "sweaters",
+            "collection_link_label": ""
           }
         },
-        "product_card_spring_floral": {
+        "product_card_red_cardigans": {
           "type": "product_card",
           "settings": {
-            "product": "family-matching-shirt-and-dress-set-yellow-floral-for-a-springtime-look",
-            "badge": "Spring Event Pick",
-            "caption": "Bright floral coordination for Easter, garden parties, and warm-weather family photos.",
+            "rotate_from_collection": false,
+            "product": "family-matching-red-cable-knit-cardigans-elegant-heart-button-design",
+            "badge": "",
+            "caption": "",
             "button_label": "Shop This Look",
-            "secondary_collection": "dresses",
-            "collection_link_label": "Browse matching dresses for spring events"
+            "secondary_collection": "new-women-outfits",
+            "collection_link_label": ""
           }
         },
-        "product_card_pajamas": {
+        "product_card_jingle_bells_sweaters": {
           "type": "product_card",
           "settings": {
-            "product": "ladybug-dots-mommy-and-me-pajamas",
-            "badge": "New Pajama Drop",
-            "caption": "Fresh mommy-and-me pajama styles for shoppers who want an easy cozy match right away.",
-            "button_label": "Shop New Pajamas",
-            "secondary_collection": "new-pajama-drop",
-            "collection_link_label": "Browse the New Pajama Drop"
+            "rotate_from_collection": false,
+            "product": "jingle-bells-santa-family-matching-sweaters",
+            "badge": "",
+            "caption": "",
+            "button_label": "Shop This Look",
+            "secondary_collection": "family-sweaters",
+            "collection_link_label": ""
           }
         }
       },
       "block_order": [
-        "product_card_tie_dye",
-        "product_card_pajamas",
-        "product_card_hawaiian",
-        "product_card_spring_floral"
+        "product_card_pumpkin_ghost",
+        "product_card_star_knit",
+        "product_card_red_cardigans",
+        "product_card_jingle_bells_sweaters"
       ],
       "settings": {
         "anchor_id": "most-loved-matching-sets",
         "title": "Most-Loved Matching Sets",
         "heading_size": "h2",
         "intro": "<p>Start with the coordinated sets families keep choosing for vacations, photo days, birthdays, and the newest mommy-and-me pajama arrivals.</p>",
+        "show_supporting_note": false,
         "supporting_note": "<p>Standard shipping included, express options shown at checkout, thoughtful help with sizing, and a family-owned team that replies within 1 business day.</p>",
         "button_label": "See all family sets",
         "button_link": "/collections/family-sets",

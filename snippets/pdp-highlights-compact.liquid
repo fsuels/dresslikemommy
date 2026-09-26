@@ -1,0 +1,84 @@
+{%- comment -%}
+  PDP "Why You'll Love It" compaction.
+
+  assets/product-description.js turns the description's first list into
+  ul.product-copy__highlights (one row per point). Long lists (5+ points)
+  pushed the rest of the page far down on phones, so this keeps the first
+  3 points visible and folds the rest into a native <details> disclosure.
+  Description wording is untouched (translated product data); only the
+  existing <li> nodes are moved. Labels reuse the translated
+  products.facets.show_more / show_less keys.
+
+  Styles: assets/component-product-description.css (.product-copy__more).
+  Render once, after the product-description.js script tag.
+{%- endcomment -%}
+<script>
+  (function () {
+    var root = document.getElementById('MainProduct-{{ section.id }}');
+    if (!root || root.__dlmHighlightsCompactBound) return;
+    root.__dlmHighlightsCompactBound = true;
+
+    var VISIBLE_COUNT = 3;
+    var MIN_ITEMS_TO_FOLD = 5;
+    var showMoreLabel = {{ 'products.facets.show_more' | t | json }};
+    var showLessLabel = {{ 'products.facets.show_less' | t | json }};
+
+    function compactList(list) {
+      if (!list || list.getAttribute('data-dlm-highlights-compact') === 'true') return;
+      if (list.closest('.product-copy__more')) return;
+      list.setAttribute('data-dlm-highlights-compact', 'true');
+
+      var items = Array.prototype.filter.call(list.children, function (child) {
+        return child.tagName === 'LI';
+      });
+      if (items.length < MIN_ITEMS_TO_FOLD) return;
+
+      var hiddenCount = items.length - VISIBLE_COUNT;
+      var moreText = showMoreLabel + ' (' + hiddenCount + ')';
+      var details = document.createElement('details');
+      var summary = document.createElement('summary');
+      var rest = document.createElement('ul');
+
+      details.className = 'product-copy__more';
+      summary.className = 'product-copy__more-summary';
+      summary.textContent = moreText;
+      rest.className = list.className;
+      rest.setAttribute('data-dlm-highlights-compact', 'true');
+
+      items.slice(VISIBLE_COUNT).forEach(function (item) {
+        rest.appendChild(item);
+      });
+
+      details.appendChild(summary);
+      details.appendChild(rest);
+      list.parentNode.insertBefore(details, list.nextSibling);
+
+      details.addEventListener('toggle', function () {
+        summary.textContent = details.open ? showLessLabel : moreText;
+      });
+    }
+
+    function run() {
+      var descriptions = root.querySelectorAll('[data-product-description][data-product-description-ready="true"]');
+      Array.prototype.forEach.call(descriptions, function (description) {
+        compactList(description.querySelector('.product-copy__highlights'));
+      });
+    }
+
+    // product-description.js is deferred and marks each description ready
+    // when its structure is built; react to that (and to later re-renders).
+    if ('MutationObserver' in window) {
+      new MutationObserver(run).observe(root, {
+        subtree: true,
+        attributes: true,
+        attributeFilter: ['data-product-description-ready'],
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', run, { once: true });
+    } else {
+      run();
+    }
+  })();
+</script>

@@ -1,4 +1,5 @@
 {{ 'section-category-icons.css' | asset_url | stylesheet_tag }}
+{{ 'category-tile-layout.css' | asset_url | stylesheet_tag }}
 
 {%- style -%}
   .section-{{ section.id }}-padding {
@@ -77,6 +78,91 @@
       endif
     endfor
   endif
+
+  # Occasion grid columns: fill every row for common counts (4 -> 4, 6 -> 3, 8 -> 4, 9 -> 3).
+  assign occasion_grid_columns = 4
+  if occasion_block_count > 0 and occasion_block_count <= 5
+    assign occasion_grid_columns = occasion_block_count
+  else
+    assign occasion_grid_remainder_four = occasion_block_count | modulo: 4
+    assign occasion_grid_remainder_three = occasion_block_count | modulo: 3
+    if occasion_grid_remainder_four != 0 and occasion_grid_remainder_three == 0
+      assign occasion_grid_columns = 3
+    endif
+  endif
+
+  # Curated seasonal tile photos (theme assets category-tile-<slug>-<360|600|900>.webp).
+  # Each photo is the source product's main (featured) image, keyed by browse path + collection handle.
+  # A photo is only used while its source product is still available on the storefront;
+  # otherwise the tile falls back to the rotating collection product images below.
+  # Seasonal refresh: swap the assets and the slug/handle/focal values in this case list.
+  assign curated_tile_entries = ''
+  if section.settings.use_curated_tile_images
+    for block in section.blocks
+      if block.settings.collection == blank
+        continue
+      endif
+      assign curated_tile_path = block.settings.browse_path | default: 'category'
+      assign curated_tile_key = curated_tile_path | append: ':' | append: block.settings.collection.handle
+      assign curated_tile_slug = ''
+      assign curated_tile_handle = ''
+      assign curated_tile_focal = '50% 20%'
+      assign curated_tile_height = 1600
+      case curated_tile_key
+        when 'category:mommy-and-me'
+          assign curated_tile_slug = 'mommy-me'
+          assign curated_tile_handle = 'navy-sprig-mommy-and-me-dresses'
+          assign curated_tile_focal = '50% 10%'
+        when 'category:new-women-outfits'
+          assign curated_tile_slug = 'family-matching'
+          assign curated_tile_handle = 'reindeer-row-family-matching-sweaters'
+          assign curated_tile_focal = '50% 10%'
+        when 'category:pajamas'
+          assign curated_tile_slug = 'pajamas'
+          assign curated_tile_handle = 'snowflake-reindeer-family-matching-onesie-pajamas'
+          assign curated_tile_focal = '50% 15%'
+        when 'category:dresses'
+          assign curated_tile_slug = 'dresses'
+          assign curated_tile_handle = 'matching-mommy-me-tiered-smocked-dresses-elegant-puff-sleeve-dress-set'
+          assign curated_tile_focal = '50% 10%'
+          assign curated_tile_height = 1259
+        when 'category:swimsuits'
+          assign curated_tile_slug = 'swimsuits'
+          assign curated_tile_handle = 'blue-daisy-skirted-mommy-and-me-swimsuits'
+          assign curated_tile_focal = '50% 5%'
+        when 'category:daddy-me'
+          assign curated_tile_slug = 'daddy-me'
+          assign curated_tile_handle = 'father-child-matching-striped-tie-t-shirt-set-dad-and-baby-toddler-outfits'
+          assign curated_tile_focal = '50% 25%'
+        when 'occasion:matching-family-vacation-outfits'
+          assign curated_tile_slug = 'vacation'
+          assign curated_tile_handle = 'seaside-blue-plaid-family-matching-set'
+          assign curated_tile_focal = '50% 20%'
+        when 'occasion:matching-outfits'
+          assign curated_tile_slug = 'photo-days'
+          assign curated_tile_handle = 'matching-family-striped-cardigans-navy-and-red-heart-embroidery-knit-sweaters-for-mom-dad-and-kids'
+          assign curated_tile_focal = '50% 15%'
+        when 'occasion:dresses'
+          assign curated_tile_slug = 'birthdays'
+          assign curated_tile_handle = 'red-tropical-leaf-mommy-and-me-dresses'
+          assign curated_tile_focal = '50% 15%'
+        when 'occasion:swimsuits'
+          assign curated_tile_slug = 'beach-days'
+          assign curated_tile_handle = 'mom-child-matching-two-piece-swimsuit'
+          assign curated_tile_focal = '50% 20%'
+      endcase
+      if curated_tile_slug == blank
+        continue
+      endif
+      assign curated_tile_product = all_products[curated_tile_handle]
+      if curated_tile_product == blank or curated_tile_product.available != true
+        continue
+      endif
+      assign curated_tile_alt = curated_tile_product.featured_image.alt | default: curated_tile_product.title | strip_newlines | replace: '~', '-' | replace: '^', ' '
+      assign curated_tile_entries = curated_tile_entries | append: block.id | append: '~' | append: curated_tile_slug | append: '~' | append: curated_tile_focal | append: '~' | append: curated_tile_height | append: '~' | append: curated_tile_alt | append: '^'
+    endfor
+  endif
+  assign curated_tile_rows = curated_tile_entries | split: '^'
 -%}
 {%- assign category_heading_key = section.settings.category_heading | handleize -%}
 {%- assign occasion_heading_key = section.settings.occasion_heading | handleize -%}
@@ -118,32 +204,32 @@
     {%- endif -%}
 
     {%- if section.settings.show_trust_strip and trust_item_count > 0 -%}
-      <div class="category-icons__trust" aria-label="Store trust highlights">
+      <ul class="category-tile-trust" role="list" aria-label="Store trust highlights" tabindex="0">
         {%- if section.settings.trust_item_1 != blank -%}
-          <span class="category-icons__trust-item">
-            <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
+          <li class="category-tile-trust__item">
+            <span class="category-tile-trust__icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
             <span>{{ trust_item_1_text | escape }}</span>
-          </span>
+          </li>
         {%- endif -%}
         {%- if section.settings.trust_item_2 != blank -%}
-          <span class="category-icons__trust-item">
-            <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
+          <li class="category-tile-trust__item">
+            <span class="category-tile-trust__icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
             <span>{{ trust_item_2_text | escape }}</span>
-          </span>
+          </li>
         {%- endif -%}
         {%- if section.settings.trust_item_3 != blank -%}
-          <span class="category-icons__trust-item">
-            <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
+          <li class="category-tile-trust__item">
+            <span class="category-tile-trust__icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
             <span>{{ trust_item_3_text | escape }}</span>
-          </span>
+          </li>
         {%- endif -%}
         {%- if section.settings.trust_item_4 != blank -%}
-          <span class="category-icons__trust-item">
-            <span class="category-icons__trust-icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
+          <li class="category-tile-trust__item">
+            <span class="category-tile-trust__icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>
             <span>{{ trust_item_4_text | escape }}</span>
-          </span>
+          </li>
         {%- endif -%}
-      </div>
+      </ul>
     {%- endif -%}
 
     {%- comment -%}
@@ -151,14 +237,16 @@
       - Each page load picks a different active storefront product main image from the collection
       - Uses current minute as rotation seed so images change over time
       - Tracks used image IDs across all categories to guarantee no duplicates
-      - Custom/static image overrides are intentionally ignored for homepage cards
+      - Curated seasonal tile photos (category-tile-* assets, see curated_tile_entries above)
+        take precedence only while their source product is available; otherwise the
+        rotating product main images are shown
     {%- endcomment -%}
 
     {%- if section.settings.display_mode == 'grouped' -%}
       {%- if category_block_count > 0 -%}
         <div class="category-icons__group category-icons__group--category">
           {%- if section.settings.category_heading != blank -%}
-            <{{ category_group_heading_tag }} class="category-icons__group-title">
+            <{{ category_group_heading_tag }} class="category-tile-heading h2">
               {%- if section.settings.category_heading_link != blank -%}
                 <a href="{{ category_heading_url | escape }}" class="category-icons__group-title-link">
                   {{ category_heading_text }}
@@ -266,6 +354,18 @@
                   endcapture
                   assign homepage_collection_image_candidates_json = homepage_collection_image_candidates_json | strip
 
+                  assign curated_tile_slug = ''
+                  for curated_tile_row in curated_tile_rows
+                    assign curated_tile_parts = curated_tile_row | split: '~'
+                    if curated_tile_parts[0] == block.id
+                      assign curated_tile_slug = curated_tile_parts[1]
+                      assign curated_tile_focal = curated_tile_parts[2]
+                      assign curated_tile_height = curated_tile_parts[3]
+                      assign curated_tile_alt = curated_tile_parts[4]
+                      break
+                    endif
+                  endfor
+
                   if icon_image == blank and product_count > 0
                     assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
                     assign fallback_icon_found = false
@@ -301,7 +401,23 @@
                 <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
                   <a href="{{ block.settings.collection.url }}" class="category-icons__link">
                     <div class="category-icons__image-wrap">
-                      {%- if icon_image != blank -%}
+                      {%- if curated_tile_slug != blank -%}
+                        {%- assign curated_tile_asset = 'category-tile-' | append: curated_tile_slug -%}
+                        <img
+                          src="{{ curated_tile_asset | append: '-600.webp' | asset_url }}"
+                          srcset="{{ curated_tile_asset | append: '-360.webp' | asset_url }} 360w, {{ curated_tile_asset | append: '-600.webp' | asset_url }} 600w, {{ curated_tile_asset | append: '-900.webp' | asset_url }} 900w"
+                          sizes="{{ category_image_sizes }}"
+                          alt="{{ curated_tile_alt | escape }}"
+                          loading="lazy"
+                          fetchpriority="low"
+                          decoding="async"
+                          width="900"
+                          height="{{ curated_tile_height }}"
+                          style="object-position: {{ curated_tile_focal }};"
+                          data-homepage-collection-image
+                          data-homepage-collection-image-key="asset-{{ curated_tile_asset }}"
+                        >
+                      {%- elsif icon_image != blank -%}
                         <img
                           src="{{ icon_image | image_url: width: 900 }}"
                           srcset="{{ icon_image | image_url: width: 320 }} 320w, {{ icon_image | image_url: width: 480 }} 480w, {{ icon_image | image_url: width: 640 }} 640w, {{ icon_image | image_url: width: 900 }} 900w"
@@ -341,7 +457,7 @@
       {%- if occasion_block_count > 0 -%}
         <div class="category-icons__group category-icons__group--occasion">
           {%- if section.settings.occasion_heading != blank -%}
-            <{{ category_group_heading_tag }} class="category-icons__group-title">
+            <{{ category_group_heading_tag }} class="category-tile-heading h2">
               {%- if section.settings.occasion_heading_link != blank -%}
                 <a href="{{ occasion_heading_url | escape }}" class="category-icons__group-title-link">
                   {{ occasion_heading_text }}
@@ -351,7 +467,12 @@
               {%- endif -%}
             </{{ category_group_heading_tag }}>
           {%- endif -%}
-          <ul class="category-icons__scroll" role="list" aria-label="{{ occasion_heading_text | default: 'Shop by occasion' | escape }}">
+          <ul
+            class="category-icons__scroll category-tile-grid"
+            role="list"
+            aria-label="{{ occasion_heading_text | default: 'Shop by occasion' | escape }}"
+            style="--category-tile-columns: {{ occasion_grid_columns }}; --category-tile-columns-tablet: {% if occasion_block_count == 1 or occasion_block_count == 3 %}{{ occasion_block_count }}{% else %}2{% endif %};"
+          >
             {%- for block in section.blocks -%}
               {%- if block.settings.collection != blank and block.settings.browse_path == 'occasion' -%}
                 {%- liquid
@@ -440,6 +561,18 @@
                   endcapture
                   assign homepage_collection_image_candidates_json = homepage_collection_image_candidates_json | strip
 
+                  assign curated_tile_slug = ''
+                  for curated_tile_row in curated_tile_rows
+                    assign curated_tile_parts = curated_tile_row | split: '~'
+                    if curated_tile_parts[0] == block.id
+                      assign curated_tile_slug = curated_tile_parts[1]
+                      assign curated_tile_focal = curated_tile_parts[2]
+                      assign curated_tile_height = curated_tile_parts[3]
+                      assign curated_tile_alt = curated_tile_parts[4]
+                      break
+                    endif
+                  endfor
+
                   if icon_image == blank and product_count > 0
                     assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
                     assign fallback_icon_found = false
@@ -475,11 +608,27 @@
                 <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
                   <a href="{{ block.settings.collection.url }}" class="category-icons__link">
                     <div class="category-icons__image-wrap">
-                      {%- if icon_image != blank -%}
+                      {%- if curated_tile_slug != blank -%}
+                        {%- assign curated_tile_asset = 'category-tile-' | append: curated_tile_slug -%}
+                        <img
+                          src="{{ curated_tile_asset | append: '-600.webp' | asset_url }}"
+                          srcset="{{ curated_tile_asset | append: '-360.webp' | asset_url }} 360w, {{ curated_tile_asset | append: '-600.webp' | asset_url }} 600w, {{ curated_tile_asset | append: '-900.webp' | asset_url }} 900w"
+                          sizes="auto, (min-width: 990px) calc((min(100vw, 146rem) - 10rem) / {{ occasion_grid_columns }}), (min-width: 750px) calc((100vw - 11.8rem) / 2), min(76vw, 32rem)"
+                          alt="{{ curated_tile_alt | escape }}"
+                          loading="lazy"
+                          fetchpriority="low"
+                          decoding="async"
+                          width="900"
+                          height="{{ curated_tile_height }}"
+                          style="object-position: {{ curated_tile_focal }};"
+                          data-homepage-collection-image
+                          data-homepage-collection-image-key="asset-{{ curated_tile_asset }}"
+                        >
+                      {%- elsif icon_image != blank -%}
                         <img
                           src="{{ icon_image | image_url: width: 900 }}"
                           srcset="{{ icon_image | image_url: width: 320 }} 320w, {{ icon_image | image_url: width: 480 }} 480w, {{ icon_image | image_url: width: 640 }} 640w, {{ icon_image | image_url: width: 900 }} 900w"
-                          sizes="auto, (min-width: 1200px) calc((min(100vw, 146rem) - 17.2rem) / 4), (min-width: 990px) calc((100vw - 14.8rem) / 3), (min-width: 750px) calc((100vw - 11.8rem) / 2), min(76vw, 32rem)"
+                          sizes="auto, (min-width: 990px) calc((min(100vw, 146rem) - 10rem) / {{ occasion_grid_columns }}), (min-width: 750px) calc((100vw - 11.8rem) / 2), min(76vw, 32rem)"
                           alt="{{ icon_image_alt | escape }}"
                           loading="lazy"
                           fetchpriority="low"
@@ -601,6 +750,18 @@
               endcapture
               assign homepage_collection_image_candidates_json = homepage_collection_image_candidates_json | strip
 
+              assign curated_tile_slug = ''
+              for curated_tile_row in curated_tile_rows
+                assign curated_tile_parts = curated_tile_row | split: '~'
+                if curated_tile_parts[0] == block.id
+                  assign curated_tile_slug = curated_tile_parts[1]
+                  assign curated_tile_focal = curated_tile_parts[2]
+                  assign curated_tile_height = curated_tile_parts[3]
+                  assign curated_tile_alt = curated_tile_parts[4]
+                  break
+                endif
+              endfor
+
               if icon_image == blank and product_count > 0
                 assign start_index = rotation_seed | plus: forloop.index | modulo: product_count
                 assign fallback_icon_found = false
@@ -636,7 +797,23 @@
             <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
               <a href="{{ block.settings.collection.url }}" class="category-icons__link">
                 <div class="category-icons__image-wrap">
-                  {%- if icon_image != blank -%}
+                  {%- if curated_tile_slug != blank -%}
+                    {%- assign curated_tile_asset = 'category-tile-' | append: curated_tile_slug -%}
+                    <img
+                      src="{{ curated_tile_asset | append: '-600.webp' | asset_url }}"
+                      srcset="{{ curated_tile_asset | append: '-360.webp' | asset_url }} 360w, {{ curated_tile_asset | append: '-600.webp' | asset_url }} 600w, {{ curated_tile_asset | append: '-900.webp' | asset_url }} 900w"
+                      sizes="auto, (min-width: 990px) calc((min(100vw, 146rem) - 14.8rem) / 3), (min-width: 750px) calc((100vw - 11.8rem) / 2), min(76vw, 32rem)"
+                      alt="{{ curated_tile_alt | escape }}"
+                      loading="lazy"
+                      fetchpriority="low"
+                      decoding="async"
+                      width="900"
+                      height="{{ curated_tile_height }}"
+                      style="object-position: {{ curated_tile_focal }};"
+                      data-homepage-collection-image
+                      data-homepage-collection-image-key="asset-{{ curated_tile_asset }}"
+                    >
+                  {%- elsif icon_image != blank -%}
                     <img
                       src="{{ icon_image | image_url: width: 900 }}"
                       srcset="{{ icon_image | image_url: width: 320 }} 320w, {{ icon_image | image_url: width: 480 }} 480w, {{ icon_image | image_url: width: 640 }} 640w, {{ icon_image | image_url: width: 900 }} 900w"
@@ -731,6 +908,13 @@
       "type": "url",
       "id": "occasion_heading_link",
       "label": "Occasion heading link"
+    },
+    {
+      "type": "checkbox",
+      "id": "use_curated_tile_images",
+      "default": true,
+      "label": "Use curated seasonal tile photos",
+      "info": "Shows the curated product photos set in this section's code while their products are available. Turn off to rotate collection product photos."
     },
     {
       "type": "checkbox",

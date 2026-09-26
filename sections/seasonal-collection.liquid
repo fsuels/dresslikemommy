@@ -3,7 +3,32 @@
   collection (in-season window and storefront products present); outputs nothing otherwise.
 {%- endcomment -%}
 {%- capture seasonal_handle -%}{%- render 'christmas-season-collection' -%}{%- endcapture -%}
-{%- assign seasonal_handle = seasonal_handle | strip -%}
+{%- liquid
+  assign seasonal_handle = seasonal_handle | strip
+  assign seasonal_min_products = 2
+
+  if seasonal_handle != blank
+    assign seasonal_primary_count = collections[seasonal_handle].products_count | plus: 0
+    if seasonal_primary_count < seasonal_min_products
+      assign seasonal_handle = ''
+    endif
+  endif
+
+  comment
+    Optional date-gated fallback (shop timezone, inclusive MMDD range) so the section is not
+    empty before the Christmas window opens. The heading is the collection title (store data
+    that follows collection translations), so no new theme copy is introduced.
+  endcomment
+  if seasonal_handle == blank and section.settings.fallback_collection != blank
+    assign seasonal_today_mmdd = 'now' | date: '%m%d' | plus: 0
+    assign seasonal_fallback_start = section.settings.fallback_start_mmdd | plus: 0
+    assign seasonal_fallback_end = section.settings.fallback_end_mmdd | plus: 0
+    assign seasonal_fallback_count = section.settings.fallback_collection.products_count | plus: 0
+    if seasonal_fallback_start > 0 and seasonal_fallback_end > 0 and seasonal_today_mmdd >= seasonal_fallback_start and seasonal_today_mmdd <= seasonal_fallback_end and seasonal_fallback_count >= seasonal_min_products
+      assign seasonal_handle = section.settings.fallback_collection.handle
+    endif
+  endif
+-%}
 
 {%- if seasonal_handle != blank -%}
   {%- assign seasonal_collection = collections[seasonal_handle] -%}
@@ -24,6 +49,11 @@
         padding-bottom: {{ section.settings.padding_bottom }}px;
       }
     }
+    #seasonal-collection-{{ section.id }} .collection__title .title {
+      text-align: start !important;
+      font-family: var(--font-heading-family) !important;
+      font-weight: var(--font-heading-weight) !important;
+    }
   {%- endstyle -%}
 
   <div class="color-{{ section.settings.color_scheme }} isolate gradient">
@@ -34,8 +64,9 @@
         </h2>
       </div>
 
+      <div class="page-width">
       <ul
-        class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--4-col-desktop grid--2-col-tablet-down page-width"
+        class="grid product-grid contains-card contains-card--product{% if settings.card_style == 'standard' %} contains-card--standard{% endif %} grid--4-col-desktop grid--2-col-tablet-down"
         role="list"
       >
         {%- for product in seasonal_collection.products limit: section.settings.products_to_show -%}
@@ -54,6 +85,7 @@
           </li>
         {%- endfor -%}
       </ul>
+      </div>
 
       <div class="center collection__view-all">
         <a
@@ -80,6 +112,24 @@
     {
       "type": "paragraph",
       "content": "Shows the seasonal collection set in snippets/christmas-season-collection.liquid only during its date window and only when it has products."
+    },
+    {
+      "type": "collection",
+      "id": "fallback_collection",
+      "label": "Fallback collection",
+      "info": "Optional. Shown only inside the fallback dates below when the Christmas collection is out of season or has fewer than 2 products."
+    },
+    {
+      "type": "number",
+      "id": "fallback_start_mmdd",
+      "label": "Fallback start (MMDD)",
+      "info": "Example: 901 for September 1. Leave blank to never show the fallback."
+    },
+    {
+      "type": "number",
+      "id": "fallback_end_mmdd",
+      "label": "Fallback end (MMDD)",
+      "info": "Example: 1031 for October 31. Must be after the start date (ranges that wrap past December 31 are not supported)."
     },
     {
       "type": "select",

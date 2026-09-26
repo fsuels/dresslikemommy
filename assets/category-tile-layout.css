@@ -1,0 +1,135 @@
+/* Homepage category/occasion tiles: heading, trust strip and occasion grid.
+   Loaded after section-category-icons.css by sections/category-icons.liquid. */
+
+/* Section headings follow the theme h2 (font family, weight and size come from base.css). */
+.section-category-icons .category-tile-heading {
+  margin: 0 0 1.2rem;
+  text-align: start;
+}
+
+/* Trust strip: one compact row. Mobile/tablet scroll sideways; desktop wraps centered. */
+.section-category-icons .category-tile-trust {
+  display: flex;
+  gap: 0.8rem;
+  margin: 0 -1.5rem 1.6rem;
+  padding: 0.2rem 1.5rem;
+  list-style: none;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x proximity;
+  scroll-padding-inline: 1.5rem;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.section-category-icons .category-tile-trust::-webkit-scrollbar {
+  display: none;
+}
+
+.section-category-icons .category-tile-trust__item {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.6rem;
+  min-height: 3.4rem;
+  margin: 0;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid rgba(var(--color-foreground), 0.12);
+  border-radius: 999px;
+  background: rgb(var(--color-background));
+  color: rgb(var(--color-foreground));
+  font-family: var(--font-body-family);
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  scroll-snap-align: start;
+}
+
+.section-category-icons .category-tile-trust__icon {
+  display: inline-flex;
+  flex-shrink: 0;
+  width: 1.2rem;
+  height: 1.2rem;
+  opacity: 0.72;
+}
+
+.section-category-icons .category-tile-trust__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 749px) {
+  /* Tile carousels run edge to edge and start on the 1.5rem page gutter, aligned with the heading. */
+  .section-category-icons .category-icons__scroll {
+    margin-inline: -1.5rem;
+    padding-inline: 1.5rem;
+    scroll-padding-inline: 1.5rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .section-category-icons .category-tile-heading {
+    margin-bottom: 1.6rem;
+  }
+
+  .section-category-icons .category-tile-trust {
+    margin: 0 -5rem 2rem;
+    padding-inline: 5rem;
+    scroll-padding-inline: 5rem;
+  }
+
+  /* Occasion tiles: N per row (set inline by the section), leftovers centered. */
+  .section-category-icons .category-icons__group--occasion .category-icons__scroll.category-tile-grid {
+    --category-tile-gap: 1.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--category-tile-gap);
+    overflow: visible;
+    padding: 0;
+  }
+
+  .section-category-icons .category-icons__group--occasion .category-tile-grid > .category-icons__item {
+    flex: 0 0
+      calc(
+        (100% - (var(--category-tile-columns-tablet, 2) - 1) * var(--category-tile-gap)) /
+          var(--category-tile-columns-tablet, 2)
+      );
+    width: auto;
+    min-width: 0;
+  }
+}
+
+@media screen and (min-width: 990px) {
+  .section-category-icons .category-tile-heading {
+    margin-bottom: 2rem;
+  }
+
+  .section-category-icons .category-tile-trust {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.6rem 2.8rem;
+    margin: 0 0 2.4rem;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .section-category-icons .category-tile-trust__item {
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    font-size: 1.3rem;
+  }
+
+  .section-category-icons .category-icons__group--occasion .category-icons__scroll.category-tile-grid {
+    --category-tile-gap: 2.4rem;
+  }
+
+  .section-category-icons .category-icons__group--occasion .category-tile-grid > .category-icons__item {
+    flex-basis: calc(
+      (100% - (var(--category-tile-columns, 4) - 1) * var(--category-tile-gap)) / var(--category-tile-columns, 4)
+    );
+  }
+}

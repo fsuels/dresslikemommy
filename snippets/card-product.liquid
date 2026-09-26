@@ -43,12 +43,25 @@
     if card_public_brand == blank or card_public_brand_downcase contains 'http://' or card_public_brand_downcase contains 'https://' or card_public_brand_downcase contains '1688.com' or card_public_brand_downcase contains 'alibaba.com' or card_public_brand_downcase contains 'aliexpress.com'
       assign card_public_brand = 'dresslikemommy.com'
     endif
-    assign card_active_variant = card_product.selected_or_first_available_variant
-    assign card_active_price = card_active_variant.price
-    assign card_active_compare_at_price = card_active_variant.compare_at_price
+    # The card shows the lowest price ("From ..."), so the percentage is the discount of the
+    # cheapest available variant, i.e. of the exact price shown. If that variant has no
+    # compare-at price but others do, the badge falls back to the translated "Sale" label.
     assign card_price_is_on_sale = false
-    if card_active_compare_at_price and card_active_compare_at_price > card_active_price
-      assign card_price_is_on_sale = true
+    assign card_discount_percent = 0
+    assign card_cheapest_variant = nil
+    for card_sale_variant in card_product.variants
+      if card_sale_variant.available
+        if card_sale_variant.compare_at_price and card_sale_variant.compare_at_price > card_sale_variant.price
+          assign card_price_is_on_sale = true
+        endif
+        if card_cheapest_variant == nil or card_sale_variant.price < card_cheapest_variant.price
+          assign card_cheapest_variant = card_sale_variant
+        endif
+      endif
+    endfor
+    if card_cheapest_variant != nil and card_cheapest_variant.compare_at_price and card_cheapest_variant.compare_at_price > card_cheapest_variant.price
+      # e.g. 3799 -> 3299 = 13
+      assign card_discount_percent = card_cheapest_variant.compare_at_price | minus: card_cheapest_variant.price | times: 100.0 | divided_by: card_cheapest_variant.compare_at_price | round
     endif
     for tag in card_product.tags
       assign normalized_tag = tag | strip
@@ -216,9 +229,13 @@
             {%- elsif card_price_is_on_sale and card_product.available -%}
               <span
                 id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
-                class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
+                class="badge badge--bottom-left badge--sale color-{{ settings.sale_badge_color_scheme }}"
               >
-                {{- 'products.product.on_sale' | t -}}
+                {%- if card_discount_percent > 0 -%}
+                  <span class="visually-hidden">{{ 'products.product.on_sale' | t }}</span><bdi dir="ltr">-{{ card_discount_percent }}%</bdi>
+                {%- else -%}
+                  {{- 'products.product.on_sale' | t -}}
+                {%- endif -%}
               </span>
             {%- endif -%}
           </div>
@@ -606,9 +623,13 @@
           {%- elsif card_price_is_on_sale and card_product.available -%}
             <span
               id="Badge-{{ section_id }}-{{ card_product.id }}"
-              class="badge badge--bottom-left color-{{ settings.sale_badge_color_scheme }}"
+              class="badge badge--bottom-left badge--sale color-{{ settings.sale_badge_color_scheme }}"
             >
-              {{- 'products.product.on_sale' | t -}}
+              {%- if card_discount_percent > 0 -%}
+                <span class="visually-hidden">{{ 'products.product.on_sale' | t }}</span><bdi dir="ltr">-{{ card_discount_percent }}%</bdi>
+              {%- else -%}
+                {{- 'products.product.on_sale' | t -}}
+              {%- endif -%}
             </span>
           {%- endif -%}
         </div>
