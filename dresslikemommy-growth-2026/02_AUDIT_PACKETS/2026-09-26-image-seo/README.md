@@ -43,4 +43,8 @@ Report: `image_seo_audit_20260926T184335Z.csv`.
 - LaunchAgent `com.dresslikemommy.image-seo-guard` runs every 15 min. First run 21:35Z renamed 58 new-listing files (`guard_first_run_renames.json`), 0 errors, alt preserved 58/58, new URLs load 58/58; second run 0 planned.
 - Old filenames now 404. The only stale reference seen is Judge.me's hidden widget `data-image-url`.
 
-Still not approved: JSON-LD caption deploy, daily vision task.
+## Captions and daily review (owner approved, 2026-09-26)
+
+- `7ec0a83` JSON-LD captions live on MAIN at 22:06:06Z after a delayed GitHub sync; verified on EN and /es PDPs, all ld+json parses.
+- Scheduled Claude task `daily-image-alt-review` (daily at about 07:42 local) writes image-specific alt text for queued images; receipts in `daily/`.
+- Remaining gap: alt text/captions are English on translated storefronts.
