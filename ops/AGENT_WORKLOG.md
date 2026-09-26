@@ -54123,3 +54123,19 @@ Not run: a real add-to-cart drawer re-render. Adding a test item to the live car
 Evidence and rollback: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-delivery-arrival-dates/README.md`.
 
 Next: add Halloween/Christmas "order by" badges to tagged products before about Oct 5 (Halloween cutoff Oct 15; Christmas about Dec 5). This goes first because the holiday cutoffs are time-bound. Around 2026-10-24, compare cart → checkout (baseline 69 → 11) against the prior 28 days.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-26-mobile-pdp-image-counter-visible
+
+- task_entities: commit `1ed8bab`; `assets/media-gallery.js` `syncGalleryCounterPosition`; `sections/main-product.liquid` mobile `.product-media-progress` rule; theme MAIN `133290917985`
+- task_stage: VERIFY
+- problem_ids: none opened
+
+Why: in chat on 2026-09-26 the owner reported that the mobile PDP no longer shows the image count, so shoppers cannot tell they can swipe for more photos.
+
+Root cause (LIVE_VERIFIED on `jingle-bells-santa-family-matching-sweaters`, 375px): the `1 / N` pill (`[data-gallery-stepper]`) rendered at `bottom: 8px`, but the mobile `.product__info-wrapper` has `margin-top: -2.9rem`, `z-index: 1` and a white background, so it covered the bottom 29px of the gallery, pill included. `syncGalleryCounterPosition()` forced `bottom` inline with `!important`, so CSS alone could not move it.
+
+Fix: on mobile the script now adds the measured gallery/info-wrapper overlap to the bottom inset; the section CSS gets the same `2.9rem` offset as a pre-JS fallback. A patched-method test on the live page moved the pill to end at y=757, above the info panel at y=765, and it is visible in the screenshot. `node --check` (nvm v22; Homebrew node is broken by a missing simdjson dylib) and `git diff --check` passed.
+
+Done (LIVE_VERIFIED, 2026-09-26): the GitHub→theme sync applied `1ed8bab` within ~10 minutes (live `media-gallery.js?v=25977761371357859941790449228` contains the overlap logic; the CDN minifies it, so comment markers do not survive). Fresh 375px readback: pill inline `bottom: 37px`, ends at y=757 above the info panel at y=765, shows `1/4`; swipe handler `cycleActiveMedia` advances it to `2/4` and `3/4` in place. Desktop 1024px is unchanged (frame-based branch, `bottom: 31px`, inside the gallery). The only console errors are Shopify's own 401s.
+
+Next: none required for this fix. If the mobile info-wrapper overlap is ever removed, the JS overlap term drops to 0 automatically; only the CSS fallback `2.9rem` would need to follow it.
