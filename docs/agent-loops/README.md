@@ -8,6 +8,7 @@ These loop docs keep repeatable work out of the root `AGENTS.md`. Use the smalle
 - `product-listing-localization-loop.md`: Shopify draft listing work, size charts, and localized PDP coverage.
 - `localized-pdp-quality-loop.md`: Public localized PDP language-smoke audits and repair gates for product/theme/widget text.
 - `feed-integrity-loop.md`: Merchant/Pinterest feed generation, validation, grouping, and Worker feed routes.
+- `image-seo-loop.md`: Product image alt text, new-listing image filenames, and image captions in product structured data.
 - `tracking-pixel-loop.md`: Shopify Customer Events pixels, GA4, Google Ads conversion tracking, and checkout-adjacent measurement.
 - `self-improvement-pilot-loop.md`: Local-only scorecard loops for improving prompts, handoffs, and checklists without live external writes.
 - `weekly-dream-review-loop.md`: Local-only cross-session review packets for recurring agent mistakes, proposed checklist improvements, and one next action.

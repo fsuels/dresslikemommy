@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Label</key>
+	<string>com.dresslikemommy.image-seo-guard</string>
+	<key>ProcessType</key>
+	<string>Background</string>
+	<key>ProgramArguments</key>
+	<array>
+		<string>/usr/bin/python3</string>
+		<string>/Users/fsuels/Projects/dresslikemommy/ops/scripts/image_seo.py</string>
+		<string>guard</string>
+		<string>--rename-window-hours</string>
+		<string>72</string>
+		<string>--jsonl-log</string>
+		<string>/Users/fsuels/Library/Logs/dresslikemommy/image-seo-guard.jsonl</string>
+		<string>--execute</string>
+	</array>
+	<key>RunAtLoad</key>
+	<true/>
+	<key>StandardErrorPath</key>
+	<string>/Users/fsuels/Library/Logs/dresslikemommy/image-seo-guard.stderr.log</string>
+	<key>StandardOutPath</key>
+	<string>/Users/fsuels/Library/Logs/dresslikemommy/image-seo-guard.stdout.log</string>
+	<key>StartInterval</key>
+	<integer>900</integer>
+	<key>WorkingDirectory</key>
+	<string>/Users/fsuels/Projects/dresslikemommy</string>
+</dict>
+</plist>
