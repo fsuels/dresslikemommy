@@ -54806,3 +54806,21 @@ LIVE_VERIFIED:
 The GitHub sync dropped the push. Code went via `sync_live_theme_from_main.py --apply`. The 35 locale files were uploaded with `themeFilesUpsert` after checking that live and main differed only in `products.facets.size_groups.*`.
 
 Rollback: `git revert` the commit, then `--apply`, then re-upload the locale files from the reverted main.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-ceo-sprint-collection-translations-14-more-locales
+
+- task_entities: collections christmas-pajamas, new-women-outfits, mommy-and-me, daddy-me, christmas-sweaters, family-pajamas, pajamas, couples; locales ar, cs, el, fi, he, hi, ja, ko, no, pl, pt-BR, ro, ru, sv
+- task_stage: LIVE_VERIFIED
+- next_action_id: NONE
+
+Continues `2026-09-27-ceo-sprint-head-collection-translations-cart-footer` to cover every published locale.
+- 147 missing or outdated collection fields (title, body_html, meta_title, meta_description) were translated natively by ChatGPT-app Codex. The parent checked them: 36 bodies with identical tag and href sequences, meta titles ≤60, descriptions ≤155, brand intact, shipping wording faithful to the English.
+- `translationsRegister`: 0 errors. Readback 147/147 equal and not outdated.
+- Live titles:
+  - sv "Matchande julpyjamas för hela familjen | Dress Like Mommy"
+  - pl "Świąteczne piżamy rodzinne | …"
+  - ja "家族お揃いのクリスマスパジャマ | …"
+- Together with the earlier batch of 39, all 20 published locales now carry current translations for the 8 head/seasonal collections.
+- Before values: session scratchpad `codex_tr2/jobs.json` (`current_translation`).
+
+Rollback: re-register the prior values.
