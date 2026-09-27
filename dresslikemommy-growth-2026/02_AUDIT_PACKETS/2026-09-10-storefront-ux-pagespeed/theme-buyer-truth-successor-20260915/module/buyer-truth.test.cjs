@@ -193,6 +193,20 @@ for (const locale of ['en', 'fr', 'ar']) {
   }
 }
 
+test('unresolved exact chart offers original comparison without bypassing pending Type', () => {
+  const env = environment(), {ctx} = env;
+  ctx.sizeGuideRoot.querySelector = selector => selector === '[data-full-size-chart]' ? {id: 'DlmFullSizeCharts-fixture'} : null;
+  const selected = env.triggerFor(env.instance('mother', 'Cardigan'));
+  env.setTables([env.tables[0]]);
+  ctx.renderInlineFitPanel(selected.trigger, true);
+  assert.match(selected.panel.innerHTML, /href="#DlmFullSizeCharts-fixture" data-full-size-chart-link/);
+  assert.ok(!selected.panel.innerHTML.includes('<table'), 'unresolved garment must not borrow another chart');
+  const pending = env.triggerFor(env.instance('mother', ''));
+  ctx.renderInlineFitPanel(pending.trigger, true);
+  assert.match(pending.panel.innerHTML, /Pick a Type/);
+  assert.ok(!pending.panel.innerHTML.includes('data-full-size-chart-link'));
+});
+
 test('two independent cards retain different Types and sizes', () => {
   const env = environment(), {ctx} = env;
   const mother = env.instance('mother', 'Cardigan', 'M', 'one');
@@ -269,6 +283,46 @@ test('single generic single-Type chart and no-Type family chart remain useful', 
   assert.equal(ctx.getFitGroupFromProductTables('mother', 'mother', '').rows.length, 5);
   assert.equal(ctx.getFitGroupFromProductTables('girl', 'girl', '').rows.length, 7);
 });
+
+for (const locale of ['en', 'fr', 'ar']) {
+  test(locale + ': named single chart works without a Type option for fit panels and size measurements', () => {
+    const table = fixtures(locale)[0];
+    const env = environment(locale, [table]), {ctx} = env;
+    ctx.productData = {
+      options: [{name: locale === 'fr' ? 'Taille' : locale === 'ar' ? 'المقاس' : 'Size'}, {name: 'Color'}],
+      variants: env.productData.variants.filter(variant => variant.id < 200).map(variant => ({
+        ...variant, option1: variant.option2, option2: 'Coral', option3: null,
+      })),
+    };
+    ctx.roleGroupsCache = ctx.buildRoleGroups(ctx.productData, {}, true, {skipTypeFilter: true});
+    const before = JSON.stringify(table.record);
+    for (const role of ['mother', 'girl']) {
+      const group = ctx.getGroupByKey(role);
+      for (const size of ['', group.options[1].sizeLabel]) {
+        const inst = env.instance(role, '', size);
+        const rendered = env.triggerFor(inst);
+        assert.equal(rendered.attrs['data-fit-garment-key'], 'dress');
+        for (const unit of ['metric', 'imperial']) {
+          ctx.selectedUnitSystem = ctx.unitSystem = unit;
+          assert.equal(ctx.renderInlineFitPanel(rendered.trigger, true), true);
+          assert.match(rendered.panel.innerHTML, /<table/);
+          assert.doesNotMatch(rendered.panel.innerHTML, /unavailable/);
+          assert.equal((rendered.panel.innerHTML.match(/class="is-selected"/g) || []).length, size ? 1 : 0);
+        }
+        if (size) {
+          const option = ctx.resolveVariantInGroup(group, size, {});
+          const context = ctx.getMeasurementContextForInstance(group, inst, option);
+          assert.equal(context.garmentKey, 'dress');
+          assert.equal(ctx.findMeasurementsForOption(group, option, context).sourceTable, table);
+        }
+      }
+    }
+    assert.equal(JSON.stringify(table.record), before, 'source values preserved');
+    env.setTables(fixtures(locale));
+    const group = ctx.getGroupByKey('mother');
+    assert.equal(ctx.getMeasurementGarmentKey(group, group.options[1], {}), '', 'multiple source charts remain unresolved');
+  });
+}
 
 test('single unclassified garment chart remains available; multi-Type unknown cannot choose another garment', () => {
   const generic = tableDom({...fixtures()[1].record, id: 'size-chart'}, 'Size Chart');

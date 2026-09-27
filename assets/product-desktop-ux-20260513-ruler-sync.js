@@ -14,7 +14,72 @@ document.addEventListener('DOMContentLoaded', function () {
       console.error('Product desktop UX init failed', error);
     }
   });
+
+  document.querySelectorAll('[id^="MainProduct-"][data-section]').forEach(initFullSizeChartDisclosure);
 });
+
+function initFullSizeChartDisclosure(productSection) {
+  var description = productSection.querySelector('[data-product-description]');
+  if (!description || productSection.querySelector('[data-full-size-chart]')) return;
+  // Preserve an accessible copy of every original chart, including older
+  // unmarked tables. These are a comparison reference, never a substitute
+  // for an exact garment/size match in the guided picker.
+  var tables = Array.from(description.querySelectorAll('table'));
+  productSection.querySelectorAll('variant-selects > table#size-chart').forEach(function (table) {
+    if (tables.indexOf(table) === -1) tables.push(table);
+  });
+  if (!tables.length) return;
+
+  var legacySummary = productSection.querySelector('[data-matching-size-guide] > summary');
+  var label = legacySummary ? legacySummary.textContent.trim() : uiLabel('sizeChart', 'Size chart');
+  var disclosure = document.createElement('details');
+  disclosure.className = 'matching-size-guide';
+  disclosure.id = 'DlmFullSizeCharts-' + productSection.id;
+  disclosure.setAttribute('data-full-size-chart', '');
+  var summary = document.createElement('summary');
+  summary.textContent = label;
+  disclosure.appendChild(summary);
+
+  tables.forEach(function (table) {
+    var card = document.createElement('article');
+    card.className = 'matching-size-guide__card';
+    var previous = table.previousElementSibling;
+    while (previous && !/^H[1-6]$/.test(previous.tagName) && previous.tagName !== 'TABLE') previous = previous.previousElementSibling;
+    if (previous && /^H[1-6]$/.test(previous.tagName)) {
+      var title = document.createElement('h3');
+      title.textContent = previous.textContent;
+      card.appendChild(title);
+    }
+    var scroll = document.createElement('div');
+    scroll.className = 'matching-size-guide__table-wrap';
+    scroll.setAttribute('tabindex', '0');
+    scroll.setAttribute('role', 'region');
+    scroll.setAttribute('aria-label', label);
+    var copy = table.cloneNode(true);
+    copy.querySelectorAll('[id]').forEach(function (node) { node.removeAttribute('id'); });
+    copy.removeAttribute('id');
+    copy.removeAttribute('hidden');
+    copy.removeAttribute('aria-hidden');
+    copy.removeAttribute('style');
+    copy.removeAttribute('data-size-chart-source-only');
+    copy.removeAttribute('data-size-guide-table-source-only');
+    copy.className = 'matching-size-guide__table';
+    scroll.appendChild(copy);
+    card.appendChild(scroll);
+    disclosure.appendChild(card);
+  });
+  // Keep copies outside the description so source parsers and table-hiding
+  // routines continue to see only the original measurement records.
+  description.insertAdjacentElement('afterend', disclosure);
+  productSection.addEventListener('click', function (event) {
+    var link = event.target.closest('[data-full-size-chart-link]');
+    if (!link || link.getAttribute('href') !== '#' + disclosure.id) return;
+    event.preventDefault();
+    disclosure.open = true;
+    summary.focus({ preventScroll: true });
+    disclosure.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+  });
+}
 
 function initDesktopProductMediaFlow(productSection) {
   var sectionId = productSection.getAttribute('data-section');
@@ -2706,7 +2771,14 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
 
   function getMeasurementGarmentKey(group, option, context) {
     var typeValue = getMeasurementTypeValue(group, option, context);
-    return getGarmentKeyWithChartContext(typeValue, normalizeText(typeValue) === 'سترة' ? getProductSizeChartTables(wrapper) : []);
+    var garmentKey = getGarmentKeyWithChartContext(typeValue, normalizeText(typeValue) === 'سترة' ? getProductSizeChartTables(wrapper) : []);
+    if (garmentKey || getProductTypeValues(productData).length) return garmentKey;
+
+    // Size/Color-only products have no garment choice. Their sole named
+    // chart supplies the same context for fit panels and size measurements.
+    // Multiple charts and explicit Types still require their exact routing.
+    var tables = getProductSizeChartTables(wrapper);
+    return tables.length === 1 ? getSizeChartGarmentKey(tables[0], productData, 1) : '';
   }
 
   function getMeasurementContextForInstance(group, inst, option) {
@@ -3983,7 +4055,9 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
       .then(function (productJson) {
         var fallbackDescription =
           productJson && (productJson.description || productJson.body_html || productJson.body || '');
-        return appendDefaultLocaleSizeGuideSource(fallbackDescription);
+        var loaded = appendDefaultLocaleSizeGuideSource(fallbackDescription);
+        if (loaded && productSection) initFullSizeChartDisclosure(productSection);
+        return loaded;
       })
       .catch(function () {
         return false;
@@ -5777,9 +5851,13 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     var pendingAxis = trigger.getAttribute('data-fit-pending-axis');
     var activeGroup = pendingAxis ? null : getFitGroupFromProductTables(triggerGroupKey, triggerRoleKey, triggerGarmentKey);
     if (!activeGroup) {
-      panel.innerHTML = '<p role="status">' + escapeHtml(pendingAxis
-        ? uiLabel('pickAxis', 'Pick a {axis}', { axis: pendingAxis })
-        : uiLabel('fitUnavailable', 'The size guide is unavailable for this selection.')) + '</p>';
+      var fullChart = !pendingAxis && sizeGuideRoot && typeof sizeGuideRoot.querySelector === 'function'
+        ? sizeGuideRoot.querySelector('[data-full-size-chart]') : null;
+      panel.innerHTML = fullChart
+        ? '<p><a href="#' + escapeHtml(fullChart.id) + '" data-full-size-chart-link>' + escapeHtml(compareLabel) + '</a></p>'
+        : '<p role="status">' + escapeHtml(pendingAxis
+          ? uiLabel('pickAxis', 'Pick a {axis}', { axis: pendingAxis })
+          : uiLabel('fitUnavailable', 'The size guide is unavailable for this selection.')) + '</p>';
       panel.removeAttribute('hidden');
       trigger.setAttribute('aria-expanded', 'true');
       return true;
