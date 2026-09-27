@@ -1,0 +1,5599 @@
+{
+ "generated": "2026-09-27",
+ "mode": "READ_ONLY_APPROVAL_PACKET",
+ "filters_found": {
+  "Size": "variant option \"Size\" (param filter.v.option.size)",
+  "Color": "variant option \"Color\" (filter.v.option.color)",
+  "Type": "PRODUCT METAFIELD custom.subcategory (filter.p.m.custom.subcategory), labelled \"Type\"; NOT product_type",
+  "Price": "price range"
+ },
+ "theme_interactions": {
+  "type_hidden_on": "snippets/facets.liquid hides the Type filter on new-women-outfits, family-matching-outfits, family-matching, matching-outfits",
+  "blocked_color_labels": "facets.liquid drops color values overall, short, t-shirt, striped, stripes, tee(s), shirt(s), top(s); grouping them makes those products reachable through a real color group",
+  "label_dedupe": "facets.liquid drops a value whose handleized label was already rendered (e.g. \"Baby 6-9 Months\" vs \"Baby 6-9 months\"): the second value is unreachable today; grouping fixes it",
+  "color_dot": "snippets/dlm-facet-color-dot.liquid matches words in the label: \"Cream & Beige\" -> cream swatch, \"Multicolor & Print\" -> multi swatch; no theme change needed",
+  "value_order": "theme renders values in S&D order (active first only when operator is AND)"
+ },
+ "live_filters_per_collection": {
+  "mommy-and-me": {
+   "filter.v.option.color": [
+    {
+     "value": "Apricot",
+     "label": "Apricot",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "As image",
+     "label": "As image",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Autumn Woodland Bunny",
+     "label": "Autumn Woodland Bunny",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Bamboo Garden Panda Cream",
+     "label": "Bamboo Garden Panda Cream",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Beige",
+     "label": "Beige",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Bird Chirping Cream",
+     "label": "Bird Chirping Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25526369",
+     "label": "Black",
+     "count": 20,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25559137",
+     "label": "Blue",
+     "count": 19,
+     "grouped": true
+    },
+    {
+     "value": "Blue Daisy",
+     "label": "Blue Daisy",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Blush Floral",
+     "label": "Blush Floral",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Brown",
+     "label": "Brown",
+     "count": 3,
+     "grouped": false
+    },
+    {
+     "value": "Bunny Garden",
+     "label": "Bunny Garden",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Coastal Banana Leaf",
+     "label": "Coastal Banana Leaf",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Coral Blossom",
+     "label": "Coral Blossom",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Cream",
+     "label": "Cream",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Eucalyptus Bunny Meadow",
+     "label": "Eucalyptus Bunny Meadow",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Fairy Tale Messenger Cream",
+     "label": "Fairy Tale Messenger Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Fluttering Butterflies",
+     "label": "Fluttering Butterflies",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Good Night Song of the Sea",
+     "label": "Good Night Song of the Sea",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Grape Vineyard Cream",
+     "label": "Grape Vineyard Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Grapevine Cream",
+     "label": "Grapevine Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25591905",
+     "label": "Green",
+     "count": 21,
+     "grouped": true
+    },
+    {
+     "value": "Green Botanical",
+     "label": "Green Botanical",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25624673",
+     "label": "Grey",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "Ivory",
+     "label": "Ivory",
+     "count": 5,
+     "grouped": false
+    },
+    {
+     "value": "Ladybug Dots",
+     "label": "Ladybug Dots",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Little Pear Cream",
+     "label": "Little Pear Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Little Sheep Meadow Cream",
+     "label": "Little Sheep Meadow Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Meow Star Garden",
+     "label": "Meow Star Garden",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Midnight Paint Splash",
+     "label": "Midnight Paint Splash",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Monochrome Palm",
+     "label": "Monochrome Palm",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Multi Color",
+     "label": "Multi Color",
+     "count": 5,
+     "grouped": false
+    },
+    {
+     "value": "Navy",
+     "label": "Navy",
+     "count": 3,
+     "grouped": false
+    },
+    {
+     "value": "Ocean Blue Floral",
+     "label": "Ocean Blue Floral",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Orange",
+     "label": "Orange",
+     "count": 8,
+     "grouped": false
+    },
+    {
+     "value": "Pastel Bloom",
+     "label": "Pastel Bloom",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Pastel Watercolor",
+     "label": "Pastel Watercolor",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Peach Sweetheart",
+     "label": "Peach Sweetheart",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25657441",
+     "label": "Pink",
+     "count": 18,
+     "grouped": true
+    },
+    {
+     "value": "Playful Cat Parade",
+     "label": "Playful Cat Parade",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Polar Adventure Cream",
+     "label": "Polar Adventure Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Purple",
+     "label": "Purple",
+     "count": 5,
+     "grouped": false
+    },
+    {
+     "value": "Rainbow",
+     "label": "Rainbow",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25690209",
+     "label": "Red",
+     "count": 23,
+     "grouped": true
+    },
+    {
+     "value": "Red Panda",
+     "label": "Red Panda",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Red Tropical Leaf",
+     "label": "Red Tropical Leaf",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Sky Daisy Doodle",
+     "label": "Sky Daisy Doodle",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Summer Puppies",
+     "label": "Summer Puppies",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Vintage Cottage Floral",
+     "label": "Vintage Cottage Floral",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Welsh Dinosaur Cream",
+     "label": "Welsh Dinosaur Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25722977",
+     "label": "White",
+     "count": 11,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25755745",
+     "label": "Yellow",
+     "count": 8,
+     "grouped": true
+    }
+   ],
+   "filter.v.option.size": [
+    {
+     "value": "gid://shopify/FilterSettingGroup/24871009",
+     "label": "Baby 3-6 Months",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/24903777",
+     "label": "Baby 9-12 Months",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/24936545",
+     "label": "2-3 years",
+     "count": 3,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/24969313",
+     "label": "4-5 years",
+     "count": 3,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25002081",
+     "label": "6-7 years",
+     "count": 2,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25034849",
+     "label": "8-9 years",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25067617",
+     "label": "10-11 years",
+     "count": 3,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25100385",
+     "label": "Mother S",
+     "count": 127,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25133153",
+     "label": "Mother M",
+     "count": 139,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25165921",
+     "label": "Mother L",
+     "count": 134,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25198689",
+     "label": "Mother XL",
+     "count": 122,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25231457",
+     "label": "Mother 2XL",
+     "count": 37,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25264225",
+     "label": "Mother 3XL",
+     "count": 35,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25329761",
+     "label": "Father M",
+     "count": 20,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25362529",
+     "label": "Father L",
+     "count": 20,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25395297",
+     "label": "Father XL",
+     "count": 20,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25428065",
+     "label": "Father 2XL",
+     "count": 20,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25460833",
+     "label": "Father 3XL",
+     "count": 23,
+     "grouped": true
+    },
+    {
+     "value": "90cm",
+     "label": "90cm",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "8Y",
+     "label": "8Y",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "9Y",
+     "label": "9Y",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "10Y",
+     "label": "10Y",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "12Y",
+     "label": "12Y",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Adult L-XL",
+     "label": "Adult L-XL",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Adult M-L",
+     "label": "Adult M-L",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Adult S-M",
+     "label": "Adult S-M",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Adult XL-2XL",
+     "label": "Adult XL-2XL",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Adult XS",
+     "label": "Adult XS",
+     "count": 7,
+     "grouped": false
+    },
+    {
+     "value": "Adult XXS",
+     "label": "Adult XXS",
+     "count": 7,
+     "grouped": false
+    },
+    {
+     "value": "Baby 1-2 Years",
+     "label": "Baby 1-2 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Baby 6-9 Months",
+     "label": "Baby 6-9 Months",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Baby 12-18 Months",
+     "label": "Baby 12-18 Months",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Child 1 years",
+     "label": "Child 1 years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Child 1-2 Years",
+     "label": "Child 1-2 Years",
+     "count": 12,
+     "grouped": false
+    },
+    {
+     "value": "Child 2 Years",
+     "label": "Child 2 Years",
+     "count": 68,
+     "grouped": false
+    },
+    {
+     "value": "Child 2-3 years",
+     "label": "Child 2-3 years",
+     "count": 31,
+     "grouped": false
+    },
+    {
+     "value": "Child 3 Years",
+     "label": "Child 3 Years",
+     "count": 65,
+     "grouped": false
+    },
+    {
+     "value": "Child 3-4 Years",
+     "label": "Child 3-4 Years",
+     "count": 17,
+     "grouped": false
+    },
+    {
+     "value": "Child 4 Years",
+     "label": "Child 4 Years",
+     "count": 81,
+     "grouped": false
+    },
+    {
+     "value": "Child 4-5 years",
+     "label": "Child 4-5 years",
+     "count": 31,
+     "grouped": false
+    },
+    {
+     "value": "Child 5 Years",
+     "label": "Child 5 Years",
+     "count": 81,
+     "grouped": false
+    },
+    {
+     "value": "Child 5-6 Years",
+     "label": "Child 5-6 Years",
+     "count": 14,
+     "grouped": false
+    },
+    {
+     "value": "Child 6 Years",
+     "label": "Child 6 Years",
+     "count": 12,
+     "grouped": false
+    },
+    {
+     "value": "Child 6-7 Years",
+     "label": "Child 6-7 Years",
+     "count": 84,
+     "grouped": false
+    },
+    {
+     "value": "Child 6-8 years",
+     "label": "Child 6-8 years",
+     "count": 31,
+     "grouped": false
+    },
+    {
+     "value": "Child 7-8 Years",
+     "label": "Child 7-8 Years",
+     "count": 11,
+     "grouped": false
+    },
+    {
+     "value": "Child 8 Years",
+     "label": "Child 8 Years",
+     "count": 68,
+     "grouped": false
+    },
+    {
+     "value": "Child 8-9 Years",
+     "label": "Child 8-9 Years",
+     "count": 13,
+     "grouped": false
+    },
+    {
+     "value": "Child 8-10 years",
+     "label": "Child 8-10 years",
+     "count": 31,
+     "grouped": false
+    },
+    {
+     "value": "Child 9-10 Years",
+     "label": "Child 9-10 Years",
+     "count": 62,
+     "grouped": false
+    },
+    {
+     "value": "Child 10 Years",
+     "label": "Child 10 Years",
+     "count": 12,
+     "grouped": false
+    },
+    {
+     "value": "Child 10-11 Years",
+     "label": "Child 10-11 Years",
+     "count": 4,
+     "grouped": false
+    },
+    {
+     "value": "Child 10-12 years",
+     "label": "Child 10-12 years",
+     "count": 31,
+     "grouped": false
+    },
+    {
+     "value": "Child 11 Years",
+     "label": "Child 11 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Child 11-12 Years",
+     "label": "Child 11-12 Years",
+     "count": 3,
+     "grouped": false
+    },
+    {
+     "value": "Child 12 Years",
+     "label": "Child 12 Years",
+     "count": 25,
+     "grouped": false
+    },
+    {
+     "value": "Child 13-14 years",
+     "label": "Child 13-14 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Child 14 Years",
+     "label": "Child 14 Years",
+     "count": 14,
+     "grouped": false
+    },
+    {
+     "value": "Girl 2-3 years",
+     "label": "Girl 2-3 years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Girl 3-4 years",
+     "label": "Girl 3-4 years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Girl 4-5 years",
+     "label": "Girl 4-5 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 5-6 years",
+     "label": "Girl 5-6 years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Girl 6-7 years",
+     "label": "Girl 6-7 years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Girl 7-8 years",
+     "label": "Girl 7-8 years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Girl 8-9 years",
+     "label": "Girl 8-9 years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Girl 9-10 years",
+     "label": "Girl 9-10 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "L (Adult Extended Version)",
+     "label": "L (Adult Extended Version)",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "L (Adult Normal Version)",
+     "label": "L (Adult Normal Version)",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "M (Adult Extended Edition)",
+     "label": "M (Adult Extended Edition)",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "M (Adult Normal Version)",
+     "label": "M (Adult Normal Version)",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Mother 4XL",
+     "label": "Mother 4XL",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "S (Adult Extended Version)",
+     "label": "S (Adult Extended Version)",
+     "count": 1,
+     "grouped": false
+    }
+   ],
+   "filter.p.m.custom.subcategory": [
+    {
+     "value": "Dresses",
+     "label": "Dresses",
+     "count": 39,
+     "grouped": false
+    },
+    {
+     "value": "Family Sweaters",
+     "label": "Family Sweaters",
+     "count": 13,
+     "grouped": false
+    },
+    {
+     "value": "Pajamas",
+     "label": "Pajamas",
+     "count": 39,
+     "grouped": false
+    },
+    {
+     "value": "Set",
+     "label": "Set",
+     "count": 3,
+     "grouped": false
+    },
+    {
+     "value": "Sets",
+     "label": "Sets",
+     "count": 4,
+     "grouped": false
+    },
+    {
+     "value": "Skirts",
+     "label": "Skirts",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Sweaters",
+     "label": "Sweaters",
+     "count": 6,
+     "grouped": false
+    },
+    {
+     "value": "Swimsuits",
+     "label": "Swimsuits",
+     "count": 35,
+     "grouped": false
+    },
+    {
+     "value": "Tops",
+     "label": "Tops",
+     "count": 6,
+     "grouped": false
+    }
+   ]
+  },
+  "matching-outfits": {
+   "filter.v.option.color": [
+    {
+     "value": "Beige",
+     "label": "Beige",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25526369",
+     "label": "Black",
+     "count": 25,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25559137",
+     "label": "Blue",
+     "count": 20,
+     "grouped": true
+    },
+    {
+     "value": "Brown",
+     "label": "Brown",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Cream",
+     "label": "Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25591905",
+     "label": "Green",
+     "count": 6,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25624673",
+     "label": "Grey",
+     "count": 2,
+     "grouped": true
+    },
+    {
+     "value": "Multi Color",
+     "label": "Multi Color",
+     "count": 11,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25657441",
+     "label": "Pink",
+     "count": 14,
+     "grouped": true
+    },
+    {
+     "value": "Purple",
+     "label": "Purple",
+     "count": 5,
+     "grouped": false
+    },
+    {
+     "value": "Rainbow",
+     "label": "Rainbow",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25690209",
+     "label": "Red",
+     "count": 14,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25722977",
+     "label": "White",
+     "count": 28,
+     "grouped": true
+    },
+    {
+     "value": "White Graphic",
+     "label": "White Graphic",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25755745",
+     "label": "Yellow",
+     "count": 7,
+     "grouped": true
+    }
+   ],
+   "filter.v.option.size": [
+    {
+     "value": "gid://shopify/FilterSettingGroup/24903777",
+     "label": "Baby 9-12 Months",
+     "count": 4,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/24936545",
+     "label": "2-3 years",
+     "count": 6,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/24969313",
+     "label": "4-5 years",
+     "count": 6,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25002081",
+     "label": "6-7 years",
+     "count": 6,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25034849",
+     "label": "8-9 years",
+     "count": 4,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25067617",
+     "label": "10-11 years",
+     "count": 6,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25296993",
+     "label": "12-14 years",
+     "count": 4,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25100385",
+     "label": "Mother S",
+     "count": 43,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25133153",
+     "label": "Mother M",
+     "count": 44,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25165921",
+     "label": "Mother L",
+     "count": 42,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25198689",
+     "label": "Mother XL",
+     "count": 37,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25231457",
+     "label": "Mother 2XL",
+     "count": 11,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25264225",
+     "label": "Mother 3XL",
+     "count": 21,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25329761",
+     "label": "Father M",
+     "count": 38,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25362529",
+     "label": "Father L",
+     "count": 42,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25395297",
+     "label": "Father XL",
+     "count": 42,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25428065",
+     "label": "Father 2XL",
+     "count": 42,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25460833",
+     "label": "Father 3XL",
+     "count": 49,
+     "grouped": true
+    },
+    {
+     "value": "90cm",
+     "label": "90cm",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Baby 0-6 Months",
+     "label": "Baby 0-6 Months",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Baby 1-2 Years",
+     "label": "Baby 1-2 Years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Baby 3 Months",
+     "label": "Baby 3 Months",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Baby 6 Months",
+     "label": "Baby 6 Months",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Baby 6-9 months",
+     "label": "Baby 6-9 months",
+     "count": 13,
+     "grouped": false
+    },
+    {
+     "value": "Baby 6-12 Months",
+     "label": "Baby 6-12 Months",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Baby 9 Months",
+     "label": "Baby 9 Months",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Baby 12 Months",
+     "label": "Baby 12 Months",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Boy 2 Years",
+     "label": "Boy 2 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Boy 3 Years",
+     "label": "Boy 3 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Boy 4 Years",
+     "label": "Boy 4 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Boy 5 Years",
+     "label": "Boy 5 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Boy 6-7 Years",
+     "label": "Boy 6-7 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Boy 8 Years",
+     "label": "Boy 8 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Boy 9-10 Years",
+     "label": "Boy 9-10 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Child 1 year",
+     "label": "Child 1 year",
+     "count": 36,
+     "grouped": false
+    },
+    {
+     "value": "Child 1 years",
+     "label": "Child 1 years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Child 1-2 Years",
+     "label": "Child 1-2 Years",
+     "count": 6,
+     "grouped": false
+    },
+    {
+     "value": "Child 2 years",
+     "label": "Child 2 years",
+     "count": 38,
+     "grouped": false
+    },
+    {
+     "value": "Child 2-3 Years",
+     "label": "Child 2-3 Years",
+     "count": 20,
+     "grouped": false
+    },
+    {
+     "value": "Child 3 years",
+     "label": "Child 3 years",
+     "count": 36,
+     "grouped": false
+    },
+    {
+     "value": "Child 3-4 Years",
+     "label": "Child 3-4 Years",
+     "count": 23,
+     "grouped": false
+    },
+    {
+     "value": "Child 4 years",
+     "label": "Child 4 years",
+     "count": 38,
+     "grouped": false
+    },
+    {
+     "value": "Child 4-5 Years",
+     "label": "Child 4-5 Years",
+     "count": 15,
+     "grouped": false
+    },
+    {
+     "value": "Child 5 Years",
+     "label": "Child 5 Years",
+     "count": 6,
+     "grouped": false
+    },
+    {
+     "value": "Child 5-6 Years",
+     "label": "Child 5-6 Years",
+     "count": 24,
+     "grouped": false
+    },
+    {
+     "value": "Child 6 Years",
+     "label": "Child 6 Years",
+     "count": 3,
+     "grouped": false
+    },
+    {
+     "value": "Child 6-7 Years",
+     "label": "Child 6-7 Years",
+     "count": 23,
+     "grouped": false
+    },
+    {
+     "value": "Child 7 Years",
+     "label": "Child 7 Years",
+     "count": 3,
+     "grouped": false
+    },
+    {
+     "value": "Child 7-8 Years",
+     "label": "Child 7-8 Years",
+     "count": 25,
+     "grouped": false
+    },
+    {
+     "value": "Child 8 Years",
+     "label": "Child 8 Years",
+     "count": 6,
+     "grouped": false
+    },
+    {
+     "value": "Child 8-9 Years",
+     "label": "Child 8-9 Years",
+     "count": 8,
+     "grouped": false
+    },
+    {
+     "value": "Child 9 Years",
+     "label": "Child 9 Years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Child 9-10 Years",
+     "label": "Child 9-10 Years",
+     "count": 21,
+     "grouped": false
+    },
+    {
+     "value": "Child 10 years",
+     "label": "Child 10 years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Child 10-12 Years",
+     "label": "Child 10-12 Years",
+     "count": 6,
+     "grouped": false
+    },
+    {
+     "value": "Child 11-12 Years",
+     "label": "Child 11-12 Years",
+     "count": 3,
+     "grouped": false
+    },
+    {
+     "value": "Child 12 years",
+     "label": "Child 12 years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Girl 2 Years",
+     "label": "Girl 2 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 2-3 years",
+     "label": "Girl 2-3 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 3 Years",
+     "label": "Girl 3 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 3-4 years",
+     "label": "Girl 3-4 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 4 Years",
+     "label": "Girl 4 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 4-5 years",
+     "label": "Girl 4-5 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 5 Years",
+     "label": "Girl 5 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 5-6 years",
+     "label": "Girl 5-6 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 6-7 years",
+     "label": "Girl 6-7 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 7-8 years",
+     "label": "Girl 7-8 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 8 Years",
+     "label": "Girl 8 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 8-9 years",
+     "label": "Girl 8-9 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 9-10 years",
+     "label": "Girl 9-10 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "L (Adult Extended Version)",
+     "label": "L (Adult Extended Version)",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "L (Adult Normal Version)",
+     "label": "L (Adult Normal Version)",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "M (Adult Extended Edition)",
+     "label": "M (Adult Extended Edition)",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "M (Adult Normal Version)",
+     "label": "M (Adult Normal Version)",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Mother 4XL",
+     "label": "Mother 4XL",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "S (Adult Extended Version)",
+     "label": "S (Adult Extended Version)",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "S (Adult Normal Version)",
+     "label": "S (Adult Normal Version)",
+     "count": 1,
+     "grouped": false
+    }
+   ]
+  },
+  "daddy-me": {
+   "filter.v.option.color": [
+    {
+     "value": "gid://shopify/FilterSettingGroup/25526369",
+     "label": "Black",
+     "count": 12,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25559137",
+     "label": "Blue",
+     "count": 4,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25591905",
+     "label": "Green",
+     "count": 6,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25624673",
+     "label": "Grey",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "Main color",
+     "label": "Main color",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Multi Color",
+     "label": "Multi Color",
+     "count": 8,
+     "grouped": false
+    },
+    {
+     "value": "Orange",
+     "label": "Orange",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Photo Color",
+     "label": "Photo Color",
+     "count": 3,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25657441",
+     "label": "Pink",
+     "count": 3,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25722977",
+     "label": "White",
+     "count": 9,
+     "grouped": true
+    }
+   ],
+   "filter.v.option.size": [
+    {
+     "value": "gid://shopify/FilterSettingGroup/25329761",
+     "label": "Father M",
+     "count": 45,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25362529",
+     "label": "Father L",
+     "count": 45,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25395297",
+     "label": "Father XL",
+     "count": 45,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25428065",
+     "label": "Father 2XL",
+     "count": 45,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25460833",
+     "label": "Father 3XL",
+     "count": 28,
+     "grouped": true
+    },
+    {
+     "value": "Baby 6-9 months",
+     "label": "Baby 6-9 months",
+     "count": 11,
+     "grouped": false
+    },
+    {
+     "value": "Baby 9-12 months",
+     "label": "Baby 9-12 months",
+     "count": 11,
+     "grouped": false
+    },
+    {
+     "value": "Child 1 year",
+     "label": "Child 1 year",
+     "count": 34,
+     "grouped": false
+    },
+    {
+     "value": "Child 2 years",
+     "label": "Child 2 years",
+     "count": 34,
+     "grouped": false
+    },
+    {
+     "value": "Child 2-3 years",
+     "label": "Child 2-3 years",
+     "count": 11,
+     "grouped": false
+    },
+    {
+     "value": "Child 3 years",
+     "label": "Child 3 years",
+     "count": 34,
+     "grouped": false
+    },
+    {
+     "value": "Child 4 years",
+     "label": "Child 4 years",
+     "count": 34,
+     "grouped": false
+    },
+    {
+     "value": "Child 4-5 years",
+     "label": "Child 4-5 years",
+     "count": 11,
+     "grouped": false
+    },
+    {
+     "value": "Child 5-6 years",
+     "label": "Child 5-6 years",
+     "count": 34,
+     "grouped": false
+    },
+    {
+     "value": "Child 6-8 years",
+     "label": "Child 6-8 years",
+     "count": 11,
+     "grouped": false
+    },
+    {
+     "value": "Child 7-8 years",
+     "label": "Child 7-8 years",
+     "count": 34,
+     "grouped": false
+    },
+    {
+     "value": "Child 8-10 years",
+     "label": "Child 8-10 years",
+     "count": 11,
+     "grouped": false
+    },
+    {
+     "value": "Child 9-10 years",
+     "label": "Child 9-10 years",
+     "count": 34,
+     "grouped": false
+    },
+    {
+     "value": "Child 10-12 years",
+     "label": "Child 10-12 years",
+     "count": 22,
+     "grouped": false
+    }
+   ],
+   "filter.p.m.custom.subcategory": [
+    {
+     "value": "Daddy & Me T-Shirts",
+     "label": "Daddy & Me T-Shirts",
+     "count": 34,
+     "grouped": false
+    },
+    {
+     "value": "Trunks",
+     "label": "Trunks",
+     "count": 11,
+     "grouped": false
+    }
+   ]
+  },
+  "pajamas": {
+   "filter.v.option.color": [
+    {
+     "value": "Autumn Woodland Bunny",
+     "label": "Autumn Woodland Bunny",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Bamboo Garden Panda Cream",
+     "label": "Bamboo Garden Panda Cream",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Bird Chirping Cream",
+     "label": "Bird Chirping Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25526369",
+     "label": "Black",
+     "count": 3,
+     "grouped": true
+    },
+    {
+     "value": "Bunny Garden",
+     "label": "Bunny Garden",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Eucalyptus Bunny Meadow",
+     "label": "Eucalyptus Bunny Meadow",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Fairy Tale Messenger Cream",
+     "label": "Fairy Tale Messenger Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Fluttering Butterflies",
+     "label": "Fluttering Butterflies",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Good Night Song of the Sea",
+     "label": "Good Night Song of the Sea",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Grape Vineyard Cream",
+     "label": "Grape Vineyard Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Grapevine Cream",
+     "label": "Grapevine Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25591905",
+     "label": "Green",
+     "count": 4,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25624673",
+     "label": "Grey",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "Ladybug Dots",
+     "label": "Ladybug Dots",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Little Pear Cream",
+     "label": "Little Pear Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Little Sheep Meadow Cream",
+     "label": "Little Sheep Meadow Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Meow Star Garden",
+     "label": "Meow Star Garden",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Orange",
+     "label": "Orange",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Peach Sweetheart",
+     "label": "Peach Sweetheart",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25657441",
+     "label": "Pink",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "Polar Adventure Cream",
+     "label": "Polar Adventure Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Purple",
+     "label": "Purple",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25690209",
+     "label": "Red",
+     "count": 9,
+     "grouped": true
+    },
+    {
+     "value": "Red Panda",
+     "label": "Red Panda",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Summer Puppies",
+     "label": "Summer Puppies",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Vintage Cottage Floral",
+     "label": "Vintage Cottage Floral",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Welsh Dinosaur Cream",
+     "label": "Welsh Dinosaur Cream",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25755745",
+     "label": "Yellow",
+     "count": 1,
+     "grouped": true
+    }
+   ],
+   "filter.v.option.size": [
+    {
+     "value": "gid://shopify/FilterSettingGroup/24871009",
+     "label": "Baby 3-6 Months",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/24903777",
+     "label": "Baby 9-12 Months",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25100385",
+     "label": "Mother S",
+     "count": 35,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25133153",
+     "label": "Mother M",
+     "count": 36,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25165921",
+     "label": "Mother L",
+     "count": 36,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25198689",
+     "label": "Mother XL",
+     "count": 39,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25231457",
+     "label": "Mother 2XL",
+     "count": 17,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25264225",
+     "label": "Mother 3XL",
+     "count": 12,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25329761",
+     "label": "Father M",
+     "count": 17,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25362529",
+     "label": "Father L",
+     "count": 17,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25395297",
+     "label": "Father XL",
+     "count": 17,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25428065",
+     "label": "Father 2XL",
+     "count": 17,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25460833",
+     "label": "Father 3XL",
+     "count": 16,
+     "grouped": true
+    },
+    {
+     "value": "Baby 6-9 Months",
+     "label": "Baby 6-9 Months",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Baby 12-18 Months",
+     "label": "Baby 12-18 Months",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Child 1-2 Years",
+     "label": "Child 1-2 Years",
+     "count": 3,
+     "grouped": false
+    },
+    {
+     "value": "Child 2 Years",
+     "label": "Child 2 Years",
+     "count": 35,
+     "grouped": false
+    },
+    {
+     "value": "Child 3 Years",
+     "label": "Child 3 Years",
+     "count": 31,
+     "grouped": false
+    },
+    {
+     "value": "Child 3-4 Years",
+     "label": "Child 3-4 Years",
+     "count": 7,
+     "grouped": false
+    },
+    {
+     "value": "Child 4 Years",
+     "label": "Child 4 Years",
+     "count": 31,
+     "grouped": false
+    },
+    {
+     "value": "Child 4-5 Years",
+     "label": "Child 4-5 Years",
+     "count": 4,
+     "grouped": false
+    },
+    {
+     "value": "Child 5 Years",
+     "label": "Child 5 Years",
+     "count": 31,
+     "grouped": false
+    },
+    {
+     "value": "Child 5-6 Years",
+     "label": "Child 5-6 Years",
+     "count": 3,
+     "grouped": false
+    },
+    {
+     "value": "Child 6 Years",
+     "label": "Child 6 Years",
+     "count": 12,
+     "grouped": false
+    },
+    {
+     "value": "Child 6-7 Years",
+     "label": "Child 6-7 Years",
+     "count": 23,
+     "grouped": false
+    },
+    {
+     "value": "Child 8 Years",
+     "label": "Child 8 Years",
+     "count": 30,
+     "grouped": false
+    },
+    {
+     "value": "Child 8-9 Years",
+     "label": "Child 8-9 Years",
+     "count": 4,
+     "grouped": false
+    },
+    {
+     "value": "Child 9-10 Years",
+     "label": "Child 9-10 Years",
+     "count": 18,
+     "grouped": false
+    },
+    {
+     "value": "Child 10 Years",
+     "label": "Child 10 Years",
+     "count": 12,
+     "grouped": false
+    },
+    {
+     "value": "Child 10-11 Years",
+     "label": "Child 10-11 Years",
+     "count": 4,
+     "grouped": false
+    },
+    {
+     "value": "Child 11 Years",
+     "label": "Child 11 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Child 12 Years",
+     "label": "Child 12 Years",
+     "count": 13,
+     "grouped": false
+    },
+    {
+     "value": "Child 14 Years",
+     "label": "Child 14 Years",
+     "count": 11,
+     "grouped": false
+    },
+    {
+     "value": "Girl 2-3 years",
+     "label": "Girl 2-3 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 3-4 years",
+     "label": "Girl 3-4 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 4-5 years",
+     "label": "Girl 4-5 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 5-6 years",
+     "label": "Girl 5-6 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 6-7 years",
+     "label": "Girl 6-7 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 7-8 years",
+     "label": "Girl 7-8 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 8-9 years",
+     "label": "Girl 8-9 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 9-10 years",
+     "label": "Girl 9-10 years",
+     "count": 1,
+     "grouped": false
+    }
+   ],
+   "filter.p.m.custom.subcategory": [
+    {
+     "value": "Pajamas",
+     "label": "Pajamas",
+     "count": 39,
+     "grouped": false
+    }
+   ]
+  },
+  "dresses": {
+   "filter.v.option.color": [
+    {
+     "value": "Beige",
+     "label": "Beige",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25526369",
+     "label": "Black",
+     "count": 4,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25559137",
+     "label": "Blue",
+     "count": 5,
+     "grouped": true
+    },
+    {
+     "value": "Brown",
+     "label": "Brown",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Coral Blossom",
+     "label": "Coral Blossom",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25591905",
+     "label": "Green",
+     "count": 2,
+     "grouped": true
+    },
+    {
+     "value": "Green Botanical",
+     "label": "Green Botanical",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Ivory",
+     "label": "Ivory",
+     "count": 5,
+     "grouped": false
+    },
+    {
+     "value": "Multi Color",
+     "label": "Multi Color",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Ocean Blue Floral",
+     "label": "Ocean Blue Floral",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Orange",
+     "label": "Orange",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Pastel Bloom",
+     "label": "Pastel Bloom",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25657441",
+     "label": "Pink",
+     "count": 7,
+     "grouped": true
+    },
+    {
+     "value": "Purple",
+     "label": "Purple",
+     "count": 3,
+     "grouped": false
+    },
+    {
+     "value": "Rainbow",
+     "label": "Rainbow",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25690209",
+     "label": "Red",
+     "count": 2,
+     "grouped": true
+    },
+    {
+     "value": "Red Tropical Leaf",
+     "label": "Red Tropical Leaf",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25722977",
+     "label": "White",
+     "count": 8,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25755745",
+     "label": "Yellow",
+     "count": 3,
+     "grouped": true
+    }
+   ],
+   "filter.v.option.size": [
+    {
+     "value": "gid://shopify/FilterSettingGroup/24936545",
+     "label": "2-3 years",
+     "count": 2,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/24969313",
+     "label": "4-5 years",
+     "count": 2,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25002081",
+     "label": "6-7 years",
+     "count": 2,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25067617",
+     "label": "10-11 years",
+     "count": 2,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25100385",
+     "label": "Mother S",
+     "count": 31,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25133153",
+     "label": "Mother M",
+     "count": 34,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25165921",
+     "label": "Mother L",
+     "count": 31,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25198689",
+     "label": "Mother XL",
+     "count": 19,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25231457",
+     "label": "Mother 2XL",
+     "count": 6,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25264225",
+     "label": "Mother 3XL",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "90cm",
+     "label": "90cm",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Child 1 years",
+     "label": "Child 1 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Child 1-2 Years",
+     "label": "Child 1-2 Years",
+     "count": 6,
+     "grouped": false
+    },
+    {
+     "value": "Child 2 Years",
+     "label": "Child 2 Years",
+     "count": 12,
+     "grouped": false
+    },
+    {
+     "value": "Child 2-3 Years",
+     "label": "Child 2-3 Years",
+     "count": 3,
+     "grouped": false
+    },
+    {
+     "value": "Child 3 Years",
+     "label": "Child 3 Years",
+     "count": 12,
+     "grouped": false
+    },
+    {
+     "value": "Child 3-4 Years",
+     "label": "Child 3-4 Years",
+     "count": 6,
+     "grouped": false
+    },
+    {
+     "value": "Child 4 Years",
+     "label": "Child 4 Years",
+     "count": 21,
+     "grouped": false
+    },
+    {
+     "value": "Child 4-5 Years",
+     "label": "Child 4-5 Years",
+     "count": 5,
+     "grouped": false
+    },
+    {
+     "value": "Child 5 Years",
+     "label": "Child 5 Years",
+     "count": 21,
+     "grouped": false
+    },
+    {
+     "value": "Child 5-6 Years",
+     "label": "Child 5-6 Years",
+     "count": 7,
+     "grouped": false
+    },
+    {
+     "value": "Child 6 years",
+     "label": "Child 6 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Child 6-7 Years",
+     "label": "Child 6-7 Years",
+     "count": 27,
+     "grouped": false
+    },
+    {
+     "value": "Child 7-8 Years",
+     "label": "Child 7-8 Years",
+     "count": 7,
+     "grouped": false
+    },
+    {
+     "value": "Child 8 Years",
+     "label": "Child 8 Years",
+     "count": 21,
+     "grouped": false
+    },
+    {
+     "value": "Child 8-9 Years",
+     "label": "Child 8-9 Years",
+     "count": 4,
+     "grouped": false
+    },
+    {
+     "value": "Child 9-10 Years",
+     "label": "Child 9-10 Years",
+     "count": 26,
+     "grouped": false
+    },
+    {
+     "value": "Child 10 years",
+     "label": "Child 10 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Child 11-12 Years",
+     "label": "Child 11-12 Years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Child 12 Years",
+     "label": "Child 12 Years",
+     "count": 6,
+     "grouped": false
+    },
+    {
+     "value": "Child 13-14 years",
+     "label": "Child 13-14 years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 2-3 Years",
+     "label": "Girl 2-3 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 3-4 Years",
+     "label": "Girl 3-4 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Girl 4-5 Years",
+     "label": "Girl 4-5 Years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Girl 5-6 Years",
+     "label": "Girl 5-6 Years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Girl 6-7 Years",
+     "label": "Girl 6-7 Years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Girl 7-8 Years",
+     "label": "Girl 7-8 Years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Girl 8-9 Years",
+     "label": "Girl 8-9 Years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "L (Adult Extended Version)",
+     "label": "L (Adult Extended Version)",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "L (Adult Normal Version)",
+     "label": "L (Adult Normal Version)",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "M (Adult Extended Edition)",
+     "label": "M (Adult Extended Edition)",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "M (Adult Normal Version)",
+     "label": "M (Adult Normal Version)",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "S (Adult Extended Version)",
+     "label": "S (Adult Extended Version)",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "S (Adult Normal Version)",
+     "label": "S (Adult Normal Version)",
+     "count": 1,
+     "grouped": false
+    }
+   ],
+   "filter.p.m.custom.subcategory": [
+    {
+     "value": "Dresses",
+     "label": "Dresses",
+     "count": 36,
+     "grouped": false
+    }
+   ]
+  },
+  "swimsuits": {
+   "filter.v.option.color": [
+    {
+     "value": "As image",
+     "label": "As image",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25526369",
+     "label": "Black",
+     "count": 11,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25559137",
+     "label": "Blue",
+     "count": 11,
+     "grouped": true
+    },
+    {
+     "value": "Blue Daisy",
+     "label": "Blue Daisy",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Blush Floral",
+     "label": "Blush Floral",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Brown",
+     "label": "Brown",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25591905",
+     "label": "Green",
+     "count": 10,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25788513",
+     "label": "Multi-Color",
+     "count": 4,
+     "grouped": true
+    },
+    {
+     "value": "Orange",
+     "label": "Orange",
+     "count": 5,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25657441",
+     "label": "Pink",
+     "count": 8,
+     "grouped": true
+    },
+    {
+     "value": "Purple",
+     "label": "Purple",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25690209",
+     "label": "Red",
+     "count": 4,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25722977",
+     "label": "White",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25755745",
+     "label": "Yellow",
+     "count": 3,
+     "grouped": true
+    }
+   ],
+   "filter.v.option.size": [
+    {
+     "value": "gid://shopify/FilterSettingGroup/24936545",
+     "label": "2-3 years",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/24969313",
+     "label": "4-5 years",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25034849",
+     "label": "8-9 years",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25067617",
+     "label": "10-11 years",
+     "count": 1,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25100385",
+     "label": "Mother S",
+     "count": 33,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25133153",
+     "label": "Mother M",
+     "count": 35,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25165921",
+     "label": "Mother L",
+     "count": 35,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25198689",
+     "label": "Mother XL",
+     "count": 34,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25231457",
+     "label": "Mother 2XL",
+     "count": 3,
+     "grouped": true
+    },
+    {
+     "value": "gid://shopify/FilterSettingGroup/25264225",
+     "label": "Mother 3XL",
+     "count": 2,
+     "grouped": true
+    },
+    {
+     "value": "8Y",
+     "label": "8Y",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "9Y",
+     "label": "9Y",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "10Y",
+     "label": "10Y",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "12Y",
+     "label": "12Y",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Child 2 Years",
+     "label": "Child 2 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Child 2-3 years",
+     "label": "Child 2-3 years",
+     "count": 31,
+     "grouped": false
+    },
+    {
+     "value": "Child 3 Years",
+     "label": "Child 3 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Child 4 Years",
+     "label": "Child 4 Years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Child 4-5 years",
+     "label": "Child 4-5 years",
+     "count": 31,
+     "grouped": false
+    },
+    {
+     "value": "Child 5 Years",
+     "label": "Child 5 Years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Child 5-6 years",
+     "label": "Child 5-6 years",
+     "count": 6,
+     "grouped": false
+    },
+    {
+     "value": "Child 6-7 Years",
+     "label": "Child 6-7 Years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Child 6-8 years",
+     "label": "Child 6-8 years",
+     "count": 31,
+     "grouped": false
+    },
+    {
+     "value": "Child 8 Years",
+     "label": "Child 8 Years",
+     "count": 1,
+     "grouped": false
+    },
+    {
+     "value": "Child 8-10 years",
+     "label": "Child 8-10 years",
+     "count": 31,
+     "grouped": false
+    },
+    {
+     "value": "Child 9-10 Years",
+     "label": "Child 9-10 Years",
+     "count": 2,
+     "grouped": false
+    },
+    {
+     "value": "Child 10-12 years",
+     "label": "Child 10-12 years",
+     "count": 31,
+     "grouped": false
+    },
+    {
+     "value": "Mother 4XL",
+     "label": "Mother 4XL",
+     "count": 1,
+     "grouped": false
+    }
+   ],
+   "filter.p.m.custom.subcategory": [
+    {
+     "value": "Swimsuits",
+     "label": "Swimsuits",
+     "count": 35,
+     "grouped": false
+    }
+   ]
+  }
+ },
+ "before_after_per_collection": {
+  "mommy-and-me": {
+   "size": {
+    "before": 72,
+    "before_grouped": 18,
+    "after": 26,
+    "after_groups": {
+     "Baby 0-12 months": [
+      "Baby 3-6 Months",
+      "Baby 9-12 Months",
+      "Baby 6-9 Months"
+     ],
+     "2-3 years": [
+      "2-3 years",
+      "90cm",
+      "Child 2 Years",
+      "Child 2-3 years",
+      "Girl 2-3 years"
+     ],
+     "4-5 years": [
+      "4-5 years",
+      "Child 4 Years",
+      "Child 4-5 years",
+      "Girl 4-5 years"
+     ],
+     "6-7 years": [
+      "6-7 years",
+      "Child 6 Years",
+      "Child 6-7 Years",
+      "Child 6-8 years",
+      "Girl 6-7 years"
+     ],
+     "8-9 years": [
+      "8-9 years",
+      "8Y",
+      "Child 8 Years",
+      "Child 8-9 Years",
+      "Child 8-10 years",
+      "Girl 8-9 years"
+     ],
+     "10-11 years": [
+      "10-11 years",
+      "10Y",
+      "Child 10 Years",
+      "Child 10-11 Years",
+      "Child 10-12 years"
+     ],
+     "Mom S": [
+      "Mother S",
+      "Adult S-M",
+      "S (Adult Extended Version)"
+     ],
+     "Mom M": [
+      "Mother M",
+      "Adult M-L",
+      "M (Adult Extended Edition)",
+      "M (Adult Normal Version)"
+     ],
+     "Mom L": [
+      "Mother L",
+      "Adult L-XL",
+      "L (Adult Extended Version)",
+      "L (Adult Normal Version)"
+     ],
+     "Mom XL": [
+      "Mother XL",
+      "Adult XL-2XL"
+     ],
+     "Mom 2XL": [
+      "Mother 2XL"
+     ],
+     "Mom 3XL": [
+      "Mother 3XL"
+     ],
+     "Dad M": [
+      "Father M"
+     ],
+     "Dad L": [
+      "Father L"
+     ],
+     "Dad XL": [
+      "Father XL"
+     ],
+     "Dad 2XL": [
+      "Father 2XL"
+     ],
+     "Dad 3XL": [
+      "Father 3XL"
+     ],
+     "9-10 years": [
+      "9Y",
+      "Child 9-10 Years",
+      "Girl 9-10 years"
+     ],
+     "12-14 years": [
+      "12Y",
+      "Child 12 Years",
+      "Child 13-14 years",
+      "Child 14 Years"
+     ],
+     "Mom XS": [
+      "Adult XS",
+      "Adult XXS"
+     ],
+     "1-2 years": [
+      "Baby 1-2 Years",
+      "Baby 12-18 Months",
+      "Child 1 years",
+      "Child 1-2 Years"
+     ],
+     "3-4 years": [
+      "Child 3 Years",
+      "Child 3-4 Years",
+      "Girl 3-4 years"
+     ],
+     "5-6 years": [
+      "Child 5 Years",
+      "Child 5-6 Years",
+      "Girl 5-6 years"
+     ],
+     "7-8 years": [
+      "Child 7-8 Years",
+      "Girl 7-8 years"
+     ],
+     "11-12 years": [
+      "Child 11 Years",
+      "Child 11-12 Years"
+     ],
+     "Mom 4XL": [
+      "Mother 4XL"
+     ]
+    }
+   },
+   "color": {
+    "before": 52,
+    "before_grouped": 8,
+    "after": 13,
+    "after_groups": {
+     "Orange": [
+      "Apricot",
+      "Orange"
+     ],
+     "Pink": [
+      "As image",
+      "Blush Floral",
+      "Pastel Watercolor",
+      "Peach Sweetheart",
+      "Pink"
+     ],
+     "Cream & Beige": [
+      "Autumn Woodland Bunny",
+      "Bamboo Garden Panda Cream",
+      "Beige",
+      "Bird Chirping Cream",
+      "Bunny Garden",
+      "Cream",
+      "Eucalyptus Bunny Meadow",
+      "Fairy Tale Messenger Cream",
+      "Fluttering Butterflies",
+      "Good Night Song of the Sea",
+      "Grape Vineyard Cream",
+      "Grapevine Cream",
+      "Ivory",
+      "Little Pear Cream",
+      "Little Sheep Meadow Cream",
+      "Meow Star Garden",
+      "Polar Adventure Cream",
+      "Red Panda",
+      "Summer Puppies",
+      "Vintage Cottage Floral",
+      "Welsh Dinosaur Cream"
+     ],
+     "Black": [
+      "Black",
+      "Midnight Paint Splash"
+     ],
+     "Blue": [
+      "Blue",
+      "Blue Daisy",
+      "Coastal Banana Leaf",
+      "Navy",
+      "Ocean Blue Floral",
+      "Sky Daisy Doodle"
+     ],
+     "Brown": [
+      "Brown"
+     ],
+     "Red": [
+      "Coral Blossom",
+      "Red",
+      "Red Tropical Leaf"
+     ],
+     "Green": [
+      "Green",
+      "Green Botanical"
+     ],
+     "?Grey": [
+      "Grey"
+     ],
+     "White": [
+      "Ladybug Dots",
+      "Monochrome Palm",
+      "White"
+     ],
+     "Multicolor & Print": [
+      "Multi Color",
+      "Pastel Bloom",
+      "Playful Cat Parade",
+      "Rainbow"
+     ],
+     "Purple": [
+      "Purple"
+     ],
+     "Yellow": [
+      "Yellow"
+     ]
+    }
+   },
+   "type": {
+    "before": 9,
+    "before_grouped": 0,
+    "after": 7,
+    "after_groups": {
+     "Dresses": [
+      "Dresses"
+     ],
+     "Sweaters": [
+      "Family Sweaters",
+      "Sweaters"
+     ],
+     "Pajamas": [
+      "Pajamas"
+     ],
+     "Sets & Outfits": [
+      "Set",
+      "Sets"
+     ],
+     "Skirts": [
+      "Skirts"
+     ],
+     "Swimwear": [
+      "Swimsuits"
+     ],
+     "Tops & Tees": [
+      "Tops"
+     ]
+    }
+   }
+  },
+  "matching-outfits": {
+   "size": {
+    "before": 77,
+    "before_grouped": 18,
+    "after": 25,
+    "after_groups": {
+     "Baby 0-12 months": [
+      "Baby 9-12 Months",
+      "Baby 0-6 Months",
+      "Baby 3 Months",
+      "Baby 6 Months",
+      "Baby 6-9 months",
+      "Baby 6-12 Months",
+      "Baby 9 Months",
+      "Baby 12 Months"
+     ],
+     "2-3 years": [
+      "2-3 years",
+      "90cm",
+      "Boy 2 Years",
+      "Child 2 years",
+      "Child 2-3 Years",
+      "Girl 2 Years",
+      "Girl 2-3 years"
+     ],
+     "4-5 years": [
+      "4-5 years",
+      "Boy 4 Years",
+      "Child 4 years",
+      "Child 4-5 Years",
+      "Girl 4 Years",
+      "Girl 4-5 years"
+     ],
+     "6-7 years": [
+      "6-7 years",
+      "Boy 6-7 Years",
+      "Child 6 Years",
+      "Child 6-7 Years",
+      "Girl 6-7 years"
+     ],
+     "8-9 years": [
+      "8-9 years",
+      "Boy 8 Years",
+      "Child 8 Years",
+      "Child 8-9 Years",
+      "Girl 8 Years",
+      "Girl 8-9 years"
+     ],
+     "10-11 years": [
+      "10-11 years",
+      "Child 10 years",
+      "Child 10-12 Years"
+     ],
+     "12-14 years": [
+      "12-14 years",
+      "Child 12 years"
+     ],
+     "Mom S": [
+      "Mother S",
+      "S (Adult Extended Version)",
+      "S (Adult Normal Version)"
+     ],
+     "Mom M": [
+      "Mother M",
+      "M (Adult Extended Edition)",
+      "M (Adult Normal Version)"
+     ],
+     "Mom L": [
+      "Mother L",
+      "L (Adult Extended Version)",
+      "L (Adult Normal Version)"
+     ],
+     "Mom XL": [
+      "Mother XL"
+     ],
+     "Mom 2XL": [
+      "Mother 2XL"
+     ],
+     "Mom 3XL": [
+      "Mother 3XL"
+     ],
+     "Dad M": [
+      "Father M"
+     ],
+     "Dad L": [
+      "Father L"
+     ],
+     "Dad XL": [
+      "Father XL"
+     ],
+     "Dad 2XL": [
+      "Father 2XL"
+     ],
+     "Dad 3XL": [
+      "Father 3XL"
+     ],
+     "1-2 years": [
+      "Baby 1-2 Years",
+      "Child 1 year",
+      "Child 1 years",
+      "Child 1-2 Years"
+     ],
+     "3-4 years": [
+      "Boy 3 Years",
+      "Child 3 years",
+      "Child 3-4 Years",
+      "Girl 3 Years",
+      "Girl 3-4 years"
+     ],
+     "5-6 years": [
+      "Boy 5 Years",
+      "Child 5 Years",
+      "Child 5-6 Years",
+      "Girl 5 Years",
+      "Girl 5-6 years"
+     ],
+     "9-10 years": [
+      "Boy 9-10 Years",
+      "Child 9 Years",
+      "Child 9-10 Years",
+      "Girl 9-10 years"
+     ],
+     "7-8 years": [
+      "Child 7 Years",
+      "Child 7-8 Years",
+      "Girl 7-8 years"
+     ],
+     "11-12 years": [
+      "Child 11-12 Years"
+     ],
+     "Mom 4XL": [
+      "Mother 4XL"
+     ]
+    }
+   },
+   "color": {
+    "before": 15,
+    "before_grouped": 8,
+    "after": 12,
+    "after_groups": {
+     "Cream & Beige": [
+      "Beige",
+      "Cream"
+     ],
+     "Black": [
+      "Black"
+     ],
+     "Blue": [
+      "Blue"
+     ],
+     "Brown": [
+      "Brown"
+     ],
+     "Green": [
+      "Green"
+     ],
+     "?Grey": [
+      "Grey"
+     ],
+     "Multicolor & Print": [
+      "Multi Color",
+      "Rainbow"
+     ],
+     "Pink": [
+      "Pink"
+     ],
+     "Purple": [
+      "Purple"
+     ],
+     "Red": [
+      "Red"
+     ],
+     "White": [
+      "White",
+      "White Graphic"
+     ],
+     "Yellow": [
+      "Yellow"
+     ]
+    }
+   },
+   "type": null
+  },
+  "daddy-me": {
+   "size": {
+    "before": 19,
+    "before_grouped": 5,
+    "after": 16,
+    "after_groups": {
+     "Dad M": [
+      "Father M"
+     ],
+     "Dad L": [
+      "Father L"
+     ],
+     "Dad XL": [
+      "Father XL"
+     ],
+     "Dad 2XL": [
+      "Father 2XL"
+     ],
+     "Dad 3XL": [
+      "Father 3XL"
+     ],
+     "Baby 0-12 months": [
+      "Baby 6-9 months",
+      "Baby 9-12 months"
+     ],
+     "1-2 years": [
+      "Child 1 year"
+     ],
+     "2-3 years": [
+      "Child 2 years",
+      "Child 2-3 years"
+     ],
+     "3-4 years": [
+      "Child 3 years"
+     ],
+     "4-5 years": [
+      "Child 4 years",
+      "Child 4-5 years"
+     ],
+     "5-6 years": [
+      "Child 5-6 years"
+     ],
+     "6-7 years": [
+      "Child 6-8 years"
+     ],
+     "7-8 years": [
+      "Child 7-8 years"
+     ],
+     "8-9 years": [
+      "Child 8-10 years"
+     ],
+     "9-10 years": [
+      "Child 9-10 years"
+     ],
+     "10-11 years": [
+      "Child 10-12 years"
+     ]
+    }
+   },
+   "color": {
+    "before": 10,
+    "before_grouped": 6,
+    "after": 8,
+    "after_groups": {
+     "Black": [
+      "Black"
+     ],
+     "Blue": [
+      "Blue"
+     ],
+     "Green": [
+      "Green"
+     ],
+     "?Grey": [
+      "Grey"
+     ],
+     "Multicolor & Print": [
+      "Main color",
+      "Multi Color",
+      "Photo Color"
+     ],
+     "Orange": [
+      "Orange"
+     ],
+     "Pink": [
+      "Pink"
+     ],
+     "White": [
+      "White"
+     ]
+    }
+   },
+   "type": {
+    "before": 2,
+    "before_grouped": 0,
+    "after": 2,
+    "after_groups": {
+     "Tops & Tees": [
+      "Daddy & Me T-Shirts"
+     ],
+     "Swimwear": [
+      "Trunks"
+     ]
+    }
+   }
+  },
+  "pajamas": {
+   "size": {
+    "before": 41,
+    "before_grouped": 13,
+    "after": 24,
+    "after_groups": {
+     "Baby 0-12 months": [
+      "Baby 3-6 Months",
+      "Baby 9-12 Months",
+      "Baby 6-9 Months"
+     ],
+     "Mom S": [
+      "Mother S"
+     ],
+     "Mom M": [
+      "Mother M"
+     ],
+     "Mom L": [
+      "Mother L"
+     ],
+     "Mom XL": [
+      "Mother XL"
+     ],
+     "Mom 2XL": [
+      "Mother 2XL"
+     ],
+     "Mom 3XL": [
+      "Mother 3XL"
+     ],
+     "Dad M": [
+      "Father M"
+     ],
+     "Dad L": [
+      "Father L"
+     ],
+     "Dad XL": [
+      "Father XL"
+     ],
+     "Dad 2XL": [
+      "Father 2XL"
+     ],
+     "Dad 3XL": [
+      "Father 3XL"
+     ],
+     "1-2 years": [
+      "Baby 12-18 Months",
+      "Child 1-2 Years"
+     ],
+     "2-3 years": [
+      "Child 2 Years",
+      "Girl 2-3 years"
+     ],
+     "3-4 years": [
+      "Child 3 Years",
+      "Child 3-4 Years",
+      "Girl 3-4 years"
+     ],
+     "4-5 years": [
+      "Child 4 Years",
+      "Child 4-5 Years",
+      "Girl 4-5 years"
+     ],
+     "5-6 years": [
+      "Child 5 Years",
+      "Child 5-6 Years",
+      "Girl 5-6 years"
+     ],
+     "6-7 years": [
+      "Child 6 Years",
+      "Child 6-7 Years",
+      "Girl 6-7 years"
+     ],
+     "8-9 years": [
+      "Child 8 Years",
+      "Child 8-9 Years",
+      "Girl 8-9 years"
+     ],
+     "9-10 years": [
+      "Child 9-10 Years",
+      "Girl 9-10 years"
+     ],
+     "10-11 years": [
+      "Child 10 Years",
+      "Child 10-11 Years"
+     ],
+     "11-12 years": [
+      "Child 11 Years"
+     ],
+     "12-14 years": [
+      "Child 12 Years",
+      "Child 14 Years"
+     ],
+     "7-8 years": [
+      "Girl 7-8 years"
+     ]
+    }
+   },
+   "color": {
+    "before": 28,
+    "before_grouped": 6,
+    "after": 10,
+    "after_groups": {
+     "Cream & Beige": [
+      "Autumn Woodland Bunny",
+      "Bamboo Garden Panda Cream",
+      "Bird Chirping Cream",
+      "Bunny Garden",
+      "Eucalyptus Bunny Meadow",
+      "Fairy Tale Messenger Cream",
+      "Fluttering Butterflies",
+      "Good Night Song of the Sea",
+      "Grape Vineyard Cream",
+      "Grapevine Cream",
+      "Little Pear Cream",
+      "Little Sheep Meadow Cream",
+      "Meow Star Garden",
+      "Polar Adventure Cream",
+      "Red Panda",
+      "Summer Puppies",
+      "Vintage Cottage Floral",
+      "Welsh Dinosaur Cream"
+     ],
+     "Black": [
+      "Black"
+     ],
+     "Green": [
+      "Green"
+     ],
+     "?Grey": [
+      "Grey"
+     ],
+     "White": [
+      "Ladybug Dots"
+     ],
+     "Orange": [
+      "Orange"
+     ],
+     "Pink": [
+      "Peach Sweetheart",
+      "Pink"
+     ],
+     "Purple": [
+      "Purple"
+     ],
+     "Red": [
+      "Red"
+     ],
+     "Yellow": [
+      "Yellow"
+     ]
+    }
+   },
+   "type": {
+    "before": 1,
+    "before_grouped": 0,
+    "after": 1,
+    "after_groups": {
+     "Pajamas": [
+      "Pajamas"
+     ]
+    }
+   }
+  },
+  "dresses": {
+   "size": {
+    "before": 44,
+    "before_grouped": 10,
+    "after": 18,
+    "after_groups": {
+     "2-3 years": [
+      "2-3 years",
+      "90cm",
+      "Child 2 Years",
+      "Child 2-3 Years",
+      "Girl 2-3 Years"
+     ],
+     "4-5 years": [
+      "4-5 years",
+      "Child 4 Years",
+      "Child 4-5 Years",
+      "Girl 4-5 Years"
+     ],
+     "6-7 years": [
+      "6-7 years",
+      "Child 6 years",
+      "Child 6-7 Years",
+      "Girl 6-7 Years"
+     ],
+     "10-11 years": [
+      "10-11 years",
+      "Child 10 years"
+     ],
+     "Mom S": [
+      "Mother S",
+      "S (Adult Extended Version)",
+      "S (Adult Normal Version)"
+     ],
+     "Mom M": [
+      "Mother M",
+      "M (Adult Extended Edition)",
+      "M (Adult Normal Version)"
+     ],
+     "Mom L": [
+      "Mother L",
+      "L (Adult Extended Version)",
+      "L (Adult Normal Version)"
+     ],
+     "Mom XL": [
+      "Mother XL"
+     ],
+     "Mom 2XL": [
+      "Mother 2XL"
+     ],
+     "Mom 3XL": [
+      "Mother 3XL"
+     ],
+     "1-2 years": [
+      "Child 1 years",
+      "Child 1-2 Years"
+     ],
+     "3-4 years": [
+      "Child 3 Years",
+      "Child 3-4 Years",
+      "Girl 3-4 Years"
+     ],
+     "5-6 years": [
+      "Child 5 Years",
+      "Child 5-6 Years",
+      "Girl 5-6 Years"
+     ],
+     "7-8 years": [
+      "Child 7-8 Years",
+      "Girl 7-8 Years"
+     ],
+     "8-9 years": [
+      "Child 8 Years",
+      "Child 8-9 Years",
+      "Girl 8-9 Years"
+     ],
+     "9-10 years": [
+      "Child 9-10 Years"
+     ],
+     "11-12 years": [
+      "Child 11-12 Years"
+     ],
+     "12-14 years": [
+      "Child 12 Years",
+      "Child 13-14 years"
+     ]
+    }
+   },
+   "color": {
+    "before": 19,
+    "before_grouped": 7,
+    "after": 12,
+    "after_groups": {
+     "Cream & Beige": [
+      "Beige",
+      "Ivory"
+     ],
+     "Black": [
+      "Black"
+     ],
+     "Blue": [
+      "Blue",
+      "Ocean Blue Floral"
+     ],
+     "Brown": [
+      "Brown"
+     ],
+     "Red": [
+      "Coral Blossom",
+      "Red",
+      "Red Tropical Leaf"
+     ],
+     "Green": [
+      "Green",
+      "Green Botanical"
+     ],
+     "Multicolor & Print": [
+      "Multi Color",
+      "Pastel Bloom",
+      "Rainbow"
+     ],
+     "Orange": [
+      "Orange"
+     ],
+     "Pink": [
+      "Pink"
+     ],
+     "Purple": [
+      "Purple"
+     ],
+     "White": [
+      "White"
+     ],
+     "Yellow": [
+      "Yellow"
+     ]
+    }
+   },
+   "type": {
+    "before": 1,
+    "before_grouped": 0,
+    "after": 1,
+    "after_groups": {
+     "Dresses": [
+      "Dresses"
+     ]
+    }
+   }
+  },
+  "swimsuits": {
+   "size": {
+    "before": 28,
+    "before_grouped": 10,
+    "after": 16,
+    "after_groups": {
+     "2-3 years": [
+      "2-3 years",
+      "Child 2 Years",
+      "Child 2-3 years"
+     ],
+     "4-5 years": [
+      "4-5 years",
+      "Child 4 Years",
+      "Child 4-5 years"
+     ],
+     "8-9 years": [
+      "8-9 years",
+      "8Y",
+      "Child 8 Years",
+      "Child 8-10 years"
+     ],
+     "10-11 years": [
+      "10-11 years",
+      "10Y",
+      "Child 10-12 years"
+     ],
+     "Mom S": [
+      "Mother S"
+     ],
+     "Mom M": [
+      "Mother M"
+     ],
+     "Mom L": [
+      "Mother L"
+     ],
+     "Mom XL": [
+      "Mother XL"
+     ],
+     "Mom 2XL": [
+      "Mother 2XL"
+     ],
+     "Mom 3XL": [
+      "Mother 3XL"
+     ],
+     "9-10 years": [
+      "9Y",
+      "Child 9-10 Years"
+     ],
+     "12-14 years": [
+      "12Y"
+     ],
+     "3-4 years": [
+      "Child 3 Years"
+     ],
+     "5-6 years": [
+      "Child 5 Years",
+      "Child 5-6 years"
+     ],
+     "6-7 years": [
+      "Child 6-7 Years",
+      "Child 6-8 years"
+     ],
+     "Mom 4XL": [
+      "Mother 4XL"
+     ]
+    }
+   },
+   "color": {
+    "before": 14,
+    "before_grouped": 8,
+    "after": 11,
+    "after_groups": {
+     "Pink": [
+      "As image",
+      "Blush Floral",
+      "Pink"
+     ],
+     "Black": [
+      "Black"
+     ],
+     "Blue": [
+      "Blue",
+      "Blue Daisy"
+     ],
+     "Brown": [
+      "Brown"
+     ],
+     "Green": [
+      "Green"
+     ],
+     "Multicolor & Print": [
+      "Multi-Color"
+     ],
+     "Orange": [
+      "Orange"
+     ],
+     "Purple": [
+      "Purple"
+     ],
+     "Red": [
+      "Red"
+     ],
+     "White": [
+      "White"
+     ],
+     "Yellow": [
+      "Yellow"
+     ]
+    }
+   },
+   "type": {
+    "before": 1,
+    "before_grouped": 0,
+    "after": 1,
+    "after_groups": {
+     "Swimwear": [
+      "Swimsuits"
+     ]
+    }
+   }
+  }
+ },
+ "storewide_distinct_values": {
+  "size": 196,
+  "size_groups_after": 30,
+  "color": 81,
+  "color_groups_after": 13,
+  "type_subcategory": 15,
+  "type_groups_after": 7
+ },
+ "size_groups_order": {
+  "Mom": [
+   "Mom XS",
+   "Mom S",
+   "Mom M",
+   "Mom L",
+   "Mom XL",
+   "Mom 2XL",
+   "Mom 3XL",
+   "Mom 4XL",
+   "Mom 5XL",
+   "Mom One Size"
+  ],
+  "Kids": [
+   "Baby 0-12 months",
+   "1-2 years",
+   "2-3 years",
+   "3-4 years",
+   "4-5 years",
+   "5-6 years",
+   "6-7 years",
+   "7-8 years",
+   "8-9 years",
+   "9-10 years",
+   "10-11 years",
+   "11-12 years",
+   "12-14 years"
+  ],
+  "Dad": [
+   "Dad S",
+   "Dad M",
+   "Dad L",
+   "Dad XL",
+   "Dad 2XL",
+   "Dad 3XL",
+   "Dad 4XL"
+  ]
+ },
+ "size_map": [
+  {
+   "raw": "100cm",
+   "products": 2,
+   "group": "3-4 years",
+   "note": "uncertain: ≈3-4Y by height; confirm against product size chart"
+  },
+  {
+   "raw": "10Y",
+   "products": 1,
+   "group": "10-11 years",
+   "note": ""
+  },
+  {
+   "raw": "110cm",
+   "products": 2,
+   "group": "4-5 years",
+   "note": "uncertain: ≈4-5Y by height; confirm against product size chart"
+  },
+  {
+   "raw": "120cm",
+   "products": 2,
+   "group": "6-7 years",
+   "note": "uncertain: ≈6-7Y by height; confirm against product size chart"
+  },
+  {
+   "raw": "12Y",
+   "products": 1,
+   "group": "12-14 years",
+   "note": ""
+  },
+  {
+   "raw": "130cm",
+   "products": 2,
+   "group": "8-9 years",
+   "note": "uncertain: ≈8-9Y by height; confirm against product size chart"
+  },
+  {
+   "raw": "140cm",
+   "products": 2,
+   "group": "10-11 years",
+   "note": "uncertain: ≈10-11Y by height; confirm against product size chart"
+  },
+  {
+   "raw": "150cm",
+   "products": 2,
+   "group": "12-14 years",
+   "note": "uncertain: ≈12Y by height; confirm against product size chart"
+  },
+  {
+   "raw": "160cm",
+   "products": 1,
+   "group": "12-14 years",
+   "note": "uncertain: ≈13-14Y by height; confirm against product size chart"
+  },
+  {
+   "raw": "8Y",
+   "products": 1,
+   "group": "8-9 years",
+   "note": ""
+  },
+  {
+   "raw": "90cm",
+   "products": 1,
+   "group": "2-3 years",
+   "note": "uncertain: ≈2-3Y by height; confirm against product size chart"
+  },
+  {
+   "raw": "9Y",
+   "products": 1,
+   "group": "9-10 years",
+   "note": ""
+  },
+  {
+   "raw": "Adult 2XL",
+   "products": 46,
+   "group": "Mom 2XL",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult 2XL - Father \"LO\"",
+   "products": 1,
+   "group": "Dad 2XL",
+   "note": ""
+  },
+  {
+   "raw": "Adult 2XL - Mother \"VE\"",
+   "products": 1,
+   "group": "Mom 2XL",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult 3XL",
+   "products": 45,
+   "group": "Mom 3XL",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult 3XL - Father \"LO\"",
+   "products": 1,
+   "group": "Dad 3XL",
+   "note": ""
+  },
+  {
+   "raw": "Adult 4XL",
+   "products": 21,
+   "group": "Mom 4XL",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult 4XL - Father \"LO\"",
+   "products": 1,
+   "group": "Dad 4XL",
+   "note": ""
+  },
+  {
+   "raw": "Adult 5XL",
+   "products": 11,
+   "group": "Mom 5XL",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult L",
+   "products": 47,
+   "group": "Mom L",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult L - Father \"LO\"",
+   "products": 1,
+   "group": "Dad L",
+   "note": ""
+  },
+  {
+   "raw": "Adult L - Mother \"VE\"",
+   "products": 1,
+   "group": "Mom L",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult L-XL",
+   "products": 1,
+   "group": "Mom L",
+   "note": "range; mapped to lower size; unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult L/XL",
+   "products": 1,
+   "group": "Mom L",
+   "note": "range; mapped to lower size; unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult M",
+   "products": 48,
+   "group": "Mom M",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult M - Mother \"VE\"",
+   "products": 1,
+   "group": "Mom M",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult M-L",
+   "products": 1,
+   "group": "Mom M",
+   "note": "range; mapped to lower size; unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult M/L",
+   "products": 1,
+   "group": "Mom M",
+   "note": "range; mapped to lower size; unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult S",
+   "products": 39,
+   "group": "Mom S",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult S - Mother \"VE\"",
+   "products": 1,
+   "group": "Mom S",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult S-M",
+   "products": 1,
+   "group": "Mom S",
+   "note": "range; mapped to lower size; unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult S/M",
+   "products": 1,
+   "group": "Mom S",
+   "note": "range; mapped to lower size; unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult XL",
+   "products": 47,
+   "group": "Mom XL",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult XL - Father \"LO\"",
+   "products": 1,
+   "group": "Dad XL",
+   "note": ""
+  },
+  {
+   "raw": "Adult XL - Mother \"VE\"",
+   "products": 1,
+   "group": "Mom XL",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult XL-2XL",
+   "products": 1,
+   "group": "Mom XL",
+   "note": "range; mapped to lower size; unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult XL/2XL",
+   "products": 1,
+   "group": "Mom XL",
+   "note": "range; mapped to lower size; unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult XS",
+   "products": 7,
+   "group": "Mom XS",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Adult XXS",
+   "products": 7,
+   "group": "Mom XS",
+   "note": "unisex \"Adult\" size placed in Mom group (value can only sit in one group)"
+  },
+  {
+   "raw": "Baby 0-6 Months",
+   "products": 1,
+   "group": "Baby 0-12 months",
+   "note": ""
+  },
+  {
+   "raw": "Baby 1-2 Years",
+   "products": 2,
+   "group": "1-2 years",
+   "note": ""
+  },
+  {
+   "raw": "Baby 12 Months",
+   "products": 2,
+   "group": "Baby 0-12 months",
+   "note": ""
+  },
+  {
+   "raw": "Baby 12-18 Months",
+   "products": 5,
+   "group": "1-2 years",
+   "note": ""
+  },
+  {
+   "raw": "Baby 18-24 Months",
+   "products": 2,
+   "group": "1-2 years",
+   "note": ""
+  },
+  {
+   "raw": "Baby 3 Months",
+   "products": 2,
+   "group": "Baby 0-12 months",
+   "note": ""
+  },
+  {
+   "raw": "Baby 3-6 Months",
+   "products": 5,
+   "group": "Baby 0-12 months",
+   "note": ""
+  },
+  {
+   "raw": "Baby 6 Months",
+   "products": 2,
+   "group": "Baby 0-12 months",
+   "note": ""
+  },
+  {
+   "raw": "Baby 6-12 Months",
+   "products": 1,
+   "group": "Baby 0-12 months",
+   "note": ""
+  },
+  {
+   "raw": "Baby 6-9 Months",
+   "products": 5,
+   "group": "Baby 0-12 months",
+   "note": ""
+  },
+  {
+   "raw": "Baby 6-9 months",
+   "products": 14,
+   "group": "Baby 0-12 months",
+   "note": ""
+  },
+  {
+   "raw": "Baby 9 Months",
+   "products": 2,
+   "group": "Baby 0-12 months",
+   "note": ""
+  },
+  {
+   "raw": "Baby 9-12 Months",
+   "products": 5,
+   "group": "Baby 0-12 months",
+   "note": ""
+  },
+  {
+   "raw": "Baby 9-12 months",
+   "products": 14,
+   "group": "Baby 0-12 months",
+   "note": ""
+  },
+  {
+   "raw": "Boy 1-2 Years",
+   "products": 2,
+   "group": "1-2 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 10T",
+   "products": 4,
+   "group": "10-11 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 11-12 years",
+   "products": 1,
+   "group": "11-12 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 12T",
+   "products": 4,
+   "group": "12-14 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 13-14 years",
+   "products": 1,
+   "group": "12-14 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 2 Years",
+   "products": 3,
+   "group": "2-3 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 2 years",
+   "products": 1,
+   "group": "2-3 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 2T",
+   "products": 4,
+   "group": "2-3 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 3 Years",
+   "products": 3,
+   "group": "3-4 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 3-4 Years",
+   "products": 3,
+   "group": "3-4 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 3-4 years",
+   "products": 1,
+   "group": "3-4 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 4 Years",
+   "products": 3,
+   "group": "4-5 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 4-5 Years",
+   "products": 4,
+   "group": "4-5 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 4T",
+   "products": 4,
+   "group": "4-5 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 5 Years",
+   "products": 3,
+   "group": "5-6 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 5-6 Years",
+   "products": 4,
+   "group": "5-6 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 5-6 years",
+   "products": 1,
+   "group": "5-6 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 6-7 Years",
+   "products": 7,
+   "group": "6-7 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 6T",
+   "products": 4,
+   "group": "6-7 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 7-8 Years",
+   "products": 4,
+   "group": "7-8 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 7-8 years",
+   "products": 1,
+   "group": "7-8 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 8 Years",
+   "products": 3,
+   "group": "8-9 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 8-9 Years",
+   "products": 4,
+   "group": "8-9 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 8T",
+   "products": 4,
+   "group": "8-9 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 9-10 Years",
+   "products": 5,
+   "group": "9-10 years",
+   "note": ""
+  },
+  {
+   "raw": "Boy 9-10 years",
+   "products": 1,
+   "group": "9-10 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 1 Year",
+   "products": 3,
+   "group": "1-2 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 1 year",
+   "products": 37,
+   "group": "1-2 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 1 years",
+   "products": 2,
+   "group": "1-2 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 1-2 Years",
+   "products": 34,
+   "group": "1-2 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 10 Years",
+   "products": 16,
+   "group": "10-11 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 10 years",
+   "products": 2,
+   "group": "10-11 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 10-11 Years",
+   "products": 5,
+   "group": "10-11 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 10-12 Years",
+   "products": 9,
+   "group": "10-11 years",
+   "note": "range 10-12Y spans two groups; mapped to lower bound"
+  },
+  {
+   "raw": "Child 10-12 years",
+   "products": 56,
+   "group": "10-11 years",
+   "note": "range 10-12Y spans two groups; mapped to lower bound"
+  },
+  {
+   "raw": "Child 10-12T",
+   "products": 1,
+   "group": "10-11 years",
+   "note": "range 10-12Y spans two groups; mapped to lower bound"
+  },
+  {
+   "raw": "Child 11 Years",
+   "products": 1,
+   "group": "11-12 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 11-12 Years",
+   "products": 5,
+   "group": "11-12 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 11-12 years",
+   "products": 1,
+   "group": "11-12 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 12 Years",
+   "products": 34,
+   "group": "12-14 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 12 years",
+   "products": 2,
+   "group": "12-14 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 13-14 Years",
+   "products": 2,
+   "group": "12-14 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 13-14 years",
+   "products": 1,
+   "group": "12-14 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 14 Years",
+   "products": 20,
+   "group": "12-14 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 2 Years",
+   "products": 115,
+   "group": "2-3 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 2 years",
+   "products": 40,
+   "group": "2-3 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 2-3 Years",
+   "products": 22,
+   "group": "2-3 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 2-3 years",
+   "products": 43,
+   "group": "2-3 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 2-3T",
+   "products": 1,
+   "group": "2-3 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 3 Years",
+   "products": 110,
+   "group": "3-4 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 3 years",
+   "products": 37,
+   "group": "3-4 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 3-4 Years",
+   "products": 34,
+   "group": "3-4 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 3-4 years",
+   "products": 2,
+   "group": "3-4 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 3-4T",
+   "products": 1,
+   "group": "3-4 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 4 -5 Years",
+   "products": 1,
+   "group": "4-5 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 4 Years",
+   "products": 129,
+   "group": "4-5 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 4 years",
+   "products": 39,
+   "group": "4-5 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 4-5 Years",
+   "products": 24,
+   "group": "4-5 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 4-5 years",
+   "products": 43,
+   "group": "4-5 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 4-5T",
+   "products": 1,
+   "group": "4-5 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 5 Years",
+   "products": 130,
+   "group": "5-6 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 5-6 Years",
+   "products": 31,
+   "group": "5-6 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 5-6 years",
+   "products": 45,
+   "group": "5-6 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 6 Years",
+   "products": 19,
+   "group": "6-7 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 6 years",
+   "products": 2,
+   "group": "6-7 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 6-7 Years",
+   "products": 140,
+   "group": "6-7 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 6-7 years",
+   "products": 1,
+   "group": "6-7 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 6-8 Years",
+   "products": 1,
+   "group": "6-7 years",
+   "note": "range 6-8Y spans two groups; mapped to lower bound"
+  },
+  {
+   "raw": "Child 6-8 years",
+   "products": 42,
+   "group": "6-7 years",
+   "note": "range 6-8Y spans two groups; mapped to lower bound"
+  },
+  {
+   "raw": "Child 6-8T",
+   "products": 1,
+   "group": "6-7 years",
+   "note": "range 6-8Y spans two groups; mapped to lower bound"
+  },
+  {
+   "raw": "Child 7 Years",
+   "products": 3,
+   "group": "7-8 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 7-8 Years",
+   "products": 27,
+   "group": "7-8 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 7-8 years",
+   "products": 39,
+   "group": "7-8 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 8 Years",
+   "products": 117,
+   "group": "8-9 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 8 years",
+   "products": 2,
+   "group": "8-9 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 8-10 Years",
+   "products": 1,
+   "group": "8-9 years",
+   "note": "range 8-10Y spans two groups; mapped to lower bound"
+  },
+  {
+   "raw": "Child 8-10 years",
+   "products": 42,
+   "group": "8-9 years",
+   "note": "range 8-10Y spans two groups; mapped to lower bound"
+  },
+  {
+   "raw": "Child 8-10T",
+   "products": 1,
+   "group": "8-9 years",
+   "note": "range 8-10Y spans two groups; mapped to lower bound"
+  },
+  {
+   "raw": "Child 8-9 Years",
+   "products": 16,
+   "group": "8-9 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 8-9 years",
+   "products": 1,
+   "group": "8-9 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 9 Years",
+   "products": 2,
+   "group": "9-10 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 9-10 Years",
+   "products": 116,
+   "group": "9-10 years",
+   "note": ""
+  },
+  {
+   "raw": "Child 9-10 years",
+   "products": 38,
+   "group": "9-10 years",
+   "note": ""
+  },
+  {
+   "raw": "Father 2XL",
+   "products": 112,
+   "group": "Dad 2XL",
+   "note": ""
+  },
+  {
+   "raw": "Father 3XL",
+   "products": 95,
+   "group": "Dad 3XL",
+   "note": ""
+  },
+  {
+   "raw": "Father 4XL",
+   "products": 28,
+   "group": "Dad 4XL",
+   "note": ""
+  },
+  {
+   "raw": "Father L",
+   "products": 116,
+   "group": "Dad L",
+   "note": ""
+  },
+  {
+   "raw": "Father M",
+   "products": 111,
+   "group": "Dad M",
+   "note": ""
+  },
+  {
+   "raw": "Father S",
+   "products": 44,
+   "group": "Dad S",
+   "note": ""
+  },
+  {
+   "raw": "Father XL",
+   "products": 116,
+   "group": "Dad XL",
+   "note": ""
+  },
+  {
+   "raw": "Father XXL",
+   "products": 3,
+   "group": "Dad 2XL",
+   "note": ""
+  },
+  {
+   "raw": "Girl 1-2 Years",
+   "products": 2,
+   "group": "1-2 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 1-2T",
+   "products": 4,
+   "group": "1-2 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 10-12 years",
+   "products": 1,
+   "group": "10-11 years",
+   "note": "range 10-12Y spans two groups; mapped to lower bound"
+  },
+  {
+   "raw": "Girl 11-12T",
+   "products": 4,
+   "group": "11-12 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 12-14 years",
+   "products": 1,
+   "group": "12-14 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 2 Years",
+   "products": 3,
+   "group": "2-3 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 2 years",
+   "products": 1,
+   "group": "2-3 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 2-3 Years",
+   "products": 1,
+   "group": "2-3 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 2-3 years",
+   "products": 2,
+   "group": "2-3 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 3 Years",
+   "products": 3,
+   "group": "3-4 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 3-4 Years",
+   "products": 5,
+   "group": "3-4 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 3-4 years",
+   "products": 3,
+   "group": "3-4 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 3-4T",
+   "products": 4,
+   "group": "3-4 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 4 Years",
+   "products": 3,
+   "group": "4-5 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 4-5 Years",
+   "products": 6,
+   "group": "4-5 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 4-5 years",
+   "products": 1,
+   "group": "4-5 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 5 Years",
+   "products": 3,
+   "group": "5-6 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 5-6 Years",
+   "products": 6,
+   "group": "5-6 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 5-6 years",
+   "products": 3,
+   "group": "5-6 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 5-6T",
+   "products": 4,
+   "group": "5-6 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 6-7 Years",
+   "products": 9,
+   "group": "6-7 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 6-7 years",
+   "products": 2,
+   "group": "6-7 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 7-8 Years",
+   "products": 6,
+   "group": "7-8 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 7-8 years",
+   "products": 3,
+   "group": "7-8 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 7-8T",
+   "products": 4,
+   "group": "7-8 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 8 Years",
+   "products": 3,
+   "group": "8-9 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 8-9 Years",
+   "products": 6,
+   "group": "8-9 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 8-9 years",
+   "products": 2,
+   "group": "8-9 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 9-10 Years",
+   "products": 5,
+   "group": "9-10 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 9-10 years",
+   "products": 2,
+   "group": "9-10 years",
+   "note": ""
+  },
+  {
+   "raw": "Girl 9-10T",
+   "products": 4,
+   "group": "9-10 years",
+   "note": ""
+  },
+  {
+   "raw": "L",
+   "products": 1,
+   "group": "Mom L",
+   "note": "plain/edition-labelled adult size"
+  },
+  {
+   "raw": "L (Adult Extended Version)",
+   "products": 1,
+   "group": "Mom L",
+   "note": "plain/edition-labelled adult size"
+  },
+  {
+   "raw": "L (Adult Normal Version)",
+   "products": 1,
+   "group": "Mom L",
+   "note": "plain/edition-labelled adult size"
+  },
+  {
+   "raw": "M",
+   "products": 1,
+   "group": "Mom M",
+   "note": "plain/edition-labelled adult size"
+  },
+  {
+   "raw": "M (Adult Extended Edition)",
+   "products": 1,
+   "group": "Mom M",
+   "note": "plain/edition-labelled adult size"
+  },
+  {
+   "raw": "M (Adult Normal Version)",
+   "products": 1,
+   "group": "Mom M",
+   "note": "plain/edition-labelled adult size"
+  },
+  {
+   "raw": "Mother  L",
+   "products": 1,
+   "group": "Mom L",
+   "note": ""
+  },
+  {
+   "raw": "Mother 2XL",
+   "products": 68,
+   "group": "Mom 2XL",
+   "note": ""
+  },
+  {
+   "raw": "Mother 3XL",
+   "products": 31,
+   "group": "Mom 3XL",
+   "note": ""
+  },
+  {
+   "raw": "Mother 4XL",
+   "products": 7,
+   "group": "Mom 4XL",
+   "note": ""
+  },
+  {
+   "raw": "Mother L",
+   "products": 165,
+   "group": "Mom L",
+   "note": ""
+  },
+  {
+   "raw": "Mother L-XL",
+   "products": 1,
+   "group": "Mom L",
+   "note": "range; mapped to lower size"
+  },
+  {
+   "raw": "Mother M",
+   "products": 170,
+   "group": "Mom M",
+   "note": ""
+  },
+  {
+   "raw": "Mother One Size",
+   "products": 3,
+   "group": "Mom One Size",
+   "note": ""
+  },
+  {
+   "raw": "Mother S",
+   "products": 162,
+   "group": "Mom S",
+   "note": ""
+  },
+  {
+   "raw": "Mother XL",
+   "products": 138,
+   "group": "Mom XL",
+   "note": ""
+  },
+  {
+   "raw": "Mother XS",
+   "products": 2,
+   "group": "Mom XS",
+   "note": ""
+  },
+  {
+   "raw": "S",
+   "products": 1,
+   "group": "Mom S",
+   "note": "plain/edition-labelled adult size"
+  },
+  {
+   "raw": "S (Adult Extended Version)",
+   "products": 1,
+   "group": "Mom S",
+   "note": "plain/edition-labelled adult size"
+  },
+  {
+   "raw": "S (Adult Normal Version)",
+   "products": 1,
+   "group": "Mom S",
+   "note": "plain/edition-labelled adult size"
+  }
+ ],
+ "color_groups_order": [
+  "Black",
+  "White",
+  "Cream & Beige",
+  "Grey",
+  "Brown",
+  "Red",
+  "Pink",
+  "Orange",
+  "Yellow",
+  "Green",
+  "Blue",
+  "Purple",
+  "Multicolor & Print"
+ ],
+ "color_map": [
+  {
+   "raw": "Black",
+   "products": 43,
+   "group": "Black",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "black",
+   "products": 2,
+   "group": "Black",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Black and White",
+   "products": 1,
+   "group": "Black",
+   "confidence": "medium",
+   "basis": "name"
+  },
+  {
+   "raw": "Midnight Paint Splash",
+   "products": 1,
+   "group": "Black",
+   "confidence": "medium",
+   "basis": "image: black shirt with neon splash"
+  },
+  {
+   "raw": "Ladybug Dots",
+   "products": 1,
+   "group": "White",
+   "confidence": "low",
+   "basis": "image: white/pale-blue pajamas"
+  },
+  {
+   "raw": "Monochrome Palm",
+   "products": 1,
+   "group": "White",
+   "confidence": "medium",
+   "basis": "image: white shirts with black palms"
+  },
+  {
+   "raw": "White",
+   "products": 32,
+   "group": "White",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "white",
+   "products": 2,
+   "group": "White",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "White Graphic",
+   "products": 1,
+   "group": "White",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Autumn Woodland Bunny",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "image: cream pajamas; tags Beige/Cream"
+  },
+  {
+   "raw": "Bamboo Garden Panda Cream",
+   "products": 2,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Beige",
+   "products": 2,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Bird Chirping Cream",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Bunny Garden",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "image: cream pajamas"
+  },
+  {
+   "raw": "Cream",
+   "products": 3,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Eucalyptus Bunny Meadow",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "image: cream pajamas"
+  },
+  {
+   "raw": "Fairy Tale Messenger Cream",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Fluttering Butterflies",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "medium",
+   "basis": "image: cream pajamas with pink print"
+  },
+  {
+   "raw": "Good Night Song of the Sea",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "medium",
+   "basis": "image: cream pajamas with blue whales"
+  },
+  {
+   "raw": "Grape Vineyard Cream",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Grapevine Cream",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Ivory",
+   "products": 5,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Little Pear Cream",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Little Sheep Meadow Cream",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Meow Star Garden",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "image: cream pajamas"
+  },
+  {
+   "raw": "Polar Adventure Cream",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Red Panda",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "medium",
+   "basis": "image: cream pajamas with orange print (name says red)"
+  },
+  {
+   "raw": "Stripes",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "low",
+   "basis": "image: cream cardigans with navy stripes, red trim"
+  },
+  {
+   "raw": "Summer Puppies",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "image: cream pajamas"
+  },
+  {
+   "raw": "Vintage Cottage Floral",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "image: cream floral pajamas; tag Cream"
+  },
+  {
+   "raw": "Welsh Dinosaur Cream",
+   "products": 1,
+   "group": "Cream & Beige",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Gray",
+   "products": 3,
+   "group": "Grey",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Brown",
+   "products": 3,
+   "group": "Brown",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Leopard",
+   "products": 1,
+   "group": "Brown",
+   "confidence": "medium",
+   "basis": "image: leopard print swimsuit"
+  },
+  {
+   "raw": "Coral Blossom",
+   "products": 1,
+   "group": "Red",
+   "confidence": "medium",
+   "basis": "image: red/coral floral dress; name says coral"
+  },
+  {
+   "raw": "Red",
+   "products": 36,
+   "group": "Red",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Red Heart Raglan",
+   "products": 1,
+   "group": "Red",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Red Plaid",
+   "products": 1,
+   "group": "Red",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Red Stripe",
+   "products": 1,
+   "group": "Red",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Red Tropical Leaf",
+   "products": 1,
+   "group": "Red",
+   "confidence": "high",
+   "basis": "name + tag Red"
+  },
+  {
+   "raw": "As image",
+   "products": 1,
+   "group": "Pink",
+   "confidence": "low",
+   "basis": "image: hot-pink bikini; placeholder value, fix product data"
+  },
+  {
+   "raw": "Blush Floral",
+   "products": 1,
+   "group": "Pink",
+   "confidence": "high",
+   "basis": "name + tags Pink/White"
+  },
+  {
+   "raw": "Pastel Watercolor",
+   "products": 1,
+   "group": "Pink",
+   "confidence": "low",
+   "basis": "image: pink/peach watercolor dress"
+  },
+  {
+   "raw": "Peach Sweetheart",
+   "products": 1,
+   "group": "Pink",
+   "confidence": "low",
+   "basis": "image: cream top + pink shorts pajamas"
+  },
+  {
+   "raw": "Pink",
+   "products": 30,
+   "group": "Pink",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Apricot",
+   "products": 1,
+   "group": "Orange",
+   "confidence": "medium",
+   "basis": "name (apricot = light orange); verify image"
+  },
+  {
+   "raw": "Orange",
+   "products": 9,
+   "group": "Orange",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Yellow",
+   "products": 11,
+   "group": "Yellow",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "yellow",
+   "products": 1,
+   "group": "Yellow",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Green",
+   "products": 29,
+   "group": "Green",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "green",
+   "products": 1,
+   "group": "Green",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Green Botanical",
+   "products": 1,
+   "group": "Green",
+   "confidence": "high",
+   "basis": "name + tag Green"
+  },
+  {
+   "raw": "Light Green",
+   "products": 1,
+   "group": "Green",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Blue",
+   "products": 35,
+   "group": "Blue",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "blue",
+   "products": 3,
+   "group": "Blue",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Blue Apricot",
+   "products": 1,
+   "group": "Blue",
+   "confidence": "medium",
+   "basis": "name + tags Blue/Red"
+  },
+  {
+   "raw": "Blue Daisy",
+   "products": 1,
+   "group": "Blue",
+   "confidence": "high",
+   "basis": "name + tag Blue"
+  },
+  {
+   "raw": "Blue Monstera Citrus",
+   "products": 1,
+   "group": "Blue",
+   "confidence": "medium",
+   "basis": "name; tags Blue/Orange/White"
+  },
+  {
+   "raw": "Blue Stripe",
+   "products": 1,
+   "group": "Blue",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Coastal Banana Leaf",
+   "products": 1,
+   "group": "Blue",
+   "confidence": "medium",
+   "basis": "image: blue/white tropical shirts"
+  },
+  {
+   "raw": "Denim Blue",
+   "products": 1,
+   "group": "Blue",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Midnight Palm Blossom",
+   "products": 1,
+   "group": "Blue",
+   "confidence": "high",
+   "basis": "image: navy tropical shirt"
+  },
+  {
+   "raw": "Navy",
+   "products": 3,
+   "group": "Blue",
+   "confidence": "high",
+   "basis": "name (navy folded into Blue)"
+  },
+  {
+   "raw": "Ocean Blue Floral",
+   "products": 1,
+   "group": "Blue",
+   "confidence": "high",
+   "basis": "name + tag Blue"
+  },
+  {
+   "raw": "Sky Daisy Doodle",
+   "products": 1,
+   "group": "Blue",
+   "confidence": "medium",
+   "basis": "image: light-blue floral shirts"
+  },
+  {
+   "raw": "Striped",
+   "products": 1,
+   "group": "Blue",
+   "confidence": "low",
+   "basis": "image: navy/grey/white striped hoodies"
+  },
+  {
+   "raw": "Washed Denim",
+   "products": 1,
+   "group": "Blue",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Purple",
+   "products": 8,
+   "group": "Purple",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Bright Paint Splash",
+   "products": 1,
+   "group": "Multicolor & Print",
+   "confidence": "high",
+   "basis": "name + 5 colour tags"
+  },
+  {
+   "raw": "Main color",
+   "products": 2,
+   "group": "Multicolor & Print",
+   "confidence": "low",
+   "basis": "placeholder value on 2 products with different prints; fix product data"
+  },
+  {
+   "raw": "Multi Color",
+   "products": 14,
+   "group": "Multicolor & Print",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Multi-Color",
+   "products": 4,
+   "group": "Multicolor & Print",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Overall",
+   "products": 1,
+   "group": "Multicolor & Print",
+   "confidence": "low",
+   "basis": "NOT a colour: garment type stored in Color option; fix product data"
+  },
+  {
+   "raw": "Pastel Bloom",
+   "products": 1,
+   "group": "Multicolor & Print",
+   "confidence": "high",
+   "basis": "image: multicolour floral"
+  },
+  {
+   "raw": "Photo Color",
+   "products": 3,
+   "group": "Multicolor & Print",
+   "confidence": "low",
+   "basis": "placeholder value on 2 products (black/white animal, blue/white paisley); fix product data"
+  },
+  {
+   "raw": "Playful Cat Parade",
+   "products": 1,
+   "group": "Multicolor & Print",
+   "confidence": "high",
+   "basis": "image + Multicolor tag"
+  },
+  {
+   "raw": "Rainbow",
+   "products": 1,
+   "group": "Multicolor & Print",
+   "confidence": "high",
+   "basis": "name"
+  },
+  {
+   "raw": "Short",
+   "products": 1,
+   "group": "Multicolor & Print",
+   "confidence": "low",
+   "basis": "NOT a colour: garment type stored in Color option; fix product data"
+  },
+  {
+   "raw": "Sunlit Tropical Bloom",
+   "products": 1,
+   "group": "Multicolor & Print",
+   "confidence": "high",
+   "basis": "image: multicolour tropical"
+  },
+  {
+   "raw": "Sunshine Stripe",
+   "products": 1,
+   "group": "Multicolor & Print",
+   "confidence": "high",
+   "basis": "image: yellow/red/blue stripes"
+  },
+  {
+   "raw": "T-shirt",
+   "products": 1,
+   "group": "Multicolor & Print",
+   "confidence": "low",
+   "basis": "NOT a colour: garment type stored in Color option; fix product data"
+  }
+ ],
+ "type_map": [
+  {
+   "raw": "Dresses",
+   "products": 39,
+   "group": "Dresses"
+  },
+  {
+   "raw": "Set",
+   "products": 33,
+   "group": "Sets & Outfits"
+  },
+  {
+   "raw": "Sets",
+   "products": 6,
+   "group": "Sets & Outfits"
+  },
+  {
+   "raw": "Family Sets",
+   "products": 7,
+   "group": "Sets & Outfits"
+  },
+  {
+   "raw": "Family Matching Sets",
+   "products": 2,
+   "group": "Sets & Outfits"
+  },
+  {
+   "raw": "Tops",
+   "products": 18,
+   "group": "Tops & Tees"
+  },
+  {
+   "raw": "Family Tops",
+   "products": 18,
+   "group": "Tops & Tees"
+  },
+  {
+   "raw": "Daddy & Me T-Shirts",
+   "products": 34,
+   "group": "Tops & Tees"
+  },
+  {
+   "raw": "Sweaters",
+   "products": 6,
+   "group": "Sweaters"
+  },
+  {
+   "raw": "Family Sweaters",
+   "products": 18,
+   "group": "Sweaters"
+  },
+  {
+   "raw": "Family Sweaters ",
+   "products": 1,
+   "group": "Sweaters"
+  },
+  {
+   "raw": "Pajamas",
+   "products": 39,
+   "group": "Pajamas"
+  },
+  {
+   "raw": "Swimsuits",
+   "products": 35,
+   "group": "Swimwear"
+  },
+  {
+   "raw": "Trunks",
+   "products": 11,
+   "group": "Swimwear"
+  },
+  {
+   "raw": "Skirts",
+   "products": 1,
+   "group": "Skirts"
+  }
+ ],
+ "type_groups_order": [
+  "Dresses",
+  "Sets & Outfits",
+  "Tops & Tees",
+  "Sweaters",
+  "Pajamas",
+  "Swimwear",
+  "Skirts"
+ ],
+ "whos_matching": {
+  "recommended_source": "product metafield custom.category1 (single_line_text_field, definition gid://shopify/MetafieldDefinition/9244180577)",
+  "category1": {
+   "published_products": 268,
+   "missing": 0,
+   "values": {
+    "Mommy and Me": 107,
+    "Daddy and Me": 45,
+    "Family Matching": 116
+   },
+   "single_valued": true,
+   "active_unpublished_or_draft_missing": 0
+  },
+  "tags": {
+   "counts": {
+    "Mommy and Me": 140,
+    "Daddy and Me": 90,
+    "Family Matching": 116,
+    "Couples": 0,
+    "Maternity": 0
+   },
+   "products_with_multiple_audience_tags": 45,
+   "combos": {
+    "Mommy and Me": 107,
+    "Daddy and Me": 45,
+    "Family Matching": 71,
+    "Daddy and Me + Family Matching": 12,
+    "Mommy and Me + Daddy and Me + Family Matching": 33
+   }
+  },
+  "proposed_labels": {
+   "Mommy and Me": "Mommy & Me",
+   "Daddy and Me": "Daddy & Me",
+   "Family Matching": "Whole family",
+   "Couples": "Couples (0 products today; value will not appear)"
+  },
+  "couples_gap": "0 published products have category1=Couples or a Couples tag. /collections/couples holds 2 products via title rules, both category1=Family Matching.",
+  "where_it_helps_after_packet1": {
+   "family-pajamas": {
+    "Mommy and Me": 21,
+    "Family Matching": 17
+   },
+   "matching-family-vacation-outfits (today)": {
+    "Mommy and Me": 56,
+    "Family Matching": 48
+   },
+   "search and /collections/all": "all three values"
+  },
+  "single_audience_collections_after_packet1": [
+   "mommy-and-me",
+   "pajamas",
+   "dresses",
+   "swimsuits",
+   "tops",
+   "sweaters",
+   "matching-outfits",
+   "family-sets",
+   "family-tops",
+   "family-sweaters",
+   "daddy-me"
+  ]
+ },
+ "data_quality_followups_not_in_scope": [
+  "Color option holds non-colors on vibrant-rainbow-family-matching-outfits-* (Overall/Short/T-shirt)",
+  "Placeholder color values: \"As image\" (1), \"Main color\" (2), \"Photo Color\" (2)",
+  "custom.subcategory \"Family Sweaters \" has a trailing space (1 product)",
+  "Size value \"Mother  L\" has a double space (1 product)",
+  "3 products use option name \"size\" (lowercase)"
+ ]
+}

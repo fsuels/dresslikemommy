@@ -728,3 +728,311 @@ body.template-collection .facets__summary .icon-caret {
     font-size: 1.3rem;
   }
 }
+
+/* =======================================================================
+   Dress Like Mommy: collection browsing flow
+   Progress + "Show more" (JS-enhanced pagination), previous-page link,
+   and the filtered empty-results card. Numbered pagination remains the
+   no-JS fallback and is hidden once dlm-collection-load-more.js runs.
+   ======================================================================= */
+
+.dlm-collection-progress {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+  margin-block: 4.8rem 1.6rem;
+  padding-inline: 1.6rem;
+  text-align: center;
+}
+
+.dlm-collection-progress__text {
+  margin: 0;
+  color: var(--dlm-muted, #7a675c);
+  font-size: 1.4rem;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.dlm-collection-progress__track {
+  position: relative;
+  display: block;
+  inline-size: min(24rem, 100%);
+  block-size: 0.3rem;
+  border-radius: 99rem;
+  background: var(--dlm-line, rgba(43, 33, 28, 0.09));
+  overflow: hidden;
+}
+
+.dlm-collection-progress__fill {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  display: block;
+  inline-size: var(--dlm-progress, 0%);
+  max-inline-size: 100%;
+  border-radius: inherit;
+  background: var(--dlm-cognac, #8b4a24);
+  transition: inline-size 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dlm-collection-progress[hidden] {
+  display: none;
+}
+
+.dlm-collection-progress__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  box-sizing: border-box;
+  min-block-size: 4.8rem;
+  min-inline-size: min(22rem, 100%);
+  max-inline-size: 100%;
+  margin-block-start: 0.8rem;
+  padding: 1.2rem 3.2rem;
+  border: 0;
+  border-radius: 99rem;
+  background: var(--dlm-ink, #2b211c);
+  color: var(--dlm-cream, #fbf8f4);
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dlm-collection-progress__button:hover {
+  background: var(--dlm-cognac, #8b4a24);
+  color: var(--dlm-cream, #fbf8f4);
+  box-shadow: 0 0.6rem 1.8rem rgba(43, 33, 28, 0.14);
+}
+
+.dlm-collection-progress__button:active {
+  transform: translateY(1px);
+}
+
+.dlm-collection-progress__button:focus {
+  outline: none;
+}
+
+.dlm-collection-progress__button:focus-visible {
+  outline: 2px solid var(--dlm-cognac, #8b4a24);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+.dlm-collection-progress__spinner {
+  display: none;
+  inline-size: 1.6rem;
+  block-size: 1.6rem;
+  border: 2px solid currentColor;
+  border-inline-end-color: transparent;
+  border-radius: 50%;
+  animation: dlm-collection-spin 0.7s linear infinite;
+}
+
+.dlm-collection-progress.is-loading .dlm-collection-progress__button {
+  cursor: progress;
+  pointer-events: none;
+  opacity: 0.88;
+}
+
+.dlm-collection-progress.is-loading .dlm-collection-progress__spinner {
+  display: inline-block;
+}
+
+@keyframes dlm-collection-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Shown when a shopper lands on ?page=N (N > 1). */
+.dlm-collection-previous {
+  display: flex;
+  justify-content: center;
+  margin-block-end: 2.4rem;
+}
+
+.dlm-collection-previous__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  box-sizing: border-box;
+  min-block-size: 4.4rem;
+  padding: 1rem 2.2rem;
+  border: 1px solid var(--dlm-line-strong, rgba(43, 33, 28, 0.16));
+  border-radius: 99rem;
+  background: var(--dlm-cream, #fbf8f4);
+  color: var(--dlm-ink, #2b211c);
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.dlm-collection-previous__link:hover {
+  border-color: var(--dlm-ink, #2b211c);
+  background: var(--dlm-sand, #f4eee7);
+}
+
+.dlm-collection-previous__link:focus {
+  outline: none;
+}
+
+.dlm-collection-previous__link:focus-visible {
+  outline: 2px solid var(--dlm-cognac, #8b4a24);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+.dlm-collection-previous__link .icon {
+  inline-size: 1rem;
+  block-size: 0.6rem;
+  transform: rotate(90deg);
+}
+
+[dir='rtl'] .dlm-collection-previous__link .icon {
+  transform: rotate(-90deg);
+}
+
+/* Filtered empty results */
+.collection--empty .title-wrapper--dlm-empty {
+  margin-block: 4rem 6rem;
+}
+
+.dlm-collection-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  inline-size: 100%;
+  max-inline-size: 52rem;
+  margin-inline: auto;
+  padding: 4.8rem 2.4rem;
+  border: 1px solid var(--dlm-line, rgba(43, 33, 28, 0.09));
+  border-radius: 2rem;
+  background: var(--dlm-sand, #f4eee7);
+  text-align: center;
+}
+
+.dlm-collection-empty__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: 5.6rem;
+  block-size: 5.6rem;
+  margin-block-end: 2rem;
+  border-radius: 50%;
+  background: var(--dlm-cream, #fbf8f4);
+  color: var(--dlm-cognac, #8b4a24);
+  box-shadow: inset 0 0 0 1px var(--dlm-line, rgba(43, 33, 28, 0.09));
+}
+
+.dlm-collection-empty__icon .icon {
+  inline-size: 2.2rem;
+  block-size: 2.2rem;
+}
+
+.dlm-collection-empty__title {
+  margin: 0 0 0.8rem;
+  color: var(--dlm-ink, #2b211c);
+  font-family: var(--font-heading-family);
+  font-size: 2.4rem;
+  font-weight: 600;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.dlm-collection-empty__text {
+  margin: 0 0 2.4rem;
+  max-inline-size: 36rem;
+  color: var(--dlm-muted, #7a675c);
+  font-size: 1.5rem;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.dlm-collection-empty__action {
+  display: flex;
+  justify-content: center;
+  max-inline-size: 100%;
+}
+
+.dlm-collection-empty__button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  min-block-size: 4.8rem;
+  min-inline-size: min(20rem, 100%);
+  max-inline-size: 100%;
+  padding: 1.2rem 3.2rem;
+  border-radius: 99rem;
+  background: var(--dlm-ink, #2b211c);
+  color: var(--dlm-cream, #fbf8f4);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.dlm-collection-empty__button:hover {
+  background: var(--dlm-cognac, #8b4a24);
+  color: var(--dlm-cream, #fbf8f4);
+  box-shadow: 0 0.6rem 1.8rem rgba(43, 33, 28, 0.14);
+}
+
+.dlm-collection-empty__button:focus {
+  outline: none;
+}
+
+.dlm-collection-empty__button:focus-visible {
+  outline: 2px solid var(--dlm-cognac, #8b4a24);
+  outline-offset: 3px;
+  box-shadow: none;
+}
+
+@media screen and (max-width: 749px) {
+  .dlm-collection-progress {
+    margin-block-start: 3.6rem;
+  }
+
+  .dlm-collection-progress__button {
+    inline-size: 100%;
+    max-inline-size: 32rem;
+  }
+
+  .dlm-collection-empty {
+    padding: 3.6rem 2rem;
+    border-radius: 1.6rem;
+  }
+
+  .dlm-collection-empty__title {
+    font-size: 2rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dlm-collection-progress__fill,
+  .dlm-collection-progress__button,
+  .dlm-collection-previous__link,
+  .dlm-collection-empty__button {
+    transition: none;
+  }
+
+  .dlm-collection-progress__button:active {
+    transform: none;
+  }
+
+  .dlm-collection-progress__spinner {
+    animation-duration: 2.4s;
+  }
+}

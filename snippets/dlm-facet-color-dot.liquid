@@ -1,0 +1,82 @@
+{%- comment -%}
+  Renders a small decorative color dot for a color filter value.
+  Prefers Search & Discovery swatch data; otherwise matches a color word in the
+  (English or localized) value label. Unrecognised labels get a neutral dot.
+
+  Accepts:
+  - label: {String} the filter value label
+  - swatch: {Object} value.swatch (optional)
+
+  Usage:
+  {% render 'dlm-facet-color-dot', label: value.label, swatch: value.swatch %}
+{%- endcomment -%}
+{%- liquid
+  assign dot_bg = blank
+  assign dot_kind = 'neutral'
+
+  if swatch.image
+    assign dot_image_url = swatch.image | image_url: width: 48
+    assign dot_bg = 'url(' | append: dot_image_url | append: ') center / cover'
+    assign dot_kind = 'swatch'
+  elsif swatch.color
+    assign dot_bg = 'rgb(' | append: swatch.color.rgb | append: ')'
+    assign dot_kind = 'swatch'
+  endif
+
+  if dot_kind == 'neutral'
+    assign dot_raw = label | strip | downcase
+    assign dot_handle = dot_raw | handleize
+    assign dot_haystack = '-' | append: dot_handle | append: '-'
+
+    # Latin-script words match whole words of the handleized label, so "red" never matches "tiered".
+    # Order matters: specific shades come before base colors.
+    assign dot_latin = 'multi:multi,multicolor,multicolour,multi-color,multi-colour,multicolored,multicoloured,rainbow,tie-dye,colorful,colourful,arcoiris,arc-en-ciel,regenbogen,mehrfarbig,multicolore,multicolorido,veelkleurig,renkli;#1f2a4d:navy,navy-blue,marine,marino,dunkelblau,marinho,lacivert;#7a1f33:burgundy,wine,wine-red,maroon,bordeaux,burdeos,bordo,claret,merlot;#f7c59f:apricot,peach,albaricoque,abricot,aprikose,albicocca,damasco,pesca,melocoton,peche;#f27b6b:coral,corail,koralle,corallo;#f1d9d2:blush,nude,dusty-pink,dusty-rose,rosa-palo,powder-pink;#fffbf0:ivory,off-white,marfil,ivoire,elfenbein,avorio,marfim;#f5ecd7:cream,crema,creme,ecru,champagne;#e4d5bd:beige,sand,oatmeal,taupe,linen,bej;#c19a6b:khaki,camel,tan,caqui,kaki,cammello,camelo,caramel;#d4af37:gold,golden,oro,dorado,dore,goud,ouro,altin;#c0c3c7:silver,plata,argent,silber,argento,prata,zilver;#7b5234:brown,coffee,chocolate,mocha,marron,braun,marrone,marrom,bruin,cafe,kahverengi,coklat,nau;#1c1917:black,negro,noir,schwarz,nero,preto,zwart,svart,sort,musta,czarny,cerna,siyah,hitam,den;#ffffff:white,blanco,blanc,weiss,bianco,branco,wit,vit,hvid,valkoinen,bialy,bila,beyaz,putih,trang;#d23c8a:fuchsia,magenta,hot-pink,fucsia;#e9a6b8:pink,rosa,rose,roze,pembe,merah-muda,hong;#c9302c:red,rojo,rouge,rot,rosso,vermelho,rood,rod,punainen,czerwony,cervena,kirmizi,merah,scarlet,crimson,cherry;#b5522b:rust,terracotta,brick;#d6a02a:mustard,ochre,ocre,senf,senape,mostaza,moutarde;#ef8a33:orange,naranja,arancione,laranja,oranje,turuncu;#f3d046:yellow,amarillo,jaune,gelb,giallo,amarelo,geel,gul,keltainen,zolty,sari,kuning,vang;#7c8a4a:olive,oliva,army;#a8b89c:sage,salbei,salvia;#b6e3cf:mint,menta,minze,menthe;#2b8c8c:teal,turquoise,turquesa,turkis,turchese,aqua,cyan;#9cc3e6:light-blue,sky-blue,baby-blue,sky,celeste,hellblau,bleu-clair,azzurro;#3f6fc1:blue,azul,bleu,blau,blu,blauw,bla,sininen,niebieski,mavi,biru,xanh,denim;#4f9a5b:green,verde,vert,grun,gruen,groen,gron,vihrea,zielony,yesil,hijau,emerald;#c3b3e2:lavender,lilac,lila,lavanda,lavande,lavendel,lilas;#7b4fa0:purple,violet,morado,violeta,viola,roxo,paars,mor,ungu,tim,plum,mauve;#4a4a4a:charcoal,anthracite,antracite,graphite;#9b9b9b:grey,gray,gris,grau,grigio,cinza,grijs,gra,harmaa,szary,gri,abu-abu,xam,heather' | split: ';'
+
+    for dot_entry in dot_latin
+      assign dot_parts = dot_entry | split: ':'
+      assign dot_words = dot_parts[1] | split: ','
+      for dot_word in dot_words
+        assign dot_needle = '-' | append: dot_word | append: '-'
+        if dot_haystack contains dot_needle
+          assign dot_kind = 'color'
+          assign dot_bg = dot_parts[0]
+          break
+        endif
+      endfor
+      if dot_kind != 'neutral'
+        break
+      endif
+    endfor
+
+    # Non-Latin scripts have no reliable word boundaries after handleize, so match substrings.
+    if dot_kind == 'neutral'
+      assign dot_script = '#1f2a4d:ネイビー,네이비;#e4d5bd:ベージュ,베이지,米色,بيج,беж,μπεζ;#1c1917:黑,ブラック,블랙,أسود,שחור,черн,μαύρ,ดำ,काला;#ffffff:白,ホワイト,화이트,أبيض,לבן,бел,λευκ,ขาว,सफ़ेद,सफेद;#e9a6b8:粉,ピンク,핑크,وردي,ורוד,розов,ροζ,ชมพู,गुलाबी;#c9302c:红,紅,レッド,레드,أحمر,אדום,красн,κόκκιν,แดง,लाल;#3f6fc1:蓝,藍,ブルー,블루,أزرق,כחול,син,голуб,μπλε,ฟ้า,น้ำเงิน,नीला;#4f9a5b:绿,綠,グリーン,그린,أخضر,ירוק,зелен,πράσιν,เขียว,हरा;#f3d046:黄,黃,イエロー,옐로우,أصفر,צהוב,желт,κίτριν,เหลือง,पीला;#7b4fa0:紫,パープル,퍼플,بنفسجي,סגול,фиолет,μωβ,ม่วง,बैंगनी;#9b9b9b:灰,グレー,그레이,رمادي,אפור,сер,γκρι,เทา,ग्रे;#7b5234:棕,咖啡,ブラウン,브라운,بني,חום,коричн,καφέ,น้ำตาล,भूरा' | split: ';'
+      for dot_entry in dot_script
+        assign dot_parts = dot_entry | split: ':'
+        assign dot_words = dot_parts[1] | split: ','
+        for dot_word in dot_words
+          if dot_raw contains dot_word
+            assign dot_kind = 'color'
+            assign dot_bg = dot_parts[0]
+            break
+          endif
+        endfor
+        if dot_kind != 'neutral'
+          break
+        endif
+      endfor
+    endif
+
+    if dot_bg == 'multi'
+      assign dot_kind = 'multi'
+      assign dot_bg = blank
+    endif
+  endif
+-%}
+<span
+  class="dlm-facet-dot dlm-facet-dot--{{ dot_kind }}"
+  {% if dot_bg != blank %}
+    style="--dlm-dot: {{ dot_bg }};"
+  {% endif %}
+  aria-hidden="true"
+></span>

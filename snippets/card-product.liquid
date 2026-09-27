@@ -44,7 +44,8 @@
       assign card_public_brand = 'dresslikemommy.com'
     endif
     # The card shows the lowest price ("From ..."), so the percentage is the discount of the
-    # cheapest available variant, i.e. of the exact price shown. If that variant has no
+    # cheapest available variant, i.e. of the exact price shown (dlm-card-price strikes that
+    # same variant's compare-at price). If that variant has no
     # compare-at price but others do, the badge falls back to the translated "Sale" label.
     assign card_price_is_on_sale = false
     assign card_discount_percent = 0
@@ -218,7 +219,7 @@
               </a>
             </h3>
           </div>
-          <div class="card__badge {{ settings.badge_position }}">
+          <div class="card__badge dlm-card-badge-slot {{ settings.badge_position }}">
             {%- if card_product.available == false -%}
               <span
                 id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
@@ -229,7 +230,7 @@
             {%- elsif card_price_is_on_sale and card_product.available -%}
               <span
                 id="NoMediaStandardBadge-{{ section_id }}-{{ card_product.id }}"
-                class="badge badge--bottom-left badge--sale color-{{ settings.sale_badge_color_scheme }}"
+                class="dlm-card-badge dlm-card-badge--sale"
               >
                 {%- if card_discount_percent > 0 -%}
                   <span class="visually-hidden">{{ 'products.product.on_sale' | t }}</span><bdi dir="ltr">-{{ card_discount_percent }}%</bdi>
@@ -243,6 +244,17 @@
       </div>
       <div class="card__content">
         <div class="card__information">
+          {%- unless horizontal_class -%}
+            {%- capture card_audience_label -%}
+              {%- render 'dlm-card-audience', product: card_product -%}
+            {%- endcapture -%}
+            {%- assign card_audience_label = card_audience_label | strip -%}
+            {%- if card_audience_label != blank -%}
+              <p class="dlm-card-eyebrow">{{ card_audience_label }}</p>
+            {%- else -%}
+              <p class="dlm-card-eyebrow dlm-card-eyebrow--empty" aria-hidden="true"></p>
+            {%- endif -%}
+          {%- endunless -%}
           <h3
             class="card__heading{% if card_product.featured_media or settings.card_style == 'standard' %} h5{% endif %}"
             {% if card_product.featured_media or settings.card_style == 'card' %}
@@ -302,7 +314,10 @@
               </p>
             {%- endif -%}
 
-            {% render 'price', product: card_product, price_class: '', show_compare_at_price: false %}
+            {% render 'dlm-card-price', product: card_product, variant: card_cheapest_variant %}
+            {%- unless horizontal_class -%}
+              {% render 'dlm-card-swatches', product: card_product %}
+            {%- endunless -%}
             {%- if card_product.quantity_price_breaks_configured? -%}
               {% if card_product.variants.size == 1 and quick_add == 'bulk' %}
                 {% liquid
@@ -623,7 +638,7 @@
           {%- elsif card_price_is_on_sale and card_product.available -%}
             <span
               id="Badge-{{ section_id }}-{{ card_product.id }}"
-              class="badge badge--bottom-left badge--sale color-{{ settings.sale_badge_color_scheme }}"
+              class="dlm-card-badge dlm-card-badge--sale"
             >
               {%- if card_discount_percent > 0 -%}
                 <span class="visually-hidden">{{ 'products.product.on_sale' | t }}</span><bdi dir="ltr">-{{ card_discount_percent }}%</bdi>

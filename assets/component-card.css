@@ -615,8 +615,9 @@
    theme-inline-body-static-05.css (`.card .price-item--sale`, `.card .badge`,
    `.card__heading a`) and template-collection.css; drop them if those rules are removed. */
 
-/* #9 Product card titles: up to 3 lines (was 2 on collection grids, 1 on mobile elsewhere).
-   Reserving 3 lines keeps title, price and card heights aligned across each grid row. */
+/* #9 Card titles: up to 3 lines (was 2 on collection grids, 1 on mobile elsewhere).
+   Reserving 3 lines keeps title, price and card heights aligned across each grid row.
+   Product cards narrow this to 2 lines in the 2026-09-27 block below. */
 .card-wrapper .card:not(.card--horizontal) .card__content .card__information .card__heading a.full-unstyled-link {
   display: -webkit-box !important;
   -webkit-box-orient: vertical;
@@ -630,20 +631,275 @@
   min-height: 3lh;
 }
 
-/* #8 Card prices: the price uses the normal text color; a genuine discount is signalled only
-   by the small badge (rendered when compare_at_price > price, see card-product.liquid). */
+/* #8 Card prices (snippets/price.liquid, now only the placeholder card): normal text color.
+   Product cards render snippets/dlm-card-price.liquid, styled in the 2026-09-27 block. */
 .card-wrapper .card-information .price .price-item--sale,
 .card-wrapper .card-information .price .price-item--regular {
   color: rgb(var(--color-foreground)) !important;
 }
 
-/* #8 Sale badge: muted chip showing the real percentage instead of a loud black "SALE". */
-.card-wrapper .card .card__badge .badge.badge--sale {
-  background-color: rgba(255, 255, 255, 0.92) !important;
-  color: rgb(26, 26, 26) !important;
-  border: 1px solid rgba(26, 26, 26, 0.12);
-  font-size: 1.1rem !important;
-  font-weight: 600 !important;
+/* 2026-09-27 product card upgrade --------------------------------------------------------
+   Audience eyebrow, 2-line title, sale price + struck compare-at price, discount pill and
+   color preview (snippets/card-product.liquid + snippets/dlm-card-*.liquid).
+   theme-inline-body-static-04/05.css and template-collection.css load AFTER this file and
+   use !important, so these selectors are deliberately more specific and use !important
+   only where one of those legacy rules would otherwise win. Horizontal cards (product page
+   complementary list) keep their compact layout. */
+
+.card-wrapper.product-card-wrapper {
+  --dlm-card-radius: 1.2rem;
+}
+
+/* Frame: borderless card, no lift; the image frame carries a hairline and a soft hover shadow. */
+.card-wrapper.product-card-wrapper > .card:not(.card--horizontal),
+.card-wrapper.product-card-wrapper:hover > .card:not(.card--horizontal) {
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+  transform: none !important;
+}
+
+.card-wrapper.product-card-wrapper > .card.card--media:not(.card--horizontal) > .card__inner {
+  border-radius: var(--dlm-card-radius);
+  overflow: hidden;
+  background: var(--dlm-sand, #f4eee7);
+  box-shadow: 0 0 0 1px var(--dlm-line, rgba(43, 33, 28, 0.09));
+  transition: box-shadow 0.35s var(--dlm-ease, ease);
+}
+
+.card-wrapper.product-card-wrapper > .card:not(.card--horizontal) .card__inner .card__media,
+.card-wrapper.product-card-wrapper > .card:not(.card--horizontal) .card__inner .card__media .media {
+  border-radius: var(--dlm-card-radius) !important;
+}
+
+@media (hover: hover) {
+  .card-wrapper.product-card-wrapper:hover > .card.card--media:not(.card--horizontal) > .card__inner {
+    box-shadow: 0 0 0 1px var(--dlm-line-strong, rgba(43, 33, 28, 0.16)),
+      0 1.4rem 2.8rem -1.8rem rgba(43, 33, 28, 0.38);
+  }
+}
+
+/* Image zoom capped at 1.03 (legacy rules zoomed to 1.06); crossfade for the hover image. */
+.card-wrapper.product-card-wrapper .card:not(.card--horizontal) .card__inner .card__media .media img {
+  transition: transform 0.6s var(--dlm-ease, ease), opacity 0.35s ease !important;
+}
+
+.card-wrapper.product-card-wrapper:hover .card:not(.card--horizontal) .card__inner .card__media .media img {
+  transform: scale(1.03) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-wrapper.product-card-wrapper .card .card__inner .card__media .media img,
+  .card-wrapper.product-card-wrapper:hover .card .card__inner .card__media .media img {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .card-wrapper.product-card-wrapper > .card.card--media:not(.card--horizontal) > .card__inner {
+    transition: none;
+  }
+}
+
+/* Text block spacing (legacy rules padded both the content and the information box,
+   which squeezed titles into 3-4 lines on a 2-column phone grid). */
+.card-wrapper.product-card-wrapper > .card:not(.card--horizontal) > .card__content {
+  margin-top: 0 !important;
+  padding: 1rem 0.2rem 0.4rem !important;
+}
+
+.card-wrapper.product-card-wrapper > .card:not(.card--horizontal) > .card__content > .card__information {
+  padding: 0 !important;
+}
+
+/* Audience eyebrow (Mommy & Me / Daddy & Me / Family Matching). An empty eyebrow still
+   reserves its line so titles and prices line up across a row. */
+.card-wrapper.product-card-wrapper .card__information .dlm-card-eyebrow {
+  display: block;
+  margin: 0 0 0.35rem;
+  min-height: 1.3em;
+  overflow: hidden;
+  color: var(--dlm-muted, #7a675c);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  text-align: var(--text-alignment, center);
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* Title: exactly two lines reserved and clamped, so every card in a row aligns. */
+.card-wrapper.product-card-wrapper
+  .card:not(.card--horizontal)
+  .card__content
+  .card__information
+  .card__heading
+  a.full-unstyled-link {
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  min-height: 2.7em;
+  max-height: 2.7em;
+  color: var(--dlm-ink, #2b211c) !important;
+  font-size: 1.3rem !important;
+  font-weight: 500 !important;
   letter-spacing: 0 !important;
-  text-transform: none !important;
+  line-height: 1.35 !important;
+  overflow-wrap: break-word;
+}
+
+@media (hover: hover) {
+  .card-wrapper.product-card-wrapper:hover
+    .card:not(.card--horizontal)
+    .card__content
+    .card__information
+    .card__heading
+    a.full-unstyled-link {
+    text-decoration: underline !important;
+    text-decoration-color: var(--dlm-line-strong, rgba(43, 33, 28, 0.16)) !important;
+    text-decoration-thickness: 1px !important;
+    text-underline-offset: 0.3rem;
+  }
+}
+
+/* Price: shown price in ink/semi-bold, "From" wording softer, compare-at struck and muted. */
+.card-wrapper.product-card-wrapper .dlm-card-price {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: var(--text-alignment, center);
+  column-gap: 0.6rem;
+  row-gap: 0.1rem;
+  max-width: 100%;
+  padding-top: 0.5rem;
+  color: var(--dlm-ink-soft, #54443b);
+  font-size: 1.35rem;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+
+.card-wrapper.product-card-wrapper .dlm-card-price__current {
+  font-weight: 400;
+}
+
+.card-wrapper.product-card-wrapper .dlm-card-price__amount {
+  color: var(--dlm-ink, #2b211c);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.card-wrapper.product-card-wrapper .dlm-card-price__compare {
+  color: var(--dlm-muted, #7a675c);
+  font-size: 0.86em;
+  font-weight: 400;
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+  white-space: nowrap;
+}
+
+.card-wrapper.product-card-wrapper .card--horizontal .dlm-card-price {
+  justify-content: flex-start;
+  padding-top: 0.3rem;
+  font-size: 1.3rem;
+}
+
+/* Discount pill at the image's top-start corner (cognac on cream text: ~7:1 contrast).
+   The inner content box is left unpositioned so the pill anchors to the image, not the text block. */
+.card-wrapper.product-card-wrapper .card__inner > .card__content {
+  position: static;
+}
+
+.card-wrapper.product-card-wrapper .card__inner .card__badge.dlm-card-badge-slot {
+  position: absolute;
+  inset-block-start: 0.8rem;
+  inset-inline-start: 0.8rem;
+  z-index: 2;
+  margin: 0 !important;
+  pointer-events: none;
+}
+
+.card-wrapper.product-card-wrapper .dlm-card-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.35rem 0.8rem;
+  border-radius: 99rem;
+  background: var(--dlm-cognac, #8b4a24);
+  box-shadow: 0 0.1rem 0.3rem rgba(43, 33, 28, 0.18);
+  color: var(--dlm-cream, #fbf8f4);
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  white-space: nowrap;
+}
+
+/* Color preview: up to 4 round thumbnails + "+N". Decorative; the card itself is the link. */
+.card-wrapper.product-card-wrapper .dlm-card-swatches {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: var(--text-alignment, center);
+  gap: 0.5rem;
+  max-width: 100%;
+  padding-top: 0.8rem;
+}
+
+.card-wrapper.product-card-wrapper .dlm-card-swatch {
+  display: block;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0.2rem;
+  border-radius: 50%;
+  background: var(--dlm-cream, #fbf8f4);
+  box-shadow: 0 0 0 1px var(--dlm-line-strong, rgba(43, 33, 28, 0.16));
+}
+
+.card-wrapper.product-card-wrapper .dlm-card-swatch img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.card-wrapper.product-card-wrapper .dlm-card-swatches__more {
+  color: var(--dlm-muted, #7a675c);
+  font-size: 1.1rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+@media screen and (max-width: 749px) {
+  .card-wrapper.product-card-wrapper .dlm-card-swatch {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+}
+
+@media screen and (min-width: 750px) {
+  .card-wrapper.product-card-wrapper > .card:not(.card--horizontal) > .card__content {
+    padding-top: 1.2rem !important;
+  }
+
+  .card-wrapper.product-card-wrapper
+    .card:not(.card--horizontal)
+    .card__content
+    .card__information
+    .card__heading
+    a.full-unstyled-link {
+    font-size: 1.45rem !important;
+  }
+
+  .card-wrapper.product-card-wrapper .dlm-card-price {
+    font-size: 1.45rem;
+  }
+
+  .card-wrapper.product-card-wrapper .card__inner .card__badge.dlm-card-badge-slot {
+    inset-block-start: 1rem;
+    inset-inline-start: 1rem;
+  }
 }

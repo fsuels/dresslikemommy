@@ -1245,3 +1245,1244 @@ input.mobile-facets__checkbox {
     padding: 0 1rem 1rem;
   }
 }
+
+/* ==========================================================================
+   DLM facets: filter + sort presentation layer (snippets/facets.liquid)
+
+   Everything is scoped to `.dlm-facets` (the facets container). Selectors use
+   `:is(.dlm-facets, #dlm-facets-hi)` to borrow ID-level specificity: older
+   global stylesheets (theme-inline-body-static-05.css, template-collection.css)
+   force 11px uppercase grey text and extra divider lines onto every facet with
+   `!important`, and this is the only way to win without editing them. The
+   `#dlm-facets-hi` id is never rendered. Typography declarations therefore
+   need `!important` too; layout declarations do not.
+   ========================================================================== */
+
+:is(.dlm-facets, #dlm-facets-hi) {
+  --dlmf-ink: var(--dlm-ink, #2b211c);
+  --dlmf-ink-soft: var(--dlm-ink-soft, #54443b);
+  --dlmf-muted: var(--dlm-muted, #7a675c);
+  --dlmf-accent: var(--dlm-cognac, #8b4a24);
+  --dlmf-accent-deep: var(--dlm-cognac-deep, #6f3a1b);
+  --dlmf-blush: var(--dlm-blush, #f1d9d2);
+  --dlmf-cream: var(--dlm-cream, #fbf8f4);
+  --dlmf-sand: var(--dlm-sand, #f4eee7);
+  --dlmf-line: var(--dlm-line, rgba(43, 33, 28, 0.09));
+  --dlmf-line-strong: var(--dlm-line-strong, rgba(43, 33, 28, 0.16));
+  --dlmf-box: rgba(43, 33, 28, 0.34);
+  --dlmf-surface: #fff;
+  --dlmf-ease: var(--dlm-ease, cubic-bezier(0.22, 1, 0.36, 1));
+  --dlmf-fast: 180ms;
+  --dlmf-medium: 240ms;
+  --dlmf-shadow: 0 12px 32px rgba(43, 33, 28, 0.12);
+  --dlmf-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 10'%3E%3Cpath d='M1.5 5.2 4.4 8 10.5 1.8' fill='none' stroke='%23fbf8f4' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+
+  font-family: var(--font-body-family);
+  font-size: 1.4rem;
+  line-height: 1.4;
+  letter-spacing: normal;
+  color: var(--dlmf-ink);
+  border-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Neutralise the legacy uppercase/11px rules; children then inherit from real containers. */
+:is(.dlm-facets, #dlm-facets-hi) :is(span, label, summary, h2, p, a, select, option) {
+  font-family: inherit;
+  font-size: inherit !important;
+  font-weight: inherit !important;
+  letter-spacing: inherit !important;
+  line-height: inherit !important;
+  text-transform: none !important;
+  color: inherit !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .active-facets,
+:is(.dlm-facets, #dlm-facets-hi) .facets__wrapper {
+  border-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Shared focus ring */
+:is(.dlm-facets, #dlm-facets-hi) :is(summary, a, button, select, input, [tabindex]):focus-visible {
+  outline: 0.2rem solid var(--dlmf-accent);
+  outline-offset: 0.2rem;
+  box-shadow: none;
+}
+
+/* ---------- Desktop toolbar (horizontal) ---------- */
+@media screen and (min-width: 750px) {
+  :is(.dlm-facets, #dlm-facets-hi).dlm-facets--horizontal {
+    display: block;
+    padding-top: 0.4rem;
+  }
+
+  :is(.dlm-facets, #dlm-facets-hi).dlm-facets--horizontal > .facets {
+    border-bottom: 0.1rem solid var(--dlmf-line);
+    margin-bottom: 2.4rem;
+  }
+
+  :is(.dlm-facets, #dlm-facets-hi).dlm-facets--horizontal .facets__form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto auto;
+    grid-template-areas:
+      'hint hint hint'
+      'filters count sort'
+      'active active active';
+    column-gap: 1.6rem;
+    align-items: center;
+    margin: 0;
+    padding-bottom: 1.6rem;
+  }
+
+  :is(.dlm-facets, #dlm-facets-hi).dlm-facets--horizontal .facets__helper-text {
+    grid-area: hint;
+    margin: 0 0 1.2rem;
+    font-size: 1.3rem !important;
+    color: var(--dlmf-muted) !important;
+  }
+
+  :is(.dlm-facets, #dlm-facets-hi).dlm-facets--horizontal .facets__wrapper {
+    grid-area: filters;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8rem;
+    min-width: 0;
+  }
+
+  :is(.dlm-facets, #dlm-facets-hi).dlm-facets--horizontal .facets__form > .product-count {
+    grid-area: count;
+    justify-self: end;
+    align-self: center;
+    padding-inline-end: 0.4rem;
+  }
+
+  :is(.dlm-facets, #dlm-facets-hi).dlm-facets--horizontal .facets__form > .sorting {
+    grid-area: sort;
+  }
+
+  :is(.dlm-facets, #dlm-facets-hi).dlm-facets--horizontal .active-facets-desktop {
+    grid-area: active;
+  }
+}
+
+/* The "Filter:" heading stays as the focus target / aside label but is visually hidden. */
+:is(.dlm-facets, #dlm-facets-hi) .facets__wrapper > .facets__heading {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Filter pills ---------- */
+:is(.dlm-facets, #dlm-facets-hi) .facets__disclosure {
+  margin: 0;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__disclosure > .facets__summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 4rem;
+  min-width: 0;
+  margin: 0;
+  padding: 0 1.2rem 0 1.6rem;
+  padding-inline: 1.6rem 1.2rem;
+  border: 0.1rem solid var(--dlmf-line-strong);
+  border-radius: 99.9rem;
+  background-color: var(--dlmf-surface);
+  font-size: 1.4rem !important;
+  font-weight: 500 !important;
+  color: var(--dlmf-ink) !important;
+  transition: border-color var(--dlmf-fast) var(--dlmf-ease), background-color var(--dlmf-fast) var(--dlmf-ease),
+    color var(--dlmf-fast) var(--dlmf-ease);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__disclosure > .facets__summary > div {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__summary:hover .facets__summary-label {
+  text-decoration: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__disclosure > .facets__summary:hover,
+:is(.dlm-facets, #dlm-facets-hi) .facets__disclosure[open] > .facets__summary {
+  border-color: var(--dlmf-ink);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__disclosure > .facets__summary.dlm-facets__summary--active {
+  border-color: var(--dlmf-ink);
+  background-color: var(--dlmf-ink);
+  color: var(--dlmf-cream) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__disclosure > .facets__summary.dlm-facets__summary--active:hover {
+  background-color: var(--dlmf-ink-soft);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__pill-count {
+  font-weight: 600 !important;
+  font-variant-numeric: tabular-nums;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__pill-count::before {
+  content: '\00b7';
+  margin-inline-end: 0.6rem;
+  opacity: 0.7;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__summary .icon-caret {
+  position: static;
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 0.6rem;
+  margin-inline-start: 0.2rem;
+  transition: transform var(--dlmf-medium) var(--dlmf-ease);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__disclosure[open] > .facets__summary .icon-caret {
+  transform: rotate(180deg);
+}
+
+/* ---------- Dropdown panels ---------- */
+:is(.dlm-facets, #dlm-facets-hi) .facets__display {
+  top: calc(100% + 0.8rem);
+  right: auto;
+  left: auto;
+  inset-inline-start: 0;
+  width: 32rem;
+  max-width: calc(100vw - 4rem);
+  max-height: min(60vh, 42rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0;
+  border: 0.1rem solid var(--dlmf-line);
+  border-radius: 1.6rem;
+  background-color: var(--dlmf-surface);
+  box-shadow: var(--dlmf-shadow);
+  scrollbar-width: thin;
+  scrollbar-color: var(--dlmf-line-strong) transparent;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__disclosure[open] .facets__display {
+  animation: dlmFacetsPanelIn var(--dlmf-medium) var(--dlmf-ease);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__display.dlm-facets__panel--chips {
+  width: 38rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__display.dlm-facets__panel--colors {
+  width: 44rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__display.dlm-facets__panel--price {
+  width: 34rem;
+}
+
+@keyframes dlmFacetsPanelIn {
+  from {
+    opacity: 0;
+    transform: translateY(-0.4rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__header {
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1.4rem 1.8rem;
+  border-bottom: 0.1rem solid var(--dlmf-line);
+  background-color: var(--dlmf-surface);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__selected,
+:is(.dlm-facets, #dlm-facets-hi) .facets__and-helptext {
+  font-size: 1.3rem !important;
+  color: var(--dlmf-muted) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__reset {
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+  color: var(--dlmf-accent) !important;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  white-space: nowrap;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__reset:hover {
+  color: var(--dlmf-accent-deep) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__list {
+  padding: 0.8rem;
+}
+
+/* ---------- Values: list rows with a real (restyled) checkbox ---------- */
+:is(.dlm-facets, #dlm-facets-hi) .facets-layout-list--text .facets__item {
+  display: flex;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets-layout-list--text .facet-checkbox,
+:is(.dlm-facets, #dlm-facets-hi) .facets-layout-list--text .mobile-facets__label {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border-radius: 1rem;
+  font-size: 1.4rem !important;
+  color: var(--dlmf-ink) !important;
+  transition: background-color var(--dlmf-fast) var(--dlmf-ease);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets-layout-list--text .facet-checkbox:hover {
+  background-color: var(--dlmf-sand);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets-layout-list--text :is(.facet-checkbox, .mobile-facets__label) > svg,
+:is(.dlm-facets, #dlm-facets-hi) .facets-layout-list--text .mobile-facets__highlight {
+  display: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets-layout-list--text input[type='checkbox'] {
+  position: relative;
+  inset: auto;
+  top: auto;
+  left: auto;
+  z-index: auto;
+  flex: 0 0 1.8rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  margin: 0;
+  border: 0.15rem solid var(--dlmf-box);
+  border-radius: 0.5rem;
+  background: var(--dlmf-surface) center / 1.1rem no-repeat;
+  opacity: 1;
+  cursor: pointer;
+  -webkit-appearance: none;
+  appearance: none;
+  transition: background-color var(--dlmf-fast) var(--dlmf-ease), border-color var(--dlmf-fast) var(--dlmf-ease);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets-layout-list--text input[type='checkbox']:checked {
+  border-color: var(--dlmf-ink);
+  background-color: var(--dlmf-ink);
+  background-image: var(--dlmf-check);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets-layout-list--text .facet-checkbox__text {
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  gap: 0.8rem;
+  min-width: 0;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facet-checkbox__text-label {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-decoration: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__label.active .facet-checkbox__text-label {
+  font-weight: 600 !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__value-count {
+  flex: 0 0 auto;
+  margin-inline-start: auto;
+  font-size: 1.2rem !important;
+  color: var(--dlmf-muted) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Two columns keep long color lists short on desktop */
+:is(.dlm-facets, #dlm-facets-hi) .facets__display .dlm-facet-list--colors {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 0.4rem;
+}
+
+/* ---------- Values: size chips ---------- */
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facet-list--chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  padding: 1.4rem 1.6rem 1.6rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facet-list--chips :is(.facets__item, .mobile-facets__item) {
+  display: block;
+  width: auto;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facet-list--chips :is(.facet-checkbox, .mobile-facets__label) {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: auto;
+  min-width: 5.2rem;
+  min-height: 4rem;
+  padding: 0.6rem 1.4rem;
+  border: 0.1rem solid var(--dlmf-line-strong);
+  border-radius: 99.9rem;
+  background-color: var(--dlmf-surface);
+  font-size: 1.3rem !important;
+  font-weight: 500 !important;
+  color: var(--dlmf-ink) !important;
+  transition: border-color var(--dlmf-fast) var(--dlmf-ease), background-color var(--dlmf-fast) var(--dlmf-ease),
+    color var(--dlmf-fast) var(--dlmf-ease);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facet-list--chips :is(.facet-checkbox, .mobile-facets__label):hover {
+  border-color: var(--dlmf-ink);
+  background-color: var(--dlmf-surface);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facet-list--chips :is(.facet-checkbox, .mobile-facets__label):is(.active, :has(input:checked)) {
+  border-color: var(--dlmf-ink);
+  background-color: var(--dlmf-ink);
+  color: var(--dlmf-cream) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facet-list--chips :is(.facet-checkbox, .mobile-facets__label):is(:has(input:focus-visible)) {
+  outline: 0.2rem solid var(--dlmf-accent);
+  outline-offset: 0.2rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facet-list--chips input[type='checkbox'] {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  flex: none;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  border: 0;
+  border-radius: inherit;
+  background: none;
+  opacity: 0;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facet-list--chips .facet-checkbox__text {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facet-list--chips .facet-checkbox__text-label {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  font-weight: inherit !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facet-list--chips .dlm-facets__value-count {
+  margin: 0;
+  font-size: 1.1rem !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facet-list--chips :is(.active, :has(input:checked)) .dlm-facets__value-count {
+  color: rgba(251, 248, 244, 0.72) !important;
+}
+
+/* ---------- Color dots ---------- */
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facet-dot {
+  flex: 0 0 auto;
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  background: var(--dlm-dot, var(--dlmf-sand));
+  box-shadow: inset 0 0 0 0.1rem rgba(43, 33, 28, 0.18);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facet-dot--neutral {
+  background: linear-gradient(135deg, #efe4d6 0 50%, #d8c6b1 50% 100%);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facet-dot--multi {
+  background: conic-gradient(#e0605d, #f0a04b, #f3d046, #6cbf6a, #3f8fd1, #8a5cc2, #e0605d);
+}
+
+/* ---------- Active filter chips ---------- */
+:is(.dlm-facets, #dlm-facets-hi) .active-facets {
+  align-items: center;
+  gap: 0.8rem;
+  margin: 0;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .active-facets-desktop > facet-remove {
+  margin-top: 1.2rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .active-facets__button {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) span.active-facets__button-inner {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  min-width: 0;
+  min-height: 3.4rem;
+  padding: 0.4rem 1rem 0.4rem 1.2rem;
+  padding-inline: 1.2rem 1rem;
+  border-radius: 99.9rem;
+  background-color: var(--dlmf-sand);
+  box-shadow: none;
+  font-size: 1.3rem !important;
+  font-weight: 500 !important;
+  color: var(--dlmf-ink) !important;
+  white-space: nowrap;
+  transition: background-color var(--dlmf-fast) var(--dlmf-ease);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .active-facets__button:hover .active-facets__button-inner,
+:is(.dlm-facets, #dlm-facets-hi) .active-facets__button--light:hover .active-facets__button-inner {
+  background-color: var(--dlmf-blush);
+  box-shadow: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) a.active-facets__button:focus-visible {
+  outline: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) a.active-facets__button:focus-visible .active-facets__button-inner,
+:is(.dlm-facets, #dlm-facets-hi) a.active-facets__button.focused .active-facets__button-inner {
+  outline: 0.2rem solid var(--dlmf-accent);
+  outline-offset: 0.2rem;
+  box-shadow: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .active-facets__button .dlm-facet-dot {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .active-facets__button svg {
+  width: 1.4rem;
+  height: 1.4rem;
+  margin: 0;
+  opacity: 0.7;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .active-facets__button-wrapper {
+  padding: 0;
+  margin: 0;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .active-facets__button-remove {
+  display: inline-flex;
+  align-items: center;
+  min-height: 3.4rem;
+  padding: 0 0.4rem;
+  margin: 0;
+  font-size: 1.3rem !important;
+  font-weight: 600 !important;
+  color: var(--dlmf-accent) !important;
+  text-decoration: underline;
+  text-underline-offset: 0.3rem;
+  white-space: nowrap;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .active-facets__button-remove :is(span) {
+  font-size: inherit !important;
+}
+
+/* ---------- Sort pill (desktop) ---------- */
+:is(.dlm-facets, #dlm-facets-hi) .facet-filters {
+  align-items: center;
+  padding: 0;
+  letter-spacing: normal;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facet-filters__field[data-dlm-sort] {
+  position: relative;
+  display: inline-flex;
+  flex-grow: 0;
+  align-items: center;
+  gap: 0.4rem;
+  min-height: 4rem;
+  padding: 0 1.2rem 0 1.6rem;
+  padding-inline: 1.6rem 1.2rem;
+  border: 0.1rem solid var(--dlmf-line-strong);
+  border-radius: 99.9rem;
+  background-color: var(--dlmf-surface);
+  transition: border-color var(--dlmf-fast) var(--dlmf-ease);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facet-filters__field[data-dlm-sort]:hover {
+  border-color: var(--dlmf-ink);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facet-filters__field[data-dlm-sort]:is(:has(select:focus-visible)) {
+  outline: 0.2rem solid var(--dlmf-accent);
+  outline-offset: 0.2rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facet-filters__field[data-dlm-sort] .facet-filters__label {
+  margin: 0;
+  font-size: 1.4rem !important;
+  font-weight: 400 !important;
+  color: var(--dlmf-muted) !important;
+  white-space: nowrap;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facet-filters__field[data-dlm-sort] .select {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: auto;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__sort-current {
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  color: var(--dlmf-ink) !important;
+  white-space: nowrap;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facet-filters__field[data-dlm-sort] .select__select {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: inherit;
+  opacity: 0;
+  cursor: pointer;
+  font-size: 1.6rem !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facet-filters__field[data-dlm-sort] .select__select:focus-visible {
+  outline: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facet-filters__field[data-dlm-sort] .icon-caret {
+  position: static;
+  flex: 0 0 auto;
+  width: 1rem;
+  height: 0.6rem;
+}
+
+/* Product count */
+:is(.dlm-facets, #dlm-facets-hi) .product-count__text {
+  font-size: 1.3rem !important;
+  color: var(--dlmf-muted) !important;
+  white-space: nowrap;
+}
+
+/* Dawn hides the count text while loading; show the spinner in its place. */
+:is(.dlm-facets, #dlm-facets-hi) .product-count .loading__spinner {
+  inset-inline-start: 0;
+  inset-inline-end: auto;
+  padding-top: 0;
+}
+
+/* ---------- Price range ---------- */
+:is(.dlm-facets, #dlm-facets-hi) .facets__price {
+  --inputs-radius: 1rem;
+  --inputs-radius-outset: 1.1rem;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1.6rem 1.8rem 2rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__price .field + .field-currency {
+  margin: 0;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__price .field-currency {
+  margin: 0;
+  color: var(--dlmf-muted) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__price .field__input {
+  font-size: 1.6rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__price .field__label {
+  font-size: 1.3rem !important;
+  color: var(--dlmf-muted) !important;
+}
+
+/* ---------- Vertical variant: keep it tidy with the new typography ---------- */
+:is(.dlm-facets, #dlm-facets-hi) .facets__disclosure-vertical .facets__summary {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: var(--dlmf-ink) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__disclosure-vertical .facets__summary .icon-caret {
+  position: absolute;
+  right: auto;
+  left: auto;
+  inset-inline-end: 0;
+  top: calc(50% - 0.3rem);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets__heading--vertical {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+}
+
+/* ---------- Mobile toolbar ---------- */
+@media screen and (max-width: 749px) {
+  :is(.dlm-facets, #dlm-facets-hi) {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.8rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem !important;
+  }
+
+  :is(.dlm-facets, #dlm-facets-hi) > .mobile-facets__wrapper {
+    order: 1;
+    flex: 1 1 calc(50% - 0.4rem);
+    min-width: 0;
+    margin: 0;
+  }
+
+  :is(.dlm-facets, #dlm-facets-hi) > .dlm-facets__quicksort {
+    order: 2;
+    flex: 1 1 calc(50% - 0.4rem);
+    min-width: 0;
+  }
+
+  :is(.dlm-facets, #dlm-facets-hi).dlm-facets--sort-only > .mobile-facets__wrapper {
+    display: none;
+  }
+
+  :is(.dlm-facets, #dlm-facets-hi) > .product-count {
+    order: 3;
+    flex: 0 0 auto;
+    text-align: start;
+  }
+
+  :is(.dlm-facets, #dlm-facets-hi) > .active-facets-mobile {
+    order: 4;
+    flex: 1 1 0;
+    flex-wrap: nowrap;
+    min-width: 0;
+    gap: 0.6rem;
+    margin: 0;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  :is(.dlm-facets, #dlm-facets-hi) > .active-facets-mobile::-webkit-scrollbar {
+    display: none;
+  }
+
+  :is(.dlm-facets, #dlm-facets-hi) > .active-facets-mobile > facet-remove {
+    flex: 0 0 auto;
+  }
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__open-wrapper {
+  display: flex;
+  border-radius: 99.9rem;
+}
+
+@media screen and (max-width: 749px) {
+  :is(.dlm-facets, #dlm-facets-hi) .mobile-facets__disclosure,
+  :is(.dlm-facets, #dlm-facets-hi) .mobile-facets__open-wrapper {
+    width: 100%;
+  }
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__open,
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__quicksort-face {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  width: 100%;
+  min-height: 4.6rem;
+  padding: 0 2rem;
+  border: 0.1rem solid var(--dlmf-line-strong);
+  border-radius: 99.9rem;
+  background-color: var(--dlmf-surface);
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  color: var(--dlmf-ink) !important;
+  transition: border-color var(--dlmf-fast) var(--dlmf-ease);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__open > * + * {
+  margin-left: 0;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__open:hover .mobile-facets__open-label {
+  text-decoration: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__open.dlm-facets__open--active {
+  border-color: var(--dlmf-ink);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__open svg,
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__sort-icon {
+  flex: 0 0 auto;
+  width: 2rem;
+  height: 2rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__open-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  height: 2rem;
+  padding: 0 0.6rem;
+  border-radius: 99.9rem;
+  background-color: var(--dlmf-ink);
+  font-size: 1.2rem !important;
+  font-weight: 700 !important;
+  line-height: 1 !important;
+  color: var(--dlmf-cream) !important;
+  font-variant-numeric: tabular-nums;
+}
+
+/* The quick sort needs facets.js; keep its space reserved (no layout shift) but hidden until JS is ready. */
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__quicksort {
+  position: relative;
+  display: flex;
+  visibility: hidden;
+}
+
+:is(.dlm-facets, #dlm-facets-hi).dlm-facets--js .dlm-facets__quicksort {
+  visibility: visible;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__quicksort-face {
+  pointer-events: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__quicksort-select {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 99.9rem;
+  opacity: 0;
+  cursor: pointer;
+  font-size: 1.6rem !important;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__quicksort:hover .dlm-facets__quicksort-face,
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__open-wrapper:hover .mobile-facets__open {
+  border-color: var(--dlmf-ink);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__quicksort:is(:has(select:focus-visible)) .dlm-facets__quicksort-face {
+  outline: 0.2rem solid var(--dlmf-accent);
+  outline-offset: 0.2rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__quicksort-select:focus-visible {
+  outline: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__open-wrapper:focus-visible {
+  outline: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__open-wrapper:focus-visible .mobile-facets__open {
+  outline: 0.2rem solid var(--dlmf-accent);
+  outline-offset: 0.2rem;
+}
+
+/* Sticky mobile toolbar: facets.js adds .dlm-facets-host to the <aside>. The header is not sticky. */
+@media screen and (max-width: 749px) {
+  .dlm-facets-host {
+    position: sticky;
+    top: 0;
+    background-color: rgb(var(--color-background));
+    transition: box-shadow 200ms var(--dlm-ease, ease);
+  }
+
+  .dlm-facets-host.is-stuck {
+    z-index: 3;
+    box-shadow: 0 0.1rem 0 var(--dlm-line, rgba(43, 33, 28, 0.09)), 0 1rem 2rem -1.6rem rgba(43, 33, 28, 0.45);
+  }
+
+  .dlm-facets-host.is-drawer-open {
+    z-index: 101;
+  }
+}
+
+/* ---------- Mobile drawer ---------- */
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets {
+  background-color: rgba(43, 33, 28, 0.42);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__inner {
+  width: calc(100% - 3.2rem);
+  max-width: 42rem;
+  margin-left: 0;
+  margin-right: 0;
+  margin-inline-start: auto;
+  border: 0;
+  border-start-start-radius: 2rem;
+  border-end-start-radius: 2rem;
+  background: var(--dlmf-surface);
+  box-shadow: 0 0 3.2rem rgba(43, 33, 28, 0.18);
+  filter: none;
+  transition: transform var(--dlmf-medium) var(--dlmf-ease);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__header {
+  padding: 2rem 6.4rem 1.6rem 2.4rem;
+  padding-inline: 2.4rem 6.4rem;
+  border-bottom: 0.1rem solid var(--dlmf-line);
+  background: var(--dlmf-surface);
+  text-align: start;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__heading {
+  font-size: 2rem !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  color: var(--dlmf-ink) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__count {
+  margin-top: 0.4rem;
+  font-size: 1.3rem !important;
+  color: var(--dlmf-muted) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__close {
+  top: 1.4rem;
+  right: auto;
+  left: auto;
+  inset-inline-end: 1.2rem;
+  width: 4.4rem;
+  height: 4.4rem;
+  border-radius: 50%;
+  background-color: var(--dlmf-sand);
+  color: var(--dlmf-ink);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__close svg {
+  width: 1.8rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__main {
+  padding: 0.4rem 0 0;
+  background: var(--dlmf-surface);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__main > .mobile-facets__details > .mobile-facets__summary {
+  display: flex;
+  align-items: center;
+  min-height: 5.8rem;
+  margin: 0 2.4rem;
+  padding: 1.2rem 0;
+  border-bottom: 0.1rem solid var(--dlmf-line);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__summary > div {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__row-label {
+  flex: 0 0 auto;
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: var(--dlmf-ink) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__summary-meta {
+  flex: 1 1 auto;
+  min-width: 0;
+  overflow: hidden;
+  text-align: end;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1.3rem !important;
+  color: var(--dlmf-accent) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__arrow {
+  display: flex;
+  flex: 0 0 auto;
+  margin: 0;
+  color: var(--dlmf-muted) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__summary .icon-arrow {
+  width: 1.4rem;
+  margin: 0;
+}
+
+/* Sort row, first in the drawer */
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__sort {
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__sort label {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: var(--dlmf-ink) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__sort .select {
+  position: relative;
+  width: auto;
+  max-width: 62%;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__sort .select__select {
+  width: 100%;
+  min-height: 4.2rem;
+  margin: 0;
+  padding: 0 3.4rem 0 1.4rem;
+  padding-inline: 1.4rem 3.4rem;
+  overflow: hidden;
+  border: 0.1rem solid var(--dlmf-line-strong);
+  border-radius: 99.9rem;
+  background-color: var(--dlmf-surface);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1.6rem !important;
+  font-weight: 500 !important;
+  color: var(--dlmf-ink) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__sort .select__select:focus-visible {
+  outline: 0.2rem solid var(--dlmf-accent);
+  outline-offset: 0.2rem;
+  box-shadow: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__sort .select .icon-caret {
+  right: 1.4rem;
+  inset-inline-end: 1.4rem;
+  inset-inline-start: auto;
+}
+
+/* Submenu (one filter) */
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__submenu {
+  background: var(--dlmf-surface);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__close-button {
+  width: 100%;
+  margin: 0;
+  padding: 1.8rem 2.4rem;
+  border-bottom: 0.1rem solid var(--dlmf-line);
+  font-size: 1.7rem;
+  font-weight: 600;
+  color: var(--dlmf-ink);
+  align-items: center;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__close-button .icon-arrow {
+  width: 1.5rem;
+  margin-right: 0;
+  margin-inline-end: 1.2rem;
+}
+
+/* RTL: the drawer sits at inline-end, so it and its submenus slide in from the left. */
+[dir='rtl'] :is(.dlm-facets, #dlm-facets-hi) .disclosure-has-popup:not(.menu-opening) .mobile-facets__inner {
+  transform: translateX(-105vw);
+}
+
+[dir='rtl'] :is(.dlm-facets, #dlm-facets-hi) details:not(.menu-opening) > .mobile-facets__submenu {
+  transform: translateX(-100%);
+}
+
+[dir='rtl'] :is(.dlm-facets, #dlm-facets-hi) .mobile-facets__arrow svg {
+  transform: scaleX(-1);
+}
+
+[dir='rtl'] :is(.dlm-facets, #dlm-facets-hi) .mobile-facets__close-button .icon-arrow {
+  transform: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__info {
+  margin: 1.6rem 0 0;
+  padding: 0 2.4rem;
+  font-size: 1.3rem !important;
+  color: var(--dlmf-muted) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__list {
+  flex: 1 1 auto;
+  padding: 1rem 1.2rem 2rem;
+  overscroll-behavior: contain;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__list.dlm-facet-list--chips {
+  padding: 1.6rem 2.4rem 2.4rem;
+  align-content: flex-start;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets-layout-list--text .mobile-facets__label {
+  min-height: 4.8rem;
+  padding: 1rem 1.2rem;
+  font-size: 1.5rem !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__list.dlm-facet-list--chips .mobile-facets__label {
+  min-height: 4.4rem;
+  min-width: 5.6rem;
+  padding: 0.6rem 1.6rem;
+  font-size: 1.4rem !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .facets-layout-list--text input.mobile-facets__checkbox {
+  flex-basis: 2rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__list.dlm-facet-list--chips input.mobile-facets__checkbox {
+  width: 100%;
+  height: 100%;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__list .dlm-facet-dot {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+/* Sticky footer: Remove all / Clear (secondary) + Apply with live count (primary) */
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__footer {
+  align-items: stretch;
+  gap: 1rem;
+  padding: 1.2rem 1.6rem;
+  padding-bottom: calc(1.2rem + env(safe-area-inset-bottom, 0px));
+  border-top: 0.1rem solid var(--dlmf-line);
+  background: var(--dlmf-surface);
+  box-shadow: 0 -0.8rem 2.4rem rgba(43, 33, 28, 0.06);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__footer > * {
+  width: auto;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__footer > * + * {
+  margin-left: 0;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__clear-wrapper {
+  flex: 0 0 38%;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 5.2rem;
+  padding: 0 1.2rem;
+  border: 0.1rem solid var(--dlmf-line-strong);
+  border-radius: 99.9rem;
+  background-color: var(--dlmf-surface);
+  text-align: center;
+  text-decoration: none;
+  font-size: 1.4rem !important;
+  font-weight: 600 !important;
+  color: var(--dlmf-ink) !important;
+  transition: border-color var(--dlmf-fast) var(--dlmf-ease);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__clear:hover {
+  border-color: var(--dlmf-ink);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__apply {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1rem;
+  min-width: 0;
+  min-height: 5.2rem;
+  padding: 0.6rem 1.6rem;
+  border: 0;
+  border-radius: 99.9rem;
+  background-color: var(--dlmf-ink);
+  box-shadow: none;
+  color: var(--dlmf-cream);
+  letter-spacing: normal;
+  transition: background-color var(--dlmf-fast) var(--dlmf-ease);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__apply::before,
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__apply::after {
+  display: none;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__apply:hover {
+  background-color: var(--dlmf-accent-deep);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__apply-label {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  line-height: 1.2 !important;
+  color: var(--dlmf-cream) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__apply-count {
+  font-size: 1.2rem !important;
+  line-height: 1.2 !important;
+  color: rgba(251, 248, 244, 0.78) !important;
+  transition: opacity var(--dlmf-fast) var(--dlmf-ease);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-facets__apply-count.is-loading {
+  opacity: 0.4;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(.dlm-facets, #dlm-facets-hi) *,
+  .dlm-facets-host {
+    transition: none !important;
+    animation: none !important;
+  }
+}

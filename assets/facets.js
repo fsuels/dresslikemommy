@@ -45,6 +45,7 @@ class FacetFiltersForm extends HTMLElement {
     if (countContainerDesktop) {
       countContainerDesktop.classList.add('loading');
     }
+    FacetFiltersForm.toggleLiveCountLoading(true);
 
     sections.forEach((section) => {
       const url = `${window.location.pathname}?section_id=${section.section}&${searchParams}`;
@@ -106,6 +107,13 @@ class FacetFiltersForm extends HTMLElement {
       '.facets-container .loading__spinner, facet-filters-form .loading__spinner'
     );
     loadingSpinners.forEach((spinner) => spinner.classList.add('hidden'));
+    FacetFiltersForm.toggleLiveCountLoading(false);
+  }
+
+  static toggleLiveCountLoading(isLoading) {
+    document.querySelectorAll('.dlm-facets-live-count').forEach((element) => {
+      element.classList.toggle('is-loading', isLoading);
+    });
   }
 
   static renderFilters(html, event) {
@@ -174,6 +182,24 @@ class FacetFiltersForm extends HTMLElement {
         if (newElementToActivate && !isTextInput) newElementToActivate.focus();
       }
     }
+
+    FacetFiltersForm.syncSortControls();
+  }
+
+  // Keeps the mobile quick-sort proxy and the visible sort names in step with the real sort selects.
+  static syncSortControls() {
+    const sourceSelect = document.getElementById('SortBy-mobile') || document.getElementById('SortBy');
+    document.querySelectorAll('[data-dlm-sort-proxy]').forEach((proxy) => {
+      if (sourceSelect && proxy.value !== sourceSelect.value) proxy.value = sourceSelect.value;
+    });
+    document.querySelectorAll('[data-dlm-sort]').forEach(FacetFiltersForm.updateSortName);
+  }
+
+  static updateSortName(wrapper) {
+    const select = wrapper.querySelector('select');
+    const nameElement = wrapper.querySelector('.dlm-facets__sort-current');
+    if (!select || !nameElement || select.selectedIndex < 0) return;
+    nameElement.textContent = select.options[select.selectedIndex].textContent.trim();
   }
 
   static renderActiveFacets(html) {
@@ -195,6 +221,18 @@ class FacetFiltersForm extends HTMLElement {
       if (!html.querySelector(selector)) return;
       document.querySelector(selector).innerHTML = html.querySelector(selector).innerHTML;
     });
+
+    // The Filter button's active state lives on the element itself, not its innerHTML.
+    const openButtonSource = html.querySelector('.mobile-facets__open');
+    const openButtonTarget = document.querySelector('.mobile-facets__open');
+    if (openButtonSource && openButtonTarget) openButtonTarget.className = openButtonSource.className;
+
+    const liveCount = html.querySelector('.dlm-facets-live-count');
+    if (liveCount) {
+      document.querySelectorAll('.dlm-facets-live-count').forEach((element) => {
+        element.innerHTML = liveCount.innerHTML;
+      });
+    }
 
     document.getElementById('FacetFiltersFormMobile').closest('menu-drawer').bindEvents();
   }
@@ -235,6 +273,13 @@ class FacetFiltersForm extends HTMLElement {
 
     if (sourceFacetsList && targetFacetsList) {
       targetFacetsList.outerHTML = sourceFacetsList.outerHTML;
+    }
+
+    const targetSummaryMeta = target.querySelector('.dlm-facets__summary-meta');
+    const sourceSummaryMeta = source.querySelector('.dlm-facets__summary-meta');
+
+    if (sourceSummaryMeta && targetSummaryMeta) {
+      targetSummaryMeta.innerHTML = sourceSummaryMeta.innerHTML;
     }
   }
 
@@ -363,6 +408,102 @@ class FacetRemove extends HTMLElement {
 }
 
 customElements.define('facet-remove', FacetRemove);
+
+(() => {
+  // DLM facets: mobile quick sort, visible sort names and the sticky mobile toolbar.
+  const MOBILE_QUERY = window.matchMedia('(max-width: 749px)');
+
+  function onSortChange(event) {
+    const select = event.target;
+    if (!(select instanceof HTMLSelectElement)) return;
+
+    const wrapper = select.closest('[data-dlm-sort]');
+    if (wrapper) FacetFiltersForm.updateSortName(wrapper);
+
+    if (!select.matches('[data-dlm-sort-proxy]')) return;
+
+    const mobileSort = document.getElementById('SortBy-mobile');
+    const mobileForm = document.getElementById('FacetFiltersFormMobile');
+    if (!mobileSort || !mobileForm) return;
+
+    mobileSort.value = select.value;
+    FacetFiltersForm.renderPage(new URLSearchParams(new FormData(mobileForm)).toString());
+  }
+
+  function initStickyToolbar() {
+    const container = document.querySelector('.facets-container.dlm-facets');
+    const host = container && container.closest('.facets-wrapper');
+    if (!host || host.dataset.dlmFacetsHost) return;
+
+    host.dataset.dlmFacetsHost = 'true';
+    host.classList.add('dlm-facets-host');
+
+    let frame;
+    const updateStuck = () => {
+      frame = undefined;
+      const isStuck = MOBILE_QUERY.matches && window.scrollY > 0 && host.getBoundingClientRect().top <= 1;
+      host.classList.toggle('is-stuck', isStuck);
+    };
+    const requestUpdate = () => {
+      if (!frame) frame = requestAnimationFrame(updateStuck);
+    };
+
+    window.addEventListener('scroll', requestUpdate, { passive: true });
+    window.addEventListener('resize', requestUpdate, { passive: true });
+    requestUpdate();
+
+    // The drawer lives inside the sticky toolbar's stacking context, so lift the toolbar while it is open.
+    document.addEventListener(
+      'toggle',
+      (event) => {
+        const details = event.target;
+        if (!(details instanceof HTMLDetailsElement)) return;
+        if (!details.classList.contains('mobile-facets__disclosure') || !host.contains(details)) return;
+        host.classList.toggle('is-drawer-open', details.open);
+      },
+      true
+    );
+  }
+
+  // Desktop pill panels: close on Escape from anywhere and on outside click (Dawn's overlay stays as is).
+  function closePanel(details, restoreFocus) {
+    const summary = details.querySelector('summary');
+    details.removeAttribute('open');
+    if (!summary) return;
+    summary.setAttribute('aria-expanded', 'false');
+    if (restoreFocus) summary.focus();
+  }
+
+  function openPanels() {
+    return document.querySelectorAll('.dlm-facets details.facets__disclosure[open]');
+  }
+
+  document.addEventListener('keyup', (event) => {
+    if (event.key !== 'Escape') return;
+    openPanels().forEach((details) => {
+      const active = document.activeElement;
+      closePanel(details, !active || active === document.body || details.contains(active));
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    const target = event.target;
+    // Ignore clicks whose target was re-rendered away (e.g. a Reset link inside the panel).
+    if (!(target instanceof Node) || !target.isConnected) return;
+    openPanels().forEach((details) => {
+      if (!details.contains(target)) closePanel(details, false);
+    });
+  });
+
+  document.querySelectorAll('.dlm-facets').forEach((container) => container.classList.add('dlm-facets--js'));
+  document.addEventListener('change', onSortChange);
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStickyToolbar, { once: true });
+  } else {
+    initStickyToolbar();
+  }
+})();
 
 (() => {
   const SECTION_ID = 'main-collection-product-grid';
