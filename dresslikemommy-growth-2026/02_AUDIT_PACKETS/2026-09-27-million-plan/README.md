@@ -78,6 +78,7 @@ Logins: the owner's logged-in Chrome test profile (Google Ads, Merchant, GA4, Se
    - `lanes/seo.md`.
 4. **Retention:** email automations, then a Christmas campaign to past customers (10k+ customer records). Needs the owner's yes. `lanes/email.md`.
 5. **Catalog:** about 470 active designs are needed for $1M (257 today). Rounds: Christmas → winter pajamas / nightgowns → spring 2027 dresses and jumpsuits (the largest season). `lanes/merch.md`.
+5b. **Free distribution ($0 channels):** all 270 active products already sit on all 10 sales channels, so the gap is reach, not publishing. Ranked free levers, UTM links and a ready-to-post kit (owner network post, 12 Pinterest pins, social posts, creator codes, gift-guide pitches): `lanes/free-distribution.md`.
 6. **Paid, only after 1–3:**
    - Validate purchase tracking with one real test order.
    - Microsoft audience-network opt-out.
@@ -91,6 +92,9 @@ Logins: the owner's logged-in Chrome test profile (Google Ads, Merchant, GA4, Se
 - Approve ad changes: Microsoft audience opt-out; any budget change.
 - Place one test order for tracking validation.
 - Republish the Gift Card (Q4 was 31% of 2025 sales). Declined for now.
+- Fulfil or mark fulfilled paid orders `#9572` (Sep 24) and `#9560` (Aug 16), both UNFULFILLED on 2026-09-27.
+- Approve creator-code terms (10% off with $120 minimum + 10% commission), `lanes/free-distribution.md` §4.5.
+- Post the personal-network announcement, `lanes/free-distribution.md` §4.1 (no approval needed; 10 minutes).
 - Export Search Console data (16 months of performance plus indexing) for the SEO diagnosis.
 
 ## 6. Waiting on an external clock (dated agent actions)

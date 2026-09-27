@@ -55077,3 +55077,24 @@ Done:
 - Storefront: navy-sprig $19.99 was $30.99 (US and /de); jingle-bells $32.99 was $37.99; `/collections/mommy-and-me` shows 60 sale badges again.
 - Not changed: the 27 newer products keep their compare-at; the listing prompt's `price * 1.15` compare-at rule is unchanged.
 - Durable: compare-at policy is an owner-accepted business risk. Do not remove or alter compare-at prices without a new explicit owner request. The theme sale chip shows the cheapest available variant's real compare-at %.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-free-distribution-lane
+
+- task_entities: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/lanes/free-distribution.md`; orders `#9572`, `#9560`; channels `gid://shopify/Channel/121919832161` (Microsoft Copilot), `gid://shopify/Channel/136587837537` (Meta AI)
+- task_stage: HANDOFF (local plan + ready-to-post kit; no external writes)
+- next_action_id: owner yes on email C-1 / `read_markets` / creator-code terms
+
+Owner request (2026-09-27, chat): "No one is buying… do marketing and distribution for free, get me customers."
+
+Read-only LIVE_VERIFIED (Shopify Admin API / ShopifyQL):
+- All 270 active products are published to all 10 sales channels (Online Store, Buy Button, POS, Google & YouTube, Facebook & Instagram, Pinterest, Microsoft, TikTok, Microsoft Copilot, Meta AI). Channel coverage is not the gap.
+- 30-day sessions by referrer: direct 4,838 (86 carts, 5 orders), search 1,629 (80 carts, 4 orders), social 71 (3 carts, 0 orders), paid 5.
+- 15 orders Aug 15 – Sep 27. `#9572` (Sep 24) and `#9560` (Aug 16) are PAID + UNFULFILLED.
+- `WELCOME10` and `REVIEW10` exist and are active (0 uses).
+- Plan is Basic. Shopify Collabs needs the Shopify plan or higher and is not taking new creators (help.shopify.com / apps.shopify.com, checked 2026-09-27), so the kit uses per-creator discount codes.
+- Shopify Messaging: 10,000 free marketing emails/month; abandoned-checkout automations always free. C-1 to ~5,218 subscribed buyers costs $0.
+- All 14 links in the kit returned HTTP 200. The "Order by Dec 8 for estimated Christmas arrival" wording is rendered by `assets/dlm-holiday-order-by.js`.
+
+Built: `lanes/free-distribution.md`: diagnosis, 8 ranked free levers, UTM links, owner network post, 12 Pinterest pins, IG/FB/TikTok posts, Facebook-group post, creator-code program (10% off with $120 minimum + 10% commission ≈ 37% net, ESTIMATE from the BuckyDrop profit study), gift-guide pitch, success/kill criteria.
+Not done: nothing posted, sent, created or spent. Creator codes wait on owner approval of the commission terms (money).
+Rollback: delete the lane file; no live state changed.

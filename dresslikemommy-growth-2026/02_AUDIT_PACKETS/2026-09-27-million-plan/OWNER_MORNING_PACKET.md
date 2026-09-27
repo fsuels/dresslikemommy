@@ -14,6 +14,8 @@ Everything that doesn't need you keeps running without you. Tonight that means c
 ## Urgent operations
 
 - **Order #9572** ($95.36, 4 raglan tees, placed Sep 24) is paid but **unfulfilled after 3 days**. Please place it with BuckyDrop; late shipping hurts reviews and repeat buying.
+- **Order #9560** ($36.98, placed Aug 16) also still reads PAID + UNFULFILLED (re-read 2026-09-27). If it shipped outside Shopify, mark it fulfilled with tracking; if not, place it now.
+- **Free marketing kit ready** (`lanes/free-distribution.md`): a 10-minute personal-network post you can make today (§4.1), plus the free levers that need your yes. Email C-1 costs $0 (inside Shopify Messaging's 10,000 free emails/month).
 
 ## Decisions
 
