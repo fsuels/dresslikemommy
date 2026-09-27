@@ -55278,3 +55278,17 @@ Owner, in chat: "keep looking for new opportunities of new products also for cou
   - Before-rules: scratchpad `couples_rules_before.json`.
   - Rollback: remove the 2 rules.
 - **Handoff:** the queue was routed to session [57a715], which holds the 1688 slots: pet sizes (live by Oct 15), then couples pajamas (by Dec 5), then the calendar.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-empty-reviews-block-hidden-live
+
+Owner request (Claude Code chat, session "Website visual improvements" [f7baa5]): coordinate with the Honest reviews and social proof claim, then hide the empty "Be the first to write a review" block on zero-review PDPs (#4 of the same-day look audit); push to main and verify live on desktop and mobile.
+
+- Coordination: I messaged the claim owner "Website improvements" [7d441c], which replied that there is no conflict. Its held `dlm-review-note` section renders only at `reviews.rating_count > 0`, the same moment this rule un-hides the widget.
+- Finding: live PDPs use the Judge.me legacy widget (`data-empty-state="empty_widget"`). Its `jdgm-write-rev-link` is rendered with `display:none`, so the empty block showed only "CUSTOMER REVIEWS / Be the first to write a review" (177px desktop) with no action. The note in `snippets/pdp-review-social-proof.liquid` ("lower-page reviews section is intentionally untouched so customers can still leave reviews") no longer matches the live widget. Reviews arrive through the Judge.me request email.
+- IMPLEMENTED in `c99f371`: one rule in `assets/theme-inline-body-static-04.css` hides `.shopify-section:has(.jdgm-review-widget .jdgm-rev-widg[data-number-of-reviews='0']):not(:has(:target))`. Browsers without `:has()` still show the old block (graceful fallback).
+- VERIFIED:
+  - Pre-release live-DOM harness with the local stylesheet swapped in.
+  - Release: the GitHub sync dropped the push. `--apply` was avoided because another session's `assets/dlm-header.css` and `sections/announcement-bar.liquid` were also pending, so only this file was upserted (MD5 match).
+  - LIVE_VERIFIED on Ladybug Dots and Beanie Ghost, desktop and iPhone 13: hidden at 0 reviews, and only that section; visible with `#judgeme_product_reviews` or a simulated count of 3; related products and footer intact; 0 page errors.
+- Residual: the other session's `dlm-header.css` and `announcement-bar.liquid` are still on main and not live. They were left for their owner.
+- Rollback: `git revert c99f371`, then upload that one file.
