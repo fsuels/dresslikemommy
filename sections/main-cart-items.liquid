@@ -24,6 +24,8 @@
 {%- endunless -%}
 
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+{{ 'dlm-complete-family.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'dlm-complete-family.js' | asset_url }}" defer="defer"></script>
 
 <cart-items class="gradient color-{{ section.settings.color_scheme }} isolate{% if cart == empty %} is-empty{% else %} section-{{ section.id }}-padding{% endif %}">
   <div class="page-width">
@@ -573,6 +575,12 @@
                 {%- endfor -%}
               </tbody>
             </table>
+            {%- comment -%}
+              "Complete the family": same-design missing roles at real prices, above
+              the checkout footer. One product here so checkout stays near the fold
+              on a 375px phone; the drawer shows up to two.
+            {%- endcomment -%}
+            {%- render 'dlm-complete-family', surface: 'cart', max_products: 1 -%}
           {%- endif -%}
         </div>
       </div>

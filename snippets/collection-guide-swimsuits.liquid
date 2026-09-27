@@ -1,0 +1,139 @@
+{%- comment -%}
+  Buyer guide for /collections/swimsuits (SEO lane fix #3, 2026-09-27;
+  source copy: 2026-09-27-million-plan/lanes/seo.md section 4.5).
+  Translations are inline because locales/*.json are owned by another lane.
+  Fields: lead (one sentence, plain text), guide (HTML). The swimsuits
+  section in main-collection-seo keeps its own title, related links and FAQ.
+  The empty family-swimsuits collection is deliberately not linked.
+  English is the else-branch. Dropshipping truth: no stock, warehouse,
+  fast-shipping, review or bestseller claims; no UPF claims.
+  Usage: {% render 'collection-guide-swimsuits', field: 'guide' %}
+{%- endcomment -%}
+{%- liquid
+  assign cg_lang = request.locale.iso_code | default: localization.language.iso_code | default: 'en' | downcase | split: '-' | first
+  if cg_lang == 'nb'
+    assign cg_lang = 'no'
+  endif
+
+  assign cg_trunks_url = routes.collections_url | append: '/trunks'
+  if collections['trunks'] != blank
+    assign cg_trunks_url = collections['trunks'].url
+  endif
+  assign cg_vacation_url = routes.collections_url | append: '/family-sets'
+  if collections['family-sets'] != blank
+    assign cg_vacation_url = collections['family-sets'].url
+  endif
+-%}
+{%- case field -%}
+  {%- when 'lead' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}Los trajes de baño a juego para mamá e hija te permiten llevar el mismo estampado que tu hija en la piscina, en la playa o en un crucero.
+      {%- when 'fr' -%}Les maillots de bain assortis mère-fille vous permettent de porter le même imprimé que votre fille à la piscine, à la plage ou en croisière.
+      {%- when 'de' -%}Mit Mutter-Tochter-Badeanzügen im Partnerlook tragen Sie und Ihre Tochter am Pool, am Strand oder auf der Kreuzfahrt dasselbe Muster.
+      {%- when 'it' -%}I costumi coordinati mamma e figlia permettono a te e a tua figlia di indossare la stessa stampa in piscina, al mare o in crociera.
+      {%- when 'nl' -%}Met matchende badpakken voor moeder en dochter dragen jij en je dochter dezelfde print bij het zwembad, op het strand of op een cruise.
+      {%- when 'pt' -%}Os maiôs combinando para mãe e filha deixam você e sua filha com a mesma estampa na piscina, na praia ou num cruzeiro.
+      {%- when 'da' -%}Matchende badedragter til mor og datter giver dig og din datter samme print ved poolen, på stranden eller på et krydstogt.
+      {%- when 'sv' -%}Med matchande baddräkter för mamma och dotter bär du och din dotter samma mönster vid poolen, på stranden eller på en kryssning.
+      {%- when 'no' -%}Med matchende badedrakter til mor og datter kan du og datteren din bruke samme mønster ved bassenget, på stranden eller på cruise.
+      {%- when 'pl' -%}Pasujące stroje kąpielowe dla mamy i córki pozwalają wam nosić ten sam wzór na basenie, na plaży czy podczas rejsu.
+      {%- when 'cs' -%}Sladěné plavky pro maminku a dceru vám umožní nosit stejný vzor u bazénu, na pláži i na plavbě.
+      {%- when 'ja' -%}ママと娘のおそろい水着なら、プールやビーチ、クルーズでお嬢さまと同じ柄を楽しめます。
+      {%- when 'ko' -%}엄마와 딸 커플 수영복으로 수영장, 해변, 크루즈에서 딸과 같은 패턴을 함께 입어 보세요.
+      {%- when 'ru' -%}Одинаковые купальники для мамы и дочки позволяют вам носить один принт в бассейне, на пляже или в круизе.
+      {%- when 'ar' -%}تمنحكِ ملابس السباحة المتطابقة للأم والابنة النقشة نفسها مع ابنتك في المسبح أو على الشاطئ أو في رحلة بحرية.
+      {%- when 'he' -%}בגדי ים תואמים לאמא ובת מאפשרים לך ולבת שלך ללבוש את אותו הדפס בבריכה, בחוף או בשייט.
+      {%- when 'hi' -%}माँ-बेटी के मैचिंग स्विमसूट से आप और आपकी बेटी पूल, बीच या क्रूज़ पर एक ही प्रिंट पहन सकती हैं।
+      {%- when 'el' -%}Τα ασορτί μαγιό για μαμά και κόρη σάς επιτρέπουν να φοράτε το ίδιο μοτίβο με την κόρη σας στην πισίνα, στην παραλία ή σε κρουαζιέρα.
+      {%- when 'ro' -%}Costumele de baie asortate pentru mamă și fiică vă permit să purtați același imprimeu la piscină, la plajă sau într-o croazieră.
+      {%- when 'fi' -%}Äidin ja tyttären yhteensopivissa uima-asuissa sinä ja tyttäresi voitte käyttää samaa kuosia uima-altaalla, rannalla tai risteilyllä.
+      {%- else -%}Mommy and me swimsuits give you and your daughter the same print at the pool, the beach or on a cruise.
+    {%- endcase -%}
+  {%- when 'guide' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}
+        <p>Hay bañadores enteros, bikinis y camisetas de baño a juego, en tallas separadas para mujer y niña, y algunos modelos combinan con shorts de baño para papá e hijo.</p>
+        <p><strong>Cómo elegir:</strong> los bañadores enteros cubren más y se quedan en su sitio con niñas activas. Los bikinis van bien para adolescentes y días de playa. Las camisetas de baño de manga larga cubren más a las pequeñas al sol. Los estampados tropicales y florales llamativos destacan en las fotos de vacaciones.</p>
+        <p><strong>Consejo de tallas:</strong> el traje de baño se ajusta más que la ropa. Usa la tabla de tallas de cada página de producto y compara busto y cadera para mamá y estatura para las niñas. ¿Planeas un look de playa para toda la familia? Añade <a href="{{ cg_trunks_url }}">shorts de baño a juego</a> o mira nuestros <a href="{{ cg_vacation_url }}">conjuntos a juego para vacaciones en familia</a>. El envío estándar está incluido.</p>
+      {%- when 'fr' -%}
+        <p>On y trouve des maillots une pièce, des bikinis et des t-shirts de bain assortis, en tailles femme et fille séparées, et certains modèles s'accordent avec des shorts de bain pour papa et fiston.</p>
+        <p><strong>Choisir un modèle :</strong> les une-pièces couvrent davantage et tiennent bien en place sur les enfants actives. Les bikinis conviennent aux ados et aux journées plage. Les t-shirts de bain à manches longues couvrent davantage les petites au soleil. Les imprimés tropicaux et fleuris éclatants ressortent sur les photos de vacances.</p>
+        <p><strong>Conseil taille :</strong> un maillot de bain est plus ajusté qu'un vêtement. Utilisez le guide des tailles de chaque fiche produit et comparez tour de poitrine et de hanches pour maman, et la taille en centimètres pour les enfants. Vous préparez un look plage pour toute la famille ? Ajoutez des <a href="{{ cg_trunks_url }}">shorts de bain assortis</a> ou découvrez nos <a href="{{ cg_vacation_url }}">tenues de vacances assorties pour la famille</a>. La livraison standard est incluse.</p>
+      {%- when 'de' -%}
+        <p>Es gibt passende Badeanzüge, Bikinis und Badeshirts in getrennten Damen- und Mädchengrößen, und einige Modelle lassen sich mit Badeshorts für Papa und Sohn kombinieren.</p>
+        <p><strong>Das richtige Modell:</strong> Badeanzüge bedecken mehr und sitzen auch bei aktiven Kindern gut. Bikinis passen zu Teenagern und Strandtagen. Langärmelige Badeshirts bedecken die Kleinen in der Sonne mehr. Leuchtende Tropen- und Blumenmuster fallen auf Urlaubsfotos auf.</p>
+        <p><strong>Größentipp:</strong> Bademode sitzt enger als Kleidung. Nutzen Sie die Größentabelle auf jeder Produktseite und vergleichen Sie Brust- und Hüftumfang für Mama sowie die Körpergröße für Kinder. Sie planen einen Strandlook für die ganze Familie? Ergänzen Sie <a href="{{ cg_trunks_url }}">passende Badeshorts</a> oder entdecken Sie unsere <a href="{{ cg_vacation_url }}">Familien-Urlaubsoutfits im Partnerlook</a>. Der Standardversand ist inklusive.</p>
+      {%- when 'it' -%}
+        <p>Trovi costumi interi, bikini e magliette da bagno coordinati, in taglie donna e bambina separate, e alcuni modelli si abbinano a costumi boxer per papà e figlio.</p>
+        <p><strong>Come scegliere:</strong> i costumi interi coprono di più e restano al loro posto anche con le bambine più vivaci. I bikini sono adatti alle ragazze e alle giornate in spiaggia. Le magliette da bagno a maniche lunghe coprono di più le piccole al sole. Le stampe tropicali e floreali vivaci risaltano nelle foto delle vacanze.</p>
+        <p><strong>Consiglio sulle taglie:</strong> il costume veste più aderente dei vestiti. Usa la tabella taglie di ogni pagina prodotto e confronta seno e fianchi per la mamma e altezza per le bambine. Stai pensando a un look da spiaggia per tutta la famiglia? Aggiungi i <a href="{{ cg_trunks_url }}">costumi boxer coordinati</a> o scopri i nostri <a href="{{ cg_vacation_url }}">look coordinati per le vacanze in famiglia</a>. La spedizione standard è inclusa.</p>
+      {%- when 'nl' -%}
+        <p>Je vindt matchende badpakken, bikini's en zwemshirts in aparte dames- en meisjesmaten, en sommige modellen passen bij zwembroeken voor papa en zoon.</p>
+        <p><strong>Een model kiezen:</strong> badpakken bedekken meer en blijven goed zitten bij actieve kinderen. Bikini's passen bij tieners en stranddagen. Zwemshirts met lange mouwen bedekken kleintjes meer in de zon. Felle tropische en bloemenprints vallen op in vakantiefoto's.</p>
+        <p><strong>Maattip:</strong> badmode zit strakker dan kleding. Gebruik de maattabel op elke productpagina en vergelijk borst- en heupomvang voor mama en lengte voor kinderen. Plan je een strandlook voor het hele gezin? Voeg <a href="{{ cg_trunks_url }}">bijpassende zwembroeken</a> toe of bekijk onze <a href="{{ cg_vacation_url }}">bijpassende vakantie-outfits voor het gezin</a>. Standaardverzending is inbegrepen.</p>
+      {%- when 'pt' -%}
+        <p>Há maiôs, biquínis e camisetas de banho combinando, em tamanhos femininos e infantis separados, e alguns modelos combinam com shorts de banho para o papai e o filho.</p>
+        <p><strong>Como escolher:</strong> maiôs cobrem mais e ficam no lugar em crianças agitadas. Biquínis combinam com adolescentes e dias de praia. Camisetas de banho de manga longa cobrem mais as pequenas no sol. Estampas tropicais e florais vibrantes se destacam nas fotos das férias.</p>
+        <p><strong>Dica de tamanho:</strong> moda praia veste mais justa que roupa. Use a tabela de medidas de cada página de produto e compare busto e quadril da mãe e altura das crianças. Planejando um look de praia para toda a família? Inclua <a href="{{ cg_trunks_url }}">shorts de banho combinando</a> ou veja nossos <a href="{{ cg_vacation_url }}">looks de férias combinando para a família</a>. O frete padrão está incluído.</p>
+      {%- when 'da' -%}
+        <p>Du finder matchende badedragter, bikinier og badetrøjer i separate dame- og pigestørrelser, og nogle modeller kan kombineres med badeshorts til far og søn.</p>
+        <p><strong>Vælg en model:</strong> badedragter dækker mere og sidder fast på aktive børn. Bikinier passer til teenagere og stranddage. Badetrøjer med lange ærmer dækker de små mere i solen. Klare tropiske print og blomsterprint springer i øjnene på feriebilleder.</p>
+        <p><strong>Størrelsestip:</strong> badetøj sidder tættere end almindeligt tøj. Brug størrelsesguiden på hver produktside, og sammenlign bryst- og hoftemål for mor og højde for børn. Planlægger I et strandlook for hele familien? Tilføj <a href="{{ cg_trunks_url }}">matchende badeshorts</a>, eller se vores <a href="{{ cg_vacation_url }}">matchende familieferietøj</a>. Standardfragt er inkluderet.</p>
+      {%- when 'sv' -%}
+        <p>Här finns matchande baddräkter, bikinis och badtröjor i separata dam- och flickstorlekar, och vissa modeller går att kombinera med badshorts för pappa och son.</p>
+        <p><strong>Välj modell:</strong> baddräkter täcker mer och sitter kvar på aktiva barn. Bikinis passar tonåringar och stranddagar. Långärmade badtröjor täcker de små mer i solen. Klara tropiska mönster och blommönster syns på semesterbilderna.</p>
+        <p><strong>Storlekstips:</strong> badkläder sitter tätare än vanliga kläder. Använd storleksguiden på varje produktsida och jämför byst- och höftmått för mamma och längd för barn. Planerar ni en strandlook för hela familjen? Lägg till <a href="{{ cg_trunks_url }}">matchande badshorts</a> eller se våra <a href="{{ cg_vacation_url }}">matchande semesterkläder för familjen</a>. Standardfrakt ingår.</p>
+      {%- when 'no' -%}
+        <p>Her finner du matchende badedrakter, bikinier og badetrøyer i egne dame- og jentestørrelser, og noen modeller kan kombineres med badeshorts til pappa og sønn.</p>
+        <p><strong>Velg modell:</strong> badedrakter dekker mer og sitter godt på aktive barn. Bikinier passer for tenåringer og stranddager. Badetrøyer med lange ermer dekker de små mer i sola. Klare tropiske mønstre og blomstermønstre skiller seg ut på feriebildene.</p>
+        <p><strong>Størrelsestips:</strong> badetøy sitter tettere enn vanlige klær. Bruk størrelsestabellen på hver produktside, og sammenlign bryst- og hoftemål for mamma og høyde for barn. Planlegger dere en strandlook for hele familien? Legg til <a href="{{ cg_trunks_url }}">matchende badeshorts</a> eller se våre <a href="{{ cg_vacation_url }}">matchende ferieantrekk for familien</a>. Standardfrakt er inkludert.</p>
+      {%- when 'pl' -%}
+        <p>Znajdziesz tu pasujące jednoczęściowe stroje, bikini i koszulki kąpielowe w osobnych rozmiarach damskich i dziewczęcych, a niektóre modele pasują do kąpielówek dla taty i syna.</p>
+        <p><strong>Jak wybrać model:</strong> stroje jednoczęściowe więcej zakrywają i nie przesuwają się u ruchliwych dzieci. Bikini pasują nastolatkom i na plażę. Koszulki kąpielowe z długim rękawem lepiej zakrywają maluchy na słońcu. Wyraziste wzory tropikalne i kwiatowe wyróżniają się na wakacyjnych zdjęciach.</p>
+        <p><strong>Wskazówka dotycząca rozmiaru:</strong> strój kąpielowy jest bardziej dopasowany niż ubrania. Korzystaj z tabeli rozmiarów na każdej stronie produktu i porównaj obwód biustu i bioder mamy oraz wzrost dzieci. Planujesz plażowy look dla całej rodziny? Dodaj <a href="{{ cg_trunks_url }}">pasujące kąpielówki</a> albo zobacz nasze <a href="{{ cg_vacation_url }}">pasujące stroje na rodzinne wakacje</a>. Standardowa wysyłka jest wliczona.</p>
+      {%- when 'cs' -%}
+        <p>Najdete tu sladěné jednodílné plavky, bikiny a plavková trička v samostatných dámských a dívčích velikostech a některé modely ladí s koupacími šortkami pro tátu a syna.</p>
+        <p><strong>Jak vybrat:</strong> jednodílné plavky víc zakryjí a drží na místě i u aktivních dětí. Bikiny se hodí pro dospívající a dny na pláži. Plavková trička s dlouhým rukávem víc zakryjí nejmenší na slunci. Výrazné tropické a květinové vzory vyniknou na fotkách z dovolené.</p>
+        <p><strong>Tip k velikosti:</strong> plavky sedí těsněji než oblečení. Použijte tabulku velikostí na každé stránce produktu a porovnejte obvod prsou a boků u maminky a výšku u dětí. Plánujete plážový outfit pro celou rodinu? Přidejte <a href="{{ cg_trunks_url }}">sladěné koupací šortky</a> nebo se podívejte na naše <a href="{{ cg_vacation_url }}">sladěné rodinné oblečení na dovolenou</a>. Standardní doprava je v ceně.</p>
+      {%- when 'ja' -%}
+        <p>おそろいのワンピース水着、ビキニ、ラッシュガードを、レディースとガールズの別々のサイズでご用意しています。パパと息子さん用のスイムパンツと合わせられるデザインもあります。</p>
+        <p><strong>デザインの選び方：</strong>ワンピース水着は肌の露出が少なく、活発なお子さまでもずれにくいのが特長です。ビキニはティーンやビーチの日に。長袖のラッシュガードは、小さなお子さまの肌を日差しから覆います。鮮やかなトロピカル柄や花柄は、旅行の写真で映えます。</p>
+        <p><strong>サイズのヒント：</strong>水着は普段の服よりもフィットします。各商品ページのサイズ表を使い、ママはバストとヒップ、お子さまは身長を比べてください。家族みんなでビーチコーデを揃えたいときは、<a href="{{ cg_trunks_url }}">おそろいのスイムパンツ</a>を加えるか、<a href="{{ cg_vacation_url }}">家族旅行のおそろいコーデ</a>をご覧ください。通常配送料は含まれています。</p>
+      {%- when 'ko' -%}
+        <p>커플 원피스 수영복, 비키니, 래시가드를 여성용과 여아용 사이즈로 따로 판매하며, 일부 디자인은 아빠와 아들용 수영 반바지와 함께 맞출 수 있습니다.</p>
+        <p><strong>스타일 고르기:</strong> 원피스 수영복은 더 많이 가려 주고 활동적인 아이에게도 잘 고정됩니다. 비키니는 10대와 해변 나들이에 어울립니다. 긴소매 래시가드는 햇볕 아래에서 어린아이를 더 많이 가려 줍니다. 선명한 트로피컬 프린트와 꽃무늬는 휴가 사진에서 돋보입니다.</p>
+        <p><strong>사이즈 팁:</strong> 수영복은 일반 옷보다 몸에 더 붙습니다. 각 상품 페이지의 사이즈 차트를 이용해 엄마는 가슴과 엉덩이 둘레를, 아이는 키를 비교하세요. 온 가족 해변룩을 계획 중이라면 <a href="{{ cg_trunks_url }}">커플 수영 반바지</a>를 더하거나 <a href="{{ cg_vacation_url }}">가족 휴가 커플룩</a>을 둘러보세요. 기본 배송비가 포함되어 있습니다.</p>
+      {%- when 'ru' -%}
+        <p>Здесь есть одинаковые слитные купальники, бикини и пляжные футболки в отдельных женских и детских размерах, а некоторые модели сочетаются с плавательными шортами для папы и сына.</p>
+        <p><strong>Как выбрать модель:</strong> слитные купальники закрывают больше и не сползают у активных детей. Бикини подходят подросткам и для пляжа. Пляжные футболки с длинным рукавом лучше закрывают малышей от солнца. Яркие тропические и цветочные принты выделяются на отпускных фото.</p>
+        <p><strong>Совет по размеру:</strong> купальник сидит плотнее обычной одежды. Пользуйтесь таблицей размеров на странице каждого товара и сравнивайте обхват груди и бёдер для мамы и рост для детей. Планируете пляжный образ для всей семьи? Добавьте <a href="{{ cg_trunks_url }}">одинаковые плавательные шорты</a> или посмотрите наши <a href="{{ cg_vacation_url }}">одинаковые наряды для семейного отдыха</a>. Стандартная доставка включена.</p>
+      {%- when 'ar' -%}
+        <p>ستجدين ملابس سباحة قطعة واحدة وبكيني وقمصان سباحة متطابقة بمقاسات منفصلة للنساء والفتيات، ويمكن تنسيق بعض التصاميم مع شورتات سباحة للأب والابن.</p>
+        <p><strong>اختيار التصميم:</strong> تمنح ملابس السباحة القطعة الواحدة تغطية أكبر وتبقى ثابتة مع الأطفال كثيري الحركة. يناسب البكيني المراهقات وأيام الشاطئ. وتمنح قمصان السباحة بأكمام طويلة تغطية أكبر للصغار تحت الشمس. أما النقشات الاستوائية والزهرية الزاهية فتبرز في صور العطلات.</p>
+        <p><strong>نصيحة للمقاس:</strong> ملابس السباحة أضيق من الملابس العادية. استخدمي جدول المقاسات في صفحة كل منتج، وقارني محيط الصدر والورك للأم والطول للأطفال. هل تخططين لإطلالة شاطئ للعائلة كلها؟ أضيفي <a href="{{ cg_trunks_url }}">شورتات سباحة متطابقة</a> أو تصفحي <a href="{{ cg_vacation_url }}">ملابس العطلات العائلية المتطابقة</a>. الشحن العادي مشمول.</p>
+      {%- when 'he' -%}
+        <p>תמצאו בגדי ים שלמים, ביקיני וחולצות ים תואמים במידות נפרדות לנשים ולבנות, וחלק מהדגמים מתאימים למכנסי ים לאבא ולבן.</p>
+        <p><strong>בחירת דגם:</strong> בגדי ים שלמים מכסים יותר ונשארים במקום גם אצל ילדות פעילות. ביקיני מתאים לנערות ולימי חוף. חולצות ים עם שרוולים ארוכים מכסות יותר את הקטנות בשמש. הדפסים טרופיים ופרחוניים בולטים מושכים את העין בתמונות החופשה.</p>
+        <p><strong>טיפ למידות:</strong> בגד ים צמוד יותר מבגדים רגילים. השתמשו בטבלת המידות שבכל דף מוצר, והשוו היקף חזה וירכיים לאמא וגובה לילדות. מתכננים מראה חוף לכל המשפחה? הוסיפו <a href="{{ cg_trunks_url }}">מכנסי ים תואמים</a> או עיינו ב<a href="{{ cg_vacation_url }}">תלבושות החופשה התואמות למשפחה</a>. משלוח רגיל כלול.</p>
+      {%- when 'hi' -%}
+        <p>यहाँ मैचिंग वन-पीस, बिकिनी और रैश गार्ड महिलाओं और लड़कियों के अलग-अलग साइज़ में मिलते हैं, और कुछ स्टाइल पापा और बेटे के स्विम ट्रंक के साथ मैच होते हैं।</p>
+        <p><strong>स्टाइल कैसे चुनें:</strong> वन-पीस ज़्यादा कवरेज देते हैं और एक्टिव बच्चों पर भी अपनी जगह टिके रहते हैं। बिकिनी किशोरियों और बीच के दिनों के लिए अच्छी हैं। लंबी आस्तीन वाले रैश गार्ड धूप में छोटे बच्चों को ज़्यादा ढकते हैं। चमकीले ट्रॉपिकल और फ़्लोरल प्रिंट छुट्टियों की फ़ोटो में अलग दिखते हैं।</p>
+        <p><strong>साइज़ टिप:</strong> स्विमवियर कपड़ों से ज़्यादा फ़िट होता है। हर प्रोडक्ट पेज का साइज़ चार्ट इस्तेमाल करें, और माँ के लिए बस्ट और हिप तथा बच्चों के लिए लंबाई मिलाएँ। पूरे परिवार का बीच लुक प्लान कर रहे हैं? <a href="{{ cg_trunks_url }}">मैचिंग स्विम ट्रंक</a> जोड़ें या हमारे <a href="{{ cg_vacation_url }}">परिवार के मैचिंग वेकेशन आउटफिट</a> देखें। स्टैंडर्ड शिपिंग शामिल है।</p>
+      {%- when 'el' -%}
+        <p>Θα βρείτε ασορτί ολόσωμα μαγιό, μπικίνι και μπλουζάκια θαλάσσης σε ξεχωριστά γυναικεία και κοριτσίστικα μεγέθη, ενώ ορισμένα σχέδια συνδυάζονται με μαγιό βερμούδες για μπαμπά και γιο.</p>
+        <p><strong>Επιλογή σχεδίου:</strong> τα ολόσωμα καλύπτουν περισσότερο και μένουν στη θέση τους στα ζωηρά παιδιά. Τα μπικίνι ταιριάζουν σε έφηβες και μέρες στην παραλία. Τα μακρυμάνικα μπλουζάκια θαλάσσης καλύπτουν περισσότερο τα μικρά στον ήλιο. Τα έντονα τροπικά και φλοράλ μοτίβα ξεχωρίζουν στις φωτογραφίες των διακοπών.</p>
+        <p><strong>Συμβουλή μεγέθους:</strong> το μαγιό εφαρμόζει πιο σφιχτά από τα ρούχα. Χρησιμοποιήστε τον πίνακα μεγεθών σε κάθε σελίδα προϊόντος και συγκρίνετε στήθος και γοφούς για τη μαμά και ύψος για τα παιδιά. Σχεδιάζετε look παραλίας για όλη την οικογένεια; Προσθέστε <a href="{{ cg_trunks_url }}">ασορτί μαγιό βερμούδες</a> ή δείτε τα <a href="{{ cg_vacation_url }}">ασορτί οικογενειακά ρούχα διακοπών</a>. Η τυπική αποστολή περιλαμβάνεται.</p>
+      {%- when 'ro' -%}
+        <p>Găsești costume întregi, bikini și tricouri de baie asortate, în mărimi separate pentru femei și fete, iar unele modele se potrivesc cu pantaloni scurți de baie pentru tată și fiu.</p>
+        <p><strong>Cum alegi modelul:</strong> costumele întregi acoperă mai mult și stau pe loc la copiii activi. Costumele bikini se potrivesc adolescentelor și zilelor la plajă. Tricourile de baie cu mânecă lungă le acoperă mai bine pe cele mici la soare. Imprimeurile tropicale și florale vii ies în evidență în pozele de vacanță.</p>
+        <p><strong>Sfat pentru mărime:</strong> costumul de baie vine mai strâns decât hainele. Folosește tabelul de mărimi de pe fiecare pagină de produs și compară bustul și șoldurile pentru mamă și înălțimea pentru copii. Plănuiești o ținută de plajă pentru toată familia? Adaugă <a href="{{ cg_trunks_url }}">pantaloni scurți de baie asortați</a> sau vezi <a href="{{ cg_vacation_url }}">ținutele noastre asortate de vacanță pentru familie</a>. Livrarea standard este inclusă.</p>
+      {%- when 'fi' -%}
+        <p>Valikoimassa on yhteensopivia uimapukuja, bikinejä ja uimapaitoja erillisissä nais- ja tyttökoissa, ja osa malleista sopii yhteen isän ja pojan uimashortsien kanssa.</p>
+        <p><strong>Mallin valinta:</strong> uimapuvut peittävät enemmän ja pysyvät paikallaan vilkkaillakin lapsilla. Bikinit sopivat teineille ja rantapäiviin. Pitkähihaiset uimapaidat peittävät pienet paremmin auringossa. Kirkkaat trooppiset ja kukkakuosit erottuvat lomakuvissa.</p>
+        <p><strong>Kokovinkki:</strong> uima-asu istuu tiiviimmin kuin vaatteet. Käytä kunkin tuotesivun kokotaulukkoa ja vertaa äidin rinnan- ja lantionympärystä sekä lasten pituutta. Suunnitteletteko koko perheen rantalookia? Lisää <a href="{{ cg_trunks_url }}">yhteensopivat uimashortsit</a> tai katso <a href="{{ cg_vacation_url }}">perheen yhteensopivat loma-asut</a>. Vakiotoimitus sisältyy hintaan.</p>
+      {%- else -%}
+        <p>Styles include matching one-pieces, bikinis and rash guards, sold in separate women's and girls' sizes, and some come with coordinating swim trunks for dad and son.</p>
+        <p><strong>Picking a style:</strong> one-pieces give more coverage and stay put on active kids. Bikinis suit teens and beach days. Long-sleeve rash guards cover more of little ones in the sun. Bright tropical and floral prints stand out in vacation photos.</p>
+        <p><strong>Sizing tip:</strong> swimwear fits closer than clothing. Use the size chart on each product page, and compare bust and hip for mom and height for kids. Planning a whole-family beach look? Add <a href="{{ cg_trunks_url }}">matching swim trunks</a> or see our <a href="{{ cg_vacation_url }}">matching family vacation outfits</a>. Standard shipping is included.</p>
+    {%- endcase -%}
+{%- endcase -%}

@@ -1,0 +1,908 @@
+{%- comment -%}
+  "Complete the family" cart upsell (cart drawer and /cart).
+
+  For up to `max_products` distinct cart products (highest line price first), offers
+  the SAME design's missing family roles (Mom / Dad / Girl / Boy / Kid / Baby /
+  Adult) as chips. A chip opens one inline size <select> with the real variant
+  prices and an Add button; assets/dlm-complete-family.js adds the piece with
+  /cart/add.js and re-renders the cart sections in place.
+
+  Honesty rules: real variant prices only, available variants only, no bundle
+  price, no discount, no stock or urgency claims, and "each piece is sold
+  separately" is always shown.
+
+  Server-rendered on purpose: the block is inside the sections Dawn already
+  re-renders (drawer `.drawer__inner`, cart `.js-contents`), so it refreshes on
+  every add/remove/quantity change and never appears late (no layout shift).
+  Renders nothing when no cart product has a family-role option.
+
+  Role detection is locale-independent: variant option values are translated
+  per storefront language (e.g. "Mother S" / "Mamá S"), so a value's role is
+  its first two words, first word, first hyphen segment or last word looked up
+  in `dcf_alias` (kept in sync with ROLE_DEFINITIONS in
+  assets/product-desktop-ux-20260513-ruler-sync.js; see
+  ops/tests/test_complete_family.mjs). The role option is the first option
+  whose values carry at least two different roles.
+
+  Accepts:
+  - surface: 'drawer' | 'cart' (ids, heading level, analytics)
+  - max_products: max products shown (default 2)
+
+  Inside the drawer this sits in <form id="CartDrawer-Form">, so it uses no
+  <form>, no `name` attributes and only type="button" buttons.
+{%- endcomment -%}
+{%- liquid
+  assign dcf_surface = surface | default: 'drawer'
+  assign dcf_limit = max_products | default: 2
+
+  assign dcf_iso = request.locale.iso_code | default: localization.language.iso_code | default: 'en' | downcase
+  assign dcf_lang = dcf_iso | split: '-' | first
+
+  assign t_heading = 'Complete the family'
+  assign t_note = 'Each piece is sold separately.'
+  assign t_size = 'Size'
+  assign t_add = 'Add'
+  assign t_added = 'Added to bag'
+  assign t_error = 'Could not add to bag. Please try again.'
+  assign t_mother = 'Mom'
+  assign t_father = 'Dad'
+  assign t_girl = 'Girl'
+  assign t_boy = 'Boy'
+  assign t_child = 'Kid'
+  assign t_baby = 'Baby'
+  assign t_adult = 'Adult'
+  assign t_another_child = 'Another kid'
+  assign t_another_adult = 'Another adult'
+
+  case dcf_lang
+    when 'ar'
+      assign t_heading = 'أكمل إطلالة العائلة'
+      assign t_note = 'تُباع كل قطعة على حدة.'
+      assign t_size = 'المقاس'
+      assign t_add = 'إضافة'
+      assign t_added = 'تمت الإضافة إلى السلة'
+      assign t_error = 'تعذرت الإضافة إلى السلة. يرجى المحاولة مرة أخرى.'
+      assign t_mother = 'الأم'
+      assign t_father = 'الأب'
+      assign t_girl = 'البنت'
+      assign t_boy = 'الولد'
+      assign t_child = 'الطفل'
+      assign t_baby = 'الرضيع'
+      assign t_adult = 'البالغ'
+      assign t_another_child = 'طفل آخر'
+      assign t_another_adult = 'بالغ آخر'
+    when 'cs'
+      assign t_heading = 'Doplňte rodinu'
+      assign t_note = 'Každý kus se prodává samostatně.'
+      assign t_size = 'Velikost'
+      assign t_add = 'Přidat'
+      assign t_added = 'Přidáno do košíku'
+      assign t_error = 'Nepodařilo se přidat do košíku. Zkuste to prosím znovu.'
+      assign t_mother = 'Máma'
+      assign t_father = 'Táta'
+      assign t_girl = 'Dívka'
+      assign t_boy = 'Chlapec'
+      assign t_child = 'Dítě'
+      assign t_baby = 'Miminko'
+      assign t_adult = 'Dospělý'
+      assign t_another_child = 'Další dítě'
+      assign t_another_adult = 'Další dospělý'
+    when 'da'
+      assign t_heading = 'Gør familien komplet'
+      assign t_note = 'Hvert stykke sælges separat.'
+      assign t_size = 'Størrelse'
+      assign t_add = 'Tilføj'
+      assign t_added = 'Lagt i kurven'
+      assign t_error = 'Kunne ikke lægge i kurven. Prøv igen.'
+      assign t_mother = 'Mor'
+      assign t_father = 'Far'
+      assign t_girl = 'Pige'
+      assign t_boy = 'Dreng'
+      assign t_child = 'Barn'
+      assign t_baby = 'Baby'
+      assign t_adult = 'Voksen'
+      assign t_another_child = 'Endnu et barn'
+      assign t_another_adult = 'Endnu en voksen'
+    when 'de'
+      assign t_heading = 'Familie komplettieren'
+      assign t_note = 'Jedes Teil wird einzeln verkauft.'
+      assign t_size = 'Größe'
+      assign t_add = 'Hinzufügen'
+      assign t_added = 'In den Warenkorb gelegt'
+      assign t_error = 'Konnte nicht in den Warenkorb gelegt werden. Bitte versuche es erneut.'
+      assign t_mother = 'Mama'
+      assign t_father = 'Papa'
+      assign t_girl = 'Mädchen'
+      assign t_boy = 'Junge'
+      assign t_child = 'Kind'
+      assign t_baby = 'Baby'
+      assign t_adult = 'Erwachsene'
+      assign t_another_child = 'Weiteres Kind'
+      assign t_another_adult = 'Weitere erwachsene Person'
+    when 'el'
+      assign t_heading = 'Ολοκληρώστε την οικογένεια'
+      assign t_note = 'Κάθε κομμάτι πωλείται χωριστά.'
+      assign t_size = 'Μέγεθος'
+      assign t_add = 'Προσθήκη'
+      assign t_added = 'Προστέθηκε στο καλάθι'
+      assign t_error = 'Δεν ήταν δυνατή η προσθήκη στο καλάθι. Δοκιμάστε ξανά.'
+      assign t_mother = 'Μαμά'
+      assign t_father = 'Μπαμπάς'
+      assign t_girl = 'Κορίτσι'
+      assign t_boy = 'Αγόρι'
+      assign t_child = 'Παιδί'
+      assign t_baby = 'Μωρό'
+      assign t_adult = 'Ενήλικας'
+      assign t_another_child = 'Ακόμη ένα παιδί'
+      assign t_another_adult = 'Ακόμη ένας ενήλικας'
+    when 'es'
+      assign t_heading = 'Completa la familia'
+      assign t_note = 'Cada prenda se vende por separado.'
+      assign t_size = 'Talla'
+      assign t_add = 'Añadir'
+      assign t_added = 'Añadido al carrito'
+      assign t_error = 'No se pudo añadir al carrito. Inténtalo de nuevo.'
+      assign t_mother = 'Mamá'
+      assign t_father = 'Papá'
+      assign t_girl = 'Niña'
+      assign t_boy = 'Niño'
+      assign t_child = 'Infantil'
+      assign t_baby = 'Bebé'
+      assign t_adult = 'Adulto'
+      assign t_another_child = 'Otro infantil'
+      assign t_another_adult = 'Otro adulto'
+    when 'fi'
+      assign t_heading = 'Täydennä perhe'
+      assign t_note = 'Jokainen tuote myydään erikseen.'
+      assign t_size = 'Koko'
+      assign t_add = 'Lisää'
+      assign t_added = 'Lisätty ostoskoriin'
+      assign t_error = 'Lisääminen ostoskoriin epäonnistui. Yritä uudelleen.'
+      assign t_mother = 'Äiti'
+      assign t_father = 'Isä'
+      assign t_girl = 'Tyttö'
+      assign t_boy = 'Poika'
+      assign t_child = 'Lapsi'
+      assign t_baby = 'Vauva'
+      assign t_adult = 'Aikuinen'
+      assign t_another_child = 'Toinen lapsi'
+      assign t_another_adult = 'Toinen aikuinen'
+    when 'fr'
+      assign t_heading = 'Complétez la famille'
+      assign t_note = 'Chaque pièce est vendue séparément.'
+      assign t_size = 'Taille'
+      assign t_add = 'Ajouter'
+      assign t_added = 'Ajouté au panier'
+      assign t_error = "Impossible d'ajouter au panier. Veuillez réessayer."
+      assign t_mother = 'Maman'
+      assign t_father = 'Papa'
+      assign t_girl = 'Fille'
+      assign t_boy = 'Garçon'
+      assign t_child = 'Enfant'
+      assign t_baby = 'Bébé'
+      assign t_adult = 'Adulte'
+      assign t_another_child = 'Un autre enfant'
+      assign t_another_adult = 'Un autre adulte'
+    when 'he'
+      assign t_heading = 'השלימו את המשפחה'
+      assign t_note = 'כל פריט נמכר בנפרד.'
+      assign t_size = 'מידה'
+      assign t_add = 'הוספה'
+      assign t_added = 'נוסף לסל'
+      assign t_error = 'לא ניתן היה להוסיף לסל. נסו שוב.'
+      assign t_mother = 'אמא'
+      assign t_father = 'אבא'
+      assign t_girl = 'ילדה'
+      assign t_boy = 'ילד'
+      assign t_child = 'ילד/ה'
+      assign t_baby = 'תינוק/ת'
+      assign t_adult = 'מבוגר/ת'
+      assign t_another_child = 'עוד ילד/ה'
+      assign t_another_adult = 'עוד מבוגר/ת'
+    when 'hi'
+      assign t_heading = 'पूरे परिवार का सेट बनाएँ'
+      assign t_note = 'हर पीस अलग से बिकता है।'
+      assign t_size = 'साइज़'
+      assign t_add = 'जोड़ें'
+      assign t_added = 'कार्ट में जोड़ा गया'
+      assign t_error = 'कार्ट में नहीं जोड़ा जा सका। कृपया फिर से प्रयास करें।'
+      assign t_mother = 'माँ'
+      assign t_father = 'पापा'
+      assign t_girl = 'लड़की'
+      assign t_boy = 'लड़का'
+      assign t_child = 'बच्चा'
+      assign t_baby = 'शिशु'
+      assign t_adult = 'वयस्क'
+      assign t_another_child = 'एक और बच्चा'
+      assign t_another_adult = 'एक और वयस्क'
+    when 'hr'
+      assign t_heading = 'Upotpunite obitelj'
+      assign t_note = 'Svaki komad prodaje se zasebno.'
+      assign t_size = 'Veličina'
+      assign t_add = 'Dodaj'
+      assign t_added = 'Dodano u košaricu'
+      assign t_error = 'Dodavanje u košaricu nije uspjelo. Pokušajte ponovno.'
+      assign t_mother = 'Mama'
+      assign t_father = 'Tata'
+      assign t_girl = 'Djevojčica'
+      assign t_boy = 'Dječak'
+      assign t_child = 'Dijete'
+      assign t_baby = 'Beba'
+      assign t_adult = 'Odrasla osoba'
+      assign t_another_child = 'Još jedno dijete'
+      assign t_another_adult = 'Još jedna odrasla osoba'
+    when 'hu'
+      assign t_heading = 'Tedd teljessé a családot'
+      assign t_note = 'Minden darabot külön árusítunk.'
+      assign t_size = 'Méret'
+      assign t_add = 'Hozzáadás'
+      assign t_added = 'Kosárba téve'
+      assign t_error = 'Nem sikerült a kosárba tenni. Kérjük, próbáld újra.'
+      assign t_mother = 'Anya'
+      assign t_father = 'Apa'
+      assign t_girl = 'Lány'
+      assign t_boy = 'Fiú'
+      assign t_child = 'Gyerek'
+      assign t_baby = 'Baba'
+      assign t_adult = 'Felnőtt'
+      assign t_another_child = 'Még egy gyerek'
+      assign t_another_adult = 'Még egy felnőtt'
+    when 'id'
+      assign t_heading = 'Lengkapi keluarga'
+      assign t_note = 'Setiap item dijual terpisah.'
+      assign t_size = 'Ukuran'
+      assign t_add = 'Tambah'
+      assign t_added = 'Ditambahkan ke keranjang'
+      assign t_error = 'Tidak dapat menambahkan ke keranjang. Silakan coba lagi.'
+      assign t_mother = 'Ibu'
+      assign t_father = 'Ayah'
+      assign t_girl = 'Anak perempuan'
+      assign t_boy = 'Anak laki-laki'
+      assign t_child = 'Anak'
+      assign t_baby = 'Bayi'
+      assign t_adult = 'Dewasa'
+      assign t_another_child = 'Anak lainnya'
+      assign t_another_adult = 'Dewasa lainnya'
+    when 'it'
+      assign t_heading = 'Completa la famiglia'
+      assign t_note = 'Ogni capo è venduto separatamente.'
+      assign t_size = 'Taglia'
+      assign t_add = 'Aggiungi'
+      assign t_added = 'Aggiunto al carrello'
+      assign t_error = 'Impossibile aggiungere al carrello. Riprova.'
+      assign t_mother = 'Mamma'
+      assign t_father = 'Papà'
+      assign t_girl = 'Bambina'
+      assign t_boy = 'Bambino'
+      assign t_child = 'Bimbo/a'
+      assign t_baby = 'Neonato'
+      assign t_adult = 'Adulto'
+      assign t_another_child = 'Un altro bimbo/a'
+      assign t_another_adult = 'Un altro adulto'
+    when 'ja'
+      assign t_heading = '家族みんなでおそろいに'
+      assign t_note = '各アイテムは個別販売です。'
+      assign t_size = 'サイズ'
+      assign t_add = '追加'
+      assign t_added = 'カートに追加しました'
+      assign t_error = 'カートに追加できませんでした。もう一度お試しください。'
+      assign t_mother = 'ママ'
+      assign t_father = 'パパ'
+      assign t_girl = '女の子'
+      assign t_boy = '男の子'
+      assign t_child = 'キッズ'
+      assign t_baby = 'ベビー'
+      assign t_adult = '大人'
+      assign t_another_child = 'キッズをもう1人'
+      assign t_another_adult = '大人をもう1人'
+    when 'ko'
+      assign t_heading = '가족 세트 완성하기'
+      assign t_note = '각 제품은 개별 판매됩니다.'
+      assign t_size = '사이즈'
+      assign t_add = '추가'
+      assign t_added = '장바구니에 담았습니다'
+      assign t_error = '장바구니에 담지 못했습니다. 다시 시도해 주세요.'
+      assign t_mother = '엄마'
+      assign t_father = '아빠'
+      assign t_girl = '여아'
+      assign t_boy = '남아'
+      assign t_child = '아동'
+      assign t_baby = '아기'
+      assign t_adult = '성인'
+      assign t_another_child = '아동 한 명 더'
+      assign t_another_adult = '성인 한 명 더'
+    when 'lt'
+      assign t_heading = 'Papildykite šeimą'
+      assign t_note = 'Kiekviena prekė parduodama atskirai.'
+      assign t_size = 'Dydis'
+      assign t_add = 'Pridėti'
+      assign t_added = 'Įdėta į krepšelį'
+      assign t_error = 'Nepavyko įdėti į krepšelį. Bandykite dar kartą.'
+      assign t_mother = 'Mama'
+      assign t_father = 'Tėtis'
+      assign t_girl = 'Mergaitė'
+      assign t_boy = 'Berniukas'
+      assign t_child = 'Vaikas'
+      assign t_baby = 'Kūdikis'
+      assign t_adult = 'Suaugęs'
+      assign t_another_child = 'Dar vienas vaikas'
+      assign t_another_adult = 'Dar vienas suaugęs'
+    when 'nb', 'nn', 'no'
+      assign t_heading = 'Gjør familien komplett'
+      assign t_note = 'Hvert plagg selges separat.'
+      assign t_size = 'Størrelse'
+      assign t_add = 'Legg til'
+      assign t_added = 'Lagt i handlekurven'
+      assign t_error = 'Kunne ikke legge i handlekurven. Prøv igjen.'
+      assign t_mother = 'Mamma'
+      assign t_father = 'Pappa'
+      assign t_girl = 'Jente'
+      assign t_boy = 'Gutt'
+      assign t_child = 'Barn'
+      assign t_baby = 'Baby'
+      assign t_adult = 'Voksen'
+      assign t_another_child = 'Ett barn til'
+      assign t_another_adult = 'En voksen til'
+    when 'nl'
+      assign t_heading = 'Maak de familie compleet'
+      assign t_note = 'Elk stuk wordt apart verkocht.'
+      assign t_size = 'Maat'
+      assign t_add = 'Toevoegen'
+      assign t_added = 'Toegevoegd aan winkelwagen'
+      assign t_error = 'Toevoegen aan winkelwagen is mislukt. Probeer het opnieuw.'
+      assign t_mother = 'Mama'
+      assign t_father = 'Papa'
+      assign t_girl = 'Meisje'
+      assign t_boy = 'Jongen'
+      assign t_child = 'Kind'
+      assign t_baby = 'Baby'
+      assign t_adult = 'Volwassene'
+      assign t_another_child = 'Nog een kind'
+      assign t_another_adult = 'Nog een volwassene'
+    when 'pl'
+      assign t_heading = 'Uzupełnij rodzinę'
+      assign t_note = 'Każda sztuka jest sprzedawana osobno.'
+      assign t_size = 'Rozmiar'
+      assign t_add = 'Dodaj'
+      assign t_added = 'Dodano do koszyka'
+      assign t_error = 'Nie udało się dodać do koszyka. Spróbuj ponownie.'
+      assign t_mother = 'Mama'
+      assign t_father = 'Tata'
+      assign t_girl = 'Dziewczynka'
+      assign t_boy = 'Chłopiec'
+      assign t_child = 'Dziecko'
+      assign t_baby = 'Niemowlę'
+      assign t_adult = 'Dorosły'
+      assign t_another_child = 'Kolejne dziecko'
+      assign t_another_adult = 'Kolejny dorosły'
+    when 'pt'
+      assign t_heading = 'Complete a família'
+      assign t_note = 'Cada peça é vendida separadamente.'
+      assign t_size = 'Tamanho'
+      assign t_add = 'Adicionar'
+      assign t_added = 'Adicionado ao carrinho'
+      assign t_error = 'Não foi possível adicionar ao carrinho. Tente novamente.'
+      assign t_mother = 'Mãe'
+      assign t_father = 'Pai'
+      assign t_girl = 'Menina'
+      assign t_boy = 'Menino'
+      assign t_child = 'Criança'
+      assign t_baby = 'Bebê'
+      assign t_adult = 'Adulto'
+      assign t_another_child = 'Outra criança'
+      assign t_another_adult = 'Outro adulto'
+      if dcf_iso == 'pt-pt'
+        assign t_baby = 'Bebé'
+      endif
+    when 'ro'
+      assign t_heading = 'Completează familia'
+      assign t_note = 'Fiecare piesă se vinde separat.'
+      assign t_size = 'Mărime'
+      assign t_add = 'Adaugă'
+      assign t_added = 'Adăugat în coș'
+      assign t_error = 'Nu s-a putut adăuga în coș. Încearcă din nou.'
+      assign t_mother = 'Mama'
+      assign t_father = 'Tata'
+      assign t_girl = 'Fată'
+      assign t_boy = 'Băiat'
+      assign t_child = 'Copil'
+      assign t_baby = 'Bebeluș'
+      assign t_adult = 'Adult'
+      assign t_another_child = 'Încă un copil'
+      assign t_another_adult = 'Încă un adult'
+    when 'ru'
+      assign t_heading = 'Соберите всю семью'
+      assign t_note = 'Каждая вещь продаётся отдельно.'
+      assign t_size = 'Размер'
+      assign t_add = 'Добавить'
+      assign t_added = 'Добавлено в корзину'
+      assign t_error = 'Не удалось добавить в корзину. Попробуйте ещё раз.'
+      assign t_mother = 'Мама'
+      assign t_father = 'Папа'
+      assign t_girl = 'Девочка'
+      assign t_boy = 'Мальчик'
+      assign t_child = 'Ребёнок'
+      assign t_baby = 'Малыш'
+      assign t_adult = 'Взрослый'
+      assign t_another_child = 'Ещё ребёнок'
+      assign t_another_adult = 'Ещё взрослый'
+    when 'sk'
+      assign t_heading = 'Doplňte rodinu'
+      assign t_note = 'Každý kus sa predáva samostatne.'
+      assign t_size = 'Veľkosť'
+      assign t_add = 'Pridať'
+      assign t_added = 'Pridané do košíka'
+      assign t_error = 'Nepodarilo sa pridať do košíka. Skúste to znova.'
+      assign t_mother = 'Mama'
+      assign t_father = 'Ocko'
+      assign t_girl = 'Dievča'
+      assign t_boy = 'Chlapec'
+      assign t_child = 'Dieťa'
+      assign t_baby = 'Bábätko'
+      assign t_adult = 'Dospelý'
+      assign t_another_child = 'Ďalšie dieťa'
+      assign t_another_adult = 'Ďalší dospelý'
+    when 'sl'
+      assign t_heading = 'Dopolnite družino'
+      assign t_note = 'Vsak kos se prodaja posebej.'
+      assign t_size = 'Velikost'
+      assign t_add = 'Dodaj'
+      assign t_added = 'Dodano v košarico'
+      assign t_error = 'Dodajanje v košarico ni uspelo. Poskusite znova.'
+      assign t_mother = 'Mama'
+      assign t_father = 'Oči'
+      assign t_girl = 'Deklica'
+      assign t_boy = 'Deček'
+      assign t_child = 'Otrok'
+      assign t_baby = 'Dojenček'
+      assign t_adult = 'Odrasli'
+      assign t_another_child = 'Še en otrok'
+      assign t_another_adult = 'Še en odrasli'
+    when 'sv'
+      assign t_heading = 'Gör familjen komplett'
+      assign t_note = 'Varje plagg säljs separat.'
+      assign t_size = 'Storlek'
+      assign t_add = 'Lägg till'
+      assign t_added = 'Tillagd i varukorgen'
+      assign t_error = 'Det gick inte att lägga i varukorgen. Försök igen.'
+      assign t_mother = 'Mamma'
+      assign t_father = 'Pappa'
+      assign t_girl = 'Flicka'
+      assign t_boy = 'Pojke'
+      assign t_child = 'Barn'
+      assign t_baby = 'Bebis'
+      assign t_adult = 'Vuxen'
+      assign t_another_child = 'Ett barn till'
+      assign t_another_adult = 'En vuxen till'
+    when 'th'
+      assign t_heading = 'จัดชุดให้ครบทั้งครอบครัว'
+      assign t_note = 'แต่ละชิ้นขายแยกกัน'
+      assign t_size = 'ไซซ์'
+      assign t_add = 'เพิ่ม'
+      assign t_added = 'เพิ่มลงตะกร้าแล้ว'
+      assign t_error = 'ไม่สามารถเพิ่มลงตะกร้าได้ โปรดลองอีกครั้ง'
+      assign t_mother = 'แม่'
+      assign t_father = 'พ่อ'
+      assign t_girl = 'เด็กหญิง'
+      assign t_boy = 'เด็กชาย'
+      assign t_child = 'เด็ก'
+      assign t_baby = 'ทารก'
+      assign t_adult = 'ผู้ใหญ่'
+      assign t_another_child = 'เด็กอีกคน'
+      assign t_another_adult = 'ผู้ใหญ่อีกคน'
+    when 'tr'
+      assign t_heading = 'Aileyi tamamla'
+      assign t_note = 'Her parça ayrı satılır.'
+      assign t_size = 'Beden'
+      assign t_add = 'Ekle'
+      assign t_added = 'Sepete eklendi'
+      assign t_error = 'Sepete eklenemedi. Lütfen tekrar dene.'
+      assign t_mother = 'Anne'
+      assign t_father = 'Baba'
+      assign t_girl = 'Kız çocuk'
+      assign t_boy = 'Erkek çocuk'
+      assign t_child = 'Çocuk'
+      assign t_baby = 'Bebek'
+      assign t_adult = 'Yetişkin'
+      assign t_another_child = 'Bir çocuk daha'
+      assign t_another_adult = 'Bir yetişkin daha'
+    when 'vi'
+      assign t_heading = 'Hoàn thiện cả nhà'
+      assign t_note = 'Mỗi món được bán riêng.'
+      assign t_size = 'Kích cỡ'
+      assign t_add = 'Thêm'
+      assign t_added = 'Đã thêm vào giỏ hàng'
+      assign t_error = 'Không thể thêm vào giỏ hàng. Vui lòng thử lại.'
+      assign t_mother = 'Mẹ'
+      assign t_father = 'Bố'
+      assign t_girl = 'Bé gái'
+      assign t_boy = 'Bé trai'
+      assign t_child = 'Trẻ em'
+      assign t_baby = 'Em bé'
+      assign t_adult = 'Người lớn'
+      assign t_another_child = 'Thêm một bé'
+      assign t_another_adult = 'Thêm một người lớn'
+    when 'zh'
+      if dcf_iso == 'zh-tw' or dcf_iso == 'zh-hk' or dcf_iso == 'zh-hant'
+        assign t_heading = '湊齊全家'
+        assign t_note = '每件單獨販售。'
+        assign t_size = '尺碼'
+        assign t_add = '加入'
+        assign t_added = '已加入購物車'
+        assign t_error = '無法加入購物車，請再試一次。'
+        assign t_mother = '媽媽'
+        assign t_father = '爸爸'
+        assign t_girl = '女孩'
+        assign t_boy = '男孩'
+        assign t_child = '兒童'
+        assign t_baby = '寶寶'
+        assign t_adult = '成人'
+        assign t_another_child = '再加一位兒童'
+        assign t_another_adult = '再加一位成人'
+      else
+        assign t_heading = '凑齐全家'
+        assign t_note = '每件单独出售。'
+        assign t_size = '尺码'
+        assign t_add = '添加'
+        assign t_added = '已加入购物车'
+        assign t_error = '无法加入购物车，请重试。'
+        assign t_mother = '妈妈'
+        assign t_father = '爸爸'
+        assign t_girl = '女孩'
+        assign t_boy = '男孩'
+        assign t_child = '儿童'
+        assign t_baby = '宝宝'
+        assign t_adult = '成人'
+        assign t_another_child = '再加一位儿童'
+        assign t_another_adult = '再加一位成人'
+      endif
+  endcase
+
+  # alias=role lookup. Lowercase tokens only; '|' and '=' never appear in a
+  # token. 'baba' is Hungarian "baby" but Turkish "father", so it is added per
+  # language below.
+  assign dcf_alias = '|mother=mother|mom=mother|mommy=mother|mum=mother|mummy=mother|mama=mother|mamá=mother|mamma=mother|maman=mother|mère=mother|mere=mother|mãe=mother|mae=mother|madre=mother|mutter=mother|moeder=mother|mor=mother|äiti=mother|máma=mother|maminka=mother|mamă=mother|mamička=mother|majka=mother|mati=mother|anne=mother|anya=mother|ibu=mother|mẹ=mother|мама=mother|мать=mother|μαμά=mother|μητέρα=mother|אמא=mother|माँ=mother|मां=mother|الأم=mother|الام=mother|妈妈=mother|媽媽=mother|ママ=mother|엄마=mother|어머니=mother|แม่=mother|'
+  assign dcf_alias = dcf_alias | append: 'father=father|dad=father|daddy=father|papa=father|papá=father|papà=father|pai=father|padre=father|père=father|pere=father|vater=father|vader=father|far=father|pappa=father|isä=father|tata=father|táta=father|tatínek=father|otec=father|ocko=father|oče=father|oči=father|otac=father|tėtis=father|apa=father|ayah=father|bố=father|cha=father|папа=father|отец=father|μπαμπάς=father|πατέρας=father|אבא=father|पिता=father|पापा=father|الأب=father|الاب=father|爸爸=father|パパ=father|아빠=father|아버지=father|พ่อ=father|'
+  assign dcf_alias = dcf_alias | append: 'girl=girl|girls=girl|daughter=girl|hija=girl|niña=girl|nina=girl|filha=girl|menina=girl|figlia=girl|bambina=girl|ragazza=girl|tochter=girl|mädchen=girl|maedchen=girl|fille=girl|meisje=girl|pige=girl|jente=girl|flicka=girl|tyttö=girl|dziewczynka=girl|dívka=girl|dievča=girl|deklica=girl|djevojčica=girl|mergaitė=girl|fată=girl|lány=girl|kız=girl|kız çocuk=girl|bé gái=girl|anak perempuan=girl|девочка=girl|дочь=girl|κορίτσι=girl|ילדה=girl|אילדה=girl|लड़की=girl|البنت=girl|بنت=girl|ابنة=girl|الابنة=girl|فتاة=girl|الفتاة=girl|للبنات=girl|女孩=girl|女の子=girl|娘=girl|여아=girl|딸=girl|เด็กหญิง=girl|'
+  assign dcf_alias = dcf_alias | append: 'boy=boy|boys=boy|son=boy|hijo=boy|niño=boy|nino=boy|filho=boy|menino=boy|figlio=boy|bambino=boy|ragazzo=boy|sohn=boy|junge=boy|fils=boy|garçon=boy|garcon=boy|jongen=boy|dreng=boy|gutt=boy|pojke=boy|poika=boy|chłopiec=boy|chlapec=boy|deček=boy|dječak=boy|berniukas=boy|băiat=boy|baiat=boy|fiú=boy|erkek=boy|erkek çocuk=boy|bé trai=boy|anak laki-laki=boy|мальчик=boy|сын=boy|αγόρι=boy|ילד=boy|लड़का=boy|الولد=boy|ولد=boy|ابن=boy|الابن=boy|فتى=boy|الفتى=boy|男孩=boy|男の子=boy|息子=boy|남아=boy|아들=boy|เด็กชาย=boy|'
+  assign dcf_alias = dcf_alias | append: 'child=child|children=child|kid=child|kids=child|toddler=child|infant=child|infantil=child|enfant=child|enfants=child|niños=child|criança=child|bambini=child|kind=child|kinder=child|barn=child|lapsi=child|dziecko=child|dzieci=child|dítě=child|dieťa=child|otrok=child|dijete=child|vaikas=child|copil=child|gyerek=child|çocuk=child|trẻ em=child|anak=child|ребенок=child|ребёнок=child|детский=child|дети=child|παιδί=child|παιδικό=child|ילדים=child|बच्चा=child|طفل=child|الطفل=child|أطفال=child|اطفال=child|للأولاد=child|儿童=child|兒童=child|子供=child|キッズ=child|아동=child|어린이=child|เด็ก=child|'
+  assign dcf_alias = dcf_alias | append: 'baby=baby|bebe=baby|bebé=baby|bebê=baby|bébé=baby|neonato=baby|niemowlę=baby|miminko=baby|bábätko=baby|dojenček=baby|beba=baby|kūdikis=baby|bebeluș=baby|bebek=baby|bebis=baby|vauva=baby|bayi=baby|em bé=baby|малыш=baby|младенец=baby|μωρό=baby|תינוק=baby|शिशु=baby|رضيع=baby|الرضيع=baby|بيبي=baby|婴儿=baby|嬰兒=baby|宝宝=baby|寶寶=baby|ベビー=baby|赤ちゃん=baby|아기=baby|베이비=baby|ทารก=baby|'
+  assign dcf_alias = dcf_alias | append: 'adult=adult|adults=adult|adulto=adult|adulta=adult|adulte=adult|adultes=adult|erwachsene=adult|erwachsener=adult|volwassene=adult|voksen=adult|vuxen=adult|aikuinen=adult|dorosły=adult|dospělý=adult|dospelý=adult|odrasli=adult|odrasla osoba=adult|suaugęs=adult|felnőtt=adult|yetişkin=adult|dewasa=adult|người lớn=adult|взрослый=adult|ενήλικας=adult|מבוגר=adult|वयस्क=adult|بالغ=adult|بالغة=adult|بالغين=adult|البالغين=adult|الكبار=adult|للكبار=adult|成人=adult|大人=adult|성인=adult|ผู้ใหญ่=adult|'
+  if dcf_lang == 'hu'
+    assign dcf_alias = dcf_alias | append: 'baba=baby|'
+  elsif dcf_lang == 'tr'
+    assign dcf_alias = dcf_alias | append: 'baba=father|'
+  endif
+
+  assign dcf_role_keys = 'mother,father,girl,boy,child,baby,adult' | split: ','
+  assign dcf_items = cart.items | sort: 'final_line_price' | reverse
+  assign dcf_seen = ','
+  assign dcf_shown = 0
+  assign dcf_products_html = ''
+
+  for item in dcf_items
+    if dcf_shown >= dcf_limit
+      break
+    endif
+    assign dcf_p = item.product
+    assign dcf_pkey = ',' | append: item.product_id | append: ','
+    if dcf_seen contains dcf_pkey
+      continue
+    endif
+    assign dcf_seen = dcf_seen | append: item.product_id | append: ','
+    if dcf_p == blank or dcf_p.has_only_default_variant
+      continue
+    endif
+
+    # 1. Role option: first option whose values carry >= 2 different roles.
+    # dcf_map entries: ¦<value>¤<role>¤=<size part of the value>¦
+    assign dcf_role_pos = 0
+    assign dcf_map = '¦'
+    assign dcf_product_roles = ','
+    for dcf_opt in dcf_p.options_with_values
+      assign dcf_opt_map = '¦'
+      assign dcf_opt_roles = ','
+      assign dcf_opt_distinct = 0
+      for dcf_value in dcf_opt.values
+        assign dcf_val = dcf_value.name | default: dcf_value | append: ''
+        assign dcf_norm = dcf_val | replace: '(', ' ' | replace: ')', ' ' | replace: ':', ' ' | replace: ',', ' ' | replace: '/', ' ' | strip
+        assign dcf_lower = dcf_norm | downcase
+        assign dcf_words = dcf_lower | split: ' '
+        assign dcf_owords = dcf_norm | split: ' '
+        assign dcf_r = ''
+        assign dcf_rem = ''
+        if dcf_words.size > 1
+          assign dcf_tok = dcf_words[0] | append: ' ' | append: dcf_words[1]
+          assign dcf_needle = '|' | append: dcf_tok | append: '='
+          if dcf_alias contains dcf_needle
+            assign dcf_r = dcf_alias | split: dcf_needle | last | split: '|' | first
+            assign dcf_cut = dcf_owords[0] | append: ' ' | append: dcf_owords[1]
+            assign dcf_rem = dcf_norm | remove_first: dcf_cut
+          endif
+        endif
+        if dcf_r == '' and dcf_words.size > 0
+          assign dcf_needle = '|' | append: dcf_words[0] | append: '='
+          if dcf_alias contains dcf_needle
+            assign dcf_r = dcf_alias | split: dcf_needle | last | split: '|' | first
+            assign dcf_rem = dcf_norm | remove_first: dcf_owords[0]
+          endif
+        endif
+        if dcf_r == '' and dcf_words.size > 0 and dcf_words[0] contains '-'
+          assign dcf_tok = dcf_words[0] | split: '-' | first
+          assign dcf_needle = '|' | append: dcf_tok | append: '='
+          if dcf_tok != '' and dcf_alias contains dcf_needle
+            assign dcf_r = dcf_alias | split: dcf_needle | last | split: '|' | first
+            assign dcf_cut = dcf_owords[0] | split: '-' | first | append: '-'
+            assign dcf_rem = dcf_norm | remove_first: dcf_cut
+          endif
+        endif
+        if dcf_r == '' and dcf_words.size > 1
+          assign dcf_needle = '|' | append: dcf_words.last | append: '='
+          if dcf_alias contains dcf_needle
+            assign dcf_r = dcf_alias | split: dcf_needle | last | split: '|' | first
+            assign dcf_last_len = dcf_owords.last | size
+            assign dcf_keep = dcf_norm | size | minus: dcf_last_len
+            assign dcf_rem = dcf_norm | slice: 0, dcf_keep
+          endif
+        endif
+        if dcf_r != ''
+          assign dcf_rem = dcf_rem | strip
+          assign dcf_rem_first = dcf_rem | slice: 0
+          if dcf_rem_first == '-' or dcf_rem_first == '–' or dcf_rem_first == '·'
+            assign dcf_rem = dcf_rem | slice: 1, 200 | strip
+          endif
+          assign dcf_opt_map = dcf_opt_map | append: dcf_val | append: '¤' | append: dcf_r | append: '¤=' | append: dcf_rem | append: '¦'
+          assign dcf_rkey = ',' | append: dcf_r | append: ','
+          unless dcf_opt_roles contains dcf_rkey
+            assign dcf_opt_roles = dcf_opt_roles | append: dcf_r | append: ','
+            assign dcf_opt_distinct = dcf_opt_distinct | plus: 1
+          endunless
+        endif
+      endfor
+      if dcf_opt_distinct >= 2
+        assign dcf_role_pos = dcf_opt.position
+        assign dcf_map = dcf_opt_map
+        assign dcf_product_roles = dcf_opt_roles
+        break
+      endif
+    endfor
+    if dcf_role_pos == 0
+      continue
+    endif
+    assign dcf_ri = dcf_role_pos | minus: 1
+
+    # 2. Role of every variant, aligned with dcf_p.variants.
+    assign dcf_vroles = ''
+    for dcf_v in dcf_p.variants
+      assign dcf_needle = '¦' | append: dcf_v.options[dcf_ri] | append: '¤'
+      if dcf_map contains dcf_needle
+        assign dcf_vr = dcf_map | split: dcf_needle | last | split: '¤' | first
+      else
+        assign dcf_vr = '-'
+      endif
+      assign dcf_vroles = dcf_vroles | append: dcf_vr | append: ','
+    endfor
+    assign dcf_vroles = dcf_vroles | split: ','
+
+    # 3. Roles already in the cart for this product.
+    assign dcf_in_cart = ','
+    for dcf_line in cart.items
+      if dcf_line.product_id == item.product_id
+        assign dcf_needle = '¦' | append: dcf_line.variant.options[dcf_ri] | append: '¤'
+        if dcf_map contains dcf_needle
+          assign dcf_lr = dcf_map | split: dcf_needle | last | split: '¤' | first
+          assign dcf_in_cart = dcf_in_cart | append: dcf_lr | append: ','
+        endif
+      endif
+    endfor
+    if dcf_in_cart == ','
+      continue
+    endif
+
+    # 4. Offer each role of this design that is not in the cart. Kid and Adult
+    # may be added again ("Another kid"), since families often need two.
+    # A non-role option (Color, Type) must equal the cart line's value
+    # whenever that role has the value at all; if the role never has it
+    # (e.g. Type "Dress" for Dad), that option is not matched and its value
+    # is shown in the size label instead.
+    assign dcf_ref = item.variant
+    assign dcf_chips = ''
+    assign dcf_panels = ''
+    assign dcf_chip_count = 0
+    for dcf_role in dcf_role_keys
+      if dcf_chip_count >= 4
+        break
+      endif
+      assign dcf_rkey = ',' | append: dcf_role | append: ','
+      unless dcf_product_roles contains dcf_rkey
+        continue
+      endunless
+      assign dcf_have = false
+      if dcf_in_cart contains dcf_rkey
+        assign dcf_have = true
+        if dcf_role != 'child' and dcf_role != 'adult'
+          continue
+        endif
+      endif
+
+      assign dcf_need1 = false
+      assign dcf_need2 = false
+      assign dcf_need3 = false
+      for dcf_v in dcf_p.variants
+        if dcf_vroles[forloop.index0] == dcf_role
+          if dcf_v.option1 == dcf_ref.option1
+            assign dcf_need1 = true
+          endif
+          if dcf_v.option2 == dcf_ref.option2
+            assign dcf_need2 = true
+          endif
+          if dcf_v.option3 == dcf_ref.option3
+            assign dcf_need3 = true
+          endif
+        endif
+      endfor
+
+      # Two option lists are built at once: plain "<size>" (used when every
+      # size of this role has the same price) and "<size> — <price>".
+      assign dcf_opts_plain = ''
+      assign dcf_opts_priced = ''
+      assign dcf_count = 0
+      assign dcf_min = -1
+      assign dcf_max = -1
+      for dcf_v in dcf_p.variants
+        unless dcf_v.available
+          continue
+        endunless
+        if dcf_vroles[forloop.index0] != dcf_role
+          continue
+        endif
+        assign dcf_extra = ''
+        if dcf_role_pos != 1 and dcf_v.option1 != blank
+          if dcf_need1
+            if dcf_v.option1 != dcf_ref.option1
+              continue
+            endif
+          else
+            assign dcf_extra = dcf_extra | append: ' · ' | append: dcf_v.option1
+          endif
+        endif
+        if dcf_role_pos != 2 and dcf_v.option2 != blank
+          if dcf_need2
+            if dcf_v.option2 != dcf_ref.option2
+              continue
+            endif
+          else
+            assign dcf_extra = dcf_extra | append: ' · ' | append: dcf_v.option2
+          endif
+        endif
+        if dcf_role_pos != 3 and dcf_v.option3 != blank
+          if dcf_need3
+            if dcf_v.option3 != dcf_ref.option3
+              continue
+            endif
+          else
+            assign dcf_extra = dcf_extra | append: ' · ' | append: dcf_v.option3
+          endif
+        endif
+
+        assign dcf_needle = '¦' | append: dcf_v.options[dcf_ri] | append: '¤'
+        assign dcf_entry = dcf_map | split: dcf_needle | last | split: '¦' | first
+        assign dcf_size = dcf_entry | remove_first: dcf_role | remove_first: '¤=' | strip
+        if dcf_size == blank
+          assign dcf_label = dcf_extra | remove_first: ' · ' | strip
+        else
+          assign dcf_label = dcf_size | append: dcf_extra
+        endif
+        if dcf_label == blank
+          assign dcf_label = dcf_v.title
+        endif
+        assign dcf_count = dcf_count | plus: 1
+        if dcf_min < 0 or dcf_v.price < dcf_min
+          assign dcf_min = dcf_v.price
+        endif
+        if dcf_v.price > dcf_max
+          assign dcf_max = dcf_v.price
+        endif
+        assign dcf_money_e = dcf_v.price | money | strip_html | escape
+        assign dcf_size_e = dcf_size | escape
+        assign dcf_label_e = dcf_label | escape
+        assign dcf_open = '<option value="' | append: dcf_v.id | append: '" data-money="' | append: dcf_money_e | append: '" data-size="' | append: dcf_size_e | append: '">'
+        assign dcf_opts_plain = dcf_opts_plain | append: dcf_open | append: dcf_label_e | append: '</option>'
+        assign dcf_opts_priced = dcf_opts_priced | append: dcf_open | append: dcf_label_e | append: ' — ' | append: dcf_money_e | append: '</option>'
+      endfor
+      if dcf_count == 0
+        continue
+      endif
+      assign dcf_uniform = false
+      if dcf_min == dcf_max
+        assign dcf_uniform = true
+      endif
+
+      case dcf_role
+        when 'mother'
+          assign dcf_role_label = t_mother
+        when 'father'
+          assign dcf_role_label = t_father
+        when 'girl'
+          assign dcf_role_label = t_girl
+        when 'boy'
+          assign dcf_role_label = t_boy
+        when 'child'
+          assign dcf_role_label = t_child
+        when 'baby'
+          assign dcf_role_label = t_baby
+        else
+          assign dcf_role_label = t_adult
+      endcase
+      assign dcf_chip_label = dcf_role_label
+      if dcf_have and dcf_role == 'child'
+        assign dcf_chip_label = t_another_child
+      elsif dcf_have and dcf_role == 'adult'
+        assign dcf_chip_label = t_another_adult
+      endif
+
+      assign dcf_id = 'DlmCf-' | append: dcf_surface | append: '-' | append: item.product_id | append: '-' | append: dcf_role
+      assign dcf_min_money_e = dcf_min | money | strip_html | escape
+      assign dcf_role_label_e = dcf_role_label | escape
+      assign dcf_chip_label_e = dcf_chip_label | escape
+      assign dcf_size_word_e = t_size | escape
+      assign dcf_add_e = t_add | escape
+
+      assign dcf_chip = '<button type="button" class="dlm-cf__chip" id="' | append: dcf_id | append: '-chip" aria-expanded="false" aria-controls="' | append: dcf_id | append: '-panel" data-dlm-cf-chip data-role="' | append: dcf_role | append: '" data-role-label="' | append: dcf_role_label_e | append: '"><span aria-hidden="true">+</span> ' | append: dcf_chip_label_e
+      if dcf_uniform
+        assign dcf_chip = dcf_chip | append: ' <span class="dlm-cf__chip-price">' | append: dcf_min_money_e | append: '</span>'
+      endif
+      assign dcf_chip = dcf_chip | append: '</button>'
+
+      assign dcf_panel = '<div class="dlm-cf__panel" id="' | append: dcf_id | append: '-panel" role="group" aria-labelledby="' | append: dcf_id | append: '-chip" data-dlm-cf-panel hidden>'
+      assign dcf_panel = dcf_panel | append: '<label class="visually-hidden" for="' | append: dcf_id | append: '-select">' | append: dcf_role_label_e | append: ' · ' | append: dcf_size_word_e | append: '</label>'
+      assign dcf_panel = dcf_panel | append: '<select class="dlm-cf__select" id="' | append: dcf_id | append: '-select" data-dlm-cf-select><option value="" selected disabled>' | append: dcf_size_word_e | append: '</option>'
+      if dcf_uniform
+        assign dcf_panel = dcf_panel | append: dcf_opts_plain | append: '</select><span class="dlm-cf__price" data-dlm-cf-price data-default="' | append: dcf_min_money_e | append: '">' | append: dcf_min_money_e | append: '</span>'
+      else
+        assign dcf_panel = dcf_panel | append: dcf_opts_priced | append: '</select><span class="dlm-cf__price" data-dlm-cf-price data-default=""></span>'
+      endif
+      assign dcf_panel = dcf_panel | append: '<button type="button" class="dlm-cf__add" data-dlm-cf-add data-product-id="' | append: item.product_id | append: '" data-role="' | append: dcf_role | append: '" disabled>' | append: dcf_add_e | append: '</button></div>'
+
+      assign dcf_chips = dcf_chips | append: dcf_chip
+      assign dcf_panels = dcf_panels | append: dcf_panel
+      assign dcf_chip_count = dcf_chip_count | plus: 1
+    endfor
+
+    if dcf_chip_count == 0
+      continue
+    endif
+
+    assign dcf_title_e = dcf_p.title | split: ' | ' | first | escape
+    assign dcf_url_e = dcf_p.url | escape
+    assign dcf_product_html = '<div class="dlm-cf__product" data-product-id="' | append: item.product_id | append: '"><a class="dlm-cf__thumb" href="' | append: dcf_url_e | append: '" tabindex="-1" aria-hidden="true">'
+    if dcf_p.featured_image
+      assign dcf_img = dcf_p.featured_image | image_url: width: 96
+      assign dcf_product_html = dcf_product_html | append: '<img src="' | append: dcf_img | append: '" alt="" width="44" height="44" loading="lazy">'
+    endif
+    assign dcf_product_html = dcf_product_html | append: '</a><div class="dlm-cf__main"><a class="dlm-cf__title" href="' | append: dcf_url_e | append: '">' | append: dcf_title_e | append: '</a><div class="dlm-cf__chips">' | append: dcf_chips | append: '</div>' | append: dcf_panels | append: '</div></div>'
+    assign dcf_products_html = dcf_products_html | append: dcf_product_html
+    assign dcf_shown = dcf_shown | plus: 1
+  endfor
+-%}
+{%- if dcf_shown > 0 -%}
+  <div
+    class="dlm-cf dlm-cf--{{ dcf_surface }}"
+    role="group"
+    aria-labelledby="DlmCf-Heading-{{ dcf_surface }}"
+    data-dlm-complete-family
+    data-surface="{{ dcf_surface }}"
+    data-msg-added="{{ t_added | escape }}"
+    data-msg-error="{{ t_error | escape }}"
+  >
+    {%- if dcf_surface == 'cart' -%}
+      <h2 class="dlm-cf__heading" id="DlmCf-Heading-{{ dcf_surface }}" tabindex="-1">{{ t_heading | escape }}</h2>
+    {%- else -%}
+      <h3 class="dlm-cf__heading" id="DlmCf-Heading-{{ dcf_surface }}" tabindex="-1">{{ t_heading | escape }}</h3>
+    {%- endif -%}
+    {{ dcf_products_html }}
+    <p class="dlm-cf__error" role="alert" data-dlm-cf-error hidden></p>
+    <p class="dlm-cf__note">{{ t_note | escape }}</p>
+    <p class="visually-hidden" role="status" aria-live="polite" data-dlm-cf-status></p>
+  </div>
+{%- endif -%}

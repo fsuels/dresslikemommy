@@ -1,28 +1,9 @@
 {% if collection != blank and collection.id != 290635284577 %}
   {%- liquid
-    capture collection_seo_display_title
-      render 'collection-seo-fallback', collection: collection, field: 'display_title'
-    endcapture
-    assign collection_seo_display_title = collection_seo_display_title | strip
-    assign collection_seo_display_title_escaped = collection_seo_display_title | escape
-
-    capture collection_seo_hero_summary
-      render 'collection-seo-fallback', collection: collection, field: 'hero_summary'
-    endcapture
-    assign collection_seo_hero_summary = collection_seo_hero_summary | strip
-
     capture collection_seo_body_description
       render 'collection-seo-fallback', collection: collection, field: 'body_description'
     endcapture
     assign collection_seo_body_description = collection_seo_body_description | strip
-    assign collection_seo_body_description_render = collection_seo_body_description
-
-    if collection_seo_body_description != blank and collection_seo_hero_summary != blank and collection_seo_body_description contains '</p>'
-      assign first_body_paragraph = collection_seo_body_description | split: '</p>' | first | append: '</p>' | strip
-      if first_body_paragraph == collection_seo_hero_summary
-        assign collection_seo_body_description_render = collection_seo_body_description | replace_first: first_body_paragraph, '' | strip
-      endif
-    endif
 
     capture collection_seo_rich_content
       render 'collection-seo-content', collection: collection, field: 'rich_content'
@@ -84,8 +65,8 @@
           <p class="collection-seo__eyebrow">{{ 'sections.collection_seo.swimsuits.eyebrow' | t }}</p>
           <h2 class="collection-seo__title">{{ 'sections.collection_seo.swimsuits.title' | t }}</h2>
           <div class="collection-seo__copy">
-            <p>{{ 'sections.collection_seo.swimsuits.copy_1' | t }}</p>
-            <p>{{ 'sections.collection_seo.swimsuits.copy_2' | t }}</p>
+            {%- comment -%}SEO lane fix #3: translated buyer guide replaces the page-talk copy_1/copy_2 strings.{%- endcomment -%}
+            {% render 'collection-guide-swimsuits', field: 'guide' %}
           </div>
         </div>
 
@@ -222,22 +203,23 @@
     </section>
 
     {% render 'faq-schema-from-html', content: collection_seo_rich_content %}
-  {% elsif collection_seo_body_description_render != blank %}
+  {% elsif collection_seo_body_description != blank %}
+    {%- comment -%}
+      SEO lane fix #3 (2026-09-27): the templated "Collection Note / A closer look at"
+      block is replaced by short, translated buyer guidance (sizing and delivery).
+    {%- endcomment -%}
     {{ 'section-collection-seo.css' | asset_url | stylesheet_tag }}
 
     <section class="collection-seo-rich page-width page-width--narrow section-{{ section.id }}-padding">
       <div class="collection-seo-rich__panel rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
         <div class="collection-seo-rich__intro">
-          <p class="collection-seo-rich__eyebrow">{{ 'sections.collection_seo.note_eyebrow' | t }}</p>
-          <h2>{{ 'sections.collection_seo.closer_look_at' | t: title: collection_seo_display_title_escaped }}</h2>
+          <h2>{% render 'collection-guide-generic', field: 'heading' %}</h2>
         </div>
         <div class="collection-seo-rich__copy">
-          {{ collection_seo_body_description_render }}
+          {% render 'collection-guide-generic', field: 'guide' %}
         </div>
       </div>
     </section>
-
-    {% render 'faq-schema-from-html', content: collection_seo_body_description_render %}
   {% endif %}
 {% endif %}
 

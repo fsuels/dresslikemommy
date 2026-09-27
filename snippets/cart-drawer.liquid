@@ -11,12 +11,25 @@
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>
 <script src="{{ 'quantity-popover.js' | asset_url }}" defer="defer"></script>
+{{ 'dlm-complete-family.css' | asset_url | stylesheet_tag }}
+<script src="{{ 'dlm-complete-family.js' | asset_url }}" defer="defer"></script>
 
 <style>
   .drawer {
     visibility: hidden;
   }
 </style>
+
+{%- comment -%}
+  "Complete the family": same-design missing family roles at real prices.
+  Rendered inside the scrolling item list (above the fixed checkout footer).
+  When it has offers, the footer's "You may also like" strip is skipped so the
+  item list keeps its height on a 375px phone.
+{%- endcomment -%}
+{%- capture dlm_complete_family_html -%}
+  {%- render 'dlm-complete-family', surface: 'drawer', max_products: 2 -%}
+{%- endcapture -%}
+{%- assign dlm_complete_family_html = dlm_complete_family_html | strip -%}
 
 <cart-drawer class="drawer{% if cart == empty %} is-empty{% endif %}">
   <div id="CartDrawer" class="cart-drawer">
@@ -583,6 +596,7 @@
                   </tbody>
                 </table>
               </div>
+              {{ dlm_complete_family_html }}
             {%- endif -%}
             <p id="CartDrawer-LiveRegionText" class="visually-hidden" role="status"></p>
             <p id="CartDrawer-LineItemStatus" class="visually-hidden" aria-hidden="true" role="status">
@@ -729,8 +743,8 @@
           </span>
         </div>
 
-        {%- comment -%} ── You may also like — moved below all checkout elements ── {%- endcomment -%}
-        {%- if cart != empty -%}
+        {%- comment -%} ── You may also like — moved below all checkout elements; skipped while "Complete the family" shows ── {%- endcomment -%}
+        {%- if cart != empty and dlm_complete_family_html == blank -%}
           <div class="cart-drawer__upsell cart-drawer__upsell--compact">
             <h3 class="cart-drawer__upsell-heading">{{ 'sections.cart.you_may_also_like' | t }}</h3>
             <div class="cart-drawer__upsell-scroll" id="CartDrawer-Upsell">

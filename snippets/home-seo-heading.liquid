@@ -1,0 +1,36 @@
+{%- comment -%}
+  Stable homepage H1 (SEO lane fix #10, 2026-09-27). The seasonal hero line
+  changes every few weeks, so the page's single H1 carries the head terms
+  instead. Plain text; the caller escapes it. Translations are inline because
+  locales/*.json are owned by another lane. English is the else-branch.
+  Usage: {% render 'home-seo-heading' %}
+{%- endcomment -%}
+{%- liquid
+  assign hh_lang = request.locale.iso_code | default: localization.language.iso_code | default: 'en' | downcase | split: '-' | first
+  if hh_lang == 'nb'
+    assign hh_lang = 'no'
+  endif
+-%}
+{%- case hh_lang -%}
+  {%- when 'es' -%}Conjuntos a juego para mamá e hijos y para toda la familia
+  {%- when 'fr' -%}Tenues assorties mère-enfant et pour toute la famille
+  {%- when 'de' -%}Partnerlooks für Mama und Kind und die ganze Familie
+  {%- when 'it' -%}Look coordinati mamma e figli e per tutta la famiglia
+  {%- when 'nl' -%}Matchende outfits voor mama en kind en het hele gezin
+  {%- when 'pt' -%}Looks combinando para mãe e filhos e para toda a família
+  {%- when 'da' -%}Matchende tøj til mor og barn og hele familien
+  {%- when 'sv' -%}Matchande kläder för mamma och barn och hela familjen
+  {%- when 'no' -%}Matchende antrekk til mamma og barn og hele familien
+  {%- when 'pl' -%}Pasujące stroje dla mamy i dziecka oraz całej rodziny
+  {%- when 'cs' -%}Sladěné oblečení pro maminku a dítě i celou rodinu
+  {%- when 'ja' -%}ママとキッズのおそろいコーデと家族おそろいコーデ
+  {%- when 'ko' -%}엄마와 아이 커플룩과 가족 커플룩
+  {%- when 'ru' -%}Одинаковые наряды для мамы и ребёнка и всей семьи
+  {%- when 'ar' -%}ملابس متطابقة للأم والطفل وللعائلة كلها
+  {%- when 'he' -%}תלבושות תואמות לאמא וילד ולכל המשפחה
+  {%- when 'hi' -%}माँ और बच्चे व पूरे परिवार के मैचिंग आउटफिट
+  {%- when 'el' -%}Ασορτί ρούχα για μαμά και παιδί και για όλη την οικογένεια
+  {%- when 'ro' -%}Ținute asortate pentru mamă și copil și pentru toată familia
+  {%- when 'fi' -%}Äidin ja lapsen sekä koko perheen yhteensopivat asut
+  {%- else -%}Mommy and Me and Family Matching Outfits
+{%- endcase -%}

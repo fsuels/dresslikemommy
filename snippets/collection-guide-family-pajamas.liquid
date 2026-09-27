@@ -1,0 +1,161 @@
+{%- comment -%}
+  Buyer guide for /collections/family-pajamas (SEO lane fix #3, 2026-09-27;
+  source copy: 2026-09-27-million-plan/lanes/seo.md section 4.6).
+  Translations are inline because locales/*.json are owned by another lane.
+  Fields: heading (plain text), lead (one sentence, plain text), guide (HTML).
+  English is the else-branch. Dropshipping truth: no stock, warehouse,
+  fast-shipping, review or bestseller claims; delivery points to the PDP.
+  Usage: {% render 'collection-guide-family-pajamas', field: 'guide' %}
+{%- endcomment -%}
+{%- liquid
+  assign cg_lang = request.locale.iso_code | default: localization.language.iso_code | default: 'en' | downcase | split: '-' | first
+  if cg_lang == 'nb'
+    assign cg_lang = 'no'
+  endif
+
+  assign cg_christmas_url = routes.collections_url | append: '/christmas-pajamas'
+  if collections['christmas-pajamas'] != blank
+    assign cg_christmas_url = collections['christmas-pajamas'].url
+  endif
+  assign cg_mommy_url = routes.collections_url | append: '/mommy-and-me'
+  if collections['mommy-and-me'] != blank
+    assign cg_mommy_url = collections['mommy-and-me'].url
+  endif
+-%}
+{%- case field -%}
+  {%- when 'heading' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}Cómo elegir pijamas familiares a juego
+      {%- when 'fr' -%}Comment choisir des pyjamas assortis pour la famille
+      {%- when 'de' -%}So wählen Sie passende Familienpyjamas
+      {%- when 'it' -%}Come scegliere i pigiami coordinati per la famiglia
+      {%- when 'nl' -%}Zo kies je bijpassende familiepyjama's
+      {%- when 'pt' -%}Como escolher pijamas combinando para a família
+      {%- when 'da' -%}Sådan vælger du matchende familiepyjamas
+      {%- when 'sv' -%}Så väljer du matchande familjepyjamas
+      {%- when 'no' -%}Slik velger du matchende familiepyjamas
+      {%- when 'pl' -%}Jak wybrać pasujące piżamy rodzinne
+      {%- when 'cs' -%}Jak vybrat sladěná rodinná pyžama
+      {%- when 'ja' -%}家族おそろいパジャマの選び方
+      {%- when 'ko' -%}가족 커플 잠옷 고르는 법
+      {%- when 'ru' -%}Как выбрать одинаковые семейные пижамы
+      {%- when 'ar' -%}كيف تختار بيجامات عائلية متطابقة
+      {%- when 'he' -%}איך לבחור פיג'מות משפחתיות תואמות
+      {%- when 'hi' -%}परिवार के मैचिंग पजामे कैसे चुनें
+      {%- when 'el' -%}Πώς να διαλέξετε ασορτί οικογενειακές πιτζάμες
+      {%- when 'ro' -%}Cum alegi pijamale asortate pentru familie
+      {%- when 'fi' -%}Näin valitset perheen yhteensopivat pyjamat
+      {%- else -%}How to choose matching family pajamas
+    {%- endcase -%}
+  {%- when 'lead' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}Los pijamas familiares a juego convierten las noches de película, las pijamadas y las mañanas de fiesta en un momento para la foto.
+      {%- when 'fr' -%}Les pyjamas assortis pour la famille transforment les soirées film, les soirées pyjama et les matins de fête en moment photo.
+      {%- when 'de' -%}Passende Familienpyjamas machen Filmabende, Übernachtungspartys und Feiertagsmorgen zum Fotomoment.
+      {%- when 'it' -%}I pigiami coordinati per la famiglia trasformano le serate film, i pigiama party e le mattine di festa in un momento da fotografare.
+      {%- when 'nl' -%}Bijpassende familiepyjama's maken van filmavonden, logeerpartijtjes en feestelijke ochtenden een fotomoment.
+      {%- when 'pt' -%}Os pijamas combinando para a família transformam noites de filme, festas do pijama e manhãs de festa em um momento para foto.
+      {%- when 'da' -%}Matchende familiepyjamas gør filmaftener, overnatninger og morgener i højtiden til et fotoøjeblik.
+      {%- when 'sv' -%}Matchande familjepyjamas gör filmkvällar, sovfester och helgmornar till ett fotoögonblick.
+      {%- when 'no' -%}Matchende familiepyjamas gjør filmkvelder, overnattinger og høytidsmorgener til et fotoøyeblikk.
+      {%- when 'pl' -%}Pasujące piżamy rodzinne zamieniają wieczory filmowe, nocowanki i świąteczne poranki w chwile do zdjęć.
+      {%- when 'cs' -%}Sladěná rodinná pyžama promění filmové večery, přespávačky a sváteční rána ve chvíle pro fotku.
+      {%- when 'ja' -%}家族おそろいのパジャマなら、映画の夜やお泊まり会、祝日の朝が、写真に残したくなるひとときに変わります。
+      {%- when 'ko' -%}가족 커플 잠옷은 영화 보는 밤, 파자마 파티, 명절 아침을 사진으로 남기고 싶은 순간으로 만들어 줍니다.
+      {%- when 'ru' -%}Одинаковые семейные пижамы превращают киновечера, ночёвки и праздничные утра в повод для фото.
+      {%- when 'ar' -%}تحوّل البيجامات العائلية المتطابقة ليالي الأفلام والسهرات وصباحات الأعياد إلى لحظات تستحق التصوير.
+      {%- when 'he' -%}פיג'מות משפחתיות תואמות הופכות ערבי סרטים, מסיבות פיג'מות ובקרי חג לרגע ששווה לצלם.
+      {%- when 'hi' -%}परिवार के मैचिंग पजामे मूवी नाइट, स्लीपओवर और त्योहारों की सुबह को फ़ोटो लायक पल बना देते हैं।
+      {%- when 'el' -%}Οι ασορτί οικογενειακές πιτζάμες κάνουν τις βραδιές ταινίας, τα πιτζάμα πάρτι και τα γιορτινά πρωινά στιγμές για φωτογραφία.
+      {%- when 'ro' -%}Pijamalele asortate pentru familie transformă serile de film, petrecerile în pijamale și diminețile de sărbătoare în momente de pozat.
+      {%- when 'fi' -%}Perheen yhteensopivat pyjamat tekevät elokuvailloista, yökylistä ja juhla-aamuista kuvauksen arvoisia hetkiä.
+      {%- else -%}Matching family pajamas turn movie nights, sleepovers and holiday mornings into a photo moment.
+    {%- endcase -%}
+  {%- when 'guide' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}
+        <p>La mayoría de los modelos se venden por persona, en tallas de adulto, niño y a menudo bebé, así que solo compras lo que tu familia necesita, ya sean dos personas u ocho.</p>
+        <p><strong>Cómo elegir:</strong> los conjuntos de dos piezas con pantalón largo son los más versátiles. Los pijamas enteros con capucha son divertidos para niños y adultos. Los estampados más ligeros sirven todo el año, mientras que los de cuadros y los festivos están pensados para Halloween y Navidad. Los pijamas son holgados, así que si alguien está entre dos tallas, elige la mayor, y consulta la tabla de tallas de cada página de producto.</p>
+        <p><strong>¿Compras para las fiestas?</strong> Ve directo a los <a href="{{ cg_christmas_url }}">pijamas navideños a juego para la familia</a> y haz tu pedido con antelación para que lleguen a tiempo. ¿Son solo dos? Mira los <a href="{{ cg_mommy_url }}">conjuntos a juego para mamá y peques</a>. El envío estándar está incluido.</p>
+      {%- when 'fr' -%}
+        <p>La plupart des modèles sont vendus à l'unité, en tailles adulte, enfant et souvent bébé, pour n'acheter que ce dont votre famille a besoin, que vous soyez deux ou huit.</p>
+        <p><strong>Choisir un pyjama :</strong> les ensembles deux pièces à pantalon long sont les plus polyvalents. Les combinaisons à capuche amusent petits et grands. Les imprimés légers se portent toute l'année, tandis que les tartans et motifs festifs sont faits pour Halloween et Noël. Un pyjama se porte ample : en cas d'hésitation entre deux tailles, prenez la plus grande, et consultez le guide des tailles de chaque fiche produit.</p>
+        <p><strong>Vous préparez les fêtes ?</strong> Allez directement aux <a href="{{ cg_christmas_url }}">pyjamas de Noël assortis pour la famille</a> et commandez tôt pour les recevoir à temps. Juste vous deux ? Découvrez nos <a href="{{ cg_mommy_url }}">tenues assorties mère-enfant</a>. La livraison standard est incluse.</p>
+      {%- when 'de' -%}
+        <p>Die meisten Modelle werden pro Person verkauft, in Größen für Erwachsene, Kinder und oft auch Babys, sodass Sie nur kaufen, was Ihre Familie braucht – ob zu zweit oder zu acht.</p>
+        <p><strong>Den richtigen Pyjama wählen:</strong> Zweiteiler mit langer Hose sind am vielseitigsten. Einteiler mit Kapuze machen Kindern und Erwachsenen Spaß. Hellere Muster passen das ganze Jahr, Karo- und Festtagsmuster sind für Halloween und Weihnachten gemacht. Pyjamas sitzen locker: Liegt jemand zwischen zwei Größen, nehmen Sie die größere, und prüfen Sie die Größentabelle auf jeder Produktseite.</p>
+        <p><strong>Einkauf für die Feiertage?</strong> Gehen Sie direkt zu den <a href="{{ cg_christmas_url }}">passenden Weihnachtspyjamas für die Familie</a> und bestellen Sie früh, damit sie rechtzeitig ankommen. Nur zu zweit? Entdecken Sie die <a href="{{ cg_mommy_url }}">Partnerlooks für Mama und Kind</a>. Der Standardversand ist inklusive.</p>
+      {%- when 'it' -%}
+        <p>La maggior parte dei modelli si vende per persona, in taglie adulto, bambino e spesso neonato, così compri solo ciò che serve alla tua famiglia, che siate in due o in otto.</p>
+        <p><strong>Come scegliere:</strong> i completi due pezzi con pantaloni lunghi sono i più versatili. Le tutine con cappuccio sono divertenti per bambini e adulti. Le stampe più leggere vanno bene tutto l'anno, mentre scozzesi e fantasie festive sono pensate per Halloween e Natale. I pigiami vestono morbidi: se qualcuno è tra due taglie, scegli quella più grande e controlla la tabella taglie di ogni pagina prodotto.</p>
+        <p><strong>Acquisti per le feste?</strong> Vai direttamente ai <a href="{{ cg_christmas_url }}">pigiami di Natale coordinati per la famiglia</a> e ordina per tempo, così arrivano puntuali. Siete solo in due? Scopri i <a href="{{ cg_mommy_url }}">look coordinati mamma e figli</a>. La spedizione standard è inclusa.</p>
+      {%- when 'nl' -%}
+        <p>De meeste modellen worden per persoon verkocht, in maten voor volwassenen, kinderen en vaak ook baby's, zodat je alleen koopt wat je gezin nodig heeft, of jullie nu met z'n tweeën zijn of met z'n achten.</p>
+        <p><strong>Een pyjama kiezen:</strong> tweedelige sets met lange broek zijn het veelzijdigst. Onesies met capuchon zijn speels voor kinderen en volwassenen. Lichtere prints kunnen het hele jaar, terwijl ruiten en feestelijke prints gemaakt zijn voor Halloween en kerst. Pyjama's zitten ruim: twijfelt iemand tussen twee maten, kies dan de grotere en bekijk de maattabel op elke productpagina.</p>
+        <p><strong>Shop je voor de feestdagen?</strong> Ga direct naar de <a href="{{ cg_christmas_url }}">bijpassende kerstpyjama's voor het gezin</a> en bestel op tijd, zodat ze er op tijd zijn. Met z'n tweeën? Bekijk de <a href="{{ cg_mommy_url }}">matchende outfits voor mama en kind</a>. Standaardverzending is inbegrepen.</p>
+      {%- when 'pt' -%}
+        <p>A maioria dos modelos é vendida por pessoa, em tamanhos adulto, infantil e muitas vezes bebê, para você comprar só o que sua família precisa, sejam duas pessoas ou oito.</p>
+        <p><strong>Como escolher:</strong> conjuntos de duas peças com calça comprida são os mais versáteis. Macacões com capuz são divertidos para crianças e adultos. Estampas mais leves servem o ano todo, enquanto xadrez e estampas festivas são feitos para o Halloween e o Natal. Pijamas têm caimento solto: se alguém estiver entre dois tamanhos, escolha o maior e confira a tabela de medidas de cada página de produto.</p>
+        <p><strong>Comprando para as festas?</strong> Vá direto aos <a href="{{ cg_christmas_url }}">pijamas de Natal combinando para a família</a> e peça com antecedência para que cheguem a tempo. Só vocês dois? Veja os <a href="{{ cg_mommy_url }}">looks combinando para mãe e filhos</a>. O frete padrão está incluído.</p>
+      {%- when 'da' -%}
+        <p>De fleste modeller sælges pr. person i størrelser til voksne, børn og ofte babyer, så du kun køber det, din familie har brug for – uanset om I er to eller otte.</p>
+        <p><strong>Vælg pyjamas:</strong> Todelte sæt med lange bukser er de mest alsidige. Heldragter med hætte er legende for både børn og voksne. Lysere print kan bruges hele året, mens tern og festlige print er lavet til halloween og jul. Pyjamas sidder løst, så gå en størrelse op, hvis nogen er mellem to størrelser, og tjek størrelsesguiden på hver produktside.</p>
+        <p><strong>Handler du til højtiden?</strong> Gå direkte til <a href="{{ cg_christmas_url }}">matchende julepyjamas til familien</a>, og bestil i god tid, så de når frem. Kun jer to? Se <a href="{{ cg_mommy_url }}">matchende tøj til mor og barn</a>. Standardfragt er inkluderet.</p>
+      {%- when 'sv' -%}
+        <p>De flesta modeller säljs per person, i storlekar för vuxna, barn och ofta bebisar, så att du bara köper det din familj behöver – oavsett om ni är två eller åtta.</p>
+        <p><strong>Välj pyjamas:</strong> tvådelade set med långbyxor är mest mångsidiga. Heldräkter med luva är lekfulla för både barn och vuxna. Ljusare mönster fungerar året runt, medan rutigt och festliga mönster är gjorda för halloween och jul. Pyjamas sitter ledigt, så välj en storlek upp om någon är mellan två storlekar, och kolla storleksguiden på varje produktsida.</p>
+        <p><strong>Handlar du inför helgerna?</strong> Gå direkt till <a href="{{ cg_christmas_url }}">matchande julpyjamas för familjen</a> och beställ i god tid så att de hinner fram. Bara ni två? Se <a href="{{ cg_mommy_url }}">matchande kläder för mamma och barn</a>. Standardfrakt ingår.</p>
+      {%- when 'no' -%}
+        <p>De fleste modellene selges per person, i størrelser for voksne, barn og ofte babyer, så du bare kjøper det familien trenger – enten dere er to eller åtte.</p>
+        <p><strong>Velg pyjamas:</strong> Todelte sett med lange bukser er de mest allsidige. Heldresser med hette er lekne for både barn og voksne. Lysere mønstre passer hele året, mens rutemønster og festlige mønstre er laget for halloween og jul. Pyjamas sitter løst, så velg en størrelse opp hvis noen er mellom to størrelser, og sjekk størrelsestabellen på hver produktside.</p>
+        <p><strong>Handler du til høytiden?</strong> Gå rett til <a href="{{ cg_christmas_url }}">matchende julepyjamas til familien</a> og bestill tidlig, så de kommer fram i tide. Bare dere to? Se <a href="{{ cg_mommy_url }}">matchende antrekk til mamma og barn</a>. Standardfrakt er inkludert.</p>
+      {%- when 'pl' -%}
+        <p>Większość modeli sprzedawana jest na osobę, w rozmiarach dla dorosłych, dzieci i często niemowląt, więc kupujesz tylko to, czego potrzebuje twoja rodzina – czy jest was dwoje, czy ośmioro.</p>
+        <p><strong>Jak wybrać piżamę:</strong> dwuczęściowe komplety z długimi spodniami są najbardziej uniwersalne. Jednoczęściowe piżamy z kapturem są zabawne dla dzieci i dorosłych. Jaśniejsze wzory sprawdzą się przez cały rok, a krata i świąteczne motywy są stworzone na Halloween i Boże Narodzenie. Piżamy są luźne, więc jeśli ktoś jest pomiędzy rozmiarami, wybierz większy i sprawdź tabelę rozmiarów na każdej stronie produktu.</p>
+        <p><strong>Zakupy na święta?</strong> Przejdź od razu do <a href="{{ cg_christmas_url }}">pasujących świątecznych piżam dla rodziny</a> i zamów wcześniej, aby dotarły na czas. Tylko we dwoje? Zobacz <a href="{{ cg_mommy_url }}">pasujące stroje dla mamy i dziecka</a>. Standardowa wysyłka jest wliczona.</p>
+      {%- when 'cs' -%}
+        <p>Většina modelů se prodává zvlášť pro každou osobu, ve velikostech pro dospělé, děti a často i miminka, takže koupíte jen to, co vaše rodina potřebuje – ať je vás dva, nebo osm.</p>
+        <p><strong>Jak vybrat pyžamo:</strong> dvoudílné soupravy s dlouhými kalhotami jsou nejuniverzálnější. Overaly s kapucí jsou hravé pro děti i dospělé. Světlejší vzory se hodí po celý rok, kdežto kostky a sváteční motivy jsou stvořené pro Halloween a Vánoce. Pyžama jsou volnější, takže pokud je někdo mezi dvěma velikostmi, zvolte větší, a zkontrolujte tabulku velikostí na každé stránce produktu.</p>
+        <p><strong>Nakupujete na svátky?</strong> Přejděte rovnou na <a href="{{ cg_christmas_url }}">sladěná vánoční pyžama pro rodinu</a> a objednejte včas, aby dorazila. Jen vy dva? Podívejte se na <a href="{{ cg_mommy_url }}">sladěné oblečení pro maminku a dítě</a>. Standardní doprava je v ceně.</p>
+      {%- when 'ja' -%}
+        <p>ほとんどのデザインは1人分ずつの販売で、大人・子ども、そして多くはベビーサイズもあるので、2人でも8人でも、ご家族に必要な分だけ購入できます。</p>
+        <p><strong>パジャマの選び方：</strong>長ズボンのツーピースセットがいちばん使い回しやすいタイプです。フード付きのワンピースタイプは、子どもにも大人にも遊び心たっぷり。軽やかな柄は一年中使え、チェックやお祝い柄はハロウィンやクリスマス向けです。パジャマはゆったりめの作りなので、サイズで迷ったら大きいほうを選び、各商品ページのサイズ表もご確認ください。</p>
+        <p><strong>ホリデーシーズンのお買い物なら：</strong><a href="{{ cg_christmas_url }}">家族おそろいのクリスマスパジャマ</a>へ直接どうぞ。間に合うよう早めのご注文がおすすめです。2人だけでおそろいにしたいときは、<a href="{{ cg_mommy_url }}">ママとキッズのおそろいコーデ</a>をご覧ください。通常配送料は含まれています。</p>
+      {%- when 'ko' -%}
+        <p>대부분의 스타일은 1인 단위로 판매되며 성인, 아동, 그리고 대개 아기 사이즈까지 있어 두 명이든 여덟 명이든 가족에게 필요한 만큼만 구매할 수 있습니다.</p>
+        <p><strong>잠옷 고르기:</strong> 긴바지가 있는 투피스 세트가 가장 활용도가 높습니다. 후드 달린 원피스형 잠옷은 아이와 어른 모두에게 재미있습니다. 가벼운 프린트는 사계절 내내 입기 좋고, 체크와 축제 분위기 프린트는 할로윈과 크리스마스를 위한 것입니다. 잠옷은 넉넉하게 입는 옷이므로 사이즈가 애매하면 한 치수 크게 고르고, 각 상품 페이지의 사이즈 차트도 확인하세요.</p>
+        <p><strong>연말 쇼핑 중이신가요?</strong> <a href="{{ cg_christmas_url }}">가족 커플 크리스마스 잠옷</a>으로 바로 가서 제때 도착하도록 미리 주문하세요. 두 사람만 맞추고 싶다면 <a href="{{ cg_mommy_url }}">엄마와 아이 커플룩</a>을 둘러보세요. 기본 배송비가 포함되어 있습니다.</p>
+      {%- when 'ru' -%}
+        <p>Большинство моделей продаётся отдельно на каждого человека, во взрослых, детских и часто младенческих размерах, так что вы покупаете только то, что нужно вашей семье, — вас двое или восемь.</p>
+        <p><strong>Как выбрать пижаму:</strong> комплекты-двойки с длинными брюками — самые универсальные. Комбинезоны с капюшоном забавны и для детей, и для взрослых. Более светлые принты подходят круглый год, а клетка и праздничные узоры созданы для Хэллоуина и Рождества. Пижамы носятся свободно, поэтому если кто-то между размерами, берите больший и сверяйтесь с таблицей размеров на странице каждого товара.</p>
+        <p><strong>Покупаете к праздникам?</strong> Переходите сразу к <a href="{{ cg_christmas_url }}">одинаковым рождественским пижамам для семьи</a> и заказывайте заранее, чтобы они пришли вовремя. Только вы вдвоём? Посмотрите <a href="{{ cg_mommy_url }}">одинаковые наряды для мамы и ребёнка</a>. Стандартная доставка включена.</p>
+      {%- when 'ar' -%}
+        <p>تُباع معظم التصاميم لكل شخص على حدة، بمقاسات للكبار والأطفال وغالبًا للرضع، فلا تشتري إلا ما تحتاجه عائلتك، سواء كنتم اثنين أو ثمانية.</p>
+        <p><strong>اختيار البيجامة:</strong> الأطقم المكوّنة من قطعتين مع بنطال طويل هي الأكثر تنوعًا في الاستخدام. والبيجامات القطعة الواحدة بغطاء رأس مرحة للأطفال والكبار. تناسب النقشات الأخف العام كله، بينما صُممت المربعات والنقشات الاحتفالية للهالوين وعيد الميلاد. البيجامات فضفاضة، فإذا كان أحدهم بين مقاسين فاختر الأكبر، وراجع جدول المقاسات في صفحة كل منتج.</p>
+        <p><strong>تتسوق للأعياد؟</strong> انتقل مباشرة إلى <a href="{{ cg_christmas_url }}">بيجامات عيد الميلاد العائلية المتطابقة</a> واطلب مبكرًا لتصل في الوقت المناسب. أنتما اثنان فقط؟ تصفح <a href="{{ cg_mommy_url }}">الملابس المتطابقة للأم والطفل</a>. الشحن العادي مشمول.</p>
+      {%- when 'he' -%}
+        <p>רוב הדגמים נמכרים לפי אדם, במידות למבוגרים, לילדים ולעיתים קרובות גם לתינוקות, כך שקונים רק את מה שהמשפחה צריכה – בין אם אתם שניים או שמונה.</p>
+        <p><strong>בחירת פיג'מה:</strong> סטים של שני חלקים עם מכנסיים ארוכים הם הרב־גוניים ביותר. אוברולים עם קפוצ'ון שובבים לילדים ולמבוגרים. הדפסים קלילים מתאימים לכל השנה, ואילו משבצות והדפסים חגיגיים נועדו לליל כל הקדושים ולחג המולד. פיג'מות רפויות, אז אם מישהו בין שתי מידות, בחרו את הגדולה, ובדקו את טבלת המידות שבכל דף מוצר.</p>
+        <p><strong>קונים לחגים?</strong> עברו ישר ל<a href="{{ cg_christmas_url }}">פיג'מות חג המולד התואמות למשפחה</a> והזמינו מוקדם כדי שיגיעו בזמן. רק שניכם? עיינו ב<a href="{{ cg_mommy_url }}">תלבושות התואמות לאמא וילד</a>. משלוח רגיל כלול.</p>
+      {%- when 'hi' -%}
+        <p>ज़्यादातर स्टाइल प्रति व्यक्ति बिकते हैं, बड़ों, बच्चों और अक्सर बेबी साइज़ में भी, ताकि आप सिर्फ़ उतना ही खरीदें जितनी आपके परिवार को ज़रूरत है, चाहे आप दो हों या आठ।</p>
+        <p><strong>पजामे कैसे चुनें:</strong> लंबी पैंट वाले टू-पीस सेट सबसे बहुउपयोगी हैं। हुड वाले वन-पीस बच्चों और बड़ों दोनों के लिए मज़ेदार हैं। हल्के प्रिंट पूरे साल चलते हैं, जबकि प्लेड और त्योहारी प्रिंट हैलोवीन और क्रिसमस के लिए बने हैं। पजामे ढीले पहने जाते हैं, इसलिए अगर कोई दो साइज़ के बीच हो तो बड़ा साइज़ लें, और हर प्रोडक्ट पेज का साइज़ चार्ट देखें।</p>
+        <p><strong>त्योहारों की खरीदारी कर रहे हैं?</strong> सीधे <a href="{{ cg_christmas_url }}">परिवार के मैचिंग क्रिसमस पजामे</a> पर जाएँ और जल्दी ऑर्डर करें ताकि वे समय पर पहुँचें। सिर्फ़ आप दोनों? <a href="{{ cg_mommy_url }}">माँ और बच्चे के मैचिंग आउटफिट</a> देखें। स्टैंडर्ड शिपिंग शामिल है।</p>
+      {%- when 'el' -%}
+        <p>Τα περισσότερα σχέδια πωλούνται ανά άτομο, σε μεγέθη για ενήλικες, παιδιά και συχνά μωρά, ώστε να αγοράζετε μόνο ό,τι χρειάζεται η οικογένειά σας, είτε είστε δύο είτε οκτώ.</p>
+        <p><strong>Επιλογή πιτζάμας:</strong> τα σετ δύο τεμαχίων με μακρύ παντελόνι είναι τα πιο ευέλικτα. Οι ολόσωμες πιτζάμες με κουκούλα είναι παιχνιδιάρικες για παιδιά και μεγάλους. Τα πιο ανάλαφρα μοτίβα φοριούνται όλο τον χρόνο, ενώ τα καρό και τα γιορτινά μοτίβα είναι φτιαγμένα για το Halloween και τα Χριστούγεννα. Οι πιτζάμες φοριούνται άνετες, οπότε αν κάποιος είναι ανάμεσα σε δύο μεγέθη, πάρτε το μεγαλύτερο και ελέγξτε τον πίνακα μεγεθών σε κάθε σελίδα προϊόντος.</p>
+        <p><strong>Ψωνίζετε για τις γιορτές;</strong> Πηγαίνετε κατευθείαν στις <a href="{{ cg_christmas_url }}">ασορτί χριστουγεννιάτικες πιτζάμες για την οικογένεια</a> και παραγγείλετε νωρίς για να φτάσουν εγκαίρως. Μόνο εσείς οι δύο; Δείτε τα <a href="{{ cg_mommy_url }}">ασορτί ρούχα για μαμά και παιδί</a>. Η τυπική αποστολή περιλαμβάνεται.</p>
+      {%- when 'ro' -%}
+        <p>Majoritatea modelelor se vând per persoană, în mărimi pentru adulți, copii și adesea bebeluși, ca să cumperi doar ce îi trebuie familiei tale, fie că sunteți doi sau opt.</p>
+        <p><strong>Cum alegi pijamaua:</strong> seturile din două piese cu pantaloni lungi sunt cele mai versatile. Salopetele cu glugă sunt jucăușe pentru copii și adulți. Imprimeurile mai lejere merg tot anul, iar carourile și motivele festive sunt făcute pentru Halloween și Crăciun. Pijamalele se poartă lejer, așa că dacă cineva e între două mărimi, alege-o pe cea mai mare și verifică tabelul de mărimi de pe fiecare pagină de produs.</p>
+        <p><strong>Cumperi pentru sărbători?</strong> Mergi direct la <a href="{{ cg_christmas_url }}">pijamalele de Crăciun asortate pentru familie</a> și comandă din timp, ca să ajungă la vreme. Doar voi doi? Vezi <a href="{{ cg_mommy_url }}">ținutele asortate pentru mamă și copil</a>. Livrarea standard este inclusă.</p>
+      {%- when 'fi' -%}
+        <p>Useimmat mallit myydään henkilöä kohden, aikuisten, lasten ja usein myös vauvojen koissa, joten ostat vain sen, mitä perheesi tarvitsee – olittepa kaksi tai kahdeksan.</p>
+        <p><strong>Pyjaman valinta:</strong> kaksiosaiset setit pitkillä housuilla ovat monikäyttöisimpiä. Hupulliset haalarit ovat leikkisiä lapsille ja aikuisille. Kevyemmät kuosit sopivat ympäri vuoden, kun taas ruudut ja juhlakuosit on tehty halloweeniin ja jouluun. Pyjamat ovat väljiä, joten jos joku on kahden koon välissä, valitse isompi, ja tarkista kunkin tuotesivun kokotaulukko.</p>
+        <p><strong>Ostoksilla juhlapyhiä varten?</strong> Siirry suoraan <a href="{{ cg_christmas_url }}">perheen yhteensopiviin joulupyjamiin</a> ja tilaa ajoissa, jotta ne ehtivät perille. Vain te kaksi? Katso <a href="{{ cg_mommy_url }}">äidin ja lapsen yhteensopivat asut</a>. Vakiotoimitus sisältyy hintaan.</p>
+      {%- else -%}
+        <p>Most styles are sold per person, in adult, child and often baby or toddler sizes, so you only buy what your family needs, whether that's two people or eight.</p>
+        <p><strong>Choosing pajamas:</strong> two-piece sets with long pants are the most versatile. Hooded onesies are playful for kids and adults. Lighter prints work year-round, while plaid and festive prints are made for Halloween and Christmas. Pajamas fit relaxed, so size up if someone is between sizes, and check the size chart on each product page.</p>
+        <p><strong>Shopping for the holidays?</strong> Go straight to <a href="{{ cg_christmas_url }}">matching family Christmas pajamas</a> and order early so they arrive in time. Just the two of you? See <a href="{{ cg_mommy_url }}">mommy and me outfits</a>. Standard shipping is included.</p>
+    {%- endcase -%}
+{%- endcase -%}

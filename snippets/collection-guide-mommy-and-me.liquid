@@ -1,0 +1,161 @@
+{%- comment -%}
+  Buyer guide for /collections/mommy-and-me (SEO lane fix #3, 2026-09-27;
+  source copy: 2026-09-27-million-plan/lanes/seo.md section 4.1).
+  Translations are inline because locales/*.json are owned by another lane.
+  Fields: heading (plain text), lead (one sentence, plain text), guide (HTML).
+  English is the else-branch. Dropshipping truth: no stock, warehouse,
+  fast-shipping, review or bestseller claims; delivery points to the PDP.
+  Usage: {% render 'collection-guide-mommy-and-me', field: 'guide' %}
+{%- endcomment -%}
+{%- liquid
+  assign cg_lang = request.locale.iso_code | default: localization.language.iso_code | default: 'en' | downcase | split: '-' | first
+  if cg_lang == 'nb'
+    assign cg_lang = 'no'
+  endif
+
+  assign cg_family_url = routes.collections_url | append: '/new-women-outfits'
+  if collections['new-women-outfits'] != blank
+    assign cg_family_url = collections['new-women-outfits'].url
+  endif
+  assign cg_swim_url = routes.collections_url | append: '/swimsuits'
+  if collections['swimsuits'] != blank
+    assign cg_swim_url = collections['swimsuits'].url
+  endif
+-%}
+{%- case field -%}
+  {%- when 'heading' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}Cómo elegir conjuntos a juego para mamá y peques
+      {%- when 'fr' -%}Comment choisir des tenues assorties mère-enfant
+      {%- when 'de' -%}So wählen Sie Partnerlooks für Mama und Kind
+      {%- when 'it' -%}Come scegliere i look coordinati mamma e figli
+      {%- when 'nl' -%}Zo kies je matchende outfits voor mama en kind
+      {%- when 'pt' -%}Como escolher looks combinando para mãe e filhos
+      {%- when 'da' -%}Sådan vælger du matchende tøj til mor og barn
+      {%- when 'sv' -%}Så väljer du matchande kläder för mamma och barn
+      {%- when 'no' -%}Slik velger du matchende antrekk til mamma og barn
+      {%- when 'pl' -%}Jak wybrać pasujące stroje dla mamy i dziecka
+      {%- when 'cs' -%}Jak vybrat sladěné oblečení pro maminku a dítě
+      {%- when 'ja' -%}ママとキッズのおそろいコーデの選び方
+      {%- when 'ko' -%}엄마와 아이 커플룩 고르는 법
+      {%- when 'ru' -%}Как выбрать одинаковые наряды для мамы и ребёнка
+      {%- when 'ar' -%}كيف تختارين ملابس متطابقة للأم والطفل
+      {%- when 'he' -%}איך לבחור תלבושות תואמות לאמא וילד
+      {%- when 'hi' -%}माँ और बच्चे के मैचिंग आउटफिट कैसे चुनें
+      {%- when 'el' -%}Πώς να διαλέξετε ασορτί ρούχα για μαμά και παιδί
+      {%- when 'ro' -%}Cum alegi ținute asortate pentru mamă și copil
+      {%- when 'fi' -%}Näin valitset äidin ja lapsen yhteensopivat asut
+      {%- else -%}How to choose mommy and me outfits
+    {%- endcase -%}
+  {%- when 'lead' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}Los conjuntos a juego para mamá y peques te permiten llevar el mismo estampado, color o estilo que tu pequeño o pequeña, desde vestidos de cumpleaños hasta pijamas de domingo.
+      {%- when 'fr' -%}Les tenues assorties mère-enfant vous permettent de porter le même imprimé, la même couleur ou le même style que votre petit, de la robe d'anniversaire au pyjama du dimanche.
+      {%- when 'de' -%}Mit Partnerlooks für Mama und Kind tragen Sie und Ihr Kind dasselbe Muster, dieselbe Farbe oder denselben Stil – vom Geburtstagskleid bis zum Sonntagspyjama.
+      {%- when 'it' -%}I look coordinati mamma e figli permettono a te e al tuo piccolo di indossare la stessa stampa, lo stesso colore o lo stesso stile, dall'abito per il compleanno al pigiama della domenica.
+      {%- when 'nl' -%}Met matchende outfits voor mama en kind dragen jij en je kleintje dezelfde print, kleur of stijl, van verjaardagsjurk tot zondagse pyjama.
+      {%- when 'pt' -%}Os looks combinando para mãe e filhos deixam você e seu pequeno com a mesma estampa, cor ou estilo, do vestido de aniversário ao pijama de domingo.
+      {%- when 'da' -%}Med matchende tøj til mor og barn kan du og din lille bære samme print, farve eller stil – fra fødselsdagskjolen til søndagspyjamassen.
+      {%- when 'sv' -%}Med matchande kläder för mamma och barn kan du och din lilla bära samma mönster, färg eller stil – från födelsedagsklänningen till söndagspyjamasen.
+      {%- when 'no' -%}Med matchende antrekk til mamma og barn kan du og den lille bruke samme mønster, farge eller stil – fra bursdagskjolen til søndagspyjamasen.
+      {%- when 'pl' -%}Pasujące stroje dla mamy i dziecka pozwalają tobie i twojemu maluchowi nosić ten sam wzór, kolor lub styl – od urodzinowej sukienki po niedzielną piżamę.
+      {%- when 'cs' -%}Sladěné oblečení pro maminku a dítě vám a vašemu drobečkovi umožní nosit stejný vzor, barvu nebo styl – od narozeninových šatů po nedělní pyžamo.
+      {%- when 'ja' -%}ママとキッズのおそろいコーデなら、誕生日のワンピースから日曜日のパジャマまで、お子さまと同じ柄・色・スタイルを楽しめます。
+      {%- when 'ko' -%}엄마와 아이 커플룩으로 생일 원피스부터 주말 잠옷까지 아이와 같은 패턴, 색상, 스타일을 함께 입어 보세요.
+      {%- when 'ru' -%}Одинаковые наряды для мамы и ребёнка позволяют вам и малышу носить один принт, цвет или стиль — от платья на день рождения до воскресной пижамы.
+      {%- when 'ar' -%}تتيح لكِ الملابس المتطابقة للأم والطفل ارتداء النقشة أو اللون أو الأسلوب نفسه مع صغيرك، من فستان عيد الميلاد إلى بيجامة يوم العطلة.
+      {%- when 'he' -%}תלבושות תואמות לאמא וילד מאפשרות לך ולקטנטנים ללבוש את אותו הדפס, צבע או סגנון – משמלת יום ההולדת ועד פיג'מת סוף השבוע.
+      {%- when 'hi' -%}माँ और बच्चे के मैचिंग आउटफिट से आप और आपका नन्हा एक ही प्रिंट, रंग या स्टाइल पहन सकते हैं, जन्मदिन की ड्रेस से लेकर रविवार के पजामे तक।
+      {%- when 'el' -%}Τα ασορτί ρούχα για μαμά και παιδί σας επιτρέπουν να φοράτε το ίδιο μοτίβο, χρώμα ή στιλ με το μικρό σας, από το φόρεμα γενεθλίων μέχρι τις πιτζάμες της Κυριακής.
+      {%- when 'ro' -%}Ținutele asortate pentru mamă și copil vă permit ție și celui mic să purtați același imprimeu, aceeași culoare sau același stil, de la rochia de ziua de naștere la pijamaua de duminică.
+      {%- when 'fi' -%}Äidin ja lapsen yhteensopivissa asuissa sinä ja pienesi voitte pukeutua samaan kuosiin, väriin tai tyyliin – syntymäpäivämekosta sunnuntaipyjamaan.
+      {%- else -%}Mommy and me outfits let you and your little one wear the same print, color or style, from birthday dresses to Sunday pajamas.
+    {%- endcase -%}
+  {%- when 'guide' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}
+        <p>Los modelos vienen en tallas separadas para adulto y niño, y muchos llegan hasta tallas de bebé, así que puedes combinar con un recién nacido, un niño pequeño o uno de diez años.</p>
+        <p><strong>Cómo comprar:</strong> elige primero la ocasión. Los vestidos largos y midi con vuelo quedan perfectos para fotos, bodas y fiestas. Los conjuntos de dos piezas y las camisetas son más prácticos para el día a día y los viajes. Los pijamas a juego son un regalo fácil. Elige la talla de mamá y la de cada peque por separado con la tabla de tallas de cada página de producto. Las tallas infantiles se indican por edad, pero comprobar la estatura da un mejor ajuste.</p>
+        <p>¿Quieres que papá o los hermanos también salgan en la foto? Mira nuestros <a href="{{ cg_family_url }}">conjuntos a juego para toda la familia</a>. Para la piscina, compra <a href="{{ cg_swim_url }}">trajes de baño a juego para mamá e hija</a>. El envío estándar está incluido y cada página de producto muestra su plazo estimado de entrega.</p>
+      {%- when 'fr' -%}
+        <p>Les modèles existent en tailles adulte et enfant séparées, et beaucoup descendent jusqu'aux tailles bébé : vous pouvez donc être assortie à un nouveau-né, un tout-petit ou un enfant de dix ans.</p>
+        <p><strong>Comment choisir :</strong> commencez par l'occasion. Les robes longues et midi fluides conviennent aux photos, aux mariages et aux fêtes. Les ensembles deux pièces et les t-shirts sont plus pratiques au quotidien et en voyage. Un pyjama assorti est une idée cadeau facile. Choisissez la taille de maman et celle de chaque enfant séparément grâce au guide des tailles de chaque fiche produit. Les tailles enfant sont indiquées par âge, mais la taille en centimètres de l'enfant reste le meilleur repère.</p>
+        <p>Vous voulez que papa ou les frères et sœurs soient aussi sur la photo ? Découvrez nos <a href="{{ cg_family_url }}">tenues assorties pour toute la famille</a>. Pour la piscine, voyez nos <a href="{{ cg_swim_url }}">maillots de bain assortis mère-fille</a>. La livraison standard est incluse et chaque fiche produit indique son délai de livraison estimé.</p>
+      {%- when 'de' -%}
+        <p>Die Modelle gibt es in getrennten Größen für Erwachsene und Kinder, viele sogar bis hin zu Babygrößen – so passen Sie zu einem Neugeborenen, einem Kleinkind oder einem Zehnjährigen.</p>
+        <p><strong>So kaufen Sie ein:</strong> Wählen Sie zuerst den Anlass. Fließende Maxi- und Midikleider passen zu Fotos, Hochzeiten und Feiertagen. Zweiteiler und T-Shirts sind praktischer für den Alltag und auf Reisen. Passende Pyjamas sind ein einfaches Geschenk. Wählen Sie die Größe für Mama und für jedes Kind separat anhand der Größentabelle auf jeder Produktseite. Kindergrößen sind nach Alter angegeben, doch die Körpergröße sorgt für die bessere Passform.</p>
+        <p>Sollen Papa oder Geschwister auch mit aufs Bild? Entdecken Sie unsere <a href="{{ cg_family_url }}">Familienoutfits im Partnerlook</a>. Für den Pool finden Sie <a href="{{ cg_swim_url }}">Mutter-Tochter-Badeanzüge im Partnerlook</a>. Der Standardversand ist inklusive, und jede Produktseite zeigt das voraussichtliche Lieferfenster.</p>
+      {%- when 'it' -%}
+        <p>I modelli hanno taglie separate per adulti e bambini, e molti arrivano fino alle taglie neonato: così puoi abbinarti a un neonato, a un bimbo piccolo o a un bambino di dieci anni.</p>
+        <p><strong>Come scegliere:</strong> parti dall'occasione. Gli abiti lunghi e midi morbidi sono perfetti per foto, matrimoni e feste. I completi due pezzi e le t-shirt sono più comodi per tutti i giorni e per viaggiare. I pigiami coordinati sono un regalo facile. Scegli la taglia della mamma e quella di ogni bambino separatamente con la tabella taglie presente in ogni pagina prodotto. Le taglie bambino sono indicate per età, ma controllare l'altezza garantisce una vestibilità migliore.</p>
+        <p>Vuoi che anche papà o i fratelli siano nella foto? Scopri i nostri <a href="{{ cg_family_url }}">look coordinati per tutta la famiglia</a>. Per la piscina, guarda i <a href="{{ cg_swim_url }}">costumi coordinati mamma e figlia</a>. La spedizione standard è inclusa e ogni pagina prodotto mostra la finestra di consegna stimata.</p>
+      {%- when 'nl' -%}
+        <p>De modellen zijn er in aparte maten voor volwassenen en kinderen, en veel gaan tot babymaten, zodat je kunt matchen met een pasgeborene, een peuter of een kind van tien.</p>
+        <p><strong>Zo shop je:</strong> kies eerst de gelegenheid. Soepele maxi- en midijurken passen bij foto's, bruiloften en feestdagen. Tweedelige sets en T-shirts zijn makkelijker voor elke dag en op reis. Bijpassende pyjama's zijn een makkelijk cadeau. Kies de maat van mama en van elk kind apart met de maattabel op elke productpagina. Kindermaten staan per leeftijd, maar de lengte van je kind geeft de betere pasvorm.</p>
+        <p>Moeten papa of broertjes en zusjes ook op de foto? Bekijk onze <a href="{{ cg_family_url }}">bijpassende outfits voor het hele gezin</a>. Voor het zwembad shop je <a href="{{ cg_swim_url }}">matchende badpakken voor moeder en dochter</a>. Standaardverzending is inbegrepen en elke productpagina toont de verwachte levertijd.</p>
+      {%- when 'pt' -%}
+        <p>Os modelos têm tamanhos separados para adulto e criança, e muitos vão até tamanhos de bebê, então dá para combinar com um recém-nascido, uma criança pequena ou uma de dez anos.</p>
+        <p><strong>Como comprar:</strong> escolha primeiro a ocasião. Vestidos longos e midi fluidos combinam com fotos, casamentos e festas. Conjuntos de duas peças e camisetas são mais práticos para o dia a dia e viagens. Pijamas combinando são um presente fácil. Escolha o tamanho da mãe e o de cada criança separadamente usando a tabela de medidas de cada página de produto. Os tamanhos infantis são indicados por idade, mas conferir a altura garante o melhor caimento.</p>
+        <p>Quer o papai ou os irmãos na foto também? Veja nossos <a href="{{ cg_family_url }}">looks combinando para toda a família</a>. Para a piscina, confira os <a href="{{ cg_swim_url }}">maiôs combinando para mãe e filha</a>. O frete padrão está incluído e cada página de produto mostra o prazo estimado de entrega.</p>
+      {%- when 'da' -%}
+        <p>Modellerne fås i separate størrelser til voksne og børn, og mange går helt ned i babystørrelser, så du kan matche med en nyfødt, et lille barn eller en tiårig.</p>
+        <p><strong>Sådan handler du:</strong> vælg anledningen først. Lette maxi- og midikjoler passer til fotos, bryllupper og højtider. Todelte sæt og T-shirts er nemmere til hverdag og rejser. Matchende pyjamas er en nem gave. Vælg mors størrelse og hvert barns størrelse hver for sig med størrelsesguiden på hver produktside. Børnestørrelser er angivet efter alder, men barnets højde giver den bedste pasform.</p>
+        <p>Skal far eller søskende også med på billedet? Se vores <a href="{{ cg_family_url }}">matchende familietøj</a>. Til poolen kan du shoppe <a href="{{ cg_swim_url }}">matchende badedragter til mor og datter</a>. Standardfragt er inkluderet, og hver produktside viser den forventede leveringsperiode.</p>
+      {%- when 'sv' -%}
+        <p>Modellerna finns i separata storlekar för vuxna och barn, och många går ända ner till bebisstorlekar, så att du kan matcha med en nyfödd, ett småbarn eller en tioåring.</p>
+        <p><strong>Så handlar du:</strong> välj tillfället först. Följsamma maxi- och midiklänningar passar till fotografering, bröllop och högtider. Tvådelade set och t-shirts är enklare till vardags och på resan. Matchande pyjamas är en enkel present. Välj mammas storlek och varje barns storlek för sig med storleksguiden på varje produktsida. Barnstorlekar anges efter ålder, men barnets längd ger bäst passform.</p>
+        <p>Ska pappa eller syskon också vara med på bilden? Se våra <a href="{{ cg_family_url }}">matchande kläder för hela familjen</a>. Till poolen hittar du <a href="{{ cg_swim_url }}">matchande baddräkter för mamma och dotter</a>. Standardfrakt ingår och varje produktsida visar beräknad leveranstid.</p>
+      {%- when 'no' -%}
+        <p>Modellene finnes i egne størrelser for voksne og barn, og mange går helt ned i babystørrelser, så du kan matche med en nyfødt, et småbarn eller en tiåring.</p>
+        <p><strong>Slik handler du:</strong> velg anledningen først. Lette maxi- og midikjoler passer til bilder, bryllup og høytider. Todelte sett og t-skjorter er enklere til hverdags og på reise. Matchende pyjamas er en enkel gave. Velg mammas størrelse og hvert barns størrelse hver for seg med størrelsestabellen på hver produktside. Barnestørrelser oppgis etter alder, men barnets høyde gir best passform.</p>
+        <p>Skal pappa eller søsken også være med på bildet? Se våre <a href="{{ cg_family_url }}">matchende familieantrekk</a>. Til bassenget finner du <a href="{{ cg_swim_url }}">matchende badedrakter til mor og datter</a>. Standardfrakt er inkludert, og hver produktside viser forventet leveringstid.</p>
+      {%- when 'pl' -%}
+        <p>Modele mają osobne rozmiary dla dorosłych i dzieci, a wiele z nich schodzi aż do rozmiarów niemowlęcych, więc możesz dopasować się do noworodka, przedszkolaka czy dziesięciolatka.</p>
+        <p><strong>Jak kupować:</strong> najpierw wybierz okazję. Zwiewne sukienki maxi i midi pasują do zdjęć, wesel i świąt. Dwuczęściowe komplety i koszulki są wygodniejsze na co dzień i w podróży. Pasujące piżamy to łatwy prezent. Rozmiar mamy i każdego dziecka wybierz osobno, korzystając z tabeli rozmiarów na każdej stronie produktu. Rozmiary dziecięce podane są według wieku, ale wzrost dziecka daje lepsze dopasowanie.</p>
+        <p>Chcesz, żeby tata lub rodzeństwo też byli na zdjęciu? Zobacz nasze <a href="{{ cg_family_url }}">pasujące stroje dla całej rodziny</a>. Na basen wybierz <a href="{{ cg_swim_url }}">pasujące stroje kąpielowe dla mamy i córki</a>. Standardowa wysyłka jest wliczona, a każda strona produktu pokazuje szacowany termin dostawy.</p>
+      {%- when 'cs' -%}
+        <p>Modely mají samostatné velikosti pro dospělé a děti a mnohé jdou až do kojeneckých velikostí, takže se můžete sladit s novorozencem, batoletem i desetiletým dítětem.</p>
+        <p><strong>Jak nakupovat:</strong> nejprve si vyberte příležitost. Splývavé maxi a midi šaty se hodí na fotky, svatby a svátky. Dvoudílné soupravy a trička jsou praktičtější na každý den a na cesty. Sladěná pyžama jsou snadný dárek. Velikost pro maminku i pro každé dítě vyberte zvlášť podle tabulky velikostí na každé stránce produktu. Dětské velikosti jsou uvedeny podle věku, ale podle výšky dítěte vyberete lépe.</p>
+        <p>Chcete mít na fotce i tatínka nebo sourozence? Podívejte se na naše <a href="{{ cg_family_url }}">sladěné oblečení pro celou rodinu</a>. K bazénu vyberte <a href="{{ cg_swim_url }}">sladěné plavky pro maminku a dceru</a>. Standardní doprava je v ceně a každá stránka produktu uvádí odhadovaný termín doručení.</p>
+      {%- when 'ja' -%}
+        <p>大人用と子ども用のサイズは別々に用意されており、多くのアイテムはベビーサイズまであるので、新生児から幼児、10歳のお子さままでおそろいにできます。</p>
+        <p><strong>選び方：</strong>まずはシーンを決めましょう。ふんわりとしたマキシ丈やミディ丈のワンピースは、写真撮影や結婚式、行事にぴったりです。ツーピースのセットやTシャツは、普段使いや旅行に便利です。おそろいのパジャマは気軽なギフトになります。ママのサイズとお子さまそれぞれのサイズは、各商品ページのサイズ表で別々に選んでください。子どもサイズは年齢で表記されていますが、身長で確認するとよりぴったり合います。</p>
+        <p>パパやきょうだいも一緒に写りたいときは、<a href="{{ cg_family_url }}">家族おそろいコーデ</a>をご覧ください。プールには<a href="{{ cg_swim_url }}">ママと娘のおそろい水着</a>がおすすめです。通常配送料は含まれており、各商品ページにお届け予定の目安が表示されます。</p>
+      {%- when 'ko' -%}
+        <p>성인과 아동 사이즈가 따로 나와 있고 많은 제품이 아기 사이즈까지 있어 신생아, 걸음마 아기, 열 살 아이와도 맞춰 입을 수 있습니다.</p>
+        <p><strong>쇼핑 방법:</strong> 먼저 상황을 정하세요. 하늘하늘한 맥시·미디 원피스는 사진 촬영, 결혼식, 명절에 잘 어울립니다. 투피스 세트와 티셔츠는 일상복과 여행에 더 편합니다. 커플 잠옷은 부담 없는 선물이 됩니다. 엄마 사이즈와 아이 사이즈는 각 상품 페이지의 사이즈 차트를 보고 따로 선택하세요. 아동 사이즈는 나이별로 표시되지만 키를 확인하면 더 잘 맞습니다.</p>
+        <p>아빠나 형제자매도 함께하고 싶다면 <a href="{{ cg_family_url }}">가족 커플룩</a>을 둘러보세요. 수영장에서는 <a href="{{ cg_swim_url }}">엄마와 딸 커플 수영복</a>을 추천합니다. 기본 배송비가 포함되어 있으며, 각 상품 페이지에서 예상 배송 기간을 확인할 수 있습니다.</p>
+      {%- when 'ru' -%}
+        <p>Модели выпускаются в отдельных взрослых и детских размерах, а многие — вплоть до размеров для малышей, так что можно совпасть с новорождённым, карапузом или десятилетним ребёнком.</p>
+        <p><strong>Как выбирать:</strong> сначала определитесь с поводом. Струящиеся платья макси и миди подходят для фотосессий, свадеб и праздников. Комплекты-двойки и футболки удобнее на каждый день и в поездках. Одинаковые пижамы — простой подарок. Выбирайте размер мамы и каждого ребёнка отдельно по таблице размеров на странице каждого товара. Детские размеры указаны по возрасту, но рост ребёнка поможет подобрать посадку точнее.</p>
+        <p>Хотите, чтобы папа или братья и сёстры тоже были на фото? Посмотрите наши <a href="{{ cg_family_url }}">одинаковые наряды для всей семьи</a>. Для бассейна выберите <a href="{{ cg_swim_url }}">одинаковые купальники для мамы и дочки</a>. Стандартная доставка включена, а на странице каждого товара указан ориентировочный срок доставки.</p>
+      {%- when 'ar' -%}
+        <p>تتوفر التصاميم بمقاسات منفصلة للكبار والأطفال، ويصل كثير منها إلى مقاسات الرضع، لتتطابقي مع مولود جديد أو طفل صغير أو طفل في العاشرة.</p>
+        <p><strong>طريقة التسوق:</strong> اختاري المناسبة أولًا. تناسب الفساتين الطويلة والمتوسطة الانسيابية جلسات التصوير والأعراس والأعياد. أما الأطقم المكوّنة من قطعتين والقمصان القطنية فهي أسهل للاستخدام اليومي والسفر. والبيجامات المتطابقة هدية سهلة. اختاري مقاس الأم ومقاس كل طفل على حدة باستخدام جدول المقاسات في صفحة كل منتج. تُذكر مقاسات الأطفال حسب العمر، لكن التحقق من الطول يمنح مقاسًا أدق.</p>
+        <p>هل تريدين أن يظهر الأب أو الإخوة في الصورة أيضًا؟ تصفحي <a href="{{ cg_family_url }}">ملابسنا المتطابقة للعائلة</a>. وللمسبح، تسوّقي <a href="{{ cg_swim_url }}">ملابس السباحة المتطابقة للأم والابنة</a>. الشحن العادي مشمول، وتعرض صفحة كل منتج مدة التوصيل المتوقعة.</p>
+      {%- when 'he' -%}
+        <p>הדגמים מגיעים במידות נפרדות למבוגרים ולילדים, ורבים מהם יורדים עד מידות תינוקות, כך שאפשר להתאים לתינוק שזה עתה נולד, לפעוט או לילד בן עשר.</p>
+        <p><strong>איך לקנות:</strong> קודם בוחרים את האירוע. שמלות מקסי ומידי זורמות מתאימות לצילומים, לחתונות ולחגים. סטים של שני חלקים וחולצות טי נוחים יותר ליום־יום ולטיולים. פיג'מות תואמות הן מתנה קלה. בחרו את המידה של אמא ושל כל ילד בנפרד בעזרת טבלת המידות שבכל דף מוצר. מידות הילדים מופיעות לפי גיל, אבל בדיקת הגובה נותנת התאמה טובה יותר.</p>
+        <p>רוצים שגם אבא או האחים יהיו בתמונה? עיינו ב<a href="{{ cg_family_url }}">תלבושות התואמות לכל המשפחה</a>. לבריכה, קנו <a href="{{ cg_swim_url }}">בגדי ים תואמים לאמא ובת</a>. משלוח רגיל כלול, וכל דף מוצר מציג את חלון המסירה המשוער.</p>
+      {%- when 'hi' -%}
+        <p>स्टाइल बड़ों और बच्चों के लिए अलग-अलग साइज़ में आते हैं, और कई बेबी साइज़ तक उपलब्ध हैं, ताकि आप नवजात, छोटे बच्चे या दस साल के बच्चे के साथ मैच कर सकें।</p>
+        <p><strong>कैसे खरीदें:</strong> पहले मौका चुनें। लहराती मैक्सी और मिडी ड्रेस फ़ोटो, शादियों और त्योहारों के लिए अच्छी रहती हैं। टू-पीस सेट और टी-शर्ट रोज़मर्रा और सफ़र के लिए ज़्यादा आसान हैं। मैचिंग पजामे एक आसान तोहफ़ा हैं। हर प्रोडक्ट पेज पर दिए साइज़ चार्ट से माँ का और हर बच्चे का साइज़ अलग-अलग चुनें। बच्चों के साइज़ उम्र के हिसाब से लिखे होते हैं, लेकिन लंबाई देखकर चुनने से फ़िटिंग बेहतर होती है।</p>
+        <p>पापा या भाई-बहन को भी तस्वीर में शामिल करना है? हमारे <a href="{{ cg_family_url }}">परिवार के मैचिंग आउटफिट</a> देखें। पूल के लिए <a href="{{ cg_swim_url }}">माँ-बेटी के मैचिंग स्विमसूट</a> खरीदें। स्टैंडर्ड शिपिंग शामिल है, और हर प्रोडक्ट पेज पर अनुमानित डिलीवरी समय दिखाया जाता है।</p>
+      {%- when 'el' -%}
+        <p>Τα σχέδια διατίθενται σε ξεχωριστά μεγέθη για ενήλικες και παιδιά, και πολλά φτάνουν μέχρι βρεφικά μεγέθη, ώστε να ταιριάξετε με νεογέννητο, νήπιο ή δεκάχρονο.</p>
+        <p><strong>Πώς να ψωνίσετε:</strong> διαλέξτε πρώτα την περίσταση. Τα ανάλαφρα μάξι και μίντι φορέματα ταιριάζουν σε φωτογραφίσεις, γάμους και γιορτές. Τα σετ δύο τεμαχίων και τα μπλουζάκια είναι πιο πρακτικά για την καθημερινότητα και τα ταξίδια. Οι ασορτί πιτζάμες είναι ένα εύκολο δώρο. Επιλέξτε το μέγεθος της μαμάς και κάθε παιδιού ξεχωριστά με τον πίνακα μεγεθών σε κάθε σελίδα προϊόντος. Τα παιδικά μεγέθη αναφέρονται ανά ηλικία, αλλά το ύψος δίνει καλύτερη εφαρμογή.</p>
+        <p>Θέλετε και τον μπαμπά ή τα αδέλφια στη φωτογραφία; Δείτε τα <a href="{{ cg_family_url }}">ασορτί ρούχα για όλη την οικογένεια</a>. Για την πισίνα, αγοράστε <a href="{{ cg_swim_url }}">ασορτί μαγιό για μαμά και κόρη</a>. Η τυπική αποστολή περιλαμβάνεται και κάθε σελίδα προϊόντος δείχνει τον εκτιμώμενο χρόνο παράδοσης.</p>
+      {%- when 'ro' -%}
+        <p>Modelele au mărimi separate pentru adulți și copii, iar multe coboară până la mărimi de bebeluș, așa că te poți asorta cu un nou-născut, un copil mic sau unul de zece ani.</p>
+        <p><strong>Cum cumperi:</strong> alege mai întâi ocazia. Rochiile maxi și midi vaporoase se potrivesc la ședințe foto, nunți și sărbători. Seturile din două piese și tricourile sunt mai practice pentru zi de zi și călătorii. Pijamalele asortate sunt un cadou simplu. Alege mărimea mamei și a fiecărui copil separat, folosind tabelul de mărimi de pe fiecare pagină de produs. Mărimile pentru copii sunt afișate după vârstă, dar înălțimea copilului îți dă o potrivire mai bună.</p>
+        <p>Vrei ca tata sau frații să fie și ei în poză? Vezi <a href="{{ cg_family_url }}">ținutele noastre asortate pentru toată familia</a>. Pentru piscină, alege <a href="{{ cg_swim_url }}">costume de baie asortate pentru mamă și fiică</a>. Livrarea standard este inclusă, iar fiecare pagină de produs arată intervalul estimat de livrare.</p>
+      {%- when 'fi' -%}
+        <p>Malleissa on erilliset aikuisten ja lasten koot, ja monissa koot ulottuvat vauvakokoihin asti, joten voit sovittaa asusi vastasyntyneen, taaperon tai kymmenvuotiaan kanssa.</p>
+        <p><strong>Näin ostat:</strong> valitse ensin tilaisuus. Laskeutuvat maksi- ja midimekot sopivat kuvauksiin, häihin ja juhlapyhiin. Kaksiosaiset setit ja t-paidat ovat helpompia arkeen ja matkoille. Yhteensopivat pyjamat ovat helppo lahja. Valitse äidin ja jokaisen lapsen koko erikseen kunkin tuotesivun kokotaulukosta. Lasten koot on merkitty iän mukaan, mutta pituuden tarkistaminen antaa paremman istuvuuden.</p>
+        <p>Haluatko isän tai sisarukset mukaan kuvaan? Katso <a href="{{ cg_family_url }}">koko perheen yhteensopivat asut</a>. Uima-altaalle löydät <a href="{{ cg_swim_url }}">äidin ja tyttären yhteensopivat uima-asut</a>. Vakiotoimitus sisältyy hintaan, ja jokainen tuotesivu näyttää arvioidun toimitusajan.</p>
+      {%- else -%}
+        <p>Styles come in separate adult and child sizes, and many go down to baby sizes, so you can match a newborn, a toddler or a ten-year-old.</p>
+        <p><strong>How to shop:</strong> pick the occasion first. Flowy maxi and midi dresses suit photos, weddings and holidays. Two-piece sets and tees are easier for everyday wear and travel. Matching pajamas make an easy gift. Choose mom's size and each child's size separately using the size chart on every product page. Kids' sizes are listed by age, but checking height gives the better fit.</p>
+        <p>Want dad or siblings in the picture too? See our <a href="{{ cg_family_url }}">matching family outfits</a>. For the pool, shop <a href="{{ cg_swim_url }}">mommy and me swimsuits</a>. Standard shipping is included, and each product page shows its estimated delivery window.</p>
+    {%- endcase -%}
+{%- endcase -%}

@@ -1,0 +1,162 @@
+{%- comment -%}
+  Buyer guide for /collections/daddy-me, also used by its duplicate
+  /collections/daddy-and-me (SEO lane fix #3, 2026-09-27; source copy:
+  2026-09-27-million-plan/lanes/seo.md section 4.4).
+  Translations are inline because locales/*.json are owned by another lane.
+  Fields: heading (plain text), lead (one sentence, plain text), guide (HTML).
+  English is the else-branch. Dropshipping truth: no stock, warehouse,
+  fast-shipping, review or bestseller claims; delivery points to the PDP.
+  Usage: {% render 'collection-guide-daddy-me', field: 'guide' %}
+{%- endcomment -%}
+{%- liquid
+  assign cg_lang = request.locale.iso_code | default: localization.language.iso_code | default: 'en' | downcase | split: '-' | first
+  if cg_lang == 'nb'
+    assign cg_lang = 'no'
+  endif
+
+  assign cg_family_url = routes.collections_url | append: '/new-women-outfits'
+  if collections['new-women-outfits'] != blank
+    assign cg_family_url = collections['new-women-outfits'].url
+  endif
+  assign cg_trunks_url = routes.collections_url | append: '/trunks'
+  if collections['trunks'] != blank
+    assign cg_trunks_url = collections['trunks'].url
+  endif
+-%}
+{%- case field -%}
+  {%- when 'heading' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}Cómo elegir conjuntos a juego para papá y peques
+      {%- when 'fr' -%}Comment choisir des tenues assorties père-enfant
+      {%- when 'de' -%}So wählen Sie Partnerlooks für Papa und Kind
+      {%- when 'it' -%}Come scegliere i look coordinati papà e figli
+      {%- when 'nl' -%}Zo kies je matchende outfits voor papa en kind
+      {%- when 'pt' -%}Como escolher looks combinando para pai e filhos
+      {%- when 'da' -%}Sådan vælger du matchende tøj til far og barn
+      {%- when 'sv' -%}Så väljer du matchande kläder för pappa och barn
+      {%- when 'no' -%}Slik velger du matchende antrekk til pappa og barn
+      {%- when 'pl' -%}Jak wybrać pasujące stroje dla taty i dziecka
+      {%- when 'cs' -%}Jak vybrat sladěné oblečení pro tátu a dítě
+      {%- when 'ja' -%}パパとキッズのおそろいコーデの選び方
+      {%- when 'ko' -%}아빠와 아이 커플룩 고르는 법
+      {%- when 'ru' -%}Как выбрать одинаковые наряды для папы и ребёнка
+      {%- when 'ar' -%}كيف تختار ملابس متطابقة للأب والطفل
+      {%- when 'he' -%}איך לבחור תלבושות תואמות לאבא וילד
+      {%- when 'hi' -%}पापा और बच्चे के मैचिंग आउटफिट कैसे चुनें
+      {%- when 'el' -%}Πώς να διαλέξετε ασορτί ρούχα για μπαμπά και παιδί
+      {%- when 'ro' -%}Cum alegi ținute asortate pentru tată și copil
+      {%- when 'fi' -%}Näin valitset isän ja lapsen yhteensopivat asut
+      {%- else -%}How to choose daddy and me outfits
+    {%- endcase -%}
+  {%- when 'lead' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}Los conjuntos a juego para papá y peques hacen que combinar sea fácil: la misma camisa en su talla y una pequeña para su hijo o hija.
+      {%- when 'fr' -%}Les tenues assorties père-enfant rendent l'accord facile pour les papas : la même chemise dans sa taille et une petite pour son fils ou sa fille.
+      {%- when 'de' -%}Partnerlooks für Papa und Kind machen das Matchen für Väter leicht: dasselbe Hemd in seiner Größe und ein kleines für Sohn oder Tochter.
+      {%- when 'it' -%}I look coordinati papà e figli rendono facile abbinarsi: la stessa camicia nella sua taglia e una piccola per il figlio o la figlia.
+      {%- when 'nl' -%}Matchende outfits voor papa en kind maken het makkelijk voor vaders: hetzelfde shirt in zijn maat en een kleintje voor zijn zoon of dochter.
+      {%- when 'pt' -%}Os looks combinando para pai e filhos deixam tudo fácil para o papai: a mesma camisa no tamanho dele e uma pequena para o filho ou a filha.
+      {%- when 'da' -%}Matchende tøj til far og barn gør det nemt for fædre: den samme skjorte i hans størrelse og en lille til sønnen eller datteren.
+      {%- when 'sv' -%}Matchande kläder för pappa och barn gör det enkelt för pappor: samma skjorta i hans storlek och en liten till sonen eller dottern.
+      {%- when 'no' -%}Matchende antrekk til pappa og barn gjør det enkelt for fedre: den samme skjorten i hans størrelse og en liten til sønnen eller datteren.
+      {%- when 'pl' -%}Pasujące stroje dla taty i dziecka ułatwiają sprawę tatusiom: ta sama koszula w jego rozmiarze i mniejsza dla syna lub córki.
+      {%- when 'cs' -%}Sladěné oblečení pro tátu a dítě usnadní ladění všem tátům: stejná košile v jeho velikosti a malá pro syna nebo dceru.
+      {%- when 'ja' -%}パパとキッズのおそろいコーデなら、パパのサイズのシャツと、息子さんや娘さん用の小さなシャツで、簡単におそろいが楽しめます。
+      {%- when 'ko' -%}아빠와 아이 커플룩은 아빠 사이즈 셔츠와 아들이나 딸을 위한 작은 셔츠로 손쉽게 맞춰 입을 수 있게 해 줍니다.
+      {%- when 'ru' -%}Одинаковые наряды для папы и ребёнка упрощают задачу папам: та же рубашка в его размере и маленькая — для сына или дочки.
+      {%- when 'ar' -%}تجعل الملابس المتطابقة للأب والطفل التنسيق سهلًا على الآباء: القميص نفسه بمقاسه وآخر صغير لابنه أو ابنته.
+      {%- when 'he' -%}תלבושות תואמות לאבא וילד הופכות את ההתאמה לקלה: אותה חולצה במידה שלו וחולצה קטנה לבן או לבת.
+      {%- when 'hi' -%}पापा और बच्चे के मैचिंग आउटफिट से मैच करना आसान हो जाता है: पापा के साइज़ में वही शर्ट और बेटे या बेटी के लिए एक छोटी शर्ट।
+      {%- when 'el' -%}Τα ασορτί ρούχα για μπαμπά και παιδί κάνουν το ταίριασμα εύκολο: το ίδιο πουκάμισο στο δικό του μέγεθος και ένα μικρό για τον γιο ή την κόρη του.
+      {%- when 'ro' -%}Ținutele asortate pentru tată și copil le fac taților asortarea ușoară: aceeași cămașă în mărimea lui și una mică pentru fiu sau fiică.
+      {%- when 'fi' -%}Isän ja lapsen yhteensopivat asut tekevät yhteensopivuudesta helppoa: sama paita isän koossa ja pieni versio pojalle tai tyttärelle.
+      {%- else -%}Daddy and me outfits make matching easy for dads: the same shirt in his size and a small one for his son or daughter.
+    {%- endcase -%}
+  {%- when 'guide' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}
+        <p>Elige camisetas gráficas informales para cumpleaños, partidos y días en parques temáticos, o camisas con cuello y camisas hawaianas para fotos familiares, bodas, cruceros y cenas en la playa. Los <a href="{{ cg_trunks_url }}">bañadores a juego</a> completan el look de vacaciones.</p>
+        <p><strong>Tallas:</strong> las tallas de adulto y de niño se indican por separado en cada producto, y las infantiles van por edad. Consulta el pecho y el largo en la tabla de tallas de cada página de producto, sobre todo en las camisas de botones. El Día del Padre y los cumpleaños son los momentos clásicos para regalar, pero la mayoría de los modelos están pensados para el día a día.</p>
+        <p>¿Quieres que mamá y los hermanos también salgan en la foto? Compra nuestros <a href="{{ cg_family_url }}">conjuntos a juego para toda la familia</a>. El envío estándar está incluido y cada página de producto muestra su plazo estimado de entrega.</p>
+      {%- when 'fr' -%}
+        <p>Choisissez des t-shirts imprimés décontractés pour les anniversaires, les matchs et les journées au parc d'attractions, ou des chemises à col et hawaïennes pour les photos de famille, les mariages, les croisières et les dîners en bord de mer. Des <a href="{{ cg_trunks_url }}">shorts de bain assortis</a> complètent le look vacances.</p>
+        <p><strong>Tailles :</strong> les tailles adulte et enfant sont indiquées séparément sur chaque produit, et les tailles enfant vont par âge. Consultez le guide des tailles de chaque fiche produit pour le tour de poitrine et la longueur, surtout pour les chemises boutonnées. La fête des Pères et les anniversaires sont les grandes occasions de cadeau, mais la plupart des modèles se portent au quotidien.</p>
+        <p>Vous voulez que maman et les frères et sœurs soient aussi sur la photo ? Découvrez nos <a href="{{ cg_family_url }}">tenues assorties pour toute la famille</a>. La livraison standard est incluse et chaque fiche produit indique son délai de livraison estimé.</p>
+      {%- when 'de' -%}
+        <p>Wählen Sie lässige Print-T-Shirts für Geburtstage, Spiele und Freizeitparks oder Hemden mit Kragen und Hawaiihemden für Familienfotos, Hochzeiten, Kreuzfahrten und Abendessen am Strand. <a href="{{ cg_trunks_url }}">Passende Badeshorts</a> machen den Urlaubslook komplett.</p>
+        <p><strong>Größen:</strong> Erwachsenen- und Kindergrößen sind bei jedem Produkt getrennt angegeben, Kindergrößen nach Alter. Prüfen Sie Brustweite und Länge in der Größentabelle auf jeder Produktseite, besonders bei Knopfhemden. Vatertag und Geburtstage sind die klassischen Geschenkanlässe, doch die meisten Modelle sind für den Alltag gemacht.</p>
+        <p>Sollen Mama und Geschwister auch mit aufs Bild? Entdecken Sie unsere <a href="{{ cg_family_url }}">Familienoutfits im Partnerlook</a>. Der Standardversand ist inklusive, und jede Produktseite zeigt das voraussichtliche Lieferfenster.</p>
+      {%- when 'it' -%}
+        <p>Scegli t-shirt stampate casual per compleanni, partite e giornate al parco divertimenti, oppure camicie con colletto e camicie hawaiane per foto di famiglia, matrimoni, crociere e cene sulla spiaggia. I <a href="{{ cg_trunks_url }}">costumi boxer coordinati</a> completano il look da vacanza.</p>
+        <p><strong>Taglie:</strong> le taglie adulto e bambino sono indicate separatamente su ogni prodotto e quelle bambino sono per età. Controlla torace e lunghezza nella tabella taglie di ogni pagina prodotto, soprattutto per le camicie con bottoni. Festa del papà e compleanni sono le classiche occasioni per un regalo, ma la maggior parte dei modelli è pensata per tutti i giorni.</p>
+        <p>Vuoi che anche la mamma e i fratelli siano nella foto? Scopri i nostri <a href="{{ cg_family_url }}">look coordinati per tutta la famiglia</a>. La spedizione standard è inclusa e ogni pagina prodotto mostra la finestra di consegna stimata.</p>
+      {%- when 'nl' -%}
+        <p>Kies casual T-shirts met print voor verjaardagen, wedstrijden en dagjes pretpark, of overhemden met kraag en Hawaïhemden voor familiefoto's, bruiloften, cruises en diners aan het strand. <a href="{{ cg_trunks_url }}">Bijpassende zwembroeken</a> maken de vakantielook compleet.</p>
+        <p><strong>Maten:</strong> maten voor volwassenen en kinderen staan bij elk product apart, en kindermaten gaan per leeftijd. Bekijk borstomvang en lengte in de maattabel op elke productpagina, vooral bij overhemden. Vaderdag en verjaardagen zijn de klassieke cadeaumomenten, maar de meeste modellen zijn gemaakt voor elke dag.</p>
+        <p>Moeten mama en broertjes en zusjes ook op de foto? Shop onze <a href="{{ cg_family_url }}">bijpassende outfits voor het hele gezin</a>. Standaardverzending is inbegrepen en elke productpagina toont de verwachte levertijd.</p>
+      {%- when 'pt' -%}
+        <p>Escolha camisetas estampadas casuais para aniversários, jogos e dias em parques temáticos, ou camisas de gola e camisas estilo havaiano para fotos em família, casamentos, cruzeiros e jantares na praia. <a href="{{ cg_trunks_url }}">Shorts de banho combinando</a> completam o look de férias.</p>
+        <p><strong>Tamanhos:</strong> os tamanhos adulto e infantil aparecem separados em cada produto, e os infantis são por idade. Confira peito e comprimento na tabela de medidas de cada página de produto, principalmente nas camisas de botão. Dia dos Pais e aniversários são as ocasiões clássicas para presentear, mas a maioria dos modelos é feita para o dia a dia.</p>
+        <p>Quer a mamãe e os irmãos na foto também? Confira nossos <a href="{{ cg_family_url }}">looks combinando para toda a família</a>. O frete padrão está incluído e cada página de produto mostra o prazo estimado de entrega.</p>
+      {%- when 'da' -%}
+        <p>Vælg afslappede T-shirts med print til fødselsdage, kampe og forlystelsesparker, eller skjorter med krave og hawaiiskjorter til familiefotos, bryllupper, krydstogter og middage på stranden. <a href="{{ cg_trunks_url }}">Matchende badeshorts</a> fuldender ferielooket.</p>
+        <p><strong>Størrelser:</strong> voksen- og børnestørrelser står separat på hvert produkt, og børnestørrelser går efter alder. Tjek brystvidde og længde i størrelsesguiden på hver produktside, især ved skjorter med knapper. Fars dag og fødselsdage er de klassiske gaveanledninger, men de fleste modeller er lavet til hverdagsbrug.</p>
+        <p>Skal mor og søskende også med på billedet? Shop vores <a href="{{ cg_family_url }}">matchende familietøj</a>. Standardfragt er inkluderet, og hver produktside viser den forventede leveringsperiode.</p>
+      {%- when 'sv' -%}
+        <p>Välj ledigt tryckta t-shirts till födelsedagar, matcher och nöjesparker, eller skjortor med krage och hawaiiskjortor till familjefoton, bröllop, kryssningar och middagar på stranden. <a href="{{ cg_trunks_url }}">Matchande badshorts</a> gör semesterlooken komplett.</p>
+        <p><strong>Storlekar:</strong> vuxen- och barnstorlekar anges separat på varje produkt, och barnstorlekar går efter ålder. Kolla bröstvidd och längd i storleksguiden på varje produktsida, särskilt för knäppta skjortor. Fars dag och födelsedagar är de klassiska presenttillfällena, men de flesta modeller är gjorda för vardagen.</p>
+        <p>Ska mamma och syskon också vara med på bilden? Handla våra <a href="{{ cg_family_url }}">matchande kläder för hela familjen</a>. Standardfrakt ingår och varje produktsida visar beräknad leveranstid.</p>
+      {%- when 'no' -%}
+        <p>Velg avslappede t-skjorter med trykk til bursdager, kamper og fornøyelsesparker, eller skjorter med krage og hawaiiskjorter til familiebilder, bryllup, cruise og middager på stranden. <a href="{{ cg_trunks_url }}">Matchende badeshorts</a> fullfører ferielooken.</p>
+        <p><strong>Størrelser:</strong> voksen- og barnestørrelser står hver for seg på hvert produkt, og barnestørrelser går etter alder. Sjekk brystvidde og lengde i størrelsestabellen på hver produktside, særlig for skjorter med knapper. Farsdag og bursdager er de klassiske gaveanledningene, men de fleste modellene er laget for hverdagsbruk.</p>
+        <p>Skal mamma og søsken også være med på bildet? Handle våre <a href="{{ cg_family_url }}">matchende familieantrekk</a>. Standardfrakt er inkludert, og hver produktside viser forventet leveringstid.</p>
+      {%- when 'pl' -%}
+        <p>Wybierz luźne koszulki z nadrukiem na urodziny, mecze i wypady do parku rozrywki albo koszule z kołnierzykiem i koszule hawajskie na rodzinne zdjęcia, wesela, rejsy i kolacje na plaży. <a href="{{ cg_trunks_url }}">Pasujące kąpielówki</a> dopełniają wakacyjny look.</p>
+        <p><strong>Rozmiary:</strong> rozmiary dla dorosłych i dzieci są podane osobno przy każdym produkcie, a dziecięce według wieku. Sprawdź obwód klatki piersiowej i długość w tabeli rozmiarów na każdej stronie produktu, zwłaszcza przy koszulach zapinanych na guziki. Dzień Ojca i urodziny to klasyczne okazje do prezentu, ale większość modeli nadaje się na co dzień.</p>
+        <p>Chcesz, żeby mama i rodzeństwo też byli na zdjęciu? Zobacz nasze <a href="{{ cg_family_url }}">pasujące stroje dla całej rodziny</a>. Standardowa wysyłka jest wliczona, a każda strona produktu pokazuje szacowany termin dostawy.</p>
+      {%- when 'cs' -%}
+        <p>Vyberte ležérní trička s potiskem na narozeniny, zápasy a výlety do zábavního parku, nebo košile s límečkem a havajské košile na rodinné fotky, svatby, plavby a večeře na pláži. <a href="{{ cg_trunks_url }}">Sladěné koupací šortky</a> doplní dovolenkový outfit.</p>
+        <p><strong>Velikosti:</strong> velikosti pro dospělé a děti jsou u každého produktu uvedeny zvlášť, dětské podle věku. V tabulce velikostí na každé stránce produktu zkontrolujte obvod hrudníku a délku, hlavně u košil na knoflíky. Den otců a narozeniny jsou klasické příležitosti k dárku, ale většina modelů je určena na každý den.</p>
+        <p>Chcete mít na fotce i maminku a sourozence? Vyberte si z našeho <a href="{{ cg_family_url }}">sladěného oblečení pro celou rodinu</a>. Standardní doprava je v ceně a každá stránka produktu uvádí odhadovaný termín doručení.</p>
+      {%- when 'ja' -%}
+        <p>誕生日やスポーツ観戦、テーマパークの日にはカジュアルなプリントTシャツを、家族写真や結婚式、クルーズ、ビーチでのディナーには襟付きシャツやアロハシャツを選びましょう。<a href="{{ cg_trunks_url }}">おそろいのスイムパンツ</a>を合わせれば、バカンスコーデが完成します。</p>
+        <p><strong>サイズ：</strong>大人用と子ども用のサイズは商品ごとに別々に表示され、子どもサイズは年齢表記です。特にボタンシャツは、各商品ページのサイズ表で胸囲と着丈を確認してください。父の日や誕生日は定番のギフトシーンですが、ほとんどのデザインは普段使いにも最適です。</p>
+        <p>ママやきょうだいも一緒に写りたいときは、<a href="{{ cg_family_url }}">家族おそろいコーデ</a>をご覧ください。通常配送料は含まれており、各商品ページにお届け予定の目安が表示されます。</p>
+      {%- when 'ko' -%}
+        <p>생일, 경기 관람, 테마파크 나들이에는 캐주얼한 그래픽 티셔츠를, 가족사진, 결혼식, 크루즈, 해변 디너에는 칼라 셔츠나 하와이안 셔츠를 골라 보세요. <a href="{{ cg_trunks_url }}">커플 수영 반바지</a>를 더하면 휴가룩이 완성됩니다.</p>
+        <p><strong>사이즈:</strong> 성인과 아동 사이즈는 제품마다 따로 표시되며 아동 사이즈는 나이 기준입니다. 특히 단추 셔츠는 각 상품 페이지의 사이즈 차트에서 가슴둘레와 길이를 확인하세요. 아버지의 날과 생일이 대표적인 선물 시즌이지만, 대부분의 스타일은 평소에도 입기 좋습니다.</p>
+        <p>엄마와 형제자매도 함께하고 싶다면 <a href="{{ cg_family_url }}">가족 커플룩</a>을 둘러보세요. 기본 배송비가 포함되어 있으며, 각 상품 페이지에서 예상 배송 기간을 확인할 수 있습니다.</p>
+      {%- when 'ru' -%}
+        <p>Выбирайте повседневные футболки с принтом для дней рождения, матчей и парков развлечений или рубашки с воротником и гавайские рубашки для семейных фото, свадеб, круизов и ужинов на пляже. <a href="{{ cg_trunks_url }}">Одинаковые плавательные шорты</a> завершат образ для отпуска.</p>
+        <p><strong>Размеры:</strong> взрослые и детские размеры указаны у каждого товара отдельно, детские — по возрасту. Сверяйте обхват груди и длину по таблице размеров на странице каждого товара, особенно для рубашек на пуговицах. День отца и дни рождения — классические поводы для подарка, но большинство моделей созданы для каждого дня.</p>
+        <p>Хотите, чтобы мама и братья с сёстрами тоже были на фото? Выбирайте наши <a href="{{ cg_family_url }}">одинаковые наряды для всей семьи</a>. Стандартная доставка включена, а на странице каждого товара указан ориентировочный срок доставки.</p>
+      {%- when 'ar' -%}
+        <p>اختر قمصانًا قطنية مطبوعة غير رسمية لأعياد الميلاد والمباريات وأيام الملاهي، أو قمصانًا بياقة وقمصانًا هاوايية لصور العائلة والأعراس والرحلات البحرية وعشاء الشاطئ. وتُكمل <a href="{{ cg_trunks_url }}">شورتات السباحة المتطابقة</a> إطلالة العطلة.</p>
+        <p><strong>المقاسات:</strong> تُعرض مقاسات الكبار والأطفال بشكل منفصل في كل منتج، ومقاسات الأطفال حسب العمر. راجع محيط الصدر والطول في جدول المقاسات في صفحة كل منتج، خاصة للقمصان ذات الأزرار. يوم الأب وأعياد الميلاد هي مناسبات الهدايا المعتادة، لكن معظم التصاميم مناسبة للارتداء اليومي.</p>
+        <p>هل تريد أن تظهر الأم والإخوة في الصورة أيضًا؟ تسوّق <a href="{{ cg_family_url }}">ملابسنا المتطابقة للعائلة</a>. الشحن العادي مشمول، وتعرض صفحة كل منتج مدة التوصيل المتوقعة.</p>
+      {%- when 'he' -%}
+        <p>בחרו חולצות טי מודפסות וקלילות לימי הולדת, משחקים וימים בפארק שעשועים, או חולצות מכופתרות עם צווארון וחולצות הוואי לצילומי משפחה, חתונות, שייט וארוחות ערב על החוף. <a href="{{ cg_trunks_url }}">מכנסי ים תואמים</a> משלימים את מראה החופשה.</p>
+        <p><strong>מידות:</strong> מידות המבוגרים והילדים מופיעות בנפרד בכל מוצר, ומידות הילדים לפי גיל. בדקו היקף חזה ואורך בטבלת המידות שבכל דף מוצר, במיוחד בחולצות מכופתרות. יום האב וימי הולדת הם רגעי המתנה הקלאסיים, אבל רוב הדגמים מתאימים ליום־יום.</p>
+        <p>רוצים שגם אמא והאחים יהיו בתמונה? קנו <a href="{{ cg_family_url }}">תלבושות תואמות לכל המשפחה</a>. משלוח רגיל כלול, וכל דף מוצר מציג את חלון המסירה המשוער.</p>
+      {%- when 'hi' -%}
+        <p>जन्मदिन, मैच और थीम पार्क के दिनों के लिए कैज़ुअल ग्राफ़िक टी-शर्ट चुनें, या फ़ैमिली फ़ोटो, शादियों, क्रूज़ और बीच डिनर के लिए कॉलर वाली और हवाईयन शर्ट। <a href="{{ cg_trunks_url }}">मैचिंग स्विम ट्रंक</a> छुट्टियों का लुक पूरा करते हैं।</p>
+        <p><strong>साइज़:</strong> हर प्रोडक्ट पर बड़ों और बच्चों के साइज़ अलग-अलग दिए गए हैं, और बच्चों के साइज़ उम्र के हिसाब से हैं। खासकर बटन वाली शर्ट के लिए हर प्रोडक्ट पेज के साइज़ चार्ट में छाती और लंबाई देखें। फ़ादर्स डे और जन्मदिन तोहफ़े के खास मौके हैं, लेकिन ज़्यादातर स्टाइल रोज़ पहनने के लिए बने हैं।</p>
+        <p>माँ और भाई-बहन को भी तस्वीर में शामिल करना है? हमारे <a href="{{ cg_family_url }}">परिवार के मैचिंग आउटफिट</a> खरीदें। स्टैंडर्ड शिपिंग शामिल है, और हर प्रोडक्ट पेज पर अनुमानित डिलीवरी समय दिखाया जाता है।</p>
+      {%- when 'el' -%}
+        <p>Διαλέξτε casual τυπωμένα μπλουζάκια για γενέθλια, αγώνες και μέρες σε λούνα παρκ ή πουκάμισα με γιακά και χαβανέζικα για οικογενειακές φωτογραφίες, γάμους, κρουαζιέρες και δείπνα στην παραλία. Τα <a href="{{ cg_trunks_url }}">ασορτί μαγιό βερμούδες</a> ολοκληρώνουν το look των διακοπών.</p>
+        <p><strong>Μεγέθη:</strong> τα μεγέθη ενηλίκων και παιδιών αναφέρονται χωριστά σε κάθε προϊόν και τα παιδικά ανά ηλικία. Ελέγξτε περιφέρεια στήθους και μήκος στον πίνακα μεγεθών κάθε σελίδας προϊόντος, ειδικά στα πουκάμισα με κουμπιά. Η Γιορτή του Πατέρα και τα γενέθλια είναι οι κλασικές αφορμές για δώρο, αλλά τα περισσότερα σχέδια φοριούνται και στην καθημερινότητα.</p>
+        <p>Θέλετε και τη μαμά και τα αδέλφια στη φωτογραφία; Δείτε τα <a href="{{ cg_family_url }}">ασορτί ρούχα για όλη την οικογένεια</a>. Η τυπική αποστολή περιλαμβάνεται και κάθε σελίδα προϊόντος δείχνει τον εκτιμώμενο χρόνο παράδοσης.</p>
+      {%- when 'ro' -%}
+        <p>Alege tricouri casual cu imprimeu pentru zile de naștere, meciuri și zile în parcul de distracții, sau cămăși cu guler și cămăși hawaiiene pentru poze de familie, nunți, croaziere și cine pe plajă. <a href="{{ cg_trunks_url }}">Pantalonii scurți de baie asortați</a> completează ținuta de vacanță.</p>
+        <p><strong>Mărimi:</strong> mărimile pentru adulți și copii sunt afișate separat la fiecare produs, iar cele pentru copii sunt după vârstă. Verifică circumferința pieptului și lungimea în tabelul de mărimi de pe fiecare pagină de produs, mai ales la cămășile cu nasturi. Ziua Tatălui și zilele de naștere sunt ocaziile clasice pentru cadouri, dar majoritatea modelelor sunt făcute pentru purtare zilnică.</p>
+        <p>Vrei ca mama și frații să fie și ei în poză? Vezi <a href="{{ cg_family_url }}">ținutele noastre asortate pentru toată familia</a>. Livrarea standard este inclusă, iar fiecare pagină de produs arată intervalul estimat de livrare.</p>
+      {%- when 'fi' -%}
+        <p>Valitse rennot printtipaidat syntymäpäiville, peleihin ja huvipuistopäiviin, tai kauluspaidat ja havaijipaidat perhekuviin, häihin, risteilyille ja illallisille rannalla. <a href="{{ cg_trunks_url }}">Yhteensopivat uimashortsit</a> viimeistelevät lomalookin.</p>
+        <p><strong>Koot:</strong> aikuisten ja lasten koot on merkitty jokaiseen tuotteeseen erikseen, ja lasten koot ovat iän mukaan. Tarkista rinnanympärys ja pituus kunkin tuotesivun kokotaulukosta, etenkin napitettavissa paidoissa. Isänpäivä ja syntymäpäivät ovat klassisia lahjahetkiä, mutta useimmat mallit on tehty arkikäyttöön.</p>
+        <p>Haluatko äidin ja sisarukset mukaan kuvaan? Katso <a href="{{ cg_family_url }}">koko perheen yhteensopivat asut</a>. Vakiotoimitus sisältyy hintaan, ja jokainen tuotesivu näyttää arvioidun toimitusajan.</p>
+      {%- else -%}
+        <p>Choose casual graphic tees for birthdays, ball games and theme-park days, or collared and Hawaiian button-ups for family photos, weddings, cruises and beach dinners. <a href="{{ cg_trunks_url }}">Matching swim trunks</a> complete a vacation look.</p>
+        <p><strong>Sizing:</strong> adult and kids' sizes are listed separately on each product, and kids' sizes go by age. Check the size chart on each product page for chest and length, especially for button-ups. Father's Day and birthdays are the classic gift moments, but most styles are made for everyday wear.</p>
+        <p>Want mom and siblings in the picture too? Shop <a href="{{ cg_family_url }}">matching family outfits</a>. Standard shipping is included, and every product page shows its estimated delivery window.</p>
+    {%- endcase -%}
+{%- endcase -%}

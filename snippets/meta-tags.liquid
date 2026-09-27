@@ -67,8 +67,14 @@
   endif
 
   if request.page_type == 'index'
-    assign og_title = 'Mommy and Me Dresses | Family Matching Outfits'
-    assign og_description = 'Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.'
+    assign og_lang = request.locale.iso_code | default: 'en' | downcase | split: '-' | first
+    if og_lang == 'en'
+      assign og_title = 'Mommy and Me Outfits & Matching Family Clothes | Dress Like Mommy'
+      assign og_description = 'Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.'
+    else
+      assign og_title = 'storefront.home_title' | t
+      assign og_description = 'storefront.home_description' | t
+    endif
   elsif request.page_type == 'product'
     assign og_type = 'product'
   elsif request.page_type == 'article'
@@ -151,11 +157,6 @@
     endif
   endif
 
-  if parameterized_product_noindex
-    assign should_noindex = true
-    assign noindex_follow = true
-  endif
-
   comment
     TSEO-005: Noindex collection pages with tags, filters, or sort params
     to prevent index bloat from faceted navigation variants.
@@ -171,6 +172,20 @@
     if current_url_string contains 'filter.' or current_url_string contains 'sort_by=' or current_url_string contains 'dlm-daddy-filter=' or current_query_string contains 'filter.' or current_query_string contains 'sort_by=' or current_query_string contains 'dlm-daddy-filter='
       assign should_noindex = true
       assign noindex_follow = true
+    endif
+
+    comment
+      SEO lane fix #11 (2026-09-27): a collection with fewer than 3 products is a
+      soft-404 risk, so it gets noindex, follow. Never for the head-term pages and
+      seasonal hubs (they must be filled instead), nor for duplicates whose
+      canonical already points at a survivor (layout/theme.liquid).
+    endcomment
+    if collection != blank and collection.all_products_count < 3
+      assign thin_collection_whitelist = 'christmas-pajamas,halloween-family-pajamas,swimsuits,family-swimsuits,mommy-and-me,new-women-outfits,daddy-me,family-pajamas,all,daddy-and-me,popular-mommy-me-1,popular-family-matching' | split: ','
+      unless thin_collection_whitelist contains collection.handle
+        assign should_noindex = true
+        assign noindex_follow = true
+      endunless
     endif
   endif
 

@@ -1005,8 +1005,15 @@
   assign hero_image_fetchpriority = 'low'
   assign hero_slide_count = 0
 
+  # SEO lane fix #10 (2026-09-27): the homepage's single H1 is stable head-term
+  # text (translated in snippets/home-seo-heading.liquid). The seasonal headline
+  # keeps its look as an h2, so the H1 no longer changes with every campaign.
+  assign hero_stable_h1 = ''
   if request.page_type == 'index' and section.index == 1
-    assign hero_heading_tag = 'h1'
+    capture hero_stable_h1
+      render 'home-seo-heading'
+    endcapture
+    assign hero_stable_h1 = hero_stable_h1 | strip
   endif
 
   if section.index == 1
@@ -1285,6 +1292,9 @@
     ></a>
   {%- endif -%}
   <div class="hero-banner__content">
+    {%- if hero_stable_h1 != blank -%}
+      <h1 class="visually-hidden">{{ hero_stable_h1 | escape }}</h1>
+    {%- endif -%}
     <div class="hero-banner__intro">
       {%- if hero_eyebrow != blank -%}
         <p class="hero-banner__eyebrow">

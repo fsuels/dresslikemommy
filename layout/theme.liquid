@@ -34,9 +34,9 @@
       assign resolved_canonical_url = request.origin | append: collections['new-women-outfits'].url
     endif
     comment
-      Same pattern for two more duplicate pairs: daddy-and-me lists the same
-      products as daddy-me (the one the menu links), and popular-mommy-me-1
-      the same as mommy-and-me.
+      SEO lane fix #4 (2026-09-27): daddy-and-me duplicates daddy-me (same title,
+      H1 and products) and popular-mommy-me-1 duplicates mommy-and-me; point
+      each duplicate's canonical at the head-term survivor.
     endcomment
     if request.page_type == 'collection' and collection.handle == 'daddy-and-me' and collections['daddy-me'] != blank
       assign resolved_canonical_url = request.origin | append: collections['daddy-me'].url
@@ -44,14 +44,10 @@
     if request.page_type == 'collection' and collection.handle == 'popular-mommy-me-1' and collections['mommy-and-me'] != blank
       assign resolved_canonical_url = request.origin | append: collections['mommy-and-me'].url
     endif
-
-    assign parameterized_product_noindex = false
-    if request.page_type == 'product'
-      assign request_query_string = request.query_string | default: ''
-      if request_query_string != blank
-        assign parameterized_product_noindex = true
-      endif
-    endif
+    comment
+      SEO lane fix #9 (2026-09-27): parameterized product URLs (e.g. ?variant=)
+      are no longer noindexed; the query-stripped canonical above is enough.
+    endcomment
   -%}
   {% comment %}theme-check-disable RemoteAsset{% endcomment %}
   <link rel="canonical" href="{{ resolved_canonical_url | escape }}">
@@ -169,6 +165,14 @@
 
     if request.page_type == 'index'
       assign resolved_page_title = 'storefront.home_title' | t
+      comment
+        SEO lane fix #10 (2026-09-27): English homepage title targets the head terms.
+        Localized homepages keep their translated storefront.home_title.
+      endcomment
+      assign home_title_lang = request.locale.iso_code | default: 'en' | downcase | split: '-' | first
+      if home_title_lang == 'en'
+        assign resolved_page_title = 'Mommy and Me Outfits & Matching Family Clothes | Dress Like Mommy'
+      endif
       assign resolved_page_description = 'storefront.home_description' | t
       assign append_shop_name_to_title = false
     elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
@@ -319,7 +323,7 @@
       assign emit_organization_schema = true
     endif
   -%}
-  {% render 'meta-tags', canonical_href: resolved_canonical_url, parameterized_product_noindex: parameterized_product_noindex %}
+  {% render 'meta-tags', canonical_href: resolved_canonical_url %}
   {% render 'jsonld-seo', canonical_href: resolved_canonical_url, emit_organization_schema: emit_organization_schema %}
 
   <script>

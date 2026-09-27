@@ -9,6 +9,26 @@
   assign body_description_key = ''
   assign force_theme_seo = false
 
+  comment
+    SEO lane fix #3 (2026-09-27, 2026-09-27-million-plan/lanes/seo.md section 4):
+    head-term collections get buyer-guide copy from collection-guide-* snippets
+    (translated inline), and English gets the section-4 titles and meta.
+    daddy-and-me is a duplicate of daddy-me (canonical in layout/theme.liquid).
+  endcomment
+  assign seo_lang = request.locale.iso_code | default: localization.language.iso_code | default: 'en' | downcase | split: '-' | first
+  assign head_guide = ''
+  case collection_handle
+    when 'mommy-and-me', 'christmas-pajamas', 'daddy-me', 'swimsuits', 'family-pajamas'
+      assign head_guide = collection_handle
+    when 'daddy-and-me'
+      assign head_guide = 'daddy-me'
+  endcase
+  assign head_show_styles = false
+  if collection.all_products_count >= 6
+    assign head_show_styles = true
+  endif
+  assign head_meta_description = ''
+
   case collection_handle
     when 'all'
       assign effective_display_title = 'All Matching Outfits'
@@ -142,6 +162,17 @@
     assign effective_display_title = effective_display_title_key | t
   endif
 
+  if seo_lang == 'en'
+    case collection_handle
+      when 'swimsuits'
+        assign effective_display_title = 'Mommy and Me Swimsuits'
+      when 'christmas-pajamas'
+        assign effective_display_title = 'Matching Family Christmas Pajamas'
+      when 'new-women-outfits'
+        assign effective_display_title = 'Matching Family Outfits'
+    endcase
+  endif
+
   assign effective_meta_title = effective_display_title
   if collection_handle == 'swimsuits'
     assign effective_meta_title = 'Matching Family Swimsuits | Mom & Daughter'
@@ -194,77 +225,91 @@
     assign effective_meta_title = effective_meta_title_key | t
   endif
 
+  if seo_lang == 'en'
+    case collection_handle
+      when 'mommy-and-me'
+        assign effective_meta_title = 'Mommy and Me Outfits – Matching Mother Daughter Clothes'
+        assign head_meta_description = 'Mommy and me outfits for mom and daughter or son: matching dresses, pajamas, swimsuits and sets, sized from baby to adult. Standard shipping included.'
+      when 'christmas-pajamas'
+        assign effective_meta_title = 'Matching Family Christmas Pajamas for Adults, Kids & Baby'
+        if head_show_styles
+          assign head_meta_description = 'Matching family Christmas pajamas in plaid, reindeer and festive prints for mom, dad, kids and baby. Standard shipping included; order early for Christmas.'
+        else
+          assign head_meta_description = 'Matching family Christmas pajamas for mom, dad, kids and baby, sized per person. Standard shipping included; order early for Christmas.'
+        endif
+      when 'new-women-outfits'
+        assign effective_meta_title = 'Matching Family Outfits for Mom, Dad & Kids | Dress Like Mommy'
+        assign head_meta_description = 'Matching family outfits: coordinated dresses, shirts, tees and sweaters for mom, dad, kids and baby, for photos, trips and holidays. Shipping included.'
+      when 'daddy-me', 'daddy-and-me'
+        assign effective_meta_title = 'Daddy and Me Outfits – Matching Dad and Kid Shirts & Tees'
+        assign head_meta_description = 'Daddy and me outfits: matching shirts, tees, Hawaiian button-ups and swim trunks for dads, sons and daughters, in adult and kids sizes. Shipping included.'
+      when 'swimsuits'
+        assign effective_meta_title = 'Mommy and Me Swimsuits – Matching Mother Daughter Swimwear'
+        assign head_meta_description = 'Mommy and me swimsuits and bathing suits: matching one-pieces, bikinis and rash guards for mom and daughter, plus trunks for the boys. Shipping included.'
+      when 'family-pajamas'
+        assign effective_meta_title = 'Matching Family Pajamas – Sets for Adults, Kids and Baby'
+        assign head_meta_description = 'Matching family pajamas for mom, dad, kids and baby: soft sets and onesies in holiday and everyday prints, sized per person. Standard shipping included.'
+      when 'all'
+        comment
+          Honesty fix: the locale string promised "fast shipping"; delivery is 12-16 days.
+        endcomment
+        assign head_meta_description = 'Shop all matching outfits in one place, including mommy and me, daddy and me, couples, and family sets. Standard shipping included.'
+    endcase
+  endif
+
+  if collection_handle == 'christmas-pajamas' and seo_lang == 'en'
+    assign force_theme_seo = true
+  endif
+
   if collection_handle == 'mommy-and-me' or collection_handle == 'swimsuits' or collection_handle == 'family-swimsuits' or collection_handle == 'family-sets' or collection_handle == 'matching-family-vacation-outfits' or collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits' or collection_handle == 'new-women-outfits' or collection_handle == 'dresses' or collection_handle == 'mother-daughter-matching-dresses' or collection_handle == 'maxi-dresses' or collection_handle == 'daddy-me' or collection_handle == 'daddy-and-me' or collection_handle == 'daddy-me-t-shirts' or collection_handle == 'matching-couples-t-shirts' or collection_handle == 'family-pajamas'
     assign force_theme_seo = true
   endif
 
-  assign audience_long = 'moms, kids, and coordinated family looks'
   assign product_examples_short = 'dresses, tops, pajamas, swimwear, and seasonal layers'
   assign occasion_label = 'family photos, holidays, vacations, and everyday wear'
 
   if collection_handle == 'all'
-    assign audience_long = 'families, couples, moms, dads, and kids'
     assign product_examples_short = 'mommy and me, daddy and me, couples, and family sets'
   elsif collection_handle == 'mommy-and-me'
-    assign audience_long = 'moms and daughters shopping for photo-ready coordinated looks'
     assign product_examples_short = 'mommy and me dresses, swimsuits, pajamas, and coordinated sets'
   elsif collection_handle == 'mommy-and-me-easter-dresses' or collection_handle == 'easter-matching-outfits' or collection_handle == 'spring-matching-outfits'
-    assign audience_long = 'moms and daughters planning Easter, spring photos, church, brunches, and seasonal celebrations'
     assign product_examples_short = 'Easter dresses, spring florals, pastel sets, and photo-ready matching outfits'
   elsif collection_handle == 'swimsuits'
-    assign audience_long = 'moms, daughters, and families building coordinated swim looks'
     assign product_examples_short = 'mommy and me swimsuits, one-pieces, bikinis, rash guards, and swim trunks'
   elsif collection_handle == 'family-swimsuits'
-    assign audience_long = 'families planning beach trips, pool days, cruises, and resort photos'
     assign product_examples_short = 'matching family bathing suits, one-pieces, bikinis, rash guards, cover-ups, and swim trunks'
   elsif collection_handle == 'family-sets' or collection_handle == 'matching-family-vacation-outfits'
-    assign audience_long = 'families planning beach trips, cruises, resort travel, and warm-weather photo moments'
     assign product_examples_short = 'matching family vacation outfits, beach sets, dresses, tops, and travel-ready coordinated looks'
   elsif collection_handle == 'new-women-outfits'
-    assign audience_long = 'families and shoppers comparing coordinated looks before narrowing into a specific occasion'
     assign product_examples_short = 'family matching outfits, dresses, swimwear, mommy and me looks, and travel-ready sets'
     assign occasion_label = 'family photos, trips, holidays, seasonal updates, and everyday coordination'
   elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
-    assign audience_long = 'the whole family, from babies and toddlers to parents'
     assign product_examples_short = 'coordinated dresses, tops, swimwear, sets, and seasonal matching looks'
   elsif collection_handle == 'daddy-me' or collection_handle == 'daddy-and-me'
-    assign audience_long = 'dads and kids shopping matching tees, shirts, and coordinated outfits'
     assign product_examples_short = 'graphic tees, button-down shirts, Hawaiian shirts, swim trunks, and easy matching sets'
   elsif collection_handle == 'daddy-me-t-shirts'
-    assign audience_long = 'dads and kids shopping casual matching tees and giftable tops'
     assign product_examples_short = 'graphic tees, slogan shirts, and easy everyday matching tops'
   elsif collection_handle == 'daddy-me-shirts'
-    assign audience_long = 'dads and sons shopping polished button-up, dress shirt, and Hawaiian looks'
     assign product_examples_short = 'button-down shirts, dress shirts, Hawaiian shirts, and photo-ready matching sets'
   elsif collection_handle == 'couples'
-    assign audience_long = 'couples shopping coordinated looks for date nights, travel, holidays, and gifts'
     assign product_examples_short = 'matching tops, tees, pajamas, vacation looks, and giftable sets'
   elsif collection_handle == 'matching-couples-t-shirts'
-    assign audience_long = 'couples shopping casual matching shirts for trips, gifts, and everyday wear'
     assign product_examples_short = 'couple shirts, matching tees, graphic tops, and easy coordinated looks'
   elsif collection_handle contains 'christmas'
-    assign audience_long = 'the whole family during the holiday season'
     assign product_examples_short = 'festive pajamas, sweaters, tops, and holiday-ready sets'
   elsif collection_handle contains 'valentines'
-    assign audience_long = 'families, couples, and moms with kids celebrating together'
     assign product_examples_short = 'festive tops, dresses, pajamas, and coordinated sets'
   elsif collection_handle contains 'mommy' or collection_handle == 'best-sellers' or collection_handle == 'popular-mommy-me-1' or collection_handle == 'new-matching-outfits'
-    assign audience_long = 'moms and daughters who want easy, photo-ready coordination'
     assign product_examples_short = 'dresses, swimwear, pajamas, and photo-ready sets'
   elsif collection_handle contains 'daddy'
-    assign audience_long = 'dads and kids who want easy matching looks'
     assign product_examples_short = 'tees, shirts, swimwear, and coordinated sets'
   elsif collection_handle contains 'couples'
-    assign audience_long = 'couples shopping for date nights, trips, holidays, and gifts'
     assign product_examples_short = 'tees, pajamas, vacation looks, and giftable sets'
   elsif collection_handle contains 'family' or collection_handle == 'matching-outfits' or collection_handle == 'popular-family-matching'
-    assign audience_long = 'the whole family, from babies and toddlers to parents'
     assign product_examples_short = 'dresses, pajamas, swimwear, tops, and seasonal sets'
   elsif collection_handle == 'maternity'
-    assign audience_long = 'pregnancy, nursing, and postpartum comfort'
     assign product_examples_short = 'bump-friendly dresses, soft basics, and nursing-friendly silhouettes'
   elsif collection_handle == 'trunks'
-    assign audience_long = 'dads, boys, and coordinated family swim looks'
     assign product_examples_short = 'swim trunks, rash guards, and coordinated beach-ready styles'
   endif
 
@@ -371,13 +416,23 @@
       assign body_description_key = 'sections.collection_seo.body.couples_tshirts_html'
   endcase
 
+  comment
+    The translated sections.collection_seo.meta_descriptions.all strings promise
+    fast shipping; non-English /collections/all uses the neutral fallback instead.
+  endcomment
+  if collection_handle == 'all' and seo_lang != 'en'
+    assign meta_description_key = ''
+  endif
+
   capture generated_meta_description
-    if meta_description_key != blank
+    if head_meta_description != blank
+      echo head_meta_description
+    elsif meta_description_key != blank
       echo meta_description_key | t
     elsif request.locale.iso_code != 'en'
       echo 'storefront.collection_fallback_description' | t: title: effective_display_title
     elsif collection_handle == 'all'
-      echo 'Shop all matching outfits in one place, including mommy and me, daddy and me, couples, and family sets. Comfortable styles with fast shipping.'
+      echo 'Shop all matching outfits in one place, including mommy and me, daddy and me, couples, and family sets. Standard shipping included.'
     elsif collection_handle == 'mommy-and-me'
       echo 'Shop mommy and me outfits, dresses, swimsuits, and matching sets for birthdays, family photos, vacations, and everyday twinning moments.'
     elsif collection_handle == 'mommy-and-me-easter-dresses' or collection_handle == 'easter-matching-outfits' or collection_handle == 'spring-matching-outfits'
@@ -414,8 +469,71 @@
   endcapture
   assign generated_meta_description = generated_meta_description | strip | strip_newlines | replace: '  ', ' '
 
+  assign head_lead = ''
+  assign head_guide_html = ''
+  if head_guide != blank
+    if field == 'hero_summary' or field == 'body_description'
+      case head_guide
+        when 'mommy-and-me'
+          capture head_lead
+            render 'collection-guide-mommy-and-me', field: 'lead'
+          endcapture
+          if field == 'body_description'
+            capture head_guide_html
+              render 'collection-guide-mommy-and-me', field: 'guide'
+            endcapture
+          endif
+        when 'christmas-pajamas'
+          capture head_lead
+            render 'collection-guide-christmas-pajamas', field: 'lead'
+          endcapture
+          if field == 'body_description'
+            capture head_guide_html
+              render 'collection-guide-christmas-pajamas', field: 'guide', show_styles: head_show_styles
+            endcapture
+          endif
+        when 'daddy-me'
+          capture head_lead
+            render 'collection-guide-daddy-me', field: 'lead'
+          endcapture
+          if field == 'body_description'
+            capture head_guide_html
+              render 'collection-guide-daddy-me', field: 'guide'
+            endcapture
+          endif
+        when 'swimsuits'
+          capture head_lead
+            render 'collection-guide-swimsuits', field: 'lead'
+          endcapture
+          if field == 'body_description'
+            capture head_guide_html
+              render 'collection-guide-swimsuits', field: 'guide'
+            endcapture
+          endif
+        when 'family-pajamas'
+          capture head_lead
+            render 'collection-guide-family-pajamas', field: 'lead'
+          endcapture
+          if field == 'body_description'
+            capture head_guide_html
+              render 'collection-guide-family-pajamas', field: 'guide'
+            endcapture
+          endif
+      endcase
+      assign head_lead = head_lead | strip
+      assign head_guide_html = head_guide_html | strip
+    endif
+  endif
+
   capture generated_body_description
-    if body_description_key != blank
+    if head_lead != blank
+      echo '<p>'
+      echo head_lead
+      echo '</p>'
+      echo head_guide_html
+    elsif seo_lang == 'en' and collection_handle == 'new-women-outfits'
+      echo '<p>Matching family outfits put the whole family in one print or color story, so your photos look planned without anyone wearing an identical piece. Most sets pair a dress for mom and daughter with a coordinating shirt for dad and son, and each person is sized separately, with many styles running from baby to adult sizes.</p>'
+    elsif body_description_key != blank
       capture translated_body_description
         echo body_description_key | t: title: effective_display_title
       endcapture
@@ -436,7 +554,7 @@
     elsif collection_handle == 'dresses'
       echo '<p>Browse '
       echo effective_display_title | escape
-      echo ' for family photos, celebrations, and polished everyday moments. This edit keeps the strongest dress styles together in one place, with coordinated looks that feel pretty, wearable, and easy to shop.</p>'
+      echo ' for family photos, celebrations, and polished everyday moments, with coordinated dresses in separate sizes for mom and daughter.</p>'
     elsif collection_handle == 'maxi-dresses'
       echo '<p>Browse '
       echo effective_display_title | escape
@@ -444,12 +562,12 @@
     elsif collection_handle == 'swimsuits'
       echo '<p>Browse '
       echo effective_display_title | escape
-      echo ' for beach trips, pool days, cruises, and sunny family photos. This collection helps shoppers compare matching family swimsuits, mom and daughter matching swimsuits, and family matching bathing suits without jumping between separate swim categories.</p>'
-      echo '<p>Use this page as the broad swim hub first, then branch into the dedicated family swim collection or matching trunks when the whole family needs to coordinate around one print or color story.</p>'
+      echo ' for beach trips, pool days, cruises, and sunny family photos, with one-pieces, bikinis and rash guards in separate sizes for mom and daughter.</p>'
+      echo '<p>Add matching trunks when dad and son want to join the same print or color story.</p>'
     elsif collection_handle == 'family-swimsuits'
       echo '<p>Discover '
       echo effective_display_title | escape
-      echo ' for beach vacations, pool days, cruises, and summer photos. This is the clearest landing page for matching family bathing suits when moms, dads, girls, and boys all need to coordinate around one print, palette, or vacation-ready color story.</p>'
+      echo ' for beach vacations, pool days, cruises, and summer photos, when moms, dads, girls, and boys all want to coordinate around one print or color story.</p>'
       echo '<p>Use this page when the whole family wants matching swimwear first, then round out the look with trunks, cover-ups, and related mommy-and-me swim options for a fuller trip wardrobe.</p>'
     elsif collection_handle == 'family-sets' or collection_handle == 'matching-family-vacation-outfits'
       echo '<p>Explore '
@@ -465,28 +583,28 @@
     elsif collection_handle == 'daddy-me' or collection_handle == 'daddy-and-me'
       echo '<p>Explore '
       echo effective_display_title | escape
-      echo " for family photos, vacations, Father's Day gifts, and everyday coordination. This landing page is built around the strongest daddy-and-kid search intent, with matching tees, casual tops, and dressier shirt options all in one place.</p>"
-      echo '<p>Use this collection when you want broad coverage across daddy and me shirts, tees, and outfits, then narrow into button-up, Hawaiian, or t-shirt styles based on the occasion.</p>'
+      echo " for family photos, vacations, Father's Day gifts, and everyday coordination, with matching tees, casual tops, and dressier shirt options.</p>"
+      echo '<p>Pick tees for casual days and button-up or Hawaiian shirts for photos and dressier occasions, and check the size chart on each product page for dad and each child.</p>'
     elsif collection_handle == 'daddy-me-t-shirts'
       echo '<p>Shop '
       echo effective_display_title | escape
-      echo " when you want casual, giftable matching tops for dads and kids. This page is built around daddy and me shirts, matching tees, and easy everyday looks that work for Father's Day, birthdays, family trips, and quick photo moments.</p>"
+      echo " when you want casual, giftable matching tops for dads and kids that work for Father's Day, birthdays, family trips, and quick photo moments.</p>"
       echo '<p>Start here for slogan tees and easy graphic styles, then move into dress shirts or Hawaiian sets if the occasion calls for a sharper look or a more vacation-ready outfit.</p>'
     elsif collection_handle == 'daddy-me-shirts'
       echo '<p>Browse '
       echo effective_display_title | escape
-      echo ' for shoppers looking specifically for button-up, dress shirt, and Hawaiian-style father-son outfits. This collection focuses on collared looks that work for portraits, dinners, beach trips, weddings, and other polished occasions.</p>'
+      echo ' in button-up, dress shirt, and Hawaiian styles: collared father-son looks for portraits, dinners, beach trips, weddings, and other polished occasions.</p>'
       echo '<p>Compared with casual tees, these styles lean more structured and photo-ready, making them a stronger fit when you want matching outfits that still look elevated.</p>'
     elsif collection_handle == 'couples'
       echo '<p>Explore '
       echo effective_display_title | escape
-      echo ' for date nights, vacations, holiday gifting, engagement photos, and everyday coordination. This page is designed for shoppers who want more than one matching top and need a broader starting point for coordinated looks.</p>'
+      echo ' for date nights, vacations, holiday gifting, engagement photos, and everyday coordination.</p>'
       echo '<p>Start with easy tees or lounge sets, then build a more complete outfit around the trip, occasion, or photo moment you are shopping for.</p>'
     elsif collection_handle == 'matching-couples-t-shirts'
       echo '<p>Browse '
       echo effective_display_title | escape
-      echo ' for shoppers searching couples matching shirts, couple t shirts, and everyday coordinated tops. These styles work best when you want a casual, giftable look for trips, holidays, concerts, date nights, and photos.</p>'
-      echo '<p>Use this page for easy everyday matching, then step up to the broader couples collection if you want a fuller outfit built around more than tees alone.</p>'
+      echo ' for a casual, giftable matching look on trips, holidays, concerts, date nights, and photos.</p>'
+      echo '<p>Want more than matching tees? See the couples collection for fuller coordinated outfits.</p>'
     else
       echo '<p>Browse '
       echo effective_display_title | escape
@@ -495,9 +613,6 @@
       echo ' chosen for '
       echo occasion_label | escape
       echo '.</p>'
-      echo '<p>These styles are selected for '
-      echo audience_long | escape
-      echo ', with soft fabrics, easy sizing, and polished color stories that feel wearable well beyond one event.</p>'
     endif
   endcapture
   assign generated_body_description = generated_body_description | strip
@@ -508,6 +623,20 @@
   endif
   if generated_hero_summary contains '. '
     assign generated_hero_summary = generated_hero_summary | split: '. ' | first | append: '.</p>'
+  endif
+
+  comment
+    Head-term guides supply their own one-sentence lead. The translated body
+    strings for these two handles open with search-demand wording
+    ("for shoppers searching ..."), so their hero uses the meta description.
+  endcomment
+  if head_lead != blank
+    assign generated_hero_summary = '<p>' | append: head_lead | append: '</p>'
+  elsif collection_handle == 'matching-couples-t-shirts' or collection_handle == 'daddy-me-shirts'
+    if generated_meta_description != blank
+      assign hero_meta_escaped = generated_meta_description | escape
+      assign generated_hero_summary = '<p>' | append: hero_meta_escaped | append: '</p>'
+    endif
   endif
 
   case field

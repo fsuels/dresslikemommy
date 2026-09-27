@@ -1,0 +1,64 @@
+{%- comment -%}
+  Generic buyer guidance that replaces the templated "Collection Note /
+  A closer look at ..." block on collections without their own guide
+  (SEO lane fix #3, 2026-09-27). Translations are inline because
+  locales/*.json are owned by another lane. English is the else-branch.
+  Fields: heading (plain text), guide (HTML).
+  Usage: {% render 'collection-guide-generic', field: 'guide' %}
+{%- endcomment -%}
+{%- liquid
+  assign cg_lang = request.locale.iso_code | default: localization.language.iso_code | default: 'en' | downcase | split: '-' | first
+  if cg_lang == 'nb'
+    assign cg_lang = 'no'
+  endif
+-%}
+{%- case field -%}
+  {%- when 'heading' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}Antes de hacer tu pedido
+      {%- when 'fr' -%}Avant de commander
+      {%- when 'de' -%}Vor der Bestellung
+      {%- when 'it' -%}Prima di ordinare
+      {%- when 'nl' -%}Voordat je bestelt
+      {%- when 'pt' -%}Antes de fazer o pedido
+      {%- when 'da' -%}Før du bestiller
+      {%- when 'sv' -%}Innan du beställer
+      {%- when 'no' -%}Før du bestiller
+      {%- when 'pl' -%}Zanim zamówisz
+      {%- when 'cs' -%}Než objednáte
+      {%- when 'ja' -%}ご注文の前に
+      {%- when 'ko' -%}주문 전에 확인하세요
+      {%- when 'ru' -%}Перед заказом
+      {%- when 'ar' -%}قبل الطلب
+      {%- when 'he' -%}לפני שמזמינים
+      {%- when 'hi' -%}ऑर्डर करने से पहले
+      {%- when 'el' -%}Πριν παραγγείλετε
+      {%- when 'ro' -%}Înainte de comandă
+      {%- when 'fi' -%}Ennen tilaamista
+      {%- else -%}Before you order
+    {%- endcase -%}
+  {%- when 'guide' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}<p>Elige la talla de cada persona por separado con la tabla de tallas de cada página de producto. Cada página de producto muestra también su plazo estimado de entrega, y el envío estándar está incluido.</p>
+      {%- when 'fr' -%}<p>Choisissez la taille de chacun séparément grâce au guide des tailles de chaque fiche produit. Chaque fiche produit indique aussi son délai de livraison estimé, et la livraison standard est incluse.</p>
+      {%- when 'de' -%}<p>Wählen Sie die Größe für jede Person separat anhand der Größentabelle auf jeder Produktseite. Jede Produktseite zeigt außerdem das voraussichtliche Lieferfenster, und der Standardversand ist inklusive.</p>
+      {%- when 'it' -%}<p>Scegli la taglia di ciascuno separatamente con la tabella taglie di ogni pagina prodotto. Ogni pagina prodotto mostra anche la finestra di consegna stimata e la spedizione standard è inclusa.</p>
+      {%- when 'nl' -%}<p>Kies voor iedereen apart de maat met de maattabel op elke productpagina. Elke productpagina toont ook de verwachte levertijd, en standaardverzending is inbegrepen.</p>
+      {%- when 'pt' -%}<p>Escolha o tamanho de cada pessoa separadamente com a tabela de medidas de cada página de produto. Cada página de produto também mostra o prazo estimado de entrega, e o frete padrão está incluído.</p>
+      {%- when 'da' -%}<p>Vælg størrelse til hver person for sig med størrelsesguiden på hver produktside. Hver produktside viser også den forventede leveringsperiode, og standardfragt er inkluderet.</p>
+      {%- when 'sv' -%}<p>Välj storlek för varje person för sig med storleksguiden på varje produktsida. Varje produktsida visar också beräknad leveranstid, och standardfrakt ingår.</p>
+      {%- when 'no' -%}<p>Velg størrelse for hver person for seg med størrelsestabellen på hver produktside. Hver produktside viser også forventet leveringstid, og standardfrakt er inkludert.</p>
+      {%- when 'pl' -%}<p>Rozmiar dla każdej osoby wybierz osobno według tabeli rozmiarów na każdej stronie produktu. Każda strona produktu pokazuje też szacowany termin dostawy, a standardowa wysyłka jest wliczona.</p>
+      {%- when 'cs' -%}<p>Velikost vyberte pro každého zvlášť podle tabulky velikostí na každé stránce produktu. Každá stránka produktu uvádí také odhadovaný termín doručení a standardní doprava je v ceně.</p>
+      {%- when 'ja' -%}<p>各商品ページのサイズ表で、一人ひとりのサイズを別々に選んでください。各商品ページにはお届け予定の目安も表示され、通常配送料は含まれています。</p>
+      {%- when 'ko' -%}<p>각 상품 페이지의 사이즈 차트로 한 사람씩 따로 사이즈를 고르세요. 각 상품 페이지에서 예상 배송 기간도 확인할 수 있으며, 기본 배송비가 포함되어 있습니다.</p>
+      {%- when 'ru' -%}<p>Выбирайте размер для каждого отдельно по таблице размеров на странице каждого товара. На странице каждого товара также указан ориентировочный срок доставки, а стандартная доставка включена.</p>
+      {%- when 'ar' -%}<p>اختر مقاس كل شخص على حدة باستخدام جدول المقاسات في صفحة كل منتج. وتعرض صفحة كل منتج أيضًا مدة التوصيل المتوقعة، والشحن العادي مشمول.</p>
+      {%- when 'he' -%}<p>בחרו מידה לכל אחד בנפרד בעזרת טבלת המידות שבכל דף מוצר. כל דף מוצר מציג גם את חלון המסירה המשוער, ומשלוח רגיל כלול.</p>
+      {%- when 'hi' -%}<p>हर प्रोडक्ट पेज के साइज़ चार्ट से हर व्यक्ति का साइज़ अलग-अलग चुनें। हर प्रोडक्ट पेज पर अनुमानित डिलीवरी समय भी दिखाया जाता है, और स्टैंडर्ड शिपिंग शामिल है।</p>
+      {%- when 'el' -%}<p>Επιλέξτε το μέγεθος του καθενός ξεχωριστά με τον πίνακα μεγεθών σε κάθε σελίδα προϊόντος. Κάθε σελίδα προϊόντος δείχνει επίσης τον εκτιμώμενο χρόνο παράδοσης και η τυπική αποστολή περιλαμβάνεται.</p>
+      {%- when 'ro' -%}<p>Alege mărimea fiecărei persoane separat, folosind tabelul de mărimi de pe fiecare pagină de produs. Fiecare pagină de produs arată și intervalul estimat de livrare, iar livrarea standard este inclusă.</p>
+      {%- when 'fi' -%}<p>Valitse jokaisen koko erikseen kunkin tuotesivun kokotaulukosta. Jokainen tuotesivu näyttää myös arvioidun toimitusajan, ja vakiotoimitus sisältyy hintaan.</p>
+      {%- else -%}<p>Size each person separately with the size chart on each product page. Each product page also shows its estimated delivery window, and standard shipping is included.</p>
+    {%- endcase -%}
+{%- endcase -%}

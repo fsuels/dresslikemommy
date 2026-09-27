@@ -63,6 +63,13 @@
 {%- case field -%}
   {%- when 'rich_content' -%}
     {%- liquid
+      comment
+        SEO lane fix #3 (2026-09-27): head-term collections render translated buyer
+        guides (collection-guide-* snippets); parts whose translated copy talks about
+        search demand or "this page" are skipped; the templated "Collection Note"
+        eyebrow is stripped from every rich block after rendering.
+      endcomment
+      capture seo_rich_output
       case collection_handle
         when 'new-women-outfits'
           echo 'sections.collection_seo.rich_parts.new_women_outfits.part_1_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url, daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url, trunks_url: trunks_url, swimsuits_url: swimsuits_url, couples_url: couples_url
@@ -87,14 +94,13 @@
           echo 'sections.collection_seo.rich_parts.maxi_dresses.part_2_html' | t: dresses_url: dresses_url, mommy_and_me_url: mommy_and_me_url
           echo 'sections.collection_seo.rich_parts.maxi_dresses.part_3_html' | t: dresses_url: dresses_url, mommy_and_me_url: mommy_and_me_url
         when 'mommy-and-me'
-          echo 'sections.collection_seo.rich_parts.mommy_and_me.part_1_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url
-          echo 'sections.collection_seo.rich_parts.mommy_and_me.part_2_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url
-          echo 'sections.collection_seo.rich_parts.mommy_and_me.part_3_html' | t: dresses_url: dresses_url, family_swimsuits_url: family_swimsuits_url, family_sets_url: family_sets_url
+          echo '<div class="collection-seo-rich__intro"><h2>'
+          render 'collection-guide-mommy-and-me', field: 'heading'
+          echo '</h2></div><div class="collection-seo-rich__copy">'
+          render 'collection-guide-mommy-and-me', field: 'guide'
+          echo '</div>'
         when 'family-swimsuits'
           echo 'sections.collection_seo.rich_parts.family_swimsuits.part_1_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
-          echo 'sections.collection_seo.rich_parts.family_swimsuits.part_2_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
-          echo 'sections.collection_seo.rich_parts.family_swimsuits.part_3_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
-          echo 'sections.collection_seo.rich_parts.family_swimsuits.part_4_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
           echo 'sections.collection_seo.rich_parts.family_swimsuits.part_5_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
           echo 'sections.collection_seo.rich_parts.family_swimsuits.part_6_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
           echo 'sections.collection_seo.rich_parts.family_swimsuits.part_7_html' | t: trunks_url: trunks_url, swimsuits_url: swimsuits_url, mommy_and_me_url: mommy_and_me_url, family_sets_url: family_sets_url
@@ -104,25 +110,16 @@
           echo 'sections.collection_seo.rich_parts.family_sets.part_2_html' | t: family_swimsuits_url: family_swimsuits_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url
           echo 'sections.collection_seo.rich_parts.family_sets.part_3_html' | t: family_matching_outfits_url: family_matching_outfits_url, family_swimsuits_url: family_swimsuits_url, matching_outfits_url: matching_outfits_url, mommy_and_me_url: mommy_and_me_url
         when 'daddy-me', 'daddy-and-me'
-          echo 'sections.collection_seo.rich_parts.daddy_me.part_1_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
-          echo 'sections.collection_seo.rich_parts.daddy_me.part_2_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
-          echo 'sections.collection_seo.rich_parts.daddy_me.part_3_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
-          echo 'sections.collection_seo.rich_parts.daddy_me.part_4_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
-          echo 'sections.collection_seo.rich_parts.daddy_me.part_5_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
-          echo 'sections.collection_seo.rich_parts.daddy_me.part_6_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
-          echo 'sections.collection_seo.rich_parts.daddy_me.part_7_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
-          echo 'sections.collection_seo.rich_parts.daddy_me.part_8_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
-          echo 'sections.collection_seo.rich_parts.daddy_me.part_9_html' | t: daddy_me_tshirts_url: daddy_me_tshirts_url, daddy_me_shirts_url: daddy_me_shirts_url, trunks_url: trunks_url
+          echo '<div class="collection-seo-rich__intro"><h2>'
+          render 'collection-guide-daddy-me', field: 'heading'
+          echo '</h2></div><div class="collection-seo-rich__copy">'
+          render 'collection-guide-daddy-me', field: 'guide'
+          echo '</div>'
         when 'daddy-me-t-shirts'
           echo 'sections.collection_seo.rich_parts.daddy_me_tshirts.part_1_html' | t: daddy_me_url: daddy_me_url, daddy_me_shirts_url: daddy_me_shirts_url
-          echo 'sections.collection_seo.rich_parts.daddy_me_tshirts.part_2_html' | t: daddy_me_url: daddy_me_url, daddy_me_shirts_url: daddy_me_shirts_url
-          echo 'sections.collection_seo.rich_parts.daddy_me_tshirts.part_3_html' | t: daddy_me_url: daddy_me_url, daddy_me_shirts_url: daddy_me_shirts_url
-          echo 'sections.collection_seo.rich_parts.daddy_me_tshirts.part_4_html' | t: daddy_me_url: daddy_me_url, daddy_me_shirts_url: daddy_me_shirts_url
           echo 'sections.collection_seo.rich_parts.daddy_me_tshirts.part_5_html' | t: daddy_me_url: daddy_me_url, daddy_me_shirts_url: daddy_me_shirts_url
           echo 'sections.collection_seo.rich_parts.daddy_me_tshirts.part_6_html' | t: daddy_me_url: daddy_me_url, daddy_me_shirts_url: daddy_me_shirts_url
         when 'daddy-me-shirts'
-          echo 'sections.collection_seo.rich_parts.daddy_me_shirts.part_1_html' | t: daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url
-          echo 'sections.collection_seo.rich_parts.daddy_me_shirts.part_2_html' | t: daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url
           echo 'sections.collection_seo.rich_parts.daddy_me_shirts.part_3_html' | t: daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url
           echo 'sections.collection_seo.rich_parts.daddy_me_shirts.part_4_html' | t: daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url
           echo 'sections.collection_seo.rich_parts.daddy_me_shirts.part_5_html' | t: daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url
@@ -131,15 +128,12 @@
           echo 'sections.collection_seo.rich_parts.daddy_me_shirts.part_8_html' | t: daddy_me_url: daddy_me_url, daddy_me_tshirts_url: daddy_me_tshirts_url
         when 'couples'
           echo 'sections.collection_seo.rich_parts.couples.part_1_html' | t: couples_url: couples_url
-          echo 'sections.collection_seo.rich_parts.couples.part_2_html' | t: couples_url: couples_url
-          echo 'sections.collection_seo.rich_parts.couples.part_3_html' | t: couples_url: couples_url
           echo 'sections.collection_seo.rich_parts.couples.part_4_html' | t: couples_url: couples_url
           echo 'sections.collection_seo.rich_parts.couples.part_5_html' | t: couples_url: couples_url
           echo 'sections.collection_seo.rich_parts.couples.part_6_html' | t: couples_url: couples_url
           echo 'sections.collection_seo.rich_parts.couples.part_7_html' | t: couples_url: couples_url
         when 'matching-couples-t-shirts'
           echo 'sections.collection_seo.rich_parts.couples_tshirts.part_1_html' | t: couples_url: couples_url
-          echo 'sections.collection_seo.rich_parts.couples_tshirts.part_2_html' | t: couples_url: couples_url
           echo 'sections.collection_seo.rich_parts.couples_tshirts.part_3_html' | t: couples_url: couples_url
           echo 'sections.collection_seo.rich_parts.couples_tshirts.part_4_html' | t: couples_url: couples_url
           echo 'sections.collection_seo.rich_parts.couples_tshirts.part_5_html' | t: couples_url: couples_url
@@ -147,13 +141,46 @@
           echo 'sections.collection_seo.rich_parts.couples_tshirts.part_7_html' | t: couples_url: couples_url
         when 'mommy-and-me-easter-dresses', 'easter-matching-outfits', 'spring-matching-outfits'
           echo 'sections.collection_seo.rich_parts.spring_matching.part_1_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
-          echo 'sections.collection_seo.rich_parts.spring_matching.part_2_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
           echo 'sections.collection_seo.rich_parts.spring_matching.part_3_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
           echo 'sections.collection_seo.rich_parts.spring_matching.part_4_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
           echo 'sections.collection_seo.rich_parts.spring_matching.part_5_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
           echo 'sections.collection_seo.rich_parts.spring_matching.part_6_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
           echo 'sections.collection_seo.rich_parts.spring_matching.part_7_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
           echo 'sections.collection_seo.rich_parts.spring_matching.part_8_html' | t: mommy_and_me_url: mommy_and_me_url, dresses_url: dresses_url
+        when 'christmas-pajamas'
+          assign seo_show_styles = false
+          if collection.all_products_count >= 6
+            assign seo_show_styles = true
+          endif
+          echo '<div class="collection-seo-rich__intro"><h2>'
+          render 'collection-guide-christmas-pajamas', field: 'heading'
+          echo '</h2></div><div class="collection-seo-rich__copy">'
+          render 'collection-guide-christmas-pajamas', field: 'guide', show_styles: seo_show_styles
+          echo '</div>'
+        when 'family-pajamas'
+          echo '<div class="collection-seo-rich__intro"><h2>'
+          render 'collection-guide-family-pajamas', field: 'heading'
+          echo '</h2></div><div class="collection-seo-rich__copy">'
+          render 'collection-guide-family-pajamas', field: 'guide'
+          echo '</div>'
       endcase
+      endcapture
+
+      if seo_rich_output contains 'collection-seo-rich__eyebrow'
+        assign seo_eyebrow_open = '<p class="collection-seo-rich__eyebrow">'
+        assign seo_rich_segments = seo_rich_output | split: seo_eyebrow_open
+        assign seo_rich_clean = ''
+        for seo_rich_segment in seo_rich_segments
+          if forloop.first
+            assign seo_rich_clean = seo_rich_segment
+          else
+            assign seo_eyebrow_text = seo_rich_segment | split: '</p>' | first
+            assign seo_rich_rest = seo_rich_segment | remove_first: seo_eyebrow_text | remove_first: '</p>'
+            assign seo_rich_clean = seo_rich_clean | append: seo_rich_rest
+          endif
+        endfor
+        assign seo_rich_output = seo_rich_clean
+      endif
+      echo seo_rich_output
     -%}
 {%- endcase -%}

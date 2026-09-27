@@ -1,0 +1,180 @@
+{%- comment -%}
+  Buyer guide for /collections/christmas-pajamas (SEO lane fix #3, 2026-09-27;
+  source copy: 2026-09-27-million-plan/lanes/seo.md section 4.2).
+  Translations are inline because locales/*.json are owned by another lane.
+  Fields: heading (plain text), lead (one sentence, plain text), guide (HTML).
+  show_styles: true only when the collection holds enough products for the
+  print examples (plaid, reindeer, Fair Isle, snowflake) to be accurate.
+  English is the else-branch. Dropshipping truth: no stock, warehouse,
+  fast-shipping, review or bestseller claims; delivery points to the PDP.
+  Usage: {% render 'collection-guide-christmas-pajamas', field: 'guide', show_styles: true %}
+{%- endcomment -%}
+{%- liquid
+  assign cg_lang = request.locale.iso_code | default: localization.language.iso_code | default: 'en' | downcase | split: '-' | first
+  if cg_lang == 'nb'
+    assign cg_lang = 'no'
+  endif
+
+  assign cg_sweaters_url = routes.collections_url | append: '/family-sweaters'
+  if collections['family-sweaters'] != blank
+    assign cg_sweaters_url = collections['family-sweaters'].url
+  endif
+-%}
+{%- case field -%}
+  {%- when 'heading' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}Cómo elegir pijamas navideños a juego
+      {%- when 'fr' -%}Comment choisir des pyjamas de Noël assortis
+      {%- when 'de' -%}So wählen Sie passende Weihnachtspyjamas
+      {%- when 'it' -%}Come scegliere i pigiami di Natale coordinati
+      {%- when 'nl' -%}Zo kies je bijpassende kerstpyjama's
+      {%- when 'pt' -%}Como escolher pijamas de Natal combinando
+      {%- when 'da' -%}Sådan vælger du matchende julepyjamas
+      {%- when 'sv' -%}Så väljer du matchande julpyjamas
+      {%- when 'no' -%}Slik velger du matchende julepyjamas
+      {%- when 'pl' -%}Jak wybrać pasujące piżamy świąteczne
+      {%- when 'cs' -%}Jak vybrat sladěná vánoční pyžama
+      {%- when 'ja' -%}家族おそろいクリスマスパジャマの選び方
+      {%- when 'ko' -%}가족 커플 크리스마스 잠옷 고르는 법
+      {%- when 'ru' -%}Как выбрать одинаковые рождественские пижамы
+      {%- when 'ar' -%}كيف تختار بيجامات عيد الميلاد المتطابقة
+      {%- when 'he' -%}איך לבחור פיג'מות חג מולד תואמות
+      {%- when 'hi' -%}मैचिंग क्रिसमस पजामा कैसे चुनें
+      {%- when 'el' -%}Πώς να διαλέξετε ασορτί χριστουγεννιάτικες πιτζάμες
+      {%- when 'ro' -%}Cum alegi pijamale de Crăciun asortate
+      {%- when 'fi' -%}Näin valitset yhteensopivat joulupyjamat
+      {%- else -%}How to choose matching Christmas pajamas
+    {%- endcase -%}
+  {%- when 'lead' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}Los pijamas navideños a juego para toda la familia son la tradición más fácil de empezar: todos abren los regalos, hornean galletas y posan para la foto de Navidad con el mismo estampado.
+      {%- when 'fr' -%}Les pyjamas de Noël assortis pour toute la famille sont la tradition la plus simple à lancer : chacun ouvre ses cadeaux, prépare des biscuits et pose pour la photo de Noël dans le même imprimé.
+      {%- when 'de' -%}Passende Weihnachtspyjamas für die ganze Familie sind die einfachste Festtagstradition: Alle packen Geschenke aus, backen Plätzchen und posieren im selben Muster für das Weihnachtsfoto.
+      {%- when 'it' -%}I pigiami di Natale coordinati per tutta la famiglia sono la tradizione più facile da iniziare: tutti aprono i regali, preparano i biscotti e posano per la foto di Natale con la stessa stampa.
+      {%- when 'nl' -%}Bijpassende kerstpyjama's voor het hele gezin zijn de makkelijkste feesttraditie om mee te beginnen: iedereen pakt cadeaus uit, bakt koekjes en poseert voor de kerstfoto in dezelfde print.
+      {%- when 'pt' -%}Os pijamas de Natal combinando para toda a família são a tradição mais fácil de começar: todo mundo abre os presentes, faz biscoitos e posa para a foto de Natal com a mesma estampa.
+      {%- when 'da' -%}Matchende julepyjamas til hele familien er den nemmeste juletradition at starte: Alle åbner gaver, bager småkager og poserer til julefotoet i samme print.
+      {%- when 'sv' -%}Matchande julpyjamas för hela familjen är den enklaste högtidstraditionen att börja med: alla öppnar klappar, bakar pepparkakor och poserar för julkortet i samma mönster.
+      {%- when 'no' -%}Matchende julepyjamas til hele familien er den enkleste juletradisjonen å starte: Alle åpner gaver, baker pepperkaker og poserer til julebildet i samme mønster.
+      {%- when 'pl' -%}Pasujące świąteczne piżamy dla całej rodziny to najłatwiejsza świąteczna tradycja: wszyscy otwierają prezenty, pieką pierniczki i pozują do świątecznego zdjęcia w tym samym wzorze.
+      {%- when 'cs' -%}Sladěná vánoční pyžama pro celou rodinu jsou nejsnazší sváteční tradice: všichni rozbalují dárky, pečou cukroví a pózují na vánoční fotku ve stejném vzoru.
+      {%- when 'ja' -%}家族おそろいのクリスマスパジャマは、いちばん気軽に始められる冬の恒例行事です。みんなで同じ柄を着て、プレゼントを開け、クッキーを焼き、クリスマスカード用の写真を撮りましょう。
+      {%- when 'ko' -%}가족이 함께 입는 크리스마스 커플 잠옷은 가장 쉽게 시작할 수 있는 연말 전통으로, 모두 같은 패턴을 입고 선물을 열고 쿠키를 굽고 크리스마스 카드 사진을 찍을 수 있습니다.
+      {%- when 'ru' -%}Одинаковые рождественские пижамы для всей семьи — самая простая праздничная традиция: все открывают подарки, пекут печенье и позируют для праздничного фото в одном принте.
+      {%- when 'ar' -%}بيجامات عيد الميلاد المتطابقة للعائلة هي أسهل تقليد احتفالي يمكن البدء به: يفتح الجميع الهدايا ويخبزون البسكويت ويلتقطون صورة البطاقة بالنقشة نفسها.
+      {%- when 'he' -%}פיג'מות חג מולד תואמות לכל המשפחה הן המסורת החגיגית הקלה ביותר להתחיל: כולם פותחים מתנות, אופים עוגיות ומצטלמים לכרטיס הברכה באותו הדפס.
+      {%- when 'hi' -%}पूरे परिवार के लिए मैचिंग क्रिसमस पजामा शुरू करने के लिए सबसे आसान त्योहार परंपरा है: सब एक ही प्रिंट में तोहफ़े खोलते हैं, कुकीज़ बनाते हैं और कार्ड की फ़ोटो खिंचवाते हैं।
+      {%- when 'el' -%}Οι ασορτί χριστουγεννιάτικες πιτζάμες για όλη την οικογένεια είναι η πιο εύκολη γιορτινή παράδοση για να ξεκινήσετε: όλοι ανοίγουν δώρα, ψήνουν μπισκότα και ποζάρουν για τη φωτογραφία της κάρτας με το ίδιο μοτίβο.
+      {%- when 'ro' -%}Pijamalele de Crăciun asortate pentru toată familia sunt cea mai ușoară tradiție de sărbători: toată lumea desface cadourile, coace fursecuri și pozează pentru felicitare în același imprimeu.
+      {%- when 'fi' -%}Koko perheen yhteensopivat joulupyjamat ovat helpoin juhlaperinne aloittaa: kaikki avaavat lahjoja, leipovat pipareita ja poseeraavat joulukorttikuvaan samassa kuosissa.
+      {%- else -%}Matching family Christmas pajamas are the easiest holiday tradition to start: everyone opens presents, bakes cookies and poses for the card photo in the same print.
+    {%- endcase -%}
+  {%- when 'guide' -%}
+    {%- case cg_lang -%}
+      {%- when 'es' -%}
+        <p>La mayoría de los conjuntos se venden por persona, en tallas de adulto, niño y, en muchos modelos, bebé, así que puedes comprar exactamente la combinación que necesita tu familia.</p>
+        {%- if show_styles -%}<p><strong>Cómo elegir un conjunto:</strong> el clásico cuadro escocés rojo y verde queda bien en las fotos en cualquier habitación. Los estampados de renos, Fair Isle y copos de nieve resultan acogedores para Nochebuena, y los modelos enteros con capucha son divertidos para niños y adultos que no se toman demasiado en serio.</p>{%- endif -%}
+        <p><strong>Tallas:</strong> elige la talla de cada persona por separado con la tabla de cada página de producto. Los pijamas son holgados, así que si alguien está entre dos tallas, elige la mayor.</p>
+        <p><strong>El tiempo importa:</strong> consulta el plazo estimado de entrega en cada página de producto y haz tu pedido con antelación para que los pijamas lleguen antes del día de la foto. ¿Quieres ir a juego más allá del pijama? Mira nuestros <a href="{{ cg_sweaters_url }}">suéteres a juego para la familia</a>. El envío estándar está incluido.</p>
+      {%- when 'fr' -%}
+        <p>La plupart des modèles sont vendus à l'unité, en tailles adulte, enfant et, pour beaucoup, bébé, pour acheter exactement la combinaison dont votre famille a besoin.</p>
+        {%- if show_styles -%}<p><strong>Choisir un modèle :</strong> le tartan rouge et vert classique rend bien en photo dans n'importe quelle pièce. Les motifs rennes, jacquard et flocons de neige sont douillets pour le réveillon, et les combinaisons à capuche amusent les enfants comme les grands qui ne se prennent pas trop au sérieux.</p>{%- endif -%}
+        <p><strong>Tailles :</strong> choisissez la taille de chacun séparément grâce au guide de chaque fiche produit. Un pyjama se porte ample : en cas d'hésitation entre deux tailles, prenez la plus grande.</p>
+        <p><strong>Anticipez :</strong> vérifiez le délai de livraison estimé sur chaque fiche produit et commandez tôt pour recevoir les pyjamas avant le jour de la photo. Envie d'être assortis au-delà du pyjama ? Découvrez nos <a href="{{ cg_sweaters_url }}">pulls assortis pour la famille</a>. La livraison standard est incluse.</p>
+      {%- when 'de' -%}
+        <p>Die meisten Sets werden pro Person verkauft, in Größen für Erwachsene, Kinder und bei vielen Modellen auch Babys, sodass Sie genau die Kombination kaufen, die Ihre Familie braucht.</p>
+        {%- if show_styles -%}<p><strong>Das richtige Set:</strong> Klassisches rot-grünes Karo wirkt auf Fotos in jedem Raum. Rentier-, Norweger- und Schneeflockenmuster sind gemütlich für Heiligabend, und Einteiler mit Kapuze machen Kindern und Erwachsenen Spaß, die sich selbst nicht zu ernst nehmen.</p>{%- endif -%}
+        <p><strong>Größen:</strong> Wählen Sie für jede Person die Größe separat anhand der Tabelle auf jeder Produktseite. Pyjamas sitzen locker – liegt jemand zwischen zwei Größen, nehmen Sie die größere.</p>
+        <p><strong>Rechtzeitig bestellen:</strong> Prüfen Sie das voraussichtliche Lieferfenster auf jeder Produktseite und bestellen Sie früh, damit die Pyjamas vor Ihrem Fototermin ankommen. Auch über den Pyjama hinaus im Partnerlook? Entdecken Sie unsere <a href="{{ cg_sweaters_url }}">Familienpullover im Partnerlook</a>. Der Standardversand ist inklusive.</p>
+      {%- when 'it' -%}
+        <p>La maggior parte dei set si vende per persona, in taglie adulto, bambino e, per molti modelli, neonato, così acquisti esattamente la combinazione che serve alla tua famiglia.</p>
+        {%- if show_styles -%}<p><strong>Come scegliere il set:</strong> il classico scozzese rosso e verde sta bene in foto in qualsiasi stanza. Le stampe con renne, motivi nordici e fiocchi di neve sono accoglienti per la Vigilia, e le tutine intere con cappuccio divertono bambini e adulti che non si prendono troppo sul serio.</p>{%- endif -%}
+        <p><strong>Taglie:</strong> scegli la taglia di ciascuno separatamente con la tabella di ogni pagina prodotto. I pigiami vestono morbidi, quindi se qualcuno è tra due taglie, scegli quella più grande.</p>
+        <p><strong>Occhio ai tempi:</strong> controlla la finestra di consegna stimata in ogni pagina prodotto e ordina per tempo, così i pigiami arrivano prima del giorno della foto. Vuoi coordinarvi anche oltre il pigiama? Scopri i nostri <a href="{{ cg_sweaters_url }}">maglioni coordinati per la famiglia</a>. La spedizione standard è inclusa.</p>
+      {%- when 'nl' -%}
+        <p>De meeste sets worden per persoon verkocht, in maten voor volwassenen, kinderen en bij veel modellen ook baby's, zodat je precies de combinatie koopt die jouw gezin nodig heeft.</p>
+        {%- if show_styles -%}<p><strong>Een set kiezen:</strong> klassieke rood-groene ruit staat in elke kamer mooi op de foto. Prints met rendieren, Noorse motieven en sneeuwvlokken voelen knus voor kerstavond, en onesies met capuchon zijn leuk voor kinderen en volwassenen die zichzelf niet te serieus nemen.</p>{%- endif -%}
+        <p><strong>Maten:</strong> kies voor iedereen apart de maat met de tabel op elke productpagina. Pyjama's zitten ruim, dus twijfelt iemand tussen twee maten, kies dan de grotere.</p>
+        <p><strong>Let op de timing:</strong> bekijk de verwachte levertijd op elke productpagina en bestel op tijd, zodat de pyjama's er zijn voor je fotodag. Ook buiten de pyjama matchen? Bekijk onze <a href="{{ cg_sweaters_url }}">bijpassende familietruien</a>. Standaardverzending is inbegrepen.</p>
+      {%- when 'pt' -%}
+        <p>A maioria dos conjuntos é vendida por pessoa, em tamanhos adulto, infantil e, em muitos modelos, bebê, para você comprar exatamente a combinação de que sua família precisa.</p>
+        {%- if show_styles -%}<p><strong>Como escolher:</strong> o clássico xadrez vermelho e verde fica lindo nas fotos em qualquer ambiente. Estampas de renas, Fair Isle e flocos de neve são aconchegantes para a véspera de Natal, e os macacões com capuz divertem crianças e adultos que não se levam tão a sério.</p>{%- endif -%}
+        <p><strong>Tamanhos:</strong> escolha o tamanho de cada pessoa separadamente com a tabela de cada página de produto. Pijamas têm caimento solto, então se alguém estiver entre dois tamanhos, escolha o maior.</p>
+        <p><strong>Atenção ao prazo:</strong> confira o prazo estimado de entrega em cada página de produto e peça com antecedência para que os pijamas cheguem antes do dia da foto. Quer combinar além do pijama? Veja nossos <a href="{{ cg_sweaters_url }}">suéteres combinando para a família</a>. O frete padrão está incluído.</p>
+      {%- when 'da' -%}
+        <p>De fleste sæt sælges pr. person i størrelser til voksne, børn og på mange modeller også babyer, så du kan købe præcis den kombination, din familie har brug for.</p>
+        {%- if show_styles -%}<p><strong>Vælg et sæt:</strong> Klassisk rød-grøn tern tager sig godt ud på billeder i ethvert rum. Rensdyr-, norsk strik- og snefnugmønstre er hyggelige til juleaften, og heldragter med hætte er sjove for børn og voksne, der ikke tager sig selv alt for højtideligt.</p>{%- endif -%}
+        <p><strong>Størrelser:</strong> Vælg størrelse til hver person for sig med tabellen på hver produktside. Pyjamas sidder løst, så hvis nogen er mellem to størrelser, så gå en op.</p>
+        <p><strong>Timing betyder noget:</strong> Tjek den forventede leveringsperiode på hver produktside, og bestil i god tid, så pyjamasserne når frem før fotodagen. Vil I også matche ud over pyjamassen? Se vores <a href="{{ cg_sweaters_url }}">matchende familiesweatre</a>. Standardfragt er inkluderet.</p>
+      {%- when 'sv' -%}
+        <p>De flesta set säljs per person, i storlekar för vuxna, barn och på många modeller även bebisar, så att du kan köpa exakt den kombination din familj behöver.</p>
+        {%- if show_styles -%}<p><strong>Välj ett set:</strong> klassiskt rött och grönt rutmönster blir fint på bild i vilket rum som helst. Mönster med renar, norsk stickning och snöflingor känns mysiga på julafton, och heldräkter med luva är roliga för barn och vuxna som inte tar sig själva på för stort allvar.</p>{%- endif -%}
+        <p><strong>Storlekar:</strong> välj storlek för varje person för sig med tabellen på varje produktsida. Pyjamas sitter ledigt, så om någon är mellan två storlekar, välj den större.</p>
+        <p><strong>Tänk på tiden:</strong> kolla den beräknade leveranstiden på varje produktsida och beställ i god tid så att pyjamasarna kommer fram före fotodagen. Vill ni matcha även utanför pyjamasen? Se våra <a href="{{ cg_sweaters_url }}">matchande familjetröjor</a>. Standardfrakt ingår.</p>
+      {%- when 'no' -%}
+        <p>De fleste sett selges per person, i størrelser for voksne, barn og på mange modeller også babyer, så du kan kjøpe akkurat den kombinasjonen familien trenger.</p>
+        {%- if show_styles -%}<p><strong>Velg et sett:</strong> Klassisk rødt og grønt rutemønster tar seg godt ut på bilder i alle rom. Reinsdyr-, lusekofte- og snøfnuggmønstre er koselige på julaften, og heldresser med hette er morsomme for barn og voksne som ikke tar seg selv så høytidelig.</p>{%- endif -%}
+        <p><strong>Størrelser:</strong> Velg størrelse for hver person for seg med tabellen på hver produktside. Pyjamas sitter løst, så hvis noen er mellom to størrelser, velg den største.</p>
+        <p><strong>Tenk på tiden:</strong> Sjekk forventet leveringstid på hver produktside og bestill tidlig, så pyjamasene kommer før fotodagen. Vil dere matche også utenom pyjamasen? Se våre <a href="{{ cg_sweaters_url }}">matchende familiegensere</a>. Standardfrakt er inkludert.</p>
+      {%- when 'pl' -%}
+        <p>Większość kompletów sprzedawana jest na osobę, w rozmiarach dla dorosłych, dzieci, a w wielu modelach także niemowląt, więc kupisz dokładnie taki zestaw, jakiego potrzebuje twoja rodzina.</p>
+        {%- if show_styles -%}<p><strong>Jak wybrać komplet:</strong> klasyczna czerwono-zielona krata dobrze wygląda na zdjęciach w każdym wnętrzu. Wzory z reniferami, norweskie i w płatki śniegu są przytulne na Wigilię, a jednoczęściowe piżamy z kapturem bawią dzieci i dorosłych z dystansem do siebie.</p>{%- endif -%}
+        <p><strong>Rozmiary:</strong> rozmiar dla każdej osoby wybierz osobno według tabeli na każdej stronie produktu. Piżamy są luźne, więc jeśli ktoś jest pomiędzy rozmiarami, wybierz większy.</p>
+        <p><strong>Liczy się czas:</strong> sprawdź szacowany termin dostawy na każdej stronie produktu i zamów wcześniej, aby piżamy dotarły przed dniem zdjęć. Chcecie pasować nie tylko w piżamach? Zobacz nasze <a href="{{ cg_sweaters_url }}">pasujące swetry rodzinne</a>. Standardowa wysyłka jest wliczona.</p>
+      {%- when 'cs' -%}
+        <p>Většina souprav se prodává zvlášť pro každou osobu, ve velikostech pro dospělé, děti a u mnoha modelů i pro miminka, takže koupíte přesně tu kombinaci, kterou vaše rodina potřebuje.</p>
+        {%- if show_styles -%}<p><strong>Jak vybrat soupravu:</strong> klasické červeno-zelené kostky vypadají na fotkách dobře v každé místnosti. Vzory se soby, norským motivem a sněhovými vločkami působí na Štědrý večer útulně a overaly s kapucí pobaví děti i dospělé, kteří se neberou příliš vážně.</p>{%- endif -%}
+        <p><strong>Velikosti:</strong> velikost vyberte pro každého zvlášť podle tabulky na každé stránce produktu. Pyžama jsou volnější, takže pokud je někdo mezi dvěma velikostmi, zvolte větší.</p>
+        <p><strong>Myslete na čas:</strong> zkontrolujte odhadovaný termín doručení na každé stránce produktu a objednejte včas, aby pyžama dorazila před dnem focení. Chcete ladit i mimo pyžama? Podívejte se na naše <a href="{{ cg_sweaters_url }}">sladěné rodinné svetry</a>. Standardní doprava je v ceně.</p>
+      {%- when 'ja' -%}
+        <p>ほとんどのセットは1人分ずつの販売で、大人・子ども、そして多くのデザインではベビーサイズもあるので、ご家族に必要な組み合わせだけを購入できます。</p>
+        {%- if show_styles -%}<p><strong>セットの選び方：</strong>定番の赤と緑のチェックは、どんなお部屋でも写真映えします。トナカイ、ノルディック柄、雪の結晶のプリントはクリスマスイブにぴったりの温かみがあり、フード付きのワンピースタイプは子どもにも遊び心のある大人にも楽しいデザインです。</p>{%- endif -%}
+        <p><strong>サイズ：</strong>各商品ページのサイズ表で、一人ひとりのサイズを別々に選んでください。パジャマはゆったりめの作りなので、サイズで迷ったら大きいほうをおすすめします。</p>
+        <p><strong>お届け時期にご注意：</strong>各商品ページに表示されるお届け予定の目安を確認し、撮影日までに届くよう早めにご注文ください。パジャマ以外でもおそろいにしたい方は、<a href="{{ cg_sweaters_url }}">家族おそろいのセーター</a>もご覧ください。通常配送料は含まれています。</p>
+      {%- when 'ko' -%}
+        <p>대부분의 세트는 1인 단위로 판매되며 성인, 아동, 그리고 많은 디자인에서 아기 사이즈까지 있어 가족에게 필요한 조합만 정확히 구매할 수 있습니다.</p>
+        {%- if show_styles -%}<p><strong>세트 고르기:</strong> 클래식한 빨강·초록 체크는 어느 공간에서나 사진이 잘 나옵니다. 순록, 노르딕, 눈꽃 프린트는 크리스마스이브에 포근한 느낌을 주고, 후드 달린 원피스형 잠옷은 아이들과 유쾌한 어른들 모두에게 재미있습니다.</p>{%- endif -%}
+        <p><strong>사이즈:</strong> 각 상품 페이지의 사이즈 차트로 한 사람씩 따로 사이즈를 고르세요. 잠옷은 넉넉하게 입는 옷이므로 사이즈가 애매하면 한 치수 크게 선택하세요.</p>
+        <p><strong>배송 시기 확인:</strong> 각 상품 페이지에 표시된 예상 배송 기간을 확인하고 촬영일 전에 도착하도록 미리 주문하세요. 잠옷 말고도 맞춰 입고 싶다면 <a href="{{ cg_sweaters_url }}">가족 커플 스웨터</a>도 둘러보세요. 기본 배송비가 포함되어 있습니다.</p>
+      {%- when 'ru' -%}
+        <p>Большинство комплектов продаётся отдельно на каждого человека, во взрослых, детских и во многих моделях — младенческих размерах, так что вы купите ровно ту комбинацию, которая нужна вашей семье.</p>
+        {%- if show_styles -%}<p><strong>Как выбрать комплект:</strong> классическая красно-зелёная клетка хорошо смотрится на фото в любой комнате. Принты с оленями, скандинавскими узорами и снежинками создают уют в сочельник, а комбинезоны с капюшоном порадуют детей и взрослых, которые не относятся к себе слишком серьёзно.</p>{%- endif -%}
+        <p><strong>Размеры:</strong> подбирайте размер для каждого отдельно по таблице на странице каждого товара. Пижамы носятся свободно, поэтому если кто-то между размерами, берите больший.</p>
+        <p><strong>Не откладывайте:</strong> проверьте ориентировочный срок доставки на странице каждого товара и закажите заранее, чтобы пижамы пришли до дня фотосессии. Хотите совпадать не только в пижамах? Посмотрите наши <a href="{{ cg_sweaters_url }}">одинаковые семейные свитера</a>. Стандартная доставка включена.</p>
+      {%- when 'ar' -%}
+        <p>تُباع معظم الأطقم لكل شخص على حدة، بمقاسات للكبار والأطفال، ومقاسات للرضع في كثير من التصاميم، لتشتري بالضبط التشكيلة التي تحتاجها عائلتك.</p>
+        {%- if show_styles -%}<p><strong>اختيار الطقم:</strong> يبدو نقش المربعات الكلاسيكي بالأحمر والأخضر جميلًا في الصور في أي غرفة. أما نقشات الرنة والزخارف الاسكندنافية وندف الثلج فتمنح دفئًا لليلة عيد الميلاد، والبيجامات القطعة الواحدة بغطاء رأس ممتعة للأطفال وللكبار الذين يحبون المرح.</p>{%- endif -%}
+        <p><strong>المقاسات:</strong> اختر مقاس كل شخص على حدة باستخدام الجدول في صفحة كل منتج. البيجامات فضفاضة بطبيعتها، فإذا كان أحدهم بين مقاسين فاختر الأكبر.</p>
+        <p><strong>التوقيت مهم:</strong> راجع مدة التوصيل المتوقعة في صفحة كل منتج واطلب مبكرًا لتصل البيجامات قبل يوم التصوير. هل تريدون التنسيق بما يتجاوز البيجامات؟ تصفح <a href="{{ cg_sweaters_url }}">الكنزات العائلية المتطابقة</a>. الشحن العادي مشمول.</p>
+      {%- when 'he' -%}
+        <p>רוב הסטים נמכרים לפי אדם, במידות למבוגרים, לילדים ובדגמים רבים גם לתינוקות, כך שאפשר לקנות בדיוק את השילוב שהמשפחה שלכם צריכה.</p>
+        {%- if show_styles -%}<p><strong>בחירת סט:</strong> משבצות קלאסיות באדום וירוק נראות טוב בתמונות בכל חדר. הדפסי איילים, דוגמה נורדית ופתיתי שלג משרים אווירה חמימה בערב החג, ואוברולים עם קפוצ'ון משעשעים ילדים ומבוגרים שלא לוקחים את עצמם יותר מדי ברצינות.</p>{%- endif -%}
+        <p><strong>מידות:</strong> בחרו מידה לכל אחד בנפרד לפי הטבלה שבכל דף מוצר. פיג'מות אמורות להיות רפויות, אז אם מישהו בין שתי מידות, בחרו את הגדולה.</p>
+        <p><strong>התזמון חשוב:</strong> בדקו את חלון המסירה המשוער שמופיע בכל דף מוצר והזמינו מוקדם כדי שהפיג'מות יגיעו לפני יום הצילום. רוצים להתאים גם מעבר לפיג'מה? עיינו ב<a href="{{ cg_sweaters_url }}">סוודרים המשפחתיים התואמים</a>. משלוח רגיל כלול.</p>
+      {%- when 'hi' -%}
+        <p>ज़्यादातर सेट प्रति व्यक्ति बिकते हैं, बड़ों, बच्चों और कई स्टाइल में बेबी साइज़ में भी, ताकि आप ठीक वही कॉम्बिनेशन खरीदें जिसकी आपके परिवार को ज़रूरत है।</p>
+        {%- if show_styles -%}<p><strong>सेट कैसे चुनें:</strong> क्लासिक लाल-हरा प्लेड किसी भी कमरे में फ़ोटो में अच्छा दिखता है। रेनडियर, फ़ेयर आइल और स्नोफ़्लेक प्रिंट क्रिसमस की पूर्व संध्या के लिए आरामदायक लगते हैं, और हुड वाले वन-पीस स्टाइल बच्चों और मस्तमौला बड़ों दोनों के लिए मज़ेदार हैं।</p>{%- endif -%}
+        <p><strong>साइज़:</strong> हर प्रोडक्ट पेज के चार्ट से हर व्यक्ति का साइज़ अलग-अलग चुनें। पजामे ढीले पहने जाते हैं, इसलिए अगर कोई दो साइज़ के बीच हो तो बड़ा साइज़ लें।</p>
+        <p><strong>समय का ध्यान रखें:</strong> हर प्रोडक्ट पेज पर दिखाया गया अनुमानित डिलीवरी समय देखें और जल्दी ऑर्डर करें ताकि पजामे फ़ोटो वाले दिन से पहले पहुँच जाएँ। पजामे के अलावा भी मैच करना है? हमारे <a href="{{ cg_sweaters_url }}">परिवार के मैचिंग स्वेटर</a> देखें। स्टैंडर्ड शिपिंग शामिल है।</p>
+      {%- when 'el' -%}
+        <p>Τα περισσότερα σετ πωλούνται ανά άτομο, σε μεγέθη για ενήλικες, παιδιά και, σε πολλά σχέδια, μωρά, ώστε να αγοράσετε ακριβώς τον συνδυασμό που χρειάζεται η οικογένειά σας.</p>
+        {%- if show_styles -%}<p><strong>Επιλογή σετ:</strong> το κλασικό κόκκινο-πράσινο καρό βγαίνει ωραίο στις φωτογραφίες σε κάθε δωμάτιο. Τα μοτίβα με τάρανδους, σκανδιναβικά σχέδια και νιφάδες χιονιού είναι ζεστά για την παραμονή των Χριστουγέννων, ενώ οι ολόσωμες πιτζάμες με κουκούλα διασκεδάζουν παιδιά και μεγάλους που δεν παίρνουν τον εαυτό τους πολύ στα σοβαρά.</p>{%- endif -%}
+        <p><strong>Μεγέθη:</strong> επιλέξτε το μέγεθος του καθενός ξεχωριστά με τον πίνακα σε κάθε σελίδα προϊόντος. Οι πιτζάμες φοριούνται άνετες, οπότε αν κάποιος είναι ανάμεσα σε δύο μεγέθη, πάρτε το μεγαλύτερο.</p>
+        <p><strong>Ο χρόνος μετράει:</strong> ελέγξτε τον εκτιμώμενο χρόνο παράδοσης σε κάθε σελίδα προϊόντος και παραγγείλετε νωρίς, ώστε οι πιτζάμες να φτάσουν πριν από τη μέρα της φωτογράφισης. Θέλετε να είστε ασορτί και πέρα από τις πιτζάμες; Δείτε τα <a href="{{ cg_sweaters_url }}">ασορτί οικογενειακά πουλόβερ</a>. Η τυπική αποστολή περιλαμβάνεται.</p>
+      {%- when 'ro' -%}
+        <p>Majoritatea seturilor se vând per persoană, în mărimi pentru adulți, copii și, la multe modele, bebeluși, ca să cumperi exact combinația de care are nevoie familia ta.</p>
+        {%- if show_styles -%}<p><strong>Cum alegi setul:</strong> carourile clasice roșu cu verde arată bine în poze în orice cameră. Imprimeurile cu reni, motive nordice și fulgi de zăpadă sunt primitoare în Ajunul Crăciunului, iar salopetele cu glugă sunt amuzante pentru copii și pentru adulții care nu se iau prea în serios.</p>{%- endif -%}
+        <p><strong>Mărimi:</strong> alege mărimea fiecăruia separat, folosind tabelul de pe fiecare pagină de produs. Pijamalele se poartă lejer, așa că dacă cineva e între două mărimi, alege-o pe cea mai mare.</p>
+        <p><strong>Contează timpul:</strong> verifică intervalul estimat de livrare de pe fiecare pagină de produs și comandă din timp, ca pijamalele să ajungă înainte de ziua pozelor. Vreți să fiți asortați și dincolo de pijamale? Vezi <a href="{{ cg_sweaters_url }}">puloverele noastre asortate pentru familie</a>. Livrarea standard este inclusă.</p>
+      {%- when 'fi' -%}
+        <p>Useimmat setit myydään henkilöä kohden, aikuisten, lasten ja monissa malleissa myös vauvojen koissa, joten voit ostaa juuri sen yhdistelmän, jonka perheesi tarvitsee.</p>
+        {%- if show_styles -%}<p><strong>Setin valinta:</strong> klassinen puna-vihreä ruutu näyttää kuvissa hyvältä missä tahansa huoneessa. Poro-, norjalais- ja lumihiutalekuosit tuntuvat jouluaattona kodikkailta, ja hupulliset haalarit ilahduttavat lapsia ja aikuisia, jotka eivät ota itseään liian vakavasti.</p>{%- endif -%}
+        <p><strong>Koot:</strong> valitse jokaisen koko erikseen kunkin tuotesivun taulukosta. Pyjamat ovat väljiä, joten jos joku on kahden koon välissä, valitse isompi.</p>
+        <p><strong>Ajoitus ratkaisee:</strong> tarkista arvioitu toimitusaika kultakin tuotesivulta ja tilaa ajoissa, jotta pyjamat ehtivät perille ennen kuvauspäivää. Haluatteko sointua yhteen muutenkin kuin pyjamissa? Katso <a href="{{ cg_sweaters_url }}">perheen yhteensopivat neuleet</a>. Vakiotoimitus sisältyy hintaan.</p>
+      {%- else -%}
+        <p>Most sets are sold per person, in adult, child and, on many styles, baby or toddler sizes, so you can buy exactly the combination your family needs.</p>
+        {%- if show_styles -%}<p><strong>Choosing a set:</strong> classic red-and-green plaid photographs well in any room. Reindeer, Fair Isle and snowflake prints feel cozy for Christmas Eve, and one-piece hooded styles are fun for kids and grown-ups who don't take themselves too seriously.</p>{%- endif -%}
+        <p><strong>Sizing:</strong> size everyone separately with the chart on each product page. Pajamas are meant to be relaxed, so if someone is between sizes, go up.</p>
+        <p><strong>Timing matters:</strong> check the estimated delivery window shown on each product page and order early so the pajamas arrive before your photo day. Want to match beyond pajamas? See our <a href="{{ cg_sweaters_url }}">matching family sweaters</a>. Standard shipping is included.</p>
+    {%- endcase -%}
+{%- endcase -%}
