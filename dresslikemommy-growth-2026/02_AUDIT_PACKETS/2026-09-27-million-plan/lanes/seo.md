@@ -266,4 +266,7 @@ Google already ranks this URL at pos 13.7 for the term. `family-swimsuits` keeps
 - Revenue: Shopify orders with a Google/SEO first or last visit, per month, compared with the same month in 2025.
 
 ## 6. Single next action
+
+Status 2026-09-27 (anchor `2026-09-27-seo-build-live-readback`): fix #1(d) is DONE: all 74 old Christmas redirects land on `/collections/christmas-pajamas` (15 live products). Fixes #3, #4, #8, #9 and #10 are LIVE_VERIFIED; #11 was checked only on the whitelisted `family-swimsuits` (no noindex). Fix #2's rule is in `ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md`. Still open: #5 (owner Merchant access), #6 (reviews, claimed), #12–#15, and the owner's fresh GSC export. The paragraph below is the original recommendation.
+
 **Activate and fill `/collections/christmas-pajamas`, then repoint the 74 Christmas redirects to it (fix #1).** It goes first because Christmas is the store's largest proven demand (31% of 2025 sales, and 79% of Q4 was holiday product), demand starts in early October, and today the head URL for that demand shows one product.

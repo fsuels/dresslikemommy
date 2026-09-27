@@ -55521,3 +55521,23 @@ Owner request (Claude Code chat, session "Website visual improvements" [f7baa5])
   - 4 older "Category – Design" titles on Mommy & Me are still clamped on mobile. Fixing them needs product-title rewrites through the listing workflow.
   - 2 German design names ("Tannengrünes Fair-Isle-Muster Partnerlook-Pyjamas für die Familie" and "Verschneites Dorf mit Streifen …") exceed 2 lines at 12px. Shortening them is translation content for the localization owners.
 - Rollback: `git revert 8d907f7`, then upload `snippets/card-product.liquid`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-seo-build-live-readback
+
+- task_entities: SEO lane fixes #1(d), #2, #3, #4, #8, #9, #10, #11 (`lanes/seo.md`, `lanes/SEO_BUILD_NOTES.md`); 74 Christmas redirects from `christmas_redirects_readback_20260924.json`
+- task_stage: VERIFY done (read-only; no Shopify or theme writes)
+- next_action_id: OWNER_EXPORT_FRESH_GSC_16_MONTHS (seo.md §4 prerequisite; the 28-day ranking check needs it)
+
+Why: the owner asked the CEO to pick the next unclaimed sales-moving queue item. The SEO lane's single next action was "repoint the 74 Christmas redirects once `christmas-pajamas` has ≥12 products".
+
+Premise disproved: Admin readback of the 74 saved IDs shows 69 already target `/collections/christmas-pajamas`, and 5 IDs no longer exist. Those 5 old paths still 301 to `/collections/christmas-pajamas` (live curl, recreated under new IDs). The storefront shows 15 Christmas pajama products. Nothing to change.
+
+LIVE_VERIFIED post-release checklist (`SEO_BUILD_NOTES.md` §5), spaced requests:
+- Homepage title is "Mommy and Me Outfits & Matching Family Clothes | Dress Like Mommy". Exactly one rendered H1 (a visually-hidden stable head term); `/de` has the German H1.
+- A raw-HTML `<h1` count of 2 is a false positive: the second is inside the inline JS of the shipping-policy panel (`.replace(/<h1…/gi, '<h2')`).
+- `daddy-and-me` canonical → `daddy-me`; `popular-mommy-me-1` → `mommy-and-me`. `christmas-pajamas` and `mommy-and-me` have their plan titles, self-canonicals and one H1. None contain "Collection Note", "search demand", "strongest" or "this page is built".
+- Every page checked has exactly 22 `<link rel=alternate hreflang>` with one `x-default`.
+- `/products/buffalo-plaid-tree-family-matching-pajamas?variant=…`: no robots meta, query-stripped canonical, 22 alternates.
+- `/collections/family-swimsuits` (whitelisted thin hub): no robots meta. The non-whitelisted `noindex, follow` path was not tested.
+- The fix #2 rule (keep seasonal products ACTIVE out of season) is in `ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md` line 143.
+- Updated the `lanes/seo.md` §6 status so the next session does not redo #1(d).
