@@ -134,12 +134,17 @@ if (!customElements.get('localization-form')) {
 
       openSelector() {
         this.elements.button.focus();
-        this.elements.panel.toggleAttribute('hidden');
-        this.elements.button.setAttribute(
-          'aria-expanded',
-          (this.elements.button.getAttribute('aria-expanded') === 'false').toString()
-        );
-        if (!document.body.classList.contains('overflow-hidden-tablet')) {
+        // A second tap on the button closes the list; go through hidePanel so the scroll lock is released too.
+        if (!this.elements.panel.hasAttribute('hidden')) {
+          this.hidePanel();
+          return;
+        }
+        this.elements.panel.removeAttribute('hidden');
+        this.elements.button.setAttribute('aria-expanded', 'true');
+        // Only the full-screen country modal (the one with a search box) locks page scroll. The small
+        // language dropdown must not: the mobile menu CSS gives body.overflow-hidden-mobile height: 100%,
+        // which clips the page to one screen and turns the footer white when scrolled down.
+        if (this.elements.search && !document.body.classList.contains('overflow-hidden-tablet')) {
           document.body.classList.add('overflow-hidden-mobile');
         }
         if (this.elements.search && this.mql.matches) {
