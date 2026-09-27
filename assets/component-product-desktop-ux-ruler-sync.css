@@ -2453,3 +2453,51 @@ html[lang^="fr"] .product__info-container--matching-set .product-matching-set__m
 .product__info-container--matching-set .price__badge-sale {
   display: none !important;
 }
+
+/* Exact-source native size help. Keep Dawn radios and adjacent labels intact. */
+.product__info-container[data-matching-set-fallback="true"] variant-selects [data-native-size-tooltip] {
+  display: none;
+}
+@media screen and (min-width: 750px) and (hover: hover) and (pointer: fine) {
+  .product__info-container[data-matching-set-fallback="true"] variant-selects label[data-native-size-tooltip-label] {
+    position: relative;
+  }
+  .product__info-container[data-matching-set-fallback="true"] variant-selects label:hover > [data-native-size-tooltip] {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: calc(100% + 0.55rem);
+    z-index: 30;
+    box-sizing: border-box;
+    width: max-content;
+    min-width: min(18rem, calc(100vw - 3.2rem));
+    max-width: min(24rem, calc(100vw - 3.2rem));
+    padding: 0.85rem 1rem;
+    border-radius: 0.9rem;
+    background: #1a1a1a;
+    color: #ffffff;
+    box-shadow: 0 0.8rem 2rem rgba(17, 24, 39, 0.28);
+    font-size: 1.1rem;
+    font-weight: 400;
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-align: start;
+    text-transform: none;
+    white-space: normal;
+    pointer-events: none;
+  }
+  .product__info-container[data-matching-set-fallback="true"] .dlm-native-size-tooltip__title {
+    display: block;
+    margin-bottom: 0.4rem;
+    color: #ffeaa3;
+    font-weight: 800;
+  }
+  .product__info-container[data-matching-set-fallback="true"] .dlm-native-size-tooltip__row {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.8rem;
+  }
+  .product__info-container[data-matching-set-fallback="true"] .dlm-native-size-tooltip__row > span {
+    color: rgba(255, 255, 255, 0.7);
+  }
+}

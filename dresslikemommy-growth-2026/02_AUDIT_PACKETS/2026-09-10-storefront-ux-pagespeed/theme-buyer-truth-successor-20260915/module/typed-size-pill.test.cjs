@@ -52,7 +52,7 @@ test('source-backed typed charts cover every intended variant and preserve contr
     'golden-daisy-mommy-and-me-set': 21,
     'ivory-cascade-mommy-and-me-set': 11,
     'rainbow-stripe-family-matching-set': 12,
-    'geometric-blue-family-matching-set': 11,
+    'geometric-blue-family-matching-set': 39, // Explicit Shirt/Shorts source components now resolve separately.
   };
   for (const [handle, count] of Object.entries(expected)) {
     const result = matches(product(handle), afterHarness);

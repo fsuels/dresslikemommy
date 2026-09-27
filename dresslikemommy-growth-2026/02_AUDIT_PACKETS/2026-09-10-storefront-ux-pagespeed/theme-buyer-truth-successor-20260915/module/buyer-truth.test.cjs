@@ -26,7 +26,7 @@ const privateNames = [
   'numericTokenValues', 'sizeTokenMatchRank', 'roleKeysCompatible', 'garmentKeysCompatible',
   'inferBaseRoleKeyFromMeasurementSize', 'headerGarmentKeys', 'headerMatchesGarment',
   'getMeasurementGarmentKeysFromHeaders', 'pruneMeasurementsForRole', 'addSizeMeasurementEntry',
-  'addPrunedSizeMeasurementEntries', 'indexParsedSizeGuideRows', 'buildSizeMeasurementsLookup',
+  'addPrunedSizeMeasurementEntries', 'indexParsedSizeGuideRows', 'indexExactSourceMeasurementRows', 'indexExactCompoundMeasurementRows', 'indexExactGenericRoleMeasurementRows', 'buildSizeMeasurementsLookup',
   'findMeasurementsForOption', 'measurementDetailsKey', 'isMeaningfulMeasurementValue', 'extractValueForUnit', 'convertRangeValue',
   'roundMeasurement', 'tidyMeasurementValue', 'buildMeasurementsHtml', 'getGroupByKey', 'getOptionByVariantId',
   'getDistinctSizesForGroup', 'getAxisNamesForGroup', 'getAxisValuesForGroup', 'getTypeAxisNamesForGroup',
