@@ -1,13 +1,52 @@
 {%- liquid
   assign hero_text_scrim = section.settings.text_scrim_opacity | default: 64 | at_least: section.settings.overlay_opacity
 
+  # Seasonal edition. Halloween's last estimated order date is Oct 15 (12–16 day
+  # delivery), so from Oct 16 through Dec 31 (shop time, same MMDD approach as
+  # snippets/christmas-season-collection.liquid) the halloween_winter edition shows the
+  # christmas edition: its copy, CTA links and product slides. Selecting "Christmas
+  # edition" in the theme editor shows it on any date (QA preview / manual override).
+  assign hero_seasonal_copy = section.settings.seasonal_copy | default: 'none'
+  if hero_seasonal_copy == 'halloween_winter'
+    assign hero_today_mmdd = 'now' | date: '%m%d' | plus: 0
+    if hero_today_mmdd >= 1016 and hero_today_mmdd <= 1231
+      assign hero_seasonal_copy = 'christmas'
+    endif
+  endif
+
+  # Christmas slides: the first 3 available products of christmas-pajamas with a featured
+  # image, shown as arched photos over the snowy winter sky (no Halloween art). The same
+  # selection loop runs again where the slides render. With no such product, one
+  # sky-only slide renders instead.
+  assign hero_christmas_sky = 'hero-winter-sky.jpg'
+  assign hero_christmas_mobile_sky = 'hero-winter-sky-mobile.jpg'
+  assign hero_christmas_slide_max = 3
+  assign hero_christmas_product_count = 0
+  if hero_seasonal_copy == 'christmas'
+    for christmas_product in collections['christmas-pajamas'].products
+      if christmas_product.available and christmas_product.featured_image != blank
+        assign hero_christmas_product_count = hero_christmas_product_count | plus: 1
+        if hero_christmas_product_count == 1
+          assign hero_christmas_first_image = christmas_product.featured_image
+        endif
+        if hero_christmas_product_count >= hero_christmas_slide_max
+          break
+        endif
+      endif
+    endfor
+  endif
+
   # First-slide preload (above-the-fold hero only). Emitted before the section's large style
   # block so the browser can start the first slide's sky and art before it reaches the <img>
   # tags. Theme-asset slides only; mirrors the <picture>/<img> selection below exactly.
   assign hero_preload_sky = blank
   assign hero_preload_mobile_sky = blank
   assign hero_preload_art = blank
-  if section.index == 1
+  if section.index == 1 and hero_seasonal_copy == 'christmas'
+    assign hero_preload_sky = hero_christmas_sky
+    assign hero_preload_mobile_sky = hero_christmas_mobile_sky
+    assign hero_preload_art = ''
+  elsif section.index == 1
     for block in section.blocks
       if block.type != 'slide'
         continue
@@ -44,6 +83,18 @@
     href="{{ hero_preload_art | append: '-1140.webp' | asset_url }}"
     imagesrcset="{{ hero_preload_art | append: '-760.webp' | asset_url }} 760w, {{ hero_preload_art | append: '-1140.webp' | asset_url }} 1140w, {{ hero_preload_art | append: '-1520.webp' | asset_url }} 1520w"
     imagesizes="(min-width: 750px) 52vw, 96vw"
+    fetchpriority="high"
+  >
+  {% comment %}theme-check-enable AssetPreload{% endcomment %}
+{%- endif -%}
+{%- if section.index == 1 and hero_christmas_product_count > 0 -%}
+  {% comment %}theme-check-disable AssetPreload{% endcomment %}
+  <link
+    rel="preload"
+    as="image"
+    href="{{ hero_christmas_first_image | image_url: width: 720 }}"
+    imagesrcset="{{ hero_christmas_first_image | image_url: width: 360 }} 360w, {{ hero_christmas_first_image | image_url: width: 540 }} 540w, {{ hero_christmas_first_image | image_url: width: 720 }} 720w, {{ hero_christmas_first_image | image_url: width: 900 }} 900w"
+    imagesizes="(min-width: 750px) 24vw, 40vw"
     fetchpriority="high"
   >
   {% comment %}theme-check-enable AssetPreload{% endcomment %}
@@ -919,6 +970,40 @@
       color: {{ section.settings.button_color }};
     }
   }
+
+  {%- if hero_seasonal_copy == 'christmas' -%}
+    /* Christmas product slides: the product photo as an arched frame over the winter sky. */
+    #shopify-section-{{ section.id }} .hero-banner__art.hero-banner__art--product {
+      top: auto;
+      right: auto;
+      bottom: 6.4rem;
+      left: 50%;
+      width: auto;
+      max-width: 88%;
+      height: 52%;
+      transform: translateX(-50%);
+      object-fit: cover;
+      object-position: center top;
+      border: 3px solid rgba(251, 242, 228, 0.9);
+      border-radius: 999px 999px 1.4rem 1.4rem;
+      background-color: #1d3b34;
+      box-shadow: 0 18px 44px rgba(4, 12, 10, 0.45);
+    }
+
+    @media screen and (min-width: 750px) {
+      /* Centered in the art column (same axis as the slider controls), clear of them. */
+      #shopify-section-{{ section.id }} .hero-banner__art.hero-banner__art--product {
+        top: 3.2rem;
+        right: 29%;
+        bottom: auto;
+        left: auto;
+        max-width: 44%;
+        height: calc(100% - 9.6rem);
+        transform: translateX(50%);
+        border-width: 4px;
+      }
+    }
+  {%- endif -%}
 {%- endstyle -%}
 
 {%- liquid
@@ -927,6 +1012,22 @@
   assign hero_button_link_first_char = hero_button_link | slice: 0, 1
   assign hero_secondary_button_link = section.settings.secondary_button_link | default: ''
   assign hero_tertiary_button_link = section.settings.tertiary_button_link | default: ''
+  if hero_seasonal_copy == 'christmas'
+    # The section's button links point at the Halloween edition's collections.
+    capture hero_button_link
+      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'link_primary', lang: 'en'
+    endcapture
+    capture hero_secondary_button_link
+      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'link_secondary', lang: 'en'
+    endcapture
+    capture hero_tertiary_button_link
+      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'link_tertiary', lang: 'en'
+    endcapture
+    assign hero_button_link = hero_button_link | strip
+    assign hero_button_link_first_char = hero_button_link | slice: 0, 1
+    assign hero_secondary_button_link = hero_secondary_button_link | strip
+    assign hero_tertiary_button_link = hero_tertiary_button_link | strip
+  endif
   assign hero_button_path_prefix = hero_button_link | slice: 0, 13
   assign hero_secondary_button_path_prefix = hero_secondary_button_link | slice: 0, 13
   assign hero_tertiary_button_path_prefix = hero_tertiary_button_link | slice: 0, 13
@@ -968,7 +1069,7 @@
   assign hero_heading = section.settings.heading
   assign hero_heading_html = section.settings.heading
   assign hero_subheading_html = section.settings.subheading
-  assign hero_seasonal_copy = section.settings.seasonal_copy | default: 'none'
+  # hero_seasonal_copy (with the Oct 16 – Dec 31 Christmas swap) is set at the top of this file.
   if hero_seasonal_copy != 'none'
     # Pre-translated copy: Translate & Adapt would keep serving the previous
     # season's translations of the text settings on non-English routes.
@@ -1027,7 +1128,16 @@
 
   assign hero_has_art = false
   assign hero_has_slide_links = false
+  if hero_seasonal_copy == 'christmas'
+    # Product slides (or the sky-only fallback) replace the slide blocks; see the top of the file.
+    assign hero_has_art = true
+    assign hero_has_slide_links = true
+    assign hero_slide_count = hero_christmas_product_count
+  endif
   for block in section.blocks
+    if hero_seasonal_copy == 'christmas'
+      break
+    endif
     if block.type == 'slide'
       assign block_theme_asset = block.settings.theme_asset | strip
       assign block_mobile_theme_asset = block.settings.mobile_theme_asset | strip
@@ -1059,6 +1169,129 @@
 >
   <div class="hero-banner__slides" id="HeroBannerSlides-{{ section.id }}">
     {%- assign hero_rendered_slide_index = 0 -%}
+    {%- if hero_seasonal_copy == 'christmas' -%}
+      {%- comment -%}
+        Christmas edition: product slides (same selection as the count at the top of the
+        file) in the same slide markup. The winter sky is the background; the product's
+        featured image is the arched foreground photo.
+      {%- endcomment -%}
+      {%- assign christmas_slide_total = hero_christmas_product_count | at_least: 1 -%}
+      {%- for christmas_product in collections['christmas-pajamas'].products -%}
+        {%- if hero_rendered_slide_index >= hero_christmas_product_count -%}
+          {%- break -%}
+        {%- endif -%}
+        {%- unless christmas_product.available and christmas_product.featured_image != blank -%}
+          {%- continue -%}
+        {%- endunless -%}
+        {%- liquid
+          assign hero_rendered_slide_index = hero_rendered_slide_index | plus: 1
+          assign slide_loading = 'lazy'
+          assign slide_fetchpriority = 'low'
+          if section.index == 1 and hero_rendered_slide_index == 1
+            assign slide_loading = hero_image_loading
+            assign slide_fetchpriority = hero_image_fetchpriority
+          endif
+          assign christmas_image = christmas_product.featured_image
+          assign slide_alt = christmas_image.alt | strip
+          if hero_language_code != 'en' or slide_alt == blank
+            # Product image alt text is usually English; use the edition's translated alt.
+            assign slide_alt_key = 'alt_' | append: hero_rendered_slide_index
+            capture slide_seasonal_alt
+              render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: slide_alt_key, lang: hero_language_code
+            endcapture
+            assign slide_alt = slide_seasonal_alt | strip | default: slide_alt | default: christmas_product.title
+          endif
+          assign christmas_image_width = christmas_image.width | at_least: 1
+          assign christmas_image_height = christmas_image.height | times: 900 | divided_by: christmas_image_width
+        -%}
+        <div
+          class="hero-banner__slide hero-banner__slide--art hero-banner__slide--product{% if hero_rendered_slide_index == 1 %} is-active{% endif %}"
+          id="HeroBannerSlide-{{ section.id }}-{{ hero_rendered_slide_index }}"
+          role="group"
+          aria-roledescription="slide"
+          aria-label="Hero image {{ hero_rendered_slide_index }} of {{ christmas_slide_total }}"
+          aria-hidden="{% if hero_rendered_slide_index == 1 %}false{% else %}true{% endif %}"
+          data-hero-slide
+          style="--hero-slide-desktop-position: right center; --hero-slide-mobile-position: center center;"
+        >
+          {%- if hero_rendered_slide_index > 1 -%}
+            <template data-hero-slide-picture>
+          {%- endif -%}
+          <picture>
+            <source
+              media="(min-width: 750px)"
+              srcset="{{ hero_christmas_sky | asset_url }}"
+              width="2400"
+              height="1000"
+            >
+            <img
+              class="hero-banner__image"
+              src="{{ hero_christmas_mobile_sky | asset_url }}"
+              alt=""
+              loading="{{ slide_loading }}"
+              fetchpriority="{{ slide_fetchpriority }}"
+              decoding="async"
+              width="1000"
+              height="1100"
+            >
+          </picture>
+          <img
+            class="hero-banner__art hero-banner__art--product"
+            src="{{ christmas_image | image_url: width: 720 }}"
+            srcset="{{ christmas_image | image_url: width: 360 }} 360w, {{ christmas_image | image_url: width: 540 }} 540w, {{ christmas_image | image_url: width: 720 }} 720w, {{ christmas_image | image_url: width: 900 }} 900w"
+            sizes="(min-width: 750px) 24vw, 40vw"
+            alt="{{ slide_alt | escape }}"
+            loading="{{ slide_loading }}"
+            fetchpriority="{{ slide_fetchpriority }}"
+            decoding="async"
+            width="900"
+            height="{{ christmas_image_height }}"
+          >
+          {%- if hero_rendered_slide_index > 1 -%}
+            </template>
+          {%- endif -%}
+          <a
+            href="{{ christmas_product.url }}"
+            class="hero-banner__slide-link"
+            aria-label="{{ christmas_product.title | strip_html | escape }}"
+          ></a>
+        </div>
+      {%- endfor -%}
+      {%- if hero_rendered_slide_index == 0 -%}
+        {%- assign hero_rendered_slide_index = 1 -%}
+        <div
+          class="hero-banner__slide hero-banner__slide--art is-active"
+          id="HeroBannerSlide-{{ section.id }}-1"
+          role="group"
+          aria-roledescription="slide"
+          aria-label="Hero image 1 of 1"
+          aria-hidden="false"
+          data-hero-slide
+          style="--hero-slide-desktop-position: right center; --hero-slide-mobile-position: center center;"
+        >
+          <picture>
+            <source media="(min-width: 750px)" srcset="{{ hero_christmas_sky | asset_url }}" width="2400" height="1000">
+            <img
+              class="hero-banner__image"
+              src="{{ hero_christmas_mobile_sky | asset_url }}"
+              alt=""
+              loading="{{ hero_image_loading }}"
+              fetchpriority="{{ hero_image_fetchpriority }}"
+              decoding="async"
+              width="1000"
+              height="1100"
+            >
+          </picture>
+          {%- if hero_button_link != blank -%}
+            <a
+              href="{{ hero_button_link | escape }}"
+              class="hero-banner__slide-link"
+              aria-label="{{ hero_button_label | strip_html | escape }}"
+            ></a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    {%- else -%}
     {%- for block in section.blocks -%}
       {%- if block.type != 'slide' -%}
         {%- continue -%}
@@ -1248,6 +1481,7 @@
         {%- endif -%}
       </div>
     {%- endfor -%}
+    {%- endif -%}
 
     {%- if hero_rendered_slide_index == 0 -%}
       <div
@@ -1374,22 +1608,8 @@
         {% render 'icon-caret' %}
       </button>
       <div class="hero-banner__dots" role="group" aria-label="Choose hero image">
-        {%- assign hero_dot_index = 0 -%}
-        {%- for block in section.blocks -%}
-          {%- liquid
-            assign dot_theme_asset = block.settings.theme_asset | strip
-            assign dot_mobile_theme_asset = block.settings.mobile_theme_asset | strip
-            assign dot_has_image = false
-            if block.type == 'slide'
-              if block.settings.image != blank or block.settings.mobile_image != blank or dot_theme_asset != blank or dot_mobile_theme_asset != blank
-                assign dot_has_image = true
-              endif
-            endif
-          -%}
-          {%- unless dot_has_image -%}
-            {%- continue -%}
-          {%- endunless -%}
-          {%- assign hero_dot_index = hero_dot_index | plus: 1 -%}
+        {%- comment -%} One dot per rendered slide (slide blocks with an image, or the Christmas product slides). {%- endcomment -%}
+        {%- for hero_dot_index in (1..hero_slide_count) -%}
           <button
             type="button"
             class="hero-banner__dot"
@@ -1763,11 +1983,15 @@
         },
         {
           "value": "halloween_winter",
-          "label": "Halloween & winter edit"
+          "label": "Halloween & winter edit (Christmas from Oct 16)"
+        },
+        {
+          "value": "christmas",
+          "label": "Christmas edition"
         }
       ],
       "default": "none",
-      "info": "Replaces the eyebrow, heading, subheading and button labels with pre-translated copy in every store language. Button links still come from the settings above."
+      "info": "Replaces the eyebrow, heading, subheading and button labels with pre-translated copy in every store language. Halloween & winter: button links and slides come from the settings above; from Oct 16 to Dec 31 (shop time) it shows the Christmas edition. Christmas edition: links go to the Christmas collections and the slides show the first 3 available Christmas pajama products. Select it here to preview the Christmas hero."
     },
     {
       "type": "select",
