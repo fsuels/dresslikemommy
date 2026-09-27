@@ -1191,6 +1191,8 @@
                     {% render 'optimized-product-description', description_html: product.description %}
                   </div>
                 {%- endif -%}
+                {%- comment -%} FTC Textile rule: online apparel listings must state country of origin. {%- endcomment -%}
+                <p class="product__origin" data-product-origin>{{ 'storefront.origin_imported' | t }}</p>
                 {% render 'product-internal-links', product: product %}
               {%- when 'sku' -%}
                 <p
