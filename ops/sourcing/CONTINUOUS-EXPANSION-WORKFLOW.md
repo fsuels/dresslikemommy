@@ -14,7 +14,7 @@ This file is the recurring loop. It sits on top of the existing tools:
 
 These are standing owner instructions. Details are in the numbered sections below. Changing any of them requires the owner's explicit yes.
 
-1. **Keep expanding, every round:** new designs AND new vendors AND new categories. Categories to cover beyond Mommy & Me, family and Christmas include couples, maternity, siblings and every other idea in `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/lanes/CATEGORY_OPPORTUNITIES.md` (owner 2026-09-27: "keep looking for new opportunities of new products also for couples, maternity, siblings, and any other product idea category").
+1. **Keep expanding, every round:** new designs AND new vendors, within the owner's focus categories: **Mommy & Me, family matching, maternity, couples, Father & Me (Daddy & Me), and siblings** (owner 2026-09-27). **No pet products until the owner says so** (owner 2026-09-27: "Do not do pets yet"). Use `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/lanes/CATEGORY_OPPORTUNITIES.md` for timing and ideas, but skip its pet items.
 2. **Vendor discovery every round** (owner 2026-09-27: "Keep looking for new better vendors!"):
    - test Tier B suppliers;
    - find new Guangdong factories for weak categories;
@@ -38,7 +38,6 @@ These are standing owner instructions. Details are in the numbered sections belo
 8. **After activation, make it findable:**
    - MANUAL collections append new products at the bottom, so move seasonal winners into the top rows;
    - the product TYPE must contain a word the `new-arrivals` rule matches (Dresses, Family Matching, Tops, Pajamas, Swimsuits, Bottoms, Sweaters, Sets, Swimwear, Outerwear, Skirts).
-   - **Pet or add-on pieces:** tag them `Pet`, `Dog` and `Christmas Pet` (never `Christmas Pajamas`, which feeds /collections/couples). Link each one both ways with its matching family product via the metafield `shopify--discovery--product_recommendation.complementary_products` (list.product_reference). The PDP then shows "Complete the family look".
 9. **Never archive seasonal products** the supplier still offers (§9). If you must archive, 301 the URL to the same-intent collection.
 10. **Honesty:** this is dropshipping. No stock, warehouse, fast-shipping, review or bestseller claims.
 11. **Compliance open item:** the US children's sleepwear rule (16 CFR 1615/1616; kids' sizes 9M–14 must be flame-resistant or tight-fitting) awaits the owner's decision (`OWNER_MORNING_PACKET.md` #14). Flag every new loose-fitting kids' pajama until it is resolved.

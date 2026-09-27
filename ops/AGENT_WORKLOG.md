@@ -55470,3 +55470,21 @@ Update: 1049143744816 is 阳春市小番茄服饰店 (1 year on 1688, founded 20
 - **New smart collection** `/collections/matching-family-pet-outfits` (TAG = Pet), published to the Online Store. Market catalogs reject collections, which is expected. Live: 200, 1 product.
 - **PDP links:** `complementary_products` metafields link the family product and the dog vest both ways. The `/recommendations` complementary API returns each for the other. The PDP renders "Complete the family look: Blue Plaid Reindeer Matching Dog Vest $24.99" when scrolled into view (DOM text read).
 - **Rules:** the pet tagging and linking method was added to "Owner product rules" point 8.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-pets-rolled-back-focus-categories
+
+- task_entities: collections 321563557985 (`christmas-pajamas`) and 363982749793 (`matching-family-pet-outfits`); products 9473722056801 and 9473860862049 (complementary metafields); `CONTINUOUS-EXPANSION-WORKFLOW.md` rules 1 and 8; `CATEGORY_OPPORTUNITIES.md`
+- task_stage: LIVE_VERIFIED
+- supersedes: `2026-09-27-first-pet-product-wired`
+
+The owner's decision was relayed by session [57a715] from direct chat: "Do not do pets yet". The dog vest page "does not look smartly done". Focus categories: Mommy & Me, family matching, maternity, couples, Father & Me, siblings. Couples stays.
+- **Rollback, all verified live:**
+  - `christmas-pajamas` rule restored to TAG "Christmas Pajamas" only (conjunctive); the storefront shows 15 products and no dog items;
+  - the pet collection was unpublished from the Online Store (404) but NOT deleted;
+  - the `complementary_products` metafields on both products were deleted; the complementary API returns [];
+  - the dog vest is DRAFT (done by [57a715]).
+- **Rules:**
+  - rule 1 now names the 6 focus categories and says "No pet products until the owner says so";
+  - the pet method was removed from rule 8;
+  - the category memo is annotated to skip the pet items.
+- `/collections/couples` Christmas rules (from anchor `2026-09-27-category-opportunities-and-couples-collection`) stay per the owner.

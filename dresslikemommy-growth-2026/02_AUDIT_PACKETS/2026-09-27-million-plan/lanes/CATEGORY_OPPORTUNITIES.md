@@ -2,6 +2,8 @@
 
 Research only: no store writes, no 1688 login. This file adds to [merch.md](merch.md), whose briefs cover Christmas pajamas, nightgowns and spring dresses.
 
+> **Owner decision, 2026-09-27 (supersedes this memo where they conflict):** focus categories are Mommy & Me, family matching, maternity, couples, Father & Me, and siblings. **No pet products** ("Do not do pets yet"), so skip opportunity #2 and every pet item below. The first dog-vest listing was returned to DRAFT, and its collection and links were removed.
+
 ## Current coverage
 
 Source: public `products.json`, 276 published products (`LIVE_VERIFIED`). Roles come from the size options (`ESTIMATE`).
