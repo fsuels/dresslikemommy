@@ -125,10 +125,13 @@ if (!customElements.get('media-gallery')) {
 
       handleMobileShareClick(event) {
         const clickedButton = event?.currentTarget || null;
-        const shareUrl = window.location.href;
+        const shareUrl = this.buildFamilyShareUrl();
+        const shareText = clickedButton?.dataset.shareText || '';
 
         if (navigator.share) {
-          navigator.share({ url: shareUrl, title: document.title }).catch(() => {});
+          const shareData = { url: shareUrl, title: document.title };
+          if (shareText) shareData.text = shareText;
+          navigator.share(shareData).catch(() => {});
           return;
         }
 
@@ -143,6 +146,23 @@ if (!customElements.get('media-gallery')) {
               }, 1400);
             })
             .catch(() => {});
+        }
+      }
+
+      // Tag shared links so family-share visits and orders show up in Shopify analytics.
+      buildFamilyShareUrl() {
+        try {
+          const url = new URL(window.location.href);
+          Array.from(url.searchParams.keys())
+            .filter((key) => key.startsWith('utm_'))
+            .forEach((key) => url.searchParams.delete(key));
+          url.searchParams.set('utm_source', 'family_share');
+          url.searchParams.set('utm_medium', 'pdp_share');
+          url.searchParams.set('utm_campaign', 'matching_look');
+          url.hash = '';
+          return url.toString();
+        } catch (error) {
+          return window.location.href;
         }
       }
 
