@@ -11,10 +11,6 @@
   if cart_checker_label == blank or cart_checker_label contains 'translation missing'
     assign cart_checker_label = 'Check shipping country'
   endif
-  assign cart_checker_meta = 'products.shipping_country.checker_trigger_meta' | t: count: country_count
-  if cart_checker_meta == blank or cart_checker_meta contains 'translation missing'
-    assign cart_checker_meta = country_count | append: ' countries'
-  endif
 -%}
 
 {%- if country_count > 0 -%}
@@ -34,14 +30,15 @@
         {{ 'products.shipping_country.checker_trigger' | t }}
       {%- endif -%}
     </span>
-    <span class="shipping-country-checker-trigger__meta">
-      {%- if checker_context == 'cart' -%}
-        {{ cart_checker_meta }}
-      {%- elsif current_country != blank -%}
-        {{ 'products.shipping_country.checker_trigger_meta_country' | t: country: current_country, count: country_count }}
-      {%- else -%}
-        {{ 'products.shipping_country.checker_trigger_meta' | t: count: country_count }}
-      {%- endif -%}
-    </span>
+    {%- comment -%} The cart shows only "Ships to <country>"; a bare country count read like an admin setting. {%- endcomment -%}
+    {%- unless checker_context == 'cart' -%}
+      <span class="shipping-country-checker-trigger__meta">
+        {%- if current_country != blank -%}
+          {{ 'products.shipping_country.checker_trigger_meta_country' | t: country: current_country, count: country_count }}
+        {%- else -%}
+          {{ 'products.shipping_country.checker_trigger_meta' | t: count: country_count }}
+        {%- endif -%}
+      </span>
+    {%- endunless -%}
   </button>
 {%- endif -%}
