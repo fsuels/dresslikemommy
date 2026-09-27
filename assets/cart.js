@@ -412,6 +412,18 @@ customElements.define('cart-items', CartItems);
     }
   }
 
+  // Stored images are the og:image original (often ~1000px); ask Shopify's CDN for a thumbnail.
+  function thumbnailUrl(value, width) {
+    try {
+      const url = new URL(value);
+      if (url.hostname !== 'cdn.shopify.com' && url.pathname.indexOf('/cdn/shop/') !== 0) return value;
+      url.searchParams.set('width', String(width));
+      return url.href;
+    } catch (e) {
+      return value;
+    }
+  }
+
   function escapeHtml(value) {
     return value.replace(/[&<>"']/g, function(character) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character];
@@ -466,7 +478,7 @@ customElements.define('cart-items', CartItems);
         if (drawerGrid) {
           drawerGrid.innerHTML = viewed.slice(0, 3).map(function(item) {
             return '<a href="' + escapeHtml(getLocaleAwareRoute(item.url)) + '" class="cart-drawer__upsell-item">' +
-              (item.image ? '<img src="' + escapeHtml(item.image) + '" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img">' : '') +
+              (item.image ? '<img src="' + escapeHtml(thumbnailUrl(item.image, 160)) + '" alt="" width="70" height="70" loading="lazy" class="cart-drawer__upsell-img">' : '') +
               '<div class="cart-drawer__upsell-info"><span class="cart-drawer__upsell-name">' + escapeHtml(item.title.split(' | ')[0]) + '</span>' +
               '</div></a>';
           }).join('');
@@ -479,7 +491,7 @@ customElements.define('cart-items', CartItems);
         if (pageGrid) {
           pageGrid.innerHTML = viewed.slice(0, 4).map(function(item) {
             return '<a href="' + escapeHtml(getLocaleAwareRoute(item.url)) + '" class="cart-page__cross-sell-item">' +
-              (item.image ? '<div class="cart-page__cross-sell-img-wrap"><img src="' + escapeHtml(item.image) + '" alt="" width="150" height="150" loading="lazy" class="cart-page__cross-sell-img"></div>' : '') +
+              (item.image ? '<div class="cart-page__cross-sell-img-wrap"><img src="' + escapeHtml(thumbnailUrl(item.image, 300)) + '" alt="" width="150" height="150" loading="lazy" class="cart-page__cross-sell-img"></div>' : '') +
               '<div class="cart-page__cross-sell-info"><span class="cart-page__cross-sell-name">' + escapeHtml(item.title.split(' | ')[0]) + '</span>' +
               '</div></a>';
           }).join('');

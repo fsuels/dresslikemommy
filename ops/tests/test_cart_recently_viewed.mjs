@@ -255,3 +255,15 @@ test('the existing quantity count and subtotal refresh targets stay intact', () 
   assert.equal(sections.find((section) => section.id === 'main-cart-title').selector, '#main-cart-title');
   assert.equal(sections.find((section) => section.id === 'main-cart-footer').selector, '#main-cart-footer-subtotal');
 });
+
+test('Shopify CDN images render as sized thumbnails; other hosts are left alone', () => {
+  const page = runCart({
+    history: [
+      { ...skyfade, image: 'https://www.dresslikemommy.com/cdn/shop/files/skyfade.png?v=17' },
+      { ...skyfade, url: '/products/other', image: 'https://example.com/other.jpg' },
+    ],
+  });
+  assert.match(page.html('Drawer'), /src="https:\/\/www\.dresslikemommy\.com\/cdn\/shop\/files\/skyfade\.png\?v=17&amp;width=160"/);
+  assert.match(page.html('Page'), /src="https:\/\/www\.dresslikemommy\.com\/cdn\/shop\/files\/skyfade\.png\?v=17&amp;width=300"/);
+  assert.match(page.html('Drawer'), /src="https:\/\/example\.com\/other\.jpg"/);
+});

@@ -54518,3 +54518,31 @@ Verified live on MAIN after the push (built-in browser, no preview cookie): the 
 Note: the footer country selector is currently disabled (`footer-group.json`). If it is enabled, its mobile modal still uses the lock and will hit the same `height: 100%` clipping when the page is scrolled.
 
 Rollback: `git revert 512a50c`, then run the drift check.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-storefront-seo-page-weight-fixes-live
+
+- task_entities: commit `1f858a0` (continues `2026-09-27-storefront-seo-page-weight-fixes`); `assets/cart.js`, `ops/tests/test_cart_recently_viewed.mjs`; MAIN `133290917985`
+- task_stage: VERIFY
+- next_action_id: VERIFY_RECENTLY_VIEWED_THUMBNAILS_LIVE
+
+`1f858a0` is LIVE_VERIFIED. The GitHub sync applied it, and `d8a472e` (complete-the-family and SEO lane session) later built on the same files without reverting anything. The Admin asset read equals `origin/main` for all five theme files.
+
+Storefront readback (curl, cache-busted), across home, `daddy-and-me`, `/de/…/daddy-and-me`, `popular-mommy-me-1`, `mommy-and-me`, `christmas-pajamas`, and the Snowflake Reindeer PDP in en/fr/pt/no:
+- 22 hreflang per page, no duplicates, a single `pt` code.
+- 1 H1 on every page, including the homepage.
+- "Where We Ship" absent from the HTML.
+- 0 Liquid errors.
+- Canonicals: `daddy-and-me` → `daddy-me` (and `/de/…` → `/de/collections/daddy-me`); `popular-mommy-me-1` → `mommy-and-me`.
+- PDP copy blob: en 4.8 KB (`en`), fr 10.3 KB (`fr,en`), pt 15.5 KB (`pt-BR,pt-PT,en`), no 14.9 KB (`nb,no,en`). It was ~178 KB before.
+
+Browser (built-in, 375 px, `/fr/` PDP):
+- The builder heading is French.
+- "Détails de la livraison" fetched `/fr/policies/shipping-policy` on first open: 569 words, headings demoted to H2.
+
+No add-to-cart was made (ATC pixels), so the non-empty drawer panel was not seen visually.
+
+Added:
+- Recently-viewed thumbnails in the drawer and on `/cart` loaded the stored og:image original (941 px PNG) into a 70/150 px slot. Shopify CDN URLs now request `width=160` / `width=300`; other hosts are unchanged.
+- `node --test ops/tests/test_cart_recently_viewed.mjs`: 18/18 pass, including a new test.
+
+Rollback: `git revert` the commit.
