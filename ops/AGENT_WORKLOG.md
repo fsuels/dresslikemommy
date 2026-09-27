@@ -55541,3 +55541,38 @@ LIVE_VERIFIED post-release checklist (`SEO_BUILD_NOTES.md` §5), spaced requests
 - `/collections/family-swimsuits` (whitelisted thin hub): no robots meta. The non-whitelisted `noindex, follow` path was not tested.
 - The fix #2 rule (keep seasonal products ACTIVE out of season) is in `ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md` line 143.
 - Updated the `lanes/seo.md` §6 status so the next session does not redo #1(d).
+
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-first-sales-family-sweatshirts-and-knits
+
+- task_entities: orders #9573 (Together Heart, US) and #9574 (Color-Block knit, GR). Stores: 红旺博凯 (225858), 东莞森大 (senda831). Handles:
+  - `*-family-matching-sweatshirts`: smiley-heart, eternal-bliss-hearts, little-heart, good-luck-smile, moon-and-star, starry-sky
+  - `*-family-matching-sweaters`: nordic-yoke, pom-pom-star
+- task_stage: VERIFY
+- next_action_id: RESOURCE_ORDER_9574_COLOR_BLOCK
+
+**The first two sales of the turnaround (2026-09-27) were fall family sweaters.** Owner: "get more products like that from great vendors".
+
+- **#9573 Together Heart:** supplier 北京红旺博凯 fails the 48h pickup gate (86.4%).
+  - Owner explicitly approved an exception for 6 designs (Smiley Heart, Eternal Bliss Hearts, Little Heart, Good Luck Smile, Moon and Star, Starry Sky).
+  - All 2026-listed, release Fall/Autumn 2026, 54% cotton, 7 colors × Child 2 Years–9-10 Years + Adult S–4XL (98 variants each).
+  - Priced by the 50%-landed rule: $28.99/$34.99 with raglan colors; $26.99/$33.99 solids-only; compare-at +$10.
+- **#9574 Color-Block knit:** its 1688 source (广州玺召, offer 738990424265) and every other 玺召 offer return 404. No identical sweater found via keyword search; image search does not accept outside links.
+  - **The order has no working source.** Owner decision needed.
+- **New Tier B knit vendor 东莞森大:** passes every gate (97.64% pickup, 99.7% fulfillment, 9 years).
+  - Nordic Yoke (cream/gray) and Pom-Pom Star (red), $37.99/$49.99 (knit weights 350/650 g).
+  - Designs with a pony-like chest logo were skipped as an IP look-alike.
+- **Engine:** `family_sweatshirt` gained `title_variant: everyday` (no Christmas wording) and `garment: sweater`.
+  - The knit variant uses taxonomy Sweaters and type "Family Matching Sweaters".
+  - New charts: `hw_sweat`, `hw_gh`, `sd_knit`. New fabrics: `cotton_blend_sweat`, `modal_knit`.
+  - The shopper-copy guard blocks the word "stitch".
+- **Pricing flag (not changed):** Together Heart itself sells at $24.99/$26.99, which is below the 50%-landed rule on single-item orders. Owner decision; live prices were not touched.
+
+**Update (same day): LIVE_VERIFIED.** All 6 红旺 sweatshirts are ACTIVE. Public `.js` readback for each: 4 images, 98/98 variants available, 8/8 channels, US/DE/GB/AU/CA markets.
+- Moon and Star: the vendor sells 日月星 (sun, moon, star). Adult variants must be linked to the 妈妈 (moon) SKUs, not 爸爸 (sun).
+- Little Heart was activated before a transient closeout failure (shared translation cache mid-write) was noticed. The re-run PASSED. Cause: a pipe to `tail` hid the exit code. Activation now goes through a guarded finish script (closeout must PASS, one retry).
+- **#9574 replacement found:** Shopify Files kept the original 2024 vendor photos. The rebuilt alicdn link works in 1688 image search.
+  - The identical sweater is at 海丰县梅陇镇美一服装厂 (广东汕尾, 5 years, 98.7% fulfillment), offer 934491728301.
+  - Kids 80–140 cm ¥44.5; one adult size M ¥57.5; MOQ 3 mixed.
+  - The customer ordered Mother XL, which is not offered. Owner decision.
+- Knit drafts Nordic Yoke and Pom-Pom Star: translations registered; images generating.

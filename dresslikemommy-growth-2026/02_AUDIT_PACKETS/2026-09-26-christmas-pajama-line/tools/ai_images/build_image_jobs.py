@@ -19,6 +19,9 @@ TOOLS = ROOT / "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-christmas
 
 # Exact garment lettering to copy letter for letter (None = no lettering).
 LETTERING = {
+    "eternal-bliss-hearts": 'the small pink script "Eternal bliss" inside the two outlined hearts, exactly as printed',
+    "good-luck-smile": 'the words "GOOD LUCK" under the big smiley face, exactly as printed',
+    "starry-sky": 'the tiny script "a sky full of stars" under the star cluster, exactly as printed',
     "beary-cozy": 'the red script "beary cozy" on the adult and child tops',
     "candy-tree-christmas": '"MERRY" / "Christmas" lettering with a Santa hat on the red tops',
     "classic-red-plaid": None,
@@ -194,6 +197,46 @@ When all four files are saved, reply with one line per file: name, width x heigh
 """
 
 
+PROMPT_SWF = """DRESS LIKE MOMMY — RELIABLE PHOTOSHOOT SYSTEM (automated run)
+
+The attached vendor images are the exact clothing reference for ONE Shopify listing: Family Matching crewneck sweatshirts, "{print_name}".
+The same sweatshirt is sold in these colors: {colors_line}. The family can mix colors, exactly like the vendor photos.
+
+Generate FOUR separate images in this order, one at a time, and save each generated image file into the current working directory with exactly these names:
+- image1.png — IMAGE 1, MAIN HERO IMAGE
+- image3.png — IMAGE 3, BEST OCCASION IMAGE
+- image5.png — IMAGE 5, PRODUCT-ONLY IMAGE
+- image6.png — IMAGE 6, ALTERNATE LIFESTYLE IMAGE
+Do not ask me anything and do not wait for NEXT; continue until all four files are saved. Keep the same model family across images 1, 3 and 6, as if photographed in one professional photoshoot.
+
+IMPORTANT: Do NOT create a collage, grid or contact sheet. Each output must be one single image, vertical 9:16 portrait, full-frame photo, no borders, no text labels, no watermarks. If the generator returns a slightly different ratio, crop minimally to exact 9:16.
+
+SOURCE OF TRUTH: the vendor images are the exact clothing reference for the SWEATSHIRTS. Each sweatshirt must stay exactly the same: its color (only colors from the list above; raglan colors keep their contrast sleeves and cream body), the chest print (design, colors, size and position), crew neckline, ribbed cuffs and hem, relaxed drop-shoulder fit.
+Only the sweatshirts are sold. Bottoms must be plain, unbranded jeans, plain trousers or a plain skirt. Do NOT show any cap, hat with logo, brand logo, sunglasses, extra text, or accessory with branding. No baby romper, no pet outfit.
+
+PRODUCT LOCK:
+- {print_sentence}
+- {design_details}
+- Garment lettering: {lettering}.
+- {role_note}Mom and dad wear adult sweatshirts; a girl and a boy wear child sweatshirts. Show at least two of the listed colors across the family, like the vendor photos.
+
+BRAND CONTEXT: warm, clean, bright, realistic, wholesome, family-friendly, commercial, European lifestyle catalog style, suitable for Shopify listings.
+
+MODEL STYLE: all models European: a natural-looking family (mom, dad, a girl and a boy), fair to light-medium skin, blonde, light brown or soft brunette hair, warm smiles; not runway models. The models MUST be different people from the vendor photos.
+
+SCENES (fall, everyday): a sunny autumn park path with fallen leaves, a cozy bright living room, a weekend trip by the sea on a cool day, a pumpkin patch or farm stand. No Christmas decorations.
+
+IMAGE 1 — MAIN HERO IMAGE: the whole family standing together outdoors on a fall day, all four sweatshirts clearly visible, chest prints readable.
+IMAGE 3 — BEST OCCASION IMAGE: a family outing (autumn park walk or seaside weekend); same family; sweatshirts clearly visible.
+IMAGE 5 — PRODUCT-ONLY IMAGE: no people. One adult sweatshirt and one child sweatshirt (two different listed colors) as a clean flat lay on a simple light background, matching the vendor garments exactly.
+IMAGE 6 — ALTERNATE LIFESTYLE IMAGE: a different pose or setting (sitting together on the sofa at home, laughing), same family.
+
+STRICT QUALITY CHECK before saving each image: reject and regenerate if the print changed, is missing or distorted, a color is not in the list, any logo or extra text appears, anyone wears an invented printed item, it is a collage, it is not vertical 9:16, or it looks fake or unusable for Shopify.
+
+When all four files are saved, reply with one line per file: name, width x height.
+"""
+
+
 PROMPT_PET = """DRESS LIKE MOMMY — RELIABLE PHOTOSHOOT SYSTEM (automated run)
 
 This Shopify listing sells ONE product: a matching DOG VEST, "{print_name}" — {print_sentence}
@@ -295,7 +338,18 @@ def main() -> None:
             refs = refs + [None] * (2 - len(refs))
         lettering = LETTERING.get(key) or "none (no lettering on these garments; do not add any text)"
         role_note = (ROLE_NOTES.get(key, "") + " ") if ROLE_NOTES.get(key) else ""
-        prompt = {"mommy_me": PROMPT_MM, "family_sweatshirt": PROMPT_SW, "family_pet": PROMPT_PET}.get(spec.get("mode"), PROMPT).format(
+        base_prompt = PROMPT_SWF if spec.get("title_variant") == "everyday" else {"mommy_me": PROMPT_MM, "family_sweatshirt": PROMPT_SW, "family_pet": PROMPT_PET}.get(spec.get("mode"), PROMPT)
+        if spec.get("garment") == "sweater":  # knit family sweaters reuse the everyday prompt
+            base_prompt = (PROMPT_SWF.replace("crewneck sweatshirts", "knit crewneck sweaters").replace("SWEATSHIRTS", "KNIT SWEATERS")
+                           .replace("sweatshirts", "knit sweaters").replace("sweatshirt", "knit sweater")
+                           .replace("its color (only colors from the list above; raglan colors keep their contrast sleeves and cream body), the chest print",
+                                    "its color (only colors from the list above), the knit pattern and texture, the chest motif"))
+        if len(spec.get("colors", [])) == 1:  # single-color listing: everyone wears the one color
+            base_prompt = (base_prompt.replace(" The family can mix colors, exactly like the vendor photos.", " Everyone wears this one color, exactly like the vendor photos.")
+                           .replace(" Show at least two of the listed colors across the family, like the vendor photos.", "")
+                           .replace("(two different listed colors)", "(same color)"))
+        prompt = base_prompt.format(
+            colors_line=", ".join(c["name"] for c in spec.get("colors", [])),
             print_name=spec["print_name"],
             print_sentence=spec["print_sentence"],
             design_details=ns["DESIGN_TEXT"][spec["design_key"]],

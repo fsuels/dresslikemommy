@@ -26,7 +26,7 @@ Lead = PO created → stocked at the BuckyDrop warehouse (median / p90 days). So
 | 广州市佐雅服装厂 | 13 | 2.4 / 3.4 | 1 of 39 | Christmas Elf / Christmas family pajamas | Preferred (Christmas) |
 | 东莞市必橙纺织品有限公司 | 6 | 2.7 / 3.4 | 0 of 25 | "Christmas Crew" pajamas | Preferred (Christmas; Dongguan) |
 | 深圳市斯蒂琪电子商务有限公司 | 10 | 2.6 / 3.2 | 1 of 17 | Off-shoulder dress sets | Preferred |
-| 广州玺召服饰 | 26 | 2.9 / 5.2 | 2 of 49 | Knit sweaters/cardigans | Preferred (fall knits) |
+| 广州玺召服饰 | 26 | 2.9 / 5.2 | 2 of 49 | Knit sweaters/cardigans | **Gone (2026-09-27):** every known offer returns 404 (incl. 738990424265, the Color-Block sweater sold as order #9574) and the store is not found. Re-source its sellers. |
 | 湖州托马拓制衣厂 | 8 | 2.6 / 7.6 | 0 of 22 | Family sets | Good |
 | 绍兴市越城区涟可服装厂 | 47 | 3.5 / 10.3 | 4 of 149 | Family dress + shirt sets (top revenue) | Keep; slow tail |
 | 嗨鱼泳衣 (兴城) | 63 | 3.9 / 7.1 | 7 of 125 | Swimwear | Watch: far origin (#9566 cluster); swim priced too low |
@@ -40,6 +40,8 @@ Lead = PO created → stocked at the BuckyDrop warehouse (median / p90 days). So
 
 | Supplier | Example offer | Years | Fulfillment | 48h pickup | Dispatch | Resellers | Ship-from | Why watch |
 |---|---|---|---|---|---|---|---|---|
+| 东莞市森大服饰有限公司 (store senda831) | 1084384863476 (2026 Nordic yoke family knit sweater, 2026年秋季) | 9 | 99.7% | 97.64% | not stated | — | 广东东莞 | Read 2026-09-27 (creditdetail): **passes every gate**; 30-day 843 orders, quality returns 0%, disputes 0%, repeat buyers 82%, service 4.5. Family knit sweaters (thick, listed as modal), own brand. Two designs listed as DRAFT→QA 2026-09-27 (Nordic Yoke, Pom-Pom Star). Skip its designs with a small embroidered pony-like chest logo (IP look-alike). Promote after the first on-time order. |
+| 北京红旺博凯商贸有限公司 (store 225858) | 1078832905353 (Together Heart; sold 2026-09-27, order #9573) | 13 | 86.4% | 86.44% | — | — | 河南潢川 | **Fails 48h pickup; owner exception 2026-09-27 for 6 designs** after the first sale ("get more products like that"). 30-day: 842 orders, 0% returns, 0% disputes, repeat buyers 95%, AAA. Family crewneck sweatshirts, 54% cotton, ¥22–35. Listed: Smiley Heart, Eternal Bliss Hearts, Little Heart, Good Luck Smile, Moon and Star, Starry Sky. |
 | 深圳市诗茹梦制衣有限公司 | 1080921462408 (2026 winter velvet mommy-and-me button-up pajamas) | 6 | 99.6% | 100% (some offers) | not stated | 10,000+ | 广东揭阳 | Re-read 2026-09-27. **In use:** 5 Mommy & Me designs listed ACTIVE on 2026-09-27. Promote to proven after the first order arrives on time. Store has 1,447 offers created in 2026; mother-daughter sizes run small (women's S–XL, XL chest 106 cm), and kids 10–16 only. Many designs carry licensed-character look-alikes: screen every design. |
 | 南通市万趣服饰有限公司 | 761804640497 (Christmas bear family pajamas, listed 2024-01-10) | 10 | 99% | 86% | 4 days | 800+ | 江苏南通 | Re-read 2026-09-27: still fails the 48h pickup gate (86% < 95%), and the example offer is a 2024 listing. Keep watching; no listing until pickup ≥ 95% and a 2026-created, 2026-release design exists. |
 | 广州陈树保服装有限公司 | 1024440501938 (2026 parent-child pajamas, Spring 2026) | 8 | 100% | 100% | 7 days | 2,000+ | 广东佛山 | Re-read 2026-09-27: **now passes the supplier gate** (100% fulfillment, 100% pickup, 84% repeat buyers). Low fit: its "亲子" sizes run 100–170 cm only (no real women's sizes), the catalog is kids-first, and some offers are licensed (小马宝莉). Use only for kids-only lines. |

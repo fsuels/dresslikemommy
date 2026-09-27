@@ -102,7 +102,11 @@ def build_for(spec_path: Path) -> dict[str, dict[str, str]]:
         mm = ns.get("MM", False)
         sw = ns.get("SW", False)
         pet = ns.get("PET", False)
+        swf = ns.get("SWF", False)
+        knit = ns.get("KNIT", False)
         sk = lambda key: (key + "_mm" if mm and key in ("fam_text", "p1", "p2", "kf1_text", "kf4_text", "cta", "kf5_label")
+                          else key + "_swk" if knit and key in ("fam_text", "p1", "p2", "kf1_text")
+                          else key + "_swf" if swf and key in ("fam_text", "p1", "kf1_text")
                           else key + "_sw" if sw and key in ("fam_text", "p1", "p2", "kf1_text")
                           else key + "_pet" if pet and key in ("fam_text", "p1", "p2", "kf1_text", "cta", "kf5_label") else key)
         seg = {
@@ -110,7 +114,7 @@ def build_for(spec_path: Path) -> dict[str, dict[str, str]]:
             "des_label": rt["li4_label"], "care_label": rt["li5_label"], "size_label": rt["li6_label"],
             "kf1_label": (check(p, "kf1_label", en_seg["kf1_label"], tr["shared"]["kf1_label_mm" if mm else "kf1_label_pet"], label=True)
                           if (mm or pet) else rt["li7_label"]),
-            "h3_chart": tr["shared"]["h3_chart_sw"] if sw else tr["shared"]["h3_chart_pet"] if pet else reuse_hdr[loc]["h3"][0], "h3_kf": reuse_hdr[loc]["h3"][1], "th": list(reuse_hdr[loc]["th"]),
+            "h3_chart": tr["shared"]["h3_chart_swk"] if knit else tr["shared"]["h3_chart_sw"] if sw else tr["shared"]["h3_chart_pet"] if pet else reuse_hdr[loc]["h3"][0], "h3_kf": reuse_hdr[loc]["h3"][1], "th": list(reuse_hdr[loc]["th"]),
             "fam_text": check(p, "fam_text", en_seg["fam_text"], tr["shared"][sk("fam_text")]),
             "care_text": check(p, "care_text", en_seg["care_text"], tr["shared"]["care_text"]),
             "p1": check(p, "p1", en_seg["p1"], tr["shared"][sk("p1")]),
@@ -138,7 +142,7 @@ def build_for(spec_path: Path) -> dict[str, dict[str, str]]:
         if tag_re.findall(body_loc) != tag_re.findall(body_en):
             errors.append(f"{p}: body tag sequence differs from source")
         t = tr[("templates_mm_fleece" if spec.get("title_variant") == "fleece" else "templates_mm") if mm
-               else "templates_sw" if sw else "templates_pet" if pet else "templates"]
+               else "templates_swk" if knit else "templates_swf" if swf else "templates_sw" if sw else "templates_pet" if pet else "templates"]
         mapping = {
             ns["TITLE"]: t["title"].replace("{P}", print_loc),
             ns["SEO_TITLE"]: t["seo_title"].replace("{P}", print_loc),

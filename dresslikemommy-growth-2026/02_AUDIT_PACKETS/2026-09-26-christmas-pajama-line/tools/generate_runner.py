@@ -28,6 +28,9 @@ CHART_IMAGES = {
     "stq_sweat": PACKET / "stq_sweatshirt_size_chart_from_1081522411618.jpg",
     "srm_cf_button": PACKET / "shirumeng_fleece_button_chart_from_1083898601268.jpg",
     "srm_cf_zip": PACKET / "shirumeng_fleece_zip_chart_from_1083898601268.jpg",
+    "hw_sweat": PACKET / "hw_sweatshirt_size_chart_from_1076003819393.jpg",
+    "hw_gh": PACKET / "hw_golden_heart_size_chart_from_1086910652023.jpg",
+    "sd_knit": PACKET / "senda_knit_size_chart_from_1084384863476.jpg",
 }
 
 HEADER = """#!/usr/bin/env bash
