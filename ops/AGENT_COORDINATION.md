@@ -1,5 +1,13 @@
 # Agent Coordination Registry
 
+## Family bundle discount claim — 2026-09-27
+
+Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED (2026-09-27). Discount `gid://shopify/DiscountAutomaticNode/1315733110881` is ACTIVE. Collection `gid://shopify/Collection/363979571297` (`family-bundle-eligible`, 880 products) is unpublished; the storefront returns 404. Test cart: 2 pieces no discount; 3 pieces −$5.99 (20% on the cheapest $29.99 piece); 5 pieces −$5.99 (once per order); cart cleared. Anchor `2026-09-27-family-bundle-discount`. Owner request (chat): "Make sure our target margins are met. Set up a family bundle discount and Christmas order-by dates." The root Claude Code session "Website design recommendations" is the sole writer for these two new objects only:
+- a new automatic Buy-X-Get-Y discount "Family bundle: 3rd piece 20% off" (buy 2, the 3rd piece is 20% off, once per order, not combinable);
+- a new unpublished smart collection "Family bundle eligible" (rule: variant price > 0) that defines eligibility.
+
+Both are written through the Shopify connector, because the stored token lacks discount scopes. There are no price, compare-at, existing-discount, theme, feed, ad or spend changes. The Christmas order-by lines are already live via `assets/dlm-holiday-order-by.js` (UX ten-fix), so no change there. Rollback: `discountAutomaticDelete` plus `collectionDelete` on the two new IDs.
+
 ## Compare-at price restore claim — 2026-09-27
 
 Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED (2026-09-27). 2,373/2,373 compareAtPrice values restored exactly, 0 errors, 0 price changes; the storefront shows was-prices and 60 sale badges on `/collections/mommy-and-me`. Anchor `2026-09-27-compare-at-prices-restored-owner-decision`. Owner decision in chat, after the legal-risk explanation: "B. Put the "was" prices back." The root Claude Code session "Website design recommendations" is the sole writer, and only to restore `compareAtPrice` on the 2,373 variants cleared under anchor `2026-09-27-unsupported-compare-at-removed`, to their exact saved values in `before_state_execution.json`. No price or other field changes.
@@ -24,6 +32,10 @@ Status: ACTIVE_WRITE_CLAIM. Owner (chat, 2026-09-27 ~02:00 EDT): "continue worki
 - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/OWNER_MORNING_PACKET.md` (single writer).
 
 Not touched: locales keys `products.trust.trusted_since` and `review_thanks_note`, `snippets/product-page-copy-map.liquid`, `templates/*.json`, `assets/product-desktop-ux-20260513-ruler-sync.js`, products, prices, ads, spend, feeds, and customer messaging. Release goes through `main`, then `sync_live_theme_from_main.py`, then a live desktop/mobile readback.
+
+## Cart drawer copy trim — 2026-09-27
+
+Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED. The "Website sales improvement" drawer claim owner handed this scope off in chat ("go"). The "Conversion improvements" session changed only the cart context of `snippets/shipping-country-checker-trigger.liquid`, the hidden delivery-reassurance block in `snippets/cart-drawer.liquid`, and the `/cart` delivery-estimate block in `sections/main-cart-footer.liquid` (commit `089a1da`, live 3/3). The drawer claim itself stays with its owner. Anchor `2026-09-27-cart-drawer-copy-trim`.
 
 ## Honest reviews and social proof claim — 2026-09-27
 

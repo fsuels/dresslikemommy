@@ -55063,6 +55063,22 @@ Owner request (Claude Code chat): shoppers in Canada and elsewhere should see th
   - A post-apply drift recheck showed 3 other files (`sections/main-cart-footer.liquid`, `snippets/cart-drawer.liquid`, `snippets/shipping-country-checker-trigger.liquid`) newly on main from another session and not yet live. They were left for that session.
 - Rollback: remove the `{% render 'auto-localization' %}` line from `layout/theme.liquid`.
 
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-cart-drawer-copy-trim
+
+- task_entities: commit `089a1da`; live theme `133290917985`; `snippets/cart-drawer.liquid`; `sections/main-cart-footer.liquid`; `snippets/shipping-country-checker-trigger.liquid`; PROB-2026-09-24-MOBILE-CART-TO-CHECKOUT
+- task_stage: VERIFY
+- next_action_id: DRAWER_WALLET_STACK_HEIGHT_DECISION
+
+Owner request (Claude Code chat, session "Conversion improvements"): trim the mobile cart drawer, then release via `main` and verify on phones. The drawer claim owner ("Website sales improvement", CEO overnight sprint) handed off this exact scope.
+
+- Start state (LIVE): "You may also like" was already out of the fixed footer (claim owner's `d8a472e`/`1c95318`). The drawer "Estimated delivery after address entry" line was already hidden by `cart.js`, but the `/cart` copy was visible (a `display:flex` rule overrode `[hidden]`). "64 countries enabled" showed in the drawer and on `/cart`.
+- IMPLEMENTED `089a1da`: the cart context of the "Ships to <country>" box renders no count line; the dead delivery-reassurance markup is removed from the drawer and `/cart`. Wallet block and `#CartDrawer-Footer` untouched. Theme Check 0 offenses; `git diff --check` pass.
+- Release: the GitHub sync dropped the push (0/3 after 6 minutes). Before-state 3/3 = `089a1da^`; only these 3 files were upserted (userErrors []); readback 3/3 = `089a1da`. The other session's pending auto-localization files were not pushed by this session.
+- LIVE_VERIFIED (headless, real add-to-cart): iPhone 13, iPhone 14 Pro Max, iPhone SE, Pixel 7 and Galaxy S9+ show neither string; "Ships to United States" and the dated estimate remain. On iPhone 13 the items area went from 150 to 161 px and the title and price are now visible. Check out and Shop Pay/Amazon Pay/PayPal/G Pay render on screen for all devices except iPhone SE, where the drawer scrolls and Check out is clickable after a scroll. 0 page errors. `/cart` is clean too.
+- Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-cart-drawer-copy-trim/README.md`.
+- Rollback: `git revert 089a1da` and upsert the three files from `089a1da^`.
+- Next: the 183 px wallet stack is now the main height cost in the fixed footer. A layout decision (one-row wallets or tap-to-reveal) belongs to the drawer claim owner.
+
 ## AGENT_CONTINUITY_ANCHOR: 2026-09-27-compare-at-prices-restored-owner-decision
 
 - task_entities: the 2,373 variants cleared in `2026-09-27-unsupported-compare-at-removed`; `…/2026-09-26-compare-at-price-check/before_state_execution.json`
@@ -55077,6 +55093,54 @@ Done:
 - Storefront: navy-sprig $19.99 was $30.99 (US and /de); jingle-bells $32.99 was $37.99; `/collections/mommy-and-me` shows 60 sale badges again.
 - Not changed: the 27 newer products keep their compare-at; the listing prompt's `price * 1.15` compare-at rule is unchanged.
 - Durable: compare-at policy is an owner-accepted business risk. Do not remove or alter compare-at prices without a new explicit owner request. The theme sale chip shows the cheapest available variant's real compare-at %.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-legal-self-review-and-catalog-compliance
+
+- task_entities: theme commit `18a809a` (country of origin); shop policies terms `14695813`, refund `14695685`, shipping `29845782625`, privacy `14695749`; pages shipping-info/faqs/return-policy; products 6718945034337, 6718948147297, 6719764463713, 6719774720097, 6719792873569, 7109481431137 (claims removed); `summer-plaid-family-matching-set`
+- task_stage: VERIFY done
+- next_action_id: OWNER_SEND_SUPPLIER_SLEEPWEAR_REQUESTS
+
+Why: owner in chat: "I do not have money for that beeds to be free done by you" (instead of attorney review).
+
+Done (LIVE_VERIFIED):
+- Primary-source self-review found 11 policy defects, including the FTC Mail Order ship-time promise, EU/UK risk and withdrawal wording, the ACL guarantee, the CCPA incentive value and Florida §57.105 fees. All were fixed in the 4 policies and 3 pages; policy readback MATCH; 20 locales re-registered with `validate.py` + `check_v2.py` OK.
+- The shipping promise is now "within 5 business days (most ~3)", derived from real order data (16 fulfilled orders since 2025: median 3, p90 4, max 10 business days).
+- "Imported" origin line is on every PDP in 20 locales (theme + locale upsert + theme translations).
+- Unprovable "organic"/"sun protection" swimsuit claims removed (English + 120 translations).
+- Details: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-footer-pages-protection/LEGAL_SELF_REVIEW.md`.
+
+Owner decisions: kids' sleepwear stays on sale, and the supplier requests for CPSC test reports were drafted for the owner to send. The summer-plaid drawstring is unresolved: the source offer is delisted, the owner asked to check photos first, and the AI photos show no drawstring.
+
+Open:
+- Unfulfilled order #9560 from 2026-08-16 is past the Mail Order Rule window and needs an owner decision on a customer delay notice or refund. The 2026-09-24 order is within window.
+- Pre-existing outdated `meta_description` translations remain on the 6 swimsuit products; they contain no claims.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-family-bundle-discount
+
+- task_entities: automatic BXGY discount `gid://shopify/DiscountAutomaticNode/1315733110881` "Family bundle: 3rd piece 20% off"; unpublished smart collection `gid://shopify/Collection/363979571297` `family-bundle-eligible` (VARIANT_PRICE > 0); `assets/dlm-holiday-order-by.js`
+- task_stage: DONE, LIVE_VERIFIED
+- next_action_id: OWNER_DECIDE_BUNDLE_MESSAGING_ON_PDP_AND_CART
+
+Owner request (2026-09-27): "Make sure our target margins are met. Set up a family bundle discount and Christmas order-by dates."
+
+Evidence and design:
+- Unit-economics model: the repo convention is all-in non-marketing cost 50% of price (Cost per item = price × 0.50) and a marketing cap of about 15% of revenue (650% ROAS). Real per-product landed costs are not recorded; 1688 quotes are sparse.
+- Orders, last 12 months, quantities only: 18 non-cancelled; items per order {2:10, 3:2, 4:4, 5:1, 9:1}; 44% already 3+; median 2; AOV $82.78; 0 used a discount code.
+- Rejected "3+ items 10% off": it gives away 10% on the 44% of orders that already buy 3+. Per-order margins would be gross 44.4% and after-ads 29.0%, and program-level it is margin-negative.
+- Chosen "buy 2, get the 3rd piece 20% off": BXGY, once per order, on the cheapest qualifying piece, combinesWith all false. Existing codes are all non-combinable, so there is no stacking. A 3-piece order at about $33 each gives gross 46.4% and after-ads 31.0%. It targets the dominant 2-piece order.
+
+Done (via the Shopify connector; the stored token lacks `read_discounts`/`write_discounts`):
+- Created the unpublished smart collection (880 products, 0 publications, storefront 404) and the BXGY discount (ACTIVE from 2026-09-27, no end date).
+- VERIFIED with a live storefront test cart (cleared afterward; no checkout):
+  - 2 pieces $59.98: no discount.
+  - 3 pieces $93.97: −$5.99 on the cheapest $29.99 child piece, so gross about 46.6% and after-ads about 31.2%.
+  - 5 pieces $147.96: −$5.99 once.
+- Christmas order-by: already live. `dlm-holiday-order-by.js` targets Dec 24, 90-day lead, localized. The live jingle-bells PDP shows "Order by Tue, Dec 8 for estimated Christmas arrival". All 28 Christmas-tagged storefront products qualify; 0 Christmas products lack the tag (1 false positive, a tropical "holiday resort" shirt). No change needed.
+- Rollback: `discountAutomaticDelete(id: DiscountAutomaticNode/1315733110881)` and `collectionDelete(Collection/363979571297)`.
+
+Open:
+- The offer is invisible until the cart. Shoppers only see it applied in cart and checkout.
+- Advertising it on the PDP/cart needs 21-language theme copy and touches surfaces claimed by peer sessions (cart drawer, PDP). Owner decision needed.
 
 ## AGENT_CONTINUITY_ANCHOR: 2026-09-27-free-distribution-lane
 
