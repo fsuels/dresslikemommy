@@ -32,3 +32,15 @@ Microsoft Ads spend and search terms; Google search terms and Shopping product p
 
 ## Combined paid (about 30 days): Google $33.15 + Microsoft $57.71 = **$90.86, 543 clicks, 0 orders**.
 No change was made on either platform.
+
+## Owner-approved changes, 2026-09-27 ("Approve 1 and 2, hold 3")
+### 2 — Pause the 8 zero-spend Microsoft campaigns: DONE, LIVE_VERIFIED
+- Before: all 15 campaigns Eligible, $150/day combined budgets.
+- Action: bulk Edit → Pause in the owner's Chrome on DLM | MS | DE | DE, FR & CA | FR, PL | PL, US | EN | Shopping, NO | NB, BR & PT | PT, NL | NL, DK | DA (all "| Search/Shopping | 202609", $0 spend over the last 30 days).
+- Readback (fresh reload): those 8 show "Campaign paused". US, GB, CA, Latinos, IT, AU and EUR are still Eligible. Active budgets drop from $150/day to $70/day of caps (actual spend is about $2/day).
+- Rollback: select them, then Edit → Enable. These campaigns belong to Sep 22–23 build tasks whose coordination rows are not closed. Pausing is reversible and does not alter their build state.
+### 1 — Stop Audience Network placements: NOT POSSIBLE AS A SWITCH (BLOCKED_PLATFORM)
+- The campaign settings have no network or distribution control, and bid adjustments have no Audience Network row.
+- Microsoft Q&A (learn.microsoft.com answers 2288824, 2289637, 2288982): the ad-group "Ad distribution" and −100% audience bid opt-outs are removed or being deprecated, and search campaigns now serve audience ads automatically. The remaining lever is a website exclusion list built from the Website URL (publisher) report, at campaign or account level.
+- Context: in the US Search campaign, Audience ads were $29.43 of $44.03. The largest source, ad group "Mommy & Me Swimsuits" ($24.32), is already paused.
+### 3 — Google Shopping Halloween CPC push: HELD by owner.
