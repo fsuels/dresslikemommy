@@ -56,7 +56,7 @@ LETTERING = {
     "dino-christmas": None,
     "navy-santa-holly": 'white script "Merry Christmas" above Santa',
     "blue-plaid-reindeer": None,
-    "green-plaid-merry-tree": 'white script "Merry Christmas" under the decorated tree',
+    "green-plaid-merry-tree": "\"a very Merry Christmas\" in white script on and under the decorated tree, copied exactly as in the reference photos",
     "buffalo-plaid-tree": '"MERRY Christmas" in red and black buffalo plaid letters under the tree, copied exactly as in the reference photos',
 }
 ROLE_NOTES = {
