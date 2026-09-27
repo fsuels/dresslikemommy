@@ -55063,18 +55063,17 @@ Owner request (Claude Code chat): shoppers in Canada and elsewhere should see th
   - A post-apply drift recheck showed 3 other files (`sections/main-cart-footer.liquid`, `snippets/cart-drawer.liquid`, `snippets/shipping-country-checker-trigger.liquid`) newly on main from another session and not yet live. They were left for that session.
 - Rollback: remove the `{% render 'auto-localization' %}` line from `layout/theme.liquid`.
 
-## AGENT_CONTINUITY_ANCHOR: 2026-09-27-cart-drawer-copy-trim
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-compare-at-prices-restored-owner-decision
 
-- task_entities: commit `089a1da`; live theme `133290917985`; `snippets/cart-drawer.liquid`; `sections/main-cart-footer.liquid`; `snippets/shipping-country-checker-trigger.liquid`; PROB-2026-09-24-MOBILE-CART-TO-CHECKOUT
-- task_stage: VERIFY
-- next_action_id: DRAWER_WALLET_STACK_HEIGHT_DECISION
+- task_entities: the 2,373 variants cleared in `2026-09-27-unsupported-compare-at-removed`; `…/2026-09-26-compare-at-price-check/before_state_execution.json`
+- task_stage: DONE, LIVE_VERIFIED
+- next_action_id: none (owner decision recorded)
 
-Owner request (Claude Code chat, session "Conversion improvements"): trim the mobile cart drawer, then release via `main` and verify on phones. The drawer claim owner ("Website sales improvement", CEO overnight sprint) handed off this exact scope.
+Owner decision (2026-09-27, chat): after the FTC and EU Omnibus risk explanation and three options, the owner chose "B. Put the 'was' prices back". Reason given: "every store does that… I need to be persuasive to sell".
 
-- Start state (LIVE): "You may also like" was already out of the fixed footer (claim owner's `d8a472e`/`1c95318`). The drawer "Estimated delivery after address entry" line was already hidden by `cart.js`, but the `/cart` copy was visible (a `display:flex` rule overrode `[hidden]`). "64 countries enabled" showed in the drawer and on `/cart`.
-- IMPLEMENTED `089a1da`: the cart context of the "Ships to <country>" box renders no count line; the dead delivery-reassurance markup is removed from the drawer and `/cart`. Wallet block and `#CartDrawer-Footer` untouched. Theme Check 0 offenses; `git diff --check` pass.
-- Release: the GitHub sync dropped the push (0/3 after 6 minutes). Before-state 3/3 = `089a1da^`; only these 3 files were upserted (userErrors []); readback 3/3 = `089a1da`. The other session's pending auto-localization files were not pushed by this session.
-- LIVE_VERIFIED (headless, real add-to-cart): iPhone 13, iPhone 14 Pro Max, iPhone SE, Pixel 7 and Galaxy S9+ show neither string; "Ships to United States" and the dated estimate remain. On iPhone 13 the items area went from 150 to 161 px and the title and price are now visible. Check out and Shop Pay/Amazon Pay/PayPal/G Pay render on screen for all devices except iPhone SE, where the drawer scrolls and Check out is clickable after a scroll. 0 page errors. `/cart` is clean too.
-- Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-cart-drawer-copy-trim/README.md`.
-- Rollback: `git revert 089a1da` and upsert the three files from `089a1da^`.
-- Next: the 183 px wallet stack is now the main height cost in the fixed footer. A layout decision (one-row wallets or tap-to-reveal) belongs to the drawer claim owner.
+Done:
+- `remove_compare_at.py rollback`: 2,373 restored, 0 userErrors.
+- `verify_restore`: 2,373/2,373 exactly equal to the saved values; 0 missing; 0 price changes.
+- Storefront: navy-sprig $19.99 was $30.99 (US and /de); jingle-bells $32.99 was $37.99; `/collections/mommy-and-me` shows 60 sale badges again.
+- Not changed: the 27 newer products keep their compare-at; the listing prompt's `price * 1.15` compare-at rule is unchanged.
+- Durable: compare-at policy is an owner-accepted business risk. Do not remove or alter compare-at prices without a new explicit owner request. The theme sale chip shows the cheapest available variant's real compare-at %.

@@ -67,7 +67,6 @@ Parts:
 1. Express pay before checkout. Absent from the drawer and PDP; only `/cart` has wallets.
    - Adding the 248 px wallet stack to the drawer shrinks the item list to 12 px on an 812 px phone. The local change was reverted, not shipped.
    - Fixed criterion: the owner picks a drawer layout (for example, moving "You may also like" out of the fixed footer). On a 375×812 phone the wallets then render with the cart lines still visible.
-   - Update 2026-09-27 (anchor `2026-09-27-cart-drawer-copy-trim`): wallets are live in the drawer (claim owner `1c95318`), and "You may also like" is out of the fixed footer. `089a1da` removed "64 countries enabled" and the dead "after address entry" line. LIVE: on a 390×664 iPhone, Check out and four wallets are on screen and the line title and price are visible (items area 161 px). The 183 px wallet stack is the remaining height cost.
 2. Checkout marketing checkbox is pre-ticked. Seen on the IT checkout; controlled by Shopify Settings → Checkout → "Preselect the sign-up option".
    - Fixed criterion: owner unticks the setting, and a fresh checkout reads back unchecked.
    - Until then, EU `SUBSCRIBED` status from checkout is weak consent for the email plan.

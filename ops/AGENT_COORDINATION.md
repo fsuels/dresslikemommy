@@ -1,5 +1,9 @@
 # Agent Coordination Registry
 
+## Compare-at price restore claim — 2026-09-27
+
+Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED (2026-09-27). 2,373/2,373 compareAtPrice values restored exactly, 0 errors, 0 price changes; the storefront shows was-prices and 60 sale badges on `/collections/mommy-and-me`. Anchor `2026-09-27-compare-at-prices-restored-owner-decision`. Owner decision in chat, after the legal-risk explanation: "B. Put the "was" prices back." The root Claude Code session "Website design recommendations" is the sole writer, and only to restore `compareAtPrice` on the 2,373 variants cleared under anchor `2026-09-27-unsupported-compare-at-removed`, to their exact saved values in `before_state_execution.json`. No price or other field changes.
+
 ## Unsupported compare-at price removal claim — 2026-09-27
 
 Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED (2026-09-27) for the approved set: 134 products and 2,373 variants cleared, with 0 errors and 0 price changes. 27 products (532 variants) listed or activated after the check still carry compare-at and are pending owner approval (`pending_new_products_compare_at.json`). Anchor `2026-09-27-unsupported-compare-at-removed`. Owner approval in chat: "Remove the unsupported compare-at prices on all 2,362 variants and verify." The root Claude Code session "Website design recommendations" is the sole writer, and only for `compareAtPrice` on active-product variants whose compareAtPrice > price, set to null. No price, title, inventory, tag, collection, feed, ad or spend changes. Rollback: restore each variant's saved compareAtPrice from `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-compare-at-price-check/before_state_execution.json`.
@@ -20,10 +24,6 @@ Status: ACTIVE_WRITE_CLAIM. Owner (chat, 2026-09-27 ~02:00 EDT): "continue worki
 - `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/OWNER_MORNING_PACKET.md` (single writer).
 
 Not touched: locales keys `products.trust.trusted_since` and `review_thanks_note`, `snippets/product-page-copy-map.liquid`, `templates/*.json`, `assets/product-desktop-ux-20260513-ruler-sync.js`, products, prices, ads, spend, feeds, and customer messaging. Release goes through `main`, then `sync_live_theme_from_main.py`, then a live desktop/mobile readback.
-
-## Cart drawer copy trim — 2026-09-27
-
-Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED. The "Website sales improvement" drawer claim owner handed this scope off in chat ("go"). The "Conversion improvements" session changed only the cart context of `snippets/shipping-country-checker-trigger.liquid`, the hidden delivery-reassurance block in `snippets/cart-drawer.liquid`, and the `/cart` delivery-estimate block in `sections/main-cart-footer.liquid` (commit `089a1da`, live 3/3). The drawer claim itself stays with its owner. Anchor `2026-09-27-cart-drawer-copy-trim`.
 
 ## Honest reviews and social proof claim — 2026-09-27
 

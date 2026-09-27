@@ -72,7 +72,21 @@ elif mode == 'verify':
     json.dump({'remaining_targets': t}, open(OUT / 'after_state_execution.json', 'w'), indent=1)
 elif mode == 'rollback':
     t = json.load(open(OUT / 'before_state_execution.json'))['targets']
+    errors, done = [], 0
     for x in t:
-        gql('mutation($p:ID!,$v:[ProductVariantsBulkInput!]!){productVariantsBulkUpdate(productId:$p,variants:$v){userErrors{message}}}',
-            {'p': x['productId'], 'v': [{'id': v['id'], 'compareAtPrice': v['compareAtPrice']} for v in x['variants']]})
-    print('rollback submitted for', sum(len(x['variants']) for x in t), 'variants')
+        d = gql('mutation($p:ID!,$v:[ProductVariantsBulkInput!]!){productVariantsBulkUpdate(productId:$p,variants:$v){productVariants{id} userErrors{field message}}}',
+                {'p': x['productId'], 'v': [{'id': v['id'], 'compareAtPrice': v['compareAtPrice']} for v in x['variants']]})['productVariantsBulkUpdate']
+        if d['userErrors']:
+            errors.append({'handle': x['handle'], 'errors': d['userErrors']})
+        else:
+            done += len(d['productVariants'])
+    json.dump(errors, open(OUT / 'rollback_errors.json', 'w'), indent=1)
+    print('restored', done, '| products with errors', len(errors))
+elif mode == 'verify_restore':
+    prods = snapshot()
+    now = {v['id']: v for p in prods for v in p['variants']['nodes']}
+    saved = {v['id']: v for x in json.load(open(OUT / 'before_state_execution.json'))['targets'] for v in x['variants']}
+    mism = [i for i, v in saved.items() if i in now and (now[i]['compareAtPrice'] is None or abs(float(now[i]['compareAtPrice']) - float(v['compareAtPrice'])) > 0.001)]
+    missing = [i for i in saved if i not in now]
+    price_changed = [i for i, v in saved.items() if i in now and now[i]['price'] != v['price']]
+    print('saved', len(saved), '| restored exactly', len(saved) - len(mism) - len(missing), '| mismatched', len(mism), '| variant missing', len(missing), '| price changed since snapshot', len(price_changed))
