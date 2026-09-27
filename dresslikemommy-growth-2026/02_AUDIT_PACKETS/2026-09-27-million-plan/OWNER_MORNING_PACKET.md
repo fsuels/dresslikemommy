@@ -22,6 +22,7 @@ Everything that doesn't need you keeps running without you. Tonight that means c
 | 5 | **Place one real test order** (any cheap item, then refund) to validate purchase tracking. | Google/Microsoft Ads show "0 conversions" partly because tracking is unverified. We can't scale ads profitably until this is proven. | Refund. |
 | 6 | **Microsoft Ads: opt out of the audience/partner network** (~255 of the clicks, 0 sales). | Stops paying for junk clicks. | Opt back in. |
 | 7 | **Republish the Gift Card** (declined 09-27; re-ask). | Q4 was 31% of 2025 sales; gift cards are a late-December save when shipping can't arrive in time. | Unpublish. |
+| 8 | **Turn on EU local payment methods** in Shopify Payments (Settings → Payments): iDEAL (NL), Bancontact (BE), Klarna, BLIK (PL), MobilePay (DK), wherever Shopify Payments offers them. | Non-US checkout completion is 20% vs 45% in the US. Italy had 8 checkouts and 0 orders. EU shoppers expect their local method. No monthly cost, only per-transaction fees. | Turn each method off. |
 
 ## Not asking you (already doing under your standing CEO approval)
 
@@ -31,4 +32,13 @@ Everything that doesn't need you keeps running without you. Tonight that means c
   - a visible "Size chart" link;
   - Shop Pay / Apple Pay / PayPal buttons inside the cart drawer.
 - Christmas catalog expansion: 12 new 2026 designs are being photographed by ChatGPT-Codex, and the Mommy & Me winter pajamas are next.
+- Tonight, LIVE_VERIFIED:
+  - value strip under the price on every product page;
+  - "Order by Dec 8 for estimated Christmas arrival" on Christmas products;
+  - visible "Size guide & fit" link;
+  - Google structured data with 30-day returns and delivery time;
+  - wallet buttons in the cart drawer (still to confirm on a phone with an item in the cart);
+  - 46 blog articles now link to the main collections (written with ChatGPT);
+  - Christmas Pajamas sorted best-selling first;
+  - 15 Christmas/Halloween redirects.
 - Fixed tonight: 5 restored Christmas best-sellers were ACTIVE but invisible (404) because they were missing from the Markets catalogs. They are now live; `/collections/christmas-pajamas` shows 17 designs, up from 12. The activation script now checks this, so it can't recur.
