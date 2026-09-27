@@ -55198,3 +55198,25 @@ Read-only LIVE_VERIFIED (Shopify Admin API / ShopifyQL):
 Built: `lanes/free-distribution.md`: diagnosis, 8 ranked free levers, UTM links, owner network post, 12 Pinterest pins, IG/FB/TikTok posts, Facebook-group post, creator-code program (10% off with $120 minimum + 10% commission ≈ 37% net, ESTIMATE from the BuckyDrop profit study), gift-guide pitch, success/kill criteria.
 Not done: nothing posted, sent, created or spent. Creator codes wait on owner approval of the commission terms (money).
 Rollback: delete the lane file; no live state changed.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-pinterest-pin-pack-and-family-share
+
+- task_entities: 56 Shopify Files `gid://shopify/MediaImage/40695552868449` … `40695554670689` (alt "… - Dress Like Mommy Pinterest pin"); `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/pinterest/`; theme files `assets/media-gallery.js`, `snippets/product-thumbnail.liquid`, `locales/*.json` key `products.product.family_share_text`
+- task_stage: HANDOFF. Pin pack LIVE_VERIFIED as hosted files. Family-share theme change BUILT and browser-tested, NOT released.
+- next_action_id: owner uploads Pinterest batch 1; owner OK to release the family-share commit to `main`
+
+Owner request (2026-09-27, chat): "Think outside the box, be creative, get me customers… do not stop."
+
+Done:
+- **Pinterest pin pack.** 56 designed 1000×1500 pins, 2 per live 2026 Christmas design (28 designs from the public `christmas-pajamas` / `christmas-sweaters` collections), built from each product's own photos. Overlay: design name, product type, the real "from" price (min available variant) and size wording checked against variant options ("Kids & adult sizes"; the onesie says "Baby, kids & adult sizes").
+  - Uploaded via `stagedUploadsCreate` + `fileCreate`: 56/56 UPLOADED, 0 userErrors. All 56 `cdn.shopify.com/s/files/1/1557/1635/files/dlm-*-pin{1,2}.jpg` URLs return HTTP 200 image/jpeg.
+  - Two CSVs in Pinterest's bulk format (header copied from Pinterest's sample file): 28 rows each, 0 overlap, 2 pins/day at 14:00 and 01:00 UTC from 2026-09-28 to 2026-10-26, tracked links (`utm_source=pinterest&utm_campaign=xmas2026_pins&utm_content=<handle>-pinN`). Banned-claim scan: 0 hits.
+  - Gotcha: the PUT staged-upload URL signs only `host`, so sending `x-goog-acl` returns 400 MalformedSecurityHeader. Send Content-Type only.
+- **Family-share tracking** (commit `c7ef0f2`, on branch `claude/marketing-distribution-strategy-88o5mn`): the PDP share icon now shares a localized "Should we all match?" text (35 locales) and `utm_source=family_share&utm_medium=pdp_share&utm_campaign=matching_look`. It strips old utm_* params and the hash, and keeps the variant.
+  - Verified on the live PDP in iPhone 13 and desktop Chromium, with the local JS swapped in via route interception: the native-share payload and the clipboard fallback are both correct.
+  - The push to `main` was refused by the session permission guard. NOT live.
+- **Shop app:** eligible stores are auto-listed in Shop. Shop *search* also needs order volume and positive reviews ([Shopify Help](https://help.shopify.com/en/manual/online-sales-channels/shop/eligibility/requirements)), so the Judge.me import unblocks it.
+
+Not done: no pins published (owner uploads). No theme release, emails, ads or spend.
+Rollback: delete the pins in Pinterest; `fileDelete` the 56 MediaImage ids; `git revert c7ef0f2` if released.
+Tooling note: headless Chromium here needs the proxy passed explicitly, plus `--ignore-certificate-errors-spki-list=<agent-proxy CA SPKI>`, because the NSS store is not read.

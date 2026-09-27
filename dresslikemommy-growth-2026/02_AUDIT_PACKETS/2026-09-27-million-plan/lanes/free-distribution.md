@@ -157,6 +157,15 @@ Find targets: search Google for `"matching family christmas pajamas" 2026`, `bes
 - Creator codes: keep the creators whose codes produce ≥ 1 order in 14 days; drop the rest.
 - Every order is read from Shopify (`GROUP BY utm_source` / discount-code usage), never from platform claims.
 
+## 5b. Built after the kit (2026-09-27, same session)
+
+- **Pinterest bulk pin pack.** 56 designed 2:3 pins (2 per live Christmas design: 14 pajamas, 1 onesie, 13 sweaters) with the design name, product type, the real "from" price and honest size wording ("Kids & adult sizes"; onesies "Baby, kids & adult sizes"). They are hosted in Shopify Files (alt text ends "Dress Like Mommy Pinterest pin"). Two CSVs are in Pinterest's bulk format (`Title, Media URL, Pinterest board, Thumbnail, Description, Link, Publish date, Keywords`; max 200 per file, missing boards are auto-created, a future date schedules the pin): `../pinterest/pinterest_bulk_xmas2026_batch1.csv` and `../pinterest/pinterest_bulk_xmas2026_batch2.csv` (preview: `../pinterest/pin_pack_preview.jpg`; regenerate with `makepins.py` / `makecsv.py`), 2 pins per day at 10:00 and 21:00 ET. Each link carries `utm_source=pinterest&utm_campaign=xmas2026_pins&utm_content=<handle>-pinN`.
+  - Owner step: Pinterest (desktop) → Create → Create Pin → Bulk create → upload batch 1. If Pinterest refuses dates more than ~2 weeks out, upload batch 2 about 14 days later, or clear its Publish date column to post now.
+  - Coordination: the Pinterest API lane owns automated publishing. This is an owner-run organic upload of new pins. It does not touch the catalog feed, `item_group_id` grouping or ads.
+  - Rollback: delete the pins in Pinterest; `fileDelete` the 56 Shopify Files.
+- **Family-share tracking** (theme; committed on branch `claude/marketing-distribution-strategy-88o5mn`, NOT live): the product-page share icon now shares a localized "Should we all match?" note (35 locales) plus `utm_source=family_share&utm_medium=pdp_share&utm_campaign=matching_look`. Browser-tested against the live PDP with the new JS swapped in (native share payload and clipboard fallback both correct). Release to `main` was blocked by this session's permission guard and needs the owner's OK.
+- **Shop app:** Shopify's help center says eligible stores are added to Shop automatically, even without the Shop channel installed. Appearing in Shop *search* also needs a custom domain, a long selling history, steady order volume and positive reviews ([Shopify Help](https://help.shopify.com/en/manual/online-sales-channels/shop/eligibility/requirements)). Low reviews and low volume are the likely blockers, so the Judge.me past-order review import (owner packet item 4) also unlocks Shop. Installing the free Shop channel (owner, Apps → Sales channels) adds the store-page settings.
+
 ## 6. Queue
 
 1. **Needs owner yes now:** email C-1 (or a 10% test); `read_markets` scope; Judge.me import; creator-code terms (§4.5). Fulfil or mark `#9572` and `#9560`.
