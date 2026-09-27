@@ -54595,3 +54595,30 @@ Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-collection-pag
 Rollback: revert `11c1efd` for the theme. For the collections, re-run each `collectionUpdate` with the before-state rule set in `change1_before_state.json`; for MANUAL collections, re-apply the before order with `collectionReorderProducts` if exact positions matter.
 
 Open: the Search & Discovery grouping (`FILTER_GROUPING_PACKET.md`) and packet changes 2–3 await owner approval. Preview theme `156138864737` awaits the owner's OK to delete. `<html>` has no `dir`, so ar/he render LTR.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-judgeme-fake-reviews-hidden
+
+- task_entities: Judge.me (Free plan) reviews on product `happy-flower-family-matching-t-shirts-colorful-floral-print-for-parents-kids`; Judge.me review-request settings (read only)
+- task_stage: VERIFY done
+- next_action_id: OWNER_CHOOSE_HONEST_REVIEW_AND_SOCIAL_PROOF_PLAN
+
+Why: the owner approved "set up review requests"; the Judge.me read-back changed the premise.
+
+Found (LIVE_VERIFIED in Judge.me admin, 2026-09-27):
+- Review requests were already enabled: 150 emails sent to date, 15 in the last 30 days. Auto-publish is off.
+- 18 reviews in total:
+  - 13 genuine reviews are 1–2 stars and Hidden. Nearly all say that return, refund, wrong-item or missing-item emails went unanswered.
+  - 2 genuine 5-star reviews are Published, on out-of-store products.
+  - 3 five-star web reviews on the Happy Flower tee are AI-generated. The hidden "Admin Reviews77" entry says it "sent you 3 AI automated reviews". These 3 were Published, and the live PDP rendered them plus JSON-LD `aggregateRating` 5.0 / 3.
+- Customer names are deliberately not recorded here.
+
+Changed (owner chose "Hide them now"):
+- The 3 AI reviews were set to Hidden, reason "Fake".
+- LIVE_VERIFIED: the storefront PDP shows `data-number-of-reviews='0'`, with no review names and no `aggregateRating` in JSON-LD.
+- Rollback: set them back to Published. Not recommended: FTC 16 CFR 465 fake-review rule and Google policy.
+
+Not done (owner chose "Skip it"): no past-order review-request import. The owner prefers the negative reviews stay hidden; nothing was published.
+
+Declined: the owner asked for "random stars" and traffic indicators. Fabricated ratings and fake viewer counters were declined as deceptive.
+
+Truthful alternative data (LIVE_VERIFIED, ShopifyQL, all time): 8,543 orders, 8,138 customers, 22,420 items. Per product over the last 365 days the maximum is 8 orders, so per-product sales badges are weak.
