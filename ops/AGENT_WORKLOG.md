@@ -55208,3 +55208,16 @@ Owner, in chat: "Keep looking for new better vendors!"
   - Printify Premium DTG family sweatshirts pass: family basket landed ≈46%, net ≈35%. That moves the Christmas order-by to ~Dec 10 standard / Dec 15 priority, based on the 2025 cutoffs; the 2026 ones are due mid-Oct.
   - CJ US-warehouse stock is conditional: it needs inventory risk and deposits, which is money the owner must approve.
 - **Compliance flag:** 16 CFR 1615/1616 children's sleepwear (sizes 9M–14 must be flame-resistant or tight-fitting) may apply to the current kids' pajama catalog. Owner decision; nothing changed.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-new-arrivals-rule-covers-all-types
+
+- task_entities: collection `new-arrivals` (gid://shopify/Collection/33120354401, smart, CREATED_DESC, disjunctive TYPE CONTAINS rules)
+- task_stage: LIVE_VERIFIED
+- next_action_id: NONE
+
+Session [57a715] found that `new-arrivals` matches product TYPE, not tags. An audit of ACTIVE types found 122 products excluded: Swimwear 44, Matching Family Sets 40, Matching Family Sweaters 15 (the whole Christmas knit line), Sets 12, Sweaters 7, Matching Family Swimwear 2, Outerwear 1, Skirts 1.
+- **Change:** added the TYPE CONTAINS conditions Sweaters, Sets, Swimwear, Outerwear and Skirts. No retyping of products.
+- **Before:** 6 rules (Dresses, Family Matching, Tops, Pajamas, Swimsuits, Bottoms).
+- **Readback:** the storefront `products.json` returns 276 products (250 + 26), and the Christmas sweaters now appear.
+
+Rollback: `collectionUpdate` with the 6 original rules.
