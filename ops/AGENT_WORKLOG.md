@@ -54911,3 +54911,19 @@ Rollback: `articleDelete` 568793137249.
 - **Pajama guide update:** added the 3 new ACTIVE 衣林 designs (Buffalo Plaid Tree, Green Plaid Merry Tree, Blue Plaid Reindeer) as one paragraph after the plaid section. The summary and meta now say 15 styles.
   - The same paragraph was translated into all 8 locales and inserted into each translated body. All fields were re-registered with the new digests; 0 outdated.
   - Live en: 15 product links.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-ceo-sprint-collection-facet-weight-cut
+
+- task_entities: main commit for `snippets/facets.liquid` and `snippets/dlm-facet-color-dot.liquid`; MAIN 133290917985
+- task_stage: LIVE_VERIFIED
+- next_action_id: CONSIDER_HEADER_LOCALIZATION_SVG_WEIGHT (the header carries ~73 KB of hidden country/language checkmark SVGs on every page; `snippets/country-localization.liquid`; coordinate with the owner of the uncommitted `assets/localization-form.js` edits)
+
+SEO lane #15, collection page weight. Every text facet value rendered Dawn's box and checkmark SVGs (and a mobile highlight span) that the DLM facet CSS already hides; the checkbox is drawn on the input. These are no longer emitted, and the value markup is whitespace-tight. Inputs (name, value, id, state), counts, `li` classes, size-group headings and `facets.js` are unchanged.
+
+LIVE_VERIFIED (mobile UA):
+- `/collections/mommy-and-me`: 1,498 → 1,064 KB HTML; facet forms 591 → 158 KB; 114 size inputs; 0 Liquid errors.
+- `/collections/christmas-pajamas`: 874 → 765 KB; facets 169 → 60 KB.
+- Mobile Filter drawer → Size shows grouped chips (Mom/Dad/Adults…) with counts.
+- The subagent's Playwright pixel comparison: 22/24 identical; 2 within screenshot noise. The filter request is unchanged.
+
+Rollback: `git revert` the commit, then `sync_live_theme_from_main.py --apply`.
