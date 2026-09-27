@@ -1,5 +1,15 @@
 # Agent Coordination Registry
 
+## Shop-by-occasion reorganization claim — 2026-09-26
+
+Status: ACTIVE_WRITE_CLAIM — RELEASING (owner said "release it" in chat; collections published to Online Store) (2026-09-26 ~22:05 UTC; collections created unpublished; preview `156132933729`; 47 theme files uncommitted in the shared checkout; anchor `2026-09-26-shop-by-occasion-preview`). Owner request (September 26, chat): "do this — Be the specialist… Organize the store by occasion". The owner chose "Deep ones only" (Christmas, Halloween, Family Photos, Beach Vacation, Fall & Winter; Easter, Birthdays, Valentine's and Maternity wait for sourcing) and "Build, check, then ask me". The Claude Code session "shop by occasion" is the sole writer for:
+- Two new UNPUBLISHED Shopify smart collections, `matching-family-christmas-outfits` and `family-photo-outfits`, with their SEO fields and collection-owned translations.
+- The four `occasion_*` blocks of the `category_icons` section in `templates/index.json`. The storefront visual polish claim's work there is already committed (`f5c932f`); nothing else in `index.json` changes.
+- The occasion columns in `snippets/dlm-mega-panel.liquid`, new `storefront.mega_menu.*` occasion keys in `locales/*.json`, and new `assets/category-tile-*` occasion tile images if needed.
+- One unpublished preview theme for the check.
+
+No product, existing-collection, menu, feed, ad or spend write. No collection publication, push to `main` or MAIN upload until the owner approves in chat.
+
 ## Mommy & Me collection order (#10) claim — 2026-09-26
 
 Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED (2026-09-26 ~21:50 UTC). The sortOrder is MANUAL. 32 whole-family products were moved to the end: those tagged "Daddy and Me", plus 6 members lacking the "Mommy and Me" tag. Membership is unchanged at 456. The first whole-family active product is at position 107. The storefront `/collections/mommy-and-me` and `/de/...` first 24 are all mom-and-child. Anchor `2026-09-26-mommy-and-me-collection-order`. Owner approval in chat (September26): "yes, do this too Mommy & Me collection starts with dad-inclusive products". The root Claude Code session "storefront visual polish" is the sole writer for collection `gid://shopify/Collection/320794427489` (`/collections/mommy-and-me`) and for `sortOrder` plus manual product positions only. The change is `CREATED_DESC` → `MANUAL`, with products tagged "Daddy and Me" moved to the end in their current relative order. No rule, membership, title, SEO, translation, product, feed, ad or spend changes. Rollback: `collectionUpdate(sortOrder: CREATED_DESC)`. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-storefront-visual-polish/issue10_execution/`.

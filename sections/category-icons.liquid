@@ -33,6 +33,14 @@
   assign category_block_count = 0
   assign occasion_block_count = 0
   assign featured_collection_min_products = 10
+  # Occasion tiles are seasonal, so a smaller occasion collection may show.
+  # A Halloween occasion tile shows only from Sep 1 to Oct 31.
+  assign occasion_min_products = 4
+  assign today_month_day = 'now' | date: '%m%d' | plus: 0
+  assign halloween_season = false
+  if today_month_day >= 901 and today_month_day <= 1031
+    assign halloween_season = true
+  endif
   assign homepage_collection_candidate_limit = 8
   assign category_heading_url = section.settings.category_heading_link
   assign occasion_heading_url = section.settings.occasion_heading_link
@@ -68,12 +76,16 @@
     for block in section.blocks
       if block.settings.collection != blank
         assign collection_product_count = block.settings.collection.products_count | default: block.settings.collection.products.size
-        if collection_product_count >= featured_collection_min_products
-          if block.settings.browse_path == 'occasion'
-            assign occasion_block_count = occasion_block_count | plus: 1
-          else
-            assign category_block_count = category_block_count | plus: 1
+        if block.settings.browse_path == 'occasion'
+          assign occasion_off_season = false
+          if halloween_season == false and block.settings.collection.handle contains 'halloween'
+            assign occasion_off_season = true
           endif
+          if collection_product_count >= occasion_min_products and occasion_off_season == false
+            assign occasion_block_count = occasion_block_count | plus: 1
+          endif
+        elsif collection_product_count >= featured_collection_min_products
+          assign category_block_count = category_block_count | plus: 1
         endif
       endif
     endfor
@@ -138,7 +150,15 @@
           assign curated_tile_slug = 'vacation'
           assign curated_tile_handle = 'seaside-blue-plaid-family-matching-set'
           assign curated_tile_focal = '50% 20%'
-        when 'occasion:matching-outfits'
+        when 'occasion:matching-family-christmas-outfits'
+          assign curated_tile_slug = 'christmas'
+          assign curated_tile_handle = 'christmas-reindeer-family-matching-sweaters'
+          assign curated_tile_focal = '50% 15%'
+        when 'occasion:halloween-family-pajamas'
+          assign curated_tile_slug = 'halloween'
+          assign curated_tile_handle = 'trick-or-treat-family-matching-pajamas'
+          assign curated_tile_focal = '50% 15%'
+        when 'occasion:matching-outfits', 'occasion:family-photo-outfits'
           assign curated_tile_slug = 'photo-days'
           assign curated_tile_handle = 'matching-family-striped-cardigans-navy-and-red-heart-embroidery-knit-sweaters-for-mom-dad-and-kids'
           assign curated_tile_focal = '50% 15%'
@@ -486,7 +506,10 @@
                   assign homepage_collection_image_candidate_count = 0
                   assign homepage_collection_image_candidates_json = blank
 
-                  if featured_collection_count < featured_collection_min_products
+                  if featured_collection_count < occasion_min_products
+                    continue
+                  endif
+                  if halloween_season == false and block.settings.collection.handle contains 'halloween'
                     continue
                   endif
 
@@ -602,7 +625,7 @@
                 {%- endcapture -%}
                 {%- assign icon_label = icon_label_localized | strip -%}
                 {%- capture icon_caption -%}
-                  {%- render 'home-category-card-caption', icon_label: icon_label_source -%}
+                  {%- render 'home-category-card-caption', icon_label: icon_label_source, collection_handle: block.settings.collection.handle -%}
                 {%- endcapture -%}
                 {%- assign icon_caption = icon_caption | strip -%}
                 <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>

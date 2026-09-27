@@ -27,7 +27,7 @@
       assign heading_1 = 'sections.home_category_copy.heading_category' | t
       assign column_1 = 'pajamas:pajamas,family-sweaters:sweaters,dresses:dresses,family-sets:sets,family-tops:tops,swimsuits:swimsuits,rompers:rompers'
       assign heading_2 = 'sections.home_category_copy.heading_occasion' | t
-      assign column_2 = 'christmas-pajamas:christmas_pajamas,fall-winter:fall_winter,new-pajama-drop:new_pajama_drop,formal-dresses:formal,matching-family-vacation-outfits:vacation'
+      assign column_2 = 'matching-family-christmas-outfits:christmas_short,halloween-family-pajamas:halloween,family-photo-outfits:family_photos,fall-winter:fall_winter,matching-family-vacation-outfits:vacation'
       assign heading_3 = 'storefront.mega_menu.heading_who' | t
       assign column_3 = 'mommy-and-me:mommy_me,daddy-me:daddy_me,new-women-outfits:family_matching,couples:couples,new-arrivals:new_arrivals'
       assign card_1_handle = 'pajamas'
@@ -58,7 +58,7 @@
       assign heading_1 = 'storefront.mega_menu.heading_styles' | t
       assign column_1 = 'daddy-me-shirts:shirts,daddy-me-t-shirts:tshirts,trunks:swim_trunks,family-sweaters:sweaters,pajamas:pajamas'
       assign heading_2 = 'storefront.mega_menu.heading_more' | t
-      assign column_2 = 'new-women-outfits:family_matching,family-sets:sets,christmas-pajamas:christmas_pajamas,matching-family-vacation-outfits:vacation'
+      assign column_2 = 'new-women-outfits:family_matching,family-sets:sets,matching-family-christmas-outfits:christmas_short,matching-family-vacation-outfits:vacation'
       assign card_1_handle = 'daddy-me'
       assign card_1_title = 'sections.home_category_copy.daddy_me' | t
       assign card_1_eyebrow = 'storefront.mega_menu.eyebrow_daddy' | t
@@ -71,15 +71,15 @@
       assign heading_1 = 'sections.home_category_copy.heading_category' | t
       assign column_1 = 'pajamas:pajamas,christmas-pajamas:christmas_pajamas,family-sweaters:sweaters,family-sets:sets,family-tops:tops,family-swimsuits:swimsuits'
       assign heading_2 = 'sections.home_category_copy.heading_occasion' | t
-      assign column_2 = 'fall-winter:fall_winter,matching-family-vacation-outfits:vacation,matching-hawaiian-outfits:hawaiian,couples:couples,daddy-me:daddy_me'
+      assign column_2 = 'matching-family-christmas-outfits:christmas_short,halloween-family-pajamas:halloween,family-photo-outfits:family_photos,fall-winter:fall_winter,matching-family-vacation-outfits:vacation,matching-hawaiian-outfits:hawaiian'
       assign card_1_handle = 'family-sweaters'
       assign card_1_title = 'storefront.mega_menu.sweaters' | t
       assign card_1_eyebrow = 'storefront.menu.cold_weather_pick' | t
       assign card_1_caption = 'storefront.mega_menu.caption_sweaters' | t
-      assign card_2_handle = 'christmas-pajamas'
-      assign card_2_title = 'storefront.mega_menu.christmas_pajamas' | t
+      assign card_2_handle = 'matching-family-christmas-outfits'
+      assign card_2_title = 'sections.home_category_copy.christmas' | t
       assign card_2_eyebrow = 'storefront.mega_menu.eyebrow_holiday' | t
-      assign card_2_caption = 'sections.home_category_copy.caption_pajamas' | t
+      assign card_2_caption = 'sections.home_category_copy.caption_christmas' | t
   endcase
 
   assign columns = column_1 | append: '#' | append: column_2
@@ -127,6 +127,12 @@
         {%- assign item_visible = item_visible | strip -%}
         {%- if item_visible != 'true' -%}
           {% continue %}
+        {%- endif -%}
+        {%- if item_handle contains 'halloween' -%}
+          {%- assign item_month_day = 'now' | date: '%m%d' | plus: 0 -%}
+          {%- if item_month_day < 901 or item_month_day > 1031 -%}
+            {% continue %}
+          {%- endif -%}
         {%- endif -%}
         {%- liquid
           case item_key

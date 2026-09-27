@@ -54328,3 +54328,32 @@ Open (owner):
 - "Contact US" → "Contact us" was applied LIVE by peer session "Unbalanced footer layout" with owner approval; see its anchor `2026-09-26-footer-contact-us-menu-title`. Nothing is pending here.
 - OK to delete previews v1 and v2.
 - Rollback: `git revert f5c932f` plus re-upload of `release/live_before/`, or the same `release_upsert.py` flow with the parent commit.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-26-shop-by-occasion-preview
+
+- task_entities: new UNPUBLISHED collections `gid://shopify/Collection/363955388513` (`matching-family-christmas-outfits`) and `gid://shopify/Collection/363955421281` (`family-photo-outfits`); preview theme `156132933729`; `templates/index.json` `category_icons` occasion blocks; `sections/category-icons.liquid`; `snippets/dlm-mega-panel.liquid`; `snippets/christmas-season-collection.liquid`; `snippets/home-category-card-caption.liquid`; `snippets/home-category-localized-copy.liquid`; `locales/*.json`; `assets/category-tile-{christmas,halloween}-*.webp`
+- task_stage: BUILD done, VERIFY done on preview, release BLOCKED on owner approval
+- problem_ids: none opened
+- next_action_id: OWNER_APPROVE_SHOP_BY_OCCASION_RELEASE
+
+Why: the owner asked to "be the specialist" and organize the store by occasion. They chose "Deep ones only" and "Build, check, then ask me". A live inventory read found 257 active products: Christmas 14 (the `christmas-pajamas` collection has 1 active), Family Photos 52, Halloween 5, Vacation 104, Easter 2, Birthday 2, Valentine's 3, Maternity 0. The homepage "Birthdays" tile opened the general Dresses page and "Photo Days" opened all outfits.
+
+Done:
+- Admin: created two unpublished smart collections and registered their 160 translations (20 locales × 4 fields). Readback: 160/160 exact.
+- Theme (local and preview only):
+  - Occasion tiles are Christmas, Halloween (Sep 1–Oct 31 only, 4-product minimum), Photo Days and Vacation.
+  - The mega-menu Occasion columns point to the hubs.
+  - The Oct 15 header "Christmas" link and the seasonal section now use the Christmas hub instead of the 1-product pajama collection.
+  - Occasion captions are keyed by collection handle. Stored Translate & Adapt tile-label overrides had hidden captions on translated homepages.
+  - Photo Days is translated in 14 locales.
+- Verified:
+  - Theme check: 283 files, 0 offenses.
+  - Preview: the 41 changed files matched `HEAD` before the upload; the 47 release files matched the working copy after it.
+  - EN desktop and FR mobile render with no Liquid errors and no horizontal scroll.
+  - The new collections' tiles and links stay hidden until the collections are published.
+
+Not done: publication, the commit/push to `main`, and live verification. All three wait for owner approval. The de/es/fr accent fixes for the existing Photo Days keys also need the stored MAIN theme translations updated.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-shop-by-occasion/README.md`.
+
+Next: the owner approves the release. Then publish both collections, commit and push the 47 theme files to `main`, and verify live. This goes first because the Christmas buying window is open now, and the Oct 15 header link would otherwise send traffic to a 1-product page.

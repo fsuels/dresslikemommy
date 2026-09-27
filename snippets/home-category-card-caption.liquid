@@ -1,6 +1,20 @@
+{%- comment -%}
+  Optional collection_handle: occasion tiles pass it so the caption survives a translated tile label.
+{%- endcomment -%}
 {%- liquid
   assign normalized_label = icon_label | default: '' | strip | handleize
   assign caption_key = blank
+
+  case collection_handle
+    when 'matching-family-christmas-outfits'
+      assign normalized_label = 'christmas'
+    when 'halloween-family-pajamas'
+      assign normalized_label = 'halloween'
+    when 'family-photo-outfits'
+      assign normalized_label = 'photo-days'
+    when 'matching-family-vacation-outfits'
+      assign normalized_label = 'vacation'
+  endcase
 
   case normalized_label
     when 'mommy-me'
@@ -15,6 +29,10 @@
       assign caption_key = 'caption-swimsuits'
     when 'daddy-me'
       assign caption_key = 'caption-daddy-me'
+    when 'christmas'
+      assign caption_key = 'caption-christmas'
+    when 'halloween'
+      assign caption_key = 'caption-halloween'
     when 'vacation'
       assign caption_key = 'caption-vacation'
     when 'photo-days'
