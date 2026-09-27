@@ -54787,3 +54787,22 @@ Open (owner): a one-time attorney review of the Terms; product compliance outsid
 Rollback:
 - Translations: re-register `current_translation` values.
 - Theme: `git revert`, then `sync_live_theme_from_main.py --apply`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-ceo-sprint-size-filter-grouped-by-family-member
+
+- task_entities: main commit for the grouped size facet (`snippets/facets.liquid`, new `snippets/dlm-facet-size-group.liquid` and `snippets/dlm-facet-size-groups.liquid`, `assets/component-facets.css`, 35 `locales/*.json` with new `products.facets.size_groups.*` keys); MAIN 133290917985
+- task_stage: LIVE_VERIFIED
+- next_action_id: NONE
+
+Conversion lane fix #11, the theme part:
+- **Before:** the collection Size filter was one flat list of ~57 values ("Mother M", "Child 6-7 Years", …).
+- **After:** the values are grouped under localized headings: Mom, Dad, Adults, Girls, Boys, Kids, Baby, Other sizes. Detection uses a first-family-word map for every storefront language. Grouping requires ≥2 groups and ≥50% of values recognized; otherwise the flat list stays (ja/he fall back). Inputs, names, values, counts and `facets.js` are unchanged.
+
+LIVE_VERIFIED:
+- `/collections/mommy-and-me` en/de/fr: 0 Liquid errors.
+- Headings: en Mom…Other sizes; de Mama…Weitere Größen; fr Maman…Autres tailles.
+- Desktop dropdown screenshot: Mom group Mother S–4XL with counts, then Dad.
+
+The GitHub sync dropped the push. Code went via `sync_live_theme_from_main.py --apply`. The 35 locale files were uploaded with `themeFilesUpsert` after checking that live and main differed only in `products.facets.size_groups.*`.
+
+Rollback: `git revert` the commit, then `--apply`, then re-upload the locale files from the reverted main.
