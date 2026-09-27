@@ -1,0 +1,58 @@
+{%- comment -%}
+  Returns the family-member group key for one size filter value label:
+  mother, father, adult, girl, boy, child, baby or other.
+
+  Accepts:
+  - label: {String} filter value label (may be translated)
+
+  Usage:
+  {%- capture group -%}{%- render 'dlm-facet-size-group', label: value.label -%}{%- endcapture -%}
+
+  The first word decides ("Mother M", "Kind 6-7 Jahre", "Maman 4XL"). When it is not a
+  family word, any later word may decide ("L (Adult Normal Version)"). Words cover the
+  English values plus the storefront languages, because Shopify translates option values
+  per locale and merchant filter groups stay in English. Ambiguous words go to the wider
+  group: Spanish "niño" and Italian "bambino" mean child as well as boy, so they are "child".
+  The list is compared lowercased; keep every entry lowercase with single commas.
+{%- endcomment -%}
+{%- liquid
+  assign dlm_sg_mother = ',mother,mothers,mom,moms,mommy,mum,mummy,mama,mamma,mami,mamá,maman,mère,mere,madre,mãe,mae,mamãe,mutter,mutti,moeder,mor,äiti,maminka,matka,mamă,mamka,мама,мать,μαμά,μητέρα,엄마,ママ,母,妈妈,媽媽,אמא,أم,ماما,माँ,मां,माता,women,womens,woman,ladies,lady,femme,femmes,mujer,mujeres,donna,donne,mulher,mulheres,frau,frauen,damen,dame,vrouw,vrouwen,kvinna,kvinnor,kvinde,kvinder,kvinne,kvinner,nainen,naiset,žena,ženy,kobieta,kobiety,femeie,женщина,женщины,женский,γυναίκα,γυναικεία,여성,女性,女士,נשים,امرأة,نساء,महिला,'
+  assign dlm_sg_father = ',father,fathers,dad,dads,daddy,papa,papá,papà,père,pere,padre,pai,papai,vater,vati,vader,far,isä,tatínek,táta,otec,ojciec,tata,tată,папа,отец,μπαμπάς,πατέρας,아빠,パパ,父,爸爸,אבא,أب,بابا,पापा,पिता,men,mens,man,homme,hommes,hombre,hombres,uomo,uomini,homem,homens,herren,herr,heer,heren,mand,mænd,mann,menn,mies,miehet,muž,muži,mężczyzna,bărbat,мужчина,мужской,άνδρας,ανδρικά,남성,男性,男士,גברים,رجل,رجال,पुरुष,'
+  assign dlm_sg_adult = ',adult,adults,adulte,adultes,adulto,adultos,adulti,adulta,adulți,adultă,erwachsene,erwachsener,erwachsen,volwassen,volwassenen,voksen,voksne,vuxen,vuxna,aikuinen,aikuisten,aikuiset,dospělá,dospělý,dospělé,dospělí,dorosły,dorosła,dorosłych,dorośli,взрослый,взрослая,взрослых,взрослые,ενήλικας,ενήλικες,ενηλίκων,성인,大人,大人用,成人,מבוגר,מבוגרים,البالغين,بالغ,للبالغين,वयस्क,वयस्कों,parent,parents,'
+  assign dlm_sg_girl = ',girl,girls,daughter,mädchen,tochter,fille,filles,niña,niñas,hija,bambina,bambine,ragazza,ragazze,figlia,menina,meninas,filha,meisje,meisjes,dochter,pige,piger,datter,jente,jenter,flicka,flickor,dotter,tyttö,tytöt,tytär,dívka,dívky,holka,holčička,dcera,dziewczynka,dziewczynki,córka,fată,fete,fetiță,fetițe,fiică,девочка,девочки,дочь,κορίτσι,κορίτσια,κόρη,여아,소녀,딸,女の子,娘,女孩,ילדה,ילדות,בנות,فتاة,بنت,بنات,लड़की,लड़कियों,बेटी,'
+  assign dlm_sg_boy = ',boy,boys,son,sons,junge,jungen,sohn,garçon,garçons,garcon,fils,hijo,ragazzo,ragazzi,figlio,menino,meninos,filho,jongen,jongens,zoon,dreng,drenge,søn,gutt,gutter,sønn,pojke,pojkar,poika,pojat,chlapec,chlapci,syn,chłopiec,chłopcy,băiat,băieți,fiu,мальчик,мальчики,сын,αγόρι,αγόρια,γιος,남아,소년,아들,男の子,息子,男孩,בנים,ولد,أولاد,ابن,लड़का,लड़कों,बेटा,'
+  assign dlm_sg_child = ',child,children,childs,kid,kids,youth,junior,juniors,kind,kinder,kinderen,enfant,enfants,niño,niños,infantil,bambino,bambini,bimbi,bimbo,criança,crianças,barn,lapsi,lapset,lasten,dítě,děti,dětské,dziecko,dzieci,copil,copii,ребенок,ребёнок,дети,детский,παιδί,παιδιά,παιδικά,아동,어린이,아이,子供,子ども,キッズ,お子様,儿童,兒童,ילד,ילדים,طفل,الطفل,للأطفال,أطفال,الأطفال,बच्चा,बच्चों,बच्चे,'
+  assign dlm_sg_baby = ',baby,babies,infant,infants,toddler,toddlers,newborn,bébé,bebe,bebé,bebê,neonato,neonati,bebis,vauva,miminko,kojenec,niemowlę,niemowlak,bebeluș,bebeluşi,малыш,малыши,младенец,μωρό,μωρά,아기,유아,赤ちゃん,ベビー,婴儿,嬰兒,宝宝,寶寶,תינוק,תינוקת,رضيع,शिशु,kleinkind,peuter,'
+
+  assign dlm_sg_text = label | strip | downcase
+  assign dlm_sg_text = dlm_sg_text | replace: '(', ' ' | replace: ')', ' ' | replace: '（', ' ' | replace: '）', ' '
+  assign dlm_sg_text = dlm_sg_text | replace: '/', ' ' | replace: ':', ' ' | replace: ',', ' ' | replace: '-', ' ' | replace: '&', ' '
+  assign dlm_sg_words = dlm_sg_text | split: ' '
+
+  assign dlm_sg_key = 'other'
+  for dlm_sg_word in dlm_sg_words
+    if dlm_sg_word == blank
+      continue
+    endif
+    assign dlm_sg_token = ',' | append: dlm_sg_word | append: ','
+    if dlm_sg_mother contains dlm_sg_token
+      assign dlm_sg_key = 'mother'
+    elsif dlm_sg_father contains dlm_sg_token
+      assign dlm_sg_key = 'father'
+    elsif dlm_sg_adult contains dlm_sg_token
+      assign dlm_sg_key = 'adult'
+    elsif dlm_sg_girl contains dlm_sg_token
+      assign dlm_sg_key = 'girl'
+    elsif dlm_sg_boy contains dlm_sg_token
+      assign dlm_sg_key = 'boy'
+    elsif dlm_sg_child contains dlm_sg_token
+      assign dlm_sg_key = 'child'
+    elsif dlm_sg_baby contains dlm_sg_token
+      assign dlm_sg_key = 'baby'
+    endif
+    if dlm_sg_key != 'other'
+      break
+    endif
+  endfor
+-%}
+{{- dlm_sg_key -}}

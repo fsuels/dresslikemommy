@@ -243,11 +243,25 @@
                             assign inactive_filter_values = filter.values | where: 'active', false
                             assign sorted_values = active_filter_values | concat: inactive_filter_values
                           endif
+
+                          # Size values are grouped by family member (Mom, Dad, Kids...) in snippets/dlm-facet-size-groups.
+                          assign dlm_group_sizes = false
+                          if dlm_value_layout == 'chips' and filter.type == 'list'
+                            assign dlm_group_sizes = true
+                          endif
+                          assign dlm_size_items = ''
+                          assign dlm_size_markup = ''
+                          assign dlm_size_group_id = 'SizeGroup-' | append: section.id | append: '-' | append: forloop.index
                         -%}
+                        {%- capture dlm_list_class -%}
+                          {{- visual_layout_class }}{% if filter_type == 'vertical' %} facets__list--vertical{% else %} facets__list{% endif %} list-unstyled
+                        {%- endcapture -%}
+                        {%- unless dlm_group_sizes -%}
                         <ul
-                          class="{{ visual_layout_class }}{% if filter_type == 'vertical' %} facets__list--vertical{% else %} facets__list{% endif %} list-unstyled"
+                          class="{{ dlm_list_class }}"
                           role="list"
                         >
+                        {%- endunless -%}
                           {%- assign seen_filter_value_keys = ',' -%}
                           {%- assign rendered_filter_values = 0 -%}
                           {%- for value in sorted_values -%}
@@ -298,6 +312,7 @@
                               </span>
                             {%- endcapture -%}
 
+                            {%- capture dlm_value_li -%}
                             <li class="list-menu__item facets__item{% if rendered_filter_values > show_more_number and filter_type == 'vertical' %} show-more-item hidden{% endif %}">
                               {%- if presentation == 'swatch' -%}
                                 <div class="{{ label_class }}">
@@ -373,10 +388,42 @@
                                 </label>
                               {%- endif -%}
                             </li>
+                            {%- endcapture -%}
+                            {%- if dlm_group_sizes -%}
+                              {%- capture dlm_value_group -%}
+                                {%- render 'dlm-facet-size-group', label: value_label -%}
+                              {%- endcapture -%}
+                              {%- assign dlm_size_items = dlm_size_items | append: '<!--dlm-sg:' | append: dlm_value_group | append: '-->' | append: dlm_value_li -%}
+                            {%- else -%}
+                              {{ dlm_value_li }}
+                            {%- endif -%}
                           {%- endfor -%}
+                        {%- if dlm_group_sizes -%}
+                          {%- capture dlm_size_markup -%}
+                            {%- render 'dlm-facet-size-groups',
+                              items: dlm_size_items,
+                              list_class: dlm_list_class,
+                              group_list_class: dlm_list_class,
+                              wrapper_class: 'dlm-size-groups',
+                              id_prefix: dlm_size_group_id
+                            -%}
+                          {%- endcapture -%}
+                          {{- dlm_size_markup -}}
+                        {%- else -%}
                         </ul>
+                        {%- endif -%}
                       </fieldset>
-                      {%- if rendered_filter_values > show_more_number and filter_type == 'vertical' -%}
+                      {%- liquid
+                        assign dlm_show_more = false
+                        if rendered_filter_values > show_more_number and filter_type == 'vertical'
+                          assign dlm_show_more = true
+                        endif
+                        # Grouped size values are all visible, so there is nothing to show more of.
+                        if dlm_size_markup contains 'dlm-size-groups'
+                          assign dlm_show_more = false
+                        endif
+                      -%}
+                      {%- if dlm_show_more -%}
                         <show-more-button>
                           <button
                             class="button-show-more link underlined-link"
@@ -675,7 +722,21 @@
                               </span>
                             {%- endif -%}
                           </button>
-                          <ul class="{{ visual_layout_class }} mobile-facets__list list-unstyled" role="list">
+                          {%- liquid
+                            # Size values are grouped by family member (Mom, Dad, Kids...) in snippets/dlm-facet-size-groups.
+                            # The grouped wrapper keeps the mobile-facets__list class: facets.js swaps that one element on update.
+                            assign dlm_group_sizes = false
+                            if dlm_value_layout == 'chips' and filter.type == 'list'
+                              assign dlm_group_sizes = true
+                            endif
+                            assign dlm_size_items = ''
+                            assign dlm_size_group_id = 'SizeGroup-Mobile-' | append: section.id | append: '-' | append: forloop.index
+                            assign dlm_list_class = visual_layout_class | append: ' mobile-facets__list list-unstyled'
+                            assign dlm_group_list_class = visual_layout_class | append: ' list-unstyled'
+                          -%}
+                          {%- unless dlm_group_sizes -%}
+                          <ul class="{{ dlm_list_class }}" role="list">
+                          {%- endunless -%}
                             {%- liquid
                               assign sorted_values = filter.values
                               # Keep the selected values grouped together when operator is AND
@@ -736,6 +797,7 @@
                                 </span>
                               {%- endcapture -%}
 
+                              {%- capture dlm_value_li -%}
                               <li class="mobile-facets__item list-menu__item">
                                 {% if presentation == 'swatch' %}
                                   <div class="{{ label_class }}">
@@ -811,8 +873,27 @@
                                   </label>
                                 {% endif %}
                               </li>
+                              {%- endcapture -%}
+                              {%- if dlm_group_sizes -%}
+                                {%- capture dlm_value_group -%}
+                                  {%- render 'dlm-facet-size-group', label: value_label -%}
+                                {%- endcapture -%}
+                                {%- assign dlm_size_items = dlm_size_items | append: '<!--dlm-sg:' | append: dlm_value_group | append: '-->' | append: dlm_value_li -%}
+                              {%- else -%}
+                                {{ dlm_value_li }}
+                              {%- endif -%}
                             {%- endfor -%}
+                          {%- if dlm_group_sizes -%}
+                            {%- render 'dlm-facet-size-groups',
+                              items: dlm_size_items,
+                              list_class: dlm_list_class,
+                              group_list_class: dlm_group_list_class,
+                              wrapper_class: 'mobile-facets__list dlm-size-groups dlm-size-groups--mobile',
+                              id_prefix: dlm_size_group_id
+                            -%}
+                          {%- else -%}
                           </ul>
+                          {%- endif %}
 
                           <div class="mobile-facets__footer gradient">
                             <facet-remove class="mobile-facets__clear-wrapper">

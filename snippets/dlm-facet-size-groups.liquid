@@ -1,0 +1,95 @@
+{%- comment -%}
+  Renders the size filter values grouped by family member (Mom, Dad, Adults, Girls, Boys,
+  Kids, Baby, Other sizes), or the original flat list when the labels can't be read
+  reliably (for example a storefront language without spaces between words).
+
+  Accepts:
+  - items: {String} the rendered <li> values in their original order, each preceded by
+    a '<!--dlm-sg:KEY-->' marker (KEY from snippets/dlm-facet-size-group)
+  - list_class: {String} class of the flat <ul> (unchanged from the ungrouped markup)
+  - group_list_class: {String} class of each group's <ul>
+  - wrapper_class: {String} class of the grouped wrapper
+  - id_prefix: {String} unique prefix for the group heading ids
+
+  The inputs, ids, names, values and counts inside each <li> are untouched; only the
+  order and the wrappers change. Grouping needs at least two recognised groups and at
+  least half of the values recognised, otherwise the flat list is kept.
+{%- endcomment -%}
+{%- liquid
+  assign dlm_sgs_order = 'mother,father,adult,girl,boy,child,baby,other' | split: ','
+  assign dlm_sgs_chunks = items | split: '<!--dlm-sg:'
+
+  assign dlm_sgs_total = 0
+  assign dlm_sgs_known = 0
+  assign dlm_sgs_found = ','
+  assign dlm_sgs_group_count = 0
+  for dlm_sgs_chunk in dlm_sgs_chunks
+    assign dlm_sgs_key = dlm_sgs_chunk | split: '-->' | first | strip
+    unless dlm_sgs_order contains dlm_sgs_key
+      continue
+    endunless
+    assign dlm_sgs_total = dlm_sgs_total | plus: 1
+    if dlm_sgs_key != 'other'
+      assign dlm_sgs_known = dlm_sgs_known | plus: 1
+      assign dlm_sgs_found_token = ',' | append: dlm_sgs_key | append: ','
+      unless dlm_sgs_found contains dlm_sgs_found_token
+        assign dlm_sgs_found = dlm_sgs_found | append: dlm_sgs_key | append: ','
+        assign dlm_sgs_group_count = dlm_sgs_group_count | plus: 1
+      endunless
+    endif
+  endfor
+
+  assign dlm_sgs_known_double = dlm_sgs_known | times: 2
+  assign dlm_sgs_grouped = false
+  if dlm_sgs_group_count >= 2 and dlm_sgs_known_double >= dlm_sgs_total
+    assign dlm_sgs_grouped = true
+  endif
+-%}
+{%- if dlm_sgs_grouped -%}
+  <div class="{{ wrapper_class }}">
+    {%- for dlm_sgs_group in dlm_sgs_order -%}
+      {%- liquid
+        assign dlm_sgs_marker = dlm_sgs_group | append: '-->'
+        assign dlm_sgs_markup = ''
+        for dlm_sgs_chunk in dlm_sgs_chunks
+          assign dlm_sgs_key = dlm_sgs_chunk | split: '-->' | first | strip
+          if dlm_sgs_key == dlm_sgs_group
+            assign dlm_sgs_li = dlm_sgs_chunk | remove_first: dlm_sgs_marker | remove: ' show-more-item hidden'
+            assign dlm_sgs_markup = dlm_sgs_markup | append: dlm_sgs_li
+          endif
+        endfor
+      -%}
+      {%- if dlm_sgs_markup != blank -%}
+        {%- assign dlm_sgs_heading_key = 'products.facets.size_groups.' | append: dlm_sgs_group -%}
+        <div
+          class="dlm-size-group dlm-size-group--{{ dlm_sgs_group }}"
+          role="group"
+          aria-labelledby="{{ id_prefix }}-{{ dlm_sgs_group }}"
+        >
+          <p class="dlm-size-group__heading" id="{{ id_prefix }}-{{ dlm_sgs_group }}">
+            {{- dlm_sgs_heading_key | t -}}
+          </p>
+          <ul class="{{ group_list_class }} dlm-size-group__list" role="list">
+            {{- dlm_sgs_markup -}}
+          </ul>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </div>
+{%- else -%}
+  {%- liquid
+    assign dlm_sgs_flat = ''
+    for dlm_sgs_chunk in dlm_sgs_chunks
+      assign dlm_sgs_key = dlm_sgs_chunk | split: '-->' | first | strip
+      if dlm_sgs_order contains dlm_sgs_key
+        assign dlm_sgs_marker = dlm_sgs_key | append: '-->'
+        assign dlm_sgs_flat = dlm_sgs_flat | append: dlm_sgs_chunk | remove_first: dlm_sgs_marker
+      else
+        assign dlm_sgs_flat = dlm_sgs_flat | append: dlm_sgs_chunk
+      endif
+    endfor
+  -%}
+  <ul class="{{ list_class }}" role="list">
+    {{- dlm_sgs_flat -}}
+  </ul>
+{%- endif -%}

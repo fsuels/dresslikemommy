@@ -2486,3 +2486,50 @@ input.mobile-facets__checkbox {
     animation: none !important;
   }
 }
+
+/* ---------- Size values grouped by family member (snippets/dlm-facet-size-groups) ---------- */
+:is(.dlm-facets, #dlm-facets-hi) .dlm-size-groups {
+  padding: 0.4rem 0 0.8rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-size-group + .dlm-size-group {
+  border-top: 0.1rem solid var(--dlmf-line);
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-size-group__heading {
+  margin: 0;
+  padding: 1.2rem 1.6rem 0;
+  font-size: 1.2rem !important;
+  font-weight: 600 !important;
+  line-height: 1.3 !important;
+  color: var(--dlmf-muted) !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-size-group .dlm-facet-list--chips {
+  padding: 0.8rem 1.6rem 1.2rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .mobile-facets__list.dlm-size-groups--mobile {
+  padding: 0.4rem 0 2.4rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-size-groups--mobile .dlm-size-group__heading {
+  padding: 1.4rem 2.4rem 0;
+  font-size: 1.3rem !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-size-groups--mobile .dlm-facet-list--chips {
+  padding: 1rem 2.4rem 1.4rem;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-size-groups--mobile .dlm-facet-list--chips .mobile-facets__label {
+  min-height: 4.4rem;
+  min-width: 5.6rem;
+  padding: 0.6rem 1.6rem;
+  font-size: 1.4rem !important;
+}
+
+:is(.dlm-facets, #dlm-facets-hi) .dlm-size-groups--mobile .dlm-facet-list--chips input.mobile-facets__checkbox {
+  width: 100%;
+  height: 100%;
+}
