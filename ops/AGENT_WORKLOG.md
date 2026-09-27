@@ -54423,7 +54423,7 @@ Owner report: on mobile, the whole open menu (Shop, New Arrivals, ...) slid side
 
 Cause: the rail track bleeds 1.4rem past its parent with negative margins. The parent's `overflow-y: auto` forces `overflow-x: auto`, so the whole menu list was 14px side-scrollable at 375px.
 
-Fix: `overflow-x: hidden` on the mobile navigation container. The rail keeps its own horizontal scroll. Desktop (>=990px) is not affected.
+Fix: `overflow-x: clip` on `.dlm-drawer-rail` (removes the extra width) plus `overflow-x: hidden` on the mobile navigation container (fallback). Re-triggered once (e320051) because the sync skipped 0602c09. The rail keeps its own horizontal scroll. Desktop (>=990px) is not affected.
 
 Rollback: revert this commit.
 
