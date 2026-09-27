@@ -30,6 +30,12 @@ Colorway sanity check: if `DESIGNS_TO_LIST` names multiple colorways or print co
 
 Separate-item sanity check: if the vendor item/color selector contains separate garment choices such as `上衣`/top/shirt and `裤`/pants/shorts, those are not colorways. Build `Type x Size` variants with shopper-facing Type values like `Top` and `Pants`, or halt before any Shopify write. Do not collapse separable pieces into one `Set` variant per size unless the vendor sells only the complete set as a single purchasable option.
 
+Owner listing defaults (2026-09-26):
+- Every new listing is created as DRAFT. Claude activates it after QA (4 reviewed images, 100 stock per size, localization closeout passed) with `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-christmas-pajama-line/tools/activate_listing.py`. The owner granted full store control on 2026-09-27.
+- Set available stock to 100 per variant.
+- Attach 4 photoshoot images (IMAGE 1, 3, 5, 6 from `dlm-6-image-photoshoot.md`), generated through the ChatGPT app's Codex on the owner's Pro login (never the OpenAI API), and remove the vendor placeholder image.
+- Only current-year designs from suppliers that pass `ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md` §3.
+
 ## Minimal Request Template
 
 ```text

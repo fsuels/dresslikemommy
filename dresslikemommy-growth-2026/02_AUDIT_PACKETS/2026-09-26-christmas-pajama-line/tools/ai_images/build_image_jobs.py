@@ -1,0 +1,192 @@
+#!/usr/bin/env python3
+"""Build one image-generation job per 2026 Christmas pajama draft.
+
+Each job = uploads/<handle>/ai/ with prompt.txt and ref1..ref3.jpg (vendor
+references). The prompt is the owner's DRESS LIKE MOMMY photoshoot prompt,
+adapted for a non-interactive Codex run that produces IMAGE 1, 3, 5 and 6
+(owner's 4-image selection) in one session so the same family is used.
+"""
+from __future__ import annotations
+
+import json
+import shutil
+from pathlib import Path
+
+from PIL import Image
+
+ROOT = Path("/Users/fsuels/Projects/dresslikemommy")
+TOOLS = ROOT / "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-christmas-pajama-line/tools"
+
+# Exact garment lettering to copy letter for letter (None = no lettering).
+LETTERING = {
+    "beary-cozy": 'the red script "beary cozy" on the adult and child tops',
+    "candy-tree-christmas": '"MERRY" / "Christmas" lettering with a Santa hat on the red tops',
+    "classic-red-plaid": None,
+    "cookie-baking-crew": '"Cookie BAKING crew" beside a gingerbread cookie in a Santa hat',
+    "cozy-reindeer": None,
+    "evergreen-fair-isle": None,
+    "green-merry-christmas": 'white script "Merry Christmas" beside a smiling Santa',
+    "here-for-the-cookies": '"I\'M JUST HERE for the COOKIES"',
+    "jolly-crew": 'white script "Jolly Crew"',
+    "jolly-santa": 'white script "Merry Christmas" above a waving Santa',
+    "joyful-merry-blessed": 'white script "Joyful Merry Blessed" with holly leaves',
+    "let-it-snow": '"LET IT SNOW"',
+    "lights-out-reindeer": '"Lights Out!" under a reindeer tangled in colorful lights',
+    "merry-xmas-lights": '"MERRY" (red) above "XMAS!" (white) framed by colorful string-light bulbs',
+    "plaid-reindeer": None,
+    "plaid-tree-trio": "the small gold script under the three trees, copied exactly as in the reference photos",
+    "reindeer-forest": 'white script "Merry Christmas" with green trees and reindeer',
+    "santas-crew": '"SANTA\'S crew" in colorful letters with a Santa hat and antlers',
+    "snowy-reindeer": None,
+    "snowy-village-stripes": 'the small "Merry Christmas" lettering on the adult tops',
+    "team-santa": '"TEAM SANTA" on the adult tops; the child top keeps its own lettering exactly as in the reference photos',
+    "vintage-tree-truck": "the white holiday script under the car, copied exactly as in the reference photos",
+    "we-are-family-evergreen": '"We are Family" in red and black',
+    "we-are-family-red": '"We are Family" in black and white',
+    "merry-snowman": 'red script "Merry Christmas" above the snowman',
+    "black-santa-christmas": 'white script "Merry Christmas" above the cartoon Santa',
+    "red-nordic-reindeer": None,
+    "merry-reindeer-plaid": 'red block letters "MERRY CHRISTMAS" under the reindeer',
+    "white-tree-nordic": None,
+    "candy-cane-santa": '"MERRY CHRISTMAS!" beside Santa and the reindeer',
+    "christmas-crew-plaid": '"CHRISTMAS CREW" lettering under the plaid Santa hat, copied exactly as in the reference photos',
+    "merry-tartan-reindeer": '"MERRY CHRISTMAS" lettering under the reindeer antlers and Santa hat',
+    "santa-gingerbread-raglan": "the festive Merry Christmas lettering around Santa and the tree, copied exactly as in the reference photos",
+    "ho-ho-santa-hat": 'red script "Merry Christmas" under the Santa hat on the tops, and white "HO HO" lettering on the red pants',
+    "dino-christmas": None,
+    "navy-santa-holly": 'white script "Merry Christmas" above Santa',
+    "blue-plaid-reindeer": None,
+    "green-plaid-merry-tree": 'white script "Merry Christmas" under the decorated tree',
+    "buffalo-plaid-tree": '"MERRY Christmas" in red and black buffalo plaid letters under the tree, copied exactly as in the reference photos',
+}
+ROLE_NOTES = {
+    "candy-cane-santa": "The red and white candy cane stripe runs over ONE shoulder and down ONE sleeve only; the other sleeve is plain green. Keep that asymmetry.",
+    "merry-tartan-reindeer": "The top body is navy and BOTH sleeves are red tartan; the pants are the same red tartan.",
+    "dino-christmas": "Keep the dinosaurs friendly and cartoon-style exactly like the print; no realistic dinosaurs.",
+    "team-santa": "The adult tops and the child top carry different lettering; keep each version on the right person.",
+    "snowy-village-stripes": "The adult tops show a snowy village scene; the child top shows its own festive character graphic. Keep each version on the right person.",
+    "plaid-reindeer": "The reindeer graphic varies slightly by family member (different hat or scarf); keep the versions shown in the references.",
+    "snowy-reindeer": "The tops are SHORT-SLEEVE. Do not make them long-sleeve.",
+}
+
+PROMPT = """DRESS LIKE MOMMY — RELIABLE PHOTOSHOOT SYSTEM (automated run)
+
+The attached vendor product images are the exact clothing reference for ONE Shopify listing: Family Matching Christmas pajamas, "{print_name}".
+
+Generate FOUR separate images in this order, one at a time, and save each generated image file into the current working directory with exactly these names:
+- image1.png — IMAGE 1, MAIN HERO IMAGE
+- image3.png — IMAGE 3, BEST OCCASION IMAGE
+- image5.png — IMAGE 5, PRODUCT-ONLY IMAGE
+- image6.png — IMAGE 6, ALTERNATE LIFESTYLE IMAGE
+Do not ask me anything and do not wait for NEXT; continue until all four files are saved. Keep the same model family across images 1, 3 and 6, as if photographed in one professional photoshoot.
+
+IMPORTANT: Do NOT create a collage, grid or contact sheet. Do NOT put multiple photos inside one image.
+Each output must be one single image, vertical 9:16 portrait, full-frame photo, no borders, no split screen, no text labels, no watermarks. If the generator returns a slightly different ratio, crop minimally to exact 9:16; do not downscale further.
+
+SOURCE OF TRUTH: the uploaded vendor images are the exact clothing reference. The clothing must stay exactly the same as the vendor images.
+You may change: models, pose, background, lighting, lifestyle setting, camera angle, scene.
+You must NOT change: clothing color, clothing print, clothing pattern, graphic text, text spelling, fabric look, neckline, sleeve length, collar, buttons, pockets, waistband, drawstring, hemline, adult version, child version, matching family design.
+
+PRODUCT LOCK for this listing:
+- {print_sentence}
+- {design_details}
+- Garment lettering to reproduce exactly, letter for letter: {lettering}.
+- {role_note}Only these garments exist: the matching two-piece pajama set (top + pants) for mom, dad and children. Do NOT add a baby romper, baby bodysuit, socks, slippers with prints, a dog, a pet outfit, a bandana or any other extra printed item.
+
+BRAND CONTEXT: Dress Like Mommy sells matching family clothing. Images should feel warm, clean, bright, realistic, wholesome, family-friendly, commercial, European lifestyle catalog style, suitable for Shopify listings.
+
+MODEL STYLE: all models must be European. Use a natural-looking European family (mom, dad, a girl and a boy): fair to light-medium skin tones, blonde, light brown or soft brunette hair, soft natural makeup, clean family-friendly styling, warm smiles, approachable real-family look; not runway models, not luxury fashion models, not overly glamorous, not heavily edited. The models MUST be different people from the vendor photos.
+
+SCENES (holiday pajamas): Christmas morning, cozy bright bedroom with soft white bedding, family living room with a decorated tree, bedtime story, clean festive home.
+
+IMAGE 1 — MAIN HERO IMAGE: the strongest Shopify main image. Show the product clearly in a clean, bright, professional Christmas lifestyle setting. Full outfits visible on the whole family.
+IMAGE 3 — BEST OCCASION IMAGE: the most commercially useful scene for Christmas pajamas, e.g. Christmas morning by the tree opening gifts or a cozy festive bedroom. Same family as IMAGE 1. Clothing clearly visible.
+IMAGE 5 — PRODUCT-ONLY IMAGE: no people. One adult set and one child set shown as a clean flat lay or on hangers on a simple light background, matching the vendor product exactly, so customers can verify what they are buying.
+IMAGE 6 — ALTERNATE LIFESTYLE IMAGE: another strong gallery image with a different pose, angle or setting (e.g. sitting together on the bed or sofa, reading a story, laughing), same family, not repetitive.
+
+STRICT QUALITY CHECK before saving each image: compare it to the vendor images. Reject and regenerate if the clothing design, color, print, pattern or graphic text changed, if the lettering is misspelled or unreadable, if the product is hidden, if anyone wears an invented item, if the wrong person wears the wrong garment, if the adult and child versions no longer match, if it is a collage or multi-image layout, if it is not vertical 9:16, or if it looks fake, distorted or unusable for Shopify.
+
+When all four files are saved, reply with one line per file: name, width x height.
+"""
+
+
+import sys as _sys
+_sys.path.insert(0, str(TOOLS))
+import build_specs_zoya as zb  # noqa: E402
+ZREFS = {k: zb.ahash(p) for k, p in zb.CHART_REFS.items()}
+
+
+def white_fraction(path: Path) -> float:
+    im = Image.open(path).convert("RGB")
+    im.thumbnail((160, 160))
+    px = list(im.getdata())
+    return sum(1 for r, g, b in px if r > 232 and g > 232 and b > 232) / len(px)
+
+
+def main() -> None:
+    import importlib.util, sys  # noqa: E401
+    sys.path.insert(0, str(TOOLS))
+    from engine_loader import load
+    jobs = []
+    only = set(sys.argv[1:])  # optional: build jobs for these handles only
+    for spec_path in sorted((TOOLS / "specs").glob("*.json")):
+        spec = json.loads(spec_path.read_text(encoding="utf-8"))
+        if only and spec["handle"] not in only:
+            continue
+        handle = spec["handle"]
+        key = handle.replace("-family-matching-pajamas", "")
+        ns = load(spec_path)
+        job = ROOT / "uploads" / handle / "ai"
+        job.mkdir(parents=True, exist_ok=True)
+        # ref1 = the draft's vendor image (on-model); ref2/ref3 = clean product shots from the offer gallery.
+        shutil.copyfile(ROOT / "uploads" / handle / spec["image_filename"], job / "ref1.jpg")
+        desc = ROOT / "ops/sourcing/vendor-images" / spec["offer_id"] / "desc"
+        candidates = []
+        # Explicit gallery picks (spec "ai_refs") win; supplier charts never become references.
+        picks = [desc / n for n in spec.get("ai_refs", [])]
+        for p in ([] if picks else sorted(desc.glob("*.jpg"))):
+            if p.name in spec.get("skip_ref_images", []):
+                continue
+            try:
+                w, h = Image.open(p).size
+            except Exception:
+                continue
+            if min(w, h) < 600 or p.name in ("00.jpg", "01.jpg"):  # 00/01 are the size charts on these offers
+                continue
+            if spec.get("chart_table", "").startswith("zoya") and zb.chart_kind(p, ZREFS):
+                continue
+            candidates.append((white_fraction(p), p))
+        candidates.sort(key=lambda t: -t[0])
+        import hashlib
+        main_hash = hashlib.md5((ROOT / "uploads" / handle / spec["image_filename"]).read_bytes()).hexdigest()
+        seen = {main_hash}
+        refs = []
+        ordered = [(0, p) for p in picks] or sorted(candidates, key=lambda t: (t[0] <= 0.35, -t[0]))
+        for frac, p in ordered:
+            digest = hashlib.md5(p.read_bytes()).hexdigest()
+            if digest in seen:
+                continue
+            seen.add(digest)
+            refs.append(p)
+            if len(refs) == 2:
+                break
+        for i, p in enumerate(refs, start=2):
+            shutil.copyfile(p, job / f"ref{i}.jpg")
+        lettering = LETTERING[key] or "none (no lettering on these garments; do not add any text)"
+        role_note = (ROLE_NOTES.get(key, "") + " ") if ROLE_NOTES.get(key) else ""
+        prompt = PROMPT.format(
+            print_name=spec["print_name"],
+            print_sentence=spec["print_sentence"],
+            design_details=ns["DESIGN_TEXT"][spec["design_key"]],
+            lettering=lettering,
+            role_note=role_note,
+        )
+        (job / "prompt.txt").write_text(prompt, encoding="utf-8")
+        jobs.append({"handle": handle, "refs": 1 + len(refs), "dir": str(job)})
+    (TOOLS / "ai_images" / "jobs.json").write_text(json.dumps(jobs, indent=1), encoding="utf-8")
+    for j in jobs:
+        print(j["handle"], "refs", j["refs"])
+
+
+if __name__ == "__main__":
+    main()
