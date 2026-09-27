@@ -54947,3 +54947,16 @@ LIVE_VERIFIED (mobile UA):
 - Subagent Playwright: 9/9 screenshot pairs pixel-identical.
 
 Rollback: `git revert`, then `sync_live_theme_from_main.py --apply`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-abandoned-checkout-automation-already-live
+
+- task_entities: Shopify Messaging automation flow 9377546337 ("Abandoned checkout"); also "Abandoned cart" and "Abandoned product browse" automations; order #9572
+- task_stage: BLOCKED (owner app install)
+- supersedes: `lanes/email.md` and `OWNER_MORNING_PACKET.md` item 1's premise that no automations are live
+- next_action_id: OWNER_INSTALL_SHOPIFY_FLOW_THEN_UPGRADE_AC_SEQUENCE
+
+The owner approved abandoned-checkout emails in chat on 2026-09-27 ~05:15 EDT. LIVE_VERIFIED read (no writes): Shopify Messaging already has **Abandoned checkout ACTIVE** (last ran 2026-09-26 16:19), plus Abandoned cart and Abandoned product browse ACTIVE.
+- The checkout flow sends one default email, "You left items at checkout" ("Your cart is ready for checkout", items, "Continue checkout"). The panel shows 14 sent, 0% clicks, 0 orders; 8 of those checkouts were one repeated swimsuit checkout on 09-12.
+- The upgrade (better copy for AC-1, plus AC-2 at 24h from `lanes/email.md` §1A) needs the workflow editor. That requires installing the free Shopify Flow app, which is an owner-only app/permission grant. Nothing was changed.
+
+Also found: order #9572 ($95.36, 4 raglan tees, placed 2026-09-24) is PAID and UNFULFILLED after 3 days. The owner needs to place it with BuckyDrop.
