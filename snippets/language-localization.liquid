@@ -44,29 +44,7 @@
         {%- elsif locale_relative_path != '/' -%}
           {%- assign language_href = language_href | append: locale_relative_path -%}
         {%- endif -%}
-        <li class="disclosure__item" tabindex="-1">
-          <a
-            class="link link--text disclosure__link caption-large focus-inset"
-            href="{{ language_href }}"
-            hreflang="{{ language.iso_code }}"
-            lang="{{ language.iso_code }}"
-            {% if language.iso_code == localization.language.iso_code %}
-              aria-current="true"
-            {% endif %}
-            data-value="{{ language.iso_code }}"
-          >
-            <span
-              {% if language.iso_code != localization.language.iso_code %}
-                class="visibility-hidden"
-              {% endif %}
-            >
-              {%- render 'icon-checkmark' -%}
-            </span>
-            <span>
-              {{ language.endonym_name | capitalize }}
-            </span>
-          </a>
-        </li>
+        <li class="disclosure__item" tabindex="-1"><a class="link link--text disclosure__link caption-large focus-inset" href="{{ language_href }}" hreflang="{{ language.iso_code }}" lang="{{ language.iso_code }}"{% if language.iso_code == localization.language.iso_code %} aria-current="true"{% endif %} data-value="{{ language.iso_code }}">{%- if language.iso_code == localization.language.iso_code -%}<span>{%- render 'icon-checkmark' -%}</span>{%- else -%}<span class="visibility-hidden"><svg class="icon icon-checkmark" aria-hidden="true" viewBox="0 0 12 9"></svg></span>{%- endif -%}<span>{{ language.endonym_name | capitalize }}</span></a></li>
       {%- endfor -%}
     </ul>
   </div>

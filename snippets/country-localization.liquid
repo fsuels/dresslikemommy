@@ -98,59 +98,14 @@
           aria-label="{{ 'localization.popular_countries_regions' | t }}"
         >
           {%- for country in popular_countries -%}
-            <li class="disclosure__item" tabindex="-1">
-              <a
-                class="link link--text disclosure__link caption-large focus-inset"
-                href="#"
-                {% if country.iso_code == localization.country.iso_code %}
-                  aria-current="true"
-                {% endif %}
-                data-value="{{ country.iso_code }}"
-                id="{{ country.name }}"
-              >
-                <span
-                  {% if country.iso_code != localization.country.iso_code %}
-                    class="visibility-hidden"
-                  {% endif %}
-                >
-                  {%- render 'icon-checkmark' -%}
-                </span>
-                <span class="country">{{- country.name }}</span>
-                <span class="localization-form__currency motion-reduce{% unless show_currencies %} hidden{% endunless %}">
-                  {{ country.currency.iso_code }}
-                  {{ country.currency.symbol -}}
-                </span>
-              </a>
-            </li>
+            <li class="disclosure__item" tabindex="-1"><a class="link link--text disclosure__link caption-large focus-inset" href="#"{% if country.iso_code == localization.country.iso_code %} aria-current="true"{% endif %} data-value="{{ country.iso_code }}" id="{{ country.name }}">{%- if country.iso_code == localization.country.iso_code -%}<span>{%- render 'icon-checkmark' -%}</span>{%- else -%}<span class="visibility-hidden"><svg class="icon icon-checkmark" aria-hidden="true" viewBox="0 0 12 9"></svg></span>{%- endif -%}<span class="country">{{ country.name }}</span><span class="localization-form__currency motion-reduce{% unless show_currencies %} hidden{% endunless %}">{{ country.currency.iso_code }} {{ country.currency.symbol }}</span></a></li>
           {%- endfor -%}
         </ul>
       {% endif %}
       <ul role="list" class="list-unstyled countries">
         {%- for country in localization.available_countries -%}
-          <li class="disclosure__item" tabindex="-1">
-            <a
-              class="link link--text disclosure__link caption-large focus-inset"
-              href="#"
-              {% if country.iso_code == localization.country.iso_code %}
-                aria-current="true"
-              {% endif %}
-              data-value="{{ country.iso_code }}"
-              id="{{ country.name }}"
-            >
-              <span
-                {% if country.iso_code != localization.country.iso_code %}
-                  class="visibility-hidden"
-                {% endif %}
-              >
-                {%- render 'icon-checkmark' -%}
-              </span>
-              <span class="country">{{- country.name }}</span>
-              <span class="localization-form__currency motion-reduce{% unless show_currencies %} hidden{% endunless %}">
-                {{ country.currency.iso_code }}
-                {{ country.currency.symbol -}}
-              </span>
-            </a>
-          </li>
+          {%- comment -%} One line per option. Inactive options keep a hidden, path-less checkmark (same viewBox, same box size) so the column width is unchanged; only the active option renders the full icon. {%- endcomment -%}
+          <li class="disclosure__item" tabindex="-1"><a class="link link--text disclosure__link caption-large focus-inset" href="#"{% if country.iso_code == localization.country.iso_code %} aria-current="true"{% endif %} data-value="{{ country.iso_code }}" id="{{ country.name }}">{%- if country.iso_code == localization.country.iso_code -%}<span>{%- render 'icon-checkmark' -%}</span>{%- else -%}<span class="visibility-hidden"><svg class="icon icon-checkmark" aria-hidden="true" viewBox="0 0 12 9"></svg></span>{%- endif -%}<span class="country">{{ country.name }}</span><span class="localization-form__currency motion-reduce{% unless show_currencies %} hidden{% endunless %}">{{ country.currency.iso_code }} {{ country.currency.symbol }}</span></a></li>
         {%- endfor -%}
       </ul>
     </div>
