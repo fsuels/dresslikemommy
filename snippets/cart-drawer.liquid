@@ -23,8 +23,8 @@
 {%- comment -%}
   "Complete the family": same-design missing family roles at real prices.
   Rendered inside the scrolling item list (above the fixed checkout footer).
-  When it has offers, the footer's "You may also like" strip is skipped so the
-  item list keeps its height on a 375px phone.
+  When it has offers, the "You may also like" strip (also in the item list) is
+  skipped so the list does not repeat two recommendation rows.
 {%- endcomment -%}
 {%- capture dlm_complete_family_html -%}
   {%- render 'dlm-complete-family', surface: 'drawer', max_products: 2 -%}
@@ -596,7 +596,57 @@
                   </tbody>
                 </table>
               </div>
-              {{ dlm_complete_family_html }}
+              {%- if dlm_complete_family_html != blank -%}
+                {{ dlm_complete_family_html }}
+              {%- else -%}
+                {%- comment -%}
+                  "You may also like" lives in the scrolling item list, not the fixed footer, so the
+                  footer only holds the totals and checkout buttons and the item list keeps its
+                  height on a 375px phone. Skipped while "Complete the family" shows.
+                {%- endcomment -%}
+                <div class="cart-drawer__upsell cart-drawer__upsell--compact">
+                  <h3 class="cart-drawer__upsell-heading">{{ 'sections.cart.you_may_also_like' | t }}</h3>
+                  <div class="cart-drawer__upsell-scroll" id="CartDrawer-Upsell">
+                    {%- assign first_item = cart.items | first -%}
+                    {%- assign upsell_count = 0 -%}
+                    {%- for collection in first_item.product.collections -%}
+                      {%- if upsell_count >= 3 -%}{%- break -%}{%- endif -%}
+                      {%- for product in collection.products limit: 6 -%}
+                        {%- if upsell_count >= 3 -%}{%- break -%}{%- endif -%}
+                        {%- unless product.available -%}{%- continue -%}{%- endunless -%}
+                        {%- assign in_cart = false -%}
+                        {%- for item in cart.items -%}
+                          {%- if item.product.id == product.id -%}
+                            {%- assign in_cart = true -%}
+                            {%- break -%}
+                          {%- endif -%}
+                        {%- endfor -%}
+                        {%- unless in_cart -%}
+                          <div class="cart-drawer__upsell-item">
+                            <a href="{{ product.url }}" class="cart-drawer__upsell-link" tabindex="-1" aria-hidden="true">
+                              {%- if product.featured_image -%}
+                                <img
+                                  src="{{ product.featured_image | image_url: width: 200 }}"
+                                  alt="{{ product.featured_image.alt | escape }}"
+                                  width="90"
+                                  height="90"
+                                  loading="lazy"
+                                  class="cart-drawer__upsell-img"
+                                >
+                              {%- endif -%}
+                            </a>
+                            <div class="cart-drawer__upsell-info">
+                              <a href="{{ product.url }}" class="cart-drawer__upsell-name">{{ product.title | escape | split: ' | ' | first }}</a>
+                              <span class="cart-drawer__upsell-price">{{ product.price | money }}</span>
+                            </div>
+                          </div>
+                          {%- assign upsell_count = upsell_count | plus: 1 -%}
+                        {%- endunless -%}
+                      {%- endfor -%}
+                    {%- endfor -%}
+                  </div>
+                </div>
+              {%- endif -%}
             {%- endif -%}
             <p id="CartDrawer-LiveRegionText" class="visually-hidden" role="status"></p>
             <p id="CartDrawer-LineItemStatus" class="visually-hidden" aria-hidden="true" role="status">
@@ -727,6 +777,20 @@
           </div>
         </div>
 
+        {%- comment -%}
+          Express wallets (Shop Pay, PayPal, Amazon Pay, ...) directly under Check out, as on /cart.
+          The block sits in the drawer section, so every Section Rendering API re-render of the
+          drawer returns fresh wallet markup; the <shopify-accelerated-checkout-cart> custom element
+          initialises itself when it is inserted (cart-drawer.js loads the wallet script if it is
+          not on the page yet). Skipped on the cart page, which renders its own wallets, and for an
+          empty cart, so the wallet scripts do not start on every page for visitors with no items.
+        {%- endcomment -%}
+        {%- if additional_checkout_buttons and cart != empty and request.page_type != 'cart' -%}
+          <div class="cart-drawer__dynamic-checkout-buttons cart__dynamic-checkout-buttons additional-checkout-buttons">
+            {{ content_for_additional_checkout_buttons }}
+          </div>
+        {%- endif -%}
+
         {%- comment -%} ── Compact trust strip (icons only on mobile, text on desktop) ── {%- endcomment -%}
         <div class="cart-drawer__trust-strip">
           <span class="trust-strip__item">
@@ -742,52 +806,6 @@
             <span class="trust-strip__label">{{ 'sections.cart.trust.returns' | t }}</span>
           </span>
         </div>
-
-        {%- comment -%} ── You may also like — moved below all checkout elements; skipped while "Complete the family" shows ── {%- endcomment -%}
-        {%- if cart != empty and dlm_complete_family_html == blank -%}
-          <div class="cart-drawer__upsell cart-drawer__upsell--compact">
-            <h3 class="cart-drawer__upsell-heading">{{ 'sections.cart.you_may_also_like' | t }}</h3>
-            <div class="cart-drawer__upsell-scroll" id="CartDrawer-Upsell">
-              {%- assign first_item = cart.items | first -%}
-              {%- assign upsell_count = 0 -%}
-              {%- for collection in first_item.product.collections -%}
-                {%- if upsell_count >= 3 -%}{%- break -%}{%- endif -%}
-                {%- for product in collection.products limit: 6 -%}
-                  {%- if upsell_count >= 3 -%}{%- break -%}{%- endif -%}
-                  {%- unless product.available -%}{%- continue -%}{%- endunless -%}
-                  {%- assign in_cart = false -%}
-                  {%- for item in cart.items -%}
-                    {%- if item.product.id == product.id -%}
-                      {%- assign in_cart = true -%}
-                      {%- break -%}
-                    {%- endif -%}
-                  {%- endfor -%}
-                  {%- unless in_cart -%}
-                    <div class="cart-drawer__upsell-item">
-                      <a href="{{ product.url }}" class="cart-drawer__upsell-link" tabindex="-1" aria-hidden="true">
-                        {%- if product.featured_image -%}
-                          <img
-                            src="{{ product.featured_image | image_url: width: 200 }}"
-                            alt="{{ product.featured_image.alt | escape }}"
-                            width="90"
-                            height="90"
-                            loading="lazy"
-                            class="cart-drawer__upsell-img"
-                          >
-                        {%- endif -%}
-                      </a>
-                      <div class="cart-drawer__upsell-info">
-                        <a href="{{ product.url }}" class="cart-drawer__upsell-name">{{ product.title | escape | split: ' | ' | first }}</a>
-                        <span class="cart-drawer__upsell-price">{{ product.price | money }}</span>
-                      </div>
-                    </div>
-                    {%- assign upsell_count = upsell_count | plus: 1 -%}
-                  {%- endunless -%}
-                {%- endfor -%}
-              {%- endfor -%}
-            </div>
-          </div>
-        {%- endif -%}
       </div>
     </div>
   </div>

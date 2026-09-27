@@ -124,11 +124,27 @@ class CartDrawer extends HTMLElement {
       sectionElement.innerHTML = this.getSectionInnerHTML(parsedState.sections[section.id], section.selector);
     });
 
+    this.ensureExpressCheckoutButtons();
+
     setTimeout(() => {
       this.resetDrawerScroll();
       this.querySelector('#CartDrawer-Overlay').addEventListener('click', this.close.bind(this));
       this.open();
     });
+  }
+
+  // The re-rendered drawer carries fresh <shopify-accelerated-checkout-cart> markup, which
+  // initialises itself once its custom element is defined. If the page was first rendered
+  // with an empty cart and Shopify's wallet script is not loaded yet, ask Shopify to load it.
+  ensureExpressCheckoutButtons() {
+    try {
+      if (!this.querySelector('shopify-accelerated-checkout-cart')) return;
+      if (window.customElements && window.customElements.get('shopify-accelerated-checkout-cart')) return;
+      const paymentButton = window.Shopify && window.Shopify.PaymentButton;
+      if (paymentButton && typeof paymentButton.init === 'function') paymentButton.init();
+    } catch (error) {
+      console.error(error);
+    }
   }
 
   resetDrawerScroll() {

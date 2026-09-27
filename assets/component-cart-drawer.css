@@ -204,6 +204,13 @@ cart-drawer {
   flex-grow: 1;
 }
 
+/* The item list also holds the horizontal "You may also like" row; keep that row
+   from widening the list past the drawer. */
+.cart-drawer .drawer__contents {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .cart-drawer .cart-items,
 .cart-drawer tbody {
   display: block;
@@ -470,6 +477,18 @@ cart-drawer-items {
 .drawer__footer #dynamic-checkout-cart ul > li:only-child {
   flex-basis: 100% !important;
   margin-right: 0.5rem !important;
+}
+
+/* Express wallets under Check out: compact buttons in the two-up grid above,
+   so the fixed footer stays short and the item list keeps its height. */
+.drawer__footer .cart-drawer__dynamic-checkout-buttons {
+  margin: 0;
+}
+
+.cart-drawer__dynamic-checkout-buttons shopify-accelerated-checkout-cart {
+  --shopify-accelerated-checkout-button-block-size: 40px;
+  --shopify-accelerated-checkout-button-inline-size: 40px;
+  --shopify-accelerated-checkout-row-gap: 5px;
 }
 
 @media screen and (min-width: 750px) {
@@ -896,6 +915,11 @@ cart-drawer-items::-webkit-scrollbar-track-piece {
   font-size: 1.1rem;
   color: rgba(var(--color-foreground), 0.55);
   text-align: center;
+}
+
+/* The markup and cart.js keep this line hidden; the display rule above must not reveal it. */
+.cart-drawer__checkout-reassurance[hidden] {
+  display: none;
 }
 
 .cart-drawer__reassurance-item {
