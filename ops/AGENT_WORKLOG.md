@@ -55160,3 +55160,20 @@ Handoff from the drawer claim owner ("Website sales improvement", CEO sprint): c
 - Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-cart-drawer-copy-trim/README.md` (follow-up section) and `after_wallet_cap_iphone13.png`.
 - Rollback: `git revert 80576d3`, then upsert the CSS file from `80576d3^`.
 - Next: re-measure mobile cart→checkout in Shopify analytics after a full week of traffic. Exclude the crawler spike days.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-matching-set-cta-and-font-live
+
+Owner request (Claude Code chat, session "website look improvements"): fix the collection sort override (#1), the matching-set font (#2) and the "Pick a size" button (#3) from the same-day look audit; push to main and verify live on desktop and mobile.
+
+- #1 collection sort: already fixed by `0025bf9` (another session). LIVE_VERIFIED in headless Chromium, desktop and iPhone 13: `mommy-and-me`, `pajamas` and `family-pajamas` render the same first 5 handles as `products.json` (admin MANUAL order), and the sort select shows `manual`. No `assets/facets.js` write.
+- #2 and #3: IMPLEMENTED in `9c9bde2`, touching `assets/product-desktop-ux-20260513-ruler-sync.js` and `assets/component-product-desktop-ux-ruler-sync.css`.
+  - Before a size is picked, the builder CTA is `aria-disabled` (not `disabled`) and reads the localized `addCurrentPiece` label in filled green. A tap without a complete selection adds `.is-attempted` to the builder, which reveals the inline "Pick a size" / "Pick a {axis}" hints (now hidden until then, normal weight, #9a4a0f) and scrolls to the first one.
+  - base.css's dimmed `[aria-disabled]` button look is overridden for this CTA.
+  - Builder buttons use `font-family: inherit` (they were rendering in Arial).
+  - The in-flight add still uses `disabled`. Both sticky bars gate on `DLMMatchingSetStickyState.isReady`, and the dlm-family-builder capture listener is unaffected.
+- VERIFIED:
+  - Pre-release: `node --check`, `git diff --check`, and a live-DOM harness that swapped in the local files on Ladybug Dots, Beanie Ghost and `/de`.
+  - Release: the GitHub sync dropped the push. `sync_live_theme_from_main.py --apply` uploaded exactly the 2 drifting files (applied 2, verified 2 by MD5).
+  - LIVE_VERIFIED, without interception, on desktop 1440 and iPhone 13: initial, empty-tap, size-pick and add-to-cart states; no page errors; the de-DE browser gets German labels; the mobile sticky bar scrolls to the builder.
+- Residual: with the family add-all list non-empty, the CTA can carry `aria-disabled="true"` while the list handler owns the click. There is no visual effect, but screen readers may announce it as dimmed.
+- Rollback: `git revert 9c9bde2`, then `sync_live_theme_from_main.py --apply`.
