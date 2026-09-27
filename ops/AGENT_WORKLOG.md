@@ -55704,3 +55704,10 @@ Owner request (Claude Code chat, session "Website visual improvements" [f7baa5])
 
 - **Placement:** PDP 200. Automatically #1 in family-sweaters (28), christmas-sweaters (16), the Christmas hub (31), fall-winter (54) and couples (33).
 - **Related links:** pom-pom-star → Santa Hat Reindeer, Candy Cane Reindeer, Nordic Yoke and Christmas Reindeer; the storefront related API readback matches. Nordic Yoke and the 3 red knits list pom-pom-star first.
+
+Update (2026-09-27 ~18:57 EDT), anchor `2026-09-27-review10-shipping-email-and-review-note`: LIVE_VERIFIED; next_action_id OWNER_SIGN_IN_INFO_MAILBOX_FOR_REPLY_DRAFTS.
+- The GitHub sync dropped `351ad2a` after 10+ minutes: 0/37 files applied, and all 36 JSON files were JSON-equal to `351ad2a^`.
+- Before-state saved in the session scratchpad.
+- Upserted from `origin/main` via `themeFilesUpsert`: the section, 35 locales and `templates/product.json` (0 userErrors). Readback: section byte-equal; 36/36 JSON-equal to main.
+- Live DE PDP: 0 Liquid errors, 0 missing translations, and the families line is present.
+- The note renders on 0 products, as intended, because no active product has a published review. The render path with reviews > 0 is not yet visually verified; check it at the first published review.
