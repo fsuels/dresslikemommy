@@ -1,6 +1,8 @@
 # Christmas 2026 Past-Customer Email: Approval Packet
 
-- Prepared: 2026-09-27, Claude Code (CEO session). Status: `AWAITING_OWNER_APPROVAL`. **Nothing has been sent, scheduled or created.** No segment, email draft, discount or automation was made or changed.
+- Prepared: 2026-09-27, Claude Code (CEO session). Status: `APPROVED_PLAN__DRAFTS_TO_BUILD`. **Nothing has been sent or scheduled.**
+- Owner decisions (chat, 2026-09-27): **1 = Yes** (campaign to subscribed customers), **2 = Tue Oct 6** launch, **3 = Yes** (bundle offer in the emails), **4 = Skip** C-4. Final send still waits for the owner's review of each built draft.
+- Segments are ready in Shopify (§8). The email drafts must be built in the Messaging editor because Shopify has no API for Messaging drafts (§8).
 - Source: `lanes/email.md` §2 (the Christmas campaign) and §4 (segments). This packet **supersedes the §2 copy and dates** where they differ; see "What changed from the lane pack".
 - What the owner does: answer the four questions in §1. Then either build the emails yourself in Shopify Messaging from §4, or tell the CEO session to prepare the Messaging drafts for your final review.
 
@@ -167,3 +169,45 @@ Personalize `[First name]` with Messaging's First name token, fallback `there`. 
 - Per wave: bounce < 2%, spam < 0.1%, unsubscribes < 0.5% (the stop rule above).
 - Revenue: orders and sales attributed to C-1, C-2 and C-3 in the Messaging report, plus the share of orders with 3+ pieces (baseline 44%, from the family-bundle anchor).
 - Review dates: Nov 5 (after C-1) and Jan 10 (after the season).
+
+---
+
+## 8. Build sheet: Shopify Messaging drafts (owner, about 10 minutes)
+
+### Segments (ready in Shopify → Customers → Segments; nothing to create)
+
+| Use for | Segment name | ID | Count 2026-09-27 |
+|---|---|---|---|
+| C-1 wave A | `Xmas 2026 C-1 Tier A: subscribed buyers since 2024` | 540940501089 | 307 |
+| C-1 wave A (add-on) | `Xmas 2026 C-1 add-on: subscribers, no order, joined last 12 months` | 540940599393 | 48 |
+| C-1 wave B | `Xmas 2026 C-1 Tier B: subscribed buyers 2021-2023` | 540940533857 | 1,728 |
+| C-1 wave C | `Xmas 2026 C-1 Tier C: subscribed buyers before 2021` | 540940566625 | 3,183 |
+| C-2 | `Xmas 2026 C-2: US engaged (order by Dec 8 reminder)` | 540943417441 (created by this session) | 211 today; grows as C-1 is opened |
+| C-3 | `Xmas 2026 C-3: US engaged, no Christmas 2026 order (last call)` | 540943777889 (created by this session) | 211 today; excludes this season's Christmas buyers |
+
+The four C-1 segments already existed (creator not recorded in the repo) and match §3 exactly, so they were reused, not duplicated. The lane pack's engagement syntax (`shopify_email.opened(date: -45d)`) is rejected by Shopify; the working form is `shopify_email.opened(since: -45d) = true`, and `products_purchased(tag: '…', since: -60d) = false`.
+
+Rollback (segments only): delete the two segments created by this session in Customers → Segments. They send nothing on their own.
+
+### Drafts to build (Marketing → Messaging → Create email)
+
+Build all five now, send a test of each to yourself, and **Save as draft**. Do not schedule until you have reviewed each test on your phone.
+
+| Draft name | Audience | Copy | Planned send (10:00 ET) |
+|---|---|---|---|
+| `Xmas26 C-1 wave A` | Tier A + add-on | §4 C-1 | Tue Oct 6 |
+| `Xmas26 C-1 wave B` | Tier B | Duplicate of wave A | Thu Oct 8, only if wave A passes the stop rule |
+| `Xmas26 C-1 wave C` | Tier C | Duplicate of wave A | Tue Oct 13, only if wave B passes |
+| `Xmas26 C-2 order by Dec 8` | C-2 segment | §4 C-2 | Thu Nov 19 |
+| `Xmas26 C-3 last call` | C-3 segment | §4 C-3 | Fri Dec 4 |
+
+For each draft:
+1. Pick a simple template (one image, text, button, product block).
+2. **To:** the segment(s) above. **Subject** and **preview text:** from §4. In wave A, you can use Messaging's subject A/B test with the alt subject instead of a separate send to the 51 past Christmas-pajama buyers.
+3. **Body:** paste the §4 text. Replace `[First name]` with Personalize → First name, fallback `there`.
+4. **Button:** `Shop Christmas pajamas` → `https://www.dresslikemommy.com/collections/christmas-pajamas`.
+5. **Product block:** the products listed in §4 for that email.
+6. **Small print:** paste the §4 small-print line under the button.
+7. **Send test** to yourself, check it on your phone, then **Save as draft**.
+
+Before each real send, run the §5 pre-send checklist. After each wave, tell the CEO session the Messaging report numbers so it can apply the stop rule and log them.

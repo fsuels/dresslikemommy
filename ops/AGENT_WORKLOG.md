@@ -55711,3 +55711,18 @@ Update (2026-09-27 ~18:57 EDT), anchor `2026-09-27-review10-shipping-email-and-r
 - Upserted from `origin/main` via `themeFilesUpsert`: the section, 35 locales and `templates/product.json` (0 userErrors). Readback: section byte-equal; 36/36 JSON-equal to main.
 - Live DE PDP: 0 Liquid errors, 0 missing translations, and the families line is present.
 - The note renders on 0 products, as intended, because no active product has a published review. The render path with reviews > 0 is not yet visually verified; check it at the first published review.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-christmas-email-segments-ready
+
+- task_entities: segments 540943417441 (C-2) and 540943777889 (C-3) created; existing 540940501089 / 540940533857 / 540940566625 / 540940599393 reused; `CHRISTMAS_EMAIL_APPROVAL_PACKET.md` §8
+- task_stage: HANDOFF (owner builds the Messaging drafts; nothing sent or scheduled)
+- next_action_id: OWNER_BUILD_5_MESSAGING_DRAFTS_AND_TEST_SENDS
+
+Owner decisions (chat, via the question prompt): 1 = Yes (campaign to subscribed customers), 2 = Tue Oct 6, 3 = Yes (bundle offer in the emails), 4 = Skip C-4.
+
+Done:
+- Found four C-1 wave segments already in Shopify (creator not recorded in the repo). Their queries match the packet, and member counts read back as 307 / 1,728 / 3,183 / 48. Reused them rather than duplicating.
+- Created 2 segments via `segmentCreate` (0 userErrors): the C-2 US-engaged segment and the C-3 US-engaged-without-a-Christmas-2026-order segment. Both queries were validated by member count first (211 each today).
+- Contradiction recorded: the `lanes/email.md` §4 engagement syntax `shopify_email.opened(date: -45d)` is rejected by the API. The working form is `(since: -45d) = true`; `products_purchased(tag:…, since:…)` also works.
+- Messaging drafts are NOT created: Shopify has no public API for Messaging drafts, and no admin browser is available in this session. The owner build sheet is in the packet §8.
+- Rollback: delete segments 540943417441 and 540943777889. Segments send nothing by themselves.
