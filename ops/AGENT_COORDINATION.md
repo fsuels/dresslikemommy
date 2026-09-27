@@ -2,7 +2,7 @@
 
 ## Bundle offer announcement bar claim — 2026-09-27
 
-Status: ACTIVE_WRITE_CLAIM (release pending owner approval for `main`). Owner (chat, 2026-09-27): "We need to make money! Do something get people to order from us." The Claude Code cloud session on branch `claude/revenue-growth-strategy-f0njpo` is sole writer for the `sections.announcements.default_promo` and `shipping_country_promo` values in `locales/*.json`, the three fallback promo strings in `sections/announcement-bar.liquid`, and the mobile announcement-item rule in `assets/dlm-header.css`. No product, price, discount, collection, feed, ad, spend or customer-messaging write. Anchor `2026-09-27-bundle-offer-announcement-bar`. Rollback: `git revert` the release commit.
+Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED (2026-09-27). Offer leads the announcement bar in all 21 storefront languages on desktop and phone; fr/no stale header-group overrides removed. Owner (chat, 2026-09-27): "We need to make money! Do something get people to order from us." The Claude Code cloud session on branch `claude/revenue-growth-strategy-f0njpo` is sole writer for the `sections.announcements.default_promo` and `shipping_country_promo` values in `locales/*.json`, the three fallback promo strings in `sections/announcement-bar.liquid`, and the mobile announcement-item rule in `assets/dlm-header.css`. No product, price, discount, collection, feed, ad, spend or customer-messaging write. Anchor `2026-09-27-bundle-offer-announcement-bar`. Rollback: `git revert` the release commit.
 
 ## Family bundle discount claim — 2026-09-27
 

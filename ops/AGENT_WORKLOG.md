@@ -55248,8 +55248,8 @@ Owner, in chat: "Make sure are rules are always remember in every new session wh
 ## AGENT_CONTINUITY_ANCHOR: 2026-09-27-bundle-offer-announcement-bar
 
 - task_entities: announcement bar keys `sections.announcements.default_promo` / `shipping_country_promo` in all 35 `locales/*.json`; `sections/announcement-bar.liquid` (en/es/fr fallback strings); `assets/dlm-header.css` (mobile one-item rule); discount `gid://shopify/DiscountAutomaticNode/1315733110881`
-- task_stage: RELEASED to `main` (owner approved in chat: "approve the release to main"); live readback PENDING
-- next_action_id: VERIFY_LIVE_BANNER_THEN_REGISTER_20_LOCALE_THEME_TRANSLATIONS
+- task_stage: DONE, LIVE_VERIFIED
+- next_action_id: none (watch 3+ piece order share against the 44% baseline in the family-bundle anchor)
 
 Why: owner (chat, 2026-09-27): "We need to make money! Do something get people to order from us." The family bundle discount (anchor `2026-09-27-family-bundle-discount`) is live but invisible until the cart, so it cannot change what shoppers add. The announcement bar is the one site-wide surface not held by a peer claim (the PDP strip and cart drawer are claimed).
 
@@ -55270,3 +55270,9 @@ Release update (same day):
 - Found: the MAIN theme stores its own translations of the two promo keys (`OnlineStoreThemeLocaleContent/133290917985`) for the 20 published locales (ar cs da de el es fi fr he hi it ja ko nl no pl pt-BR ro ru sv). Those override `locales/*.json`, so until they are re-registered those locales keep the old banner even after the sync. Register them against the NEW English source digest once the sync lands; the values are in this commit's locale files.
 - Fixed (Shopify connector, `translationsRemove`, 0 userErrors): the header-group announcement block had stale per-locale overrides. `/fr` showed "Livraison gratuite sur toutes les commandes | Retours faciles sous 30 jours | Paiement sécurisé" (an old free-shipping + 30-day-returns line) and `/no` showed the raw text `seksjoner.annonser.standard_promo`. Both were removed, so the block falls back to the translated promo key. Before-state: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-bundle-offer-announcement-bar/header_group_translation_before_state.json`. Live readback of /fr and /no: NOT done (refused).
 - Rollback for the removal: `translationsRegister` on `OnlineStoreThemeSectionGroup/header-group?theme_id=133290917985` with the saved key, digest and values.
+
+Closeout (owner: "finish anchor 2026-09-27-bundle-offer-announcement-bar"):
+- Contradiction recorded: the earlier note that stored theme translations override `locales/*.json` and must be re-registered was wrong for this path. The GitHub→Shopify sync updated them itself. Admin readback: source digest now new (`default_promo` 1de234ef…, `shipping_country_promo` ffe1b6a4…), and the de and fr translations hold the new values with `outdated: false`. No `translationsRegister` was needed or run.
+- LIVE_VERIFIED (HTML): all 21 storefront languages lead with the offer: / (en), ar, cs, da, de, el, es, fi, fr, he, hi, it, ja, ko, nl, no, pl, pt (pt-BR is served at `/pt`), ro, ru, sv. `/fr` and `/no` now show the translated promo (the removed overrides are gone).
+- LIVE_VERIFIED (headless Chromium, the proxy CA pinned by SPKI): desktop 1440px `/`, `/fr`, `/no`, `/de` show all three items on one 38px line, not clipped, no horizontal page overflow. iPhone 13 shows only the offer, fully readable, with no ellipsis, on all four.
+- One transient HTTP 500 on `/hi`; it returned 200 on every retry, and the hi.json change is values-only.
