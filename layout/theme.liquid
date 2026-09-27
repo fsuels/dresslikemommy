@@ -1178,6 +1178,9 @@
       {%- if show_shipping_country_confirmation -%}
         {% render 'shipping-country-confirmation' %}
       {%- endif -%}
+      {%- if request.page_type == 'policy' -%}
+        {% render 'dlm-policy-hub' %}
+      {%- endif -%}
       {{ content_for_layout }}
     </main>
 

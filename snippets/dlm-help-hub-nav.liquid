@@ -1,0 +1,49 @@
+{%- comment -%}
+  Help-hub navigation shared by the footer help pages and Shopify policy pages.
+  Labels come from the footer menus and shop policies, so their existing
+  Translate & Adapt translations apply on every language route.
+{%- endcomment -%}
+{%- liquid
+  assign hub_label = 'sections.footer_headings.help_support' | t
+  assign hub_current = request.path | default: ''
+-%}
+<nav class="dlm-hub-nav" aria-label="{{ hub_label | escape }}">
+  <ul class="dlm-hub-nav__list" role="list">
+    {%- for link in linklists['footer-menu'].links -%}
+      {%- if link.url contains '/pages/' -%}
+        <li>
+          <a href="{{ link.url }}" class="dlm-hub-nav__link{% if link.url == hub_current %} is-active{% endif %}"{% if link.url == hub_current %} aria-current="page"{% endif %}>
+            {{- link.title | escape -}}
+          </a>
+        </li>
+      {%- endif -%}
+    {%- endfor -%}
+    {%- for link in linklists['footer-menu-2'].links -%}
+      <li>
+        <a href="{{ link.url }}" class="dlm-hub-nav__link{% if link.url == hub_current %} is-active{% endif %}"{% if link.url == hub_current %} aria-current="page"{% endif %}>
+          {{- link.title | escape -}}
+        </a>
+      </li>
+    {%- endfor -%}
+    {%- for link in linklists['footer-menu-3'].links -%}
+      <li>
+        <a href="{{ link.url }}" class="dlm-hub-nav__link dlm-hub-nav__link--contact{% if link.url == hub_current %} is-active{% endif %}"{% if link.url == hub_current %} aria-current="page"{% endif %}>
+          {{- link.title | escape -}}
+        </a>
+      </li>
+    {%- endfor -%}
+  </ul>
+  {%- if shop.policies.size > 0 -%}
+    <ul class="dlm-hub-nav__legal" role="list">
+      {%- for policy in shop.policies -%}
+        {%- if policy != blank -%}
+          <li>
+            <a href="{{ policy.url }}"{% if policy.url == hub_current %} class="is-active" aria-current="page"{% endif %}>
+              {{- policy.title | escape -}}
+            </a>
+          </li>
+        {%- endif -%}
+      {%- endfor -%}
+    </ul>
+  {%- endif -%}
+</nav>

@@ -1,0 +1,9 @@
+{%- comment -%}
+  Shopify renders /policies/* itself; this adds the shared help-page styling
+  and help-hub navigation above the policy body.
+{%- endcomment -%}
+{{ 'section-main-page.css' | asset_url | stylesheet_tag }}
+<div class="dlm-policy-hub page-width">
+  <p class="dlm-info__eyebrow">{{ 'sections.footer_headings.help_support' | t }}</p>
+  {% render 'dlm-help-hub-nav' %}
+</div>

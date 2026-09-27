@@ -21,3 +21,605 @@
   width: 52.5rem;
   height: 52.5rem;
 }
+
+/* ------------------------------------------------------------------
+   Help & legal pages (footer pages and /policies/*)
+   Body content uses the dlm-* classes below; plain HTML still reads well.
+   ------------------------------------------------------------------ */
+
+.dlm-info,
+.dlm-policy-hub,
+.shopify-policy__container {
+  --dlm-ink: #231b16;
+  --dlm-muted: #6b5d53;
+  --dlm-brown: #7e431b;
+  --dlm-cream: #fdf8f4;
+  --dlm-sand: #f6ece3;
+  --dlm-line: #eadccf;
+  --dlm-coral: #d9643a;
+  --dlm-green: #2f6b4f;
+  --dlm-green-bg: #eef6f1;
+  --dlm-amber-bg: #fff6e8;
+  --dlm-amber-line: #f0d3a4;
+  --dlm-radius: 1.6rem;
+}
+
+.dlm-info {
+  max-width: 88rem;
+  color: var(--dlm-ink);
+}
+
+.dlm-info__hero {
+  text-align: center;
+  padding: 2.4rem 1.6rem 0;
+}
+
+.dlm-info__eyebrow {
+  margin: 0 0 0.8rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dlm-coral);
+}
+
+.dlm-policy-hub .dlm-info__eyebrow {
+  text-align: center;
+  margin-top: 2.4rem;
+}
+
+.dlm-info .dlm-info__title {
+  margin: 0 0 2.4rem;
+  font-size: clamp(3rem, 6vw, 4.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-transform: none;
+}
+
+/* Hub navigation */
+.dlm-hub-nav {
+  margin: 0 auto 3.2rem;
+  text-align: center;
+}
+
+.dlm-hub-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.dlm-hub-nav__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 4rem;
+  padding: 0 1.6rem;
+  border: 1px solid var(--dlm-line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--dlm-ink);
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.dlm-hub-nav__link:hover {
+  border-color: var(--dlm-brown);
+  color: var(--dlm-brown);
+}
+
+.dlm-hub-nav__link:focus-visible,
+.dlm-hub-nav__legal a:focus-visible {
+  outline: 2px solid var(--dlm-brown);
+  outline-offset: 3px;
+}
+
+.dlm-hub-nav__link.is-active {
+  background: var(--dlm-ink);
+  border-color: var(--dlm-ink);
+  color: #fff;
+}
+
+.dlm-hub-nav__legal {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.4rem 1.6rem;
+  margin: 1.4rem 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 1.3rem;
+}
+
+.dlm-hub-nav__legal a {
+  color: var(--dlm-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--dlm-line);
+  text-underline-offset: 0.3rem;
+}
+
+.dlm-hub-nav__legal a:hover,
+.dlm-hub-nav__legal a.is-active {
+  color: var(--dlm-brown);
+  text-decoration-color: currentColor;
+}
+
+@media screen and (max-width: 749px) {
+  .dlm-hub-nav__list {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0.2rem 1.6rem 0.8rem;
+    margin: 0 -1.5rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .dlm-hub-nav__list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .dlm-hub-nav__list > li {
+    flex: 0 0 auto;
+  }
+}
+
+/* Body card */
+.dlm-info__body,
+.shopify-policy__container .shopify-policy__body {
+  background: #fff;
+  border: 1px solid var(--dlm-line);
+  border-radius: var(--dlm-radius);
+  padding: 2.4rem 2rem;
+  box-shadow: 0 1.2rem 3.2rem rgba(35, 27, 22, 0.05);
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: var(--dlm-ink);
+}
+
+@media screen and (min-width: 750px) {
+  .dlm-info__body,
+  .shopify-policy__container .shopify-policy__body {
+    padding: 4.8rem 5.6rem;
+  }
+}
+
+.dlm-info__body > :first-child,
+.shopify-policy__body .rte > :first-child {
+  margin-top: 0;
+}
+
+.dlm-info__body h2,
+.shopify-policy__body h2 {
+  position: relative;
+  margin: 4rem 0 1.2rem;
+  padding-top: 2.4rem;
+  border-top: 1px solid var(--dlm-line);
+  font-size: 2.2rem;
+  line-height: 1.25;
+  color: var(--dlm-ink);
+}
+
+.dlm-info__body h2::before,
+.shopify-policy__body h2::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 4.8rem;
+  height: 3px;
+  border-radius: 3px;
+  background: var(--dlm-coral);
+}
+
+.dlm-info__body > h2:first-child,
+.dlm-info__body .dlm-lead + h2 {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.dlm-info__body > h2:first-child::before,
+.dlm-info__body .dlm-lead + h2::before {
+  display: none;
+}
+
+.dlm-info__body h3,
+.shopify-policy__body h3 {
+  margin: 2.4rem 0 0.8rem;
+  font-size: 1.8rem;
+  line-height: 1.3;
+  color: var(--dlm-ink);
+}
+
+.dlm-info__body p,
+.shopify-policy__body p {
+  margin: 0 0 1.4rem;
+}
+
+.dlm-info__body a:not(.dlm-button),
+.shopify-policy__body a {
+  color: var(--dlm-brown);
+  text-underline-offset: 0.3rem;
+}
+
+.dlm-info__body ul:not([class]),
+.shopify-policy__body ul {
+  padding-left: 0;
+  list-style: none;
+  margin: 0 0 1.6rem;
+}
+
+.dlm-info__body ul:not([class]) > li,
+.shopify-policy__body ul > li {
+  position: relative;
+  padding-left: 2.6rem;
+  margin: 0 0 0.8rem;
+}
+
+.dlm-info__body ul:not([class]) > li::before,
+.shopify-policy__body ul > li::before {
+  content: '';
+  position: absolute;
+  left: 0.4rem;
+  top: 0.95rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background: var(--dlm-coral);
+}
+
+.dlm-info__body ol:not([class]),
+.shopify-policy__body ol {
+  padding-left: 2.2rem;
+  margin: 0 0 1.6rem;
+}
+
+.dlm-info__body ol:not([class]) > li,
+.shopify-policy__body ol > li {
+  margin: 0 0 0.8rem;
+  padding-left: 0.4rem;
+}
+
+/* Lead paragraph */
+.dlm-info__body .dlm-lead {
+  font-size: 1.9rem;
+  line-height: 1.6;
+  color: var(--dlm-muted);
+  margin-bottom: 2.8rem;
+}
+
+/* Key facts */
+.dlm-info__body .dlm-facts {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1.2rem;
+  margin: 0 0 3.2rem;
+  padding: 0;
+  list-style: none;
+}
+
+.dlm-info__body .dlm-facts > li {
+  margin: 0;
+  padding: 1.8rem 1.6rem;
+  border-radius: 1.2rem;
+  background: var(--dlm-sand);
+  text-align: center;
+  line-height: 1.4;
+}
+
+.dlm-info__body .dlm-facts strong {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 2rem;
+  color: var(--dlm-brown);
+}
+
+.dlm-info__body .dlm-facts span {
+  display: block;
+  font-size: 1.4rem;
+  color: var(--dlm-muted);
+}
+
+/* Callouts */
+.dlm-info__body .dlm-callout {
+  margin: 2rem 0 2.4rem;
+  padding: 1.6rem 2rem;
+  border-radius: 1.2rem;
+  border: 1px solid #cfe3d7;
+  border-left: 4px solid var(--dlm-green);
+  background: var(--dlm-green-bg);
+}
+
+.dlm-info__body .dlm-callout--note {
+  border-color: var(--dlm-amber-line);
+  border-left-color: var(--dlm-coral);
+  background: var(--dlm-amber-bg);
+}
+
+.dlm-info__body .dlm-callout > :last-child {
+  margin-bottom: 0;
+}
+
+.dlm-info__body .dlm-callout strong:first-child {
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+/* Numbered steps */
+.dlm-info__body .dlm-steps {
+  counter-reset: dlm-step;
+  margin: 0 0 2.4rem;
+  padding: 0;
+  list-style: none;
+}
+
+.dlm-info__body .dlm-steps > li {
+  counter-increment: dlm-step;
+  position: relative;
+  min-height: 3.2rem;
+  margin: 0 0 1.4rem;
+  padding-left: 4.8rem;
+}
+
+.dlm-info__body .dlm-steps > li::before {
+  content: counter(dlm-step);
+  position: absolute;
+  left: 0;
+  top: -0.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.2rem;
+  height: 3.2rem;
+  border-radius: 50%;
+  background: var(--dlm-ink);
+  color: #fff;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+/* Two-column cards (contact options, do / don't) */
+.dlm-info__body .dlm-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(22rem, 1fr));
+  gap: 1.2rem;
+  margin: 0 0 2.4rem;
+}
+
+.dlm-info__body .dlm-card {
+  padding: 2rem;
+  border: 1px solid var(--dlm-line);
+  border-radius: 1.2rem;
+  background: var(--dlm-cream);
+}
+
+.dlm-info__body .dlm-card h3 {
+  margin-top: 0;
+}
+
+.dlm-info__body .dlm-card > :last-child {
+  margin-bottom: 0;
+}
+
+/* FAQ accordions */
+.dlm-info__body .dlm-faq {
+  border-bottom: 1px solid var(--dlm-line);
+}
+
+.dlm-info__body .dlm-faq > summary {
+  position: relative;
+  display: block;
+  min-height: 4.4rem;
+  padding: 1.4rem 4rem 1.4rem 0;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 1.4;
+  list-style: none;
+}
+
+.dlm-info__body .dlm-faq > summary::-webkit-details-marker {
+  display: none;
+}
+
+.dlm-info__body .dlm-faq > summary::after {
+  content: '+';
+  position: absolute;
+  right: 0.4rem;
+  top: 1.1rem;
+  width: 2.8rem;
+  height: 2.8rem;
+  border-radius: 50%;
+  background: var(--dlm-sand);
+  color: var(--dlm-brown);
+  font-size: 2rem;
+  line-height: 2.8rem;
+  text-align: center;
+}
+
+.dlm-info__body .dlm-faq[open] > summary::after {
+  content: '\2212';
+}
+
+.dlm-info__body .dlm-faq > summary:focus-visible {
+  outline: 2px solid var(--dlm-brown);
+  outline-offset: 2px;
+}
+
+.dlm-info__body .dlm-faq > div {
+  padding: 0 0 1.6rem;
+  color: var(--dlm-muted);
+}
+
+.dlm-info__body .dlm-faq > div > :last-child {
+  margin-bottom: 0;
+}
+
+/* Tables */
+.dlm-info__body .dlm-table-wrap {
+  overflow-x: auto;
+  margin: 0 0 2.4rem;
+  border: 1px solid var(--dlm-line);
+  border-radius: 1.2rem;
+}
+
+.dlm-info__body table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1.5rem;
+  table-layout: auto;
+}
+
+.dlm-info__body th,
+.dlm-info__body td {
+  padding: 1.2rem 1.4rem;
+  border: 0;
+  border-bottom: 1px solid var(--dlm-line);
+  text-align: left;
+  vertical-align: top;
+}
+
+.dlm-info__body thead th {
+  background: var(--dlm-sand);
+  font-weight: 700;
+}
+
+.dlm-info__body tr:last-child td {
+  border-bottom: 0;
+}
+
+/* Form row (tracking lookup) */
+.dlm-info__body .dlm-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin: 0 0 1.6rem;
+  padding: 2rem;
+  border-radius: 1.2rem;
+  background: var(--dlm-sand);
+}
+
+.dlm-info__body .dlm-form label {
+  flex: 1 1 100%;
+  font-weight: 700;
+}
+
+.dlm-info__body .dlm-form input[type='text'] {
+  flex: 1 1 22rem;
+  min-height: 4.8rem;
+  padding: 0 1.6rem;
+  border: 1px solid var(--dlm-line);
+  border-radius: 999px;
+  background: #fff;
+  font: inherit;
+  color: var(--dlm-ink);
+}
+
+.dlm-info__body .dlm-form input[type='text']:focus-visible {
+  outline: 2px solid var(--dlm-brown);
+  outline-offset: 1px;
+}
+
+/* Buttons */
+.dlm-info__body .dlm-button,
+.dlm-info__body .dlm-form button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 4.8rem;
+  padding: 0 2.6rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--dlm-ink);
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.dlm-info__body .dlm-button:hover,
+.dlm-info__body .dlm-form button:hover {
+  background: var(--dlm-brown);
+}
+
+.dlm-info__body .dlm-button--light {
+  background: #fff;
+  color: var(--dlm-ink);
+  border: 1px solid var(--dlm-line);
+}
+
+.dlm-info__body .dlm-button--light:hover {
+  background: var(--dlm-sand);
+}
+
+/* Closing help banner */
+.dlm-info__body .dlm-cta {
+  margin: 4rem 0 0;
+  padding: 2.8rem 2.4rem;
+  border-radius: var(--dlm-radius);
+  background: var(--dlm-ink);
+  color: #fff;
+  text-align: center;
+}
+
+.dlm-info__body .dlm-cta h2 {
+  margin: 0 0 0.8rem;
+  padding: 0;
+  border: 0;
+  color: #fff;
+}
+
+.dlm-info__body .dlm-cta h2::before {
+  display: none;
+}
+
+.dlm-info__body .dlm-cta p {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.dlm-info__body .dlm-cta a:not(.dlm-button) {
+  color: #fff;
+}
+
+.dlm-info__body .dlm-cta .dlm-button {
+  background: #fff;
+  color: var(--dlm-ink);
+  margin: 0.4rem 0.4rem 0;
+}
+
+.dlm-info__body .dlm-cta .dlm-button:hover {
+  background: var(--dlm-sand);
+}
+
+.dlm-info__body .dlm-updated {
+  margin-top: 3.2rem;
+  font-size: 1.3rem;
+  color: var(--dlm-muted);
+}
+
+/* Shopify policy pages */
+.shopify-policy__container {
+  max-width: 88rem;
+  padding: 0 1.5rem 4.8rem;
+  margin: 0 auto;
+}
+
+.shopify-policy__container .shopify-policy__title {
+  text-align: center;
+  margin: 0 0 2.4rem;
+}
+
+.shopify-policy__container .shopify-policy__title h1 {
+  font-size: clamp(3rem, 6vw, 4.6rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.dlm-policy-hub {
+  max-width: 88rem;
+}
