@@ -41,22 +41,28 @@ FABRIC_GIDS = {
     "cotton65": ["gid://shopify/Metaobject/69622399073"],
     "poly_velvet": ["gid://shopify/Metaobject/69622366305"],
     "cotton_sweat": ["gid://shopify/Metaobject/69622399073"],
+    "coral_fleece": ["gid://shopify/Metaobject/69622366305"],
 }[SPEC["fabric_key"]]
-FABRIC_LABEL = {"polyester": "Polyester", "polyblend": "Polyester", "poly95": "Polyester", "cotton": "Cotton", "cvc": "Cotton, Polyester", "cotton35": "Cotton", "cotton65": "Cotton", "poly_velvet": "Polyester", "cotton_sweat": "Cotton"}[SPEC["fabric_key"]]
+FABRIC_LABEL = {"polyester": "Polyester", "polyblend": "Polyester", "poly95": "Polyester", "cotton": "Cotton", "cvc": "Cotton, Polyester", "cotton35": "Cotton", "cotton65": "Cotton", "poly_velvet": "Polyester", "cotton_sweat": "Cotton", "coral_fleece": "Polyester"}[SPEC["fabric_key"]]
 VENDOR = "dresslikemommy.com"
 # Mode: "family_christmas" (mom, dad and kids; the 2026 Christmas line) or
 # "mommy_me" (mother and child only; season-neutral winter copy).
 MODE = SPEC.get("mode", "family_christmas")
 MM = MODE == "mommy_me"
 SW = MODE == "family_sweatshirt"  # unisex family crewneck sweatshirt (child + adult sizes)
+PET = MODE == "family_pet"  # matching pet piece sold beside a family print (dog sizes only)
 LISTING_MODE = "Mommy and Me" if MM else "Family Matching"
-PRIMARY_CATEGORY = "Tops" if SW else "Pajamas"
+PRIMARY_CATEGORY = "Tops" if SW else ("Pet Apparel" if PET else "Pajamas")
 PRODUCT_TYPE = "Family Matching Sweatshirts" if SW else "Matching Family Pajamas"  # SW type must contain "Family Matching" for the new-arrivals rule
-TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-13-14" if SW else "gid://shopify/TaxonomyCategory/aa-1-17-4"
+TAXONOMY_GID = ("gid://shopify/TaxonomyCategory/aa-1-13-14" if SW else
+                "gid://shopify/TaxonomyCategory/ap-2-6-13" if PET else "gid://shopify/TaxonomyCategory/aa-1-17-4")
 EXPECTED_TAXONOMY_FULL_NAME = (
     "Apparel & Accessories > Clothing > Clothing Tops > Sweatshirts" if SW else
+    "Animals & Pet Supplies > Pet Supplies > Pet Apparel > Pet Shirts" if PET else
     "Apparel & Accessories > Clothing > Sleepwear & Loungewear > Pajamas"
 )
+if PET:
+    PRODUCT_TYPE = "Matching Family Pet Pajamas"  # contains "Pajamas" for the new-arrivals rule
 FORCE_SPEC_PRICES = True
 CHILD_PRICE = SPEC.get("child_price", "32.99")
 ADULT_PRICE = SPEC.get("adult_price", "35.99")
@@ -117,6 +123,7 @@ ROLE_BY_AUDIENCE = {
     "mother": "Mother Pajama Set",
     "father": "Father Pajama Set",
     "adult": "Adult Sweatshirt",
+    "pet": "Dog Vest",
 }
 # Sweatshirt picker labels: child ages are the usual bands for the chart's heights;
 # only exact store size metaobjects are referenced.
@@ -127,7 +134,7 @@ SIZE_MAP_ALL.update({
     "Adult 2XL": ("gid://shopify/Metaobject/129975156833", "2XL"), "Adult 3XL": ("gid://shopify/Metaobject/139840421985", "3XL"),
     "Adult 4XL": ("gid://shopify/Metaobject/139840716897", "4XL"),
 })
-NO_HONEST_SIZE_MATCH_ALL |= {"Child 6-12 Months", "Child 1-2 Years", "Child 4 Years", "Child 7-8 Years",
+NO_HONEST_SIZE_MATCH_ALL |= {"Dog S", "Dog M", "Dog L", "Dog XL", "Dog 2XL", "Child 6-12 Months", "Child 1-2 Years", "Child 4 Years", "Child 7-8 Years",
                              "Child 9-10 Years", "Child 11-12 Years"}
 
 # Factory size chart (cm), transcribed from the supplier's own published
@@ -311,20 +318,66 @@ STQ_SWEAT_FIT = {  # (height cm, weight kg)
     "Adult XL": ("165-180", "72.5-82.5"), "Adult 2XL": ("170-185", "82.5-92.5"), "Adult 3XL": ("175-190", "92.5-105"),
     "Adult 4XL": ("180-195", "105-115"),
 }
+# 诗茹梦 coral-fleece mommy-and-me sets (offers 1083898601268 / 1084574812798): two
+# published 尺码展示 tables, one per cut. Button-front table (image 03, full chest);
+# zip stand-collar table (image 13 of 1083898601268, half chest doubled). Neither
+# publishes hip or waist.
+SRM_CF_BUTTON_CHART = {
+    "Child 10": ("10 (110-120 cm)", "Child 5-6 Years", "KID56Y", "5-6", 50, 82, 37, 68, "-", "-"),
+    "Child 12": ("12 (120-130 cm)", "Child 7 Years", "KID7Y", "7", 53, 86, 40, 74, "-", "-"),
+    "Child 14": ("14 (125-135 cm)", "Child 8-9 Years", "KID89Y", "8-9", 56, 90, 43, 79, "-", "-"),
+    "Child 16": ("16 (135-145 cm)", "Child 10-11 Years", "KID1011Y", "10-11", 60, 94, 46, 84, "-", "-"),
+    "Mom S": ("Womens S", "Mother S", "S", "—", 63, 98, 49, 91, "-", "-"),
+    "Mom M": ("Womens M", "Mother M", "M", "—", 65, 102, 52, 94, "-", "-"),
+    "Mom L": ("Womens L", "Mother L", "L", "—", 68, 106, 54, 97, "-", "-"),
+    "Mom XL": ("Womens XL", "Mother XL", "XL", "—", 71, 110, 56, 100, "-", "-"),
+}
+SRM_CF_ZIP_CHART = {
+    "Child 10": ("10 (110-120 cm)", "Child 5-6 Years", "KID56Y", "5-6", 48, 80, 36, 66, "-", "-"),
+    "Child 12": ("12 (120-130 cm)", "Child 7 Years", "KID7Y", "7", 51, 84, 39, 72, "-", "-"),
+    "Child 14": ("14 (125-135 cm)", "Child 8-9 Years", "KID89Y", "8-9", 54, 88, 42, 78, "-", "-"),
+    "Child 16": ("16 (135-145 cm)", "Child 10-11 Years", "KID1011Y", "10-11", 58, 92, 45, 84, "-", "-"),
+    "Mom S": ("Womens S", "Mother S", "S", "—", 61, 96, 48, 91, "-", "-"),
+    "Mom M": ("Womens M", "Mother M", "M", "—", 63, 102, 51, 94, "-", "-"),
+    "Mom L": ("Womens L", "Mother L", "L", "—", 66, 106, 53, 97, "-", "-"),
+    "Mom XL": ("Womens XL", "Mother XL", "XL", "—", 69, 110, 55, 100, "-", "-"),
+}
+# 衣林 dog vest sold with the Blue Plaid Reindeer print (offer 1029357235756): the
+# supplier's 狗狗尺寸表 (description image 03). Back length -> garment length, bust ->
+# chest; neck (collar) is listed per size in the size-range sentence.
+YILIN_DOG_CHART = {
+    "Dog S": ("Dog S", "Dog S", "DOGS", "—", 44, 55, "-", "-", "-", "-"),
+    "Dog M": ("Dog M", "Dog M", "DOGM", "—", 52, 71, "-", "-", "-", "-"),
+    "Dog L": ("Dog L", "Dog L", "DOGL", "—", 65, 84, "-", "-", "-", "-"),
+    "Dog XL": ("Dog XL", "Dog XL", "DOGXL", "—", 77, 97, "-", "-", "-", "-"),
+    "Dog 2XL": ("Dog 2XL", "Dog 2XL", "DOG2XL", "—", 90, 111, "-", "-", "-", "-"),
+}
+YILIN_DOG_NECK = {"Dog S": 36, "Dog M": 51, "Dog L": 61, "Dog XL": 71, "Dog 2XL": 81}
+if SPEC.get("chart_table") == "yilin_dog":
+    CHART_TABLE = YILIN_DOG_CHART
 if SPEC.get("chart_table") == "stq_sweat":
     CHART_TABLE = STQ_SWEAT_CHART
-FIT_TABLE = {"shirumeng": SHIRUMENG_FIT, "stq_sweat": STQ_SWEAT_FIT}.get(SPEC.get("chart_table"), {})
+elif SPEC.get("chart_table") == "srm_cf_button":
+    CHART_TABLE = SRM_CF_BUTTON_CHART
+elif SPEC.get("chart_table") == "srm_cf_zip":
+    CHART_TABLE = SRM_CF_ZIP_CHART
+NO_HIP = SPEC.get("chart_table") in ("stq_sweat", "srm_cf_button", "srm_cf_zip")
+FIT_TABLE = {"shirumeng": SHIRUMENG_FIT, "stq_sweat": STQ_SWEAT_FIT, "srm_cf_button": SHIRUMENG_FIT,
+             "srm_cf_zip": SHIRUMENG_FIT}.get(SPEC.get("chart_table"), {})
 # Charts that publish one relaxed waist figure instead of a relaxed-stretched range.
 WAIST_SINGLE = CHART_TABLE is not FACTORY_CHART
 
 
 def chart_row(vendor_label: str) -> dict:
     chart_label, picker, suffix, age, length, chest, sleeve, pant, waist, hip = CHART_TABLE[vendor_label]
-    audience = "child" if (vendor_label.startswith(("Children", "Child")) or vendor_label.endswith("T")) else ("mother" if vendor_label.startswith(("Mom", "Mother")) else ("adult" if vendor_label.startswith("Adult") else "father"))
+    audience = ("pet" if vendor_label.startswith("Dog") else
+                "child" if (vendor_label.startswith(("Children", "Child")) or vendor_label.endswith("T")) else
+                "mother" if vendor_label.startswith(("Mom", "Mother")) else
+                "adult" if vendor_label.startswith("Adult") else "father")
     return {
         "audience": audience,
         "role": ROLE_BY_AUDIENCE[audience],
-        "garment": "Sweatshirt" if SW else "Pajama Set",
+        "garment": "Sweatshirt" if SW else ("Dog Vest" if PET else "Pajama Set"),
         "vendor_label": vendor_label,
         "chart_label": chart_label,
         "picker_label": picker,
@@ -368,6 +421,7 @@ FABRIC_TEXT = {
     "cotton65": "Soft cotton-blend knit with 65% cotton in the main fabric.",
     "poly_velvet": "Soft brushed velvet knit made of 100% polyester.",
     "cotton_sweat": "Soft cotton sweatshirt knit.",
+    "coral_fleece": "Thick, plush coral fleece made of polyester.",
 }
 FABRIC_FEATURE = {
     "polyester": ("Soft knit:", "A cotton-feel polyester knit for cozy winter bedtimes."),
@@ -379,7 +433,10 @@ FABRIC_FEATURE = {
     "cotton65": ("Soft knit:", "A soft cotton-blend knit for cozy winter bedtimes."),
     "poly_velvet": ("Soft knit:", "A soft brushed velvet knit that keeps the chill off on winter nights."),
     "cotton_sweat": ("Soft knit:", "A soft cotton knit for cozy holiday days."),
+    "coral_fleece": ("Soft knit:", "Thick, plush fleece that keeps moms and kids warm on cold winter nights."),
 }
+if PET:  # the family fabric sentence stays; the feature line speaks about the dog
+    FABRIC_FEATURE = dict(FABRIC_FEATURE, cotton65=("Soft knit:", "The same soft cotton-blend knit as the family set."))
 FABRIC_SEO = {
     "polyester": "soft polyester knit",
     "polyblend": "soft polyester-blend knit",
@@ -390,6 +447,7 @@ FABRIC_SEO = {
     "cotton65": "soft cotton-blend knit",
     "poly_velvet": "soft brushed velvet knit",
     "cotton_sweat": "soft cotton knit",
+    "coral_fleece": "plush coral fleece",
 }
 DESIGN_TEXT = {
     "crew_trim": "Long-sleeve crew-neck top with a contrast neckline trim, plus full-length pants with an elastic waist.",
@@ -402,6 +460,10 @@ DESIGN_TEXT = {
     "button_peter": "Long-sleeve button-front top with a rounded Peter Pan collar, plus full-length pants with an elastic waist.",
     "button_lace": "Long-sleeve button-front top with a lace Peter Pan collar, plus full-length pants with an elastic waist.",
     "crew_sweatshirt": "Long-sleeve crewneck sweatshirt with a ribbed neckline, cuffs, and hem.",
+    "zip_stand": "Long-sleeve zip-up top with a stand collar and two front pockets, plus full-length pants with an elastic waist and gathered ankles.",
+    "button_round": "Long-sleeve button-front top with a round neckline, plus full-length pants with an elastic waist and gathered ankles.",
+    "button_lace_fleece": "Long-sleeve button-front top with a lace-trimmed collar and pocket, plus full-length pants with an elastic waist.",
+    "dog_vest": "Sleeveless dog vest with black binding at the neck, leg openings, and curved hem, and small snap closures down the center.",
 }
 SHARED_EN = {
     "fab_label": "Fabric:",
@@ -451,6 +513,18 @@ SHARED_EN = {
     ),
     "kf1_text_sw": "The same Christmas sweatshirt in child and adult sizes.",
     "h3_chart_sw": "Size Chart - Sweatshirt",
+    "fam_text_pet": "The family dog's piece of the matching Christmas look, cut from the same plaid as the family pajama pants.",
+    "p1_pet": "Pair it with the matching family pajama set, sold separately, so everyone in the Christmas photo matches. Pick the size from your dog's measurements.",
+    "p2_pet": (
+        "Back length runs from the base of the neck to the base of the tail; bust is the "
+        "chest around the widest part. Measure your dog and compare with the chart; "
+        "measurements are approximate."
+    ),
+    "kf1_label_pet": "Matches the family:",
+    "kf1_text_pet": "The same plaid as the family pajama pants for an all-together Christmas photo.",
+    "kf5_label_pet": "Dog sizes:",
+    "cta_pet": "Pick your dog's size to complete the family Christmas photo.",
+    "h3_chart_pet": "Size Chart - Dog Vest",
     "kf5_label_mm": "Full size range:",
     "h3_kf": "Key Features:",
     "kf1_label": "Whole-family match:",
@@ -463,7 +537,7 @@ SHARED_EN = {
 NUMBER_WORDS = {4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight", 9: "nine"}
 
 
-AUDIENCES = ("child", "mother") if MM else (("child", "adult") if SW else ("child", "mother", "father"))
+AUDIENCES = ("pet",) if PET else (("child", "mother") if MM else (("child", "adult") if SW else ("child", "mother", "father")))
 
 
 def size_key() -> str:
@@ -479,6 +553,9 @@ def size_range_phrase() -> str:
     m = [r for r in SIZE_CHART if r["audience"] == "mother"]
     f = [r for r in SIZE_CHART if r["audience"] == "father"]
     a = [r for r in SIZE_CHART if r["audience"] == "adult"]
+    if PET:
+        return (f"{SIZE_CHART[0]['picker_label']} through {SIZE_CHART[-1]['picker_label']}. Neck: "
+                + ", ".join(f"{r['sku_suffix'].replace('DOG', '')} {YILIN_DOG_NECK[r['vendor_label']]} cm" for r in SIZE_CHART) + ".")
     if SW:
         return (f"{c[0]['picker_label']} through {c[-1]['picker_label']}, and "
                 f"{a[0]['picker_label']} through {a[-1]['picker_label']}.")
@@ -493,7 +570,9 @@ def size_range_phrase() -> str:
 
 
 def counts_phrase() -> str:
-    n = {a: sum(1 for r in SIZE_CHART if r["audience"] == a) for a in ("child", "mother", "father", "adult")}
+    n = {a: sum(1 for r in SIZE_CHART if r["audience"] == a) for a in ("child", "mother", "father", "adult", "pet")}
+    if PET:
+        return f"{NUMBER_WORDS[n['pet']].capitalize()} dog sizes; see the size chart for back length and bust."
     if SW:
         return (f"{NUMBER_WORDS[n['child']].capitalize()} child sizes and {NUMBER_WORDS[n['adult']]} adult sizes; "
                 "see the size chart for measurements.")
@@ -507,6 +586,8 @@ def counts_phrase() -> str:
 
 
 def size_short() -> str:
+    if PET:
+        return f"Dog {SIZE_CHART[0]['sku_suffix'][3:]}–{SIZE_CHART[-1]['sku_suffix'][3:]}."
     c = [r for r in SIZE_CHART if r["audience"] == "child"]
     m = [r for r in SIZE_CHART if r["audience"] == "mother"]
     f = [r for r in SIZE_CHART if r["audience"] == "father"]
@@ -545,13 +626,24 @@ def en_segments() -> dict:
     if SW:
         for key in ("fam_text", "p1", "p2", "kf1_text", "h3_chart"):
             seg[key] = SHARED_EN[key + "_sw"]
+    if PET:
+        for key in ("fam_text", "p1", "p2", "kf1_label", "kf1_text", "kf5_label", "cta", "h3_chart"):
+            seg[key] = SHARED_EN[key + "_pet"]
     return seg
 
 
-if SW:
+if PET:
+    TITLE_TEMPLATE = "{P} Matching Dog Vest — Christmas Plaid"
+    SEO_TITLE_TEMPLATE = "{P} Matching Dog Vest | Dress Like Mommy"
+    SEO_DESCRIPTION_TEMPLATE = "{P}: a matching Christmas plaid vest for the family dog in {FABRIC}. {SIZES}"
+elif SW:
     TITLE_TEMPLATE = "{P} Family Matching Sweatshirts — Christmas Crewneck"
     SEO_TITLE_TEMPLATE = "{P} Christmas Sweatshirts | Dress Like Mommy"
     SEO_DESCRIPTION_TEMPLATE = "{P}: matching Christmas sweatshirts for mom, dad, girls & boys in {FABRIC}. {SIZES}"
+elif MM and SPEC.get("title_variant") == "fleece":
+    TITLE_TEMPLATE = "{P} Mommy and Me Pajamas — Fleece Set"
+    SEO_TITLE_TEMPLATE = "{P} Mommy & Me Fleece Pajamas | Dress Like Mommy"
+    SEO_DESCRIPTION_TEMPLATE = "{P}: matching mommy-and-me fleece pajamas for mom and daughter in {FABRIC}. {SIZES}"
 elif MM:
     TITLE_TEMPLATE = "{P} Mommy and Me Pajamas — Button-Up Set"
     SEO_TITLE_TEMPLATE = "{P} Mommy & Me Pajamas | Dress Like Mommy"
@@ -609,7 +701,7 @@ def metric_cell(value, unit: str) -> str:
 
 def role_token(row: dict) -> str:
     return {"Child Pajama Set": "KID", "Mother Pajama Set": "MOM", "Father Pajama Set": "DAD",
-            "Child Sweatshirt": "KID", "Adult Sweatshirt": "ADT"}[row["role"]]
+            "Child Sweatshirt": "KID", "Adult Sweatshirt": "ADT", "Dog Vest": "PET"}[row["role"]]
 
 
 def price_for(row: dict) -> str:
@@ -629,6 +721,11 @@ def unique_size_refs() -> list[str]:
 
 
 def build_tags() -> list[str]:
+    if PET:  # no "Christmas Pajamas": that tag feeds /collections/couples
+        values = ["Christmas", "Christmas Pet", "Pet", "Dog", "Dog Clothes", "Pet Apparel",
+                  "Matching Family Pet", "Holiday", "Winter", "Family Photos", PRINT_NAME, *SPEC["extra_tags"]]
+        values.extend(r["picker_label"] for r in SIZE_CHART)
+        return sorted(dict.fromkeys(values))
     if SW:
         values = [
             "Family Matching", "Mommy and Me", "Daddy and Me", "Christmas", "Christmas Sweaters",
@@ -644,7 +741,7 @@ def build_tags() -> list[str]:
             "Mommy and Me", "Mommy and Me Pajamas", "Mother Daughter", "Pajamas",
             "Matching Family Pajamas", "Two-Piece Pajama Set", "Pajama Set",
             "Child Pajama Set", "Mother Pajama Set", f"{SLEEVE_STYLE} Pajamas",
-            "Winter", "Winter Pajamas", "Button-Up Pajamas", PRINT_NAME,
+            "Winter", "Winter Pajamas", PRINT_NAME,
             *SPEC["extra_tags"],
         ]
         values.extend(r["picker_label"] for r in SIZE_CHART)
@@ -738,13 +835,13 @@ def build_variants() -> list[dict]:
     return variants
 
 
-SUBCATEGORY2 = "Christmas Sweatshirts" if SW else ("Winter Pajamas" if MM else "Christmas Pajamas")
-STYLE_VALUE = "Crewneck Sweatshirt" if SW else f"{SLEEVE_STYLE} Knit Pajama Set"
-TYPE_VALUE = "Crewneck Sweatshirt" if SW else "Two-Piece Pajama Set"
-LABEL3 = "Crewneck Sweatshirt" if SW else f"{SLEEVE_STYLE} Pajama Set"
+SUBCATEGORY2 = "Christmas Pet" if PET else ("Christmas Sweatshirts" if SW else ("Winter Pajamas" if MM else "Christmas Pajamas"))
+STYLE_VALUE = "Dog Vest" if PET else ("Crewneck Sweatshirt" if SW else f"{SLEEVE_STYLE} Knit Pajama Set")
+TYPE_VALUE = "Dog Vest" if PET else ("Crewneck Sweatshirt" if SW else "Two-Piece Pajama Set")
+LABEL3 = "Dog Vest" if PET else ("Crewneck Sweatshirt" if SW else f"{SLEEVE_STYLE} Pajama Set")
 GOOGLE_GENDER = "female" if MM else "unisex"
 LABEL2 = "Winter Pajamas" if MM else "Christmas"
-LABEL4 = "Family Christmas Sweatshirts" if SW else ("Mommy and Me Pajamas" if MM else "Family Christmas Pajamas")
+LABEL4 = "Christmas Pet" if PET else ("Family Christmas Sweatshirts" if SW else ("Mommy and Me Pajamas" if MM else "Family Christmas Pajamas"))
 
 
 def mf(product_id: str, namespace: str, key: str, type_: str, value: str) -> dict:
@@ -756,7 +853,7 @@ def build_metafields(product_id: str) -> list[dict]:
     refs = "list.metaobject_reference"
     return [
         mf(product_id, "custom", "category1", text, LISTING_MODE),
-        mf(product_id, "custom", "subcategory", text, "Family Sweatshirts" if SW else "Pajamas"),
+        mf(product_id, "custom", "subcategory", text, "Family Sweatshirts" if SW else ("Pet Apparel" if PET else "Pajamas")),
         mf(product_id, "custom", "subcategory2", text, SUBCATEGORY2),
         mf(product_id, "custom", "pattern", text, PRINT_NAME),
         mf(product_id, "custom", "style", text, STYLE_VALUE),
@@ -770,11 +867,11 @@ def build_metafields(product_id: str) -> list[dict]:
         mf(product_id, "mm-google-shopping", "custom_label_2", text, LABEL2),
         mf(product_id, "mm-google-shopping", "custom_label_3", text, LABEL3),
         mf(product_id, "mm-google-shopping", "custom_label_4", text, LABEL4),
-        mf(product_id, "shopify", "age-group", refs, json.dumps([AGE_GROUP_GIDS["child"], AGE_GROUP_GIDS["adult"]])),
+        *([] if PET else [mf(product_id, "shopify", "age-group", refs, json.dumps([AGE_GROUP_GIDS["child"], AGE_GROUP_GIDS["adult"]]))]),
         mf(product_id, "shopify", "color-pattern", refs, json.dumps(COLOR_PATTERN_GIDS)),
         mf(product_id, "shopify", "fabric", refs, json.dumps(FABRIC_GIDS)),
-        mf(product_id, "shopify", "size", refs, json.dumps(unique_size_refs())),
-        mf(product_id, "shopify", "target-gender", refs, json.dumps(TARGET_GENDER_GIDS)),
+        *([] if PET else [mf(product_id, "shopify", "size", refs, json.dumps(unique_size_refs()))]),
+        *([] if PET else [mf(product_id, "shopify", "target-gender", refs, json.dumps(TARGET_GENDER_GIDS))]),  # not defined for Pet Shirts
         mf(product_id, "global", "title_tag", text, SEO_TITLE),
         mf(product_id, "global", "description_tag", text, SEO_DESCRIPTION),
     ]
@@ -841,8 +938,10 @@ def validate_preflight(body: str, variants: list[dict]) -> None:
     unknown = [label for label in SPEC["vendor_size_labels"] if label not in CHART_TABLE]
     if unknown:
         errors.append("vendor labels without a factory-chart row: " + ", ".join(unknown))
-    if any(label.lower().startswith(("baby", "dog")) for label in SPEC["vendor_size_labels"]):
+    if any(label.lower().startswith(("baby",) if PET else ("baby", "dog")) for label in SPEC["vendor_size_labels"]):
         errors.append("baby/dog row present in SIZE_CHART")
+    if PET and not all(label.startswith("Dog") for label in SPEC["vendor_size_labels"]):
+        errors.append("pet listing must contain dog rows only")
     audiences = [r["audience"] for r in SIZE_CHART]
     if audiences != sorted(audiences, key=list(AUDIENCES).index) or set(audiences) != set(AUDIENCES):
         errors.append(f"SIZE_CHART must list {', '.join(AUDIENCES)} rows in order")
@@ -850,9 +949,13 @@ def validate_preflight(body: str, variants: list[dict]) -> None:
         missing = [f for f in required if f not in row or row[f] in (None, "")]
         if missing:
             errors.append(f"{row.get('vendor_label')} missing {missing}")
-        for field in (("chest_cm", "length_cm", "sleeve_cm") if SW else ("chest_cm", "length_cm", "sleeve_cm", "pant_cm", "hip_cm")):
+        for field in (("chest_cm", "length_cm") if PET else ("chest_cm", "length_cm", "sleeve_cm") if SW else
+                      ("chest_cm", "length_cm", "sleeve_cm", "pant_cm") if NO_HIP else
+                      ("chest_cm", "length_cm", "sleeve_cm", "pant_cm", "hip_cm")):
             if not isinstance(row[field], (int, float)) or row[field] <= 0:
                 errors.append(f"{row['vendor_label']} lacks positive source {field}")
+        if PET:
+            continue
         if FIT_TABLE:
             if row["waist_cm"] != "-":
                 errors.append(f"{row['vendor_label']} waist is not published by this chart")
@@ -1206,7 +1309,9 @@ def verify_product(product: dict, variants: list[dict]):
     add("Size table has 10 headers", len(headers) == 10, str(len(headers)))
     add(f"Size table has {len(SIZE_CHART)} rows", len(rows) == len(SIZE_CHART), str(len(rows)))
     add("Size table picker labels match", [r[0] for r in rows if r] == [i["picker_label"] for i in SIZE_CHART], "exact order match")
-    if FIT_TABLE:  # this chart publishes no waist; height and weight come from its fit guide
+    if PET:
+        add("Dog chart rows show back length and bust", all(r[4] != "-" and r[9] != "-" for r in rows), "all rows")
+    elif FIT_TABLE:  # this chart publishes no waist; height and weight come from its fit guide
         add("Waist left blank (not published) and fit guide shown", all(r[8] == "-" and r[2] != "-" and r[3] != "-" for r in rows), "all rows")
     else:
         add("Waist populated for every row", all(r[8] not in ("", "-") for r in rows), "all rows")

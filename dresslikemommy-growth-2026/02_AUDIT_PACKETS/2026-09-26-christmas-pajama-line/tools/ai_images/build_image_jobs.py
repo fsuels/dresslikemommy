@@ -58,6 +58,7 @@ LETTERING = {
     "blue-plaid-reindeer": None,
     "green-plaid-merry-tree": "\"a very Merry Christmas\" in white script on and under the decorated tree, copied exactly as in the reference photos",
     "buffalo-plaid-tree": '"MERRY Christmas" in red and black buffalo plaid letters under the tree, copied exactly as in the reference photos',
+    "sky-stripe": 'the small cream label on the chest with tiny "HMP" letters and a bunny, copied exactly as in the reference photos',
 }
 ROLE_NOTES = {
     "candy-cane-santa": "The red and white candy cane stripe runs over ONE shoulder and down ONE sleeve only; the other sleeve is plain green. Keep that asymmetry.",
@@ -113,8 +114,8 @@ When all four files are saved, reply with one line per file: name, width x heigh
 PROMPT_MM = """DRESS LIKE MOMMY — RELIABLE PHOTOSHOOT SYSTEM (automated run)
 
 The attached vendor images are the exact clothing reference for ONE Shopify listing: Mommy and Me matching pajamas, "{print_name}".
-ref1.jpg is the vendor flat lay of the set; ref2.jpg and ref3.jpg are close-up crops of the same garment (top details, pants).
-The women's set is the identical design in a women's cut: same fabric, print, collar, piping, buttons and pocket.
+ref1.jpg is the vendor photo of the set (it may show only the child's version); ref2.jpg and ref3.jpg are close-up crops of the same garment (top details, pants).
+The women's set is the identical design in a women's cut: same fabric, print, collar, piping, buttons or zipper, and pockets.
 
 Generate FOUR separate images in this order, one at a time, and save each generated image file into the current working directory with exactly these names:
 - image1.png — IMAGE 1, MAIN HERO IMAGE
@@ -128,13 +129,13 @@ Each output must be one single image, vertical 9:16 portrait, full-frame photo, 
 
 SOURCE OF TRUTH: the vendor images are the exact clothing reference. The clothing must stay exactly the same as the vendor images.
 You may change: models, pose, background, lighting, lifestyle setting, camera angle, scene.
-You must NOT change: clothing color, print, pattern, collar shape, piping color, button color and count, pocket, embroidery, fabric look, sleeve length, pant length, waistband, hem.
+You must NOT change: clothing color, print, pattern, collar shape, piping color, buttons or zipper, pockets, embroidery, fabric look (flat knit vs plush fleece), sleeve length, pant length, waistband, cuffs, hem.
 
 PRODUCT LOCK for this listing:
 - {print_sentence}
 - {design_details}
 - Garment lettering to reproduce exactly, letter for letter: {lettering}.
-- {role_note}Only these garments exist: the matching two-piece button-up pajama set (top + pants) for mom and daughter. Do NOT add a dad, a boy, a baby, socks, slippers with prints, a pet, a robe, a headband with prints or any other extra printed item. Do NOT add drawstrings, extra pockets, bows or trims that the vendor garment does not have.
+- {role_note}Only these garments exist: the matching two-piece pajama set (top + pants) for mom and daughter. Do NOT add a dad, a boy, a baby, socks, slippers with prints, a pet, a robe, a headband with prints or any other extra printed item. Do NOT add drawstrings, extra pockets, bows or trims that the vendor garment does not have.
 
 BRAND CONTEXT: Dress Like Mommy sells matching mommy-and-me clothing. Images should feel warm, clean, bright, realistic, wholesome, family-friendly, commercial, European lifestyle catalog style, suitable for Shopify listings.
 
@@ -193,6 +194,28 @@ When all four files are saved, reply with one line per file: name, width x heigh
 """
 
 
+PROMPT_PET = """DRESS LIKE MOMMY — RELIABLE PHOTOSHOOT SYSTEM (automated run)
+
+This Shopify listing sells ONE product: a matching DOG VEST, "{print_name}" — {print_sentence}
+ref1.jpg is the vendor photo: the small sleeveless plaid dog vest is the item at the top of the flat lay (the human pajamas in that photo are a different listing).
+ref2.jpg shows the matching family pajama set (sold separately) exactly as it must look when the family appears.
+ref3.jpg is a close-up of the dog vest plaid.
+
+Generate FOUR separate images in this order and save each into the current working directory with exactly these names:
+- image1.png — IMAGE 1, MAIN HERO: a friendly medium-size dog wearing the blue and black plaid vest, sitting in front of a decorated Christmas tree, the vest clearly visible.
+- image3.png — IMAGE 3, BEST OCCASION: the same dog wearing the vest with a European family (mom, dad, girl, boy) in the matching Blue Plaid Reindeer pajamas from ref2 on Christmas morning, the dog in front and the vest clearly visible.
+- image5.png — IMAGE 5, PRODUCT-ONLY: the dog vest alone as a clean flat lay on a simple light background, matching the vendor vest exactly (sleeveless, black binding at the neck, leg openings and curved hem, a row of small snaps down the center, same plaid).
+- image6.png — IMAGE 6, ALTERNATE LIFESTYLE: the same dog in the vest cuddled on a sofa with the girl in the matching pajamas, cozy holiday living room.
+Do not ask me anything; continue until all four files are saved. Keep the same dog and family across images 1, 3 and 6.
+
+Each output: one single vertical 9:16 photo, no collage, no borders, no text, no watermark. Crop minimally to 9:16 if needed.
+PRODUCT LOCK: the dog vest plaid, colors (blue and black with white lines) and cut must match the vendor vest exactly; black binding at the neck, leg openings and curved hem; a row of small snaps down the center; no sleeves, no hood, no bow, no text on the vest. The family pajamas must match ref2 exactly (black tops with sky-blue trim and the ornament reindeer print, blue plaid pants with black cuffs). No other printed items, no logos, no dog collars with text.
+STYLE: warm, bright, realistic European lifestyle catalog photos for Shopify; the dog looks happy and well cared for.
+STRICT QUALITY CHECK before saving: reject and regenerate if the vest cut or plaid changed, the dog wears anything else printed, the family pajamas differ from ref2, it is a collage, or not 9:16.
+When all four files are saved, reply with one line per file: name, width x height.
+"""
+
+
 import sys as _sys
 _sys.path.insert(0, str(TOOLS))
 import build_specs_zoya as zb  # noqa: E402
@@ -217,7 +240,8 @@ def main() -> None:
         if only and spec["handle"] not in only:
             continue
         handle = spec["handle"]
-        key = handle.replace("-family-matching-pajamas", "").replace("-mommy-and-me-pajamas", "").replace("-family-matching-sweatshirts", "")
+        key = (handle.replace("-family-matching-pajamas", "").replace("-mommy-and-me-pajamas", "")
+               .replace("-family-matching-sweatshirts", "").replace("-matching-dog-vest", "-dog-vest"))
         ns = load(spec_path)
         job = ROOT / "uploads" / handle / "ai"
         job.mkdir(parents=True, exist_ok=True)
@@ -229,7 +253,7 @@ def main() -> None:
         picks = [desc / n for n in spec.get("ai_refs", [])]
         # A spec that names ai_refs (even an empty list) never falls back to scanning the
         # offer gallery: multi-design offers mix other designs into the description.
-        explicit = "ai_refs" in spec and spec.get("mode") in ("mommy_me", "family_sweatshirt")
+        explicit = "ai_refs" in spec and spec.get("mode") in ("mommy_me", "family_sweatshirt", "family_pet")
         for p in ([] if (picks or explicit) else sorted(desc.glob("*.jpg"))):
             if p.name in spec.get("skip_ref_images", []):
                 continue
@@ -271,7 +295,7 @@ def main() -> None:
             refs = refs + [None] * (2 - len(refs))
         lettering = LETTERING.get(key) or "none (no lettering on these garments; do not add any text)"
         role_note = (ROLE_NOTES.get(key, "") + " ") if ROLE_NOTES.get(key) else ""
-        prompt = {"mommy_me": PROMPT_MM, "family_sweatshirt": PROMPT_SW}.get(spec.get("mode"), PROMPT).format(
+        prompt = {"mommy_me": PROMPT_MM, "family_sweatshirt": PROMPT_SW, "family_pet": PROMPT_PET}.get(spec.get("mode"), PROMPT).format(
             print_name=spec["print_name"],
             print_sentence=spec["print_sentence"],
             design_details=ns["DESIGN_TEXT"][spec["design_key"]],
