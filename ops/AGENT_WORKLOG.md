@@ -55646,3 +55646,29 @@ Owner request (Claude Code chat, session "Website visual improvements" [f7baa5])
   - Merchant, Pinterest and ads pick up the new product links on their next feed or crawl; old links 301.
   - 3 other German cards on Mommy & Me are still clamped because of long translations of other products.
 - Rollback: `python3 <packet>/apply_rewrite.py all --execute --rollback` (guarded; restores the saved titles, handles and translations). Delete the new 301s only if they conflict.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-review10-shipping-email-and-review-note
+
+- task_entities: Shopify notification template `shipping_confirmation` (English); discount REVIEW10; new `sections/dlm-review-note.liquid`; `templates/product.json` order; locale key `products.product.review_thanks_note` in 35 locales
+- task_stage: RELEASED_TO_GIT_MAIN (theme); LIVE_VERIFIED (email template)
+- next_action_id: VERIFY_REVIEW_NOTE_THEME_SYNC
+
+Owner said "use google chrome and do it", then approved the exact line and chose "Shipping email" (AskUserQuestion) after the Judge.me finding.
+
+Judge.me finding (LIVE_VERIFIED, built-in browser):
+- On the free plan the review-request email text is locked ("Custom text" is an Awesome feature). Typing did not reach the editor. Nothing was saved and the email is unchanged.
+- The email already carries one-tap in-email stars.
+- Scheduling: domestic sends 30 days after fulfillment with no reminders. It was left unchanged, because an earlier ask would reach buyers before slow parcels land ("never received" is the top complaint).
+- Claude in Chrome cannot click or type into the embedded Judge.me iframe. It can operate top-level Shopify admin pages.
+
+Changed (Chrome, Shopify Settings > Notifications > Shipping confirmation, English template):
+- Inserted one line after the `email_emphasis` block: "When your order arrives, we'd love an honest review — good or bad. As a thank-you, use code <strong>REVIEW10</strong> for 10% off your next order."
+- Readback after reload: template length 8,600 → 8,768; exactly one REVIEW10 occurrence at line 93.
+- The preview renders the line under "Your order is on the way".
+- Non-English notification versions were not checked; the preview language switch did not respond.
+- Rollback: delete that line, or "Revert to" default in the template.
+
+Theme:
+- New section `dlm-review-note` sits after the Judge.me review-widget apps section.
+- It renders `products.product.review_thanks_note` ("Our customers get a 10% thank-you code with their order, and we ask for honest reviews, good or bad.", 35 locales) only when `product.metafields.reviews.rating_count` > 0. That matches the peer's CSS rule `c99f371`, which hides the empty widget.
+- It currently renders on no product, because no active product has a published review.

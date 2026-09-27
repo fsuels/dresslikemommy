@@ -1,0 +1,23 @@
+{%- comment -%}
+  Discloses the review thank-you code (REVIEW10 in the shipping-confirmation email) next to
+  published reviews. Rendered only when the product has at least one published review.
+{%- endcomment -%}
+{%- assign dlm_review_count = product.metafields.reviews.rating_count.value | default: 0 | plus: 0 -%}
+{%- if dlm_review_count > 0 -%}
+  <div class="page-width dlm-review-note">
+    <p class="dlm-review-note__text">{{ 'products.product.review_thanks_note' | t }}</p>
+  </div>
+  {%- style -%}
+    .dlm-review-note { margin-top: -1rem; margin-bottom: 2.4rem; }
+    .dlm-review-note__text { margin: 0; font-size: 1.3rem; line-height: 1.5; color: rgba(var(--color-foreground), 0.72); }
+  {%- endstyle -%}
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Review thank-you note",
+  "tag": "section",
+  "class": "section",
+  "settings": []
+}
+{% endschema %}

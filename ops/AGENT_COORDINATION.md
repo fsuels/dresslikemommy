@@ -59,7 +59,7 @@ Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED. The "Website sales improvement" drawe
 
 ## Honest reviews and social proof claim — 2026-09-27
 
-Status: ACTIVE_WRITE_CLAIM. Owner request (Claude Code chat): "do all your recommendations", free solutions only (no paid Judge.me plan). The Claude Code session "website improvements" is sole writer for:
+Status: DONE_CLAIM_RELEASED (2026-09-27). Families line LIVE_VERIFIED; REVIEW10 is in the English shipping-confirmation email (LIVE_VERIFIED); `dlm-review-note` released with anchor `2026-09-27-review10-shipping-email-and-review-note`. Judge.me email text is locked on the free plan and unchanged. Original status: ACTIVE_WRITE_CLAIM. Owner request (Claude Code chat): "do all your recommendations", free solutions only (no paid Judge.me plan). The Claude Code session "website improvements" is sole writer for:
 - locale keys `products.trust.trusted_since`, `sections.home_category_copy.trust_families_since` and `products.product.review_thanks_note`;
 - `snippets/home-category-localized-copy.liquid`;
 - `templates/index.json` `category_icons.trust_item_2` only;
