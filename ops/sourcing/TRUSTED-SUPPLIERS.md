@@ -40,9 +40,33 @@ Lead = PO created → stocked at the BuckyDrop warehouse (median / p90 days). So
 
 | Supplier | Example offer | Years | Fulfillment | 48h pickup | Dispatch | Resellers | Ship-from | Why watch |
 |---|---|---|---|---|---|---|---|---|
-| 深圳市诗茹梦制衣有限公司 | 838409578292 (2026 family one-piece fleece pajamas) | 6 | 99.6% | n/a | n/a | 10,000+ | 广东揭阳 | Very large dropship network. Check its store for current-year Christmas and winter family sets, and read its dispatch promise. |
-| 南通市万趣服饰有限公司 | 761804640497 (Christmas bear family pajamas) | 11 | 99% | 87% | 4 days | 800+ | 江苏南通 | Long tenure and fast dispatch. The 48h pickup rate is under 95%, so test with one design. Release year still to be read. |
-| 广州陈树保服装有限公司 | 1024440501938 (2026 parent-child pajamas) | 5 | 90.6% | 100% | 7 days | 2,000+ | 广东佛山 | Fulfillment is below 97%, so it fails today. Re-read next season. |
+| 深圳市诗茹梦制衣有限公司 | 1080921462408 (2026 winter velvet mommy-and-me button-up pajamas) | 6 | 99.6% | 100% (some offers) | not stated | 10,000+ | 广东揭阳 | Re-read 2026-09-27. **In use:** 5 Mommy & Me designs listed ACTIVE on 2026-09-27. Promote to proven after the first order arrives on time. Store has 1,447 offers created in 2026; mother-daughter sizes run small (women's S–XL, XL chest 106 cm), and kids 10–16 only. Many designs carry licensed-character look-alikes: screen every design. |
+| 南通市万趣服饰有限公司 | 761804640497 (Christmas bear family pajamas, listed 2024-01-10) | 10 | 99% | 86% | 4 days | 800+ | 江苏南通 | Re-read 2026-09-27: still fails the 48h pickup gate (86% < 95%), and the example offer is a 2024 listing. Keep watching; no listing until pickup ≥ 95% and a 2026-created, 2026-release design exists. |
+| 广州陈树保服装有限公司 | 1024440501938 (2026 parent-child pajamas, Spring 2026) | 8 | 100% | 100% | 7 days | 2,000+ | 广东佛山 | Re-read 2026-09-27: **now passes the supplier gate** (100% fulfillment, 100% pickup, 84% repeat buyers). Low fit: its "亲子" sizes run 100–170 cm only (no real women's sizes), the catalog is kids-first, and some offers are licensed (小马宝莉). Use only for kids-only lines. |
+| 深圳市斯蒂琪电子商务有限公司 (proven, see above) | 1081522411618 (2026 family Christmas crewneck sweatshirt, Fall 2026) | — | 97.6% | not stated | 15-day promise (our actual lead 2.6 days) | — | 广东深圳 | 2026-09-27: family Christmas sweatshirt in red/green, kids 80–150 cm + adult S–4XL, own size chart; listing "Santa and Friends" in progress. No 2026 Christmas dresses in its store. |
+
+### Vendor discovery log (2026-09-27, owner: "Keep looking for new better vendors!")
+
+- **Mother-daughter Christmas dresses: no qualifying 1688 supplier found.**
+  - The proven dress suppliers (依曼, 爱悠雅, 斯蒂琪) list only summer 2026 dresses.
+  - 1688 keyword search for 圣诞 母女 连衣裙 mostly returns women-only party dresses.
+- **Taobao, readable while logged in, read only.** There is a mother-daughter Christmas dress segment, mostly 湖州/织里 shops (酷蕉亲子童话 7-year shop, 童掌门 12-year, 芒果家原创衣橱 13-year).
+  - Checked item 999371131811: pre-sale with 5-day dispatch, only one mom size (M) beside kids 90–140 cm, shop unrated, and no release-year attribute. It fails the gate.
+  - Taobao items cannot prove the 2026 release gate, so none are approved.
+- **Family Christmas sweatshirts on 1688 search:** 汕头 威利强制衣厂 (fulfillment 81.7%) and 义乌 竺懿服饰 (fulfillment 63%) fail.
+- **1688 "找工厂" factory search** (works while offer search is CAPTCHA-limited) mainly surfaces kids-only makers. Guangdong candidates:
+  - 广州沐童制衣 (7 y, 98% fulfillment, kids sets/swim)
+  - 广州市小红中服装 (5 y, 100%, kids sets, 揭阳)
+  - Neither makes mother-daughter or adult sizes. Not listed.
+- **Family Christmas sweaters: 阳春市小番茄服饰店 (1688 offer 1049143744816), Tier B watch. Fails tenure; do not list without an owner exception.**
+  - Store profile read 2026-09-27. The earlier "10 years / Dongguan" came from a mis-parse of the offer page; the offer page shows 东莞 only as the ship-from.
+  - On 1688 for 1 year (company founded 2026-04). AA credit (top 20%), factory 2,500 m², 51–100 staff, warehouse 广东阳春.
+  - Last 30 days: 2,262 orders, 48h pickup 98.61%, 48h fulfillment 100%, quality returns 0%, disputes 0%, repeat buyers 90%.
+  - Product: apricot/red family Christmas sweaters, cotton, kids 80–150 cm + adult S–4XL; offer created 2026-04-30, Fall 2026.
+  - Strong operations but too new for the ≥5-year tenure gate. Re-read next season, or list one design only if the owner approves an exception.
+- **Rejected:**
+  - 东莞市娜蒂亚服饰 (1085512696474): 1 year, fails tenure.
+  - 深圳市幸洲跨境贸易 (1080560053703): fulfillment 85%, release Spring 2025.
 
 ## Avoid (failed the gate on 2026-09-26)
 

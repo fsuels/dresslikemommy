@@ -25,7 +25,7 @@ Theme is Dawn-derived; operator systems live in `ops/`, `.codex/agents/`, `pixel
 2. For known issues/failed readbacks, use `ops/PROBLEM_SOLVING_PROTOCOL.md` and the matching `ops/PROBLEM_TRACKER.md` entry.
 3. For "continue <channel>", run `python3 ops/scripts/compile_task_context.py --query "continue <channel>" --format brief` first; else search the latest relevant anchor and exact IDs. Before shared/external work read `ops/AGENT_COORDINATION.md`; account/browser work also needs the access/browser protocols and a task-owned surface.
 4. Paid growth: follow `ops/marketing/AGENTS.md` `Required First Loop`, the sole detailed retrieval map. For the canonical paid-growth goal, first run `python3.13 ops/scripts/open_marketing_cockpit.py` (local only).
-5. Listings/sourcing: follow `ops/prompts/START-HERE.md` and relevant `ops/sourcing/` files.
+5. Listings/sourcing: first read "Owner product rules" in `ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md`.
 
 ## Retrieval-First Task-Time Adaptation
 
