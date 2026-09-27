@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Validate and merge the Codex translations of the Mommy & Me shared strings
-(i18n/mm_shared_en.json) into tr_<loc>.json and en_source.json.
+"""Validate and merge Codex translations of mode-specific shared strings
+(default i18n/mm_shared_en.json; pass another source file name as the second
+argument, e.g. sw_shared_en.json) into tr_<loc>.json and en_source.json.
 
 Checks per locale: identical nested structure, placeholders kept, numbers kept,
 labels end with a colon, nothing left in English. Nothing is merged unless every
-locale passes. Usage: merge_mm_shared.py <codex_out_dir>
+locale passes. Usage: merge_mm_shared.py <codex_out_dir> [source_en.json]
 """
 import json
 import re
@@ -13,7 +14,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 LOCALES = ["ar", "cs", "da", "de", "el", "es", "fi", "fr", "he", "hi", "it", "ja", "ko", "nl", "no", "pl", "pt-BR", "ro", "ru", "sv"]
-SRC = json.loads((HERE / "mm_shared_en.json").read_text(encoding="utf-8"))
+SRC = json.loads((HERE / (sys.argv[2] if len(sys.argv) > 2 else "mm_shared_en.json")).read_text(encoding="utf-8"))
 NUMS = lambda s: sorted(re.findall(r"\d+(?:\.\d+)?", s))
 UNTRANSLATABLE = {"Winter"}  # identical in several locales (e.g. de "Winter")
 

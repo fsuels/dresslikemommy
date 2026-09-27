@@ -153,6 +153,46 @@ When all four files are saved, reply with one line per file: name, width x heigh
 """
 
 
+PROMPT_SW = """DRESS LIKE MOMMY — RELIABLE PHOTOSHOOT SYSTEM (automated run)
+
+The attached vendor images are the exact clothing reference for ONE Shopify listing: Family Matching Christmas crewneck sweatshirts, "{print_name}".
+The same sweatshirt comes in RED and in GREEN; the family can mix both colors exactly like the vendor photos.
+
+Generate FOUR separate images in this order, one at a time, and save each generated image file into the current working directory with exactly these names:
+- image1.png — IMAGE 1, MAIN HERO IMAGE
+- image3.png — IMAGE 3, BEST OCCASION IMAGE
+- image5.png — IMAGE 5, PRODUCT-ONLY IMAGE
+- image6.png — IMAGE 6, ALTERNATE LIFESTYLE IMAGE
+Do not ask me anything and do not wait for NEXT; continue until all four files are saved. Keep the same model family across images 1, 3 and 6, as if photographed in one professional photoshoot.
+
+IMPORTANT: Do NOT create a collage, grid or contact sheet. Each output must be one single image, vertical 9:16 portrait, full-frame photo, no borders, no text labels, no watermarks. If the generator returns a slightly different ratio, crop minimally to exact 9:16.
+
+SOURCE OF TRUTH: the vendor images are the exact clothing reference for the SWEATSHIRTS. The sweatshirt must stay exactly the same: color (red or green), the row of small printed characters across the chest (gift box, Santa, snowman in a Santa hat, reindeer, Christmas tree, gift box, tiny gold stars), print size and position, crew neckline, ribbed cuffs and hem.
+Only the sweatshirts are sold. Bottoms must be plain, unbranded jeans or plain neutral trousers. Do NOT show any cap, hat with logo, brand logo, text lettering, sunglasses or accessory with branding. No baby romper, no pet outfit.
+
+PRODUCT LOCK:
+- {print_sentence}
+- {design_details}
+- Garment lettering: none (do not add any text to the sweatshirts).
+- {role_note}Mom and dad wear adult sweatshirts; a girl and a boy wear child sweatshirts. Mix red and green across the family.
+
+BRAND CONTEXT: warm, clean, bright, realistic, wholesome, family-friendly, commercial, European lifestyle catalog style, suitable for Shopify listings.
+
+MODEL STYLE: all models European: a natural-looking family (mom, dad, a girl and a boy), fair to light-medium skin, blonde, light brown or soft brunette hair, warm smiles; not runway models. The models MUST be different people from the vendor photos.
+
+SCENES (Christmas): family living room with a decorated tree, decorating the tree, a cozy Christmas morning, a snowy-window holiday home.
+
+IMAGE 1 — MAIN HERO IMAGE: the whole family standing together by a decorated tree, all four sweatshirts clearly visible, chest prints readable.
+IMAGE 3 — BEST OCCASION IMAGE: decorating the Christmas tree or opening gifts together; same family; sweatshirts clearly visible.
+IMAGE 5 — PRODUCT-ONLY IMAGE: no people. One adult sweatshirt and one child sweatshirt (one red, one green) as a clean flat lay on a simple light background, matching the vendor garment exactly.
+IMAGE 6 — ALTERNATE LIFESTYLE IMAGE: a different pose or setting (sitting together on the sofa with cocoa, laughing), same family.
+
+STRICT QUALITY CHECK before saving each image: reject and regenerate if the print changed, characters are missing or distorted, colors are wrong, any logo or text appears, anyone wears an invented printed item, it is a collage, it is not vertical 9:16, or it looks fake or unusable for Shopify.
+
+When all four files are saved, reply with one line per file: name, width x height.
+"""
+
+
 import sys as _sys
 _sys.path.insert(0, str(TOOLS))
 import build_specs_zoya as zb  # noqa: E402
@@ -177,7 +217,7 @@ def main() -> None:
         if only and spec["handle"] not in only:
             continue
         handle = spec["handle"]
-        key = handle.replace("-family-matching-pajamas", "").replace("-mommy-and-me-pajamas", "")
+        key = handle.replace("-family-matching-pajamas", "").replace("-mommy-and-me-pajamas", "").replace("-family-matching-sweatshirts", "")
         ns = load(spec_path)
         job = ROOT / "uploads" / handle / "ai"
         job.mkdir(parents=True, exist_ok=True)
@@ -189,7 +229,7 @@ def main() -> None:
         picks = [desc / n for n in spec.get("ai_refs", [])]
         # A spec that names ai_refs (even an empty list) never falls back to scanning the
         # offer gallery: multi-design offers mix other designs into the description.
-        explicit = "ai_refs" in spec and spec.get("mode") == "mommy_me"
+        explicit = "ai_refs" in spec and spec.get("mode") in ("mommy_me", "family_sweatshirt")
         for p in ([] if (picks or explicit) else sorted(desc.glob("*.jpg"))):
             if p.name in spec.get("skip_ref_images", []):
                 continue
@@ -231,7 +271,7 @@ def main() -> None:
             refs = refs + [None] * (2 - len(refs))
         lettering = LETTERING.get(key) or "none (no lettering on these garments; do not add any text)"
         role_note = (ROLE_NOTES.get(key, "") + " ") if ROLE_NOTES.get(key) else ""
-        prompt = (PROMPT_MM if spec.get("mode") == "mommy_me" else PROMPT).format(
+        prompt = {"mommy_me": PROMPT_MM, "family_sweatshirt": PROMPT_SW}.get(spec.get("mode"), PROMPT).format(
             print_name=spec["print_name"],
             print_sentence=spec["print_sentence"],
             design_details=ns["DESIGN_TEXT"][spec["design_key"]],
