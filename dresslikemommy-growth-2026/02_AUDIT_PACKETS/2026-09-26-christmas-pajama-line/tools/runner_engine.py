@@ -39,10 +39,15 @@ FABRIC_GIDS = {
     "cvc": ["gid://shopify/Metaobject/69622399073", "gid://shopify/Metaobject/69622366305"],
     "cotton35": ["gid://shopify/Metaobject/69622399073"],
     "cotton65": ["gid://shopify/Metaobject/69622399073"],
+    "poly_velvet": ["gid://shopify/Metaobject/69622366305"],
 }[SPEC["fabric_key"]]
-FABRIC_LABEL = {"polyester": "Polyester", "polyblend": "Polyester", "poly95": "Polyester", "cotton": "Cotton", "cvc": "Cotton, Polyester", "cotton35": "Cotton", "cotton65": "Cotton"}[SPEC["fabric_key"]]
+FABRIC_LABEL = {"polyester": "Polyester", "polyblend": "Polyester", "poly95": "Polyester", "cotton": "Cotton", "cvc": "Cotton, Polyester", "cotton35": "Cotton", "cotton65": "Cotton", "poly_velvet": "Polyester"}[SPEC["fabric_key"]]
 VENDOR = "dresslikemommy.com"
-LISTING_MODE = "Family Matching"
+# Mode: "family_christmas" (mom, dad and kids; the 2026 Christmas line) or
+# "mommy_me" (mother and child only; season-neutral winter copy).
+MODE = SPEC.get("mode", "family_christmas")
+MM = MODE == "mommy_me"
+LISTING_MODE = "Mommy and Me" if MM else "Family Matching"
 PRIMARY_CATEGORY = "Pajamas"
 PRODUCT_TYPE = "Matching Family Pajamas"
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-17-4"
@@ -50,8 +55,8 @@ EXPECTED_TAXONOMY_FULL_NAME = (
     "Apparel & Accessories > Clothing > Sleepwear & Loungewear > Pajamas"
 )
 FORCE_SPEC_PRICES = True
-CHILD_PRICE = "32.99"
-ADULT_PRICE = "35.99"
+CHILD_PRICE = SPEC.get("child_price", "32.99")
+ADULT_PRICE = SPEC.get("adult_price", "35.99")
 SLEEVE_STYLE = SPEC.get("sleeve_style", "Long-Sleeve")
 
 UPLOAD_DIR = ROOT / "uploads" / HANDLE
@@ -72,7 +77,7 @@ AGE_GROUP_GIDS = {
     "child": "gid://shopify/Metaobject/128116523105",
     "adult": "gid://shopify/Metaobject/128116490337",
 }
-TARGET_GENDER_GIDS = ["gid://shopify/Metaobject/129972502625"]  # Unisex
+TARGET_GENDER_GIDS = ["gid://shopify/Metaobject/129971617889" if MM else "gid://shopify/Metaobject/129972502625"]  # Female (Mommy & Me) / Unisex
 
 # Store shopify--size catalog (read 2026-09-26). The store has no "14"
 # metaobject, so Child 14 Years is skipped rather than faked. Mother and
@@ -101,7 +106,8 @@ SIZE_MAP_ALL = {
     "Mother 4XL": ("gid://shopify/Metaobject/139840716897", "4XL"),
     "Father 4XL": ("gid://shopify/Metaobject/139840716897", "4XL"),
 }
-NO_HONEST_SIZE_MATCH_ALL = {"Child 14 Years"}
+NO_HONEST_SIZE_MATCH_ALL = {"Child 14 Years", "Child 7 Years", "Child 8-9 Years", "Child 10-11 Years"}
+SIZE_MAP_ALL["Child 5-6 Years"] = ("gid://shopify/Metaobject/129972961377", "5-6 years")
 
 ROLE_BY_AUDIENCE = {
     "child": "Child Pajama Set",
@@ -238,8 +244,31 @@ YILIN_EN_CHART = {
     "Dad 2XL": ("Mens 2XL", "Father 2XL", "2XL", "—", 77, 129, 80.4, 111, "88", 129),
     "Dad 3XL": ("Mens 3XL", "Father 3XL", "3XL", "—", 78, 135, 81.2, 112, "93", 135),
 }
+# 诗茹梦 (Shenzhen Shirumeng) mommy-and-me velvet cardigan pajamas: the supplier's
+# own 尺码展示 table (offer 1080921462408, description image 05). The table
+# publishes length, chest, shoulder, sleeve, hip and pant length but no waist, so
+# waist is "-". Heights and weights are the supplier's per-size fit guide (the
+# SKU labels give them in cm/kg). Child ages are the usual age bands for those
+# heights and are labelled as such in the body copy.
+SHIRUMENG_CHART = {
+    "Child 10": ("10 (110-120 cm)", "Child 5-6 Years", "KID56Y", "5-6", 47, 76, 32, 66, "-", 80),
+    "Child 12": ("12 (120-130 cm)", "Child 7 Years", "KID7Y", "7", 50, 80, 36, 72, "-", 84),
+    "Child 14": ("14 (125-135 cm)", "Child 8-9 Years", "KID89Y", "8-9", 53, 84, 40, 78, "-", 88),
+    "Child 16": ("16 (135-145 cm)", "Child 10-11 Years", "KID1011Y", "10-11", 57, 88, 44, 84, "-", 92),
+    "Mom S": ("Womens S", "Mother S", "S", "—", 60, 92, 47, 90, "-", 96),
+    "Mom M": ("Womens M", "Mother M", "M", "—", 62, 98, 50, 93, "-", 100),
+    "Mom L": ("Womens L", "Mother L", "L", "—", 65, 102, 52, 96, "-", 104),
+    "Mom XL": ("Womens XL", "Mother XL", "XL", "—", 68, 106, 54, 99, "-", 108),
+}
+SHIRUMENG_FIT = {  # supplier fit guide: (height cm, weight kg)
+    "Child 10": ("110-120", "19-22.5"), "Child 12": ("120-130", "22.5-27.5"),
+    "Child 14": ("125-135", "25-30"), "Child 16": ("135-145", "27.5-34"),
+    "Mom S": ("145-155", "34-42.5"), "Mom M": ("150-160", "42.5-50"),
+    "Mom L": ("160-165", "50-57.5"), "Mom XL": ("165-170", "57.5-67.5"),
+}
 CHART_TABLE = {"zoya": ZOYA_CHART, "zoya_round": ZOYA_ROUND_CHART, "yilin_cn": YILIN_CN_CHART,
-               "yilin_en": YILIN_EN_CHART}.get(SPEC.get("chart_table"), FACTORY_CHART)
+               "yilin_en": YILIN_EN_CHART, "shirumeng": SHIRUMENG_CHART}.get(SPEC.get("chart_table"), FACTORY_CHART)
+FIT_TABLE = SHIRUMENG_FIT if SPEC.get("chart_table") == "shirumeng" else {}
 # Charts that publish one relaxed waist figure instead of a relaxed-stretched range.
 WAIST_SINGLE = CHART_TABLE is not FACTORY_CHART
 
@@ -259,8 +288,8 @@ def chart_row(vendor_label: str) -> dict:
         # The chart publishes no wearer weight. Its child size codes (80-160)
         # sit beside T labels that disagree with typical heights for those
         # ages, so no wearer height is claimed.
-        "weight": "-",
-        "height": "-",
+        "weight": FIT_TABLE.get(vendor_label, ("-", "-"))[1],
+        "height": FIT_TABLE.get(vendor_label, ("-", "-"))[0],
         "chest_cm": chest,
         "hip_cm": hip,
         "waist_cm": waist,
@@ -292,6 +321,7 @@ FABRIC_TEXT = {
     "cvc": "Soft knit blend of 35% cotton and 65% polyester.",
     "cotton35": "Soft cotton-blend knit with 35% cotton in the main fabric.",
     "cotton65": "Soft cotton-blend knit with 65% cotton in the main fabric.",
+    "poly_velvet": "Soft brushed velvet knit made of 100% polyester.",
 }
 FABRIC_FEATURE = {
     "polyester": ("Soft knit:", "A cotton-feel polyester knit for cozy winter bedtimes."),
@@ -301,6 +331,7 @@ FABRIC_FEATURE = {
     "cvc": ("Soft knit:", "A soft cotton-blend knit for cozy winter bedtimes."),
     "cotton35": ("Soft knit:", "A soft cotton-blend knit for cozy winter bedtimes."),
     "cotton65": ("Soft knit:", "A soft cotton-blend knit for cozy winter bedtimes."),
+    "poly_velvet": ("Soft knit:", "A soft brushed velvet knit that keeps the chill off on winter nights."),
 }
 FABRIC_SEO = {
     "polyester": "soft polyester knit",
@@ -310,6 +341,7 @@ FABRIC_SEO = {
     "cvc": "soft cotton-blend knit",
     "cotton35": "soft cotton-blend knit",
     "cotton65": "soft cotton-blend knit",
+    "poly_velvet": "soft brushed velvet knit",
 }
 DESIGN_TEXT = {
     "crew_trim": "Long-sleeve crew-neck top with a contrast neckline trim, plus full-length pants with an elastic waist.",
@@ -319,6 +351,8 @@ DESIGN_TEXT = {
     "short_crew": "Short-sleeve crew-neck top, plus full-length pants with an elastic waist.",
     "button": "Long-sleeve button-front top with a notched collar, plus full-length pants with an elastic waist.",
     "trim_cuffed": "Long-sleeve top with contrast trim at the neckline and cuffs, plus full-length pants with an elastic waist and cuffed ankles.",
+    "button_peter": "Long-sleeve button-front top with a rounded Peter Pan collar, plus full-length pants with an elastic waist.",
+    "button_lace": "Long-sleeve button-front top with a lace Peter Pan collar, plus full-length pants with an elastic waist.",
 }
 SHARED_EN = {
     "fab_label": "Fabric:",
@@ -345,6 +379,20 @@ SHARED_EN = {
         "chart shows the relaxed waist measurement. Measurements are approximate, "
         "so compare chest, waist, and lengths with pajamas that fit well today."
     ),
+    "fam_text_mm": "One cozy pajama look for mom and her little girl, made for slow weekend mornings, bedtime stories, and matching photos.",
+    "p1_mm": "Mom and daughter can wear the same pajama set, with child and women's sizes. Pick a size for each of you separately to build your matching look.",
+    "p2_mm": (
+        "Each size is one two-piece set with a top and pants. Garment length is the "
+        "top length; pant length is the full pants length. The waist is elastic. Height "
+        "and weight are a general fit guide, and child ages are typical for those "
+        "heights. Measurements are approximate, so compare chest and lengths with "
+        "pajamas that fit well today."
+    ),
+    "kf1_text_mm": "The same pajama set in child sizes plus a women's cut.",
+    "kf4_text_mm": "Coordinated colors made for mommy-and-me photos.",
+    "cta_mm": "Choose the sizes you need for cozy matching nights at home.",
+    "kf1_label_mm": "Mom-and-daughter match:",
+    "kf5_label_mm": "Full size range:",
     "h3_kf": "Key Features:",
     "kf1_label": "Whole-family match:",
     "kf1_text": "The same Christmas pajama set in child sizes plus women's and men's cuts.",
@@ -356,9 +404,12 @@ SHARED_EN = {
 NUMBER_WORDS = {4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight", 9: "nine"}
 
 
+AUDIENCES = ("child", "mother") if MM else ("child", "mother", "father")
+
+
 def size_key() -> str:
     first_last = {}
-    for aud in ("child", "mother", "father"):
+    for aud in AUDIENCES:
         rows = [r for r in SIZE_CHART if r["audience"] == aud]
         first_last[aud] = (rows[0]["picker_label"], rows[-1]["picker_label"], len(rows))
     return "|".join(f"{a}:{f}>{l}:{n}" for a, (f, l, n) in first_last.items())
@@ -368,6 +419,9 @@ def size_range_phrase() -> str:
     c = [r for r in SIZE_CHART if r["audience"] == "child"]
     m = [r for r in SIZE_CHART if r["audience"] == "mother"]
     f = [r for r in SIZE_CHART if r["audience"] == "father"]
+    if MM:
+        return (f"{c[0]['picker_label']} through {c[-1]['picker_label']}, and "
+                f"{m[0]['picker_label']} through {m[-1]['picker_label']}.")
     return (
         f"{c[0]['picker_label']} through {c[-1]['picker_label']}, "
         f"{m[0]['picker_label']} through {m[-1]['picker_label']}, and "
@@ -377,6 +431,9 @@ def size_range_phrase() -> str:
 
 def counts_phrase() -> str:
     n = {a: sum(1 for r in SIZE_CHART if r["audience"] == a) for a in ("child", "mother", "father")}
+    if MM:
+        return (f"{NUMBER_WORDS[n['child']].capitalize()} child sizes and {NUMBER_WORDS[n['mother']]} women's sizes; "
+                "see the size chart for measurements.")
     return (
         f"{NUMBER_WORDS[n['child']].capitalize()} child sizes, {NUMBER_WORDS[n['mother']]} women's sizes, "
         f"and {NUMBER_WORDS[n['father']]} men's sizes; see the size chart for measurements."
@@ -389,6 +446,8 @@ def size_short() -> str:
     f = [r for r in SIZE_CHART if r["audience"] == "father"]
     c0 = c[0]["picker_label"].replace("Child ", "").replace(" Years", "")
     c1 = c[-1]["picker_label"].replace("Child ", "").replace(" Years", "")
+    if MM:
+        return f"Child {c0} to {c1} Years, Mother {m[0]['sku_suffix']}–{m[-1]['sku_suffix']}."
     return (
         f"Child {c0}–{c1} Years, Mother {m[0]['sku_suffix']}–{m[-1]['sku_suffix']}, "
         f"Father {f[0]['sku_suffix']}–{f[-1]['sku_suffix']}."
@@ -411,12 +470,20 @@ def en_segments() -> dict:
     })
     if WAIST_SINGLE:
         seg["p2"] = SHARED_EN["p2_single"]
+    if MM:
+        for key in ("fam_text", "p1", "p2", "kf1_text", "kf4_text", "cta", "kf1_label", "kf5_label"):
+            seg[key] = SHARED_EN[key + "_mm"]
     return seg
 
 
-TITLE_TEMPLATE = "{P} Family Matching Pajamas — Christmas Set"
-SEO_TITLE_TEMPLATE = "{P} Family Pajamas | Dress Like Mommy"
-SEO_DESCRIPTION_TEMPLATE = "{P}: matching Christmas pajamas for mom, dad, girls & boys in {FABRIC}. {SIZES}"
+if MM:
+    TITLE_TEMPLATE = "{P} Mommy and Me Pajamas — Button-Up Set"
+    SEO_TITLE_TEMPLATE = "{P} Mommy & Me Pajamas | Dress Like Mommy"
+    SEO_DESCRIPTION_TEMPLATE = "{P}: matching mommy-and-me pajamas for mom and daughter in {FABRIC}. {SIZES}"
+else:
+    TITLE_TEMPLATE = "{P} Family Matching Pajamas — Christmas Set"
+    SEO_TITLE_TEMPLATE = "{P} Family Pajamas | Dress Like Mommy"
+    SEO_DESCRIPTION_TEMPLATE = "{P}: matching Christmas pajamas for mom, dad, girls & boys in {FABRIC}. {SIZES}"
 TITLE = TITLE_TEMPLATE.format(P=PRINT_NAME)
 SEO_TITLE = SEO_TITLE_TEMPLATE.format(P=PRINT_NAME)
 SEO_DESCRIPTION = SEO_DESCRIPTION_TEMPLATE.format(P=PRINT_NAME, FABRIC=FABRIC_SEO[SPEC["fabric_key"]], SIZES=size_short())
@@ -485,6 +552,16 @@ def unique_size_refs() -> list[str]:
 
 
 def build_tags() -> list[str]:
+    if MM:
+        values = [
+            "Mommy and Me", "Mommy and Me Pajamas", "Mother Daughter", "Pajamas",
+            "Matching Family Pajamas", "Two-Piece Pajama Set", "Pajama Set",
+            "Child Pajama Set", "Mother Pajama Set", f"{SLEEVE_STYLE} Pajamas",
+            "Winter", "Winter Pajamas", "Button-Up Pajamas", PRINT_NAME,
+            *SPEC["extra_tags"],
+        ]
+        values.extend(r["picker_label"] for r in SIZE_CHART)
+        return sorted(dict.fromkeys(values))
     values = [
         "Family Matching", "Mommy and Me", "Daddy and Me", "Pajamas",
         "Matching Family Pajamas", "Family Pajamas", "Matching Family Outfits",
@@ -574,6 +651,12 @@ def build_variants() -> list[dict]:
     return variants
 
 
+SUBCATEGORY2 = "Winter Pajamas" if MM else "Christmas Pajamas"
+GOOGLE_GENDER = "female" if MM else "unisex"
+LABEL2 = "Winter Pajamas" if MM else "Christmas"
+LABEL4 = "Mommy and Me Pajamas" if MM else "Family Christmas Pajamas"
+
+
 def mf(product_id: str, namespace: str, key: str, type_: str, value: str) -> dict:
     return {"ownerId": product_id, "namespace": namespace, "key": key, "type": type_, "value": value}
 
@@ -582,21 +665,21 @@ def build_metafields(product_id: str) -> list[dict]:
     text = "single_line_text_field"
     refs = "list.metaobject_reference"
     return [
-        mf(product_id, "custom", "category1", text, "Family Matching"),
+        mf(product_id, "custom", "category1", text, LISTING_MODE),
         mf(product_id, "custom", "subcategory", text, "Pajamas"),
-        mf(product_id, "custom", "subcategory2", text, "Christmas Pajamas"),
+        mf(product_id, "custom", "subcategory2", text, SUBCATEGORY2),
         mf(product_id, "custom", "pattern", text, PRINT_NAME),
         mf(product_id, "custom", "style", text, f"{SLEEVE_STYLE} Knit Pajama Set"),
         mf(product_id, "custom", "type", text, "Two-Piece Pajama Set"),
         mf(product_id, "mm-google-shopping", "custom_product", "boolean", "false"),
-        mf(product_id, "mm-google-shopping", "gender", text, "unisex"),
+        mf(product_id, "mm-google-shopping", "gender", text, GOOGLE_GENDER),
         mf(product_id, "mm-google-shopping", "age_group", text, "adult"),
         mf(product_id, "mm-google-shopping", "condition", text, "new"),
-        mf(product_id, "mm-google-shopping", "custom_label_0", text, "Family Matching"),
+        mf(product_id, "mm-google-shopping", "custom_label_0", text, LISTING_MODE),
         mf(product_id, "mm-google-shopping", "custom_label_1", text, PRINT_NAME),
-        mf(product_id, "mm-google-shopping", "custom_label_2", text, "Christmas"),
+        mf(product_id, "mm-google-shopping", "custom_label_2", text, LABEL2),
         mf(product_id, "mm-google-shopping", "custom_label_3", text, f"{SLEEVE_STYLE} Pajama Set"),
-        mf(product_id, "mm-google-shopping", "custom_label_4", text, "Family Christmas Pajamas"),
+        mf(product_id, "mm-google-shopping", "custom_label_4", text, LABEL4),
         mf(product_id, "shopify", "age-group", refs, json.dumps([AGE_GROUP_GIDS["child"], AGE_GROUP_GIDS["adult"]])),
         mf(product_id, "shopify", "color-pattern", refs, json.dumps(COLOR_PATTERN_GIDS)),
         mf(product_id, "shopify", "fabric", refs, json.dumps(FABRIC_GIDS)),
@@ -671,8 +754,8 @@ def validate_preflight(body: str, variants: list[dict]) -> None:
     if any(label.lower().startswith(("baby", "dog")) for label in SPEC["vendor_size_labels"]):
         errors.append("baby/dog row present in SIZE_CHART")
     audiences = [r["audience"] for r in SIZE_CHART]
-    if audiences != sorted(audiences, key=["child", "mother", "father"].index) or set(audiences) != {"child", "mother", "father"}:
-        errors.append("SIZE_CHART must list child, mother and father rows in order")
+    if audiences != sorted(audiences, key=["child", "mother", "father"].index) or set(audiences) != set(AUDIENCES):
+        errors.append(f"SIZE_CHART must list {', '.join(AUDIENCES)} rows in order")
     for row in SIZE_CHART:
         missing = [f for f in required if f not in row or row[f] in (None, "")]
         if missing:
@@ -680,6 +763,12 @@ def validate_preflight(body: str, variants: list[dict]) -> None:
         for field in ("chest_cm", "length_cm", "sleeve_cm", "pant_cm", "hip_cm"):
             if not isinstance(row[field], (int, float)) or row[field] <= 0:
                 errors.append(f"{row['vendor_label']} lacks positive source {field}")
+        if FIT_TABLE:
+            if row["waist_cm"] != "-":
+                errors.append(f"{row['vendor_label']} waist is not published by this chart")
+            if (row["height"], row["weight"]) != FIT_TABLE[row["vendor_label"]]:
+                errors.append(f"{row['vendor_label']} height/weight differ from the supplier fit guide")
+            continue
         if not re.fullmatch(r"\d+-\d+" if CHART_TABLE is FACTORY_CHART else r"\d+(-\d+)?", str(row["waist_cm"])):
             errors.append(f"{row['vendor_label']} waist is not the published elastic range")
         for field in ("weight", "height"):
@@ -1027,7 +1116,10 @@ def verify_product(product: dict, variants: list[dict]):
     add("Size table has 10 headers", len(headers) == 10, str(len(headers)))
     add(f"Size table has {len(SIZE_CHART)} rows", len(rows) == len(SIZE_CHART), str(len(rows)))
     add("Size table picker labels match", [r[0] for r in rows if r] == [i["picker_label"] for i in SIZE_CHART], "exact order match")
-    add("Waist populated for every row", all(r[8] not in ("", "-") for r in rows), "all rows")
+    if FIT_TABLE:  # this chart publishes no waist; height and weight come from its fit guide
+        add("Waist left blank (not published) and fit guide shown", all(r[8] == "-" and r[2] != "-" and r[3] != "-" for r in rows), "all rows")
+    else:
+        add("Waist populated for every row", all(r[8] not in ("", "-") for r in rows), "all rows")
     expected_tags = build_tags()
     add("Tags match exactly", product["tags"] == expected_tags, f"{len(product['tags'])} actual / {len(expected_tags)} expected")
     media_nodes = product["media"]["nodes"]
@@ -1096,21 +1188,21 @@ def write_csv(body: str, variants: list[dict], product: dict) -> None:
         put("SEO Title", SEO_TITLE if first else "")
         put("SEO Description", SEO_DESCRIPTION if first else "")
         put("Google Shopping / Google Product Category", EXPECTED_TAXONOMY_FULL_NAME if first else "")
-        put("Google Shopping / Gender", "unisex")
+        put("Google Shopping / Gender", GOOGLE_GENDER)
         put("Google Shopping / Age Group", "kids" if chart["audience"] == "child" else "adult")
         put("Google Shopping / MPN", variant["inventoryItem"]["sku"])
         put("Google Shopping / Condition", "new")
         put("Google Shopping / Custom Product", "FALSE")
-        put("Google Shopping / Custom Label 0", "Family Matching" if first else "")
+        put("Google Shopping / Custom Label 0", LISTING_MODE if first else "")
         put("Google Shopping / Custom Label 1", PRINT_NAME if first else "")
-        put("Google Shopping / Custom Label 2", "Christmas" if first else "")
+        put("Google Shopping / Custom Label 2", LABEL2 if first else "")
         put("Google Shopping / Custom Label 3", f"{SLEEVE_STYLE} Pajama Set" if first else "")
-        put("Google Shopping / Custom Label 4", "Family Christmas Pajamas" if first else "")
-        put("Category1 (product.metafields.custom.category1)", "Family Matching" if first else "")
+        put("Google Shopping / Custom Label 4", LABEL4 if first else "")
+        put("Category1 (product.metafields.custom.category1)", LISTING_MODE if first else "")
         put("Pattern (product.metafields.custom.pattern)", PRINT_NAME if first else "")
         put("Style (product.metafields.custom.style)", f"{SLEEVE_STYLE} Knit Pajama Set" if first else "")
         put("SubCategory (product.metafields.custom.subcategory)", "Pajamas" if first else "")
-        put("SubCategory2 (product.metafields.custom.subcategory2)", "Christmas Pajamas" if first else "")
+        put("SubCategory2 (product.metafields.custom.subcategory2)", SUBCATEGORY2 if first else "")
         put("Type (product.metafields.custom.type)", "Two-Piece Pajama Set" if first else "")
         put("Google: Custom Product (product.metafields.mm-google-shopping.custom_product)", "false")
         put("Age group (product.metafields.shopify.age-group)", "kids, adults" if first else "")
