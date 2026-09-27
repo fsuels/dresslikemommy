@@ -264,6 +264,52 @@
   {%- assign selected_variant_barcode = selected_variant.barcode | default: '' | strip | replace: ' ', '' | replace: '-', '' -%}
   {%- assign selected_variant_barcode_size = selected_variant_barcode | size -%}
 
+  {%- comment -%}
+    Merchant-listing delivery time. Same localized window and fallback as the PDP
+    (snippets/delivery-estimate-copy.liquid, sections/main-product.liquid), parsed
+    like assets/dlm-delivery-dates.js: first number = min, second = max.
+    Handling = the shipping policy's 1-3 day processing time; transit = the rest,
+    so handling + transit equals the PDP window (12-16 days today).
+  {%- endcomment -%}
+  {%- assign schema_delivery_window = 'products.additional_info.standard_delivery_window' | t -%}
+  {%- if schema_delivery_window == blank or schema_delivery_window contains 'translation missing' or schema_delivery_window contains 'business days' -%}
+    {%- assign schema_delivery_window = '12-16 days' -%}
+  {%- endif -%}
+  {%- assign schema_delivery_numbers = '' -%}
+  {%- assign schema_delivery_current = '' -%}
+  {%- assign schema_delivery_chars = schema_delivery_window | append: ' ' | split: '' -%}
+  {%- for schema_delivery_char in schema_delivery_chars -%}
+    {%- if '0123456789' contains schema_delivery_char and schema_delivery_char != '' -%}
+      {%- assign schema_delivery_current = schema_delivery_current | append: schema_delivery_char -%}
+    {%- elsif schema_delivery_current != '' -%}
+      {%- assign schema_delivery_numbers = schema_delivery_numbers | append: schema_delivery_current | append: ',' -%}
+      {%- assign schema_delivery_current = '' -%}
+    {%- endif -%}
+  {%- endfor -%}
+  {%- assign schema_delivery_parts = schema_delivery_numbers | split: ',' -%}
+  {%- assign schema_delivery_min = schema_delivery_parts[0] | default: 0 | plus: 0 -%}
+  {%- assign schema_delivery_max = schema_delivery_parts[1] | default: schema_delivery_min | plus: 0 -%}
+  {%- assign schema_handling_min = 1 -%}
+  {%- assign schema_handling_max = 3 -%}
+  {%- assign schema_transit_min = schema_delivery_min | minus: schema_handling_min -%}
+  {%- assign schema_transit_max = schema_delivery_max | minus: schema_handling_max -%}
+  {%- assign schema_delivery_valid = false -%}
+  {%- if schema_delivery_min >= 1 and schema_delivery_max >= schema_delivery_min and schema_delivery_max <= 90 and schema_transit_min >= 0 and schema_transit_max >= schema_transit_min -%}
+    {%- assign schema_delivery_valid = true -%}
+  {%- endif -%}
+
+  {%- comment -%}
+    Merchant-listing return policy, from the live /policies/refund-policy:
+    30 days from delivery, returns by mail after authorization, customer pays
+    return shipping for non-defective returns. Final Sale items and gift cards
+    are not returnable under the same policy.
+  {%- endcomment -%}
+  {%- assign schema_return_category = 'MerchantReturnFiniteReturnWindow' -%}
+  {%- assign schema_product_tags_joined = product.tags | join: '|' | downcase | replace: '-', ' ' | replace: '_', ' ' -%}
+  {%- if product.gift_card? or schema_product_tags_joined contains 'final sale' -%}
+    {%- assign schema_return_category = 'MerchantReturnNotPermitted' -%}
+  {%- endif -%}
+
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -328,7 +374,37 @@
           "addressCountry": {{ shipping_country_code | json }}
         }
         {%- endif -%}
+        {%- if schema_delivery_valid -%},
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": {{ schema_handling_min }},
+            "maxValue": {{ schema_handling_max }},
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": {{ schema_transit_min }},
+            "maxValue": {{ schema_transit_max }},
+            "unitCode": "DAY"
+          }
+        }
+        {%- endif -%}
       }
+      {%- if shipping_country_code != blank -%},
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": {{ shipping_country_code | json }},
+        "returnPolicyCategory": "https://schema.org/{{ schema_return_category }}"
+        {%- if schema_return_category == 'MerchantReturnFiniteReturnWindow' -%},
+        "merchantReturnDays": 30,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/ReturnFeesCustomerResponsibility",
+        "merchantReturnLink": {{ shop.url | append: routes.root_url | append: '/policies/refund-policy' | replace: '//policies', '/policies' | json }}
+        {%- endif -%}
+      }
+      {%- endif -%}
     }
     {%- assign taxonomy_additional_properties = '' -%}
     {%- assign taxonomy_additional_properties_separator = '' -%}
