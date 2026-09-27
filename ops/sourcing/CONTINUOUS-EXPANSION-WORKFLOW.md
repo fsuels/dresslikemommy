@@ -14,7 +14,7 @@ This file is the recurring loop. It sits on top of the existing tools:
 
 These are standing owner instructions. Details are in the numbered sections below. Changing any of them requires the owner's explicit yes.
 
-1. **Keep expanding, every round:** new designs AND new vendors AND new categories. Categories to cover beyond Mommy & Me, family and Christmas include couples, maternity, siblings and every other idea in `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/lanes/CATEGORY_OPPORTUNITIES.md` (owner 2026-09-27: "keep looking for new opportunities of new products also for couples, maternity, siblings, and any other product idea category").
+1. **Keep expanding, every round:** new designs AND new vendors, within the owner's focus categories: **Mommy & Me, family matching, maternity, couples, Father & Me (Daddy & Me), and siblings** (owner 2026-09-27). **No pet products until the owner says so** (owner 2026-09-27: "Do not do pets yet"). Use `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/lanes/CATEGORY_OPPORTUNITIES.md` for timing and ideas, but skip its pet items.
 2. **Vendor discovery every round** (owner 2026-09-27: "Keep looking for new better vendors!"):
    - test Tier B suppliers;
    - find new Guangdong factories for weak categories;
