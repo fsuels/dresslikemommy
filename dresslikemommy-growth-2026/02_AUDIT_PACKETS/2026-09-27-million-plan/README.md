@@ -92,3 +92,13 @@ Logins: the owner's logged-in Chrome test profile (Google Ads, Merchant, GA4, Se
 - Place one test order for tracking validation.
 - Republish the Gift Card (Q4 was 31% of 2025 sales). Declined for now.
 - Export Search Console data (16 months of performance plus indexing) for the SEO diagnosis.
+
+## 6. Waiting on an external clock (dated agent actions)
+
+- **Oct 16** (the day after the Halloween order-by cutoff):
+  - Re-sort MANUAL `family-pajamas` and `pajamas` (currently Halloween-first) to Christmas-first.
+  - Confirm the homepage hero switched to the `christmas` edition (date switch 1016–1231, built 2026-09-27).
+  - Demote Halloween CTAs everywhere.
+- **Nov 1:** move the remaining Halloween products to the end of the mixed collections; keep them ACTIVE (no archive churn).
+- **Dec 8** (the last estimated US Christmas order date on PDPs): review holiday messaging. After it, the order-by line hides itself, so decide the post-cutoff message: Gift Card (owner decision) or "arrives after Christmas".
+- **Anytime the owner answers:** `OWNER_MORNING_PACKET.md` items 1–9.
