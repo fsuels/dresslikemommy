@@ -55488,3 +55488,23 @@ The owner's decision was relayed by session [57a715] from direct chat: "Do not d
   - the pet method was removed from rule 8;
   - the category memo is annotated to skip the pet items.
 - `/collections/couples` Christmas rules (from anchor `2026-09-27-category-opportunities-and-couples-collection`) stay per the owner.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-card-design-name-titles-live
+
+Owner request (Claude Code chat, session "Website visual improvements" [f7baa5]): fix the truncated product card titles on mobile (#7 of the same-day look audit). Show the design name cleanly within two lines instead of cutting off the "— Halloween Two-Piece Set" suffix; coordinate with active card/collection claims; push to main and verify live on desktop and mobile.
+
+- Coordination: no active claim covers `snippets/card-product.liquid`. The collection page upgrade (`11c1efd`, released) was the last card writer.
+- Finding: after the redesign, card titles are clamped to 2 lines. On phones, "Design — Details" titles (60–70 characters) were cut mid-word ("Halloween Two-Pi…"), and German was worse. The catalog (276 live products) mixes about 90 new "Design Name — Details" titles with older "Category – Design" titles. A plain split-at-dash would have turned the older cards into generic labels such as "Mommy and Me Matching Cardigans".
+- IMPLEMENTED in `8d907f7`, in `snippets/card-product.liquid` only:
+  - The card shows the title before the first spaced dash (—, – or -) only when the untranslated handle has at most 10 words, ends in a garment word (pajamas, set, dresses, sweaters, …) and does not start with a generic word (mommy, family, matching, daddy, mother, father, men, dad, mom, …).
+  - The remainder stays in a `visually-hidden` span, so link text, screen readers and search still get the full title.
+  - Titles that don't qualify render exactly as before.
+- VERIFIED:
+  - Theme check: 0 offenses. `git diff --check` clean.
+  - LiquidJS rendered the block for all 276 live products: 139 split (all 90 em-dash listings), 0 generic prefixes, and display + rest equals the full title every time. It matched the Python simulation. German em-dash and en-dash translations also split correctly.
+  - Release: the GitHub sync dropped the push, so only this file was upserted (MD5 match; main-vs-live drift 0).
+  - LIVE_VERIFIED on iPhone 13 and desktop 1440: home 4/4, family-pajamas 36/36 and PDP related 6/6 show the design name in ≤2 lines with 0 clipped. Mommy & Me shows 26/36 design-only. `/de` shows 36/36 design-only. No Liquid errors, 0 page errors.
+- Residual (not in this scope):
+  - 4 older "Category – Design" titles on Mommy & Me are still clamped on mobile. Fixing them needs product-title rewrites through the listing workflow.
+  - 2 German design names ("Tannengrünes Fair-Isle-Muster Partnerlook-Pyjamas für die Familie" and "Verschneites Dorf mit Streifen …") exceed 2 lines at 12px. Shortening them is translation content for the localization owners.
+- Rollback: `git revert 8d907f7`, then upload `snippets/card-product.liquid`.
