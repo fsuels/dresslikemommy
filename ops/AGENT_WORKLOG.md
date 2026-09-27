@@ -54744,3 +54744,23 @@ Update (2026-09-27 ~02:40 EDT), anchor `2026-09-27-honest-social-proof-families-
 Rollback:
 - `git revert` the chips and price commits, then `sync_live_theme_from_main.py --apply`.
 - `articleDelete` 568793071713, or unpublish it.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-footer-pages-redesign-and-protection-live
+
+- task_entities: theme commits `59ac5a9` `20f958b` `f47802f`; pages about-us, shipping-info, return-policy, faqs, track-your-order, size-guide, contact-us, company-information, terms-and-conditions, privacy-policy; shop policies refund `14695685`, privacy `14695749`, terms `14695813`, shipping `29845782625`, contact `31171805281`
+- task_stage: VERIFY done
+- next_action_id: OWNER_LAWYER_REVIEW_AND_PRODUCT_COMPLIANCE_CHECK
+
+Why: owner in chat: "improve every page of the footer make it look super beautiful, smart protection for the business. help me protect my interest in a smart way."
+
+Done (LIVE_VERIFIED):
+- Theme: help-hub page design for all content pages and `/policies/*` (hero, footer-menu pill nav, policy links, styled body card and `dlm-*` components, contact-form card). Theme check 0 errors. The GitHub sync did not apply within ~2 min (PROB-2026-09-24-GITHUB-THEME-SYNC-STALL-AND-SYNC-BACK-REVERT recurrence); `sync_live_theme_from_main.py --apply` verified by MD5 each time. The last apply also shipped other-session files already on main (`343c670` home-category-localized-copy, product-page-copy-map).
+- Pages: 10 bodies and titles rewritten via `pageUpdate` (size-guide was empty; tracking page no longer loads the 17track script; legacy 2016 terms/privacy pages now point to `/policies/*`); SEO title/description metafields set on the 8 help pages.
+- Legal policies: token and MCP lack `write_legal_policies`, so the fallback was Shopify admin Settings → Policies HTML editor in the browser pane. The readback equals the reviewed files for all 5.
+- An independent adversarial review found 5 must-fix and 8 should-fix items; all were applied before publishing (e.g. removed a Florida §95.03-void 1-year claim limit and a false "no middlemen" line).
+- Privacy/security: the Spanish privacy-policy translation was publicly exposing the owner's personal email. It was removed and re-translated; live readback is clean.
+- Translations: 20 locales × 15 resources, 820/820 registered, 0 outdated.
+
+Evidence, rollback and follow-ups: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-footer-pages-protection/README.md` (before-states in `before/`, with the owner email redacted there).
+
+Open (owner): a one-time attorney review of the Terms; product compliance outside this packet (textile "Imported" origin labels, children's sleepwear flammability/CPSIA certificates); the UK VAT setup check. Nuance: pages say the business has existed "since 2016" (owner's prior copy), while `343c670` says "8,000+ families since 2017" (first Shopify order). They are compatible but should not be conflated.
