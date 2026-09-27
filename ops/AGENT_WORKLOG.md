@@ -54852,3 +54852,34 @@ Correction: session [57a715] reports that the owner rejected the 5 restored 2025
   - The pajama guide image (a family of four in plaid reindeer pajamas) was visually confirmed to match its alt text.
 
 Rollback: `articleDelete` 568793104481; remove the two handles from the allowlist.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-ceo-sprint-christmas-hero-date-switch
+
+- task_entities: main commit for the `christmas` hero edition (`sections/hero-banner.liquid`, `snippets/hero-seasonal-copy.liquid`); MAIN 133290917985; preview theme 156142436449 ("DLM Christmas hero preview 2026-09-27", UNPUBLISHED)
+- task_stage: LIVE_VERIFIED (no change today); PREVIEW_VERIFIED (Christmas render)
+- next_action_id: OCT16_CONFIRM_HERO_SWITCHED
+
+Why: the hero was fixed at the `halloween_winter` edition with no Christmas edition or date switch. After the Oct 15 Halloween order-by cutoff, the homepage lead would sell products that can't arrive (conversion lane H1/H4, fix #1).
+
+Built:
+- A `christmas` edition covering all keys in all 21 hero languages:
+  - "The Christmas Edition"
+  - "Matching Christmas pajamas for the whole family"
+  - "Plaid, reindeer and Fair Isle sets for mom, dad and kids."
+  - CTAs → christmas-pajamas / christmas-sweaters / matching-family-christmas-outfits
+- When the setting is `halloween_winter` and the shop date is 1016–1231, the Christmas edition renders.
+- Slides use the first 3 available `christmas-pajamas` products' featured images in an arch over the winter sky; no Halloween imagery.
+- The editor option "Christmas edition" allows a manual switch or preview.
+
+Verified:
+- Live homepage after release: the hero markup is identical to before, 1 H1, 0 Liquid errors (today is outside the window).
+- Preview theme 156142436449 with `seasonal_copy: christmas`, at 375 px and desktop: correct copy, a family product photo in the arch, 3 slides, Christmas CTAs.
+- Subagent liquidjs checks:
+  - Oct 15 output is byte-identical to the old main in 21 languages.
+  - Oct 16, Nov 30 and Dec 31 show no Halloween text, have 1 H1 and the correct links.
+
+Follow-ups:
+- From Jan 1 the hero reverts to Halloween copy. A winter/new-year edition or a setting change is needed by Dec 26 (added to the plan README §6).
+- The preview theme remains for the owner to delete.
+
+Rollback: `git revert`, then `sync_live_theme_from_main.py --apply`.

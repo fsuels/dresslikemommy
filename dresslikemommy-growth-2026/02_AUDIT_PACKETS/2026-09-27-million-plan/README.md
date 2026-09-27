@@ -101,4 +101,5 @@ Logins: the owner's logged-in Chrome test profile (Google Ads, Merchant, GA4, Se
   - Demote Halloween CTAs everywhere.
 - **Nov 1:** move the remaining Halloween products to the end of the mixed collections; keep them ACTIVE (no archive churn).
 - **Dec 8** (the last estimated US Christmas order date on PDPs): review holiday messaging. After it, the order-by line hides itself, so decide the post-cutoff message: Gift Card (owner decision) or "arrives after Christmas".
+- **Dec 26:** the hero's Christmas window ends Dec 31 and it then falls back to Halloween copy. Add a winter/new-year edition, or change the hero setting, before Jan 1.
 - **Anytime the owner answers:** `OWNER_MORNING_PACKET.md` items 1–9.
