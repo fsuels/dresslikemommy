@@ -58,11 +58,12 @@ Lead = PO created → stocked at the BuckyDrop warehouse (median / p90 days). So
   - 广州沐童制衣 (7 y, 98% fulfillment, kids sets/swim)
   - 广州市小红中服装 (5 y, 100%, kids sets, 揭阳)
   - Neither makes mother-daughter or adult sizes. Not listed.
-- **Family Christmas sweaters, NEW Tier B candidate (Dongguan):** 1688 offer 1049143744816, red family Christmas sweaters.
-  - Seller in 广东东莞, 10 years, fulfillment 98.6%, MOQ 1.
-  - Offer created 2026-04-30, "Year and season of release" Fall 2026.
-  - Not yet read: 48h pickup (the page shows only the default "ships in 15 days" promise). Company name to be confirmed on the store page.
-  - Next: design, IP and duplicate check, then a test listing.
+- **Family Christmas sweaters: 阳春市小番茄服饰店 (1688 offer 1049143744816), Tier B watch. Fails tenure; do not list without an owner exception.**
+  - Store profile read 2026-09-27. The earlier "10 years / Dongguan" came from a mis-parse of the offer page; the offer page shows 东莞 only as the ship-from.
+  - On 1688 for 1 year (company founded 2026-04). AA credit (top 20%), factory 2,500 m², 51–100 staff, warehouse 广东阳春.
+  - Last 30 days: 2,262 orders, 48h pickup 98.61%, 48h fulfillment 100%, quality returns 0%, disputes 0%, repeat buyers 90%.
+  - Product: apricot/red family Christmas sweaters, cotton, kids 80–150 cm + adult S–4XL; offer created 2026-04-30, Fall 2026.
+  - Strong operations but too new for the ≥5-year tenure gate. Re-read next season, or list one design only if the owner approves an exception.
 - **Rejected:**
   - 东莞市娜蒂亚服饰 (1085512696474): 1 year, fails tenure.
   - 深圳市幸洲跨境贸易 (1080560053703): fulfillment 85%, release Spring 2025.
