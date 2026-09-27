@@ -54898,3 +54898,16 @@ Rollback: `git revert`, then `sync_live_theme_from_main.py --apply`.
 - **Swimsuits check:** `/collections/swimsuits` had 274 sessions and 1 cart in 30 days. On checking, it is mostly unknown/direct US spike traffic with only 50 search sessions, so no action was taken.
 
 Rollback: `articleDelete` 568793137249.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-ceo-sprint-christmas-articles-8-locales
+
+- task_entities: Articles 568793071713 (pajama guide), 568793104481 (sweater guide), 568793137249 (photo outfits); locales de, es, fr, it, nl, da, sv, pl
+- task_stage: LIVE_VERIFIED
+- next_action_id: NONE
+
+- **Translations:** ChatGPT-app Codex ran two parallel jobs translating 96 fields (title, body, summary, meta) of the 3 Christmas articles into 8 languages. The parent validated tag and href sequences, lengths and claims words (every "garantiert"/"garantizada"-type hit reads "not guaranteed").
+  - `translationsRegister`: 0 errors, readback 96/96 current.
+  - Live /de /it /pl titles are native, 0 Liquid errors. Shopify localizes product links, e.g. `/de/products/…`.
+- **Pajama guide update:** added the 3 new ACTIVE 衣林 designs (Buffalo Plaid Tree, Green Plaid Merry Tree, Blue Plaid Reindeer) as one paragraph after the plaid section. The summary and meta now say 15 styles.
+  - The same paragraph was translated into all 8 locales and inserted into each translated body. All fields were re-registered with the new digests; 0 outdated.
+  - Live en: 15 product links.
