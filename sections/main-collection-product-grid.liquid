@@ -31,6 +31,8 @@
   <script src="{{ 'daddy-me-collection-filter.js' | asset_url }}" defer="defer"></script>
 {% endif %}
 
+<script src="{{ 'dlm-collection-load-more.js' | asset_url }}" defer="defer"></script>
+
 {% if section.settings.image_shape == 'blob' %}
   {{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
@@ -145,18 +147,44 @@
         {%- if collection.products.size == 0 -%}
           <div class="collection collection--empty page-width" id="product-grid" data-id="{{ section.id }}">
             <div class="loading-overlay gradient"></div>
-            <div class="title-wrapper center">
+            <div class="title-wrapper center{% if collection.all_products_count > 0 %} title-wrapper--dlm-empty{% endif %}">
               {%- if collection.all_products_count == 0 -%}
                 {% render 'collection-empty-recovery', collection: collection, recovery_redirect_url: collection_empty_recovery_target_url %}
               {%- else -%}
-                <h2 class="title title--primary">
-                  {{ 'sections.collection_template.empty' | t -}}
-                  <br>
-                  {{
-                    'sections.collection_template.use_fewer_filters_html'
-                    | t: link: collection.url, class: 'underlined-link link'
-                  }}
-                </h2>
+                {%- liquid
+                  assign dlm_clear_url = collection.url
+                  if collection.sort_by != blank and collection.sort_by != collection.default_sort_by
+                    assign dlm_clear_url = collection.url | append: '?sort_by=' | append: collection.sort_by
+                  endif
+                -%}
+                <div class="dlm-collection-empty">
+                  <span class="dlm-collection-empty__icon" aria-hidden="true">
+                    {%- render 'icon-filter' -%}
+                  </span>
+                  <h2 class="dlm-collection-empty__title">
+                    {{- 'sections.collection_template.empty' | t -}}
+                  </h2>
+                  <p class="dlm-collection-empty__text">
+                    {{-
+                      'sections.collection_template.use_fewer_filters_html'
+                      | t: link: collection.url, class: 'link'
+                      | strip_html
+                    -}}
+                  </p>
+                  {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+                    <facet-remove class="dlm-collection-empty__action">
+                      <a href="{{ dlm_clear_url }}" class="dlm-collection-empty__button">
+                        {{- 'products.facets.clear_all' | t -}}
+                      </a>
+                    </facet-remove>
+                  {%- else -%}
+                    <div class="dlm-collection-empty__action">
+                      <a href="{{ dlm_clear_url }}" class="dlm-collection-empty__button">
+                        {{- 'products.facets.clear_all' | t -}}
+                      </a>
+                    </div>
+                  {%- endif -%}
+                </div>
               {%- endif -%}
             </div>
           </div>
@@ -165,6 +193,14 @@
             class="collection{% if section.settings.filter_type != 'vertical' %} page-width{% endif %}"
           >
             <div class="loading-overlay gradient"></div>
+            {%- if paginate.previous -%}
+              <div class="dlm-collection-previous" data-dlm-load-previous>
+                <a href="{{ paginate.previous.url }}" class="dlm-collection-previous__link" rel="prev">
+                  {%- render 'icon-caret' -%}
+                  <span>{{ 'general.pagination.previous' | t }}</span>
+                </a>
+              </div>
+            {%- endif -%}
             <ul
               id="product-grid"
               data-id="{{ section.id }}"
@@ -197,6 +233,7 @@
                 endif
               -%}
 
+              {%- assign dlm_rendered_count = 0 -%}
               {%- if should_interleave_all_hub -%}
                 {%- liquid
                   assign interleave_bucket_order = ''
@@ -353,6 +390,7 @@
                     {%- endfor -%}
                   {%- endfor -%}
                 {%- endfor -%}
+                {%- assign dlm_rendered_count = interleave_render_index -%}
               {%- else -%}
                 {%- for product in collection.products -%}
                   {%- capture collection_product_is_visible -%}
@@ -362,6 +400,7 @@
                   {%- if collection_product_is_visible != 'true' -%}
                     {%- continue -%}
                   {%- endif -%}
+                  {%- assign dlm_rendered_count = dlm_rendered_count | plus: 1 -%}
                   {% assign lazy_load = false %}
                   {%- if forloop.index > 2 -%}
                     {%- assign lazy_load = true -%}
@@ -390,7 +429,76 @@
             </ul>
 
             {%- if paginate.pages > 1 -%}
-              {% render 'pagination', paginate: paginate, anchor: '' %}
+              {%- liquid
+                # Cards can be hidden at render time (collection-grid-product-visible) after pagination,
+                # so "X of Y" is only truthful when this page rendered its full expected count.
+                assign dlm_shown_count = paginate.current_offset | plus: paginate.page_size
+                if dlm_shown_count > paginate.items
+                  assign dlm_shown_count = paginate.items
+                endif
+                assign dlm_expected_count = dlm_shown_count | minus: paginate.current_offset
+                assign dlm_count_percent = dlm_shown_count | times: 100 | divided_by: paginate.items
+                assign dlm_page_percent = paginate.current_page | times: 100 | divided_by: paginate.pages
+                assign dlm_count_exact = false
+                if dlm_rendered_count == dlm_expected_count
+                  assign dlm_count_exact = true
+                endif
+                if dlm_count_exact
+                  assign dlm_progress_percent = dlm_count_percent
+                else
+                  assign dlm_progress_percent = dlm_page_percent
+                endif
+              -%}
+              <div
+                class="dlm-collection-progress"
+                data-dlm-load-more
+                data-first-page="{{ paginate.current_page }}"
+                data-last-page="{{ paginate.current_page }}"
+                data-total-pages="{{ paginate.pages }}"
+                data-rendered-count="{{ dlm_rendered_count }}"
+                data-expected-count="{{ dlm_expected_count }}"
+                data-count-percent="{{ dlm_count_percent }}"
+                data-page-percent="{{ dlm_page_percent }}"
+                data-page-label="{{ 'general.pagination.page' | t: number: paginate.current_page | escape }}"
+              >
+                <p
+                  class="dlm-collection-progress__text"
+                  data-dlm-progress-text
+                  {% unless dlm_count_exact %}
+                    hidden
+                  {% endunless %}
+                >
+                  {{- 'products.facets.product_count' | t: product_count: dlm_shown_count, count: paginate.items -}}
+                </p>
+                <div class="dlm-collection-progress__track" aria-hidden="true">
+                  <span
+                    class="dlm-collection-progress__fill"
+                    data-dlm-progress-fill
+                    style="--dlm-progress: {{ dlm_progress_percent }}%;"
+                  ></span>
+                </div>
+                {%- if paginate.next -%}
+                  <a
+                    href="{{ paginate.next.url }}"
+                    class="dlm-collection-progress__button"
+                    data-dlm-load-more-button
+                    rel="next"
+                  >
+                    <span class="dlm-collection-progress__label">{{ 'products.facets.show_more' | t }}</span>
+                    <span class="dlm-collection-progress__spinner" aria-hidden="true"></span>
+                  </a>
+                {%- endif -%}
+                <p class="visually-hidden" aria-live="polite" data-dlm-load-more-status></p>
+              </div>
+              {%- comment -%}
+                Show more / Previous page are real rel=next/prev links, so every page stays crawlable.
+                Numbered pagination is a no-JS fallback only, so JS never swaps layout after paint (no CLS).
+              {%- endcomment -%}
+              <noscript>
+                <div class="dlm-collection-pagination">
+                  {% render 'pagination', paginate: paginate, anchor: '' %}
+                </div>
+              </noscript>
             {%- endif -%}
           </div>
         {%- endif -%}

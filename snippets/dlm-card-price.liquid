@@ -1,0 +1,57 @@
+{% comment %}
+  Product-card price: the shown price is emphasized and, when that exact variant is
+  discounted, its compare-at price is struck through next to it. Card-only; the product
+  page keeps using snippets/price.liquid.
+
+  Accepts:
+  - product: {Object} Product Liquid object
+  - variant: {Object} Cheapest available variant (optional; blank when sold out)
+
+  Usage:
+  {% render 'dlm-card-price', product: card_product, variant: card_cheapest_variant %}
+{% endcomment %}
+{%- liquid
+  assign card_price_target = variant
+  if card_price_target == blank
+    assign card_price_value = product.price
+    assign card_price_compare = nil
+  else
+    assign card_price_value = card_price_target.price
+    assign card_price_compare = card_price_target.compare_at_price
+  endif
+
+  assign card_price_on_sale = false
+  if card_price_compare and card_price_compare > card_price_value
+    assign card_price_on_sale = true
+  endif
+
+  if settings.currency_code_enabled
+    assign card_price_money = card_price_value | money_with_currency
+  else
+    assign card_price_money = card_price_value | money
+  endif
+  # The struck price omits the currency code to keep both prices on one line in a
+  # 2-column mobile grid; the emphasized price right next to it carries the code.
+  assign card_price_compare_money = card_price_compare | money
+
+  assign card_price_amount_html = '<span class="dlm-card-price__amount">' | append: card_price_money | append: '</span>'
+  if product.price_varies
+    assign card_price_display = 'products.product.price.from_price_html' | t: price: card_price_amount_html
+  else
+    assign card_price_display = card_price_amount_html
+  endif
+-%}
+<div class="dlm-card-price{% if card_price_on_sale %} dlm-card-price--sale{% endif %}">
+  <span class="visually-hidden">
+    {%- if card_price_on_sale -%}
+      {{- 'products.product.price.sale_price' | t -}}
+    {%- else -%}
+      {{- 'products.product.price.regular_price' | t -}}
+    {%- endif -%}
+  </span>
+  <span class="dlm-card-price__current">{{ card_price_display }}</span>
+  {%- if card_price_on_sale -%}
+    <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
+    <s class="dlm-card-price__compare">{{ card_price_compare_money }}</s>
+  {%- endif -%}
+</div>

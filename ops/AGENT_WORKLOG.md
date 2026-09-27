@@ -54475,3 +54475,25 @@ Changed:
 Verified on preview `156138864737` (REPO_KNOWN until the live readback): `mommy-and-me`, `pajamas` and `family-pajamas` show "Featured" and their curated first products; `dresses` and `daddy-me` show newest first; vacation shows "Best selling"; switching to price low→high re-renders correctly; search offers Relevance and price; no Liquid errors.
 
 Rollback: revert the commit.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-collection-page-redesign-preview
+
+- task_entities: `snippets/facets.liquid`, `assets/facets.js`, `assets/component-facets.css`, `snippets/dlm-facet-*.liquid`, `snippets/card-product.liquid`, `assets/component-card.css`, `snippets/dlm-card-*.liquid`, `sections/main-collection-product-grid.liquid`, `assets/template-collection.css`, `assets/dlm-collection-load-more.js`, preview theme `156138864737`, branch `collection-page-upgrade`
+- task_stage: VERIFY done on preview; release to `main` waits for owner approval in chat
+- next_action_id: OWNER_APPROVE_COLLECTION_REDESIGN_RELEASE
+
+Why: the owner asked for "the best possible" collection page and said "do your recommendations!".
+
+Built (three disjoint subagent lanes, root integration):
+- Filters: pill toolbar with active counts, card-style panels, size chips, color dots, removable active-filter chips, sticky mobile Filter/Sort bar, drawer with sort first and "Apply N products", Escape/outside-click close, logical properties for RTL.
+- Cards: audience eyebrow from tags (Mommy & Me / Daddy & Me / Family Matching, existing translated keys), 2-line titles, struck compare-at price, cognac discount pill anchored to the image corner, up to 4 color thumbnails + "+N".
+- Browsing: "Show more" with honest progress (count text hidden when the theme's cross-branch visibility rule hides products on a page), dedupe, empty-page skip, back/forward restore via sessionStorage (no `?page=` rewriting), `<noscript>` numbered pagination, restyled empty state that keeps the sort.
+- No new locale keys; no admin writes.
+
+Verification (preview, REPO_KNOWN until live readback): theme check 0 offenses (289 files); `node --check` both JS files; no Liquid errors or missing translations on home, PDP, search, de/ar/fr collections, daddy-me, pajamas page 2, zero-result filter; Show more 36→72→107 with 0 duplicates and 0 JS errors; filter→Back returns a consistent unfiltered page; mobile 375 no horizontal overflow, sticky toolbar, drawer footer; audience label translated (de/es/ja). An independent reviewer's 11 findings (2 medium, 1 medium RTL, 8 low) were fixed and re-verified.
+
+Found (live, pre-existing): `snippets/collection-grid-product-visible.liquid` hides cross-branch products after pagination, so counts and pages are wrong (mommy-and-me 107 of 146 shown, pajamas page 2 empty, sweaters 5 of 19). Approval packets: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-collection-page-upgrade/COLLECTION_MEMBERSHIP_PACKET.md` (rule changes; change 1 = add "tag not equal Family Matching" to mommy-and-me/pajamas/tops/sweaters with zero visible loss) and `FILTER_GROUPING_PACKET.md` (Search & Discovery grouping: Size 72→26, Color 52→13, Type 9→7 on mommy-and-me).
+
+Residual: `<html>` has no `dir` attribute, so ar/he render LTR site-wide (separate issue). Preview `156138864737` should be deleted after release.
+
+Rollback: revert the redesign commit.

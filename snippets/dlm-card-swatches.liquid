@@ -1,0 +1,117 @@
+{% comment %}
+  Decorative color preview for a product card: up to 4 round thumbnails of distinct
+  color-option values (first variant image per value, one pass over variants), then "+N" for the rest.
+  Renders nothing unless at least 2 values have distinct images. The whole card is
+  already a link, so the row is aria-hidden.
+
+  The color option is detected by (translated) option name. "Style" is deliberately
+  excluded because on this store it usually means who wears the piece, not a color.
+
+  Accepts:
+  - product: {Object} Product Liquid object
+
+  Usage:
+  {% render 'dlm-card-swatches', product: card_product %}
+{% endcomment %}
+{%- liquid
+  assign swatch_max = 4
+  assign swatch_keywords = 'color|colour|farbe|couleur|colore|kleur|färg|farve|farge|väri|barva|szín|culoare|χρώμα|χρωμα|цвет|renk|颜色|顏色|색상|màu|warna|צבע|لون|रंग|spalva|boja|farba|kolor|print|pattern|muster|motif|estampado|stampa' | split: '|'
+  assign swatch_option = nil
+
+  for swatch_candidate in product.options_with_values
+    if swatch_candidate.values.size < 2
+      continue
+    endif
+    assign swatch_name = swatch_candidate.name | strip | downcase
+    assign swatch_is_color = false
+    if swatch_name == 'cor' or swatch_name == '色' or swatch_name == 'สี'
+      assign swatch_is_color = true
+    else
+      for swatch_keyword in swatch_keywords
+        if swatch_name contains swatch_keyword
+          assign swatch_is_color = true
+          break
+        endif
+      endfor
+    endif
+    if swatch_is_color
+      assign swatch_option = swatch_candidate
+      break
+    endif
+  endfor
+-%}
+{%- if swatch_option != nil -%}
+  {%- comment -%}
+    One pass over the variants: the first variant image of each color value wins. At most
+    12 distinct color values are considered and the loop stops once 4 are shown, so the
+    cost per card stays bounded even for products with many colors and ~250 variants.
+  {%- endcomment -%}
+  {%- liquid
+    assign swatch_option_index = swatch_option.position | minus: 1
+    assign swatch_max_values = 12
+    assign swatch_values_seen = '§§'
+    assign swatch_values_seen_count = 0
+    assign swatch_values_done = '§§'
+    assign swatch_seen_ids = ','
+    assign swatch_shown = 0
+  -%}
+  {%- capture swatch_items -%}
+    {%- for swatch_variant in product.variants -%}
+      {%- if swatch_shown >= swatch_max -%}
+        {%- break -%}
+      {%- endif -%}
+      {%- liquid
+        assign swatch_value_key = '§§' | append: swatch_variant.options[swatch_option_index] | append: '§§'
+        assign swatch_skip = false
+        if swatch_values_done contains swatch_value_key
+          assign swatch_skip = true
+        elsif swatch_values_seen contains swatch_value_key
+          # value already counted; only still looking for its image
+        elsif swatch_values_seen_count >= swatch_max_values
+          assign swatch_skip = true
+        else
+          assign swatch_values_seen = swatch_values_seen | append: swatch_variant.options[swatch_option_index] | append: '§§'
+          assign swatch_values_seen_count = swatch_values_seen_count | plus: 1
+        endif
+
+        assign swatch_image = swatch_variant.featured_image
+        assign swatch_key = ''
+        if swatch_skip == false and swatch_image != blank
+          assign swatch_key = ',' | append: swatch_image.id | append: ','
+        endif
+      -%}
+      {%- if swatch_skip or swatch_image == blank -%}
+        {%- continue -%}
+      {%- endif -%}
+      {%- liquid
+        assign swatch_values_done = swatch_values_done | append: swatch_variant.options[swatch_option_index] | append: '§§'
+      -%}
+      {%- if swatch_seen_ids contains swatch_key -%}
+        {%- continue -%}
+      {%- endif -%}
+      {%- liquid
+        assign swatch_seen_ids = swatch_seen_ids | append: swatch_image.id | append: ','
+        assign swatch_shown = swatch_shown | plus: 1
+      -%}
+      <span class="dlm-card-swatch">
+        <img
+          src="{{ swatch_image | image_url: width: 60, height: 60, crop: 'center' }}"
+          alt=""
+          width="24"
+          height="24"
+          loading="lazy"
+          decoding="async"
+        >
+      </span>
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- if swatch_shown >= 2 -%}
+    {%- assign swatch_rest = swatch_option.values.size | minus: swatch_shown -%}
+    <div class="dlm-card-swatches" aria-hidden="true">
+      {{- swatch_items -}}
+      {%- if swatch_rest > 0 -%}
+        <span class="dlm-card-swatches__more"><bdi dir="ltr">+{{ swatch_rest }}</bdi></span>
+      {%- endif -%}
+    </div>
+  {%- endif -%}
+{%- endif -%}

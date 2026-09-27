@@ -1,0 +1,43 @@
+{% comment %}
+  Outputs the translated audience label for a product card eyebrow, or nothing.
+
+  Derived from product tags only (no stock, review or bestseller claims):
+  - mom  = tag "Mommy and Me", or any tag starting "Mother " or "Mom Size"
+  - dad  = tag "Daddy and Me" or "Daddy & Me Collection", or any tag starting "Father "
+  - both -> Family Matching, mom only -> Mommy & Me, dad only -> Daddy & Me, none -> blank
+
+  Accepts:
+  - product: {Object} Product Liquid object
+
+  Usage:
+  {%- capture audience -%}{% render 'dlm-card-audience', product: card_product %}{%- endcapture -%}
+{% endcomment %}
+{%- liquid
+  assign audience_has_mom = false
+  assign audience_has_dad = false
+
+  for audience_tag in product.tags
+    assign audience_tag_lc = audience_tag | strip | downcase
+    assign audience_prefix_7 = audience_tag_lc | slice: 0, 7
+    assign audience_prefix_8 = audience_tag_lc | slice: 0, 8
+
+    if audience_tag_lc == 'mommy and me' or audience_prefix_7 == 'mother ' or audience_prefix_8 == 'mom size'
+      assign audience_has_mom = true
+    endif
+    if audience_tag_lc == 'daddy and me' or audience_tag_lc == 'daddy & me collection' or audience_prefix_7 == 'father '
+      assign audience_has_dad = true
+    endif
+
+    if audience_has_mom and audience_has_dad
+      break
+    endif
+  endfor
+
+  if audience_has_mom and audience_has_dad
+    echo 'sections.home_category_copy.family_matching' | t
+  elsif audience_has_mom
+    echo 'sections.home_category_copy.mommy_me' | t
+  elsif audience_has_dad
+    echo 'sections.home_category_copy.daddy_me' | t
+  endif
+-%}

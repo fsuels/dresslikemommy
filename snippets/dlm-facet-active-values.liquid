@@ -1,0 +1,68 @@
+{%- comment -%}
+  Renders the removable chips for every active filter value (and an active price range).
+  Used by every active-facets row in snippets/facets.liquid; the "Remove all" link stays in the caller.
+
+  Accepts:
+  - filters: {Array} results.filters
+  - hide_product_type: {Boolean} skip the Type / Product type filter
+
+  Usage:
+  {% render 'dlm-facet-active-values', filters: results.filters, hide_product_type: hide_product_type_active_filters %}
+{%- endcomment -%}
+{%- for filter in filters -%}
+  {%- liquid
+    if hide_product_type
+      if filter.label == 'Type' or filter.label == 'Product type'
+        continue
+      endif
+    endif
+    assign chip_label_key = filter.label | strip | downcase
+    assign chip_param_key = filter.param_name | downcase
+    assign chip_is_color = false
+    if chip_label_key == 'color' or chip_label_key == 'colour' or chip_param_key contains 'color' or chip_param_key contains 'colour'
+      assign chip_is_color = true
+    endif
+    assign seen_active_filter_value_keys = ','
+  -%}
+  {%- for value in filter.active_values -%}
+    {%- liquid
+      assign value_key = value.label | strip | handleize
+      assign value_token = ',' | append: value_key | append: ','
+      if seen_active_filter_value_keys contains value_token
+        continue
+      endif
+      assign seen_active_filter_value_keys = seen_active_filter_value_keys | append: value_key | append: ','
+    -%}
+    <facet-remove>
+      <a href="{{ value.url_to_remove }}" class="active-facets__button active-facets__button--light">
+        <span class="active-facets__button-inner button button--tertiary">
+          {%- if chip_is_color -%}
+            {%- render 'dlm-facet-color-dot', label: value.label, swatch: value.swatch -%}
+          {%- endif -%}
+          <span class="visually-hidden">{{ filter.label | escape }}:</span>
+          <span class="dlm-facets__chip-text">{{ value.label | escape }}</span>
+          {% render 'icon-close-small' %}
+          <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
+        </span>
+      </a>
+    </facet-remove>
+  {%- endfor -%}
+  {%- if filter.type == 'price_range' -%}
+    {%- assign min = filter.min_value.value -%}
+    {%- assign max = filter.max_value.value -%}
+    {%- if min != null or max != null -%}
+      <facet-remove>
+        <a href="{{ filter.url_to_remove }}" class="active-facets__button active-facets__button--light">
+          <span class="active-facets__button-inner button button--tertiary">
+            <span class="visually-hidden">{{ filter.label | escape }}:</span>
+            <span class="dlm-facets__chip-text">
+              {{- min | default: 0 | money }} – {{ max | default: filter.range_max | money -}}
+            </span>
+            {% render 'icon-close-small' %}
+            <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
+          </span>
+        </a>
+      </facet-remove>
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
