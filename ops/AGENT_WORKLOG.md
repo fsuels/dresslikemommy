@@ -55589,3 +55589,14 @@ Sales today at ~11:45 EDT: 2 orders, $164.66, including Together Heart; session 
 - **Owner packet:** order #9574's supplier (玺召) delisted its offer; the replacement supplier needs the owner's OK.
 
 Rollback: delete the `related_products` metafields on the 7 products.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-nordic-yoke-placed-and-linked
+
+- task_entities: product 9474007629921 (nordic-yoke-family-matching-sweaters); related metafields on nordic-heart-reindeer, nordic-reindeer and reindeer-row family sweaters
+- task_stage: LIVE_VERIFIED
+- next_action_id: PLACE_POM_POM_STAR_WHEN_ACTIVE
+
+- **Placement:** the new Dongguan knit from session [57a715] went ACTIVE (PDP 200). Smart collections placed it automatically: #1 in family-sweaters, christmas-sweaters, matching-family-christmas-outfits, fall-winter, new-arrivals and couples.
+- **Related links** (`related_products`): nordic-yoke → Nordic Heart Reindeer, Nordic Reindeer, Reindeer Row and Together Heart. Those 3 Nordic knits list nordic-yoke first. Together Heart keeps its 6-sweatshirt list.
+
+Rollback: delete the 4 `related_products` metafields.
