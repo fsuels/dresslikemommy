@@ -1,5 +1,6 @@
 /*
- * Holiday order-by line for the PDP purchase-confidence card.
+ * Holiday order-by line for the PDP value strip under the price
+ * (snippets/dlm-pdp-value-strip.liquid) and the purchase-confidence card.
  *
  * On a Halloween or Christmas product (detected from the product's own tags
  * via one same-origin /products/<handle>.js request) this adds one line under
@@ -10,22 +11,27 @@
  * never lands after the holiday. The line is hidden after the cutoff, before
  * the lead window opens, when the window cannot be parsed, and when JS fails.
  * Delivery timing is an estimate only; the copy never guarantees arrival.
+ *
+ * The value strip reserves a slot ([data-dlm-holiday-slot]) so the line does
+ * not shift the buy box. The slot is filled here, or hidden when no line applies.
  */
 (function () {
   'use strict';
 
-  var TARGET = '[data-pdp-purchase-confidence] [data-dlm-delivery-window]';
+  var TARGET =
+    '[data-dlm-value-strip] [data-dlm-delivery-window], [data-pdp-purchase-confidence] [data-dlm-delivery-window]';
   var MARK = 'data-dlm-holiday-checked';
   var LINE_ATTR = 'data-dlm-holiday-order-by';
-  // Only show the line in the weeks before the cutoff, not all year.
-  var LEAD_DAYS = 60;
+  var SLOT_SELECTOR = '[data-dlm-holiday-slot]';
   var DAY_MS = 86400000;
 
   // month is 0-based. Christmas targets Dec 24 because many storefront
-  // markets celebrate on Christmas Eve.
+  // markets celebrate on Christmas Eve. `lead` is how many days before the
+  // cutoff the line starts to show: gift shoppers plan Christmas earlier.
+  // snippets/dlm-pdp-value-strip.liquid mirrors these leads to reserve space.
   var HOLIDAYS = {
-    halloween: { month: 9, day: 31, tag: /^(family )?halloween\b/ },
-    christmas: { month: 11, day: 24, tag: /^(family )?christmas\b/ }
+    halloween: { month: 9, day: 31, lead: 60, tag: /^(family )?halloween\b/ },
+    christmas: { month: 11, day: 24, lead: 90, tag: /^(family )?christmas\b/ }
   };
   var ORDER = ['halloween', 'christmas'];
 
@@ -184,7 +190,7 @@
       var cutoff = computeCutoff(target, days.max);
       var remaining = daysBetween(now, cutoff);
       if (remaining < 0) continue;
-      if (remaining > LEAD_DAYS) return null;
+      if (remaining > HOLIDAYS[key].lead) return null;
       return { holiday: key, cutoff: cutoff, date: target };
     }
     return null;
@@ -283,7 +289,39 @@
     return line;
   }
 
-  // Inserts the line after the paragraph holding each unprocessed estimate.
+  // The reserved value-strip slot for this estimate, if any.
+  function findSlot(element) {
+    var strip = typeof element.closest === 'function' ? element.closest('[data-dlm-value-strip]') : null;
+    return strip ? strip.querySelector(SLOT_SELECTOR) : null;
+  }
+
+  function fillSlot(slot, result, locale) {
+    var parts = messageParts(result.holiday, locale);
+    var text = slot.querySelector('[data-dlm-holiday-text]') || slot;
+    if (!parts) return false;
+    text.textContent = '';
+    text.appendChild(document.createTextNode(parts.before));
+    var strong = document.createElement('strong');
+    strong.textContent = formatDate(result.cutoff, locale);
+    text.appendChild(strong);
+    text.appendChild(document.createTextNode(parts.after));
+    slot.setAttribute(LINE_ATTR, result.holiday);
+    return true;
+  }
+
+  function hideSlot(slot) {
+    if (slot && !slot.hasAttribute(LINE_ATTR)) slot.hidden = true;
+  }
+
+  // Hides every reserved slot that was not filled (no holiday line today).
+  function releaseSlots(root) {
+    var scope = root || document;
+    if (typeof scope.querySelectorAll !== 'function') return;
+    Array.prototype.forEach.call(scope.querySelectorAll(SLOT_SELECTOR), hideSlot);
+  }
+
+  // Fills the reserved slot, or inserts the line after the paragraph holding
+  // each unprocessed estimate.
   function render(tags, root, today) {
     var elements = (root || document).querySelectorAll(TARGET);
     var locale = currentLocale();
@@ -292,8 +330,16 @@
       var host = element.parentNode;
       if (!host || !host.parentNode || host.hasAttribute(MARK)) return;
       host.setAttribute(MARK, '');
+      var slot = findSlot(element);
       var result = pickOrderBy(tags, element.getAttribute('data-dlm-delivery-window'), today || new Date());
-      if (!result) return;
+      if (!result) {
+        hideSlot(slot);
+        return;
+      }
+      if (slot) {
+        if (fillSlot(slot, result, locale)) inserted += 1;
+        return;
+      }
       var line = buildLine(result, locale);
       if (!line) return;
       host.parentNode.insertBefore(line, host.nextSibling);
@@ -320,22 +366,24 @@
     formatDate: formatDate,
     message: message,
     render: render,
+    releaseSlots: releaseSlots,
     copy: COPY
   };
 
   function start() {
     var first = document.querySelector(TARGET);
     var handle = productHandle();
-    if (!first || !handle || typeof window.fetch !== 'function') return;
-    if (!anyOpen(first.getAttribute('data-dlm-delivery-window'), new Date())) return;
+    if (!first || !handle || typeof window.fetch !== 'function') return releaseSlots(document);
+    if (!anyOpen(first.getAttribute('data-dlm-delivery-window'), new Date())) return releaseSlots(document);
     window
       .fetch(productUrl(handle), { credentials: 'same-origin', headers: { Accept: 'application/json' } })
       .then(function (response) {
         return response.ok ? response.json() : null;
       })
       .then(function (product) {
-        if (!product || !detectHolidays(product.tags).length) return;
+        if (!product || !detectHolidays(product.tags).length) return releaseSlots(document);
         render(product.tags, document);
+        releaseSlots(document);
         // Re-apply if the purchase-confidence card is re-rendered.
         if (typeof MutationObserver === 'function' && document.body) {
           new MutationObserver(function () {
@@ -344,7 +392,9 @@
           }).observe(document.body, { childList: true, subtree: true });
         }
       })
-      ['catch'](function () {});
+      ['catch'](function () {
+        releaseSlots(document);
+      });
   }
 
   if (document.readyState === 'loading') {

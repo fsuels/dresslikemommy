@@ -1,0 +1,154 @@
+{%- comment -%}
+  PDP value strip, rendered directly under the price so mobile shoppers see
+  arrival, shipping and returns without scrolling to the purchase-confidence
+  card. Every string reuses an existing locale key:
+
+  - Arrival: snippets/delivery-estimate-copy.liquid, the same snippet the
+    purchase-confidence card renders. assets/dlm-delivery-dates.js turns the
+    day window into the same calendar range in both places.
+  - Shipping: products.product.free_shipping_all_orders ("Standard shipping
+    included"; no "free" wording in any locale).
+  - Returns: sections.cart.trust.returns ("30-day returns"), matching the
+    30-days-from-delivery window of the published refund policy.
+
+  CLS: the strip is server-rendered. The date <strong> reserves its final
+  width (min-width) so the JS swap from "12-16 days" to a date range does not
+  rewrap. The holiday order-by slot (filled by assets/dlm-holiday-order-by.js)
+  is reserved only for Christmas/Halloween-tagged products inside that
+  script's lead window; LEAD mirrors its HOLIDAYS[*].lead (Christmas 90,
+  Halloween 60). The script hides the slot when no line applies.
+{%- endcomment -%}
+{%- liquid
+  assign vs_shipping = 'products.product.free_shipping_all_orders' | t
+  if vs_shipping == blank or vs_shipping contains 'translation missing'
+    assign vs_shipping = 'Standard shipping included'
+  endif
+  assign vs_returns = 'sections.cart.trust.returns' | t
+  if vs_returns == blank or vs_returns contains 'translation missing'
+    assign vs_returns = '30-day returns'
+  endif
+
+  # Same key and fallback as snippets/delivery-estimate-copy.liquid; used only
+  # to decide whether to reserve the holiday slot.
+  assign vs_window = 'products.additional_info.standard_delivery_window' | t
+  if vs_window == blank or vs_window contains 'translation missing' or vs_window contains 'business days'
+    assign vs_window = '12-16 days'
+  endif
+  # Upper bound of "12-16 days" / "12-16 日" / "12–16 jours": the two digits after the dash.
+  assign vs_window_max = vs_window | replace: '–', '-' | split: '-' | last | slice: 0, 2 | strip | plus: 0
+
+  # Tag match mirrors /^(family )?(christmas|halloween)\b/ in the JS.
+  assign vs_word_chars = 'abcdefghijklmnopqrstuvwxyz0123456789_'
+  assign vs_christmas = false
+  assign vs_halloween = false
+  for vs_tag in product.tags
+    assign vs_t = vs_tag | downcase | strip
+    assign vs_head = vs_t | slice: 0, 7
+    if vs_head == 'family '
+      assign vs_t = vs_t | slice: 7, 200
+    endif
+    assign vs_word = vs_t | slice: 0, 9
+    assign vs_next = vs_t | slice: 9, 1
+    assign vs_boundary = true
+    if vs_next != blank and vs_word_chars contains vs_next
+      assign vs_boundary = false
+    endif
+    if vs_boundary and vs_word == 'christmas'
+      assign vs_christmas = true
+    elsif vs_boundary and vs_word == 'halloween'
+      assign vs_halloween = true
+    endif
+  endfor
+
+  assign vs_holiday_slot = false
+  if vs_window_max > 0
+    assign vs_now = 'now' | date: '%s' | plus: 0
+    assign vs_year = 'now' | date: '%Y'
+    if vs_christmas
+      assign vs_target = vs_year | append: '-12-24' | date: '%s' | plus: 0
+      assign vs_days = vs_target | minus: vs_now | divided_by: 86400
+      assign vs_open_until = vs_window_max | plus: 90
+      if vs_days >= vs_window_max and vs_days <= vs_open_until
+        assign vs_holiday_slot = true
+      endif
+    endif
+    if vs_halloween
+      assign vs_target = vs_year | append: '-10-31' | date: '%s' | plus: 0
+      assign vs_days = vs_target | minus: vs_now | divided_by: 86400
+      assign vs_open_until = vs_window_max | plus: 60
+      if vs_days >= vs_window_max and vs_days <= vs_open_until
+        assign vs_holiday_slot = true
+      endif
+    endif
+  endif
+-%}
+<style>
+  .dlm-value-strip {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    margin: 0.6rem 0 1rem;
+    color: #1f2937;
+    font-size: 1.3rem;
+    line-height: 1.45;
+  }
+  .dlm-value-strip__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.6rem;
+    margin: 0;
+  }
+  .dlm-value-strip__icon {
+    flex: 0 0 1.5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: 0.2rem;
+    color: #1D8656;
+  }
+  .dlm-value-strip__text { min-width: 0; }
+  .dlm-value-strip .dlm-delivery-window {
+    display: inline-block;
+    min-width: 15em;
+    white-space: nowrap;
+    font-weight: 700;
+  }
+  .dlm-value-strip__pair {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.2rem 1.2rem;
+  }
+  .dlm-value-strip__pair .dlm-value-strip__item { white-space: nowrap; }
+  .dlm-value-strip__holiday {
+    min-height: 2.9em;
+    color: #146642;
+  }
+  .dlm-value-strip__holiday:not([data-dlm-holiday-order-by]) { visibility: hidden; }
+  .dlm-value-strip__holiday[hidden] { display: none; }
+  @media screen and (min-width: 750px) {
+    .dlm-value-strip { font-size: 1.4rem; }
+    .dlm-value-strip__holiday { min-height: 1.45em; }
+  }
+</style>
+<div class="dlm-value-strip" data-dlm-value-strip>
+  <p class="dlm-value-strip__item">
+    <svg class="dlm-value-strip__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+    <span class="dlm-value-strip__text">{% render 'delivery-estimate-copy' %}</span>
+  </p>
+  <div class="dlm-value-strip__pair">
+    <p class="dlm-value-strip__item">
+      <svg class="dlm-value-strip__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
+      <span class="dlm-value-strip__text">{{ vs_shipping }}</span>
+    </p>
+    <p class="dlm-value-strip__item">
+      <svg class="dlm-value-strip__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+      <span class="dlm-value-strip__text">{{ vs_returns }}</span>
+    </p>
+  </div>
+  {%- if vs_holiday_slot -%}
+    <p class="dlm-value-strip__item dlm-value-strip__holiday" data-dlm-holiday-slot>
+      <svg class="dlm-value-strip__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>
+      <span class="dlm-value-strip__text" data-dlm-holiday-text></span>
+    </p>
+  {%- endif -%}
+</div>

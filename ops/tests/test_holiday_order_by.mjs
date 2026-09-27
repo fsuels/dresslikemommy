@@ -84,10 +84,16 @@ test('cutoff day still shows; the day after hides', () => {
   assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 26)), null);
 });
 
-test('hidden outside the 60-day lead window', () => {
+test('per-holiday lead: Christmas opens 90 days before its cutoff, Halloween 60', () => {
   const api = load();
-  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 8, 26)), null);
-  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 9, 9)));
+  // Christmas cutoff Tue Dec 8 2026: opens Wed Sep 9 (90 days), hidden Sep 8.
+  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 8, 27)));
+  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 8, 9)));
+  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 8, 8)), null);
+  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 5, 1)), null);
+  // Halloween cutoff Thu Oct 15 2026: opens Sun Aug 16 (60 days), hidden Aug 15.
+  assert.ok(api.orderByFor('halloween', '12-16 days', new Date(2026, 7, 16)));
+  assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 7, 15)), null);
   assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 5, 1)), null);
 });
 
@@ -118,7 +124,8 @@ test('pickOrderBy returns the earliest open holiday for the product', () => {
   assert.equal(api.pickOrderBy(both, '12-16 days', new Date(2026, 9, 10)).holiday, 'halloween');
   assert.equal(api.pickOrderBy(both, '12-16 days', new Date(2026, 9, 20)).holiday, 'christmas');
   assert.equal(api.pickOrderBy(['Summer'], '12-16 days', new Date(2026, 9, 10)), null);
-  assert.equal(api.pickOrderBy(CHRISTMAS_TAGS, '12-16 days', new Date(2026, 8, 26)), null);
+  assert.equal(api.pickOrderBy(CHRISTMAS_TAGS, '12-16 days', new Date(2026, 8, 26)).holiday, 'christmas');
+  assert.equal(api.pickOrderBy(CHRISTMAS_TAGS, '12-16 days', new Date(2026, 7, 1)), null);
 });
 
 test('every language says estimated and keeps the date slot; unknown falls back to English', () => {
@@ -203,4 +210,65 @@ test('render inserts one line after the estimate paragraph and skips non-holiday
   const late = makeTree();
   assert.equal(api.render(HALLOWEEN_TAGS, late.root, new Date(2026, 9, 16)), 0);
   assert.equal(late.container.children.length, 1);
+});
+
+test('value-strip slot is filled in place, or hidden when no line applies', () => {
+  const makeText = () => ({
+    textContent: 'stale',
+    children: [],
+    appendChild(child) { this.children.push(child); },
+  });
+  const makeStrip = () => {
+    const attrs = new Map();
+    const text = makeText();
+    const slot = {
+      hidden: false,
+      attrs: new Map(),
+      hasAttribute(n) { return this.attrs.has(n); },
+      setAttribute(n, v) { this.attrs.set(n, v); },
+      querySelector: (sel) => (sel === '[data-dlm-holiday-text]' ? text : null),
+    };
+    const strip = { querySelector: (sel) => (sel === '[data-dlm-holiday-slot]' ? slot : null) };
+    const container = { children: [], insertBefore(node) { this.children.push(node); } };
+    const host = { parentNode: container, nextSibling: null, hasAttribute: (n) => attrs.has(n), setAttribute: (n, v) => attrs.set(n, v) };
+    const element = {
+      parentNode: host,
+      getAttribute: () => '12-16 days',
+      closest: (sel) => (sel === '[data-dlm-value-strip]' ? strip : null),
+    };
+    return { slot, text, container, root: { querySelectorAll: () => [element] } };
+  };
+  const document = {
+    readyState: 'complete',
+    documentElement: { lang: 'en' },
+    body: {},
+    querySelector: () => null,
+    querySelectorAll: () => [],
+    addEventListener() {},
+    createElement: () => ({ textContent: '' }),
+    createTextNode: (text) => ({ text }),
+  };
+  const sandbox = { document, Intl, Date, Math, Array, Number, String, Shopify: { locale: 'en' }, location: { pathname: '/' } };
+  sandbox.window = sandbox;
+  vm.runInNewContext(source, sandbox);
+  const api = sandbox.DLMHolidayOrderBy;
+
+  const open = makeStrip();
+  assert.equal(api.render(CHRISTMAS_TAGS, open.root, new Date(2026, 8, 27)), 1);
+  assert.equal(open.container.children.length, 0, 'no extra line is inserted next to the strip');
+  assert.equal(open.slot.attrs.get('data-dlm-holiday-order-by'), 'christmas');
+  assert.equal(open.slot.hidden, false);
+  assert.equal(open.text.textContent, '');
+  const [before, date, after] = open.text.children;
+  assert.equal(before.text + date.textContent + after.text, 'Order by Tue, Dec 8 for estimated Christmas arrival');
+
+  const closed = makeStrip();
+  assert.equal(api.render(CHRISTMAS_TAGS, closed.root, new Date(2026, 11, 9)), 0);
+  assert.equal(closed.slot.hidden, true);
+  assert.equal(closed.container.children.length, 0);
+
+  const released = makeStrip();
+  api.releaseSlots({ querySelectorAll: () => [released.slot, open.slot] });
+  assert.equal(released.slot.hidden, true);
+  assert.equal(open.slot.hidden, false, 'a filled slot stays visible');
 });
