@@ -21,6 +21,11 @@
   function labelFor(card) {
     var wrapper = card.closest('[data-size-guide-single-label]') || document.querySelector('[data-size-guide-single-label]');
     var label = wrapper ? String(wrapper.getAttribute('data-size-guide-single-label') || '').trim() : '';
+    // The source attribute is HTML-escaped twice ("&amp;amp;"), so decode leftover entities
+    // before the label goes into textContent.
+    if (label.indexOf('&') !== -1 && typeof DOMParser === 'function') {
+      label = new DOMParser().parseFromString(label, 'text/html').documentElement.textContent.trim();
+    }
     if (!label || /translation missing/i.test(label)) label = FALLBACK_LABEL;
     return label;
   }
