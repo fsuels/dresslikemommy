@@ -35,7 +35,7 @@ Not touched: locales keys `products.trust.trusted_since` and `review_thanks_note
 
 ## Cart drawer copy trim — 2026-09-27
 
-Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED. The "Website sales improvement" drawer claim owner handed this scope off in chat ("go"). The "Conversion improvements" session changed only the cart context of `snippets/shipping-country-checker-trigger.liquid`, the hidden delivery-reassurance block in `snippets/cart-drawer.liquid`, and the `/cart` delivery-estimate block in `sections/main-cart-footer.liquid` (commit `089a1da`, live 3/3). The drawer claim itself stays with its owner. Anchor `2026-09-27-cart-drawer-copy-trim`.
+Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED. The "Website sales improvement" drawer claim owner handed this scope off in chat ("go"). The "Conversion improvements" session changed only the cart context of `snippets/shipping-country-checker-trigger.liquid`, the hidden delivery-reassurance block in `snippets/cart-drawer.liquid`, and the `/cart` delivery-estimate block in `sections/main-cart-footer.liquid` (commit `089a1da`, live 3/3). The drawer claim itself stays with its owner. Anchor `2026-09-27-cart-drawer-copy-trim`. Follow-up, also handed off by the claim owner: the wallet-block height cap in `assets/component-cart-drawer.css` (`80576d3`, LIVE_VERIFIED; anchor `2026-09-27-drawer-wallet-two-row-cap`). Released.
 
 ## Honest reviews and social proof claim — 2026-09-27
 

@@ -34,3 +34,22 @@ Owner request (Claude Code chat, session "Conversion improvements"): move "You m
 
 ## Residual
 The express-wallet stack (183 px) is now the largest part of the fixed footer. On a 390×664 iPhone the line item shows its title and price, while the size/colour/quantity rows need a small scroll. The remaining option is a design decision for the drawer claim owner: for example, collapse the wallets to a single row, or show them only after a tap.
+
+## Follow-up: express-wallet stack cap — commit `80576d3`
+The drawer claim owner ("Website sales improvement") handed this off in chat. Target: on iPhone 13 (390×664), the first line's title, size and price are fully visible without scrolling, with Check out and at least the first wallet row on screen. Wallets are not hidden behind a tap.
+
+- Cause: `shopify-accelerated-checkout-cart` lays out its buttons inside a closed shadow root. Shopify's CSS forces one column for 4 wallets when the container is ≤430px wide. A page-level grid on the host only creates one grid item, so a two-per-row layout is not possible from theme CSS.
+- Change (`assets/component-cart-drawer.css`): only at `max-width:749px` and heights 651–760px, where the footer stays fixed, the wallet block gets `max-height:112px; overflow-y:auto; overscroll-behavior:contain`. That shows two rows plus a peek of the third; the rest scroll inside the block. The 40px button height and 5px gap stay as they were. At ≤650px the whole drawer already scrolls, and taller phones keep the full stack.
+- Release: the GitHub sync dropped the push again. Live equalled `80576d3^`, so the one file was upserted (userErrors []). Readback: MD5 equals `80576d3`, and the storefront serves the minified rule.
+
+LIVE readback (real add-to-cart, no injected CSS):
+
+| Device | Items area | Footer | Title / size / price visible | Check out + first 2 wallets on screen | Last wallet reachable |
+|---|---|---|---|---|---|
+| iPhone 13 (390×664) | 161 → 232 px | 434 → 363 px | yes / yes / yes | yes | yes, by scrolling the block |
+| iPhone 14 Pro Max (430×740) | 237 → 308 px | 363 px | yes | yes | yes |
+| Galaxy S9+ (320×658) | 155 → 226 px | 363 px | yes | yes | yes |
+| Pixel 7 (412×839) | 336 px (unchanged) | 434 px | yes | yes, full stack | — |
+| iPhone SE (320×568) | unchanged: whole drawer scrolls | — | yes | Check out is clickable after a scroll | — |
+
+Rollback: `git revert 80576d3` and upsert `assets/component-cart-drawer.css` from `80576d3^`.

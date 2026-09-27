@@ -55141,3 +55141,22 @@ Done (via the Shopify connector; the stored token lacks `read_discounts`/`write_
 Open:
 - The offer is invisible until the cart. Shoppers only see it applied in cart and checkout.
 - Advertising it on the PDP/cart needs 21-language theme copy and touches surfaces claimed by peer sessions (cart drawer, PDP). Owner decision needed.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-drawer-wallet-two-row-cap
+
+- task_entities: commit `80576d3`; `assets/component-cart-drawer.css`; live theme `133290917985`; PROB-2026-09-24-MOBILE-CART-TO-CHECKOUT
+- task_stage: VERIFY
+- next_action_id: MOBILE_CART_TO_CHECKOUT_REMEASURE
+
+Handoff from the drawer claim owner ("Website sales improvement", CEO sprint): compact the 183 px express-wallet stack without hiding the wallets. The session "Conversion improvements" did the work under the owner's cart-drawer request.
+
+- Finding: Shopify renders the wallets inside a closed shadow root and forces one column for 4 wallets below 430px wide, so theme CSS cannot make a 2-per-row grid. The owner's fallback was used: two rows plus a peek, with the rest reachable by a normal scroll.
+- IMPLEMENTED `80576d3`: at `max-width:749px` and 651–760px tall, `.drawer__footer .cart-drawer__dynamic-checkout-buttons` gets `max-height:112px; overflow-y:auto; overscroll-behavior:contain`. `#CartDrawer-Footer`, the wallet markup and `ensureExpressCheckoutButtons` are untouched.
+- Release: the GitHub sync dropped the push. Before-state live = `80576d3^`; the one file was upserted, and its MD5 now equals `80576d3`. The storefront serves the rule.
+- LIVE_VERIFIED (headless, real add-to-cart, no injection):
+  - iPhone 13: items area 161→232 px, footer 434→363 px. The line's title, size and price are fully visible. Check out, Shop Pay and Amazon Pay are on screen, PayPal peeks, and G Pay is reachable by scrolling the block.
+  - Galaxy S9+ and iPhone 14 Pro Max: same result.
+  - Pixel 7 and iPhone SE: layout unchanged.
+- Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-cart-drawer-copy-trim/README.md` (follow-up section) and `after_wallet_cap_iphone13.png`.
+- Rollback: `git revert 80576d3`, then upsert the CSS file from `80576d3^`.
+- Next: re-measure mobile cart→checkout in Shopify analytics after a full week of traffic. Exclude the crawler spike days.
