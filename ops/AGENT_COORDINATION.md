@@ -1,5 +1,18 @@
 # Agent Coordination Registry
 
+## CEO overnight conversion sprint claim — 2026-09-27
+
+Status: ACTIVE_WRITE_CLAIM. Owner (chat, 2026-09-27 ~02:00 EDT): "continue working nonstop… work together with chatgpt… I need to wake up and see some actual sales… i give you total control". Standing CEO approval covers reversible theme and store content ops (`ops/CEO_MANDATE.md` §3). The Claude Code session "Website sales improvement" [ad2f47] is the parent and sole releaser for:
+- Theme conversion builds from subagent worktrees:
+  - PDP value strip under the price, plus a visible size-chart text link in the builder;
+  - `assets/dlm-holiday-order-by.js` per-holiday lead window (Christmas 90 days);
+  - cart-drawer express wallets (`snippets/cart-drawer.liquid` and the drawer JS/CSS);
+  - Product JSON-LD shipping and return fields (`snippets/jsonld-seo.liquid`).
+- Blog `body_html` of the 53 published articles that lack a head-collection link: one appended internal-link paragraph each. The copy is drafted by ChatGPT-app Codex and reviewed by the parent. The before-state body is saved; rollback restores it.
+- `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/OWNER_MORNING_PACKET.md` (single writer).
+
+Not touched: locales keys `products.trust.trusted_since` and `review_thanks_note`, `snippets/product-page-copy-map.liquid`, `templates/*.json`, `assets/product-desktop-ux-20260513-ruler-sync.js`, products, prices, ads, spend, feeds, and customer messaging. Release goes through `main`, then `sync_live_theme_from_main.py`, then a live desktop/mobile readback.
+
 ## Honest reviews and social proof claim — 2026-09-27
 
 Status: ACTIVE_WRITE_CLAIM. Owner request (Claude Code chat): "do all your recommendations", free solutions only (no paid Judge.me plan). The Claude Code session "website improvements" is sole writer for:
