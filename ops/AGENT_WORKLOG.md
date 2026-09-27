@@ -54457,3 +54457,21 @@ Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-image-seo/READ
 Rollback: re-register the receipt `before` values, or `translationsRemove` key `alt`.
 
 Next: check the first daily run's report tomorrow morning. This goes first because it proves new listings get translated without a manual session.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-collection-forced-sort-removed
+
+- task_entities: `assets/facets.js`, new `snippets/facet-sort-options.liquid`, `snippets/facets.liquid`, `sections/main-collection-product-grid.liquid`, `sections/main-search.liquid`, `assets/theme-inline-body-static-01.css`, preview theme `156138864737`
+- task_stage: BUILD done, release through `main`
+- next_action_id: VERIFY_LIVE_SORT_FIX_THEN_COLLECTION_REDESIGN_PREVIEW
+
+Why: the owner asked for a better collection page and then "do your recommendations!". Live audit showed `assets/facets.js` re-rendering 43 collections with `sort_by=created-descending` after page load. That hid the owner-approved MANUAL orders (`mommy-and-me` mom-and-child first, `pajamas`/`family-pajamas` Halloween-first), loaded the grid twice and shifted the layout (mis-taps on mobile). A global CSS rule also hid the selected "Date, new to old" and "Featured" options.
+
+Admin before-state (read-only, all 43 handles): 34 CREATED_DESC, 3 MANUAL, 3 BEST_SELLING (`formal-dresses`, `matching-family-vacation-outfits`, `matching-hawaiian-outfits`), 5 handles not found. The fix honours the admin sort, so only the MANUAL and BEST_SELLING collections change. No admin write was needed. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-collection-page-upgrade/sort_before_state.json`.
+
+Changed:
+- Removed the forced-sort script from `assets/facets.js` and the option-hiding CSS rule.
+- New `facet-sort-options` snippet used by all four sort selects: hides A–Z, Z–A and oldest-first (and "Most relevant" outside search), but always renders the active sort.
+
+Verified on preview `156138864737` (REPO_KNOWN until the live readback): `mommy-and-me`, `pajamas` and `family-pajamas` show "Featured" and their curated first products; `dresses` and `daddy-me` show newest first; vacation shows "Best selling"; switching to price low→high re-renders correctly; search offers Relevance and price; no Liquid errors.
+
+Rollback: revert the commit.

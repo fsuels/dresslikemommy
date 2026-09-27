@@ -1,0 +1,36 @@
+{%- comment -%}
+  Renders the <option> list for the collection/search sort selects.
+  Alphabetical and oldest-first sorts are not offered, and "Most relevant" is only offered
+  on search. A hidden sort that is already active (for example from an old link) is still
+  rendered so the select always shows how the grid is sorted.
+
+  Accepts:
+  - sort_options: {Array} results.sort_options
+  - sort_by: {String} the active sort value
+{%- endcomment -%}
+{%- for option in sort_options -%}
+  {%- liquid
+    assign option_hidden = false
+    case option.value
+      when 'title-ascending', 'title-descending', 'created-ascending'
+        assign option_hidden = true
+      when 'most-relevant'
+        if template.name != 'search'
+          assign option_hidden = true
+        endif
+    endcase
+    if option.value == sort_by
+      assign option_hidden = false
+    endif
+  -%}
+  {%- unless option_hidden -%}
+    <option
+      value="{{ option.value | escape }}"
+      {% if option.value == sort_by %}
+        selected="selected"
+      {% endif %}
+    >
+      {{ option.name | escape }}
+    </option>
+  {%- endunless -%}
+{%- endfor -%}
