@@ -55093,3 +55093,24 @@ Done:
 - Storefront: navy-sprig $19.99 was $30.99 (US and /de); jingle-bells $32.99 was $37.99; `/collections/mommy-and-me` shows 60 sale badges again.
 - Not changed: the 27 newer products keep their compare-at; the listing prompt's `price * 1.15` compare-at rule is unchanged.
 - Durable: compare-at policy is an owner-accepted business risk. Do not remove or alter compare-at prices without a new explicit owner request. The theme sale chip shows the cheapest available variant's real compare-at %.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-legal-self-review-and-catalog-compliance
+
+- task_entities: theme commit `18a809a` (country of origin); shop policies terms `14695813`, refund `14695685`, shipping `29845782625`, privacy `14695749`; pages shipping-info/faqs/return-policy; products 6718945034337, 6718948147297, 6719764463713, 6719774720097, 6719792873569, 7109481431137 (claims removed); `summer-plaid-family-matching-set`
+- task_stage: VERIFY done
+- next_action_id: OWNER_SEND_SUPPLIER_SLEEPWEAR_REQUESTS
+
+Why: owner in chat: "I do not have money for that beeds to be free done by you" (instead of attorney review).
+
+Done (LIVE_VERIFIED):
+- Primary-source self-review found 11 policy defects, including the FTC Mail Order ship-time promise, EU/UK risk and withdrawal wording, the ACL guarantee, the CCPA incentive value and Florida §57.105 fees. All were fixed in the 4 policies and 3 pages; policy readback MATCH; 20 locales re-registered with `validate.py` + `check_v2.py` OK.
+- The shipping promise is now "within 5 business days (most ~3)", derived from real order data (16 fulfilled orders since 2025: median 3, p90 4, max 10 business days).
+- "Imported" origin line is on every PDP in 20 locales (theme + locale upsert + theme translations).
+- Unprovable "organic"/"sun protection" swimsuit claims removed (English + 120 translations).
+- Details: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-footer-pages-protection/LEGAL_SELF_REVIEW.md`.
+
+Owner decisions: kids' sleepwear stays on sale, and the supplier requests for CPSC test reports were drafted for the owner to send. The summer-plaid drawstring is unresolved: the source offer is delisted, the owner asked to check photos first, and the AI photos show no drawstring.
+
+Open:
+- Unfulfilled order #9560 from 2026-08-16 is past the Mail Order Rule window and needs an owner decision on a customer delay notice or refund. The 2026-09-24 order is within window.
+- Pre-existing outdated `meta_description` translations remain on the 6 swimsuit products; they contain no claims.
