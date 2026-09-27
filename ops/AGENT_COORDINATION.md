@@ -25,6 +25,10 @@ Status: ACTIVE_WRITE_CLAIM. Owner (chat, 2026-09-27 ~02:00 EDT): "continue worki
 
 Not touched: locales keys `products.trust.trusted_since` and `review_thanks_note`, `snippets/product-page-copy-map.liquid`, `templates/*.json`, `assets/product-desktop-ux-20260513-ruler-sync.js`, products, prices, ads, spend, feeds, and customer messaging. Release goes through `main`, then `sync_live_theme_from_main.py`, then a live desktop/mobile readback.
 
+## Cart drawer copy trim — 2026-09-27
+
+Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED. The "Website sales improvement" drawer claim owner handed this scope off in chat ("go"). The "Conversion improvements" session changed only the cart context of `snippets/shipping-country-checker-trigger.liquid`, the hidden delivery-reassurance block in `snippets/cart-drawer.liquid`, and the `/cart` delivery-estimate block in `sections/main-cart-footer.liquid` (commit `089a1da`, live 3/3). The drawer claim itself stays with its owner. Anchor `2026-09-27-cart-drawer-copy-trim`.
+
 ## Honest reviews and social proof claim — 2026-09-27
 
 Status: ACTIVE_WRITE_CLAIM. Owner request (Claude Code chat): "do all your recommendations", free solutions only (no paid Judge.me plan). The Claude Code session "website improvements" is sole writer for:
