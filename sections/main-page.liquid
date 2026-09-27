@@ -15,12 +15,12 @@
 {%- endstyle -%}
 
 <div class="dlm-info page-width section-{{ section.id }}-padding">
-  <header class="dlm-info__hero{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
+  <div class="dlm-info__hero{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--fade-in{% endif %}">
     <p class="dlm-info__eyebrow">{{ 'sections.footer_headings.help_support' | t }}</p>
     <h1 class="main-page-title page-title dlm-info__title">
       {{ page.title | escape }}
     </h1>
-  </header>
+  </div>
   {% render 'dlm-help-hub-nav' %}
   <div class="dlm-info__body rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
     {{ page.content }}

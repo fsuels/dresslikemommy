@@ -47,3 +47,13 @@
     </ul>
   {%- endif -%}
 </nav>
+<script>
+  (function () {
+    var active = document.querySelector('.dlm-hub-nav__list .is-active');
+    if (!active) return;
+    var list = active.closest('.dlm-hub-nav__list');
+    if (list && list.scrollWidth > list.clientWidth) {
+      list.scrollLeft = active.parentElement.offsetLeft - (list.clientWidth - active.offsetWidth) / 2;
+    }
+  })();
+</script>
