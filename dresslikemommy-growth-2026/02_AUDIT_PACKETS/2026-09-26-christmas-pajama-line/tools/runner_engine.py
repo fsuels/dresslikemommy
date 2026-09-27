@@ -51,7 +51,7 @@ MM = MODE == "mommy_me"
 SW = MODE == "family_sweatshirt"  # unisex family crewneck sweatshirt (child + adult sizes)
 LISTING_MODE = "Mommy and Me" if MM else "Family Matching"
 PRIMARY_CATEGORY = "Tops" if SW else "Pajamas"
-PRODUCT_TYPE = "Matching Family Sweatshirts" if SW else "Matching Family Pajamas"
+PRODUCT_TYPE = "Family Matching Sweatshirts" if SW else "Matching Family Pajamas"  # SW type must contain "Family Matching" for the new-arrivals rule
 TAXONOMY_GID = "gid://shopify/TaxonomyCategory/aa-1-13-14" if SW else "gid://shopify/TaxonomyCategory/aa-1-17-4"
 EXPECTED_TAXONOMY_FULL_NAME = (
     "Apparel & Accessories > Clothing > Clothing Tops > Sweatshirts" if SW else
