@@ -2,6 +2,10 @@
 
 Scope: whole repo. Changing state/workflows live in `ops/`, `ops/marketing/`, and `docs/agent-loops/`. Keep this file and `CLAUDE.md` byte-identical; strict continuity enforces it.
 
+## CEO Mandate
+
+The owner named the agent CEO (2026-09-27): goal $1M+/yr sales. Every session reads `ops/CEO_MANDATE.md` and its plan, then autonomously runs the highest sales-moving work at AI speed, routing owner requests into the plan. Claude and ChatGPT/Codex work as one team. Standing approval covers reversible store ops; money, customer messaging, and owner logins still need an explicit yes.
+
 ## Non-Negotiables
 
 This guide extends the active product-specific global guide: Codex uses `~/.codex/AGENTS.md`; Claude uses `~/.claude/CLAUDE.md`. Current user scope can narrow authority. The stricter safety, freshness, approval, or verification rule wins.
@@ -15,19 +19,19 @@ This guide extends the active product-specific global guide: Codex uses `~/.code
 
 ## Routing
 
-Theme is Dawn-derived; operator systems live under `ops/`, `.codex/agents/`, `pixels/`, `agent-backend/`, and subprojects. Evidence lives in `dresslikemommy-growth-2026/02_AUDIT_PACKETS/`; direction in `VISION.md`. There is no root app package.
+Theme is Dawn-derived; operator systems live in `ops/`, `.codex/agents/`, `pixels/`, `agent-backend/`, and subprojects. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/`; direction: `VISION.md`. No root app package.
 
 1. Read this file and `ops/MEMORY_CONTINUITY_PROTOCOL.md`; read `VISION.md` for product, UX, listing, growth, automation, or trust work.
 2. For known issues/failed readbacks, use `ops/PROBLEM_SOLVING_PROTOCOL.md` and the matching `ops/PROBLEM_TRACKER.md` entry.
-3. For "continue <channel>", run `python3 ops/scripts/compile_task_context.py --query "continue <channel>" --format brief` and read its sourced brief before acting. Otherwise search the latest relevant worklog anchor and exact IDs. Before shared/external work read `ops/AGENT_COORDINATION.md`; account/browser work also requires the access/browser protocols and a task-owned background surface.
+3. For "continue <channel>", run `python3 ops/scripts/compile_task_context.py --query "continue <channel>" --format brief` first; else search the latest relevant anchor and exact IDs. Before shared/external work read `ops/AGENT_COORDINATION.md`; account/browser work also needs the access/browser protocols and a task-owned surface.
 4. Paid growth: follow `ops/marketing/AGENTS.md` `Required First Loop`, the sole detailed retrieval map. For the canonical paid-growth goal, first run `python3.13 ops/scripts/open_marketing_cockpit.py` (local only).
 5. Listings/sourcing: follow `ops/prompts/START-HERE.md` and relevant `ops/sourcing/` files.
 
 ## Retrieval-First Task-Time Adaptation
 
-Use TTT principles as temporary specialization from retrieved repo evidence—not neural-weight training, self-modification, a second state tree, or external-write authority. Canonical files govern; chat/model memory are hints.
+Use TTT principles as temporary specialization from retrieved repo evidence—not weight training, self-modification, a second state tree, or write authority. Canonical files govern; chat/model memory are hints.
 
-Classify substantive work as `DIAGNOSE`, `BUILD`, `VERIFY`, `HANDOFF`, or `BLOCKED`. Retrieve only: durable rules; owning current-state control; latest relevant (not merely global-latest) anchor; matching problem/claim/decision/outcome; and narrow task evidence/loop. Search exact product, campaign, feed, market, file, error, problem, or decision IDs first. Use `ops/scripts/compile_task_context.py` when semantic continuity matters; avoid whole-ledger reads unless targeted retrieval fails. Use `REPO_KNOWN`, `LIVE_READBACK_REQUIRED`, `LIVE_VERIFIED`, and `STALE_OR_SUPERSEDED`; never promote inference into live truth.
+Classify substantive work as `DIAGNOSE`, `BUILD`, `VERIFY`, `HANDOFF`, or `BLOCKED`. Retrieve only durable rules, the owning current-state control, the latest relevant anchor, matching problem/claim/decision/outcome, and narrow task evidence. Search exact IDs first; use `ops/scripts/compile_task_context.py` for semantic continuity; avoid whole-ledger reads unless targeted retrieval fails. Use `REPO_KNOWN`, `LIVE_READBACK_REQUIRED`, `LIVE_VERIFIED`, and `STALE_OR_SUPERSEDED`; never promote inference into live truth.
 
 Precedence: hard safety; current user scope/fresh approval; current-session exact-surface readback; authoritative control; latest relevant anchor/problem/claim/decision; historical evidence; inference. Scope may narrow authority, never silently broaden it. Contradictory canonical sources fail closed until reconciled. Never embed changing metrics, approvals, blockers, statuses, or literal latest anchors in permanent instructions.
 
@@ -37,13 +41,13 @@ For ambiguous/cross-surface/material work, build one transient frame: objective,
 - Significant: test the decision-critical premise and compare one credible alternative.
 - Material/costly/live/irreversible/durable-rule: add one adversarial challenge and an independent verifier who did not build/execute it.
 
-If evidence disproves a premise, stop dependent work, return to the last verified premise without unapproved destructive rollback, record the contradiction, and change paths. Stop reflection after one challenge unless evidence changes or verification fails. Parent owns approvals, frame, integration, and external writes; subagents use disjoint scopes.
+If evidence disproves a premise, stop dependent work, return to the last verified premise without unapproved destructive rollback, record the contradiction, and change paths. Stop reflecting after one challenge unless evidence changes. Parent owns approvals, frame, integration, and external writes; subagents use disjoint scopes.
 
 Persist only durable facts, verified outcomes, unresolved gates, and behavior-changing lessons. Routine recurring learning needs two independent observed-outcome events; one high-severity spend/customer-truth/publication/credential/destructive-action/approval-scope event may qualify. Repeated copies do not.
 
-For prompt/checklist changes, freeze 3–5 failures plus a passing holdout and binary criteria, change one rule, and retain it only if failures improve without weakening safety, approvals, customer truth, or passing behavior. Do not edit evaluator and evaluated prompt together. Promote at most one rule per weekly review; otherwise `NO_CHANGE`.
+Prompt/checklist changes: freeze 3–5 failures plus a passing holdout and binary criteria, change one rule, keep it only if failures improve without weakening safety, approvals, customer truth, or passing behavior. Never edit evaluator and evaluated prompt together; promote at most one rule per weekly review, else `NO_CHANGE`.
 
-Close by verifying, updating only owning canonical memory, linking matured decisions to expected-vs-observed outcomes, and naming exactly one owner-facing action with why it goes first. Internal queues may retain several disjoint lanes. Paid-growth handoffs must include the existing authority, uncertainty-branch, and independent-verifier machine fields defined by the canonical prompt.
+Close by verifying, updating only owning canonical memory, linking matured decisions to expected-vs-observed outcomes, and naming one owner-facing action with why it goes first. Paid-growth handoffs include the authority, uncertainty-branch, and independent-verifier fields from the canonical prompt.
 
 ## Execution Rules
 
@@ -51,10 +55,10 @@ Close by verifying, updating only owning canonical memory, linking matured decis
 - One writer per campaign/feed/product cohort/theme/account surface. Parallel read-only work is allowed; writes need a narrow claim.
 - GitHub `fsuels/dresslikemommy` branch `main` is the canonical storefront. For requested fixes, review/test, commit/push to `main`, then verify Shopify sync and affected published routes. Local or unpublished fixes are incomplete; previews are temporary test/rollback copies. Maintain one site version. Report actual release blockers precisely; a tool capability limit alone is not a deployment ban.
 - Before external Save/Apply/Publish/Upload/Enable/Pause/Remove/Delete/Sync/Submit, confirm claim, exact authority, before-state, after-state plan, rollback. Stop on login, CAPTCHA, account switch, billing, permission, policy, or unexpected destructive prompts.
-- A fresh login page is not proof of no access; complete the recovery ladder. Absent env vars mean “credentials not loaded in this shell”; stored-token `401` means regeneration/reinstall is needed.
-- Keep theme work Dawn-compatible/minimal; Liquid presentation-focused and JS vanilla/ES-module. Follow `docs/agent-loops/ui-browser-verification-loop.md` and verify affected desktop/mobile plus relevant country/language routes. Use the canonical listing/localized-size-chart workflow.
+- A fresh login page is not proof of no access; complete the recovery ladder. Absent env vars mean credentials not loaded in this shell; a stored-token `401` means regenerate/reinstall.
+- Keep theme work Dawn-compatible/minimal (presentation Liquid, vanilla/ES-module JS). Follow `docs/agent-loops/ui-browser-verification-loop.md`; verify affected desktop/mobile and country/language routes. Use the canonical listing/localized-size-chart workflow.
 - Paid-growth North Star: maximize profitable Google/Pinterest conversions at about `650% ROAS`. Judge purchases, revenue/value, CPA, ROAS; treat traffic/quality metrics diagnostically.
-- Monitoring must end with `fix now`, `execute approved bounded action`, `prepare exact approval packet`, `reroute to another safe sales-moving lane`, or `hold with evidence because no action is currently valid`. Zero impressions after 24 hours triggers same-day serving/auction and high-intent long-tail action.
+- Monitoring ends with `fix now`, `execute approved bounded action`, `prepare exact approval packet`, `reroute to another safe sales-moving lane`, or `hold with evidence because no action is currently valid`. Zero impressions after 24h triggers same-day serving/auction and high-intent long-tail action.
 - Follow `ops/marketing/expert_growth_playbook_2026.md`; high-intent/low-waste, landing fit, economics, measurement, and anti-cannibalization beat cheap traffic. One blocked lane must not freeze independent work.
 - Standing spend authority is usable only when every current command-layer gate agrees. Historical `GREEN`, readiness, approval, or `LIVE_VERIFIED` text is not present authority. Otherwise no spend/enablement/upload/import/budget/bid/status/PMax/remarketing/Shopping/product/feed/conversion or Merchant/Shopify/Pinterest/GA4/GTM production write.
 
@@ -68,7 +72,7 @@ python3.13 ops/scripts/audit_marketing_command_integration.py --write-report --f
 python3.13 ops/scripts/check_pinterest_feed_grouping.py --strict
 ```
 
-Strict continuity is required after continuity, command-layer, prompt, cockpit, authority, worklog, or handoff changes. Do not deploy without explicit approval.
+Strict continuity is required after continuity, command-layer, prompt, cockpit, authority, worklog, or handoff changes. Deploy only with explicit or standing (CEO Mandate) approval.
 
 `ops/AGENT_WORKLOG.md` is the canonical chronology; add an anchor after code/theme/prompt/script/external-state/durable-strategy changes. Problems remain in `PROBLEM_TRACKER.md` until fixed, disproven, safely superseded, or exactly gated. Claims live in `AGENT_COORDINATION.md`; never clear another owner’s claim. `ops/marketing/` is the only paid-growth command layer.
 
