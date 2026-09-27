@@ -55576,3 +55576,16 @@ LIVE_VERIFIED post-release checklist (`SEO_BUILD_NOTES.md` §5), spaced requests
   - Kids 80–140 cm ¥44.5; one adult size M ¥57.5; MOQ 3 mixed.
   - The customer ordered Mother XL, which is not offered. Owner decision.
 - Knit drafts Nordic Yoke and Pom-Pom Star: translations registered; images generating.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-together-heart-related-sweatshirts
+
+- task_entities: product 7672336646241 (together-heart-family-matching-sweaters); 6 new family sweatshirts (smiley-heart, eternal-bliss-hearts, little-heart, good-luck-smile, moon-and-star, starry-sky); order #9574
+- task_stage: LIVE_VERIFIED
+- next_action_id: PEER_TAGS_FAMILY_SWEATERS
+
+Sales today at ~11:45 EDT: 2 orders, $164.66, including Together Heart; session [57a715] reported the first sale. The same supplier's 6 new 2026 sweatshirts went ACTIVE.
+- **Related links:** the `related_products` metafields link Together Heart → the 6 sweatshirts, and each sweatshirt → Together Heart plus 4 siblings. The storefront `/recommendations` related API for Together Heart returns the 6 first.
+- **Collections:** the sweatshirts already sit in new-arrivals, new-women-outfits, popular-family-matching, family-tops, fall-winter and family-photo-outfits. `family-sweaters` needs the tags "Family Matching" and "Sweaters", which the peer will add on its listings.
+- **Owner packet:** order #9574's supplier (玺召) delisted its offer; the replacement supplier needs the owner's OK.
+
+Rollback: delete the `related_products` metafields on the 7 products.

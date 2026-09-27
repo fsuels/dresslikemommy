@@ -15,6 +15,8 @@ Everything that doesn't need you keeps running without you. Tonight that means c
 
 - **Order #9572** ($95.36, 4 raglan tees, placed Sep 24) is paid but **unfulfilled after 3 days**. Please place it with BuckyDrop; late shipping hurts reviews and repeat buying.
 
+- **Order #9574** (Color-Block knit): the 玺召 source offer is delisted. The sourcing session found an identical replacement supplier and needs your OK to buy from it.
+
 ## Decisions
 
 | # | Decision (owner does it or says "yes") | Why | Undo |
