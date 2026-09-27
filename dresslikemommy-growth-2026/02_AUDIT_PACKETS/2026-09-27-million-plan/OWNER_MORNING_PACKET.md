@@ -45,7 +45,7 @@ Everything that doesn't need you keeps running without you. Tonight that means c
   - "Order by Dec 8 for estimated Christmas arrival" on Christmas products;
   - visible "Size guide & fit" link;
   - Google structured data with 30-day returns and delivery time;
-  - wallet buttons in the cart drawer (still to confirm on a phone with an item in the cart);
+  - wallet buttons in the cart drawer (Shop Pay, PayPal, Amazon Pay and G Pay, verified with a real cart on 4 phone sizes by the Conversion session; a more compact layout is in progress);
   - 46 blog articles now link to the main collections (written with ChatGPT);
   - Christmas Pajamas sorted best-selling first;
   - 15 Christmas/Halloween redirects;
