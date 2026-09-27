@@ -54500,3 +54500,21 @@ Not changed, and why:
 Checks: `python3 -m unittest ops/tests/test_product_page_copy_map.py` (5 OK), `shopify theme check` 0 errors, `git diff --check`, `node --check` plus a fake-DOM run of the drawer handler.
 
 Rollback: `git revert` of the release commit, then confirm the Shopify sync.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-mobile-footer-language-picker-white-screen
+
+- task_entities: `assets/localization-form.js`; `#FooterLanguageForm`; MAIN `133290917985`; commit `512a50c`
+- task_stage: LIVE_VERIFIED
+- next_action_id: NONE
+
+Why: the owner reported that tapping the footer language selector on mobile turned the screen white.
+
+Root cause (reproduced live, 375px): `openSelector()` added `body.overflow-hidden-mobile`. The mobile-menu rule in `assets/theme-inline-body-static-05.css` gives that class `height: 100%; overflow: hidden !important` (≤989px). With the page scrolled to the footer (~6,000px down), the body was clipped to one viewport and nothing was painted.
+
+Changed: the scroll lock now applies only to the full-screen country modal (the one with a search box); the anchored language dropdown no longer locks scroll. A second tap on the button now closes through `hidePanel()`, so the lock and `country-selector-open` are always released (Dawn's toggle used to close the list but leave the lock on). The CSS rule is unchanged because the menu drawer depends on it through `overflow-hidden-tablet`.
+
+Verified live on MAIN after the push (built-in browser, no preview cookie): the served minified JS has the new `openSelector`; `sync_live_theme_from_main.py` found 0 of 348 code files drifted. On mobile, home and `/collections/mommy-and-me` stay visible with the list open, a second tap closes it and leaves the body unlocked, Español → `/es`, and Français → `/fr/collections/mommy-and-me`. Desktop open and close also work. `node --check` passed.
+
+Note: the footer country selector is currently disabled (`footer-group.json`). If it is enabled, its mobile modal still uses the lock and will hit the same `height: 100%` clipping when the page is scrolled.
+
+Rollback: `git revert 512a50c`, then run the drift check.
