@@ -24,6 +24,9 @@ Everything that doesn't need you keeps running without you. Tonight that means c
 | 7 | **Republish the Gift Card** (declined 09-27; re-ask). | Q4 was 31% of 2025 sales; gift cards are a late-December save when shipping can't arrive in time. | Unpublish. |
 | 8 | **Turn on EU local payment methods** in Shopify Payments (Settings → Payments): iDEAL (NL), Bancontact (BE), Klarna, BLIK (PL), MobilePay (DK), wherever Shopify Payments offers them. | Non-US checkout completion is 20% vs 45% in the US. Italy had 8 checkouts and 0 orders. EU shoppers expect their local method. No monthly cost, only per-transaction fees. | Turn each method off. |
 | 9 | **Solve the 1688 CAPTCHA** in the helper Chrome (CDP 9333) used by the Christmas catalog session. | 1688 search is blocked, which stalls new Christmas designs: the family pajamas, Mommy & Me winter pajamas, and the new Mommy & Me Christmas dresses line (6–10 designs; we sell none today). | n/a |
+| 10 | **Allow "Free standard shipping" wording** on the storefront, instead of "Standard shipping included" (your 2026-05-09 choice after a Denmark mix-up). | Checkout already shows "Free Standard Shipping — FREE" in every zone. "Free shipping" is the phrase shoppers look for and a top purchase driver. | Revert the copy. |
+| 11 | **Compare-at / "Sale" badges:** collection cards show "Sale -13%", but product pages show no "was" price. The compare-at is set by formula (price + $10), not from a real past selling price. Options: (a) show compare-at on product pages too; (b) keep it only where the item really sold at that price recently; (c) remove the badges. | Showing a "was" price that never applied is a US FTC and EU pricing-law risk, and the card/PDP mismatch looks inconsistent. I recommend (b). | Reversible. |
+| 12 | **Delete unpublished preview themes** I and other sessions created, e.g. 156142436449 (Christmas hero preview) and the older visual-polish and occasion previews. | Housekeeping; they don't affect the live store. | n/a (deletion is permanent, so it's your call). |
 
 ## Not asking you (already doing under your standing CEO approval)
 
@@ -47,7 +50,9 @@ Everything that doesn't need you keeps running without you. Tonight that means c
   - Size filter grouped by Mom / Dad / Kids / Baby;
   - Christmas pajama buying guide;
   - native Google titles and descriptions for the main landing pages in 6 languages, with 14 more in progress;
-  - cart drawer totals now refresh after quick adds.
+  - cart drawer totals now refresh after quick adds;
+  - Christmas sweater guide;
+  - homepage hero switches automatically to a Christmas edition on Oct 16, after the Halloween cutoff. It's live and dormant until then, and verified on a preview.
 - Market-catalog visibility check: restored products could be ACTIVE yet 404 because they were missing from the Markets catalogs. `activate_listing.py` now verifies US/DE/GB/AU/CA visibility on every activation.
   - The 5 restored 2025 winners it surfaced are ARCHIVED again per your 2026-09-27 decision (old designs and prices).
   - `/collections/christmas-pajamas` shows the 11 new 2026 designs plus the onesie. 3 more new 衣林 designs are in draft.
