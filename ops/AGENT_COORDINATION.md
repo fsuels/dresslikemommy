@@ -1,5 +1,9 @@
 # Agent Coordination Registry
 
+## Unsupported compare-at price removal claim — 2026-09-27
+
+Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED (2026-09-27) for the approved set: 134 products and 2,373 variants cleared, with 0 errors and 0 price changes. 27 products (532 variants) listed or activated after the check still carry compare-at and are pending owner approval (`pending_new_products_compare_at.json`). Anchor `2026-09-27-unsupported-compare-at-removed`. Owner approval in chat: "Remove the unsupported compare-at prices on all 2,362 variants and verify." The root Claude Code session "Website design recommendations" is the sole writer, and only for `compareAtPrice` on active-product variants whose compareAtPrice > price, set to null. No price, title, inventory, tag, collection, feed, ad or spend changes. Rollback: restore each variant's saved compareAtPrice from `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-compare-at-price-check/before_state_execution.json`.
+
 ## CEO overnight conversion sprint claim — 2026-09-27
 
 Status: ACTIVE_WRITE_CLAIM. Owner (chat, 2026-09-27 ~02:00 EDT): "continue working nonstop… work together with chatgpt… I need to wake up and see some actual sales… i give you total control". Standing CEO approval covers reversible theme and store content ops (`ops/CEO_MANDATE.md` §3). The Claude Code session "Website sales improvement" [ad2f47] is the parent and sole releaser for:

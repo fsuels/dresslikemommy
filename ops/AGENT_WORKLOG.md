@@ -54960,3 +54960,48 @@ The owner approved abandoned-checkout emails in chat on 2026-09-27 ~05:15 EDT. L
 - The upgrade (better copy for AC-1, plus AC-2 at 24h from `lanes/email.md` §1A) needs the workflow editor. That requires installing the free Shopify Flow app, which is an owner-only app/permission grant. Nothing was changed.
 
 Also found: order #9572 ($95.36, 4 raglan tees, placed 2026-09-24) is PAID and UNFULFILLED after 3 days. The owner needs to place it with BuckyDrop.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-26-compare-at-price-genuineness-check
+
+- task_entities: 257 active products / 5,183 variants; theme `snippets/card-product.liquid` sale chip and `snippets/price.liquid` strike-through
+- task_stage: DIAGNOSE done (read-only)
+- next_action_id: OWNER_APPROVE_REMOVE_UNSUPPORTED_COMPARE_AT_PRICES
+
+Owner asked (2026-09-26): "check for me! I will do your recommendations". The question is whether compare-at ("was") prices are genuine former prices.
+
+Findings (read-only Admin API):
+- 134 of 257 active products (2,362 variants) show a compare-at price above the price.
+- The discount is formulaic: a median 15%. Ratios cluster at ×1.16–1.17 and ×1.42–1.45 of the selling price.
+- 30 products created in the last 30 days displayed a was-price from launch, so they were never offered at it on this store.
+- Orders in the last 12 months (19 orders, line-item prices only, no customer data): 0 of 32 items from now-discounted variants were sold at the was-price. 13 sold at the current price; 19 sold at about the current price, likely market currency conversion.
+- Conclusion: the was-prices are not supported as genuine former prices. This is a risk under FTC 16 CFR 233.1 and, for EU storefronts, the Omnibus 30-day prior-price rule. The live "-X%" chips and PDP strike-throughs amplify it.
+- The Merchant feed worker does not use compare-at (price only). The Pinterest app channel was not checked.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-compare-at-price-check/products_prices.json`, a full before-state of every active variant's price and compareAtPrice.
+
+Recommended: clear compareAtPrice on the 2,362 variants. This is a Shopify production write needing exact owner approval; roll back from the saved before-state. Badges and strike-throughs then disappear automatically, with no theme change.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-unsupported-compare-at-removed
+
+- task_entities: 134 active products / 2,373 variants (approved set from the 2026-09-26 check); 27 newer products / 532 variants pending; `ops/prompts/shopify-listing-master-prompt.md` ("Compare-at price: round_up(price * 1.15, .99)"); `ops/scripts/generate_pinterest_feed_grouped.py` (maps compareAtPrice to a sale)
+- task_stage: DONE for the approved set; BLOCKED on owner approval for the newer products and the listing-rule change
+- next_action_id: OWNER_APPROVE_NEW_PRODUCTS_AND_LISTING_RULE_COMPARE_AT
+
+Why: the owner approved "Remove the unsupported compare-at prices on all 2,362 variants and verify". The approval followed `2026-09-26-compare-at-price-genuineness-check` (was-prices never charged; formulaic ×1.15–1.45).
+
+Done:
+- A fresh before-state of every targeted variant was saved in `…/2026-09-26-compare-at-price-check/before_state_execution.json`.
+- The overnight catalog had grown to 161 products / 2,905 variants. The run was limited to the 134 products in the approved check (2,373 variants now). The rest was not silently broadened.
+- `productVariantsBulkUpdate` compareAtPrice=null: 2,373 cleared, 0 userErrors.
+- VERIFIED:
+  - Admin readback: 0 targeted variants still have compareAtPrice; 0 targeted prices changed.
+  - Storefront `.js` for navy-sprig (US and /de) and jingle-bells: compare_at null.
+  - `/collections/mommy-and-me` grid: 0 sale badges, 0 strike-through prices.
+  - Market price lists (Eurozone, UK, Australia) use percentage adjustments with 0 fixed compare-at prices, so nothing is left there.
+- Rollback: `remove_compare_at.py rollback` restores every saved compareAtPrice.
+
+Pending (owner):
+- 27 products / 532 variants listed or activated after the check still show was-prices: 14 Christmas pajama sets, 10 swimsuits, `skyfade`, `tropical-floral…`, and the smocked dresses. List: `pending_new_products_compare_at.json`.
+- Root cause: the canonical listing prompt mandates compare-at = price × 1.15, so every new listing re-creates an unsupported was-price.
+- The Pinterest grouped-feed generator emits compareAtPrice as the regular price with a sale. Cleared variants drop the sale on the next feed generation; not re-run here.
+- Changing the prompt is a durable-rule change and needs owner approval plus the repo's prompt-change check.
