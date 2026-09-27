@@ -55616,3 +55616,33 @@ Done (read-only; nothing sent, scheduled or created):
 - The refund policy still has the 30-day window.
 - Segment counts (Admin `customerSegmentMembers.totalCount`, counts only; no customer records read or stored): subscribed 10,606; buyers since 2024 307 (US 210); 2021–2023 1,728; pre-2021 3,183; past Christmas-pajama buyers 51; recent no-order sign-ups 48; US subscribed buyers 3,754.
 - Recommendation: C-1 in waves Oct 6 / Oct 8 / Oct 13 with bounce, spam and unsubscribe stop rules; C-2 Nov 19; C-3 Dec 4; C-4 (gift card) off. Monthly volume stays under Messaging's 10,000 free sends.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-mommy-and-me-legacy-knit-titles-live
+
+Owner request (Claude Code chat, session "Website visual improvements" [f7baa5]): rewrite the 4 older "Category – Design" titles on `/collections/mommy-and-me` into the canonical "Design Name — Details" format through the listing workflow (titles plus translations), with before-state and rollback, and verify clean mobile cards. The owner chose "Change the URLs (Recommended)": canonical handles with 301s, because the card design-name rule (`8d907f7`) keys on the untranslated handle.
+
+- task_entities: products `7229132472417`, `7227434958945`, `7228773466209`, `7227435450465`; packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-mommy-and-me-legacy-title-rewrite/`
+- Changes (title / handle):
+  - "Navy Gingham Bow Mommy and Me Cardigans — Ruffle-Trim Knit" / `navy-gingham-bow-mommy-and-me-cardigans`
+  - "Cream Heart Mommy and Me Cardigans — Button-Up Knit with Black Trim" / `cream-heart-mommy-and-me-cardigans`
+  - "Black and White Stripe Mommy and Me Sweaters — Knit Pullovers" / `black-and-white-stripe-mommy-and-me-sweaters`
+  - "Color-Block Mommy and Me Sweaters — Knit Pullovers for Mom and Kids" / `color-block-mommy-and-me-sweaters`
+  - Written via `productUpdate` with `redirectNewHandle: true`. 20 locale `title` translations were hand-written (em dash kept first so cards split correctly) and registered with the new digest, because Google Translate is still blocked.
+- Before-state checks:
+  - No handle translations.
+  - No references to the old handles in repo theme files or the 22 live theme JSON files.
+  - New handles were free (404), and no redirects existed on old or new paths.
+  - The only smart collection with a TITLE rule has the same result for old and new titles.
+  - The knit PDP fixes claim for these products was released; only its retranslation was pending.
+- VERIFIED (readback):
+  - title and handle updated; 20/20 translations equal the plan, none outdated;
+  - old URLs 301 to the new ones, in EN and `/de`;
+  - new URLs 200, and all 20 locale storefront titles match (the pt-BR route is `/pt`);
+  - collections, SEO and ACTIVE status unchanged;
+  - `audit_shopify_product_translation_completeness.py`: 0 title issues; the 80 `meta_description` findings pre-date this change;
+  - Mommy & Me grid: 36 cards on iPhone 13 with 0 clipped (4 before), and the 4 design names are clean on `/de` and desktop.
+- Not run: `finalize_shopify_listing_localization.py`, because its Google Translate step is blocked. Hand translations are the documented workaround (`PROB-2026-09-26-GOOGLE-TRANSLATE-RATE-LIMITED`).
+- Residual:
+  - Merchant, Pinterest and ads pick up the new product links on their next feed or crawl; old links 301.
+  - 3 other German cards on Mommy & Me are still clamped because of long translations of other products.
+- Rollback: `python3 <packet>/apply_rewrite.py all --execute --rollback` (guarded; restores the saved titles, handles and translations). Delete the new 301s only if they conflict.
