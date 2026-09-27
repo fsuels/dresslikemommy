@@ -55194,3 +55194,17 @@ Session [57a715] activated 5 new 2026 winter velvet Mommy & Me pajama designs. M
 Christmas dresses are on HOLD: the proven suppliers have no 2026-created mother-daughter Christmas dresses. Do not build or repoint `/collections/christmas-dresses` until they exist.
 
 Rollback: move the 5 ids back to the end.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-fast-ship-vendor-research-and-sleepwear-flag
+
+- task_entities: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/lanes/FAST_SHIP_VENDOR_MEMO.md`; `OWNER_MORNING_PACKET.md` items 13–14
+- task_stage: HANDOFF (owner decision)
+- next_action_id: OWNER_DECIDE_PRINTIFY_PILOT_BY_OCT5
+
+Owner, in chat: "Keep looking for new better vendors!"
+- **1688 discovery:** routed to session [57a715], which holds the 1688 slots: test the Tier B list, find new Guangdong factories for weak categories, and check Taobao/Tmall via BuckyDrop for the missing 2026 Christmas dresses.
+- **Fast-ship research:** research only; no accounts or contacts.
+  - US print-on-demand pajamas fail on margin (AOP pants alone land at 80–90% of price).
+  - Printify Premium DTG family sweatshirts pass: family basket landed ≈46%, net ≈35%. That moves the Christmas order-by to ~Dec 10 standard / Dec 15 priority, based on the 2025 cutoffs; the 2026 ones are due mid-Oct.
+  - CJ US-warehouse stock is conditional: it needs inventory risk and deposits, which is money the owner must approve.
+- **Compliance flag:** 16 CFR 1615/1616 children's sleepwear (sizes 9M–14 must be flame-resistant or tight-fitting) may apply to the current kids' pajama catalog. Owner decision; nothing changed.
