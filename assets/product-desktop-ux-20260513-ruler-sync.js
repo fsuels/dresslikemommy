@@ -3546,8 +3546,13 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         total.textContent = '';
         total.setAttribute('hidden', 'hidden');
       }
-      addButton.setAttribute('disabled', 'disabled');
-      addButton.textContent = getCurrentPiecePrompt(activeGroup);
+      // Keep the CTA looking and acting like "Add to bag" before a size is
+      // picked; a tap without a complete selection reveals the inline
+      // "Pick a size" hints instead (see the click handler below).
+      addButton.removeAttribute('disabled');
+      addButton.setAttribute('aria-disabled', 'true');
+      addButton.setAttribute('data-matching-set-prompt', getCurrentPiecePrompt(activeGroup));
+      addButton.textContent = uiLabel('addCurrentPiece', 'Add this piece to bag');
       publishMatchingSetStickyState(items, pieceCount, subtotal);
       return;
     }
@@ -3573,8 +3578,20 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       total.setAttribute('hidden', 'hidden');
     }
     addButton.removeAttribute('disabled');
+    addButton.removeAttribute('aria-disabled');
+    addButton.removeAttribute('data-matching-set-prompt');
+    builder.classList.remove('is-attempted');
     addButton.textContent = uiLabel('addCurrentPiece', 'Add this piece to bag');
     publishMatchingSetStickyState(items, pieceCount, subtotal);
+  }
+
+  function revealMissingSelection() {
+    builder.classList.add('is-attempted');
+    var hint = builder.querySelector('.product-matching-set__inline-hint');
+    var target = hint || roleGrid || builder;
+    if (target && typeof target.scrollIntoView === 'function') {
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
   }
 
   function publishMatchingSetStickyState(items, pieceCount, subtotal) {
@@ -4443,6 +4460,10 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   }
 
   addButton.addEventListener('click', function () {
+    if (addButton.getAttribute('aria-disabled') === 'true') {
+      revealMissingSelection();
+      return;
+    }
     addSelectedItems();
   });
 

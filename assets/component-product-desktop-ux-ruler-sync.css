@@ -2178,10 +2178,10 @@ html[lang^="fr"] .product__info-container--matching-set .product-matching-set__m
   gap: 0.35rem;
   margin: 0.35rem 0 0;
   padding: 0;
-  color: #b07820;
-  font-size: 1rem;
-  font-weight: 600;
-  font-style: italic;
+  color: #9a4a0f;
+  font-size: 1.1rem;
+  font-weight: 700;
+  font-style: normal;
   line-height: 1.3;
   letter-spacing: 0.01em;
 }
@@ -2191,7 +2191,19 @@ html[lang^="fr"] .product__info-container--matching-set .product-matching-set__m
   margin-right: 0.1rem;
   font-style: normal;
   font-weight: 800;
-  color: #d39c4a;
+  color: #9a4a0f;
+}
+/* Hints stay hidden until the shopper taps the CTA without a complete
+   selection (the JS adds .is-attempted), so the builder never opens in
+   an error state. */
+.product__info-container--matching-set .product-matching-set:not(.is-attempted) .product-matching-set__inline-hint {
+  display: none;
+}
+
+/* Buttons don't inherit the page font by default; without this the
+   role buttons, size pills and qty buttons render in Arial. */
+.product__info-container--matching-set .product-matching-set button {
+  font-family: inherit;
 }
 
 /* Friendly confirmation line — shown beneath the pills once a size
@@ -2361,6 +2373,13 @@ html[lang^="fr"] .product__info-container--matching-set .product-matching-set__m
   color: #0f5235;
   box-shadow: inset 0 0 0 0.15rem #1D8656;
   cursor: not-allowed;
+}
+/* Before a size is picked the CTA is aria-disabled (still clickable, so a
+   tap can reveal the "Pick a size" hints). Undo base.css's dimmed
+   aria-disabled button look so it stays the full filled-green CTA. */
+.product__info-container--matching-set .product-matching-set__button[aria-disabled='true'] {
+  opacity: 1;
+  cursor: pointer;
 }
 
 /* 11. Compact trust row directly under the CTA. */
