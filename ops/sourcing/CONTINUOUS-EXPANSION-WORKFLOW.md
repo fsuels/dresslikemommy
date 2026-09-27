@@ -10,6 +10,39 @@ This file is the recurring loop. It sits on top of the existing tools:
 - Supplier scorecard, updated every round: `ops/sourcing/TRUSTED-SUPPLIERS.md`
 - Reference tooling from the 2026 Christmas run: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-christmas-pajama-line/tools/`. It contains the spec builder, runner engine and generator, translation seeding and direct registration, image jobs, attach and inventory scripts.
 
+## Owner product rules (read first, every session; they apply to Claude, Codex and every subagent)
+
+These are standing owner instructions. Details are in the numbered sections below. Changing any of them requires the owner's explicit yes.
+
+1. **Keep expanding, every round:** new designs AND new vendors AND new categories. Categories to cover beyond Mommy & Me, family and Christmas include couples, maternity, siblings and every other idea in `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/lanes/CATEGORY_OPPORTUNITIES.md` (owner 2026-09-27: "keep looking for new opportunities of new products also for couples, maternity, siblings, and any other product idea category").
+2. **Vendor discovery every round** (owner 2026-09-27: "Keep looking for new better vendors!"):
+   - test Tier B suppliers;
+   - find new Guangdong factories for weak categories;
+   - use Taobao/Tmall via BuckyDrop only under the same gates;
+   - record every reading in `TRUSTED-SUPPLIERS.md`;
+   - new vendors stay Tier B until an on-time order proves them.
+3. **Supplier gate (§3):** ≥5 years on 1688, ≥97% fulfillment, ≥95% 48h pickup or ≤7-day dispatch, dropship MOQ 1, service ≥4.0, Guangdong preferred. **Exceptions (e.g. <5 years) only with the owner's explicit yes.**
+4. **Current-year designs only (§4):**
+   - BOTH the 1688 listing date AND the release-year attribute must be the current year.
+   - Never restore archived or old designs as "new". The owner rejected the 5 restored 2025 Christmas winners on 2026-09-27.
+   - No licensed characters or look-alikes. Read the real fabric composition.
+5. **Pricing (§6):** landed cost ≤50% of price on a single-item order; net ≥35%. The BuckyDrop shortcut is (CNY cost + domestic) / 7.11 × 4.2, with compare-at = price + $10; always run the 50% test. Record the real unit cost.
+6. **Listing:**
+   - canonical DRAFT with 100 stock per variant;
+   - 4 photoshoot images (1, 3, 5, 6) made with the ChatGPT app's Codex on the owner's Pro plan, never the OpenAI API, and reviewed against the vendor photos;
+   - the localization closeout must pass.
+7. **Activation (Claude may activate after QA)** with `activate_listing.py`. It must read back:
+   - all channels;
+   - the Markets catalog publications, with `publishedInContext` US/DE/GB/AU/CA true;
+   - a storefront 200.
+8. **After activation, make it findable:**
+   - MANUAL collections append new products at the bottom, so move seasonal winners into the top rows;
+   - the product TYPE must contain a word the `new-arrivals` rule matches (Dresses, Family Matching, Tops, Pajamas, Swimsuits, Bottoms, Sweaters, Sets, Swimwear, Outerwear, Skirts).
+9. **Never archive seasonal products** the supplier still offers (§9). If you must archive, 301 the URL to the same-intent collection.
+10. **Honesty:** this is dropshipping. No stock, warehouse, fast-shipping, review or bestseller claims.
+11. **Compliance open item:** the US children's sleepwear rule (16 CFR 1615/1616; kids' sizes 9M–14 must be flame-resistant or tight-fitting) awaits the owner's decision (`OWNER_MORNING_PACKET.md` #14). Flag every new loose-fitting kids' pajama until it is resolved.
+12. **Stop conditions:** a 1688/Taobao CAPTCHA or login wall means stop and ask the owner. Never bypass it.
+
 ## Cadence
 
 - **Weekly expansion round:** add 5–15 new designs to one or two categories. Continue a round when the owner says "run a product expansion round".

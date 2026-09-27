@@ -55221,3 +55221,26 @@ Session [57a715] found that `new-arrivals` matches product TYPE, not tags. An au
 - **Readback:** the storefront `products.json` returns 276 products (250 + 26), and the Christmas sweaters now appear.
 
 Rollback: `collectionUpdate` with the 6 original rules.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-owner-product-rules-always-loaded
+
+- task_entities: `AGENTS.md` / `CLAUDE.md` routing line 5; `ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md` (new "Owner product rules" section); `ops/CEO_MANDATE.md` §1 step 6; `ops/marketing/operator_cockpit.html` (timestamp-only re-render)
+- task_stage: DONE, VERIFIED (strict continuity CONTINUITY_OK)
+- next_action_id: CATEGORY_OPPORTUNITIES_MEMO_THEN_ROUTE_TO_SOURCING
+
+Owner, in chat: "Make sure are rules are always remember in every new session when looking for more products to add!"
+- **Rules checklist:** the existing rules were correct but only loosely routed. A 12-point "Owner product rules" checklist now sits at the top of the expansion workflow:
+  - expansion of designs, vendors and categories every round;
+  - vendor discovery;
+  - the supplier gate, with exceptions only by owner yes;
+  - the current-year listing-date AND release-attribute gate, and no restoring old designs;
+  - the 50% landed-cost pricing rule;
+  - the Codex photoshoot;
+  - activation with the Markets-catalog readback;
+  - findability (MANUAL top rows, new-arrivals TYPE words);
+  - no seasonal archiving;
+  - honesty;
+  - the children's sleepwear compliance flag;
+  - CAPTCHA stops.
+- **Always-loaded pointer:** `AGENTS.md`/`CLAUDE.md` (byte-identical) route listings/sourcing there first. The line was compacted to fit the 16,384-byte bootstrap budget, and `CEO_MANDATE.md` adds session-start step 6.
+- **Cockpit:** a fresh-worktree mtime quirk tripped `cockpit_freshness`. `render_marketing_cockpit.py` changed only the "Page built" timestamp.

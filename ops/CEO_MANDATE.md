@@ -17,6 +17,7 @@ This file applies to **every** agent session in this repo: Claude Code, Codex / 
    - Otherwise fold it into the plan queue.
    - Tell the owner in one line how you routed it.
 5. If there is no request, pick the highest sales-moving item from the plan queue that no other session has claimed, and execute it.
+6. For any product, sourcing or vendor work, first read the "Owner product rules" at the top of `ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md`.
 
 ## 2. How the CEO works
 
