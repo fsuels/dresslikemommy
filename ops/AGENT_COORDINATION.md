@@ -1,5 +1,9 @@
 # Agent Coordination Registry
 
+## Source-reference product tag cleanup claim — 2026-09-26
+
+Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED (2026-09-26). The owner approved "All 59 products" in chat. 89 tags were removed with 0 userErrors. The full re-scan finds 0 matches, and the 7 active products' public `.js` is clean. Anchor `2026-09-26-source-reference-product-tag-cleanup`. The root Claude Code session "source-reference tag cleanup" claims sole-writer scope for Shopify product tags only, and only for the tags that match `offer/|\.html|1688|http` on the 59 products listed in the packet: 7 ACTIVE and 52 ARCHIVED. The only mutation is `tagsRemove`. No title, status, SEO, variant, collection, publication, translation, feed, ad or spend changes. Rollback is `tagsAdd` with the exact prior strings, which are kept locally outside the repo. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-source-reference-tag-cleanup/`. Problem: `PROB-2026-09-26-SOURCE-REFERENCE-PRODUCT-TAGS`.
+
 ## Shop-by-occasion reorganization claim — 2026-09-26
 
 Status: ACTIVE_WRITE_CLAIM — RELEASING (owner said "release it" in chat; collections published to Online Store) (2026-09-26 ~22:05 UTC; collections created unpublished; preview `156132933729`; 47 theme files uncommitted in the shared checkout; anchor `2026-09-26-shop-by-occasion-preview`). Owner request (September 26, chat): "do this — Be the specialist… Organize the store by occasion". The owner chose "Deep ones only" (Christmas, Halloween, Family Photos, Beach Vacation, Fall & Winter; Easter, Birthdays, Valentine's and Maternity wait for sourcing) and "Build, check, then ask me". The Claude Code session "shop by occasion" is the sole writer for:

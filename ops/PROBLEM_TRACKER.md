@@ -1,5 +1,17 @@
 # Problem Tracker
 
+## PROB-2026-09-26-SOURCE-REFERENCE-PRODUCT-TAGS
+
+Status: FIXED_LIVE_VERIFIED (2026-09-26). The owner approved "All 59 products". `tagsRemove` removed 89 tags with 0 userErrors. The full 859-product re-scan finds 0 matches, and the 7 active products' `/products/<handle>.js` show 0. Anchor `2026-09-26-source-reference-product-tag-cleanup`. Priority was P2, a customer-visible source leak on 7 active products. Owner: root Claude Code session "source-reference tag cleanup".
+
+Symptom: 7 ACTIVE products carry the product tag `offer/<12-digit id>.html`, a supplier offer-page reference. It is public on `/products/<handle>.js`, LIVE_VERIFIED 2026-09-26. A full read-only scan of 859 products found 59 products (7 ACTIVE, 52 ARCHIVED) with 89 matching tags. The matching tags include 3 full Taobao/Tmall item URLs on archived products. Nothing was tracked before: there were no prior tracker, worklog or claim hits for product-tag source leaks. The 2026-06-22 create-runner cleanup stopped new runners from adding source tags, but it did not clean existing products.
+
+Dependency check: no smart collection rule, feed worker or theme logic depends on these tags. See the packet.
+
+Fixed criteria: a re-scan of every product in every status finds 0 tags matching `offer/|\.html|1688|http`. The `.js` endpoint of each of the 7 active products shows none.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-source-reference-tag-cleanup/README.md`.
+
 ## PROB-2026-09-25-PETER-RABBIT-FEED-PROPAGATION
 
 Status: OPEN__FEED_OWNER_ACTION_REQUIRED. Priority P1 because Merchant Center can disapprove trademarked titles. Owner: Merchant feed owner (sole US/AU feed writer). Shopify rename completed by a Claude session on 2026-09-25.

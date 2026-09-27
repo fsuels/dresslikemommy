@@ -54357,3 +54357,32 @@ Not done: publication, the commit/push to `main`, and live verification. All thr
 Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-shop-by-occasion/README.md`.
 
 Next: the owner approves the release. Then publish both collections, commit and push the 47 theme files to `main`, and verify live. This goes first because the Christmas buying window is open now, and the Oct 15 header link would otherwise send traffic to a 1-product page.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-26-source-reference-product-tag-cleanup
+
+- task_entities: PROB-2026-09-26-SOURCE-REFERENCE-PRODUCT-TAGS; 59 Shopify products (7 ACTIVE, 52 ARCHIVED) listed in `before_state_redacted.json`; Admin mutation `tagsRemove`
+- task_stage: VERIFY
+- next_action_id: none for this surface (optional guard: add a source-tag regex check to a recurring catalog audit)
+
+Why: 7 ACTIVE products carried the public product tag `offer/<12-digit id>.html`, a supplier offer-page reference visible on `/products/<handle>.js`. This violates the AGENTS.md rule against source URLs in public fields. The issue was not tracked before. The 2026-06-22 runner cleanup only stopped new runners from adding source tags.
+
+Done:
+- Read-only scan of all 859 products (all statuses) for tags matching `offer/|\.html|1688|http`. Result: 59 products and 89 tags, including 3 full Taobao/Tmall item URLs on archived products. A wider sweep for `.htm`, taobao, tmall, aliexpress, alibaba, `item/`, `.com`, `spm=` and bare long IDs found nothing more.
+- Dependency check: none of the following uses these tags.
+  - 48 smart collections: all TAG rules use `EQUALS` on merchandising tags.
+  - Merchant feed worker: reads tags only for an exact Final Sale match, and already drops URL tags.
+  - Pinterest feed worker: does not read tags.
+  - Theme logic.
+- The owner approved "All 59 products" in chat. `tagsRemove` ran with the exact live strings re-read immediately before the write: 89 removed, 0 userErrors.
+- VERIFIED:
+  - Per-product readback: 0 matching tags, all other tags preserved, status unchanged.
+  - Full re-scan: 0 matches. The only changed products are the 59 targets.
+  - The 7 active products' public `/products/<handle>.js`: 0 matching tags.
+- Exact tag strings are kept out of the repo. The packet stores shapes and `sha256_12` hashes only. Rollback strings are in local session scratchpad only.
+- Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-source-reference-tag-cleanup/`.
+
+Guardrails: no title, status, SEO, variant, collection, publication, translation, feed, ad or spend changes. No theme files touched.
+
+Residual:
+- Shopify-native Google & YouTube and Pinterest app field mappings were not inspected. They are not repo-controlled and not a documented tag consumer.
+- Nothing yet prevents a manual Admin edit or a future import from re-adding such tags.
