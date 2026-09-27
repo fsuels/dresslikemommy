@@ -55672,3 +55672,19 @@ Theme:
 - New section `dlm-review-note` sits after the Judge.me review-widget apps section.
 - It renders `products.product.review_thanks_note` ("Our customers get a 10% thank-you code with their order, and we ask for honest reviews, good or bad.", 35 locales) only when `product.metafields.reviews.rating_count` > 0. That matches the peer's CSS rule `c99f371`, which hides the empty widget.
 - It currently renders on no product, because no active product has a published review.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-de-card-titles-shortened-live
+
+Owner request (Claude Code chat, session "Website visual improvements" [f7baa5]): shorten the German title translations whose design name exceeds two lines on mobile cards on `/de/collections/mommy-and-me` and `/de/collections/family-pajamas`, keeping the "Design — Details" em dash, with before-state, rollback and mobile readback.
+
+- task_entities: `de` title translations of products `9473846214753`, `9473846247521`, `9473846280289`, `9473584529505`, `9473588494433`, `9473588592737`, `9473722122337` and `9473722155105`; packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-de-card-title-shortening/`.
+- Finding: an iPhone 13 `/de` sweep of all pages found 49 clipped cards. 8 were "Design — Details" titles whose German design name was 62–84 characters (e.g. "Tannengrünes Fair-Isle-Muster Partnerlook-Pyjamas für die Familie"). The other 41 are older non-split titles, 36 of which carry truncated "… | DLM" strings; logged as `PROB-2026-09-27-DE-TRUNCATED-LEGACY-TITLES`.
+- Method:
+  - Candidate names were pre-measured by injecting them into a live `/de` card at 390px and 320px. All fit 2 lines; the current names were detected as clipped, which confirms the harness catches clipping.
+  - Mommy & Me names use "Mama-und-ich-Pyjamas"; family names use "Familien-Partnerlook-Pyjamas".
+  - The em dash separates design from details (it was previously an en dash).
+- IMPLEMENTED: `apply_de_titles.py --execute` registered 8 `de` `title` translations with the current English digest (guarded on digest and the live German value).
+- VERIFIED:
+  - admin readback equals `plan.json`, not outdated; English titles and digests are unchanged; `/de` storefront titles match;
+  - mobile `/de` sweep: 49 → 41 clipped, 0 clipped "Design — Details" cards; family-pajamas 8 → 0; Mommy & Me page 1 3 → 0.
+- Rollback: `python3 <packet>/apply_de_titles.py --execute --rollback` restores the `before_state.json` values (guarded).

@@ -1,5 +1,17 @@
 # Problem Tracker
 
+
+## PROB-2026-09-27-DE-TRUNCATED-LEGACY-TITLES
+
+Status: OPEN (2026-09-27; found by session "Website visual improvements" [f7baa5] during anchor `2026-09-27-de-card-titles-shortened-live`).
+
+Symptom: on `/de/collections/mommy-and-me` and `/de/collections/family-pajamas`, 36 of 131 product cards show German titles that are themselves truncated strings, often ending in "… | DLM" or "...". Examples: "Stilvolles blaues ärmelloses Kleid-Set mit Schleifendetail P... | DLM" and "Passende Sommerkleider für Mutter und Tochter mit leuchtenden Mustern … | DLM". They look like shortened SEO-title strings stored as the `title` translation. They are older "Category – Design" listings (long descriptive handles), mostly dresses and swimsuits, and 41 cards on Mommy & Me pages 2–4 are clipped on mobile. List: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-de-card-title-shortening/de_truncated_titles_found.json`.
+
+Impact: customer-visible, unprofessional German product names on cards and PDP titles; other locales are not yet checked for the same pattern.
+
+Fixed criteria: every affected product has a complete, natural `de` title (and any other affected locale), with no "| DLM" or ellipsis, read back in admin and on the `/de` storefront.
+
+Next: audit all 20 locales for `title` translations containing "| DLM", "..." or "…", then write proper translations product-scoped (Google Translate is still blocked; see `PROB-2026-09-26-GOOGLE-TRANSLATE-RATE-LIMITED`). Consider the canonical "Design Name — Details" rewrite for these listings.
 ## PROB-2026-09-26-SOURCE-REFERENCE-PRODUCT-TAGS
 
 Status: FIXED_LIVE_VERIFIED (2026-09-26). The owner approved "All 59 products". `tagsRemove` removed 89 tags with 0 userErrors. The full 859-product re-scan finds 0 matches, and the 7 active products' `/products/<handle>.js` show 0. Anchor `2026-09-26-source-reference-product-tag-cleanup`. Priority was P2, a customer-visible source leak on 7 active products. Owner: root Claude Code session "source-reference tag cleanup".
