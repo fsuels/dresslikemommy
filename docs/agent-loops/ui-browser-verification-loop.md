@@ -27,6 +27,15 @@ shopify theme check
 
 If `shopify theme check` is unavailable, report that and run the closest available syntax checks, such as `node --check` for touched JavaScript files.
 
+## Live-Store Measurement Hygiene
+
+Live readbacks run on the real storefront, so they count as sessions and can fire ad and analytics pixels. Real Google/Pinterest/Meta bidding learns from those signals (PROB-2026-09-27-AGENT-TEST-TRAFFIC-POLLUTES-ANALYTICS).
+
+- Scripted or headless checks of the live site must block tracking requests. Use a route rule that aborts URLs matching `monorail|trekkie|google|doubleclick|facebook|pinterest|tiktok|bing|clarity|hotjar|klaviyo|snapchat|analytics|pixel`. The reference implementation is `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-ux-ten-fixes/live-verify/verify_live.js`.
+- Prefer read-only checks (page text, `/products/<handle>.js`, `/collections/<handle>/products.json`) over interactive ones. Use a local harness with stubbed `fetch` for cart logic.
+- No live add-to-cart, checkout start or checkout step without explicit owner approval in the current chat. When approved, record the UTC start/end time and route in the worklog so the sessions can be excluded from funnel reports.
+- The shared built-in browser cannot block pixels. Use it for visual checks only, not cart or checkout actions.
+
 ## Browser Readback
 
 For affected UI, verify both desktop and mobile. Prioritize the exact routes touched, then a representative revenue-critical path:
