@@ -49,9 +49,9 @@ Everything that doesn't need you keeps running without you. Tonight that means c
   - one-tap "+ Father / + Child" family chips;
   - Size filter grouped by Mom / Dad / Kids / Baby;
   - Christmas pajama buying guide;
-  - native Google titles and descriptions for the main landing pages in 6 languages, with 14 more in progress;
+  - native Google titles and descriptions for the main landing pages in 6 languages, now current in all 20 languages (186 fields);
   - cart drawer totals now refresh after quick adds;
-  - Christmas sweater guide;
+  - 3 Christmas articles (pajama guide, sweater guide, family photo outfits), each also in German, Spanish, French, Italian, Dutch, Danish, Swedish and Polish;
   - homepage hero switches automatically to a Christmas edition on Oct 16, after the Halloween cutoff. It's live and dormant until then, and verified on a preview.
 - Market-catalog visibility check: restored products could be ACTIVE yet 404 because they were missing from the Markets catalogs. `activate_listing.py` now verifies US/DE/GB/AU/CA visibility on every activation.
   - The 5 restored 2025 winners it surfaced are ARCHIVED again per your 2026-09-27 decision (old designs and prices).
