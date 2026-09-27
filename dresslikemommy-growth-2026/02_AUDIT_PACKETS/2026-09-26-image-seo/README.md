@@ -47,7 +47,20 @@ Report: `image_seo_audit_20260926T184335Z.csv`.
 
 - `7ec0a83` JSON-LD captions live on MAIN at 22:06:06Z after a delayed GitHub sync; verified on EN and /es PDPs, all ld+json parses.
 - Scheduled Claude task `daily-image-alt-review` (daily at about 07:42 local) writes image-specific alt text for queued images; receipts in `daily/`.
-- Remaining gap: alt text/captions are English on translated storefronts.
+- ~~Remaining gap: alt text/captions are English on translated storefronts.~~ Fixed below.
+
+## Translated alt text and captions (owner asked "fix this", 2026-09-26/27)
+
+- Before: all 20 published non-primary locales showed English alt and JSON-LD captions (live `/es` Jingle Bells PDP). 0 of 7,742 `MEDIA_IMAGE` records had a Spanish translation. 162 product images and 4 collection images had stale machine translations of the old alts in 9 locales (ar hi it ja ko nl pl pt-BR ru). Examples: `...-dresslikemommy.com` or a swimsuit alt on a different photo. Shopify still reported them current (`outdated=false`).
+- Single-image probe: registering one `es` `MEDIA_IMAGE` `alt` translation changed both the `/es` gallery `alt` and the JSON-LD `caption`. No theme change needed.
+- Tool: `ops/scripts/translate_image_alts.py` (queue/apply, digest-guarded, readback, local digest state). Tests: `ops/tests/test_translate_image_alts.py`.
+- Translations: 1,356 unique English alts × 20 locales, written by Claude translators (the free Google endpoint was CAPTCHA-blocked). Each locale passed a completeness/validation checker and a name/number alignment heuristic.
+- Independent review: 656 sampled pairs across all 20 locales, 0 misaligned, 3 meaning errors (fixed before apply), 40 minor (`translations/independent_review.json`).
+- Result (LIVE_VERIFIED): 27,320 translations registered, read back with 0 mismatches. 2 user errors, both on one image deleted mid-run. Live `/fr`, `/ja`, `/de` PDPs and `/ar/collections/all` render translated alt; PDP JSON-LD captions are translated. English is unchanged.
+- Catch-up batches (`apply_catchup*`) covered 5 Christmas pajama listings created by another session during the run.
+- Apply receipts per locale: `translations/apply_<locale>_<UTC>.json` (every before/after value). Locales with stale old translations were re-run with `--force`.
+- Rollback: re-register `before` values from the receipts, or `translationsRemove` for key `alt`.
+- Ongoing: the `daily-image-alt-review` scheduled task now also runs the translation queue/apply after the English alt pass (`docs/agent-loops/image-seo-loop.md`).
 
 ## Flag follow-up (owner: "fix this, I will do your recommendation")
 

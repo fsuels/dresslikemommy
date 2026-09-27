@@ -1,0 +1,280 @@
+{
+ "reviewer": "independent Claude reviewer (did not translate)",
+ "batches": [
+  {
+   "locales": [
+    "cs",
+    "da",
+    "de",
+    "es",
+    "fi",
+    "fr",
+    "it",
+    "nl",
+    "no",
+    "pl",
+    "pt-BR",
+    "ro",
+    "ru",
+    "sv"
+   ],
+   "sample_ids": "every 45th id from 17 plus 285/300/315/330",
+   "checked": 476,
+   "misaligned": [],
+   "accuracy_errors": [],
+   "minor": [
+    {
+     "id": 17,
+     "locale": "pl",
+     "why": "'kremowych' (cream) for ivory and 'tiered' dropped; acceptable but looser"
+    },
+    {
+     "id": 17,
+     "locale": "no",
+     "why": "'tiered' dropped (flounsekjoler med halterneck)"
+    },
+    {
+     "id": 62,
+     "locale": "nl",
+     "why": "adjective agreement: 'met geel, groen en petrolblauw swirlprint' should inflect (gele/groene/petrolblauwe)"
+    },
+    {
+     "id": 107,
+     "locale": "pl",
+     "why": "'ruffle' dropped from lace collar"
+    },
+    {
+     "id": 242,
+     "locale": "pt-BR",
+     "why": "'estampa de hibisco e coqueiros verde' awkward agreement/placement of 'verde'"
+    },
+    {
+     "id": 285,
+     "locale": "sv",
+     "why": "'blå- och vitmönstrade ... med marmormönster' clunky and drops 'ocean'"
+    },
+    {
+     "id": 285,
+     "locale": "no",
+     "why": "'ocean' dropped from marble print"
+    },
+    {
+     "id": 285,
+     "locale": "pt-BR",
+     "why": "'ocean' dropped from marble print"
+    },
+    {
+     "id": 287,
+     "locale": "no",
+     "why": "'kjoler med av-skulder-design' unnatural; 'skulderfrie kjoler' is idiomatic"
+    },
+    {
+     "id": 300,
+     "locale": "sv",
+     "why": "'brygga' reads as pier/jetty rather than boardwalk"
+    },
+    {
+     "id": 330,
+     "locale": "it",
+     "why": "'a stampa renna' says printed; sweater is knit (motivo renna better)"
+    },
+    {
+     "id": 377,
+     "locale": "ro",
+     "why": "'imprimeu pictat de curcubeu și inimă' reads as rainbow and heart separately, not a rainbow heart"
+    },
+    {
+     "id": 422,
+     "locale": "pl",
+     "why": "'oboje' used for father and son; should be 'obaj'"
+    },
+    {
+     "id": 467,
+     "locale": "fi",
+     "why": "'linnake' means fortress; 'linna' is the usual word for castle"
+    },
+    {
+     "id": 692,
+     "locale": "cs",
+     "why": "renders 'mommy and me' as mother and daughter (adds daughter)"
+    },
+    {
+     "id": 692,
+     "locale": "da",
+     "why": "renders 'mommy and me' as mor og datter (adds daughter)"
+    },
+    {
+     "id": 692,
+     "locale": "no",
+     "why": "'mommy and me' left in English"
+    },
+    {
+     "id": 692,
+     "locale": "ro",
+     "why": "'pentru mami și eu' ungrammatical (should be 'mami și mine' or rephrased)"
+    },
+    {
+     "id": 692,
+     "locale": "pl",
+     "why": "'złotym akcentem w kółko' unnatural ('w kółko' reads as 'over and over'); e.g. 'ze złotym kółkiem'"
+    },
+    {
+     "id": 692,
+     "locale": "sv",
+     "why": "'för mamma och mig' overly literal"
+    },
+    {
+     "id": 872,
+     "locale": "pl",
+     "why": "'egg' dropped from Easter egg backdrop"
+    },
+    {
+     "id": 917,
+     "locale": "sv",
+     "why": "'terrakottamönster' drops 'tile'"
+    },
+    {
+     "id": 962,
+     "locale": "nl",
+     "why": "'met tropische print broekjes' awkward; 'broekjes met tropische print' more natural"
+    },
+    {
+     "id": 1007,
+     "locale": "ru",
+     "why": "'в купальниках цветовых блоков' unidiomatic (e.g. 'в стиле колор-блок')"
+    },
+    {
+     "id": 1052,
+     "locale": "ru",
+     "why": "'тесно улыбаясь' unnatural collocation"
+    },
+    {
+     "id": 1097,
+     "locale": "ru",
+     "why": "case/structure mismatch: 'и соломенных шляпах' joined to 'с ... воротниками' list"
+    },
+    {
+     "id": 1097,
+     "locale": "pl",
+     "why": "'i słomkowymi kapeluszami' grammatically attaches hats to the dresses"
+    },
+    {
+     "id": 1277,
+     "locale": "nl",
+     "why": "'woman' dropped (Achteraanzicht van de groene ... set)"
+    },
+    {
+     "id": 1277,
+     "locale": "no",
+     "why": "gender mismatch 'det grønne croppede halterneck-toppen'"
+    },
+    {
+     "id": 1277,
+     "locale": "sv",
+     "why": "gender mismatch 'det gröna halterneck-croppade toppen'"
+    },
+    {
+     "id": 1277,
+     "locale": "ru",
+     "why": "'завязки' (ties) for adjustable straps; 'бретели' more accurate"
+    }
+   ]
+  },
+  {
+   "locales": [
+    "el",
+    "ja",
+    "ko",
+    "ar",
+    "he",
+    "hi"
+   ],
+   "sample_ids": "every 45th id from 40",
+   "checked": 180,
+   "misaligned": [],
+   "accuracy_errors": [
+    {
+     "id": 175,
+     "locale": "ar",
+     "why": "'heather gray' rendered as 'رمادية مخططة' (striped gray); heather is mottled, not striped - adds a stripe pattern"
+    },
+    {
+     "id": 580,
+     "locale": "he",
+     "why": "adds 'בטאי-דאי' (tie-dye), not in English which says only pink-to-blue ombre"
+    },
+    {
+     "id": 670,
+     "locale": "el",
+     "why": "drops 'blue' from the paisley bikini bottoms"
+    }
+   ],
+   "minor": [
+    {
+     "id": 490,
+     "locale": "ko",
+     "why": "'가족 패밀리룩 세트' redundant and '커플룩 반바지' misframes the boy's matching shorts as a couple look"
+    },
+    {
+     "id": 580,
+     "locale": "el",
+     "why": "'ombre' left in Latin script"
+    },
+    {
+     "id": 670,
+     "locale": "el",
+     "why": "'halter' left in English"
+    },
+    {
+     "id": 805,
+     "locale": "el",
+     "why": "'halter' left in English"
+    },
+    {
+     "id": 670,
+     "locale": "hi",
+     "why": "royal blue rendered as 'गहरे नीले' (dark blue)"
+    },
+    {
+     "id": 715,
+     "locale": "ar",
+     "why": "tan rendered as 'بنية' (brown)"
+    },
+    {
+     "id": 1030,
+     "locale": "ja",
+     "why": "'フォレストうさぎ柄' reads unnaturally; '森のうさぎ柄' more natural"
+    },
+    {
+     "id": 1300,
+     "locale": "ja",
+     "why": "quotes 'Happy flower' as the printed text; other locales treat 'Happy' as text with a flower graphic"
+    },
+    {
+     "id": 130,
+     "locale": "he",
+     "why": "'שמלת הילדה' specifies a girl where English says 'child'"
+    }
+   ]
+  }
+ ],
+ "fixed_before_apply": [
+  {
+   "id": 175,
+   "locale": "ar"
+  },
+  {
+   "id": 580,
+   "locale": "he"
+  },
+  {
+   "id": 670,
+   "locale": "el"
+  },
+  {
+   "id": 130,
+   "locale": "he"
+  }
+ ],
+ "minor_not_fixed": "remaining minor items (dropped minor words, grammar endings) do not change what the photo shows"
+}

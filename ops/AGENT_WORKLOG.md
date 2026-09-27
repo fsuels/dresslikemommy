@@ -54426,3 +54426,34 @@ Cause: the rail track bleeds 1.4rem past its parent with negative margins. The p
 Fix: `overflow-x: hidden` on the mobile navigation container. The rail keeps its own horizontal scroll. Desktop (>=990px) is not affected.
 
 Rollback: revert this commit.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-image-alt-translations-live
+
+- task_entities: `ops/scripts/translate_image_alts.py`, `ops/tests/test_translate_image_alts.py`, `docs/agent-loops/image-seo-loop.md`, scheduled task `daily-image-alt-review`, Shopify `MEDIA_IMAGE`/`COLLECTION_IMAGE`/`ARTICLE_IMAGE` `alt` translations, local state `~/.config/dresslikemommy/image-alt-translation-state.json`
+- task_stage: VERIFY done
+- next_action_id: WATCH_FIRST_DAILY_ALT_TRANSLATION_RUN
+
+Why: the owner said "fix this" for English alt text and captions on other-language storefronts.
+
+Changed (LIVE_VERIFIED):
+- 27,320 alt translations were registered in all 20 published non-primary locales. They cover product, collection and blog featured images.
+- Every write was read back: 0 mismatches. There were 2 errors, both on one image deleted mid-run.
+- Stale old machine translations (162 product + 4 collection images in 9 locales) were overwritten with `--force`. Shopify had kept them `outdated=false` after the English alt rewrite.
+- Live `/fr`, `/ja`, `/de` Jingle Bells PDPs and `/ar/collections/all` now render translated `<img alt>`; the PDP JSON-LD `caption`s are translated too. English is unchanged. No theme change was needed.
+- The `daily-image-alt-review` scheduled task now also runs the translation queue/apply after the English pass.
+
+Quality:
+- Claude translators wrote the translations; the free Google endpoint returned a CAPTCHA page.
+- Each locale passed a completeness/validation checker and a name/number alignment heuristic.
+- An independent reviewer checked 656 sampled pairs across all 20 locales: 0 misaligned, 3 meaning errors (fixed before apply), 40 minor.
+
+Residual:
+- New listings are being added continuously by another session. Their images get English alt from the guard/daily vision pass, and translations follow at the next daily run.
+- Two English blog/collection alts mention "Dress Like Mommy".
+- Minor wording slips remain, listed in `translations/independent_review.json`.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-image-seo/README.md` and `translations/` (per-locale receipts with before/after values).
+
+Rollback: re-register the receipt `before` values, or `translationsRemove` key `alt`.
+
+Next: check the first daily run's report tomorrow morning. This goes first because it proves new listings get translated without a manual session.
