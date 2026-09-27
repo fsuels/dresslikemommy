@@ -38,6 +38,7 @@ These are standing owner instructions. Details are in the numbered sections belo
 8. **After activation, make it findable:**
    - MANUAL collections append new products at the bottom, so move seasonal winners into the top rows;
    - the product TYPE must contain a word the `new-arrivals` rule matches (Dresses, Family Matching, Tops, Pajamas, Swimsuits, Bottoms, Sweaters, Sets, Swimwear, Outerwear, Skirts).
+   - **Pet or add-on pieces:** tag them `Pet`, `Dog` and `Christmas Pet` (never `Christmas Pajamas`, which feeds /collections/couples). Link each one both ways with its matching family product via the metafield `shopify--discovery--product_recommendation.complementary_products` (list.product_reference). The PDP then shows "Complete the family look".
 9. **Never archive seasonal products** the supplier still offers (§9). If you must archive, 301 the URL to the same-intent collection.
 10. **Honesty:** this is dropshipping. No stock, warehouse, fast-shipping, review or bestseller claims.
 11. **Compliance open item:** the US children's sleepwear rule (16 CFR 1615/1616; kids' sizes 9M–14 must be flame-resistant or tight-fitting) awaits the owner's decision (`OWNER_MORNING_PACKET.md` #14). Flag every new loose-fitting kids' pajama until it is resolved.

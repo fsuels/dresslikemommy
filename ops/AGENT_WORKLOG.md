@@ -55458,3 +55458,15 @@ Update: 1049143744816 is 阳春市小番茄服饰店 (1 year on 1688, founded 20
 **Skipped:** 衣林 dog scarf 1048815429526. At ¥38 it needs about $32 to meet the 50% landed rule.
 
 **Also:** the santa-and-friends sweatshirt product_type "Family Matching Sweatshirts" is now registered in 20 locales. The completeness audit shows 0 issues.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-first-pet-product-wired
+
+- task_entities: products 9473860862049 (blue-plaid-reindeer-matching-dog-vest) and 9473722056801 (blue-plaid-reindeer family pajamas); collections 321563557985 (`christmas-pajamas`) and new 363982749793 (`matching-family-pet-outfits`)
+- task_stage: LIVE_VERIFIED
+- next_action_id: MORE_PET_LINES_BY_OCT15 (session [57a715])
+
+- **Product:** session [57a715] activated the first pet line, a Blue Plaid Reindeer dog vest, $24.99, Dog S–2XL. The dog scarf was skipped because it fails the 50% rule.
+- **`christmas-pajamas`:** now disjunctive: TAG "Christmas Pajamas" OR "Christmas Pet". Live: 16 products including the vest. Rollback: remove the rule and set `appliedDisjunctively` back to false.
+- **New smart collection** `/collections/matching-family-pet-outfits` (TAG = Pet), published to the Online Store. Market catalogs reject collections, which is expected. Live: 200, 1 product.
+- **PDP links:** `complementary_products` metafields link the family product and the dog vest both ways. The `/recommendations` complementary API returns each for the other. The PDP renders "Complete the family look: Blue Plaid Reindeer Matching Dog Vest $24.99" when scrolled into view (DOM text read).
+- **Rules:** the pet tagging and linking method was added to "Owner product rules" point 8.
