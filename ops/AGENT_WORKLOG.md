@@ -54711,3 +54711,13 @@ Rollback:
 - Theme: `git revert` the four commits, then `sync_live_theme_from_main.py --apply`.
 - Blog: re-set each body from `before_bodies.json`.
 - Sort: `collectionUpdate sortOrder CREATED_DESC`.
+
+Update (2026-09-27 ~02:40 EDT), anchor `2026-09-27-honest-social-proof-families-since-2017`: LIVE_VERIFIED for the families line; the review note is still held.
+- The GitHub sync applied the snippets but dropped all 35 `locales/*.json` and `templates/index.json`. Before-state: every locale file was JSON-equal to `343c670^`.
+- Live `index.json` had also reverted the released Christmas hero button (`007429d`/`83b0cd4`) to "Shop Family Matching Outfits". Main is canonical, so uploading main restored it.
+- Before-state saved in the session scratchpad. The 36 files were upserted from `origin/main` via `themeFilesUpsert` with 0 userErrors; readback: 36/36 JSON-equal to main.
+- Homepage pill: Shopify's stored `section.index.json.category_icons.trust_item_2` translations (now outdated) still showed the old text on `/de/`, `/fr/` and other locales.
+  - `translationsRegister` for all 20 published locales (0 errors; readback 20/20 current).
+  - Before values: session scratchpad `trust_item_2_translations_before.json`.
+- Live: EN, DE, FR, JA and PT homepages show the localized "8,000+ families since 2017". The DE PDP shows "8.000+ Familien seit 2017". The Christmas hero button is back. 0 Liquid errors, 0 missing translations.
+- Customer-email lane: BLOCKED (ACCOUNT_SWITCH_REQUIRED). `info@dresslikemommy.com` is Microsoft 365, and the browser holds only the owner's personal account. The Gmail connector is not authorized in this session.
