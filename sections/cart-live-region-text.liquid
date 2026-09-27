@@ -1,1 +1,2 @@
-{{ 'sections.cart.new_estimated_total' | t }}: {{ cart.total_price | money_with_currency }}
+{%- capture dlm_currency_code_flag -%}{%- render 'dlm-show-currency-code' -%}{%- endcapture -%}
+{{ 'sections.cart.new_estimated_total' | t }}: {% if dlm_currency_code_flag == 'true' %}{{ cart.total_price | money_with_currency }}{% else %}{{ cart.total_price | money }}{% endif %}

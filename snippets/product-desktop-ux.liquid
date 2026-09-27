@@ -173,6 +173,7 @@
   </section>
 </div>
 
+{%- capture dlm_currency_code_flag -%}{%- render 'dlm-show-currency-code' -%}{%- endcapture -%}
 {%- capture matching_default_price_html -%}
   {%- render 'price', product: product, use_variant: false, show_price_range: true, show_badges: false, show_sold_out_badge: false, price_class: 'price--large' -%}
 {%- endcapture -%}
@@ -195,7 +196,7 @@
           "id": {{ variant.id | json }},
           "available": {{ variant.available | json }},
           "price": {{ variant.price | json }},
-          "price_text": {% if settings.currency_code_enabled %}{{ variant.price | money_with_currency | strip_html | json }}{% else %}{{ variant.price | money | strip_html | json }}{% endif %},
+          "price_text": {% if dlm_currency_code_flag == 'true' %}{{ variant.price | money_with_currency | strip_html | json }}{% else %}{{ variant.price | money | strip_html | json }}{% endif %},
           "unit_price_text": {{ variant.unit_price | money | strip_html | json }},
           "unit_price_reference_value": {{ variant.unit_price_measurement.reference_value | json }},
           "unit_price_reference_unit": {{ variant.unit_price_measurement.reference_unit | json }},

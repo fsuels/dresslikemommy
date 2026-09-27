@@ -12,7 +12,14 @@
   Usage:
   {% render 'price', product: product %}
 {% endcomment %}
+{%- capture dlm_currency_code_flag -%}{%- render 'dlm-show-currency-code' -%}{%- endcapture -%}
 {%- liquid
+  # One switch for money vs money_with_currency (US + USD shoppers see "$32.99").
+  assign show_currency_code = false
+  if dlm_currency_code_flag == 'true'
+    assign show_currency_code = true
+  endif
+
   if use_variant
     assign target = product.selected_or_first_available_variant
   else
@@ -45,21 +52,20 @@
   assign money_price = price | money
   assign money_price_min = price_min | money
   assign money_price_max = price_max | money
-  assign money_price_min_text = money_price_min | strip_html
-  assign money_price_max_text = money_price_max | strip_html
-  if settings.currency_code_enabled
+  if show_currency_code
     assign money_price = price | money_with_currency
     assign money_price_min = price_min | money_with_currency
     assign money_price_max = price_max | money_with_currency
-    assign money_price_min_text = money_price_min | strip_html
-    assign money_price_max_text = money_price_max | strip_html
     assign compare_at_price_money = compare_at_price | money_with_currency
   else
     assign compare_at_price_money = compare_at_price | money
   endif
 
   if display_price_range
-    assign money_price = 'products.product.volume_pricing.price_range' | t: minimum: money_price_min_text, maximum: money_price_max_text
+    # Variant prices differ and no variant is selected: show "From $32.99"
+    # instead of a "$32.99 - $35.99" range. The price--range class stays as
+    # the state hook for CSS and the PDP builder JS.
+    assign money_price = 'products.product.price.from_price_html' | t: price: money_price_min
     assign is_on_sale = false
     assign compare_at_price_money = blank
   elsif target == product and product.price_varies
@@ -99,7 +105,7 @@
             </span>
             <span>
               <s class="price-item price-item--regular variant-item__old-price">
-                {% if settings.currency_code_enabled %}
+                {% if show_currency_code %}
                   {{ compare_at_price | money_with_currency }}
                 {% else %}
                   {{ compare_at_price | money }}
@@ -128,7 +134,7 @@
         <span class="visually-hidden visually-hidden--inline">{{ 'products.product.price.regular_price' | t }}</span>
         <span>
           <s class="price-item price-item--regular">
-            {% if settings.currency_code_enabled %}
+            {% if show_currency_code %}
               {{ compare_at_price | money_with_currency }}
             {% else %}
               {{ compare_at_price | money }}

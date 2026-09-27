@@ -1,0 +1,26 @@
+{%- comment -%}
+  Single source of truth for whether storefront prices carry the ISO currency
+  code ("$32.99 USD" vs "$32.99"). Outputs the literal text "true" or "false".
+
+  The theme setting `currency_code_enabled` stays on. The code is suppressed
+  only for US shoppers paying in USD, where "$" is unambiguous. Every other
+  market keeps it: CAD/AUD/NZD share the "$" symbol, and some non-US markets
+  (e.g. Norway, Mexico) are also priced in USD.
+
+  Usage:
+    {%- capture dlm_currency_code_flag -%}{%- render 'dlm-show-currency-code' -%}{%- endcapture -%}
+    assign show_currency_code = false
+    if dlm_currency_code_flag == 'true'
+      assign show_currency_code = true
+    endif
+{%- endcomment -%}
+{%- liquid
+  assign dlm_show_code = false
+  if settings.currency_code_enabled
+    assign dlm_show_code = true
+    if localization.country.iso_code == 'US' and cart.currency.iso_code == 'USD'
+      assign dlm_show_code = false
+    endif
+  endif
+  echo dlm_show_code
+-%}

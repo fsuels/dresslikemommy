@@ -132,7 +132,8 @@
                 </div>
                 <div class="totals">
                   <h2 class="totals__total">{{ 'sections.cart.estimated_total' | t }}</h2>
-                  <p class="totals__total-value">{{ cart.total_price | money_with_currency }}</p>
+                  {%- capture dlm_currency_code_flag -%}{%- render 'dlm-show-currency-code' -%}{%- endcapture -%}
+                  <p class="totals__total-value">{% if dlm_currency_code_flag == 'true' %}{{ cart.total_price | money_with_currency }}{% else %}{{ cart.total_price | money }}{% endif %}</p>
                 </div>
 
                 <div class="cart-page__checkout-note caption-large">
