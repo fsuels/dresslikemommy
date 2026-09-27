@@ -54678,3 +54678,36 @@ In flight (claim "CEO overnight conversion sprint"):
 - ChatGPT-app Codex is drafting 53 blog internal-link paragraphs for parent review.
 
 Rollback: `urlRedirectDelete` for the 14 created paths; set `halloween` back to `/collections/matching-outfits`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-ceo-sprint-pdp-strip-wallets-jsonld-blog-links
+
+- task_entities: main commits `1c95318` (drawer wallets), `af0871d` (Product JSON-LD), `24627d0` (PDP value strip, Christmas order-by, size link) plus the label-decode follow-up; MAIN 133290917985; collection 321563557985; 46 blog articles
+- task_stage: LIVE_VERIFIED (strip, JSON-LD, blog links, sort); LIVE_READBACK_REQUIRED (drawer wallets with items)
+- next_action_id: VERIFY_DRAWER_WALLETS_WITH_A_REAL_CART
+
+Released under the CEO sprint claim. Subagent builds were reviewed by the parent. The GitHub sync dropped every push, so each release was applied with `sync_live_theme_from_main.py --apply`; the readback shows 0 of 359 files differing.
+
+- **PDP value strip** (new `snippets/dlm-pdp-value-strip.liquid`, `sections/main-product.liquid`):
+  - Under the price: estimated delivery dates (same source as the lower card), "Standard shipping included", "30-day returns". All strings come from existing locale keys.
+  - `assets/dlm-holiday-order-by.js` uses a per-holiday lead (Christmas 90, Halloween 60), so "Order by Tue, Dec 8 for estimated Christmas arrival" now shows on Christmas PDPs.
+  - New `assets/dlm-size-chart-link.{js,css}`: a visible "Size guide & fit" link opens the existing inline chart. The label decode fixes the double-escaped `&amp;amp;` source attribute.
+  - LIVE_VERIFIED at 375 px: Plaid Reindeer (EN, with the Christmas line) and /de Skyfade (non-holiday, no blank slot). The link opens the Mother cm/in chart. `node --test` holiday: 12/12 pass.
+- **Product JSON-LD** (`snippets/jsonld-seo.liquid`):
+  - `hasMerchantReturnPolicy`: 30 days, by mail, customer pays return shipping; Final Sale and gift cards are not returnable.
+  - `shippingDetails.deliveryTime`: handling 1–3 plus transit 11–13 days, equal to 12–16.
+  - LIVE_VERIFIED on EN and /de: 3 valid ld+json blocks, 0 Liquid errors.
+  - Next: Rich Results Test (owner or browser).
+- **Cart-drawer express wallets** (`snippets/cart-drawer.liquid`, `assets/cart-drawer.js`, `assets/component-cart-drawer.css`):
+  - Dynamic checkout buttons sit under Check out in a two-up 40 px grid, for non-empty carts only and not on /cart. "You may also like" moved into the scrolling item list.
+  - A fixture at 375×812 gives an item list of 391 px.
+  - The live with-items render is NOT verified: the permission guard blocked the test add-to-cart. The empty-cart PDP renders with no console errors. Owner or next session: add one item on a phone and confirm the wallets show and Check out stays visible.
+- **Blog internal links:** ChatGPT-app Codex drafted 53 one-paragraph links (the input was the published articles lacking a head-collection link). The parent validated one exact-anchor link each, no claims words, and valid paragraph indexes.
+  - Applied via `articleUpdate` to 46 articles; 7 skipped because they already link to `new-women-outfits`.
+  - Targets: new-women-outfits 37, mommy-and-me 9, daddy-me 4, christmas-pajamas 2, family-pajamas 1.
+  - Live spot-check: 9/9. Before bodies: session scratchpad `codex_links/before_bodies.json`.
+- **`/collections/christmas-pajamas` sort:** CREATED_DESC → BEST_SELLING. Readback: the 5 proven restored winners are first, then the 12 new designs.
+
+Rollback:
+- Theme: `git revert` the four commits, then `sync_live_theme_from_main.py --apply`.
+- Blog: re-set each body from `before_bodies.json`.
+- Sort: `collectionUpdate sortOrder CREATED_DESC`.
