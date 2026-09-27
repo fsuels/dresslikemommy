@@ -55040,3 +55040,25 @@ Rollback: `launchctl bootout gui/$UID/com.dresslikemommy.product-tag-source-guar
 Residual:
 - The guard runs only while this Mac is awake and logged in.
 - Tag leaks can be public for up to 30 minutes before detection. Prevention at import time (the import autofill poller) is not wired.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-first-visit-auto-localization
+
+Owner request (Claude Code chat): shoppers in Canada and elsewhere should see their own currency and language. Owner said "build it".
+
+- Finding: the shop is on the Basic plan. Shopify's automatic country detection is Plus-only, so every new visitor started in United States / USD. Language subfolders such as `/de` also stayed in USD. Enabled: 64 countries and 21 languages. Mexico and Norway price in USD because MXN and NOK are not enabled. Brazil and Japan are not sellable even though pt-BR and ja pages exist; that is an owner decision in Settings → Markets.
+- IMPLEMENTED: commit `28d3bf3`, with new files `snippets/auto-localization.liquid` and `assets/auto-localization.js` and one render line in `layout/theme.liquid`.
+  - On the first visit, the script reads `browsing_context_suggestions.json`. If the visitor is still on the primary country (US) and Shopify detects another enabled country, it POSTs `/localization` with `country_code`. Page, language and query string (UTMs, gclid) are kept.
+  - It then offers, never forces, the browser's preferred enabled language, written in that language. RTL is handled for ar/he.
+  - It skips bots, the theme editor, URLs with an explicit `?country=`, and visitors already on a non-US country.
+  - Each decision is flagged once per browser with localStorage plus a cookie (`dlm_auto_country`, `dlm_language_prompt`). After both are set, the script makes no request.
+- VERIFIED:
+  - `node --check` and `git diff --check` pass. Theme Check: 304 files, 0 offenses.
+  - Pre-release live-DOM harness with a faked CA/fr geo response: the switch kept `/collections/all?utm_source=loctest` and gave CA/CAD, "Canada | CAD $" and "$52.00 CAD". The French prompt fit at desktop and 375px. Accepting it gave `/fr/collections/all?utm_source=loctest`, CA/CAD, French H1. The browser pane was restored to US/en.
+- Release: the GitHub push was dropped by the Shopify sync. `sync_live_theme_from_main.py` found exactly these 3 files drifting, and the live `theme.liquid` differed from main only by the render line. `--apply` reported "applied 3; verified 3" (MD5).
+- LIVE_VERIFIED (real US IP, en-US browser): the config renders on `/fr` with 64 countries and 21 languages. The geo request returns 200. The country stays US/USD and the flag is set. "View this site in English | No thanks" is shown, and No thanks removes it and sets both flags. No console errors from this script (the remaining errors are a blocked tracker and an unrelated 401).
+- Not verified: a real non-US IP; there is no VPN here. The switch path is proven only with the faked geo response.
+- Residual:
+  - First-visit non-US shoppers get one extra page load, and analytics sees two pageviews for that entry.
+  - A pre-existing US-selected visitor abroad is moved once to the detected country and can switch back.
+  - A post-apply drift recheck showed 3 other files (`sections/main-cart-footer.liquid`, `snippets/cart-drawer.liquid`, `snippets/shipping-country-checker-trigger.liquid`) newly on main from another session and not yet live. They were left for that session.
+- Rollback: remove the `{% render 'auto-localization' %}` line from `layout/theme.liquid`.
