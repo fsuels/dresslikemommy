@@ -48,4 +48,6 @@ Everything that doesn't need you keeps running without you. Tonight that means c
   - Christmas pajama buying guide;
   - native Google titles and descriptions for the main landing pages in 6 languages, with 14 more in progress;
   - cart drawer totals now refresh after quick adds.
-- Fixed tonight: 5 restored Christmas best-sellers were ACTIVE but invisible (404) because they were missing from the Markets catalogs. They are now live; `/collections/christmas-pajamas` shows 17 designs, up from 12. The activation script now checks this, so it can't recur.
+- Market-catalog visibility check: restored products could be ACTIVE yet 404 because they were missing from the Markets catalogs. `activate_listing.py` now verifies US/DE/GB/AU/CA visibility on every activation.
+  - The 5 restored 2025 winners it surfaced are ARCHIVED again per your 2026-09-27 decision (old designs and prices).
+  - `/collections/christmas-pajamas` shows the 11 new 2026 designs plus the onesie. 3 more new 衣林 designs are in draft.

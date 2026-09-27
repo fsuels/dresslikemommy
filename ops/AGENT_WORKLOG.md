@@ -54824,3 +54824,16 @@ Continues `2026-09-27-ceo-sprint-head-collection-translations-cart-footer` to co
 - Before values: session scratchpad `codex_tr2/jobs.json` (`current_translation`).
 
 Rollback: re-register the prior values.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-ceo-sprint-correction-restored-winners-archived
+
+- task_entities: products 7230717886561, 7230848696417, 7232053936225, 7232295043169, 7234564063329; Article 568793071713; collection 363955388513
+- task_stage: LIVE_VERIFIED
+- supersedes: the "5 restored winners live" statements in anchors `2026-09-27-ceo-overnight-sprint-redirects-and-visibility` and `2026-09-27-ceo-sprint-pdp-strip-wallets-jsonld-blog-links`
+
+Correction: session [57a715] reports that the owner rejected the 5 restored 2025 Christmas winners on 2026-09-27 (old designs, old prices, extra non-ChatGPT images). They are ARCHIVED again, and their URLs now 301. Do not reactivate or retitle them.
+- The market-catalog publication check added to `activate_listing.py` stays; the audit of all ACTIVE products found 0 gaps.
+- **Christmas guide:** removed the 5 archived products (the Fair Isle paragraph now covers Evergreen only; the Joy Love Peace paragraph and the Elf/Safari section are gone; the baby-sizing sentence now names the onesie). Summary and meta now say 12 styles.
+  - Live: 12 product links, all 200.
+  - Before body: scratchpad `codex_xmas/article_v1.html`.
+- `matching-family-christmas-outfits` (id 363955388513): sortOrder CREATED_DESC → BEST_SELLING. With the winners archived, the first 10 are unchanged (the 2026 pajama line).
