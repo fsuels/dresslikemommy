@@ -54837,3 +54837,18 @@ Correction: session [57a715] reports that the owner rejected the 5 restored 2025
   - Live: 12 product links, all 200.
   - Before body: scratchpad `codex_xmas/article_v1.html`.
 - `matching-family-christmas-outfits` (id 363955388513): sortOrder CREATED_DESC → BEST_SELLING. With the winners archived, the first 10 are unchanged (the 2026 pajama line).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-ceo-sprint-christmas-sweater-guide-and-article-images
+
+- task_entities: Article 568793104481 (`/blogs/news/matching-family-christmas-sweaters-guide-2026`); Article 568793071713; `snippets/article-featured-image-fallback.liquid`
+- task_stage: LIVE_VERIFIED
+- next_action_id: NONE
+
+- **Christmas sweater guide:** drafted by ChatGPT-app Codex (958 words; all 13 live Christmas sweater designs; links to the sweater and pajama collections, the pajama guide and the refund policy). Parent-reviewed: no stock, price or review claims; estimated-timing wording only; size facts taken from the variant labels.
+  - Published with a meta description. The featured image is the Santa Hat Reindeer product photo; its alt text was corrected after a visual check to "Adult and child … sweaters on hangers…".
+  - LIVE 200, 0 Liquid errors.
+- **Article images:** `article-featured-image-fallback.liquid` ignored `article.image` unless the handle is on its allowlist, so the new guides showed a generic stock image on the cover, card, schema and og:image. Both guide handles were added to `article_image_handles` (the existing convention).
+  - Released via main plus `--apply`. Live og:image is now each article's own product photo.
+  - The pajama guide image (a family of four in plaid reindeer pajamas) was visually confirmed to match its alt text.
+
+Rollback: `articleDelete` 568793104481; remove the two handles from the allowlist.
