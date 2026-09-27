@@ -55263,3 +55263,18 @@ Done:
 Release (after owner yes): fast-forward `main` to this branch's commit, run `sync_live_theme_from_main.py` (add `--apply` on drift), then read back `/`, `/de`, `/fr` on desktop and a 390px phone.
 Rollback: `git revert` the commit on `main` and re-sync.
 Also seen: order #9572 (placed 2026-09-24, PAID) is still UNFULFILLED; the owner needs to place it with BuckyDrop.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-category-opportunities-and-couples-collection
+
+- task_entities: `lanes/CATEGORY_OPPORTUNITIES.md`; collection `couples` (gid://shopify/Collection/290635284577, smart, disjunctive)
+- task_stage: LIVE_VERIFIED (couples); HANDOFF (sourcing calendar → session [57a715])
+- next_action_id: PET_SIZES_ON_CHRISTMAS_PAJAMAS_BY_OCT15
+
+Owner, in chat: "keep looking for new opportunities of new products also for couples, maternity, siblings, and any other product idea category".
+- **Research memo** (subagent, research only): 0 of 276 published products serve couples, maternity, siblings or pets.
+  - Ranked top 10: Easter sibling sets, pet sizes, couples pajamas, Valentine's, Mother's Day three generations, maternity + big sister, siblings/new baby, winter sweatsuits, occasion tulle, Lunar New Year qipao.
+  - Includes list-by dates, 1688 terms, price points, a 6-month calendar and an avoid list, including loose kids' sleepwear under 16 CFR 1615/1616.
+- **Couples collection:** added TAG EQUALS "Christmas Pajamas" and "Christmas Sweaters" rules, since every set has matching adult sizes. The storefront went from 2 to 31 products.
+  - Before-rules: scratchpad `couples_rules_before.json`.
+  - Rollback: remove the 2 rules.
+- **Handoff:** the queue was routed to session [57a715], which holds the 1688 slots: pet sizes (live by Oct 15), then couples pajamas (by Dec 5), then the calendar.
