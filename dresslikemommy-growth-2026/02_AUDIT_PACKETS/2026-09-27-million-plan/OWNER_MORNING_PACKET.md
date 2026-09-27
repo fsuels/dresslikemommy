@@ -23,6 +23,7 @@ Everything that doesn't need you keeps running without you. Tonight that means c
 | 6 | **Microsoft Ads: opt out of the audience/partner network** (~255 of the clicks, 0 sales). | Stops paying for junk clicks. | Opt back in. |
 | 7 | **Republish the Gift Card** (declined 09-27; re-ask). | Q4 was 31% of 2025 sales; gift cards are a late-December save when shipping can't arrive in time. | Unpublish. |
 | 8 | **Turn on EU local payment methods** in Shopify Payments (Settings → Payments): iDEAL (NL), Bancontact (BE), Klarna, BLIK (PL), MobilePay (DK), wherever Shopify Payments offers them. | Non-US checkout completion is 20% vs 45% in the US. Italy had 8 checkouts and 0 orders. EU shoppers expect their local method. No monthly cost, only per-transaction fees. | Turn each method off. |
+| 9 | **Solve the 1688 CAPTCHA** in the helper Chrome (CDP 9333) used by the Christmas catalog session. | 1688 search is blocked, which stalls new Christmas designs: the family pajamas, Mommy & Me winter pajamas, and the new Mommy & Me Christmas dresses line (6–10 designs; we sell none today). | n/a |
 
 ## Not asking you (already doing under your standing CEO approval)
 
@@ -40,5 +41,11 @@ Everything that doesn't need you keeps running without you. Tonight that means c
   - wallet buttons in the cart drawer (still to confirm on a phone with an item in the cart);
   - 46 blog articles now link to the main collections (written with ChatGPT);
   - Christmas Pajamas sorted best-selling first;
-  - 15 Christmas/Halloween redirects.
+  - 15 Christmas/Halloween redirects;
+  - "From $32.99" prices, with no "USD" for US shoppers;
+  - one-tap "+ Father / + Child" family chips;
+  - Size filter grouped by Mom / Dad / Kids / Baby;
+  - Christmas pajama buying guide;
+  - native Google titles and descriptions for the main landing pages in 6 languages, with 14 more in progress;
+  - cart drawer totals now refresh after quick adds.
 - Fixed tonight: 5 restored Christmas best-sellers were ACTIVE but invisible (404) because they were missing from the Markets catalogs. They are now live; `/collections/christmas-pajamas` shows 17 designs, up from 12. The activation script now checks this, so it can't recur.
