@@ -54412,3 +54412,17 @@ Verified:
 Left as is: de `caption_vacation` still reads "fuer". This predates this work and is outside its scope.
 
 Next: the owner picks the Christmas pajama designs from `2026-09-26-christmas-pajama-line/shortlist_sheet.jpg`. This goes first because the Christmas hub fills automatically as those listings go live, and the Dec 8 order-by cutoff is the binding constraint.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-mobile-menu-drawer-no-sideways-scroll
+
+- task_entities: `assets/dlm-header.css` (`#menu-drawer .menu-drawer__navigation-container`, `.dlm-drawer-rail__track`)
+- task_stage: VERIFY
+- next_action_id: NONE
+
+Owner report: on mobile, the whole open menu (Shop, New Arrivals, ...) slid side to side; only the image-pill rail should.
+
+Cause: the rail track bleeds 1.4rem past its parent with negative margins. The parent's `overflow-y: auto` forces `overflow-x: auto`, so the whole menu list was 14px side-scrollable at 375px.
+
+Fix: `overflow-x: hidden` on the mobile navigation container. The rail keeps its own horizontal scroll. Desktop (>=990px) is not affected.
+
+Rollback: revert this commit.

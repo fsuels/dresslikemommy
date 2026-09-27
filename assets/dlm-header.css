@@ -697,6 +697,8 @@
 
   #menu-drawer .menu-drawer__navigation-container {
     grid-template-columns: minmax(0, 1fr);
+    /* The pill rail bleeds past this box; only the rail may scroll sideways. */
+    overflow-x: hidden;
   }
 
   #menu-drawer .menu-drawer__navigation {
