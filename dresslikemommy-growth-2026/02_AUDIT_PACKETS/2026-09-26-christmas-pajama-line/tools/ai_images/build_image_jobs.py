@@ -58,6 +58,7 @@ LETTERING = {
     "blue-plaid-reindeer": None,
     "green-plaid-merry-tree": "\"a very Merry Christmas\" in white script on and under the decorated tree, copied exactly as in the reference photos",
     "buffalo-plaid-tree": '"MERRY Christmas" in red and black buffalo plaid letters under the tree, copied exactly as in the reference photos',
+    "sky-stripe": 'the small cream label on the chest with tiny "HMP" letters and a bunny, copied exactly as in the reference photos',
 }
 ROLE_NOTES = {
     "candy-cane-santa": "The red and white candy cane stripe runs over ONE shoulder and down ONE sleeve only; the other sleeve is plain green. Keep that asymmetry.",
@@ -110,6 +111,111 @@ When all four files are saved, reply with one line per file: name, width x heigh
 """
 
 
+PROMPT_MM = """DRESS LIKE MOMMY — RELIABLE PHOTOSHOOT SYSTEM (automated run)
+
+The attached vendor images are the exact clothing reference for ONE Shopify listing: Mommy and Me matching pajamas, "{print_name}".
+ref1.jpg is the vendor photo of the set (it may show only the child's version); ref2.jpg and ref3.jpg are close-up crops of the same garment (top details, pants).
+The women's set is the identical design in a women's cut: same fabric, print, collar, piping, buttons or zipper, and pockets.
+
+Generate FOUR separate images in this order, one at a time, and save each generated image file into the current working directory with exactly these names:
+- image1.png — IMAGE 1, MAIN HERO IMAGE
+- image3.png — IMAGE 3, BEST OCCASION IMAGE
+- image5.png — IMAGE 5, PRODUCT-ONLY IMAGE
+- image6.png — IMAGE 6, ALTERNATE LIFESTYLE IMAGE
+Do not ask me anything and do not wait for NEXT; continue until all four files are saved. Keep the same mother and daughter across images 1, 3 and 6, as if photographed in one professional photoshoot.
+
+IMPORTANT: Do NOT create a collage, grid or contact sheet. Do NOT put multiple photos inside one image.
+Each output must be one single image, vertical 9:16 portrait, full-frame photo, no borders, no split screen, no text labels, no watermarks. If the generator returns a slightly different ratio, crop minimally to exact 9:16; do not downscale further.
+
+SOURCE OF TRUTH: the vendor images are the exact clothing reference. The clothing must stay exactly the same as the vendor images.
+You may change: models, pose, background, lighting, lifestyle setting, camera angle, scene.
+You must NOT change: clothing color, print, pattern, collar shape, piping color, buttons or zipper, pockets, embroidery, fabric look (flat knit vs plush fleece), sleeve length, pant length, waistband, cuffs, hem.
+
+PRODUCT LOCK for this listing:
+- {print_sentence}
+- {design_details}
+- Garment lettering to reproduce exactly, letter for letter: {lettering}.
+- {role_note}Only these garments exist: the matching two-piece pajama set (top + pants) for mom and daughter. Do NOT add a dad, a boy, a baby, socks, slippers with prints, a pet, a robe, a headband with prints or any other extra printed item. Do NOT add drawstrings, extra pockets, bows or trims that the vendor garment does not have.
+
+BRAND CONTEXT: Dress Like Mommy sells matching mommy-and-me clothing. Images should feel warm, clean, bright, realistic, wholesome, family-friendly, commercial, European lifestyle catalog style, suitable for Shopify listings.
+
+MODEL STYLE: all models must be European: one mom (about 30–38) and one daughter (about 6–9): fair to light-medium skin tones, blonde, light brown or soft brunette hair, soft natural makeup, warm smiles, approachable real-family look; not runway models, not overly glamorous, not heavily edited. The models MUST be different people from any vendor photo.
+
+SCENES (winter pajamas, not Christmas-specific): cozy bright bedroom with soft white bedding, reading a bedtime story, hot cocoa on a winter morning by a window, a calm cream-and-wood living room. No Christmas trees, no Santa, no holiday decorations.
+
+IMAGE 1 — MAIN HERO IMAGE: mom and daughter standing or sitting close together, full outfits clearly visible, clean bright cozy setting.
+IMAGE 3 — BEST OCCASION IMAGE: the most commercially useful scene, e.g. a bedtime story in bed or a slow winter morning with cocoa. Same mom and daughter. Clothing clearly visible.
+IMAGE 5 — PRODUCT-ONLY IMAGE: no people. One women's set and one child set as a clean flat lay on a simple light background, matching the vendor garment exactly, so customers can verify what they are buying.
+IMAGE 6 — ALTERNATE LIFESTYLE IMAGE: another strong gallery image with a different pose, angle or setting (e.g. laughing on the sofa, brushing hair together), same mom and daughter, not repetitive.
+
+STRICT QUALITY CHECK before saving each image: compare it to the vendor images. Reject and regenerate if the print, colors, collar, piping, buttons or pocket changed, if anyone wears an invented item, if the mother's and daughter's sets no longer match, if it is a collage or multi-image layout, if it is not vertical 9:16, or if it looks fake, distorted or unusable for Shopify.
+
+When all four files are saved, reply with one line per file: name, width x height.
+"""
+
+
+PROMPT_SW = """DRESS LIKE MOMMY — RELIABLE PHOTOSHOOT SYSTEM (automated run)
+
+The attached vendor images are the exact clothing reference for ONE Shopify listing: Family Matching Christmas crewneck sweatshirts, "{print_name}".
+The same sweatshirt comes in RED and in GREEN; the family can mix both colors exactly like the vendor photos.
+
+Generate FOUR separate images in this order, one at a time, and save each generated image file into the current working directory with exactly these names:
+- image1.png — IMAGE 1, MAIN HERO IMAGE
+- image3.png — IMAGE 3, BEST OCCASION IMAGE
+- image5.png — IMAGE 5, PRODUCT-ONLY IMAGE
+- image6.png — IMAGE 6, ALTERNATE LIFESTYLE IMAGE
+Do not ask me anything and do not wait for NEXT; continue until all four files are saved. Keep the same model family across images 1, 3 and 6, as if photographed in one professional photoshoot.
+
+IMPORTANT: Do NOT create a collage, grid or contact sheet. Each output must be one single image, vertical 9:16 portrait, full-frame photo, no borders, no text labels, no watermarks. If the generator returns a slightly different ratio, crop minimally to exact 9:16.
+
+SOURCE OF TRUTH: the vendor images are the exact clothing reference for the SWEATSHIRTS. The sweatshirt must stay exactly the same: color (red or green), the row of small printed characters across the chest (gift box, Santa, snowman in a Santa hat, reindeer, Christmas tree, gift box, tiny gold stars), print size and position, crew neckline, ribbed cuffs and hem.
+Only the sweatshirts are sold. Bottoms must be plain, unbranded jeans or plain neutral trousers. Do NOT show any cap, hat with logo, brand logo, text lettering, sunglasses or accessory with branding. No baby romper, no pet outfit.
+
+PRODUCT LOCK:
+- {print_sentence}
+- {design_details}
+- Garment lettering: none (do not add any text to the sweatshirts).
+- {role_note}Mom and dad wear adult sweatshirts; a girl and a boy wear child sweatshirts. Mix red and green across the family.
+
+BRAND CONTEXT: warm, clean, bright, realistic, wholesome, family-friendly, commercial, European lifestyle catalog style, suitable for Shopify listings.
+
+MODEL STYLE: all models European: a natural-looking family (mom, dad, a girl and a boy), fair to light-medium skin, blonde, light brown or soft brunette hair, warm smiles; not runway models. The models MUST be different people from the vendor photos.
+
+SCENES (Christmas): family living room with a decorated tree, decorating the tree, a cozy Christmas morning, a snowy-window holiday home.
+
+IMAGE 1 — MAIN HERO IMAGE: the whole family standing together by a decorated tree, all four sweatshirts clearly visible, chest prints readable.
+IMAGE 3 — BEST OCCASION IMAGE: decorating the Christmas tree or opening gifts together; same family; sweatshirts clearly visible.
+IMAGE 5 — PRODUCT-ONLY IMAGE: no people. One adult sweatshirt and one child sweatshirt (one red, one green) as a clean flat lay on a simple light background, matching the vendor garment exactly.
+IMAGE 6 — ALTERNATE LIFESTYLE IMAGE: a different pose or setting (sitting together on the sofa with cocoa, laughing), same family.
+
+STRICT QUALITY CHECK before saving each image: reject and regenerate if the print changed, characters are missing or distorted, colors are wrong, any logo or text appears, anyone wears an invented printed item, it is a collage, it is not vertical 9:16, or it looks fake or unusable for Shopify.
+
+When all four files are saved, reply with one line per file: name, width x height.
+"""
+
+
+PROMPT_PET = """DRESS LIKE MOMMY — RELIABLE PHOTOSHOOT SYSTEM (automated run)
+
+This Shopify listing sells ONE product: a matching DOG VEST, "{print_name}" — {print_sentence}
+ref1.jpg is the vendor photo: the small sleeveless plaid dog vest is the item at the top of the flat lay (the human pajamas in that photo are a different listing).
+ref2.jpg shows the matching family pajama set (sold separately) exactly as it must look when the family appears.
+ref3.jpg is a close-up of the dog vest plaid.
+
+Generate FOUR separate images in this order and save each into the current working directory with exactly these names:
+- image1.png — IMAGE 1, MAIN HERO: a friendly medium-size dog wearing the blue and black plaid vest, sitting in front of a decorated Christmas tree, the vest clearly visible.
+- image3.png — IMAGE 3, BEST OCCASION: the same dog wearing the vest with a European family (mom, dad, girl, boy) in the matching Blue Plaid Reindeer pajamas from ref2 on Christmas morning, the dog in front and the vest clearly visible.
+- image5.png — IMAGE 5, PRODUCT-ONLY: the dog vest alone as a clean flat lay on a simple light background, matching the vendor vest exactly (sleeveless, black binding at the neck, leg openings and curved hem, a row of small snaps down the center, same plaid).
+- image6.png — IMAGE 6, ALTERNATE LIFESTYLE: the same dog in the vest cuddled on a sofa with the girl in the matching pajamas, cozy holiday living room.
+Do not ask me anything; continue until all four files are saved. Keep the same dog and family across images 1, 3 and 6.
+
+Each output: one single vertical 9:16 photo, no collage, no borders, no text, no watermark. Crop minimally to 9:16 if needed.
+PRODUCT LOCK: the dog vest plaid, colors (blue and black with white lines) and cut must match the vendor vest exactly; black binding at the neck, leg openings and curved hem; a row of small snaps down the center; no sleeves, no hood, no bow, no text on the vest. The family pajamas must match ref2 exactly (black tops with sky-blue trim and the ornament reindeer print, blue plaid pants with black cuffs). No other printed items, no logos, no dog collars with text.
+STYLE: warm, bright, realistic European lifestyle catalog photos for Shopify; the dog looks happy and well cared for.
+STRICT QUALITY CHECK before saving: reject and regenerate if the vest cut or plaid changed, the dog wears anything else printed, the family pajamas differ from ref2, it is a collage, or not 9:16.
+When all four files are saved, reply with one line per file: name, width x height.
+"""
+
+
 import sys as _sys
 _sys.path.insert(0, str(TOOLS))
 import build_specs_zoya as zb  # noqa: E402
@@ -134,7 +240,8 @@ def main() -> None:
         if only and spec["handle"] not in only:
             continue
         handle = spec["handle"]
-        key = handle.replace("-family-matching-pajamas", "")
+        key = (handle.replace("-family-matching-pajamas", "").replace("-mommy-and-me-pajamas", "")
+               .replace("-family-matching-sweatshirts", "").replace("-matching-dog-vest", "-dog-vest"))
         ns = load(spec_path)
         job = ROOT / "uploads" / handle / "ai"
         job.mkdir(parents=True, exist_ok=True)
@@ -144,7 +251,10 @@ def main() -> None:
         candidates = []
         # Explicit gallery picks (spec "ai_refs") win; supplier charts never become references.
         picks = [desc / n for n in spec.get("ai_refs", [])]
-        for p in ([] if picks else sorted(desc.glob("*.jpg"))):
+        # A spec that names ai_refs (even an empty list) never falls back to scanning the
+        # offer gallery: multi-design offers mix other designs into the description.
+        explicit = "ai_refs" in spec and spec.get("mode") in ("mommy_me", "family_sweatshirt", "family_pet")
+        for p in ([] if (picks or explicit) else sorted(desc.glob("*.jpg"))):
             if p.name in spec.get("skip_ref_images", []):
                 continue
             try:
@@ -172,9 +282,20 @@ def main() -> None:
                 break
         for i, p in enumerate(refs, start=2):
             shutil.copyfile(p, job / f"ref{i}.jpg")
-        lettering = LETTERING[key] or "none (no lettering on these garments; do not add any text)"
+        # Only the design's own flat lay exists: add two detail crops of it (top, pants)
+        # so the generator sees collar, piping, buttons and print up close.
+        if len(refs) < 2:
+            base = Image.open(job / "ref1.jpg").convert("RGB")
+            w, h = base.size
+            crops = [(0, 0, int(w * 0.62), int(h * 0.62)), (int(w * 0.45), int(h * 0.1), w, int(h * 0.95))]
+            for i, box in enumerate(crops[len(refs):], start=2 + len(refs)):
+                c = base.crop(box)
+                c = c.resize((c.width * 2, c.height * 2))
+                c.save(job / f"ref{i}.jpg", quality=92)
+            refs = refs + [None] * (2 - len(refs))
+        lettering = LETTERING.get(key) or "none (no lettering on these garments; do not add any text)"
         role_note = (ROLE_NOTES.get(key, "") + " ") if ROLE_NOTES.get(key) else ""
-        prompt = PROMPT.format(
+        prompt = {"mommy_me": PROMPT_MM, "family_sweatshirt": PROMPT_SW, "family_pet": PROMPT_PET}.get(spec.get("mode"), PROMPT).format(
             print_name=spec["print_name"],
             print_sentence=spec["print_sentence"],
             design_details=ns["DESIGN_TEXT"][spec["design_key"]],

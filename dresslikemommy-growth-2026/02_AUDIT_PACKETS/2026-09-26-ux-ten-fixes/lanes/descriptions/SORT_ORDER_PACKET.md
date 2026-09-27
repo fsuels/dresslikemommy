@@ -1,6 +1,6 @@
 # Collection default sort order — approval packet (Lane D)
 
-Status: **PROPOSAL ONLY**. No collection, menu or theme writes were made. All data below is a read-only Admin GraphQL (API 2026-07) and storefront readback from 2026-09-26 (~19:00 UTC).
+Status: **PROPOSAL ONLY**. Reconciliation note (2026-09-26): the `mommy-and-me` row below is SUPERSEDED. The owner approved storefront-visual-polish #10 (MANUAL, whole-family items last), and it is live. See `../../../2026-09-26-storefront-visual-polish/lanes/L4-global/ISSUE10_FOLLOWUP_FALL_TOP_ROWS_APPROVAL_PACKET.md`. All other rows are unchanged. No collection, menu or theme writes were made. All data below is a read-only Admin GraphQL (API 2026-07) and storefront readback from 2026-09-26 (~19:00 UTC).
 
 ## 1. What was checked
 

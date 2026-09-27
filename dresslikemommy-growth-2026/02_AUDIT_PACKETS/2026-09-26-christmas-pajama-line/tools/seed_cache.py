@@ -99,23 +99,30 @@ def build_for(spec_path: Path) -> dict[str, dict[str, str]]:
         d = tr["designs"][handle]
         sv = tr["size_variants"][skey]
         p = f"{loc}:{handle}"
+        mm = ns.get("MM", False)
+        sw = ns.get("SW", False)
+        pet = ns.get("PET", False)
+        sk = lambda key: (key + "_mm" if mm and key in ("fam_text", "p1", "p2", "kf1_text", "kf4_text", "cta", "kf5_label")
+                          else key + "_sw" if sw and key in ("fam_text", "p1", "p2", "kf1_text")
+                          else key + "_pet" if pet and key in ("fam_text", "p1", "p2", "kf1_text", "cta", "kf5_label") else key)
         seg = {
             "fab_label": rt["li1_label"], "fam_label": rt["li2_label"], "prt_label": rt["li3_label"],
             "des_label": rt["li4_label"], "care_label": rt["li5_label"], "size_label": rt["li6_label"],
-            "kf1_label": rt["li7_label"],
-            "h3_chart": reuse_hdr[loc]["h3"][0], "h3_kf": reuse_hdr[loc]["h3"][1], "th": list(reuse_hdr[loc]["th"]),
-            "fam_text": check(p, "fam_text", en_seg["fam_text"], tr["shared"]["fam_text"]),
+            "kf1_label": (check(p, "kf1_label", en_seg["kf1_label"], tr["shared"]["kf1_label_mm" if mm else "kf1_label_pet"], label=True)
+                          if (mm or pet) else rt["li7_label"]),
+            "h3_chart": tr["shared"]["h3_chart_sw"] if sw else tr["shared"]["h3_chart_pet"] if pet else reuse_hdr[loc]["h3"][0], "h3_kf": reuse_hdr[loc]["h3"][1], "th": list(reuse_hdr[loc]["th"]),
+            "fam_text": check(p, "fam_text", en_seg["fam_text"], tr["shared"][sk("fam_text")]),
             "care_text": check(p, "care_text", en_seg["care_text"], tr["shared"]["care_text"]),
-            "p1": check(p, "p1", en_seg["p1"], tr["shared"]["p1"]),
-            "p2": check(p, "p2", en_seg["p2"], tr["shared"]["p2_single" if ns["WAIST_SINGLE"] else "p2"]),
-            "kf1_text": check(p, "kf1_text", en_seg["kf1_text"], tr["shared"]["kf1_text"]),
+            "p1": check(p, "p1", en_seg["p1"], tr["shared"][sk("p1")]),
+            "p2": check(p, "p2", en_seg["p2"], tr["shared"][sk("p2") if (mm or sw or pet) else ("p2_single" if ns["WAIST_SINGLE"] else "p2")]),
+            "kf1_text": check(p, "kf1_text", en_seg["kf1_text"], tr["shared"][sk("kf1_text")]),
             "kf4_label": check(p, "kf4_label", en_seg["kf4_label"], tr["shared"]["kf4_label"], label=True),
-            "kf4_text": check(p, "kf4_text", en_seg["kf4_text"], tr["shared"]["kf4_text"]),
-            "kf5_label": check(p, "kf5_label", en_seg["kf5_label"], tr["shared"]["kf5_label"], label=True),
-            "cta": check(p, "cta", en_seg["cta"], tr["shared"]["cta"]),
+            "kf4_text": check(p, "kf4_text", en_seg["kf4_text"], tr["shared"][sk("kf4_text")]),
+            "kf5_label": check(p, "kf5_label", en_seg["kf5_label"], tr["shared"][sk("kf5_label")], label=True),
+            "cta": check(p, "cta", en_seg["cta"], tr["shared"][sk("cta")]),
             "kf3_label": check(p, "kf3_label", en_seg["kf3_label"], tr["shared"]["kf3_label"], label=True),
             "fab_text": check(p, "fab_text", en_seg["fab_text"], tr["fabric_text"][fabric]),
-            "kf3_text": check(p, "kf3_text", en_seg["kf3_text"], tr["fabric_feature_text"][fabric]),
+            "kf3_text": check(p, "kf3_text", en_seg["kf3_text"], tr["fabric_feature_text"][fabric + "_pet" if pet else fabric]),
             "des_text": check(p, "des_text", en_seg["des_text"], tr["design_text"][spec["design_key"]]),
             "size_text": check(p, "size_text", en_seg["size_text"], sv["size_text"]),
             "kf5_text": check(p, "kf5_text", en_seg["kf5_text"], sv["kf5_text"], keep_numbers=False),
@@ -130,7 +137,8 @@ def build_for(spec_path: Path) -> dict[str, dict[str, str]]:
         tag_re = re.compile(r"<[^>]+>")
         if tag_re.findall(body_loc) != tag_re.findall(body_en):
             errors.append(f"{p}: body tag sequence differs from source")
-        t = tr["templates"]
+        t = tr[("templates_mm_fleece" if spec.get("title_variant") == "fleece" else "templates_mm") if mm
+               else "templates_sw" if sw else "templates_pet" if pet else "templates"]
         mapping = {
             ns["TITLE"]: t["title"].replace("{P}", print_loc),
             ns["SEO_TITLE"]: t["seo_title"].replace("{P}", print_loc),

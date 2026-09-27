@@ -557,6 +557,13 @@ section.product-recommendations .heading {
   color: #1a1a1a !important;
   text-align: center !important;
 }
+/* Zero reviews: the widget shows only "Be the first to write a review"
+   (Judge.me hides its write link), which reads as "nobody buys here".
+   Hide the whole section until a review is published; a
+   #judgeme_product_reviews link (:target) still shows it. */
+.shopify-section:has(.jdgm-review-widget .jdgm-rev-widg[data-number-of-reviews='0']):not(:has(:target)) {
+  display: none;
+}
 
 /* ================================================
    COLLAPSIBLE ACCORDIONS — PREMIUM POLISH

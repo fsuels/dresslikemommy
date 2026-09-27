@@ -24,6 +24,10 @@ CHART_IMAGES = {
     "zoya_round": PACKET / "zoya_round_size_chart_from_816112676067.jpg",
     "yilin_cn": PACKET / "yilin_cn_size_charts_from_1029357235756.jpg",
     "yilin_en": PACKET / "yilin_en_size_chart_from_1072941798877.jpg",
+    "shirumeng": PACKET / "shirumeng_size_chart_from_1080921462408.jpg",
+    "stq_sweat": PACKET / "stq_sweatshirt_size_chart_from_1081522411618.jpg",
+    "srm_cf_button": PACKET / "shirumeng_fleece_button_chart_from_1083898601268.jpg",
+    "srm_cf_zip": PACKET / "shirumeng_fleece_zip_chart_from_1083898601268.jpg",
 }
 
 HEADER = """#!/usr/bin/env bash

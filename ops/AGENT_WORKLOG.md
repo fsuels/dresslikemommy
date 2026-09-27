@@ -55178,6 +55178,317 @@ Owner request (Claude Code chat, session "website look improvements"): fix the c
 - Residual: with the family add-all list non-empty, the CTA can carry `aria-disabled="true"` while the list handler owns the click. There is no visual effect, but screen readers may announce it as dimmed.
 - Rollback: `git revert 9c9bde2`, then `sync_live_theme_from_main.py --apply`.
 
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-winter-mommy-and-me-pajamas-top-rows
+
+- task_entities: collections `mommy-and-me` (320794427489) and `pajamas` (both MANUAL); products rainbow-hearts, tomato-gingham, blue-gingham-collar, charcoal-leopard-lace and confetti-dots mommy-and-me pajamas
+- task_stage: LIVE_VERIFIED
+- next_action_id: NONE
+
+Session [57a715] activated 5 new 2026 winter velvet Mommy & Me pajama designs. Manual collections append new members at the bottom (positions 113–117 and 23–27), where shoppers would not see them.
+- `collectionReorderProducts` moved them to:
+  - `mommy-and-me` positions 6–10, after the 5 fall top rows;
+  - `pajamas` positions 1–5.
+- Storefront `products.json` readback confirms both. The relative order of all other members is unchanged.
+- Before-state (full ordered id lists): session scratchpad `reorder_before.json`.
+
+Christmas dresses are on HOLD: the proven suppliers have no 2026-created mother-daughter Christmas dresses. Do not build or repoint `/collections/christmas-dresses` until they exist.
+
+Rollback: move the 5 ids back to the end.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-fast-ship-vendor-research-and-sleepwear-flag
+
+- task_entities: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/lanes/FAST_SHIP_VENDOR_MEMO.md`; `OWNER_MORNING_PACKET.md` items 13–14
+- task_stage: HANDOFF (owner decision)
+- next_action_id: OWNER_DECIDE_PRINTIFY_PILOT_BY_OCT5
+
+Owner, in chat: "Keep looking for new better vendors!"
+- **1688 discovery:** routed to session [57a715], which holds the 1688 slots: test the Tier B list, find new Guangdong factories for weak categories, and check Taobao/Tmall via BuckyDrop for the missing 2026 Christmas dresses.
+- **Fast-ship research:** research only; no accounts or contacts.
+  - US print-on-demand pajamas fail on margin (AOP pants alone land at 80–90% of price).
+  - Printify Premium DTG family sweatshirts pass: family basket landed ≈46%, net ≈35%. That moves the Christmas order-by to ~Dec 10 standard / Dec 15 priority, based on the 2025 cutoffs; the 2026 ones are due mid-Oct.
+  - CJ US-warehouse stock is conditional: it needs inventory risk and deposits, which is money the owner must approve.
+- **Compliance flag:** 16 CFR 1615/1616 children's sleepwear (sizes 9M–14 must be flame-resistant or tight-fitting) may apply to the current kids' pajama catalog. Owner decision; nothing changed.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-new-arrivals-rule-covers-all-types
+
+- task_entities: collection `new-arrivals` (gid://shopify/Collection/33120354401, smart, CREATED_DESC, disjunctive TYPE CONTAINS rules)
+- task_stage: LIVE_VERIFIED
+- next_action_id: NONE
+
+Session [57a715] found that `new-arrivals` matches product TYPE, not tags. An audit of ACTIVE types found 122 products excluded: Swimwear 44, Matching Family Sets 40, Matching Family Sweaters 15 (the whole Christmas knit line), Sets 12, Sweaters 7, Matching Family Swimwear 2, Outerwear 1, Skirts 1.
+- **Change:** added the TYPE CONTAINS conditions Sweaters, Sets, Swimwear, Outerwear and Skirts. No retyping of products.
+- **Before:** 6 rules (Dresses, Family Matching, Tops, Pajamas, Swimsuits, Bottoms).
+- **Readback:** the storefront `products.json` returns 276 products (250 + 26), and the Christmas sweaters now appear.
+
+Rollback: `collectionUpdate` with the 6 original rules.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-owner-product-rules-always-loaded
+
+- task_entities: `AGENTS.md` / `CLAUDE.md` routing line 5; `ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md` (new "Owner product rules" section); `ops/CEO_MANDATE.md` §1 step 6; `ops/marketing/operator_cockpit.html` (timestamp-only re-render)
+- task_stage: DONE, VERIFIED (strict continuity CONTINUITY_OK)
+- next_action_id: CATEGORY_OPPORTUNITIES_MEMO_THEN_ROUTE_TO_SOURCING
+
+Owner, in chat: "Make sure are rules are always remember in every new session when looking for more products to add!"
+- **Rules checklist:** the existing rules were correct but only loosely routed. A 12-point "Owner product rules" checklist now sits at the top of the expansion workflow:
+  - expansion of designs, vendors and categories every round;
+  - vendor discovery;
+  - the supplier gate, with exceptions only by owner yes;
+  - the current-year listing-date AND release-attribute gate, and no restoring old designs;
+  - the 50% landed-cost pricing rule;
+  - the Codex photoshoot;
+  - activation with the Markets-catalog readback;
+  - findability (MANUAL top rows, new-arrivals TYPE words);
+  - no seasonal archiving;
+  - honesty;
+  - the children's sleepwear compliance flag;
+  - CAPTCHA stops.
+- **Always-loaded pointer:** `AGENTS.md`/`CLAUDE.md` (byte-identical) route listings/sourcing there first. The line was compacted to fit the 16,384-byte bootstrap budget, and `CEO_MANDATE.md` adds session-start step 6.
+- **Cockpit:** a fresh-worktree mtime quirk tripped `cockpit_freshness`. `render_marketing_cockpit.py` changed only the "Page built" timestamp.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-bundle-offer-announcement-bar
+
+- task_entities: announcement bar keys `sections.announcements.default_promo` / `shipping_country_promo` in all 35 `locales/*.json`; `sections/announcement-bar.liquid` (en/es/fr fallback strings); `assets/dlm-header.css` (mobile one-item rule); discount `gid://shopify/DiscountAutomaticNode/1315733110881`
+- task_stage: BUILD done on branch `claude/revenue-growth-strategy-f0njpo`; release BLOCKED on owner approval to push to `main`
+- next_action_id: OWNER_APPROVE_MAIN_RELEASE_BUNDLE_ANNOUNCEMENT
+
+Why: owner (chat, 2026-09-27): "We need to make money! Do something get people to order from us." The family bundle discount (anchor `2026-09-27-family-bundle-discount`) is live but invisible until the cart, so it cannot change what shoppers add. The announcement bar is the one site-wide surface not held by a peer claim (the PDP strip and cart drawer are claimed).
+
+Done:
+- Discount re-read via the Shopify connector: ACTIVE, buy 2 → 1 piece 20% off, once per order, no end date, combines with nothing.
+- Announcement copy is now "BUY 2, GET A 3RD PIECE 20% OFF | STANDARD SHIPPING INCLUDED TO {{ country }} | SECURE CHECKOUT" (and the localized equivalent in 34 other locales). "Express options at checkout" was dropped. No urgency, stock or new shipping claims.
+- Phones: the bar was one nowrap line with an ellipsis, so it showed "STANDARD SHIPPING INCLUDED TO UNITED STA…". Now only the lead item (the offer) renders below 990px.
+- Checks: every locale file parses as JSON; `git diff --check` clean. Theme Check is not installed in the cloud container, so it was not run.
+- Not done: the push to `main` was refused by the session's permission layer (production deploy), so nothing is live. No Shopify writes.
+
+Release (after owner yes): fast-forward `main` to this branch's commit, run `sync_live_theme_from_main.py` (add `--apply` on drift), then read back `/`, `/de`, `/fr` on desktop and a 390px phone.
+Rollback: `git revert` the commit on `main` and re-sync.
+Also seen: order #9572 (placed 2026-09-24, PAID) is still UNFULFILLED; the owner needs to place it with BuckyDrop.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-category-opportunities-and-couples-collection
+
+- task_entities: `lanes/CATEGORY_OPPORTUNITIES.md`; collection `couples` (gid://shopify/Collection/290635284577, smart, disjunctive)
+- task_stage: LIVE_VERIFIED (couples); HANDOFF (sourcing calendar → session [57a715])
+- next_action_id: PET_SIZES_ON_CHRISTMAS_PAJAMAS_BY_OCT15
+
+Owner, in chat: "keep looking for new opportunities of new products also for couples, maternity, siblings, and any other product idea category".
+- **Research memo** (subagent, research only): 0 of 276 published products serve couples, maternity, siblings or pets.
+  - Ranked top 10: Easter sibling sets, pet sizes, couples pajamas, Valentine's, Mother's Day three generations, maternity + big sister, siblings/new baby, winter sweatsuits, occasion tulle, Lunar New Year qipao.
+  - Includes list-by dates, 1688 terms, price points, a 6-month calendar and an avoid list, including loose kids' sleepwear under 16 CFR 1615/1616.
+- **Couples collection:** added TAG EQUALS "Christmas Pajamas" and "Christmas Sweaters" rules, since every set has matching adult sizes. The storefront went from 2 to 31 products.
+  - Before-rules: scratchpad `couples_rules_before.json`.
+  - Rollback: remove the 2 rules.
+- **Handoff:** the queue was routed to session [57a715], which holds the 1688 slots: pet sizes (live by Oct 15), then couples pajamas (by Dec 5), then the calendar.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-empty-reviews-block-hidden-live
+
+Owner request (Claude Code chat, session "Website visual improvements" [f7baa5]): coordinate with the Honest reviews and social proof claim, then hide the empty "Be the first to write a review" block on zero-review PDPs (#4 of the same-day look audit); push to main and verify live on desktop and mobile.
+
+- Coordination: I messaged the claim owner "Website improvements" [7d441c], which replied that there is no conflict. Its held `dlm-review-note` section renders only at `reviews.rating_count > 0`, the same moment this rule un-hides the widget.
+- Finding: live PDPs use the Judge.me legacy widget (`data-empty-state="empty_widget"`). Its `jdgm-write-rev-link` is rendered with `display:none`, so the empty block showed only "CUSTOMER REVIEWS / Be the first to write a review" (177px desktop) with no action. The note in `snippets/pdp-review-social-proof.liquid` ("lower-page reviews section is intentionally untouched so customers can still leave reviews") no longer matches the live widget. Reviews arrive through the Judge.me request email.
+- IMPLEMENTED in `c99f371`: one rule in `assets/theme-inline-body-static-04.css` hides `.shopify-section:has(.jdgm-review-widget .jdgm-rev-widg[data-number-of-reviews='0']):not(:has(:target))`. Browsers without `:has()` still show the old block (graceful fallback).
+- VERIFIED:
+  - Pre-release live-DOM harness with the local stylesheet swapped in.
+  - Release: the GitHub sync dropped the push. `--apply` was avoided because another session's `assets/dlm-header.css` and `sections/announcement-bar.liquid` were also pending, so only this file was upserted (MD5 match).
+  - LIVE_VERIFIED on Ladybug Dots and Beanie Ghost, desktop and iPhone 13: hidden at 0 reviews, and only that section; visible with `#judgeme_product_reviews` or a simulated count of 3; related products and footer intact; 0 page errors.
+- Residual: the other session's `dlm-header.css` and `announcement-bar.liquid` are still on main and not live. They were left for their owner.
+- Rollback: `git revert c99f371`, then upload that one file.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-per-sku-formula-and-yilin-2026-designs
+
+- task_entities: 2026-09-27-buckydrop-profit-study sku_formula_fix_plan.json / sku_formula_fix2_plan.json; 衣林 offers 1029357235756, 1033855142669, 1048815429526; handles blue-plaid-reindeer / green-plaid-merry-tree / buffalo-plaid-tree-family-matching-pajamas
+- task_stage: BUILD
+- next_action_id: ACTIVATE_YILIN_THREE_AFTER_QA
+
+**Per-SKU owner formula (owner: "Are you doing my formula?"; recheck approved).** The earlier 55-product reprice used product-average costs.
+
+Checked per SKU with the formula (CNY cost + ¥5 domestic)/7.11 × 4.2. Cost sources:
+- BuckyDrop order-history `priceReal` per variant.
+- For linked products: BuckyDrop `external-shop/goods/sku-list` source mapping plus live 1688 SKU prices.
+
+Result: raised 248 + 118 = **366 variants** on 34 products to ≥ formula, compare-at = price + $10. Prices only went up. Readback: 366/366 OK.
+- Before-state: `sku_formula_fix_before.json`, `sku_formula_fix2_before.json`.
+- Rollback = restore those prices.
+- One outlier (Color-Block Mother L ¥58.5 vs ¥34 siblings) was priced at the group median.
+
+**Found, not changed:**
+- About 16 swimsuit listings whose 1688 sources are delisted (404/off-shelf). They cannot be fulfilled from the mapped source.
+- 75 ACTIVE products (all 11 Christmas pajamas, 13 Christmas sweaters, 5 Halloween) are unlinked in BuckyDrop. This is consistent with the owner's "connect vendor after sale" flow.
+
+**New 2026 designs from 衣林** (our top pajama supplier: 23 orders, 2.5-day lead). Its store listing via mtop gave 66 Christmas family offers created in 2026. The ¥0.8–1 "定制" placeholders were skipped.
+- **Gate:** creation date 2026 AND release attribute 2026 AND duplicate check against the store's archive.
+- **Rejected:**
+  - 1072941798877: an old archived design, relisted.
+  - 1075839837154: chart/SKU mismatch; "Cousin Crew" is niche.
+  - 2025-release offers.
+  - 天益: 90% fulfillment.
+  - 爱悠雅: MOQ 2, 83% pickup.
+- **Built:** 3 drafts.
+  - Engine gained YILIN_CN/YILIN_EN charts (transcribed from the supplier tables and pixel-verified), cotton35/cotton65 fabric, and a p2_single waist sentence for single-waist charts.
+  - Codex translations for 20 locales, merged; register_direct: 160 each, none missing.
+  - 100/size.
+  - Pricing: $35.99 adult / $32.99 kids (floor $25.99), compare-at +$10.
+  - Blue Plaid Reindeer: 4 ChatGPT images QA'd and attached. The other two are generating.
+
+Open: finish the images and QA, closeout, activate_listing.py for the 3, and message the website session. Continue sourcing from other proven suppliers.
+
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-mommy-me-velvet-2026-launch
+
+- task_entities: 诗茹梦 offer 1080921462408 (designs 32280/32406/32281/32339/32393); handles rainbow-hearts / tomato-gingham / blue-gingham-collar / charcoal-leopard-lace / confetti-dots-mommy-and-me-pajamas; 斯蒂琪 1081522411618 (queued)
+- task_stage: VERIFY
+- next_action_id: BUILD_FAMILY_CHRISTMAS_SWEATSHIRT_MODE
+
+Owner instruction: resume 2026 sourcing for Mommy & Me winter pajamas and Christmas dresses.
+
+**Source.** 诗茹梦 store listing via mtop: 1,447 offers created in 2026, 38 of them family. The velvet (德绒) cardigan offer:
+- created 2026-09-07, release Winter 2026
+- 100% polyester, MOQ 1, 500 in stock per SKU, fulfillment 99.6%
+
+**Screening.**
+- Of 28 designs, excluded character/IP risks: vendor-pixelated pockets 32292/32243, Hello Kitty-like 32236/32237, Chiikawa-like 32240/32242, Shin-chan-like 32234, character prints 32294/32296, Miffy-like 32340.
+- Duplicate check vs active and archived Mommy & Me pajamas: none.
+
+**Engine.** New `mode: mommy_me` (child + mother only):
+- winter, season-neutral copy
+- female target gender
+- the supplier's fit guide (height/weight) from the SKU labels; waist "-" because the chart publishes none
+- `LABEL2` "Winter Pajamas"
+
+Christmas-line regression: the Blue Plaid Reindeer body is byte-identical to main.
+
+**Translations.** Codex translated the mm shared strings (templates, sizes, fabric, collar styles) and the 5 designs into 20 locales. Validated merge via `i18n/merge_mm_shared.py`.
+
+**QA catches before writes.**
+- The Pink/Yellow colour metaobject IDs were wrong; verified against the store list.
+- "Strawberry" was actually tomatoes.
+- The blocked shopper word "supplier" was removed from the copy.
+- The runner correctly refused to re-run drafts that already had AI media; `custom_label_2` was set via a targeted metafieldsSet instead.
+
+**Result.** 5 ACTIVE, LIVE_VERIFIED on the storefront:
+- 4 ChatGPT images each, QA'd vs vendor
+- 8 sizes, 100/size
+- $39.99 women / $34.99 kids, compare-at +$10 (formula floor ≈ $31.60)
+- closeout PASS; markets US/DE/GB/AU/CA; FR route translated
+
+Commit `bc35627`.
+
+**Christmas dresses.** No 2026-created mother-daughter Christmas dresses at proven suppliers: 依曼 and 爱悠雅 have summer only; 斯蒂琪 has family sweatshirts/knits. The website session was told.
+
+**Queued next.** 斯蒂琪 family Christmas sweatshirts 1081522411618:
+- listed 2026-09-13, Fall 2026, fulfillment 97.6%
+- red/green, kids 80–150 cm + adult S–4XL, own chart
+- needs a sweatshirt mode
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-christmas-sweatshirt-and-vendor-discovery
+
+- task_entities: 斯蒂琪 1081522411618; handle santa-and-friends-family-matching-sweatshirts; TRUSTED-SUPPLIERS Tier B readings; Dongguan candidate 1049143744816
+- task_stage: VERIFY
+- next_action_id: READ_DONGGUAN_1049143744816_STORE_AND_PICKUP
+
+**Santa and Friends family Christmas crewneck sweatshirt: ACTIVE, LIVE_VERIFIED.**
+- Offer created 2026-09-13, Fall 2026, supplier proven (median 2.6-day lead). Duplicate-checked vs 4 archived Christmas sweatshirts.
+- Red/Green × kids 80–150 cm + adult S–4XL (30 variants, 100/size).
+- $32.99 kids / $39.99 adults, compare-at +$10 (formula floor $22.45/$30.72).
+- Tags include Christmas, Christmas Sweaters, Christmas Tops (website session request).
+- 4 ChatGPT images QA'd: no vendor props or logos; pants shown are plain and stated as not included.
+- Closeout PASS; markets US/DE/GB/AU/CA; DE route translated.
+
+**Engine.** New `mode: family_sweatshirt`:
+- audiences child + adult, Clothing Tops > Sweatshirts, `stq_sweat` chart
+- the chart's half-chest doubled and weight converted from jin to kg
+
+The bare metafield word "Sweatshirt" is a loanword in de/da and failed the seeder's source-equal check. `custom.type` is now "Crewneck Sweatshirt".
+
+Commit `3f8c887`: tooling plus the TRUSTED-SUPPLIERS update. The peer's uncommitted 常熟 row was left out of the commit and preserved in the shared checkout.
+
+**Vendor discovery (owner via website session: "Keep looking for new better vendors!").**
+- **Tier B re-reads:**
+  - 诗茹梦: in use, 5 MM designs.
+  - 万趣: still fails 48h pickup (86%).
+  - 陈树保: now passes the supplier gate but is kids-only in fit.
+- **Mother-daughter Christmas dresses:** none qualifying on 1688. Taobao has a 湖州 segment, but item 999371131811 is pre-sale 5-day with one mom size and no release attribute, so it fails.
+- **New candidate:** Dongguan 1049143744816 (10 y, 98.6%, created 2026-04, Fall 2026); pickup unread.
+- **Rejected:** 汕头 威利强 (81.7%), 义乌 竺懿 (63%), 娜蒂亚 (1 y), 幸洲 (85%, 2025 release).
+
+Update (same day): santa-and-friends productType changed from "Matching Family Sweatshirts" to "Family Matching Sweatshirts" because the new-arrivals rule is TYPE CONTAINS, not tags. Live readback: #1 on /collections/new-arrivals. Engine updated in the follow-up commit. The Christmas knit sweater line (type "Matching Family Sweaters") is also excluded from new-arrivals; flagged to the website session.
+
+Update: 1049143744816 is 阳春市小番茄服饰店 (1 year on 1688, founded 2026-04; the offer-page "10 years" was a mis-parse). 30-day metrics: 48h pickup 98.61%, fulfillment 100%, 2,262 orders, 0% returns and disputes. Fails the tenure gate, so Tier B watch and not listed (owner-exception candidate only; commit 2bf340a). Lesson: read tenure from the store creditdetail page, not by regex on the offer page.
+
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-pet-dog-vest-live-and-fleece-drafts-held
+
+- task_entities: 衣林 1029357235756 (dog vest); 诗茹梦 1083898601268 / 1084574812798 (coral fleece); handles blue-plaid-reindeer-matching-dog-vest, nordic-blossom / rosy-leopard / sky-stripe / cream-leopard -mommy-and-me-pajamas
+- task_stage: VERIFY (dog vest LIVE_VERIFIED); BLOCKED (fleece sets held as DRAFT by owner packet #14)
+- next_action_id: FLEECE_CLOSEOUT_THEN_HOLD_FOR_PACKET_14
+
+**Blue Plaid Reindeer Matching Dog Vest: ACTIVE, LIVE_VERIFIED.**
+- The pet match for the 衣林 blue-plaid-reindeer family set, from the same print. Offer is 2026-created.
+- Duplicate check: no pet products exist. IP check: generic plaid and reindeer.
+- 5 dog sizes (S–2XL, back length and bust chart).
+- $24.99, compare-at $34.99; 50% landed rule checked.
+- Public readback:
+  - type "Matching Family Pet Pajamas"
+  - tags Christmas, Christmas Pet, Dog, Pet
+  - 4 images, 5/5 variants available
+  - 8/8 channels; US/DE/GB/AU/CA
+  - FR title and "Chien S" sizes translated
+- The website session was told, so it can add the pet collection rule and link the PDPs.
+
+**Engine.**
+- New `mode: family_pet`:
+  - audience pet; taxonomy Pet Shirts
+  - no age-group, size or target-gender metafields (the Pet Shirts subtype rejects target-gender)
+  - `yilin_dog` chart; pet-specific copy keys
+  - option values "Dog S…2XL" and the product_type now have Codex translations in `i18n/labels_en.json`
+- Coral-fleece Mommy & Me support:
+  - `srm_cf_button` and `srm_cf_zip` charts (no hip row)
+  - `coral_fleece` fabric
+  - `button_round`, `button_lace_fleece` and `zip_stand` design texts
+  - `title_variant: fleece`
+  - `build_specs_shirumeng_fleece.py`
+- Image prompts: `PROMPT_PET`. `PROMPT_MM` is neutralised for zip or button sets.
+
+**Coral-fleece Mommy & Me: 4 DRAFTs built.** Nordic Blossom, Rosy Leopard, Sky Stripe, Cream Leopard.
+- 诗茹梦, 2026-created, Fall/Winter 2026.
+- $52.99 mother / $45.99 kids, compare-at +$10; 100 per size.
+- Translations registered: 220 each.
+- Images: Nordic Blossom and Rosy Leopard QA'd against the vendor photos and attached. Sky Stripe and Cream Leopard are generating.
+- **Held as DRAFT under rule 11 / owner packet #14** (loose-fitting kids' sleepwear, 16 CFR 1615/1616). Do not activate until the owner decides.
+
+**Skipped:** 衣林 dog scarf 1048815429526. At ¥38 it needs about $32 to meet the 50% landed rule.
+
+**Also:** the santa-and-friends sweatshirt product_type "Family Matching Sweatshirts" is now registered in 20 locales. The completeness audit shows 0 issues.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-first-pet-product-wired
+
+- task_entities: products 9473860862049 (blue-plaid-reindeer-matching-dog-vest) and 9473722056801 (blue-plaid-reindeer family pajamas); collections 321563557985 (`christmas-pajamas`) and new 363982749793 (`matching-family-pet-outfits`)
+- task_stage: LIVE_VERIFIED
+- next_action_id: MORE_PET_LINES_BY_OCT15 (session [57a715])
+
+- **Product:** session [57a715] activated the first pet line, a Blue Plaid Reindeer dog vest, $24.99, Dog S–2XL. The dog scarf was skipped because it fails the 50% rule.
+- **`christmas-pajamas`:** now disjunctive: TAG "Christmas Pajamas" OR "Christmas Pet". Live: 16 products including the vest. Rollback: remove the rule and set `appliedDisjunctively` back to false.
+- **New smart collection** `/collections/matching-family-pet-outfits` (TAG = Pet), published to the Online Store. Market catalogs reject collections, which is expected. Live: 200, 1 product.
+- **PDP links:** `complementary_products` metafields link the family product and the dog vest both ways. The `/recommendations` complementary API returns each for the other. The PDP renders "Complete the family look: Blue Plaid Reindeer Matching Dog Vest $24.99" when scrolled into view (DOM text read).
+- **Rules:** the pet tagging and linking method was added to "Owner product rules" point 8.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-pets-rolled-back-focus-categories
+
+- task_entities: collections 321563557985 (`christmas-pajamas`) and 363982749793 (`matching-family-pet-outfits`); products 9473722056801 and 9473860862049 (complementary metafields); `CONTINUOUS-EXPANSION-WORKFLOW.md` rules 1 and 8; `CATEGORY_OPPORTUNITIES.md`
+- task_stage: LIVE_VERIFIED
+- supersedes: `2026-09-27-first-pet-product-wired`
+
+The owner's decision was relayed by session [57a715] from direct chat: "Do not do pets yet". The dog vest page "does not look smartly done". Focus categories: Mommy & Me, family matching, maternity, couples, Father & Me, siblings. Couples stays.
+- **Rollback, all verified live:**
+  - `christmas-pajamas` rule restored to TAG "Christmas Pajamas" only (conjunctive); the storefront shows 15 products and no dog items;
+  - the pet collection was unpublished from the Online Store (404) but NOT deleted;
+  - the `complementary_products` metafields on both products were deleted; the complementary API returns [];
+  - the dog vest is DRAFT (done by [57a715]).
+- **Rules:**
+  - rule 1 now names the 6 focus categories and says "No pet products until the owner says so";
+  - the pet method was removed from rule 8;
+  - the category memo is annotated to skip the pet items.
+- `/collections/couples` Christmas rules (from anchor `2026-09-27-category-opportunities-and-couples-collection`) stay per the owner.
+
 ## AGENT_CONTINUITY_ANCHOR: 2026-09-27-free-distribution-lane
 
 - task_entities: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/lanes/free-distribution.md`; orders `#9572`, `#9560`; channels `gid://shopify/Channel/121919832161` (Microsoft Copilot), `gid://shopify/Channel/136587837537` (Meta AI)
