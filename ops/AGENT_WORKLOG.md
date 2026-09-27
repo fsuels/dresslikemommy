@@ -54721,3 +54721,26 @@ Update (2026-09-27 ~02:40 EDT), anchor `2026-09-27-honest-social-proof-families-
   - Before values: session scratchpad `trust_item_2_translations_before.json`.
 - Live: EN, DE, FR, JA and PT homepages show the localized "8,000+ families since 2017". The DE PDP shows "8.000+ Familien seit 2017". The Christmas hero button is back. 0 Liquid errors, 0 missing translations.
 - Customer-email lane: BLOCKED (ACCOUNT_SWITCH_REQUIRED). `info@dresslikemommy.com` is Microsoft 365, and the browser holds only the owner's personal account. The Gmail connector is not authorized in this session.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-ceo-sprint-family-chips-from-price-christmas-guide
+
+- task_entities: main commits for the family chips (`dlm-family-builder.js/.css`) and the price display (`snippets/price.liquid`, new `snippets/dlm-show-currency-code.liquid`, card/builder/cart price snippets, "From" wording in the ar/de/fr/ko/pt-BR/zh-CN locales); Article `gid://shopify/Article/568793071713`
+- task_stage: LIVE_VERIFIED, except the locale "From" wording fix (LIVE_READBACK_REQUIRED after the GitHub sync)
+- next_action_id: RECHECK_DE_FROM_WORDING_AFTER_SYNC
+
+- **Family chips:** once a piece is chosen, the builder shows "Add another family member" with "+ Mother / + Father / + Child" chips. Missing roles are filled; repeat roles are outlined. After a single-piece add, the next missing role is preselected.
+  - LIVE_VERIFIED on Plaid Reindeer at 375 px with no cart add: Mother · L → chips shown → "+ Child" keeps Mother · L in "Your family list" and switches to Child sizes.
+  - `node --test` family builder: 15/15.
+- **Price display:** a range now reads "From $32.99". US shoppers paying USD see no "USD" code; all other markets keep it.
+  - LIVE_VERIFIED: US PDP "From $32.99"; `?variant=` "$35.99"; 0 Liquid errors on the PDP, collection and /de.
+  - The 6 locale "From" fixes (de "Ab", fr "À partir de", …) ride the GitHub sync, since `sync_live_theme_from_main.py` excludes JSON. /de still showed "Von" at release time.
+- **Christmas guide** (ChatGPT-app Codex draft, parent-reviewed), `/blogs/news/matching-family-christmas-pajamas-guide-2026`:
+  - 1,005 words; links all 17 Christmas pajama products plus the collection and sweaters; no price, stock or review claims; estimated-timing wording only.
+  - Published with a meta description and featured image. LIVE 200.
+  - Known gap: `snippets/meta-tags.liquid` forces the fallback social image for every `news` article, so og:image is the generic holiday journal image, not this article's photo.
+- Owner packet: added #8, EU local payment methods.
+- Pricing flag sent to session [57a715], the owner of the 5 restored winners: all 131 variants have unitCost 0, old-era prices of $15.99–26.99, and non-genuine compare-at values.
+
+Rollback:
+- `git revert` the chips and price commits, then `sync_live_theme_from_main.py --apply`.
+- `articleDelete` 568793071713, or unpublish it.
