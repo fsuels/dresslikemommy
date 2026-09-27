@@ -54647,3 +54647,34 @@ REVIEW10 (created via the Shopify connector; LIVE_VERIFIED readback):
 Held: the review thank-you note on the PDP does not ship until the Judge.me request email actually contains REVIEW10. Until then the note would be false.
 
 Checks: theme check 0 errors; copy-map tests OK; `git diff --check` clean; the locale round-trip was byte-identical before the edit.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-ceo-overnight-sprint-redirects-and-visibility
+
+- task_entities: 15 URL redirects (receipt in the session scratchpad; listed below); products 7230717886561, 7230848696417, 7232053936225, 7232295043169, 7234564063329 (fixed by session [57a715]); `OWNER_MORNING_PACKET.md`
+- task_stage: LIVE_VERIFIED (redirects); HANDOFF (owner packet)
+- next_action_id: OWNER_REVIEWS_MORNING_PACKET
+
+Why: owner, chat, ~02:00 EDT: "continue working nonstop… I need to wake up and see some actual sales… i give you total control". The CEO session "Website sales improvement" [ad2f47] is running the overnight sprint.
+
+Evidence (Shopify analytics, LIVE_VERIFIED 02:00 EDT):
+- 30 days: 6.7k sessions, 151 carts, 9 orders.
+- 14 days: 77 carts → 18 checkouts → 5 orders.
+- US over 60 days: 115 carts → 48 checkouts → 10 completed.
+- Abandoned checkouts include a US 9-piece $249.91 family cart (09-22). No recovery email is on.
+
+Done:
+- **Hidden best-sellers:** the 5 restored Christmas winners were ACTIVE and on the Online Store channel, but `publishedInContext(US)` was false and the storefront returned 404. They were missing from the Markets catalog publications (US 77106053217, Eurozone 77105660001, International 77105823841, Estonia 77105627233). Session [57a715] published them. Readback: US/DE/GB/AU/CA true, 200, and `/collections/christmas-pajamas` went from 12 to 17. `activate_listing.py` now enforces the check.
+  - A read-only audit of all 273 ACTIVE products found 0 remaining gaps.
+- **15 redirects**, LIVE_VERIFIED 301 including `/de/`:
+  - `family-christmas-pajamas`, `matching-christmas-pajamas`, `matching-family-christmas-pajamas`, `christmas-pjs`, `family-christmas-pjs`, `holiday-pajamas` → `christmas-pajamas`;
+  - `christmas`, `christmas-outfits`, `family-christmas-outfits`, `mommy-and-me-christmas` → `matching-family-christmas-outfits`;
+  - `family-christmas-sweaters`, `matching-christmas-sweaters`, `ugly-christmas-sweaters` → `christmas-sweaters`;
+  - `halloween-pajamas` → `halloween-family-pajamas`;
+  - updated `halloween`: before `/collections/matching-outfits`, now `/collections/halloween-family-pajamas`.
+- **Owner morning packet:** `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/OWNER_MORNING_PACKET.md`. It lists the 7 owner-only yes/no items ranked by money: abandoned-checkout email, `read_markets` scope for the US Merchant feed, the Christmas past-customer email, the Judge.me past-order import, a tracking test order, the Microsoft audience opt-out, and the Gift Card.
+
+In flight (claim "CEO overnight conversion sprint"):
+- Subagent builds: PDP value strip, Christmas order-by, size-chart link, drawer wallets, Product JSON-LD shipping/returns.
+- ChatGPT-app Codex is drafting 53 blog internal-link paragraphs for parent review.
+
+Rollback: `urlRedirectDelete` for the 14 created paths; set `halloween` back to `/collections/matching-outfits`.
