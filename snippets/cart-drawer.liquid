@@ -657,7 +657,7 @@
         </form>
 
       </cart-drawer-items>
-      <div class="drawer__footer">
+      <div id="CartDrawer-Footer" class="drawer__footer">
         {%- comment -%} ── Order summary: shipping + savings + total ── {%- endcomment -%}
         <div class="cart-drawer__summary">
           {%- if cart.cart_level_discount_applications.size > 0 -%}
