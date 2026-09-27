@@ -54568,3 +54568,10 @@ Found (live, pre-existing): `snippets/collection-grid-product-visible.liquid` hi
 Residual: `<html>` has no `dir` attribute, so ar/he render LTR site-wide (separate issue). Preview `156138864737` should be deleted after release.
 
 Rollback: revert the redesign commit.
+
+Update (2026-09-27 ~01:55 EDT), anchor `2026-09-27-storefront-seo-page-weight-fixes-live`: VERIFY done; next_action_id none.
+- The GitHub sync had not applied `2029e0c` (`assets/cart.js`) after 25 minutes. This is another recurrence of PROB-2026-09-24-GITHUB-THEME-SYNC-STALL-AND-SYNC-BACK-REVERT.
+- A dry run of `ops/scripts/sync_live_theme_from_main.py` showed 14 drifted files. 13 of them belong to the active collection-page upgrade claim and were left alone.
+- Only `assets/cart.js` was written, with the exact `origin/main` bytes, via `themeFilesUpsert`. userErrors was []. The live MD5 `dfef62ec…` equals main.
+- Live before-state saved in the session scratchpad: MD5 `22e6cab4…`, 24,711 bytes.
+- Browser readback: the drawer's recently-viewed images now request `&width=160` and load at 160 px natural width (previously 941 px). The claim is released.
