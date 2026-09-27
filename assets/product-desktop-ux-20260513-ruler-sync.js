@@ -1327,10 +1327,50 @@ function getGarmentKeyWithChartContext(value, tables) {
   return '';
 }
 
+// Exact complete-set labels used only by the size-pill measurement lookup.
+// A composite key is valid only when the selected Type and chart agree.
+function getExplicitCompleteSetMeasurementKey(value) {
+  var text = normalizeText(value);
+  if (/^top\s*(?:&|and)\s*(?:tiered\s+)?skirt\s+set$/.test(text)) return 'topSkirtSet';
+  if (/^two[- ]piece\s+set$/.test(text)) return 'twoPieceSet';
+  return '';
+}
+
+function getDeclaredMeasurementChartLabel(table) {
+  var context = getSizeChartContextText(table);
+  var label = context.slice(String(table.id || '').length);
+  return normalizeText(label).replace(/^size\s+chart\s*[-–—:]?\s*/, '');
+}
+
+function getExplicitCompleteSetChartKey(table, productData, tableCount) {
+  if (getGarmentKeys(table.id).length) return '';
+  var key = getExplicitCompleteSetMeasurementKey(getDeclaredMeasurementChartLabel(table));
+  var types = getProductTypeValues(productData);
+  if (!key || !types.some(function (value) { return getExplicitCompleteSetMeasurementKey(value) === key; })) return '';
+  if (key === 'twoPieceSet' && (tableCount !== 1 || types.length !== 1)) return '';
+  return key;
+}
+
 function getProductSizeChartTables(wrapper) {
   var sourceRoot = wrapper.closest('[id^="MainProduct-"]') || wrapper;
   var descriptionRoot = sourceRoot.querySelector('[data-product-description]');
-  return descriptionRoot ? Array.from(descriptionRoot.querySelectorAll('table#size-chart, table[id*="size-chart"], table.size-chart')) : [];
+  var tables = [];
+  if (descriptionRoot) {
+    var marked = Array.from(descriptionRoot.querySelectorAll('table#size-chart, table[id*="size-chart"], table.size-chart'));
+    tables = Array.from(descriptionRoot.querySelectorAll('table')).filter(function (table) {
+      if (marked.indexOf(table) !== -1) return true;
+      var parsed = parseSizeGuideTable(table);
+      return parsed && isSizeLikeLabel(parsed.headers[0].label) &&
+        getGarmentKeys(getSizeChartContextText(table)).length === 1 &&
+        parsed.headers.slice(1).some(function (header) {
+          return parseSizeGuideHeaderText(header.raw).units.map(normalizeGuideUnit).some(function (unit) {
+            return ['cm', 'in', 'kg', 'lbs'].indexOf(unit) !== -1;
+          });
+        });
+    });
+  }
+  if (!tables.length) tables = Array.from(sourceRoot.querySelectorAll('variant-selects > table#size-chart'));
+  return tables;
 }
 
 function isSharedFitMeasurementHeader(header) {
@@ -2032,6 +2072,10 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
 
     add(text);
 
+    // Localized single-letter adult sizes share the source chart's S/M/L.
+    var localizedAdult = { 'س': 's', 'م': 'm', 'ل': 'l' }[text];
+    if (localizedAdult) add('adult:' + localizedAdult);
+
     var adult = text.match(/\b(xxxxl|xxxl|xxl|[2-9]xl|xl|xs|s|m|l)\b/i);
     if (adult) {
       var adultToken = adult[1].toLowerCase();
@@ -2257,7 +2301,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     return keys;
   }
 
-  function pruneMeasurementsForRole(roleKey, headers, row, garmentKey, hasDeclaredGarmentContext) {
+  function pruneMeasurementsForRole(roleKey, headers, row, garmentKey, hasDeclaredGarmentContext, explicitGarmentHeadersOnly, allowedGarmentKeys) {
     if (!headers || !row || !row.length) return null;
     var hasRoleColumns = headers.some(function (header, index) {
       return index > 0 && !!parseRoleFromHeader(header);
@@ -2273,6 +2317,16 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       .filter(function (index) {
         if (index === 0) return true;
         if (isGuideEmptyValue(row[index])) return false;
+        var declaredGarments = headerGarmentKeys(headers[index]);
+        if (allowedGarmentKeys && declaredGarments.some(function (key) { return allowedGarmentKeys.indexOf(key) === -1; })) return false;
+        if (explicitGarmentHeadersOnly) {
+          if (declaredGarments.length) {
+            if (declaredGarments.length !== 1 || declaredGarments[0] !== garmentKey) return false;
+          } else {
+            var guidance = normalizeText(headers[index].label || headers[index].raw);
+            if (!/^(?:age|(?:(?:recommended|suggested|estimated) )?(?:weight|height)(?: range)?)$/.test(guidance)) return false;
+          }
+        }
         if (hasGarmentHeaders && !headerGarmentKeys(headers[index]).length && !isSharedFitMeasurementHeader(headers[index])) return false;
         if (!headerMatchesGarment(headers[index], garmentKey)) return false;
         if (!hasRoleColumns) return true;
@@ -2281,6 +2335,9 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       });
 
     if (keepIndexes.length <= 1) return null;
+    if (explicitGarmentHeadersOnly && !keepIndexes.some(function (index) {
+      return index > 0 && headerGarmentKeys(headers[index]).indexOf(garmentKey) !== -1;
+    })) return null;
 
     var pruned = pruneGuideGroupColumns(
       keepIndexes.map(function (index) {
@@ -2303,7 +2360,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     };
   }
 
-  function addSizeMeasurementEntry(lookup, roleKey, garmentKey, label, headers, row) {
+  function addSizeMeasurementEntry(lookup, roleKey, garmentKey, label, headers, row, requiresExactSizeScope) {
     var labelKey = normalizeSizeKey(label);
     if (!labelKey || !headers || !row || !row.length) return;
     if (!row.slice(1).some(function (value) { return !isGuideEmptyValue(value); })) return;
@@ -2312,6 +2369,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       roleKey: roleKey || '',
       garmentKey: garmentKey || '',
       labelKey: labelKey,
+      requiresExactSizeScope: !!requiresExactSizeScope,
       sizeTokens: comparableSizeTokens(label),
       headers: headers,
       row: row,
@@ -2329,10 +2387,20 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     if (!lookup.byLabel[labelKey]) lookup.byLabel[labelKey] = entry;
   }
 
-  function addPrunedSizeMeasurementEntries(lookup, roleKey, contextGarmentKey, label, headers, row) {
+  function addPrunedSizeMeasurementEntries(lookup, roleKey, contextGarmentKey, label, headers, row, explicitGarmentHeadersOnly) {
     if (contextGarmentKey) {
-      var tableMeasurements = pruneMeasurementsForRole(roleKey, headers, row, contextGarmentKey, true);
-      if (tableMeasurements) addSizeMeasurementEntry(lookup, roleKey, contextGarmentKey, label, tableMeasurements.headers, tableMeasurements.row);
+      var completeSet = contextGarmentKey === 'topSkirtSet' || contextGarmentKey === 'twoPieceSet';
+      var allowedGarments = contextGarmentKey === 'topSkirtSet' ? ['top', 'dress'] : null;
+      var tableMeasurements = pruneMeasurementsForRole(roleKey, headers, row, completeSet ? '' : contextGarmentKey, true, false, allowedGarments);
+      if (tableMeasurements) addSizeMeasurementEntry(lookup, roleKey, contextGarmentKey, label, tableMeasurements.headers, tableMeasurements.row, completeSet);
+      return;
+    }
+    if (lookup.allowWholeRow) {
+      // A single fixed configuration can sell a complete outfit. Keep its
+      // exact size row together instead of treating a bottom-length column
+      // as a separately selectable garment.
+      var wholeRowMeasurements = pruneMeasurementsForRole(roleKey, headers, row, '');
+      if (wholeRowMeasurements) addSizeMeasurementEntry(lookup, roleKey, '', label, wholeRowMeasurements.headers, wholeRowMeasurements.row);
       return;
     }
     var headerGarmentKeys = getMeasurementGarmentKeysFromHeaders(headers);
@@ -2340,29 +2408,41 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     if (!targetGarmentKeys.length && contextGarmentKey) targetGarmentKeys.push(contextGarmentKey);
 
     if (!targetGarmentKeys.length) {
-      addSizeMeasurementEntry(lookup, roleKey, '', label, headers, row);
+      // Grouped rows already omit empty columns. Normalize raw rows in the
+      // same way so two views of one source row do not look conflicting.
+      var genericMeasurements = pruneMeasurementsForRole(roleKey, headers, row, '');
+      if (genericMeasurements) addSizeMeasurementEntry(lookup, roleKey, '', label, genericMeasurements.headers, genericMeasurements.row);
       return;
     }
 
     targetGarmentKeys.forEach(function (garmentKey) {
-      var garmentMeasurements = pruneMeasurementsForRole(roleKey, headers, row, garmentKey);
+      var garmentMeasurements = pruneMeasurementsForRole(roleKey, headers, row, garmentKey, false, explicitGarmentHeadersOnly);
       if (garmentMeasurements) {
-        addSizeMeasurementEntry(lookup, roleKey, garmentKey, label, garmentMeasurements.headers, garmentMeasurements.row);
+        addSizeMeasurementEntry(lookup, roleKey, garmentKey, label, garmentMeasurements.headers, garmentMeasurements.row, explicitGarmentHeadersOnly);
       }
     });
   }
 
   function indexParsedSizeGuideRows(lookup, parsed, table, tableCount) {
     var contextText = getSizeMeasurementTableContextText(table);
-    if (getGarmentKeys(contextText).length > 1) return;
+    var contextGarments = getGarmentKeys(contextText);
+    var fixedTopSkirtSet = lookup.allowWholeRow && !getGarmentKeys(table.id).length &&
+      contextGarments.length === 2 && contextGarments.indexOf('top') !== -1 && contextGarments.indexOf('dress') !== -1 &&
+      /^(?:size chart\s*[-:–—]\s*)?top\s*(?:&|and)\s*skirt\s+set$/.test(normalizeText(contextText.slice(String(table.id || '').length)));
+    var completeSetKey = getExplicitCompleteSetChartKey(table, productData, tableCount);
+    var explicitTopPants = !getGarmentKeys(table.id).length &&
+      /^top\s*(?:&|and)\s*pants$/.test(getDeclaredMeasurementChartLabel(table)) &&
+      parsed.headers.some(function (header) { return headerGarmentKeys(header).indexOf('top') !== -1; }) &&
+      parsed.headers.some(function (header) { return headerGarmentKeys(header).indexOf('pants') !== -1; });
+    if (contextGarments.length > 1 && !fixedTopSkirtSet && !completeSetKey && !explicitTopPants) return;
     var contextRoleKeys = getMeasurementRoleKeysFromText(contextText);
-    var contextGarmentKey = getSizeChartGarmentKey(table, productData, tableCount);
+    var contextGarmentKey = completeSetKey || getSizeChartGarmentKey(table, productData, tableCount);
     var firstEntryIndex = lookup.entries.length;
     var grouped = typeof buildSizeGuideGroups === 'function' ? buildSizeGuideGroups(parsed) : [];
 
     grouped.forEach(function (group) {
       (group.rows || []).forEach(function (row) {
-        addPrunedSizeMeasurementEntries(lookup, group.key, contextGarmentKey, row[0], group.headers, row);
+        addPrunedSizeMeasurementEntries(lookup, group.key, contextGarmentKey, row[0], group.headers, row, explicitTopPants);
       });
     });
 
@@ -2372,17 +2452,17 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
 
       var parsedRole = parseRoleFromSizeLabel(rawLabel);
       if (parsedRole) {
-        addPrunedSizeMeasurementEntries(lookup, parsedRole.key, contextGarmentKey, parsedRole.sizeLabel || rawLabel, parsed.headers, row);
+        addPrunedSizeMeasurementEntries(lookup, parsedRole.key, contextGarmentKey, parsedRole.sizeLabel || rawLabel, parsed.headers, row, explicitTopPants);
       }
 
       contextRoleKeys.forEach(function (roleKey) {
         var baseRoleKey = inferBaseRoleKeyFromMeasurementSize(rawLabel);
         if (baseRoleKey && !roleKeysCompatible(roleKey, baseRoleKey)) return;
         var roleSizeLabel = parsedRole && parsedRole.sizeLabel ? parsedRole.sizeLabel : rawLabel;
-        addPrunedSizeMeasurementEntries(lookup, roleKey, contextGarmentKey, roleSizeLabel, parsed.headers, row);
+        addPrunedSizeMeasurementEntries(lookup, roleKey, contextGarmentKey, roleSizeLabel, parsed.headers, row, explicitTopPants);
       });
 
-      addPrunedSizeMeasurementEntries(lookup, '', contextGarmentKey, rawLabel, parsed.headers, row);
+      addPrunedSizeMeasurementEntries(lookup, '', contextGarmentKey, rawLabel, parsed.headers, row, explicitTopPants);
     });
     lookup.entries.slice(firstEntryIndex).forEach(function (entry) {
       entry.sourceTable = table;
@@ -2395,6 +2475,22 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
 
     var tables = getProductSizeChartTables(wrapper);
     sizeMeasurementsByLabel.allowGeneric = tables.length === 1 && getProductTypeValues(productData).length <= 1;
+    var sizeIndex = findSizeOptionIndex(productData.options || []);
+    sizeMeasurementsByLabel.allowWholeRow = tables.length === 1 && !getProductTypeValues(productData).length &&
+      (productData.options || []).every(function (_option, index) {
+        if (index === sizeIndex) return true;
+        var values = [];
+        (productData.variants || []).forEach(function (variant) {
+          var value = String(variant['option' + (index + 1)] || '').trim();
+          if (values.indexOf(value) === -1) values.push(value);
+        });
+        // Color can be mislabeled (T-shirt / Short / Overall). Only known
+        // plain colors may share a generic complete-outfit chart.
+        return values.length <= 1 ||
+          /^(colou?r|couleur|(?:ال)?لون)$/.test(normalizeText(_option.name)) && values.every(function (value) {
+            return /^(black|blue|brown|green|gr[ae]y|orange|pink|purple|red|white|yellow|noir|bleu|marron|vert|gris|rose|violet|rouge|blanc|jaune|أسود|أزرق|بني|أخضر|رمادي|برتقالي|وردي|بنفسجي|أحمر|أبيض|أصفر)$/.test(normalizeText(value).normalize('NFC'));
+          });
+      });
     if (!tables.length || typeof parseSizeGuideTable !== 'function') return sizeMeasurementsByLabel;
 
     tables.forEach(function (table) {
@@ -2404,6 +2500,12 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     });
 
     return sizeMeasurementsByLabel;
+  }
+
+  function measurementDetailsKey(entry) {
+    return JSON.stringify(entry.headers.slice(1).map(function (header, index) {
+      return [header.raw || header.label || String(header), header.units || [], entry.row[index + 1]];
+    }));
   }
 
   function findMeasurementsForOption(group, option, context) {
@@ -2420,6 +2522,17 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     var garmentKey = Object.prototype.hasOwnProperty.call(measurementContext, 'garmentKey')
       ? measurementContext.garmentKey
       : getMeasurementGarmentKey(group, option, measurementContext);
+    if (!garmentKey && !measurementContext.ambiguous) {
+      var completeSetType = measurementContext.typeValue || getMeasurementTypeValue(group, option, measurementContext);
+      var completeSetKey = getExplicitCompleteSetMeasurementKey(completeSetType);
+      if (completeSetKey) {
+        var completeSetTables = getProductSizeChartTables(wrapper);
+        if (!completeSetTables.some(function (table) {
+          return getExplicitCompleteSetChartKey(table, productData, completeSetTables.length) === completeSetKey;
+        })) return null;
+        garmentKey = completeSetKey;
+      }
+    }
     var candidates = [];
     if (option.fullLabel) candidates.push(option.fullLabel);
     if (group && group.label && option.sizeLabel) {
@@ -2440,6 +2553,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       if (garmentKey !== entry.garmentKey && !(lookup.allowGeneric && !entry.garmentKey)) return;
       if (garmentKey && !entry.garmentKey && getMeasurementGarmentKeysFromHeaders(entry.headers).length) return;
 
+      if (entry.requiresExactSizeScope && candidateKeys.indexOf(entry.labelKey) === -1) return;
       var tokenRank = sizeTokenMatchRank(selectedTokens, entry.sizeTokens);
       // A size pill promises this size's measurements, not a nearby fit.
       if (tokenRank !== 1) return;
@@ -2451,7 +2565,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         ambiguous = false;
       } else if (score === bestScore && bestMatch && (
         entry.sourceTable !== bestMatch.sourceTable ||
-        JSON.stringify(entry.row.slice(1)) !== JSON.stringify(bestMatch.row.slice(1))
+        measurementDetailsKey(entry) !== measurementDetailsKey(bestMatch)
       )) {
         ambiguous = true;
       }
@@ -5643,10 +5757,7 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
   }
 
   function getFitGroupFromProductTables(groupKey, roleKey, garmentKey) {
-    var sourceRoot = getCurrentDescriptionRoot();
-    var sourceTables = sourceRoot
-      ? Array.from(sourceRoot.querySelectorAll('table#size-chart, table[id*="size-chart"], table.size-chart'))
-      : [];
+    var sourceTables = getProductSizeChartTables(wrapper);
     if (!sourceTables.length) return null;
     var allowGeneric = sourceTables.length === 1 && getProductTypeValues(productData).length <= 1;
     if (!garmentKey && !allowGeneric) return null;
@@ -6223,7 +6334,7 @@ function parseSizeGuideHeaderText(headerText) {
 }
 
 function normalizeGuideUnit(unit) {
-  var token = normalizeText(unit);
+  var token = normalizeText(unit).normalize('NFC');
   if (!token) return '';
   if (token === 'cms' || token === 'centimeter' || token === 'centimeters' || token === 'centimetre' || token === 'centimetres' || token === 'سم') return 'cm';
   if (token === 'inch' || token === 'inches' || token === 'po' || token === 'pouces' || token === 'بوصة' || token === 'بوصات' || token === 'انش' || token === 'إنش') return 'in';

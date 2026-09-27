@@ -27,7 +27,7 @@ const privateNames = [
   'inferBaseRoleKeyFromMeasurementSize', 'headerGarmentKeys', 'headerMatchesGarment',
   'getMeasurementGarmentKeysFromHeaders', 'pruneMeasurementsForRole', 'addSizeMeasurementEntry',
   'addPrunedSizeMeasurementEntries', 'indexParsedSizeGuideRows', 'buildSizeMeasurementsLookup',
-  'findMeasurementsForOption', 'isMeaningfulMeasurementValue', 'extractValueForUnit', 'convertRangeValue',
+  'findMeasurementsForOption', 'measurementDetailsKey', 'isMeaningfulMeasurementValue', 'extractValueForUnit', 'convertRangeValue',
   'roundMeasurement', 'tidyMeasurementValue', 'buildMeasurementsHtml', 'getGroupByKey', 'getOptionByVariantId',
   'getDistinctSizesForGroup', 'getAxisNamesForGroup', 'getAxisValuesForGroup', 'getTypeAxisNamesForGroup',
   'getOptionTypeValue', 'getTypeValuesForGroupSize', 'getSelectedTypeValue', 'getPendingMeasurementAxisLabel',
@@ -86,8 +86,12 @@ function environment(locale = 'en', initialTables = fixtures(locale), types) {
   const typeValues = types || (locale === 'ar' ? ['فستان', 'سترة'] : locale === 'fr' ? ['Robe', 'Cardigan'] : ['Dress', 'Cardigan']);
   const axisName = locale === 'ar' ? 'النوع' : 'Type';
   const sizeName = locale === 'ar' ? 'المقاس' : locale === 'fr' ? 'Taille' : 'Size';
-  const description = { querySelectorAll() { return tables; } };
-  const productRoot = { querySelector(selector) { assert.equal(selector, '[data-product-description]'); return description; } };
+  const description = { querySelectorAll(selector) {
+    const descriptionTables = tables.filter(t => !t.record.nativeFallback);
+    return selector === 'table' ? descriptionTables : descriptionTables.filter(t => /size-chart/.test(t.id));
+  } };
+  const productRoot = { querySelector(selector) { assert.equal(selector, '[data-product-description]'); return description; },
+    querySelectorAll(selector) { assert.equal(selector, 'variant-selects > table#size-chart'); return tables.filter(t => t.record.nativeFallback); } };
   const ctx = vm.createContext({ console, document: {
     addEventListener() {}, documentElement: { getAttribute() { return locale; } },
     getElementById(id) { return panels.get(id); },
@@ -481,4 +485,188 @@ test('actual French cm/po source selects preserved pouces values in the compact 
   assert.ok(metric.includes('<dt>Longueur des manches (cm)</dt><dd>56 cm</dd>'));
   assert.ok(metric.includes('<dt>Longueur du vêtement (cm)</dt><dd>40 cm</dd>'));
   assert.equal(JSON.stringify(records), before, 'French source numbers, decimals, suffixes and headers unchanged');
+});
+
+const sizePillFixtures = JSON.parse(fs.readFileSync(path.join(__dirname, 'size-pill-fixtures.json'), 'utf8'));
+function sizePillEnvironment(record) {
+  const env = environment(record.locale || 'en', record.tables.map(t => tableDom(t, t.heading)));
+  env.ctx.productData = {
+    options: record.options,
+    variants: record.variants.map(v => ({...v, available: true, price: Math.round(Number(v.price) * 100)})),
+  };
+  env.ctx.roleGroupsCache = env.ctx.buildRoleGroups(env.ctx.productData, {}, true, {skipTypeFilter: true});
+  return env;
+}
+
+for (const fixture of sizePillFixtures.filter(f => !f.testKind)) {
+  test('actual generic chart size pills: ' + fixture.handle, () => {
+    const env = sizePillEnvironment(fixture), {ctx} = env;
+    const original = JSON.stringify(fixture);
+    let checked = 0;
+    for (const group of ctx.roleGroupsCache) for (const option of group.options) {
+      const inst = {instanceId: 'selected-' + group.key, roleKey: group.roleKey || group.key, groupKey: group.key,
+        axisSelections: option.axes || {}, sizeLabel: option.sizeLabel, quantity: 1};
+      const context = ctx.getMeasurementContextForInstance(group, inst, option);
+      const match = ctx.findMeasurementsForOption(group, option, context);
+      assert.ok(match, group.key + ' ' + option.sizeLabel);
+      assert.equal(match.sourceTable, env.tables[0]);
+      assert.equal(match.garmentKey, '', 'generic chart retains the complete outfit row');
+      for (const unit of ['metric', 'imperial']) {
+        ctx.unitSystem = unit;
+        const html = ctx.renderCard(inst);
+        assert.ok(html.includes('role="tooltip"'), 'desktop hover content');
+        assert.ok(html.includes('data-selected-size-panel='), 'mobile selected-size content');
+        assert.ok(html.includes(unit === 'metric' ? '(cm)' : '(in)'));
+        assert.ok(!html.includes('undefined'));
+      }
+      checked += 1;
+    }
+    assert.equal(checked, fixture.variants.length, 'every current variant is checked');
+    assert.equal(JSON.stringify(fixture), original, 'source rows, variants and prices are unchanged');
+  });
+}
+
+test('Grape Mother M preserves each source measurement in cm and inches', () => {
+  const env = sizePillEnvironment(sizePillFixtures.find(p => p.handle === 'grape-vineyard-mommy-and-me-pajamas'));
+  const {ctx} = env, group = ctx.getGroupByKey('mother');
+  const option = group.options.find(o => o.sizeLabel === 'M');
+  const context = ctx.getMeasurementContextForInstance(group, {axisSelections: option.axes, sizeLabel:'M'}, option);
+  const match = ctx.findMeasurementsForOption(group, option, context);
+  for (const [unit, values] of [['metric', ['98 cm', '22 cm', '46 cm', '108 cm', '72 cm', '60 cm']],
+    ['imperial', ['38.6 in', '8.7 in', '18.1 in', '42.5 in', '28.3 in', '23.6 in']]]) {
+    ctx.unitSystem = unit;
+    const html = ctx.buildMeasurementsHtml(match);
+    for (const value of values) assert.ok(html.includes('>' + value + '</dd>'), value);
+  }
+});
+
+for (const alternate of ['Tshirt', 'Overall', 'Mystery', 'Blue Dress']) {
+  test('generic whole-row fallback is disabled for varying non-size choice: ' + alternate, () => {
+    const record = JSON.parse(JSON.stringify(sizePillFixtures[0]));
+    record.variants.push({...record.variants[0], id: 999001, option2: alternate});
+    const {ctx} = sizePillEnvironment(record);
+    assert.equal(ctx.buildSizeMeasurementsLookup().allowWholeRow, false);
+  });
+}
+
+test('a known color never permits a varying non-color configuration', () => {
+  const record = JSON.parse(JSON.stringify(sizePillFixtures[0]));
+  record.options[1].name = 'Configuration';
+  record.variants.push({...record.variants[0], id: 999002, option2: 'Blue'});
+  const {ctx} = sizePillEnvironment(record);
+  assert.equal(ctx.buildSizeMeasurementsLookup().allowWholeRow, false);
+});
+
+for (const [name, colors] of [['Couleur', ['Rouge', 'Rose']], ['اللون', ['أحمر', 'أزرق']]]) {
+  test('plain color recognition normalizes translated Unicode: ' + name, () => {
+    const record = JSON.parse(JSON.stringify(sizePillFixtures[0]));
+    record.options[1].name = name;
+    record.variants.forEach(v => { v.option2 = colors[0]; });
+    record.variants.push({...record.variants[0], id: 999003, option2: colors[1]});
+    const {ctx} = sizePillEnvironment(record);
+    assert.equal(ctx.buildSizeMeasurementsLookup().allowWholeRow, true);
+  });
+}
+
+for (const [id, heading] of [['size-chart-cardigan', 'Size Chart - Dress'], ['size-chart', 'Size Chart - Dress and Cardigan'], ['size-chart', 'Size Chart - Dress / Top & Skirt Set']]) {
+  test('a fixed configuration does not bypass contradictory chart context: ' + id + heading, () => {
+    const record = JSON.parse(JSON.stringify(sizePillFixtures[0]));
+    record.tables[0].id = id;
+    record.tables[0].heading = heading;
+    const {ctx} = sizePillEnvironment(record);
+    assert.equal(ctx.buildSizeMeasurementsLookup().entries.length, 0);
+  });
+}
+
+test('generic whole-row fallback does not override explicit unknown Type or multiple charts', () => {
+  const record = JSON.parse(JSON.stringify(sizePillFixtures[0]));
+  record.options[1].name = 'Type';
+  const typed = sizePillEnvironment(record);
+  assert.equal(typed.ctx.buildSizeMeasurementsLookup().allowWholeRow, false);
+  record.options[1].name = 'Color';
+  record.tables.push({...record.tables[0], id: 'size-chart-second'});
+  const multiple = sizePillEnvironment(record);
+  assert.equal(multiple.ctx.buildSizeMeasurementsLookup().allowWholeRow, false);
+});
+
+test('generic whole-row fallback retains exact-size and conflicting-row rejection', () => {
+  const record = JSON.parse(JSON.stringify(sizePillFixtures.find(p => p.handle === 'grape-vineyard-mommy-and-me-pajamas')));
+  const motherM = record.tables[0].rows.find(r => r[0] === 'Mother M');
+  record.tables[0].rows.push(motherM.map((v, i) => i === 4 ? '999 cm / 393.3 in' : v));
+  let env = sizePillEnvironment(record), ctx = env.ctx, group = ctx.getGroupByKey('mother');
+  let option = group.options.find(o => o.sizeLabel === 'M');
+  assert.equal(ctx.findMeasurementsForOption(group, option, {garmentKey: ''}), null);
+  record.tables[0].rows = record.tables[0].rows.filter(r => r[0] !== 'Mother M');
+  env = sizePillEnvironment(record); ctx = env.ctx; group = ctx.getGroupByKey('mother');
+  option = group.options.find(o => o.sizeLabel === 'M');
+  assert.equal(ctx.findMeasurementsForOption(group, option, {garmentKey: ''}), null);
+});
+
+test('equal numbers in different measurement columns are still conflicting rows', () => {
+  const record = JSON.parse(JSON.stringify(sizePillFixtures[0]));
+  record.tables[0] = {id: 'size-chart', heading: 'Size Chart', headers: ['Size', 'Bust (cm)', 'Waist (cm)'],
+    rows: [['Mother M', '80', ''], ['Mother M', '', '80']]};
+  const {ctx} = sizePillEnvironment(record), group = ctx.getGroupByKey('mother');
+  const option = group.options.find(o => o.sizeLabel === 'M');
+  assert.equal(ctx.findMeasurementsForOption(group, option, {garmentKey: ''}), null);
+});
+
+test('Arabic M matches the exact Latin M chart row and Arabic inches normalize', () => {
+  const {ctx} = sizePillEnvironment(sizePillFixtures.find(p => p.locale === 'ar'));
+  const group = ctx.getGroupByKey('mother'), option = group.options.find(o => o.sizeLabel === 'م');
+  const match = ctx.findMeasurementsForOption(group, option, {garmentKey: ''});
+  assert.ok(match);
+  assert.equal(ctx.normalizeGuideUnit('إنش'), 'in');
+  ctx.unitSystem = 'imperial';
+  const html = ctx.buildMeasurementsHtml(match);
+  assert.ok(html.includes('48.4 إنش'));
+  assert.ok(!html.includes('123 سم'));
+  assert.equal(ctx.sizeTokenMatchRank(ctx.comparableSizeTokens('م'), ctx.comparableSizeTokens('L')), 2, 'nearby adult size is never exact');
+});
+
+for (const fixture of sizePillFixtures.filter(f => f.testKind === 'runtime-source')) {
+  test('published legacy and native chart source: ' + fixture.handle, () => {
+    const env = sizePillEnvironment(fixture), {ctx} = env;
+    assert.equal(ctx.getProductSizeChartTables(ctx.wrapper).length, fixture.tables.length);
+    let checked = 0;
+    for (const group of ctx.roleGroupsCache) for (const option of group.options) {
+      const context = ctx.getMeasurementContextForInstance(group, {axisSelections: option.axes, sizeLabel: option.sizeLabel}, option);
+      const match = ctx.findMeasurementsForOption(group, option, context);
+      if (fixture.handle.indexOf('mommy-me-vibrant-duo-tone') === 0 && option.sizeLabel === '3-4T') {
+        assert.equal(match, null, 'published fallback chart has no Child 3-4 row; do not borrow 2-3 or 4-5');
+      } else {
+        assert.ok(match, group.key + ' ' + option.sizeLabel);
+      }
+      if (fixture.handle === 'sky-blue-family-matching-set') {
+        assert.equal(match.sourceTable, env.tables[context.garmentKey === 'shirt' ? 1 : 0]);
+      }
+      checked += 1;
+    }
+    assert.equal(checked, fixture.variants.length);
+  });
+}
+
+test('unmarked non-size tables are not treated as measurement charts', () => {
+  const record = JSON.parse(JSON.stringify(sizePillFixtures[0]));
+  record.tables.push({id: '', heading: 'Shipping', headers: ['Destination', 'Delivery days'], rows: [['US', '5-7']]});
+  const {ctx} = sizePillEnvironment(record);
+  assert.equal(ctx.getProductSizeChartTables(ctx.wrapper).length, 1);
+});
+
+for (const [heading, header] of [['Dress pricing', 'Price (USD)'], ['Shirt shipping', 'Shipping (days)']]) {
+  test('unmarked tables require original measurement units: ' + header, () => {
+    const record = JSON.parse(JSON.stringify(sizePillFixtures[0]));
+    record.tables = [{id: '', heading, headers: ['Size', header], rows: [['Mother M', '29.99']]}];
+    const {ctx} = sizePillEnvironment(record);
+    assert.equal(ctx.getProductSizeChartTables(ctx.wrapper).length, 0);
+  });
+}
+
+test('native fallback does not duplicate or override a product description chart', () => {
+  const record = JSON.parse(JSON.stringify(sizePillFixtures[0]));
+  record.tables.push({...record.tables[0], nativeFallback: true});
+  const env = sizePillEnvironment(record), {ctx} = env;
+  const tables = ctx.getProductSizeChartTables(ctx.wrapper);
+  assert.equal(tables.length, 1);
+  assert.equal(tables[0], env.tables[0]);
 });
