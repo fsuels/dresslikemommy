@@ -12,6 +12,12 @@ Fixed criteria: a re-scan of every product in every status finds 0 tags matching
 
 Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-source-reference-tag-cleanup/README.md`.
 
+Recurrence guard (2026-09-27, LIVE_VERIFIED loaded): `ops/scripts/check_product_tag_source_leaks.py` is a read-only scan of every product tag. Exit codes: 0 clean, 1 leak, 2 error. Output is redacted to shape plus `sha256_12`.
+- LaunchAgent `com.dresslikemommy.product-tag-source-guard` (template `ops/shopify/`) runs every 1800 s.
+- Log: `~/Library/Logs/dresslikemommy/product-tag-source-guard.jsonl`. A macOS notification fires on new findings or on a scan error.
+- It detects only. Removal still needs owner approval per incident.
+- Anchor `2026-09-27-product-tag-source-guard`.
+
 ## PROB-2026-09-25-PETER-RABBIT-FEED-PROPAGATION
 
 Status: OPEN__FEED_OWNER_ACTION_REQUIRED. Priority P1 because Merchant Center can disapprove trademarked titles. Owner: Merchant feed owner (sole US/AU feed writer). Shopify rename completed by a Claude session on 2026-09-25.

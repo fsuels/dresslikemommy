@@ -55005,3 +55005,38 @@ Pending (owner):
 - Root cause: the canonical listing prompt mandates compare-at = price × 1.15, so every new listing re-creates an unsupported was-price.
 - The Pinterest grouped-feed generator emits compareAtPrice as the regular price with a sale. Cleared variants drop the sale on the next feed generation; not re-run here.
 - Changing the prompt is a durable-rule change and needs owner approval plus the repo's prompt-change check.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-product-tag-source-guard
+
+- task_entities: PROB-2026-09-26-SOURCE-REFERENCE-PRODUCT-TAGS; `ops/scripts/check_product_tag_source_leaks.py`; LaunchAgent `com.dresslikemommy.product-tag-source-guard`; commit `0f08a45`
+- task_stage: VERIFY
+- next_action_id: none (on an alert: prepare a `tagsRemove` approval packet as in anchor `2026-09-26-source-reference-product-tag-cleanup`)
+
+Why: the owner asked to put the source-tag pattern into a recurring catalog check, so a new tag leak from a manual edit or an import is caught before customers see it.
+
+Done:
+- New read-only guard: `ops/scripts/check_product_tag_source_leaks.py`.
+  - Scans every product in every status via Admin GraphQL `2026-01`.
+  - Pattern: `offer/|\.html?\b|1688|https?:|www\.|taobao|tmall|aliexpress|alibaba`, case-insensitive. This extends yesterday's cleanup pattern.
+  - Exit codes: 0 clean, 1 leaks, 2 scan error. An error is never reported as clean.
+  - Raw tags are never printed or logged, only the shape plus `sha256_12`.
+  - `--state-path` remembers findings, so `--notify` fires only on new ones, or on a scan error.
+- Tests: `ops/tests/test_product_tag_source_leaks.py`, using synthetic IDs. They cover the matcher, redaction, the no-raw-tag output, the state dedupe, and exit codes 0, 1 and 2.
+- LaunchAgent: template `ops/shopify/com.dresslikemommy.product-tag-source-guard.plist`, installed to `~/Library/LaunchAgents/` and bootstrapped in `gui/$UID`. It runs every 1800 s, plus once at load.
+  - It extracts the committed `origin/main` copies of the guard and `shopify_admin_config.py` with `git archive` into a temp dir. The shared main checkout has diverged (ahead 2, behind 114, about 1085 dirty files), so the job never reads or touches that working tree.
+  - The ref updates whenever any session fetches. The token comes from the existing hourly refresher.
+  - Log: `~/Library/Logs/dresslikemommy/product-tag-source-guard.jsonl`. State: `~/.config/dresslikemommy/product-tag-source-guard-state.json`.
+- VERIFIED:
+  - Tests pass.
+  - Backtest on the 2026-09-26 pre-cleanup snapshot of 859 products flags exactly 59 products and 89 tags (7 active), so the extended pattern adds no false positives.
+  - A live manual run on 874 products is CLEAN.
+  - The LaunchAgent first run is CLEAN, `last exit code = 0`, `run interval = 1800 seconds`.
+  - A synthetic fixture run with `--notify` returned exit 1 with redacted output. Whether the notification banner rendered was not visually confirmed.
+
+Guardrails: read-only; no Shopify writes, and the guard does not auto-remove tags. The dirty shared main checkout was not touched.
+
+Rollback: `launchctl bootout gui/$UID/com.dresslikemommy.product-tag-source-guard`, then delete the installed plist.
+
+Residual:
+- The guard runs only while this Mac is awake and logged in.
+- Tag leaks can be public for up to 30 minutes before detection. Prevention at import time (the import autofill poller) is not wired.
