@@ -293,23 +293,26 @@
                             facets__label facet-checkbox{% if is_disabled %} disabled{% endif %}{% if value.active %} active{% endif %}
                             {%- endcapture -%}
 
+                            {%- comment -%}
+                              Collection-page weight (SEO lane #15): every value renders twice (desktop form and
+                              mobile drawer), so this markup is kept whitespace-tight. Text values no longer emit
+                              Dawn's box and checkmark SVGs: the DLM layer hides them
+                              (component-facets.css "facets-layout-list--text ... > svg { display: none }") and
+                              draws the checkbox on the real <input> instead.
+                            {%- endcomment -%}
                             {%- capture text_value -%}
                               <span class="facet-checkbox__text" aria-hidden="true">
                                 {%- if dlm_value_layout == 'colors' -%}
                                   {%- render 'dlm-facet-color-dot', label: value.label, swatch: value.swatch -%}
                                 {%- endif -%}
-                                <span class="facet-checkbox__text-label">{{- value.label | escape }}</span>
-                                <span class="dlm-facets__value-count">{{- value.count -}}</span>
-                              </span>
-                              <span class="visually-hidden">
+                                <span class="facet-checkbox__text-label">{{- value.label | escape }}</span><span class="dlm-facets__value-count">{{- value.count -}}</span></span><span class="visually-hidden">
                                 {{- value.label | escape }} (
                                 {%- if value.count == 1 -%}
                                   {{- 'products.facets.product_count_simple.one' | t: count: value.count -}}
                                 {%- else -%}
                                   {{- 'products.facets.product_count_simple.other' | t: count: value.count -}}
                                 {%- endif -%}
-                                )
-                              </span>
+                                )</span>
                             {%- endcapture -%}
 
                             {%- capture dlm_value_li -%}
@@ -333,19 +336,8 @@
                                 </div>
                               {%- else -%}
                                 <label for="{{ input_id }}" class="{{ label_class }}">
-                                  <input
-                                    type="checkbox"
-                                    name="{{ value.param_name }}"
-                                    value="{{ value.value }}"
-                                    id="{{ input_id }}"
-                                    {% if value.active %}
-                                      checked
-                                    {% endif %}
-                                    {% if is_disabled %}
-                                      disabled
-                                    {% endif %}
-                                  >
-
+                                  {%- comment -%}One-line input: its attributes repeat for every value.{%- endcomment -%}
+                                  <input type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" id="{{ input_id }}"{% if value.active %} checked{% endif %}{% if is_disabled %} disabled{% endif %}>
                                   {%- if presentation == 'image' -%}
                                     <div class="facets__image-wrapper">
                                       {%- if value.image -%}
@@ -356,35 +348,8 @@
                                         }}
                                       {%- endif -%}
                                     </div>
-                                  {%- else -%}
-                                    <svg
-                                      width="1.6rem"
-                                      height="1.6rem"
-                                      viewBox="0 0 16 16"
-                                      aria-hidden="true"
-                                      focusable="false"
-                                    >
-                                      <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
-                                    </svg>
-
-                                    <svg
-                                      aria-hidden="true"
-                                      class="icon icon-checkmark"
-                                      width="1.1rem"
-                                      height="0.7rem"
-                                      viewBox="0 0 11 7"
-                                      fill="none"
-                                      xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                      <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1"
-                                        stroke="currentColor"
-                                        stroke-width="1.75"
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    </svg>
                                   {%- endif -%}
-
-                                  {{ text_value }}
+                                  {{- text_value -}}
                                 </label>
                               {%- endif -%}
                             </li>
@@ -783,23 +748,23 @@
                                   {%- if dlm_value_layout == 'colors' -%}
                                     {%- render 'dlm-facet-color-dot', label: value.label, swatch: value.swatch -%}
                                   {%- endif -%}
-                                  <span class="facet-checkbox__text-label">{{- value.label | escape }}</span>
-                                  <span class="dlm-facets__value-count">{{- value.count -}}</span>
-                                </span>
-                                <span class="visually-hidden">
+                                  <span class="facet-checkbox__text-label">{{- value.label | escape }}</span><span class="dlm-facets__value-count">{{- value.count -}}</span></span><span class="visually-hidden">
                                   {{- value.label | escape }} (
                                   {%- if value.count == 1 -%}
                                     {{- 'products.facets.product_count_simple.one' | t: count: value.count -}}
                                   {%- else -%}
                                     {{- 'products.facets.product_count_simple.other' | t: count: value.count -}}
                                   {%- endif -%}
-                                  )
-                                </span>
+                                  )</span>
                               {%- endcapture -%}
 
+                              {%- comment -%}
+                                Kept whitespace-tight like the desktop values above; text values skip the
+                                highlight span and Dawn's box/checkmark SVGs, which the DLM layer hides.
+                              {%- endcomment -%}
                               {%- capture dlm_value_li -%}
                               <li class="mobile-facets__item list-menu__item">
-                                {% if presentation == 'swatch' %}
+                                {%- if presentation == 'swatch' -%}
                                   <div class="{{ label_class }}">
                                     <div class="swatch-input-wrapper">
                                       {% render 'swatch-input',
@@ -816,23 +781,10 @@
 
                                     {{ text_value }}
                                   </div>
-                                {% else %}
+                                {%- else -%}
                                   <label for="{{ input_id }}" class="{{ label_class }}">
-                                    {% comment %} facets.js compares this input's className exactly; keep it a single class {% endcomment %}
-                                    <input
-                                      class="mobile-facets__checkbox"
-                                      type="checkbox"
-                                      name="{{ value.param_name }}"
-                                      value="{{ value.value }}"
-                                      id="{{ input_id }}"
-                                      {% if value.active %}
-                                        checked
-                                      {% endif %}
-                                      {% if is_disabled %}
-                                        disabled
-                                      {% endif %}
-                                    >
-
+                                    {%- comment -%} facets.js compares this input's className exactly; keep it a single class {%- endcomment -%}
+                                    <input class="mobile-facets__checkbox" type="checkbox" name="{{ value.param_name }}" value="{{ value.value }}" id="{{ input_id }}"{% if value.active %} checked{% endif %}{% if is_disabled %} disabled{% endif %}>
                                     {%- if presentation == 'image' -%}
                                       <div class="facets__image-wrapper">
                                         {%- if value.image -%}
@@ -843,35 +795,10 @@
                                           }}
                                         {%- endif -%}
                                       </div>
-                                    {%- else -%}
-                                      <span class="mobile-facets__highlight"></span>
-
-                                      <svg
-                                        width="1.6rem"
-                                        height="1.6rem"
-                                        viewBox="0 0 16 16"
-                                        aria-hidden="true"
-                                        focusable="false"
-                                      >
-                                        <rect width="16" height="16" stroke="currentColor" fill="none" stroke-width="1"></rect>
-                                      </svg>
-
-                                      <svg
-                                        aria-hidden="true"
-                                        class="icon icon-checkmark"
-                                        width="1.1rem"
-                                        height="0.7rem"
-                                        viewBox="0 0 11 7"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                      >
-                                        <path d="M1.5 3.5L2.83333 4.75L4.16667 6L9.5 1" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
-                                      </svg>
-                                    {%- endif %}
-
-                                    {{ text_value }}
+                                    {%- endif -%}
+                                    {{- text_value -}}
                                   </label>
-                                {% endif %}
+                                {%- endif -%}
                               </li>
                               {%- endcapture -%}
                               {%- if dlm_group_sizes -%}

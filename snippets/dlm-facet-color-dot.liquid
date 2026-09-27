@@ -73,10 +73,4 @@
     endif
   endif
 -%}
-<span
-  class="dlm-facet-dot dlm-facet-dot--{{ dot_kind }}"
-  {% if dot_bg != blank %}
-    style="--dlm-dot: {{ dot_bg }};"
-  {% endif %}
-  aria-hidden="true"
-></span>
+<span class="dlm-facet-dot dlm-facet-dot--{{ dot_kind }}"{% if dot_bg != blank %} style="--dlm-dot: {{ dot_bg }};"{% endif %} aria-hidden="true"></span>
