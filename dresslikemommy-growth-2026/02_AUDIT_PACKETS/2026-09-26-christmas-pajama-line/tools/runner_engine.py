@@ -853,9 +853,9 @@ def build_tags() -> list[str]:
         ]
         values.extend(r["picker_label"] for r in SIZE_CHART)
         return sorted(dict.fromkeys(values))
-    if SWF:
+    if SWF:  # "Sweaters" + "Family Matching" feed /collections/family-sweaters (Together Heart precedent)
         values = [
-            "Family Matching", "Mommy and Me", "Daddy and Me", "Sweatshirts", "Family Sweatshirts",
+            "Family Matching", "Mommy and Me", "Daddy and Me", "Sweatshirts", "Family Sweatshirts", "Sweaters",
             "Matching Family Sweatshirts", "Matching Family Tops", "Matching Family Outfits", "Tops",
             "Crewneck Sweatshirt", "Child Sweatshirt", "Adult Sweatshirt", "Long Sleeve Top",
             "Fall", "Family Photos", PRINT_NAME, *SPEC["extra_tags"],

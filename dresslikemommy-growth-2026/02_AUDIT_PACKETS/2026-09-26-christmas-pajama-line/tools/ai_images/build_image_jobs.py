@@ -19,6 +19,7 @@ TOOLS = ROOT / "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-christmas
 
 # Exact garment lettering to copy letter for letter (None = no lettering).
 LETTERING = {
+    "pom-pom-star-family-matching-sweaters": 'the small embroidered word "STAR" (yellow letters, one red letter) inside the big star on EVERY sweater, exactly as in the vendor close-up; and the small round red pom-poms at the points of the big fuzzy star must be visible on EVERY sweater in EVERY image',
     "eternal-bliss-hearts": 'the small pink script "Eternal bliss" inside the two outlined hearts, exactly as printed',
     "good-luck-smile": 'the words "GOOD LUCK" under the big smiley face, exactly as printed',
     "starry-sky": 'the tiny script "a sky full of stars" under the star cluster, exactly as printed',

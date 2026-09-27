@@ -55688,3 +55688,10 @@ Owner request (Claude Code chat, session "Website visual improvements" [f7baa5])
   - admin readback equals `plan.json`, not outdated; English titles and digests are unchanged; `/de` storefront titles match;
   - mobile `/de` sweep: 49 → 41 clipped, 0 clipped "Design — Details" cards; family-pajamas 8 → 0; Mommy & Me page 1 3 → 0.
 - Rollback: `python3 <packet>/apply_de_titles.py --execute --rollback` restores the `before_state.json` values (guarded).
+
+**Update: knits LIVE_VERIFIED.** nordic-yoke (32/32) and pom-pom-star (16/16) are ACTIVE: $37.99/$49.99, 8/8 channels, US/DE/GB/AU/CA markets.
+- The first Pom-Pom Star image set dropped the embroidered "STAR" and the pom-poms. It was rejected (kept in `ai/rejected_v1`) and regenerated with a lettering lock.
+- Everyday sweatshirts now also get the "Sweaters" tag, which feeds /collections/family-sweaters (the website session's request). The 6 live ones were tagged via tagsAdd; the readback lists all 6.
+- **Accessories assessment (owner asked):** single $5–10 accessories fail the 50%-landed single-order rule (US freight about ¥45 per parcel).
+  - Next: matching family SETS at $30+ (beanie or Christmas-hat family sets, Mommy & Me scarf sets).
+  - Children's jewelry needs CPSIA lead/cadmium test reports first. Adult-only jewelry is acceptable.
