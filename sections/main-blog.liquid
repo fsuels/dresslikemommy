@@ -256,6 +256,8 @@
               data-analytics-newsletter-state="success"
             >
               {{ 'newsletter.success' | t }}
+              <br>
+              {% render 'newsletter-welcome-code' %}
             </p>
           {% endif %}
         {% endform %}

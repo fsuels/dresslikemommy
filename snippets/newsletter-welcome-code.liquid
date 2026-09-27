@@ -1,0 +1,85 @@
+{%- comment -%}
+  Shows the newsletter welcome code after a successful signup, so the
+  "Get styling tips + 10% off" promise is honored on the spot.
+  WELCOME10 = 10% off, once per customer, first order (Shopify discount
+  DiscountCodeNode/1315693822049, created 2026-09-27).
+  Usage: {% render 'newsletter-welcome-code' %}
+{%- endcomment -%}
+{%- liquid
+  assign wc_locale = request.locale.iso_code | default: localization.language.iso_code | default: 'en' | downcase
+  assign wc_root = wc_locale | split: '-' | first
+
+  case wc_root
+    when 'ar'
+      assign wc_text = 'رمز الترحيب بخصم 10%: WELCOME10. استخدمه عند الدفع في طلبك الأول.'
+    when 'cs'
+      assign wc_text = 'Váš uvítací kód na 10% slevu: WELCOME10. Použijte ho v pokladně při první objednávce.'
+    when 'da'
+      assign wc_text = 'Din velkomstkode på 10%: WELCOME10. Brug den ved betaling på din første ordre.'
+    when 'de'
+      assign wc_text = 'Ihr Willkommenscode für 10 %: WELCOME10. Geben Sie ihn beim Checkout Ihrer ersten Bestellung ein.'
+    when 'el'
+      assign wc_text = 'Ο κωδικός καλωσορίσματος 10%: WELCOME10. Χρησιμοποιήστε τον στο ταμείο στην πρώτη σας παραγγελία.'
+    when 'es'
+      assign wc_text = 'Tu código de bienvenida del 10 %: WELCOME10. Úsalo al pagar tu primer pedido.'
+    when 'fi'
+      assign wc_text = 'Tervetuliaiskoodisi 10 %:n alennukseen: WELCOME10. Käytä se kassalla ensimmäisessä tilauksessasi.'
+    when 'fr'
+      assign wc_text = 'Votre code de bienvenue de 10 % : WELCOME10. Utilisez-le au paiement de votre première commande.'
+    when 'he'
+      assign wc_text = 'קוד הפתיחה שלך ל-10% הנחה: WELCOME10. השתמשו בו בקופה בהזמנה הראשונה.'
+    when 'hi'
+      assign wc_text = 'आपका 10% स्वागत कोड: WELCOME10. अपने पहले ऑर्डर पर चेकआउट में इसका उपयोग करें।'
+    when 'hr'
+      assign wc_text = 'Vaš kod dobrodošlice za 10 % popusta: WELCOME10. Upotrijebite ga na blagajni pri prvoj narudžbi.'
+    when 'hu'
+      assign wc_text = '10%-os üdvözlő kódod: WELCOME10. Használd a pénztárnál az első rendelésednél.'
+    when 'id'
+      assign wc_text = 'Kode sambutan 10% Anda: WELCOME10. Gunakan saat checkout pada pesanan pertama Anda.'
+    when 'it'
+      assign wc_text = 'Il tuo codice di benvenuto del 10%: WELCOME10. Usalo al checkout del tuo primo ordine.'
+    when 'ja'
+      assign wc_text = '10%オフのウェルカムコード：WELCOME10。初回のご注文時にチェックアウトでご利用ください。'
+    when 'ko'
+      assign wc_text = '10% 웰컴 코드: WELCOME10. 첫 주문 결제 시 사용하세요.'
+    when 'lt'
+      assign wc_text = 'Jūsų 10 % sveikinimo kodas: WELCOME10. Panaudokite jį apmokėdami pirmąjį užsakymą.'
+    when 'nb', 'no'
+      assign wc_text = 'Din velkomstkode på 10 %: WELCOME10. Bruk den i kassen på din første bestilling.'
+    when 'nl'
+      assign wc_text = 'Je welkomstcode voor 10% korting: WELCOME10. Gebruik hem bij het afrekenen van je eerste bestelling.'
+    when 'pl'
+      assign wc_text = 'Twój kod powitalny na 10%: WELCOME10. Użyj go przy kasie przy pierwszym zamówieniu.'
+    when 'pt'
+      if wc_locale == 'pt-pt'
+        assign wc_text = 'O seu código de boas-vindas de 10%: WELCOME10. Utilize-o no checkout da sua primeira encomenda.'
+      else
+        assign wc_text = 'Seu código de boas-vindas de 10%: WELCOME10. Use no checkout do seu primeiro pedido.'
+      endif
+    when 'ro'
+      assign wc_text = 'Codul tău de bun venit pentru 10%: WELCOME10. Folosește-l la finalizarea primei comenzi.'
+    when 'ru'
+      assign wc_text = 'Ваш приветственный код на скидку 10%: WELCOME10. Введите его при оформлении первого заказа.'
+    when 'sk'
+      assign wc_text = 'Váš uvítací kód na 10 % zľavu: WELCOME10. Použite ho v pokladni pri prvej objednávke.'
+    when 'sl'
+      assign wc_text = 'Vaša koda dobrodošlice za 10 % popusta: WELCOME10. Uporabite jo na blagajni pri prvem naročilu.'
+    when 'sv'
+      assign wc_text = 'Din välkomstkod på 10 %: WELCOME10. Använd den i kassan på din första beställning.'
+    when 'th'
+      assign wc_text = 'โค้ดต้อนรับส่วนลด 10% ของคุณ: WELCOME10 ใช้ได้ตอนชำระเงินในคำสั่งซื้อแรก'
+    when 'tr'
+      assign wc_text = '%10 hoş geldin kodunuz: WELCOME10. İlk siparişinizde ödeme sırasında kullanın.'
+    when 'vi'
+      assign wc_text = 'Mã chào mừng giảm 10% của bạn: WELCOME10. Dùng khi thanh toán đơn hàng đầu tiên.'
+    when 'zh'
+      if wc_locale == 'zh-tw'
+        assign wc_text = '您的 10% 歡迎優惠碼：WELCOME10。首筆訂單結帳時使用。'
+      else
+        assign wc_text = '您的 10% 欢迎优惠码：WELCOME10。首单结账时使用。'
+      endif
+    else
+      assign wc_text = 'Your 10% welcome code: WELCOME10. Use it at checkout on your first order.'
+  endcase
+-%}
+<span class="newsletter-welcome-code" data-welcome-code="WELCOME10">{{ wc_text | escape }}</span>
