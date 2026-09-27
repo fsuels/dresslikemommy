@@ -54927,3 +54927,23 @@ LIVE_VERIFIED (mobile UA):
 - The subagent's Playwright pixel comparison: 22/24 identical; 2 within screenshot noise. The filter request is unchanged.
 
 Rollback: `git revert` the commit, then `sync_live_theme_from_main.py --apply`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-ceo-sprint-localization-picker-weight-cut
+
+- task_entities: main commit for `snippets/country-localization.liquid` and `snippets/language-localization.liquid`; MAIN 133290917985
+- task_stage: LIVE_VERIFIED
+- next_action_id: NONE
+
+SEO lane #15, sitewide page weight.
+- **Before:** 5 picker blocks render on every page (country ×2, language ×3). Each option carried a full checkmark SVG that is hidden unless active, plus heavy whitespace.
+- **After:** only the active option renders the full checkmark. Inactive options keep an empty svg with the same class and viewBox, so layout is unchanged. Options are one line each.
+- **Preserved:** `data-value`, `id`, `href`, `hreflang`, `lang`, `aria-*`, `.countries` / `.popular-countries` / `.disclosure__*` classes, and every selector `localization-form.js` uses.
+- Session [bf4337] confirmed it is not the owner. Its possible future auto-localization feature needs `data-value` inside `.countries`; both are kept.
+
+LIVE_VERIFIED (mobile UA):
+- Homepage 760,919 → 653,910 B; PDP 910,886 → 803,986 B.
+- `/de` 642 KB; 199 `data-value`; 9 `aria-current`; 0 Liquid errors.
+- The header language dropdown shows ✓ English with aligned options.
+- Subagent Playwright: 9/9 screenshot pairs pixel-identical.
+
+Rollback: `git revert`, then `sync_live_theme_from_main.py --apply`.
