@@ -54764,3 +54764,26 @@ Done (LIVE_VERIFIED):
 Evidence, rollback and follow-ups: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-footer-pages-protection/README.md` (before-states in `before/`, with the owner email redacted there).
 
 Open (owner): a one-time attorney review of the Terms; product compliance outside this packet (textile "Imported" origin labels, children's sleepwear flammability/CPSIA certificates); the UK VAT setup check. Nuance: pages say the business has existed "since 2016" (owner's prior copy), while `343c670` says "8,000+ families since 2017" (first Shopify order). They are compatible but should not be conflated.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-ceo-sprint-head-collection-translations-cart-footer
+
+- task_entities: collections christmas-pajamas, mommy-and-me, new-women-outfits, daddy-me (de/es/fr/it/nl/da stored translations); main commit for the `#CartDrawer-Footer` refresh; locales ar/de/fr/ko/pt-BR/zh-CN uploaded to MAIN
+- task_stage: LIVE_VERIFIED
+- next_action_id: NONE
+
+- **Head-collection translations (SEO lane #13, stored-translation part):** 39 fields were missing or outdated after the English rewrites. The German Christmas body still had SEO-speak ("Kunden kommen zu Family Christmas Pajamas…").
+  - ChatGPT-app Codex translated them natively; the parent checked tags, hrefs, lengths, brand, and shipping and "free" wording against the English.
+  - `translationsRegister` with the current digests: 0 errors. Readback 39/39 equal and not outdated.
+  - Live titles:
+    - de "Familien-Weihnachtspyjamas im Partnerlook | Dress Like Mommy"
+    - es "Pijamas navideños familiares a juego | …"
+    - fr "Pyjamas de Noël assortis pour la famille | …"
+    - it "Pigiami natalizi coordinati in famiglia | …"
+  - Before values: session scratchpad `codex_tr/jobs.json` (`current_translation`).
+  - The theme `sections.collection_seo.*` locale strings were already complete in all 9 target languages; no change.
+- **Cart drawer footer:** `CartItems.onCartUpdate` refreshed the non-existent `.cart-drawer__footer`. It now refreshes `#CartDrawer-Footer` (totals, Check out, wallets), syncs `is-empty` and re-inits the wallets. `node --test` 4/4. Live markup is present.
+- **"From" locale wording:** the GitHub sync dropped the 6 locale files. Live vs main differed only in `products.product.price.from_price_html`, so the main files were uploaded with `themeFilesUpsert`. Live: de "Ab $32.99", fr "À partir de $32.99", ar "ابتداءً من".
+
+Rollback:
+- Translations: re-register `current_translation` values.
+- Theme: `git revert`, then `sync_live_theme_from_main.py --apply`.
