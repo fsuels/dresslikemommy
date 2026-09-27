@@ -54883,3 +54883,18 @@ Follow-ups:
 - The preview theme remains for the owner to delete.
 
 Rollback: `git revert`, then `sync_live_theme_from_main.py --apply`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-ceo-sprint-christmas-photo-outfits-article
+
+- task_entities: Article 568793137249 (`/blogs/news/family-christmas-photo-outfits-2026`); `snippets/article-featured-image-fallback.liquid` allowlist
+- task_stage: LIVE_VERIFIED
+- next_action_id: NONE
+
+- **Article:** third Christmas article, drafted by ChatGPT-app Codex and parent-reviewed. About 1,000 words on family Christmas photo outfits.
+  - Links live pajama and sweater products, the Christmas hub, both guides and the refund policy; all links return 200.
+  - No stock, price or review claims; delivery wording is estimate-only, with an ordering-before-the-photo-session note.
+  - Featured image: the Classic Red Plaid family photo. It was visually checked before the alt text was written.
+- **Allowlist:** the handle was added to the article image allowlist and released via main plus `--apply`. Live og:image is the article's own photo, 200, 0 Liquid errors.
+- **Swimsuits check:** `/collections/swimsuits` had 274 sessions and 1 cart in 30 days. On checking, it is mostly unknown/direct US spike traffic with only 50 search sessions, so no action was taken.
+
+Rollback: `articleDelete` 568793137249.
