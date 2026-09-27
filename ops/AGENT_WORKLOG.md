@@ -55726,3 +55726,23 @@ Done:
 - Contradiction recorded: the `lanes/email.md` §4 engagement syntax `shopify_email.opened(date: -45d)` is rejected by the API. The working form is `(since: -45d) = true`; `products_purchased(tag:…, since:…)` also works.
 - Messaging drafts are NOT created: Shopify has no public API for Messaging drafts, and no admin browser is available in this session. The owner build sheet is in the packet §8.
 - Rollback: delete segments 540943417441 and 540943777889. Segments send nothing by themselves.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-truncated-title-translations-repaired
+
+Owner request (Claude Code chat, session "Website visual improvements" [f7baa5]): audit all 20 locales for truncated product title translations ("| DLM", "...", "…") per `PROB-2026-09-27-DE-TRUNCATED-LEGACY-TITLES`, then write complete natural titles product-scoped with before-state, rollback and storefront readback, starting with German on `/de/collections/mommy-and-me`.
+
+- task_entities: `title` translations of the 80 products in `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-truncated-title-translations/scope_ids.json`, across 20 locales.
+- Audit (`audit_truncated_titles.py`, all 284 ACTIVE × 20 locales): 1,622 truncated titles on 82 products, 1,620 of them `outdated=true`. All are older "Category – Design" listings whose English titles were later rewritten; the stale translations were truncated SEO-style strings. The 4 `equals_seo_title` hits on `7502791082081` are false positives (complete titles).
+- Excluded: `7109292130401` and `7230338039905`. They are held as title source-fact watches (e.g. bikini vs one-piece) by the 2026-09-22 catalog localization repair, `review/final_remaining_dispositions.json`.
+- Method:
+  - German: parent-written, 79 titles (35 Mommy & Me first, verified on the storefront and phone; then 44 more).
+  - 19 other locales: 5 read-only subagents drafted from a shared glossary (store "Mommy/Daddy and Me" terms; printed slogans kept in English).
+  - The parent validated everything (`validate_translations.py`: coverage, markers, script, numbers, slogans, glossary; 0 errors). An independent read-only reviewer checked 1,522 strings and found 4 defects (es grammar, ar "games set", es/pt-BR "father and son" instead of child), patched via `patch_titles.py`.
+  - All writes through guarded `apply_titles.py`: the English digest must equal `before_state.json`, and the live value must equal the before value.
+- VERIFIED:
+  - admin (`after_state.json` / `after_readback.json`): 1,582/1,582 equal the final values, 0 outdated, 0 English changes;
+  - storefront: 200/200 throttled sample, 10 per locale, matches (a first unthrottled pass hit HTTP 429, not mismatches);
+  - phone Mommy & Me in `/de`, `/fr` and `/ja`: 111 cards each, only the held product still truncated;
+  - re-audit: 40 marker findings, all on the 2 held products.
+- Residual: the complete older titles are long, so most still clamp to 2 lines on phone cards (e.g. `/de` Mommy & Me pages 2–3). The durable fix is the canonical "Design Name — Details" rewrite, as done for the 4 knit products.
+- Rollback: `python3 <packet>/apply_titles.py <packet>/translations/<locale>.json --execute --rollback` per locale. For the 4 patched pairs, first revert `patch_log.json` "to" → "from".

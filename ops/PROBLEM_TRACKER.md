@@ -3,7 +3,7 @@
 
 ## PROB-2026-09-27-DE-TRUNCATED-LEGACY-TITLES
 
-Status: OPEN (2026-09-27; found by session "Website visual improvements" [f7baa5] during anchor `2026-09-27-de-card-titles-shortened-live`).
+Status: FIXED_VERIFIED except 2 held products (2026-09-27, anchor `2026-09-27-truncated-title-translations-repaired`). The all-locale audit found 1,622 truncated `title` translations on 82 ACTIVE products; 1,582 on 80 products were rewritten and verified. Remaining: `7109292130401` and `7230338039905` (20 locales each), held as title source-fact watches by the 2026-09-22 catalog localization repair. Fix them after the English title fact conflict is resolved. Originally found by session "Website visual improvements" [f7baa5] during anchor `2026-09-27-de-card-titles-shortened-live`.
 
 Symptom: on `/de/collections/mommy-and-me` and `/de/collections/family-pajamas`, 36 of 131 product cards show German titles that are themselves truncated strings, often ending in "… | DLM" or "...". Examples: "Stilvolles blaues ärmelloses Kleid-Set mit Schleifendetail P... | DLM" and "Passende Sommerkleider für Mutter und Tochter mit leuchtenden Mustern … | DLM". They look like shortened SEO-title strings stored as the `title` translation. They are older "Category – Design" listings (long descriptive handles), mostly dresses and swimsuits, and 41 cards on Mommy & Me pages 2–4 are clipped on mobile. List: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-de-card-title-shortening/de_truncated_titles_found.json`.
 
