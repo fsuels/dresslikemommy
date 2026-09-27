@@ -54575,3 +54575,23 @@ Update (2026-09-27 ~01:55 EDT), anchor `2026-09-27-storefront-seo-page-weight-fi
 - Only `assets/cart.js` was written, with the exact `origin/main` bytes, via `themeFilesUpsert`. userErrors was []. The live MD5 `dfef62ec…` equals main.
 - Live before-state saved in the session scratchpad: MD5 `22e6cab4…`, 24,711 bytes.
 - Browser readback: the drawer's recently-viewed images now request `&width=160` and load at 160 px natural width (previously 941 px). The claim is released.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-collection-redesign-live-and-membership-change1
+
+- task_entities: commit `11c1efd` (redesign), MAIN `133290917985`, collections `mommy-and-me` `320794427489`, `pajamas` `240129605`, `tops` `240128197`, `sweaters` `240153477`
+- task_stage: VERIFY done
+- next_action_id: OWNER_APPROVE_STALE_MEMBER_REINDEX_OR_FILTER_GROUPING
+
+Why: owner in chat: "owner approved release — cherry-pick 65a29d8 … push, verify live sync (fallback upload), then apply COLLECTION_MEMBERSHIP_PACKET change 1 with before-state and readback."
+
+Theme release (LIVE_VERIFIED): `65a29d8` was cherry-picked onto `main` as `11c1efd` (worklog-only conflict, kept both sides). The GitHub→Shopify sync dropped it again (0/13 after ~6 min). The live before-state equalled parent `54cb87b` for all 7 existing files, and the 6 new files were absent. The new files were upserted first, then the 7 changed files; the readback is 13/13 equal to `11c1efd`. On the live storefront, with no preview, there are no Liquid errors or missing translations on the mommy-and-me, de, ar, daddy-me and pajamas collections, home, a PDP or search, and the new filters, card eyebrows and Show more render.
+
+Membership change 1 (LIVE_VERIFIED): the before-state matched the packet (rules; members 479/84/43/48; active 146/39/20/19). `collectionUpdate` set all conditions plus `TAG NOT_EQUALS "Family Matching"` on all four collections, with userErrors [] and sort orders unchanged. The storefront readback shows zero visible-product loss and an unchanged visible order in all four. `pajamas` is now 22 of 22 on one page, so the empty page 2 is gone. `mommy-and-me` shows 107 visible products, down from 5 pages to 4.
+
+Expected vs observed: the packet expected the stale smart-collection index members to drop out. They did not. Six ACTIVE products without the "Mommy and Me" tag and with "Family Matching" still show as members, and the theme still hides them: 5 family tops plus `together-heart-family-matching-sweaters`. So labels read mommy-and-me 113 (107 shown), tops 7 (1 shown), sweaters 6 (5 shown). Likely fix: a no-op product save or tag touch on those 6 products (`7670738223201`, `7670743498849`, `7670724329569`, `7670746775649`, `7670742777953`, `7672336646241`) to force re-evaluation. That is a product write and needs owner approval.
+
+Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-collection-page-upgrade/change1_{before_state,apply_receipt,after_state,visible_before,visible_after}.json`.
+
+Rollback: revert `11c1efd` for the theme. For the collections, re-run each `collectionUpdate` with the before-state rule set in `change1_before_state.json`; for MANUAL collections, re-apply the before order with `collectionReorderProducts` if exact positions matter.
+
+Open: the Search & Discovery grouping (`FILTER_GROUPING_PACKET.md`) and packet changes 2–3 await owner approval. Preview theme `156138864737` awaits the owner's OK to delete. `<html>` has no `dir`, so ar/he render LTR.
