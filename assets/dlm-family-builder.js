@@ -372,18 +372,59 @@
     return out;
   }
 
-  // Next "who" to pre-select after a line is kept: the first role in the
-  // builder's order that is not yet in the list. null = stay on the current
-  // role (e.g. a second child) and just clear its size.
-  function nextRoleKey(roleKeys, lines) {
+  function usedRoleMap(lines, extraRoleKeys) {
     var used = {};
     (lines || []).forEach(function (line) {
-      if (line.roleKey) used[line.roleKey] = true;
+      if (line && line.roleKey) used[line.roleKey] = true;
     });
+    (extraRoleKeys || []).forEach(function (key) {
+      if (key) used[key] = true;
+    });
+    return used;
+  }
+
+  // Next "who" to pre-select after a piece is kept or added to the bag: the
+  // first role in the builder's order that is not yet in the list (or, via
+  // extraRoleKeys, already added to the bag from this page). null = stay on
+  // the current role (e.g. a second child) and just clear its size.
+  function nextRoleKey(roleKeys, lines, extraRoleKeys) {
+    var used = usedRoleMap(lines, extraRoleKeys);
     for (var i = 0; i < (roleKeys || []).length; i += 1) {
       if (!used[roleKeys[i]]) return roleKeys[i];
     }
     return null;
+  }
+
+  // "+ Father" / "+ Child" chips, one per role the builder actually offers
+  // (roles = [{ key, label }] in builder order, labels already localized by
+  // the builder). A chip keeps the current piece and switches the picker to
+  // that role; the current role stays offered for a second child. `missing`
+  // marks roles nobody has picked yet. Returns [] when any label is unknown,
+  // so the plain "+ Add another family member" button is used instead.
+  function roleChips(roles, lines, pending, extraRoleKeys) {
+    var list = roles || [];
+    if (list.length < 2) return [];
+    var used = usedRoleMap(pending ? (lines || []).concat([pending]) : lines, extraRoleKeys);
+    var chips = [];
+    for (var i = 0; i < list.length; i += 1) {
+      var key = list[i] && list[i].key ? String(list[i].key) : '';
+      var label = list[i] && list[i].label ? String(list[i].label).trim() : '';
+      if (!key || !label) return [];
+      chips.push({ key: key, label: '+ ' + label, missing: !used[key] });
+    }
+    return chips;
+  }
+
+  // Caption over the chips: the existing "+ Add another family member"
+  // copy without its leading plus (the chips carry their own).
+  function stripLeadingPlus(text) {
+    return String(text || '').replace(/^\s*[+\uff0b]\s*/, '');
+  }
+
+  // True when the builder's status line shows its own success copy.
+  function isAddSuccess(statusText, successText) {
+    var expected = String(successText || '').trim();
+    return !!expected && String(statusText || '').trim() === expected;
   }
 
   // Learn the shop's money format from one rendered variant price, e.g.
@@ -484,6 +525,12 @@
     var status = builder.querySelector('[data-matching-set-status]');
 
     var lines = [];
+    // Roles added to the bag from this page view (single piece or list), so
+    // the picker moves on to the next family member instead of repeating.
+    var addedRoleKeys = [];
+    // Role of a single piece the builder is adding right now (no list).
+    var singleAddRole = '';
+    var successText = wrapper.getAttribute('data-matching-set-success') || '';
     var busy = false;
     var applying = false;
     var appliedLabel = '';
@@ -503,6 +550,22 @@
     var panel = doc.createElement('div');
     panel.className = 'dlm-family-builder';
     panel.setAttribute('data-dlm-family-builder', '');
+
+    // "+ Father" / "+ Child" chips (shown once a piece is chosen).
+    var chipBox = doc.createElement('div');
+    chipBox.className = 'dlm-family-builder__next';
+    chipBox.setAttribute('role', 'group');
+    chipBox.hidden = true;
+    var chipTitle = doc.createElement('p');
+    chipTitle.className = 'dlm-family-builder__next-title';
+    chipTitle.id = 'DlmFamilyNext-' + sectionId;
+    chipTitle.textContent = stripLeadingPlus(t('addAnother'));
+    chipBox.setAttribute('aria-labelledby', chipTitle.id);
+    var chipRow = doc.createElement('div');
+    chipRow.className = 'dlm-family-builder__chips';
+    chipBox.appendChild(chipTitle);
+    chipBox.appendChild(chipRow);
+    var chipSignature = '';
 
     var addAnother = doc.createElement('button');
     addAnother.type = 'button';
@@ -533,6 +596,7 @@
     announcer.setAttribute('aria-live', 'polite');
     announcer.setAttribute('role', 'status');
 
+    panel.appendChild(chipBox);
     panel.appendChild(addAnother);
     panel.appendChild(listBox);
     panel.appendChild(errorBox);
@@ -546,6 +610,21 @@
         keys.push(btn.getAttribute('data-select-role-group'));
       });
       return keys;
+    }
+
+    function roleOptions() {
+      var roles = [];
+      roleGrid.querySelectorAll('[data-select-role-group]').forEach(function (btn) {
+        var labelNode = btn.querySelector('.product-matching-set__role-label');
+        roles.push({ key: btn.getAttribute('data-select-role-group'), label: labelNode ? labelNode.textContent : '' });
+      });
+      return roles;
+    }
+
+    function rememberAdded(roleKeys) {
+      (roleKeys || []).forEach(function (key) {
+        if (key && addedRoleKeys.indexOf(key) === -1) addedRoleKeys.push(key);
+      });
     }
 
     function getPending() {
@@ -574,6 +653,26 @@
     }
 
     // --- rendering ---
+    function renderChips(pending) {
+      var chips = pending && !busy ? roleChips(roleOptions(), lines, pending, addedRoleKeys) : [];
+      chipBox.hidden = chips.length === 0;
+      addAnother.hidden = !pending || busy || chips.length > 0;
+      var signature = JSON.stringify(chips);
+      if (signature === chipSignature) return;
+      var hadFocus = chipRow.contains(doc.activeElement);
+      chipSignature = signature;
+      while (chipRow.firstChild) chipRow.removeChild(chipRow.firstChild);
+      chips.forEach(function (chip) {
+        var button = doc.createElement('button');
+        button.type = 'button';
+        button.className = 'dlm-family-builder__chip' + (chip.missing ? ' dlm-family-builder__chip--missing' : '');
+        button.setAttribute('data-dlm-family-role', chip.key);
+        button.textContent = chip.label;
+        chipRow.appendChild(button);
+      });
+      if (hadFocus && chipRow.firstChild) chipRow.firstChild.focus();
+    }
+
     function renderList() {
       while (list.firstChild) list.removeChild(list.firstChild);
       lines.forEach(function (line) {
@@ -663,7 +762,7 @@
 
     function sync() {
       var pending = getPending();
-      addAnother.hidden = !pending || busy;
+      renderChips(pending);
       if (!lines.length) {
         wrapper.removeAttribute('data-dlm-family-list');
         nativeRemoveAttribute.call(addButton, 'aria-busy');
@@ -767,8 +866,10 @@
       }
     }
 
-    function resetPicker() {
-      var next = nextRoleKey(roleKeysInOrder(), lines);
+    // targetKey: a role the shopper chose from a chip; otherwise the next
+    // family member nobody has picked yet.
+    function resetPicker(targetKey) {
+      var next = targetKey || nextRoleKey(roleKeysInOrder(), lines, addedRoleKeys);
       var nextButton = next
         ? roleGrid.querySelector('[data-select-role-group="' + cssEscape(win, next) + '"]')
         : null;
@@ -778,7 +879,7 @@
       if (focusTarget && typeof focusTarget.focus === 'function') focusTarget.focus();
     }
 
-    addAnother.addEventListener('click', function () {
+    function keepPending(targetKey) {
       if (busy) return;
       var pending = getPending();
       if (!pending) return;
@@ -786,10 +887,50 @@
       if (status) status.hidden = true;
       lines = mergeLine(lines, pending);
       renderList();
-      resetPicker();
+      resetPicker(targetKey);
       sync();
       announce(t('added') + ': ' + pending.label);
+    }
+
+    addAnother.addEventListener('click', function () {
+      keepPending('');
     });
+
+    chipRow.addEventListener('click', function (event) {
+      var chip = event.target && event.target.closest ? event.target.closest('[data-dlm-family-role]') : null;
+      if (chip) keepPending(chip.getAttribute('data-dlm-family-role'));
+    });
+
+    // After the builder's own single-piece add succeeds, pre-select the next
+    // family member so the second piece is one size tap away. The builder
+    // hides its confirmation when the role changes; show it again.
+    function onStatusChange() {
+      if (!singleAddRole || !status || status.hidden) return;
+      var role = singleAddRole;
+      singleAddRole = '';
+      // Same fallback copy the builder shows when the attribute is empty.
+      if (!isAddSuccess(status.textContent, successText || 'Matching set added to cart.')) return;
+      rememberAdded([role]);
+      var next = nextRoleKey(roleKeysInOrder(), lines, addedRoleKeys);
+      var nextButton = next
+        ? roleGrid.querySelector('[data-select-role-group="' + cssEscape(win, next) + '"]')
+        : null;
+      if (!nextButton || nextButton.getAttribute('aria-pressed') === 'true') return;
+      var confirmation = status.textContent;
+      nextButton.click();
+      status.textContent = confirmation;
+      status.hidden = false;
+    }
+
+    if (status && typeof win.MutationObserver === 'function') {
+      new win.MutationObserver(onStatusChange).observe(status, {
+        attributes: true,
+        attributeFilter: ['hidden'],
+        childList: true,
+        characterData: true,
+        subtree: true
+      });
+    }
 
     list.addEventListener('click', function (event) {
       var button = event.target && event.target.closest ? event.target.closest('[data-dlm-family-remove]') : null;
@@ -802,7 +943,7 @@
       sync();
       announce('');
       var remaining = list.querySelectorAll('[data-dlm-family-remove]');
-      var focusTarget = remaining[Math.min(index, remaining.length - 1)] || (addAnother.hidden ? addButton : addAnother);
+      var focusTarget = remaining[Math.min(index, remaining.length - 1)] || (!chipBox.hidden && chipRow.firstChild) || (addAnother.hidden ? addButton : addAnother);
       if (focusTarget && typeof focusTarget.focus === 'function') focusTarget.focus();
     });
 
@@ -860,12 +1001,16 @@
             showError(typeof message === 'string' && message ? message : t('error'));
             return;
           }
+          rememberAdded(
+            all.map(function (line) {
+              return line.roleKey;
+            })
+          );
           lines = [];
           renderList();
           busy = false;
           sync();
           clearCurrentSize();
-          var successText = wrapper.getAttribute('data-matching-set-success') || '';
           if (status) {
             status.textContent = successText;
             status.hidden = !successText;
@@ -896,7 +1041,13 @@
       'click',
       function (event) {
         var target = event.target && event.target.closest ? event.target.closest('[data-matching-set-add-button]') : null;
-        if (target !== addButton || !lines.length) return;
+        if (target !== addButton) return;
+        if (!lines.length) {
+          // Single piece: the builder adds it; remember who it was for.
+          var single = busy ? null : getPending();
+          singleAddRole = single ? single.roleKey : '';
+          return;
+        }
         event.preventDefault();
         event.stopPropagation();
         if (event.stopImmediatePropagation) event.stopImmediatePropagation();
@@ -953,6 +1104,9 @@
     buildRequestBody: buildRequestBody,
     findUnavailable: findUnavailable,
     nextRoleKey: nextRoleKey,
+    roleChips: roleChips,
+    stripLeadingPlus: stripLeadingPlus,
+    isAddSuccess: isAddSuccess,
     parseMoneyFormat: parseMoneyFormat,
     formatMoney: formatMoney,
     cartAddJsUrl: cartAddJsUrl,

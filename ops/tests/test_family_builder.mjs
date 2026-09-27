@@ -119,6 +119,56 @@ test('locale lookup covers every storefront language and falls back to English',
   assert.equal(fb.translate('remove', 'xx'), 'Remove');
 });
 
+test('nextRoleKey also skips roles already added to the bag from this page', () => {
+  const order = ['mother', 'father', 'child'];
+  assert.equal(fb.nextRoleKey(order, [], ['mother']), 'father');
+  assert.equal(fb.nextRoleKey(order, [father], ['mother']), 'child');
+  assert.equal(fb.nextRoleKey(order, [child], ['mother', 'father']), null);
+  assert.equal(fb.nextRoleKey(order, [mother], undefined), 'father', 'extra roles are optional');
+});
+
+test('roleChips offers every role the product has and flags the missing ones', () => {
+  const roles = [
+    { key: 'mother', label: 'Mother' },
+    { key: 'father', label: 'Father' },
+    { key: 'child', label: ' Child ' },
+  ];
+  assert.deepEqual(fb.roleChips(roles, [], mother, []), [
+    { key: 'mother', label: '+ Mother', missing: false },
+    { key: 'father', label: '+ Father', missing: true },
+    { key: 'child', label: '+ Child', missing: true },
+  ]);
+  const later = fb.roleChips(roles, [mother], child, ['father']);
+  assert.deepEqual(later.map((c) => c.missing), [false, false, false], 'a second child stays offered');
+  assert.deepEqual(later.map((c) => c.key), ['mother', 'father', 'child'], 'builder order kept');
+});
+
+test('roleChips falls back to the plain button when a label is unknown or there is one role', () => {
+  assert.deepEqual(fb.roleChips([{ key: 'mother', label: 'Mother' }], [], mother), []);
+  assert.deepEqual(fb.roleChips([{ key: 'mother', label: 'Mother' }, { key: 'child', label: '' }], [], mother), []);
+  assert.deepEqual(fb.roleChips(null, [], mother), []);
+  const ar = fb.roleChips([{ key: 'mother', label: 'الأم' }, { key: 'child', label: 'الطفل' }], [], null);
+  assert.deepEqual(ar.map((c) => c.label), ['+ الأم', '+ الطفل']);
+  assert.deepEqual(ar.map((c) => c.missing), [true, true]);
+});
+
+test('chip caption reuses the existing add-another copy without its plus', () => {
+  assert.equal(fb.stripLeadingPlus(fb.STRINGS.en.addAnother), 'Add another family member');
+  assert.equal(fb.stripLeadingPlus('＋ 別のご家族を追加'), '別のご家族を追加');
+  assert.equal(fb.stripLeadingPlus('No plus'), 'No plus');
+  for (const lang of Object.keys(fb.STRINGS)) {
+    const caption = fb.stripLeadingPlus(fb.STRINGS[lang].addAnother);
+    assert.ok(caption.length > 0 && !caption.startsWith('+'), `${lang} caption`);
+  }
+});
+
+test('isAddSuccess only matches the builder success copy', () => {
+  assert.equal(fb.isAddSuccess(' Matching set added to cart. ', 'Matching set added to cart.'), true);
+  assert.equal(fb.isAddSuccess('Unable to add the selected pieces. Please try again.', 'Matching set added to cart.'), false);
+  assert.equal(fb.isAddSuccess('', ''), false);
+  assert.equal(fb.isAddSuccess('anything', undefined), false);
+});
+
 test('cart add url keeps the locale prefix and targets the .js endpoint', () => {
   assert.equal(fb.cartAddJsUrl({ cart_add_url: '/cart/add' }), '/cart/add.js');
   assert.equal(fb.cartAddJsUrl({ cart_add_url: '/es/cart/add' }), '/es/cart/add.js');
