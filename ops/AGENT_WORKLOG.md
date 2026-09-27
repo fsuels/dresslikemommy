@@ -55600,3 +55600,19 @@ Rollback: delete the `related_products` metafields on the 7 products.
 - **Related links** (`related_products`): nordic-yoke → Nordic Heart Reindeer, Nordic Reindeer, Reindeer Row and Together Heart. Those 3 Nordic knits list nordic-yoke first. Together Heart keeps its 6-sweatshirt list.
 
 Rollback: delete the 4 `related_products` metafields.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-christmas-email-approval-packet
+
+- task_entities: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/CHRISTMAS_EMAIL_APPROVAL_PACKET.md`; `lanes/email.md` §2 (superseded note); discount `DiscountAutomaticNode/1315733110881`
+- task_stage: HANDOFF (awaiting owner approval; customer messaging needs an explicit yes)
+- next_action_id: OWNER_APPROVE_CHRISTMAS_EMAIL_PACKET_DECISIONS_1_TO_4
+
+Why: owner (chat): "draft the Christmas past-customer email campaign from lanes/email.md (bundle offer + Dec 8 order-by date) as an approval packet; send nothing."
+
+Done (read-only; nothing sent, scheduled or created):
+- Facts re-verified live: 15 Christmas designs on `/collections/christmas-pajamas`, every variant available. Child $32.99, adult $35.99 (the onesie style $33.99/$36.99). Sizes Child 2–14 Y, Mother S–3XL, Father S–3XL/4XL. One style has baby 3–18 M, which contradicts the lane pack's "no baby sizes".
+- Order-by Dec 8 = Dec 24 minus 16 days (`dlm-holiday-order-by.js`), matching the PDP line. The copy calls it an estimate with no late buffer.
+- Bundle discount ACTIVE, no end date. The packet asks the owner to keep it until at least Dec 31.
+- The refund policy still has the 30-day window.
+- Segment counts (Admin `customerSegmentMembers.totalCount`, counts only; no customer records read or stored): subscribed 10,606; buyers since 2024 307 (US 210); 2021–2023 1,728; pre-2021 3,183; past Christmas-pajama buyers 51; recent no-order sign-ups 48; US subscribed buyers 3,754.
+- Recommendation: C-1 in waves Oct 6 / Oct 8 / Oct 13 with bounce, spam and unsubscribe stop rules; C-2 Nov 19; C-3 Dec 4; C-4 (gift card) off. Monthly volume stays under Messaging's 10,000 free sends.

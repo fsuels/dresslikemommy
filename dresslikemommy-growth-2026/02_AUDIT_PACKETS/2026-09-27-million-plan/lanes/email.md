@@ -233,6 +233,8 @@ Discount codes the owner creates in **Discounts** before turning anything on:
 
 ## 2. Christmas 2026 launch campaign (3 emails and 1 optional)
 
+> **Superseded 2026-09-27** by `../CHRISTMAS_EMAIL_APPROVAL_PACKET.md` for dates and copy. It uses order-by **Dec 8** (to match the live product pages), launches Oct 6, adds the family bundle offer and has real segment counts. Use the packet, not the Dec 5 copy below.
+
 **Pre-send gate.** Every item must pass before email C-1 goes out:
 1. The Christmas 2026 designs are **ACTIVE and published to the Online Store**. All of them are DRAFT in `ops/listings/` today.
 2. `/collections/christmas-pajamas` shows the designs with final images, not the single vendor placeholder image.
