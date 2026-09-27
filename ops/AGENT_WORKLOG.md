@@ -54475,3 +54475,28 @@ Changed:
 Verified on preview `156138864737` (REPO_KNOWN until the live readback): `mommy-and-me`, `pajamas` and `family-pajamas` show "Featured" and their curated first products; `dresses` and `daddy-me` show newest first; vacation shows "Best selling"; switching to price low→high re-renders correctly; search offers Relevance and price; no Liquid errors.
 
 Rollback: revert the commit.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-storefront-seo-page-weight-fixes
+
+- task_entities: `snippets/meta-tags.liquid`, `layout/theme.liquid`, `sections/header.liquid`, `snippets/cart-drawer.liquid`, `snippets/product-page-copy-map.liquid`, `ops/scripts/build_product_page_copy_map.py`, `ops/tests/test_product_page_copy_map.py`; MAIN `133290917985`
+- task_stage: RELEASED_TO_GIT_MAIN, LIVE_READBACK_REQUIRED
+- next_action_id: VERIFY_SEO_PAGE_WEIGHT_FIXES_LIVE
+
+Why: the owner asked to "look for improvements to make website better". The `2026-09-27-million-plan` conversion and SEO lanes already rank the fixes. This session re-checked them live (curl, 2026-09-27 ~00:45 EDT) and shipped the theme-only, reversible ones that were still open.
+
+Live before-state (LIVE_VERIFIED): every page carried 44 hreflang tags (the theme loop and Shopify's own set, with conflicting `pt-br`/`pt` codes). The homepage had two H1s (logo and hero). Every page inlined the 446-word shipping policy with seven H2s in the hidden drawer panel. `daddy-and-me` (45 products) equals `daddy-me` (the menu link), and `popular-mommy-me-1` (145) equals `mommy-and-me`; all four were self-canonical. The PDP inlined 178 KB of product-page copy for 35 locales.
+
+Changed (theme only):
+- Removed the theme hreflang loop; Shopify's set (one per language plus x-default) remains.
+- Homepage logo wrapper is a div. A live DOM simulation showed identical geometry.
+- The drawer shipping-policy panel fetches `shop.shipping_policy.url` on first open; a plain link is the fallback.
+- Canonicals: `daddy-and-me` → `daddy-me`; `popular-mommy-me-1` → `mommy-and-me`, following the `popular-family-matching` pattern.
+- The copy map emits only the current language family plus `en`, guarded in Liquid. Values are unchanged; regenerated with `--keep-values`.
+
+Not changed, and why:
+- The million-plan SEO lane's D8 (noindex on `?variant=` product URLs) is STALE_OR_SUPERSEDED: the live `?variant=` PDP has no robots meta at all.
+- The committed copy map has drifted from the locale JSONs in 72 strings, including the delivery window ("12-15 business days" in the map vs "12-16 days" in locales) and "free shipping" wording. A plain regeneration would change customer-facing copy, so this was left for an owner copy decision.
+
+Checks: `python3 -m unittest ops/tests/test_product_page_copy_map.py` (5 OK), `shopify theme check` 0 errors, `git diff --check`, `node --check` plus a fake-DOM run of the drawer handler.
+
+Rollback: `git revert` of the release commit, then confirm the Shopify sync.

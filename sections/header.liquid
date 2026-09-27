@@ -308,9 +308,12 @@
     <div class="mobile-header-search-icon">
       {%- render 'header-search', input_id: 'MobileSearch', menu_handle: section.settings.menu -%}
     </div>
+    {%- comment -%}
+      The logo wrapper is a div, not Dawn's h1: the homepage hero already carries the page's one h1.
+    {%- endcomment -%}
     {%- if section.settings.logo_position != 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
-        <h1 class="header__heading">
+        <div class="header__heading">
       {%- endif -%}
           <a href="{{ routes.root_url }}" class="header__heading-link{% if settings.logo_show_name and settings.logo != blank %} header__heading-link--with-name{% endif %} link link--text focus-inset">
             {%- if settings.logo != blank -%}
@@ -339,7 +342,7 @@
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}
-        </h1>
+        </div>
       {%- endif -%}
     {%- endif -%}
 
@@ -355,7 +358,7 @@
 
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
-        <h1 class="header__heading">
+        <div class="header__heading">
       {%- endif -%}
           <a href="{{ routes.root_url }}" class="header__heading-link{% if settings.logo_show_name and settings.logo != blank %} header__heading-link--with-name{% endif %} link link--text focus-inset">
             {%- if settings.logo != blank -%}
@@ -384,7 +387,7 @@
             {%- endif -%}
           </a>
       {%- if request.page_type == 'index' -%}
-        </h1>
+        </div>
       {%- endif -%}
     {%- endif -%}
 

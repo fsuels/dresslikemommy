@@ -652,6 +652,17 @@
                 var isHidden = panel.hasAttribute('hidden');
                 panel.toggleAttribute('hidden', !isHidden);
                 this.setAttribute('aria-expanded', isHidden ? 'true' : 'false');
+                var body = panel.querySelector('[data-policy-url]');
+                if (!isHidden || !body || body.dataset.loaded || !window.fetch || !window.DOMParser) return;
+                body.dataset.loaded = 'true';
+                fetch(body.dataset.policyUrl)
+                  .then(function (response) { if (!response.ok) throw new Error(response.status); return response.text(); })
+                  .then(function (html) {
+                    var source = new DOMParser().parseFromString(html, 'text/html').querySelector('.shopify-policy__body');
+                    if (!source) throw new Error('no policy body');
+                    body.innerHTML = source.innerHTML.replace(/<h1/gi, '<h2').replace(/<\/h1>/gi, '</h2>');
+                  })
+                  .catch(function () { delete body.dataset.loaded; });
               ">{% if dlm_cart_language == 'fr' %}Détails de la livraison{% else %}Shipping details{% endif %}</button>
             {%- endif -%}
           </div>
@@ -666,8 +677,12 @@
                   if (trigger) trigger.setAttribute('aria-expanded', 'false');
                 ">×</button>
               </div>
-              <div class="cart-drawer__policy-body rte">
-                {{ shop.shipping_policy.body | replace: '<h1', '<h2' | replace: '</h1>', '</h2>' }}
+              {%- comment -%}
+                The policy is fetched on first open instead of being inlined, so its ~450 words
+                and seven headings are not repeated in the HTML of every storefront page.
+              {%- endcomment -%}
+              <div class="cart-drawer__policy-body rte" data-policy-url="{{ shop.shipping_policy.url }}">
+                <p><a href="{{ shop.shipping_policy.url }}">{{ shop.shipping_policy.title | escape }}</a></p>
               </div>
             </div>
           {%- endif -%}

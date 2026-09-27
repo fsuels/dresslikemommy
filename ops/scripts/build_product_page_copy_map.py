@@ -129,15 +129,59 @@ def build_map() -> dict[str, dict[str, str]]:
     return out
 
 
+HEADER = "{% comment %} Generated from locale JSONs for product-page fallback copy. {% endcomment %}\n"
+
+# Every reader of window.DLM_PRODUCT_PAGE_COPY looks up the current locale, its
+# root and the pt/ro/no aliases, then falls back to "en". Emitting only the
+# current language family plus "en" keeps ~35 locales off every product page.
+ROOT_GUARD = """{%- liquid
+  assign dlm_copy_root = request.locale.iso_code | default: 'en' | downcase | replace: '_', '-' | split: '-' | first
+  if dlm_copy_root == 'nb'
+    assign dlm_copy_root = 'no'
+  endif
+-%}
+"""
+
+LIQUID_TAG = re.compile(r"\{%-?.*?-?%\}", re.S)
+
+
+def locale_root(code: str) -> str:
+    root = code.lower().replace("_", "-").split("-")[0]
+    return "no" if root == "nb" else root
+
+
+def render_snippet(copy_map: dict[str, dict[str, str]]) -> str:
+    def entry(code: str, trailing_comma: bool) -> str:
+        body = json.dumps(copy_map[code], indent=2, ensure_ascii=False).replace("\n", "\n  ")
+        return f'  {json.dumps(code)}: {body}{"," if trailing_comma else ""}\n'
+
+    parts = [HEADER, ROOT_GUARD, "{\n"]
+    for code in sorted(copy_map):
+        if code == "en":
+            continue
+        parts.append(f"{{%- if dlm_copy_root == '{locale_root(code)}' %}}\n")
+        parts.append(entry(code, True))
+        parts.append("{%- endif %}\n")
+    parts.append(entry("en", False))
+    parts.append("}\n")
+    return re.sub(r"</script", r"<\\/script", "".join(parts), flags=re.I)
+
+
+def read_snippet(text: str) -> dict[str, dict[str, str]]:
+    """Parse a copy-map snippet (all locale branches) back into a dict."""
+    text = re.sub(r"\{% comment %\}.*?\{% endcomment %\}", "", text, flags=re.S)
+    return json.loads(LIQUID_TAG.sub("", text))
+
+
 def main() -> None:
-    copy_map = build_map()
-    payload = json.dumps(copy_map, indent=2, ensure_ascii=False)
-    payload = re.sub(r"</script", r"<\\/script", payload, flags=re.I)
-    OUTPUT.write_text(
-        "{% comment %} Generated from locale JSONs for product-page fallback copy. {% endcomment %}\n"
-        f"{payload}\n",
-        encoding="utf-8",
-    )
+    if "--keep-values" in sys.argv[1:]:
+        # Re-emit the committed strings in the current format without re-reading locales.
+        copy_map = read_snippet(OUTPUT.read_text(encoding="utf-8"))
+    else:
+        copy_map = build_map()
+    if "en" not in copy_map:
+        raise SystemExit("copy map has no 'en' fallback")
+    OUTPUT.write_text(render_snippet(copy_map), encoding="utf-8")
     print(f"wrote {OUTPUT} with {len(copy_map)} locales")
 
 

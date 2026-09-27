@@ -1,5 +1,12 @@
 {% comment %} Generated from locale JSONs for product-page fallback copy. {% endcomment %}
+{%- liquid
+  assign dlm_copy_root = request.locale.iso_code | default: 'en' | downcase | replace: '_', '-' | split: '-' | first
+  if dlm_copy_root == 'nb'
+    assign dlm_copy_root = 'no'
+  endif
+-%}
 {
+{%- if dlm_copy_root == 'ar' %}
   "ar": {
     "matching_set_heading": "قم ببناء مجموعتك المطابقة",
     "matching_set_copy": "اختياري: اختر مقاسًا واحدًا لكل فرد من أفراد العائلة تريد تضمينه. يضيف كل اختيار قطعة واحدة منفصلة إلى سلة التسوق.",
@@ -68,6 +75,8 @@
     "description_size_chart_meta": "القياسات من جدول مصدر المورد",
     "description_product_details_meta": "معلومات المنتج المنظمة"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'cs' %}
   "cs": {
     "matching_set_heading": "Sestavte si odpovídající sadu",
     "matching_set_copy": "Volitelné: vyberte jednu velikost pro každého člena rodiny, kterého chcete zahrnout. Každý výběr přidá do košíku jeden samostatný kus.",
@@ -136,6 +145,8 @@
     "description_size_chart_meta": "Měření ze zdrojové tabulky dodavatele",
     "description_product_details_meta": "Strukturované informace o produktu"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'da' %}
   "da": {
     "matching_set_heading": "Byg dit matchende sæt",
     "matching_set_copy": "Valgfrit: Vælg en størrelse for hvert familiemedlem, du vil inkludere. Hvert valg tilføjer et separat stykke til indkøbskurven.",
@@ -204,6 +215,8 @@
     "description_size_chart_meta": "Mål fra leverandørkildetabellen",
     "description_product_details_meta": "Struktureret produktinformation"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'de' %}
   "de": {
     "matching_set_heading": "Stelle dein passendes Set zusammen",
     "matching_set_copy": "Stellen Sie Ihr passendes Set zusammen, indem Sie für jedes Familienmitglied eine Größe hinzufügen. Jede Auswahl wird als separates Teil in den Warenkorb gelegt.",
@@ -272,6 +285,8 @@
     "description_size_chart_meta": "Messungen aus der Lieferantenquellentabelle",
     "description_product_details_meta": "Strukturierte Produktinformationen"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'el' %}
   "el": {
     "matching_set_heading": "Φτιάξτε το αντίστοιχο σετ σας",
     "matching_set_copy": "Προαιρετικά: επιλέξτε ένα μέγεθος για κάθε μέλος της οικογένειας που θέλετε να συμπεριλάβετε. Κάθε επιλογή προσθέτει ένα ξεχωριστό κομμάτι στο καλάθι.",
@@ -340,75 +355,8 @@
     "description_size_chart_meta": "Μετρήσεις από τον πίνακα πηγής προμηθευτή",
     "description_product_details_meta": "Δομημένες πληροφορίες προϊόντος"
   },
-  "en": {
-    "matching_set_heading": "Build your matching set",
-    "matching_set_copy": "Add matching family sizes below — each selection is sold separately.",
-    "matching_set_empty": "Choose at least one size to add your set.",
-    "matching_set_add": "Add matching pieces",
-    "matching_set_success": "Matching set added to cart.",
-    "matching_set_error": "Unable to add the selected pieces. Please try again.",
-    "grouped_size_guide_label": "Compare family sizes",
-    "compare_size_guide_label": "Compare all sizes",
-    "single_size_guide_label": "Size guide & fit",
-    "selected_size_guide_label": "Your size details",
-    "size_guide_compare_hint": "Open the full chart below to compare nearby sizes.",
-    "size_guide_unit_toggle_label": "Size chart units",
-    "reviews_heading": "Customer reviews",
-    "photo_heading": "Customer photo reviews",
-    "customer_photos_heading": "Customer photos",
-    "jump_to_reviews": "Jump to reviews",
-    "secure_checkout": "Secure Checkout",
-    "returns": "30-day return window",
-    "trusted_since": "Family matching made easy",
-    "assistance_note": "Need help? We typically reply within one business day.",
-    "complete_the_look": "Complete the Look",
-    "popular_with_families": "Popular with Families",
-    "recently_viewed": "Recently Viewed",
-    "back_to_results": "Back to results",
-    "back_to_context": "Back to __CONTEXT__",
-    "back_to_family_sets": "Back to Family Sets",
-    "back_to_search_results": "Back to search results",
-    "view_similar_styles": "View similar styles",
-    "view_similar_styles_in": "View similar styles in __CONTEXT__",
-    "similar_styles": "Similar styles",
-    "browse_more_from": "Browse more from __CONTEXT__",
-    "browse_similar_styles": "Browse similar styles",
-    "compare_collection_copy": "Use this collection to compare a few close matches before you go back to shopping.",
-    "shipping_title": "Shipping & Delivery",
-    "free_shipping_label": "Standard shipping included",
-    "estimated_delivery": "Estimated delivery:",
-    "standard_delivery_window": "12-16 days",
-    "premium_delivery_window": "Express options are shown at checkout where available.",
-    "faster_shipping_prefix": "Express options may be available at checkout where supported.",
-    "free_premium_shipping": "Express shipping",
-    "return_policy_title": "Return Policy",
-    "return_policy_line_1": "You have 30 days from delivery to request a return or exchange.",
-    "return_policy_line_2": "Items must be unworn, unwashed, in original condition, and in their original packaging with tags attached.",
-    "return_policy_line_3": "Some items, including swimwear and intimates, are not returnable for hygiene reasons; final sale and personalized items are also excluded.",
-    "return_policy_line_4": "Review the refund policy for eligibility, return shipping, and refund timing before sending anything back.",
-    "shopping_security_title": "Shopping Security",
-    "safe_payment_options_title": "Safe Payment Options",
-    "safe_payment_description": "We accept all major credit and debit cards. Your card details are secure and never shared with our partners. You can easily manage your saved cards anytime. For any transaction inquiries, please contact your card issuer.",
-    "secure_logistics_title": "Shipping Support",
-    "secure_logistics_line_1": "If a package is damaged or lost in transit, contact us so we can help review the shipment.",
-    "secure_logistics_line_2": "Use your order tracking link for the latest carrier updates. International orders may be subject to local taxes, duties, or customs fees collected by the carrier or local authority.",
-    "secure_privacy_title": "Secure Privacy",
-    "secure_privacy_description": "Protecting your privacy is important to us! Please be assured that your information will be kept secured and uncompromised. We do not sell your personal information for money and will only use your information in accordance with our privacy and cookie policy to provide and improve our services to you.",
-    "review_widget_heading_uppercase": "CUSTOMER REVIEWS",
-    "review_widget_heading": "Customer Reviews",
-    "review_widget_empty": "Be the first to write a review",
-    "review_widget_write_review": "Write a review",
-    "review_widget_write_review_title": "Write a Review",
-    "free_shipping_all_orders": "Standard shipping included",
-    "selected_size_label": "Size: {{ size }}",
-    "compare_at_price": "Compare at {{ price }}",
-    "description_details_eyebrow": "Details",
-    "description_highlights_heading": "Why You'll Love It",
-    "description_size_chart_heading": "Size Chart",
-    "description_product_details_heading": "Product Details",
-    "description_size_chart_meta": "Measurements from the supplier source table",
-    "description_product_details_meta": "Structured product information"
-  },
+{%- endif %}
+{%- if dlm_copy_root == 'es' %}
   "es": {
     "matching_set_heading": "Arma tu conjunto a juego",
     "matching_set_copy": "Arma tu conjunto a juego añadiendo una talla por cada miembro de la familia. Cada selección agrega una pieza separada al carrito.",
@@ -477,6 +425,8 @@
     "description_size_chart_meta": "Medidas de la tabla de origen del proveedor.",
     "description_product_details_meta": "Información estructurada del producto."
   },
+{%- endif %}
+{%- if dlm_copy_root == 'fi' %}
   "fi": {
     "matching_set_heading": "Rakenna itsellesi sopiva sarja",
     "matching_set_copy": "Valinnainen: valitse yksi koko jokaiselle perheenjäsenelle, jonka haluat sisällyttää. Jokainen valinta lisää yhden kappaleen ostoskoriin.",
@@ -545,6 +495,8 @@
     "description_size_chart_meta": "Mittaukset toimittajan lähdetaulukosta",
     "description_product_details_meta": "Strukturoidut tuotetiedot"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'fr' %}
   "fr": {
     "matching_set_heading": "Créez votre ensemble assorti",
     "matching_set_copy": "Facultatif : choisissez une taille pour chaque membre de la famille que vous souhaitez inclure. Chaque sélection ajoute une pièce distincte au panier.",
@@ -613,6 +565,8 @@
     "description_size_chart_meta": "Mesures du tableau source des fournisseurs",
     "description_product_details_meta": "Informations produit structurées"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'he' %}
   "he": {
     "matching_set_heading": "בנה את הסט התואם שלך",
     "matching_set_copy": "אופציונלי: בחר מידה אחת לכל בן משפחה שברצונך לכלול. כל בחירה מוסיפה חלק אחד נפרד לעגלה.",
@@ -681,6 +635,8 @@
     "description_size_chart_meta": "מידות מטבלת מקור הספק",
     "description_product_details_meta": "מידע מובנה על המוצר"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'hi' %}
   "hi": {
     "matching_set_heading": "अपना मिलान सेट बनाएं",
     "matching_set_copy": "वैकल्पिक: परिवार के प्रत्येक सदस्य के लिए एक आकार चुनें जिसे आप शामिल करना चाहते हैं। प्रत्येक चयन कार्ट में एक अलग टुकड़ा जोड़ता है।",
@@ -749,6 +705,8 @@
     "description_size_chart_meta": "आपूर्तिकर्ता स्रोत तालिका से माप",
     "description_product_details_meta": "संरचित उत्पाद जानकारी"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'hr' %}
   "hr-HR": {
     "matching_set_heading": "Izgradite svoj odgovarajući set",
     "matching_set_copy": "Izborno: odaberite jednu veličinu za svakog člana obitelji kojeg želite uključiti. Svaki odabir dodaje jedan zasebni komad u košaricu.",
@@ -817,6 +775,8 @@
     "description_size_chart_meta": "Mjerenja iz izvorne tablice dobavljača",
     "description_product_details_meta": "Strukturirane informacije o proizvodu"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'hu' %}
   "hu": {
     "matching_set_heading": "Készítse el a megfelelő készletet",
     "matching_set_copy": "Választható: válasszon egy méretet minden családtag számára, akit fel szeretne venni. Minden választás egy külön darabot tesz a kosárba.",
@@ -885,6 +845,8 @@
     "description_size_chart_meta": "Mérések a szállítói forrástáblázatból",
     "description_product_details_meta": "Strukturált termékinformáció"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'id' %}
   "id": {
     "matching_set_heading": "Bangun set pencocokan Anda",
     "matching_set_copy": "Opsional: pilih satu ukuran untuk setiap anggota keluarga yang ingin Anda sertakan. Setiap pilihan menambahkan satu bagian terpisah ke troli.",
@@ -953,6 +915,8 @@
     "description_size_chart_meta": "Pengukuran dari tabel sumber pemasok",
     "description_product_details_meta": "Informasi produk terstruktur"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'it' %}
   "it": {
     "matching_set_heading": "Costruisci il tuo set coordinato",
     "matching_set_copy": "Facoltativo: scegli una taglia per ogni membro della famiglia che desideri includere. Ogni selezione aggiunge un pezzo separato al carrello.",
@@ -1021,6 +985,8 @@
     "description_size_chart_meta": "Misurazioni dalla tabella di origine del fornitore",
     "description_product_details_meta": "Informazioni strutturate sul prodotto"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'ja' %}
   "ja": {
     "matching_set_heading": "おそろいセットを作る",
     "matching_set_copy": "オプション: 含める家族メンバーごとに 1 つのサイズを選択します。選択ごとに 1 つの個別の商品がカートに追加されます。",
@@ -1089,6 +1055,8 @@
     "description_size_chart_meta": "サプライヤーのソーステーブルからの測定値",
     "description_product_details_meta": "構造化された製品情報"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'ko' %}
   "ko": {
     "matching_set_heading": "어울리는 세트 만들기",
     "matching_set_copy": "선택사항: 포함하려는 각 가족 구성원에 대해 하나의 사이즈를 선택하세요. 선택할 때마다 장바구니에 하나의 개별 제품이 추가됩니다.",
@@ -1157,6 +1125,8 @@
     "description_size_chart_meta": "공급업체 소스 테이블의 측정값",
     "description_product_details_meta": "구조화된 제품 정보"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'lt' %}
   "lt-LT": {
     "matching_set_heading": "Sukurkite tinkamą rinkinį",
     "matching_set_copy": "Pasirenkama: pasirinkite vieną dydį kiekvienam šeimos nariui, kurį norite įtraukti. Kiekvienas pasirinkimas į krepšelį įdeda po vieną atskirą vienetą.",
@@ -1225,6 +1195,8 @@
     "description_size_chart_meta": "Matavimai iš tiekėjo šaltinio lentelės",
     "description_product_details_meta": "Struktūrizuota produkto informacija"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'no' %}
   "nb": {
     "matching_set_heading": "Bygg ditt matchende sett",
     "matching_set_copy": "Valgfritt: velg én størrelse for hvert familiemedlem du vil inkludere. Hvert valg legger til en separat del i handlekurven.",
@@ -1293,6 +1265,8 @@
     "description_size_chart_meta": "Mål fra leverandørkildetabellen",
     "description_product_details_meta": "Strukturert produktinformasjon"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'nl' %}
   "nl": {
     "matching_set_heading": "Bouw je bijpassende set",
     "matching_set_copy": "Optioneel: kies één maat voor elk gezinslid dat je wilt meenemen. Elke selectie voegt een afzonderlijk stuk toe aan de winkelwagen.",
@@ -1361,6 +1335,8 @@
     "description_size_chart_meta": "Metingen uit de brontabel van de leverancier",
     "description_product_details_meta": "Gestructureerde productinformatie"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'no' %}
   "no": {
     "matching_set_heading": "Bygg ditt matchende sett",
     "matching_set_copy": "Valgfritt: velg én størrelse for hvert familiemedlem du vil inkludere. Hvert valg legger til en separat del i handlekurven.",
@@ -1429,6 +1405,8 @@
     "description_size_chart_meta": "Mål fra leverandørkildetabellen",
     "description_product_details_meta": "Strukturert produktinformasjon"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'pl' %}
   "pl": {
     "matching_set_heading": "Zbuduj swój pasujący zestaw",
     "matching_set_copy": "Opcjonalnie: wybierz jeden rozmiar dla każdego członka rodziny, którego chcesz uwzględnić. Każdy wybór dodaje jedną oddzielną sztukę do koszyka.",
@@ -1497,6 +1475,8 @@
     "description_size_chart_meta": "Pomiary z tabeli źródłowej dostawcy",
     "description_product_details_meta": "Ustrukturyzowane informacje o produkcie"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'pt' %}
   "pt-BR": {
     "matching_set_heading": "Construa seu conjunto correspondente",
     "matching_set_copy": "Monte seu conjunto combinando ao adicionar um tamanho para cada membro da família. Cada seleção adiciona uma peça separada ao carrinho.",
@@ -1565,6 +1545,8 @@
     "description_size_chart_meta": "Medições da tabela de origem do fornecedor",
     "description_product_details_meta": "Informações estruturadas do produto"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'pt' %}
   "pt-PT": {
     "matching_set_heading": "Construa seu conjunto correspondente",
     "matching_set_copy": "Monte seu conjunto combinando ao adicionar um tamanho para cada membro da família. Cada seleção adiciona uma peça separada ao carrinho.",
@@ -1633,74 +1615,8 @@
     "description_size_chart_meta": "Medições da tabela de origem do fornecedor",
     "description_product_details_meta": "Informações estruturadas do produto"
   },
-  "ro-RO": {
-    "matching_set_heading": "Construiește-ți setul potrivit",
-    "matching_set_copy": "Construiește setul asortat adăugând câte o mărime pentru fiecare membru al familiei. Fiecare selecție adaugă o piesă separată în coș.",
-    "matching_set_empty": "Selectați o dimensiune pentru fiecare membru al familiei pe care doriți să-l adăugați.",
-    "matching_set_add": "Adaugă piese asortate",
-    "matching_set_success": "Setul potrivit a fost adăugat în coș.",
-    "matching_set_error": "Nu se pot adăuga piesele selectate. Vă rugăm să încercați din nou.",
-    "grouped_size_guide_label": "Comparați dimensiunile familiei",
-    "compare_size_guide_label": "Comparați toate dimensiunile",
-    "single_size_guide_label": "Ghid de mărimi și potrivire",
-    "selected_size_guide_label": "Detaliile tale marimii",
-    "size_guide_compare_hint": "Deschideți tabelul complet de mai jos pentru a compara dimensiunile din apropiere.",
-    "size_guide_unit_toggle_label": "Tabel de mărimi unități",
-    "reviews_heading": "Recenziile clienților",
-    "photo_heading": "Recenzii de fotografii ale clienților",
-    "jump_to_reviews": "Salt la recenzii",
-    "secure_checkout": "Checkout securizat",
-    "returns": "Fereastră de retur de 30 de zile",
-    "trusted_since": "Potrivirea familiei este ușoară",
-    "assistance_note": "Ai nevoie de ajutor? De obicei, răspundem în termen de o zi lucrătoare.",
-    "complete_the_look": "Completează Look-ul",
-    "popular_with_families": "Popular printre familii",
-    "recently_viewed": "Vizualizat recent",
-    "back_to_results": "Înapoi la rezultate",
-    "back_to_context": "Înapoi la __CONTEXT__",
-    "back_to_family_sets": "Înapoi la Seturi de familie",
-    "back_to_search_results": "Înapoi la rezultatele căutării",
-    "view_similar_styles": "Vedeți stiluri similare",
-    "view_similar_styles_in": "Vedeți stiluri similare în __CONTEXT__",
-    "similar_styles": "Stiluri similare",
-    "browse_more_from": "Căutați mai multe de la __CONTEXT__",
-    "browse_similar_styles": "Răsfoiți stiluri similare",
-    "compare_collection_copy": "Utilizați această colecție pentru a compara câteva potriviri apropiate înainte de a vă întoarce la cumpărături.",
-    "shipping_title": "Livrare și livrare",
-    "free_shipping_label": "Livrare standard inclusă",
-    "estimated_delivery": "Livrare estimată:",
-    "standard_delivery_window": "12-15 zile lucrătoare",
-    "premium_delivery_window": "Opțiunile Express sunt afișate la casă, acolo unde sunt disponibile.",
-    "faster_shipping_prefix": "Opțiunile expres pot fi disponibile la finalizare unde sunt acceptate.",
-    "free_premium_shipping": "Livrare expres",
-    "return_policy_title": "POLITICA DE RETURNARE",
-    "return_policy_line_1": "Aveți la dispoziție 30 de zile de la livrare pentru a solicita retur sau schimb.",
-    "return_policy_line_2": "Articolele trebuie să fie nepurtate, nespălate, în stare originală și în ambalajul lor original, cu etichete atașate.",
-    "return_policy_line_3": "Unele articole, inclusiv costume de baie și intime, nu pot fi returnate din motive de igienă; De asemenea, sunt excluse vânzarea finală și articolele personalizate.",
-    "return_policy_line_4": "Consultați politica de rambursare pentru eligibilitate, livrarea returului și momentul rambursării înainte de a trimite ceva înapoi.",
-    "shopping_security_title": "Securitatea cumpărăturilor",
-    "safe_payment_options_title": "Opțiuni de plată sigure",
-    "safe_payment_description": "Acceptăm toate cardurile de credit și de debit majore. Detaliile cardului dvs. sunt securizate și nu sunt niciodată distribuite partenerilor noștri. Puteți gestiona cu ușurință cardurile salvate oricând. Pentru orice întrebări legate de tranzacție, vă rugăm să contactați emitentul cardului.",
-    "secure_logistics_title": "Logistica sigură",
-    "secure_logistics_line_1": "Dacă un pachet este deteriorat sau pierdut în timpul transportului, contactați-ne pentru a vă ajuta să revizuim expedierea.",
-    "secure_logistics_line_2": "Utilizați linkul de urmărire a comenzii pentru cele mai recente actualizări ale operatorului. Comenzile internaționale pot fi supuse unor taxe locale, taxe sau taxe vamale colectate de transportator sau de autoritatea locală.",
-    "secure_privacy_title": "Confidențialitate sigură",
-    "secure_privacy_description": "Protejarea confidențialității este importantă pentru noi! Vă rugăm să fiți sigur că informațiile dumneavoastră vor fi păstrate în siguranță și fără compromisuri. Nu vindem informațiile dumneavoastră personale pentru bani și vom folosi informațiile dumneavoastră numai în conformitate cu politica noastră de confidențialitate și cookie-uri pentru a vă oferi și îmbunătăți serviciile noastre.",
-    "review_widget_heading_uppercase": "RECENZIILE CLIENTILOR",
-    "review_widget_heading": "Recenziile clienților",
-    "review_widget_empty": "Fii primul care scrie o recenzie",
-    "review_widget_write_review": "Scrie o recenzie",
-    "review_widget_write_review_title": "Scrie o recenzie",
-    "free_shipping_all_orders": "Livrare standard inclusă",
-    "selected_size_label": "Dimensiune: {{ size }}",
-    "compare_at_price": "Comparați la {{ price }}",
-    "description_details_eyebrow": "Detalii",
-    "description_highlights_heading": "De ce o să-ți placă",
-    "description_size_chart_heading": "Tabel de mărimi",
-    "description_product_details_heading": "Detalii despre produs",
-    "description_size_chart_meta": "Măsurătorile din tabelul sursei furnizorului",
-    "description_product_details_meta": "Informații structurate despre produs"
-  },
+{%- endif %}
+{%- if dlm_copy_root == 'ro' %}
   "ro": {
     "matching_set_heading": "Construiește-ți setul potrivit",
     "matching_set_copy": "Construiește setul asortat adăugând câte o mărime pentru fiecare membru al familiei. Fiecare selecție adaugă o piesă separată în coș.",
@@ -1769,6 +1685,78 @@
     "description_size_chart_meta": "Măsurătorile din tabelul sursei furnizorului",
     "description_product_details_meta": "Informații structurate despre produs"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'ro' %}
+  "ro-RO": {
+    "matching_set_heading": "Construiește-ți setul potrivit",
+    "matching_set_copy": "Construiește setul asortat adăugând câte o mărime pentru fiecare membru al familiei. Fiecare selecție adaugă o piesă separată în coș.",
+    "matching_set_empty": "Selectați o dimensiune pentru fiecare membru al familiei pe care doriți să-l adăugați.",
+    "matching_set_add": "Adaugă piese asortate",
+    "matching_set_success": "Setul potrivit a fost adăugat în coș.",
+    "matching_set_error": "Nu se pot adăuga piesele selectate. Vă rugăm să încercați din nou.",
+    "grouped_size_guide_label": "Comparați dimensiunile familiei",
+    "compare_size_guide_label": "Comparați toate dimensiunile",
+    "single_size_guide_label": "Ghid de mărimi și potrivire",
+    "selected_size_guide_label": "Detaliile tale marimii",
+    "size_guide_compare_hint": "Deschideți tabelul complet de mai jos pentru a compara dimensiunile din apropiere.",
+    "size_guide_unit_toggle_label": "Tabel de mărimi unități",
+    "reviews_heading": "Recenziile clienților",
+    "photo_heading": "Recenzii de fotografii ale clienților",
+    "jump_to_reviews": "Salt la recenzii",
+    "secure_checkout": "Checkout securizat",
+    "returns": "Fereastră de retur de 30 de zile",
+    "trusted_since": "Potrivirea familiei este ușoară",
+    "assistance_note": "Ai nevoie de ajutor? De obicei, răspundem în termen de o zi lucrătoare.",
+    "complete_the_look": "Completează Look-ul",
+    "popular_with_families": "Popular printre familii",
+    "recently_viewed": "Vizualizat recent",
+    "back_to_results": "Înapoi la rezultate",
+    "back_to_context": "Înapoi la __CONTEXT__",
+    "back_to_family_sets": "Înapoi la Seturi de familie",
+    "back_to_search_results": "Înapoi la rezultatele căutării",
+    "view_similar_styles": "Vedeți stiluri similare",
+    "view_similar_styles_in": "Vedeți stiluri similare în __CONTEXT__",
+    "similar_styles": "Stiluri similare",
+    "browse_more_from": "Căutați mai multe de la __CONTEXT__",
+    "browse_similar_styles": "Răsfoiți stiluri similare",
+    "compare_collection_copy": "Utilizați această colecție pentru a compara câteva potriviri apropiate înainte de a vă întoarce la cumpărături.",
+    "shipping_title": "Livrare și livrare",
+    "free_shipping_label": "Livrare standard inclusă",
+    "estimated_delivery": "Livrare estimată:",
+    "standard_delivery_window": "12-15 zile lucrătoare",
+    "premium_delivery_window": "Opțiunile Express sunt afișate la casă, acolo unde sunt disponibile.",
+    "faster_shipping_prefix": "Opțiunile expres pot fi disponibile la finalizare unde sunt acceptate.",
+    "free_premium_shipping": "Livrare expres",
+    "return_policy_title": "POLITICA DE RETURNARE",
+    "return_policy_line_1": "Aveți la dispoziție 30 de zile de la livrare pentru a solicita retur sau schimb.",
+    "return_policy_line_2": "Articolele trebuie să fie nepurtate, nespălate, în stare originală și în ambalajul lor original, cu etichete atașate.",
+    "return_policy_line_3": "Unele articole, inclusiv costume de baie și intime, nu pot fi returnate din motive de igienă; De asemenea, sunt excluse vânzarea finală și articolele personalizate.",
+    "return_policy_line_4": "Consultați politica de rambursare pentru eligibilitate, livrarea returului și momentul rambursării înainte de a trimite ceva înapoi.",
+    "shopping_security_title": "Securitatea cumpărăturilor",
+    "safe_payment_options_title": "Opțiuni de plată sigure",
+    "safe_payment_description": "Acceptăm toate cardurile de credit și de debit majore. Detaliile cardului dvs. sunt securizate și nu sunt niciodată distribuite partenerilor noștri. Puteți gestiona cu ușurință cardurile salvate oricând. Pentru orice întrebări legate de tranzacție, vă rugăm să contactați emitentul cardului.",
+    "secure_logistics_title": "Logistica sigură",
+    "secure_logistics_line_1": "Dacă un pachet este deteriorat sau pierdut în timpul transportului, contactați-ne pentru a vă ajuta să revizuim expedierea.",
+    "secure_logistics_line_2": "Utilizați linkul de urmărire a comenzii pentru cele mai recente actualizări ale operatorului. Comenzile internaționale pot fi supuse unor taxe locale, taxe sau taxe vamale colectate de transportator sau de autoritatea locală.",
+    "secure_privacy_title": "Confidențialitate sigură",
+    "secure_privacy_description": "Protejarea confidențialității este importantă pentru noi! Vă rugăm să fiți sigur că informațiile dumneavoastră vor fi păstrate în siguranță și fără compromisuri. Nu vindem informațiile dumneavoastră personale pentru bani și vom folosi informațiile dumneavoastră numai în conformitate cu politica noastră de confidențialitate și cookie-uri pentru a vă oferi și îmbunătăți serviciile noastre.",
+    "review_widget_heading_uppercase": "RECENZIILE CLIENTILOR",
+    "review_widget_heading": "Recenziile clienților",
+    "review_widget_empty": "Fii primul care scrie o recenzie",
+    "review_widget_write_review": "Scrie o recenzie",
+    "review_widget_write_review_title": "Scrie o recenzie",
+    "free_shipping_all_orders": "Livrare standard inclusă",
+    "selected_size_label": "Dimensiune: {{ size }}",
+    "compare_at_price": "Comparați la {{ price }}",
+    "description_details_eyebrow": "Detalii",
+    "description_highlights_heading": "De ce o să-ți placă",
+    "description_size_chart_heading": "Tabel de mărimi",
+    "description_product_details_heading": "Detalii despre produs",
+    "description_size_chart_meta": "Măsurătorile din tabelul sursei furnizorului",
+    "description_product_details_meta": "Informații structurate despre produs"
+  },
+{%- endif %}
+{%- if dlm_copy_root == 'ru' %}
   "ru": {
     "matching_set_heading": "Соберите свой комплект в одном стиле",
     "matching_set_copy": "Необязательно: выберите один размер для каждого члена семьи, которого вы хотите включить. Каждый выбор добавляет в корзину один отдельный товар.",
@@ -1837,6 +1825,8 @@
     "description_size_chart_meta": "Измерения из исходной таблицы поставщика",
     "description_product_details_meta": "Структурированная информация о продукте"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'sk' %}
   "sk-SK": {
     "matching_set_heading": "Zostavte si zodpovedajúcu súpravu",
     "matching_set_copy": "Voliteľné: vyberte jednu veľkosť pre každého člena rodiny, ktorého chcete zahrnúť. Každý výber pridá jeden samostatný kus do košíka.",
@@ -1905,6 +1895,8 @@
     "description_size_chart_meta": "Merania zo zdrojovej tabuľky dodávateľa",
     "description_product_details_meta": "Štruktúrované informácie o produkte"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'sl' %}
   "sl-SI": {
     "matching_set_heading": "Zgradite svoj ujemajoči se komplet",
     "matching_set_copy": "Izbirno: izberite eno velikost za vsakega družinskega člana, ki ga želite vključiti. Vsak izbor doda en kos v košarico.",
@@ -1973,6 +1965,8 @@
     "description_size_chart_meta": "Meritve iz izvorne tabele dobavitelja",
     "description_product_details_meta": "Strukturirane informacije o izdelku"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'sv' %}
   "sv": {
     "matching_set_heading": "Bygg ditt matchande set",
     "matching_set_copy": "Valfritt: välj en storlek för varje familjemedlem du vill inkludera. Varje val lägger till en separat del i varukorgen.",
@@ -2041,6 +2035,8 @@
     "description_size_chart_meta": "Mätningar från leverantörens källtabell",
     "description_product_details_meta": "Strukturerad produktinformation"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'th' %}
   "th": {
     "matching_set_heading": "สร้างชุดที่เข้ากันของคุณ",
     "matching_set_copy": "ไม่บังคับ: เลือกหนึ่งขนาดสำหรับสมาชิกครอบครัวแต่ละคนที่คุณต้องการรวมไว้ การเลือกแต่ละรายการจะเพิ่มหนึ่งชิ้นแยกกันลงในรถเข็น",
@@ -2109,6 +2105,8 @@
     "description_size_chart_meta": "การวัดจากตารางแหล่งที่มาของซัพพลายเออร์",
     "description_product_details_meta": "ข้อมูลผลิตภัณฑ์ที่มีโครงสร้าง"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'tr' %}
   "tr": {
     "matching_set_heading": "Eşleşen setinizi oluşturun",
     "matching_set_copy": "İsteğe bağlı: dahil etmek istediğiniz her aile üyesi için bir beden seçin. Her seçim sepete ayrı bir parça ekler.",
@@ -2177,6 +2175,8 @@
     "description_size_chart_meta": "Tedarikçi kaynak tablosundan alınan ölçümler",
     "description_product_details_meta": "Yapılandırılmış ürün bilgileri"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'vi' %}
   "vi": {
     "matching_set_heading": "Xây dựng bộ phù hợp của bạn",
     "matching_set_copy": "Tùy chọn: chọn một kích thước cho mỗi thành viên gia đình mà bạn muốn đưa vào. Mỗi lựa chọn sẽ thêm một sản phẩm riêng biệt vào giỏ hàng.",
@@ -2245,6 +2245,8 @@
     "description_size_chart_meta": "Các phép đo từ bảng nguồn nhà cung cấp",
     "description_product_details_meta": "Cấu trúc thông tin sản phẩm"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'zh' %}
   "zh-CN": {
     "matching_set_heading": "构建您的匹配集",
     "matching_set_copy": "可选：为您想要加入的每位家庭成员选择一种尺寸。每个选择都会向购物车添加一件单独的商品。",
@@ -2313,6 +2315,8 @@
     "description_size_chart_meta": "来自供应商来源表的测量",
     "description_product_details_meta": "结构化产品信息"
   },
+{%- endif %}
+{%- if dlm_copy_root == 'zh' %}
   "zh-TW": {
     "matching_set_heading": "建立您的匹配集",
     "matching_set_copy": "可選：為您想要加入的每位家庭成員選擇一種尺寸。每個選擇都會在購物車上添加一件單獨的商品。",
@@ -2380,5 +2384,75 @@
     "description_product_details_heading": "產品詳情",
     "description_size_chart_meta": "來自供應商來源表的測量",
     "description_product_details_meta": "結構化產品訊息"
+  },
+{%- endif %}
+  "en": {
+    "matching_set_heading": "Build your matching set",
+    "matching_set_copy": "Add matching family sizes below — each selection is sold separately.",
+    "matching_set_empty": "Choose at least one size to add your set.",
+    "matching_set_add": "Add matching pieces",
+    "matching_set_success": "Matching set added to cart.",
+    "matching_set_error": "Unable to add the selected pieces. Please try again.",
+    "grouped_size_guide_label": "Compare family sizes",
+    "compare_size_guide_label": "Compare all sizes",
+    "single_size_guide_label": "Size guide & fit",
+    "selected_size_guide_label": "Your size details",
+    "size_guide_compare_hint": "Open the full chart below to compare nearby sizes.",
+    "size_guide_unit_toggle_label": "Size chart units",
+    "reviews_heading": "Customer reviews",
+    "photo_heading": "Customer photo reviews",
+    "customer_photos_heading": "Customer photos",
+    "jump_to_reviews": "Jump to reviews",
+    "secure_checkout": "Secure Checkout",
+    "returns": "30-day return window",
+    "trusted_since": "Family matching made easy",
+    "assistance_note": "Need help? We typically reply within one business day.",
+    "complete_the_look": "Complete the Look",
+    "popular_with_families": "Popular with Families",
+    "recently_viewed": "Recently Viewed",
+    "back_to_results": "Back to results",
+    "back_to_context": "Back to __CONTEXT__",
+    "back_to_family_sets": "Back to Family Sets",
+    "back_to_search_results": "Back to search results",
+    "view_similar_styles": "View similar styles",
+    "view_similar_styles_in": "View similar styles in __CONTEXT__",
+    "similar_styles": "Similar styles",
+    "browse_more_from": "Browse more from __CONTEXT__",
+    "browse_similar_styles": "Browse similar styles",
+    "compare_collection_copy": "Use this collection to compare a few close matches before you go back to shopping.",
+    "shipping_title": "Shipping & Delivery",
+    "free_shipping_label": "Standard shipping included",
+    "estimated_delivery": "Estimated delivery:",
+    "standard_delivery_window": "12-16 days",
+    "premium_delivery_window": "Express options are shown at checkout where available.",
+    "faster_shipping_prefix": "Express options may be available at checkout where supported.",
+    "free_premium_shipping": "Express shipping",
+    "return_policy_title": "Return Policy",
+    "return_policy_line_1": "You have 30 days from delivery to request a return or exchange.",
+    "return_policy_line_2": "Items must be unworn, unwashed, in original condition, and in their original packaging with tags attached.",
+    "return_policy_line_3": "Some items, including swimwear and intimates, are not returnable for hygiene reasons; final sale and personalized items are also excluded.",
+    "return_policy_line_4": "Review the refund policy for eligibility, return shipping, and refund timing before sending anything back.",
+    "shopping_security_title": "Shopping Security",
+    "safe_payment_options_title": "Safe Payment Options",
+    "safe_payment_description": "We accept all major credit and debit cards. Your card details are secure and never shared with our partners. You can easily manage your saved cards anytime. For any transaction inquiries, please contact your card issuer.",
+    "secure_logistics_title": "Shipping Support",
+    "secure_logistics_line_1": "If a package is damaged or lost in transit, contact us so we can help review the shipment.",
+    "secure_logistics_line_2": "Use your order tracking link for the latest carrier updates. International orders may be subject to local taxes, duties, or customs fees collected by the carrier or local authority.",
+    "secure_privacy_title": "Secure Privacy",
+    "secure_privacy_description": "Protecting your privacy is important to us! Please be assured that your information will be kept secured and uncompromised. We do not sell your personal information for money and will only use your information in accordance with our privacy and cookie policy to provide and improve our services to you.",
+    "review_widget_heading_uppercase": "CUSTOMER REVIEWS",
+    "review_widget_heading": "Customer Reviews",
+    "review_widget_empty": "Be the first to write a review",
+    "review_widget_write_review": "Write a review",
+    "review_widget_write_review_title": "Write a Review",
+    "free_shipping_all_orders": "Standard shipping included",
+    "selected_size_label": "Size: {{ size }}",
+    "compare_at_price": "Compare at {{ price }}",
+    "description_details_eyebrow": "Details",
+    "description_highlights_heading": "Why You'll Love It",
+    "description_size_chart_heading": "Size Chart",
+    "description_product_details_heading": "Product Details",
+    "description_size_chart_meta": "Measurements from the supplier source table",
+    "description_product_details_meta": "Structured product information"
   }
 }

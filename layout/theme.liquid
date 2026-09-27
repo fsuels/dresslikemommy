@@ -33,6 +33,17 @@
     if request.page_type == 'collection' and collection.handle == 'popular-family-matching' and collections['new-women-outfits'] != blank
       assign resolved_canonical_url = request.origin | append: collections['new-women-outfits'].url
     endif
+    comment
+      Same pattern for two more duplicate pairs: daddy-and-me lists the same
+      products as daddy-me (the one the menu links), and popular-mommy-me-1
+      the same as mommy-and-me.
+    endcomment
+    if request.page_type == 'collection' and collection.handle == 'daddy-and-me' and collections['daddy-me'] != blank
+      assign resolved_canonical_url = request.origin | append: collections['daddy-me'].url
+    endif
+    if request.page_type == 'collection' and collection.handle == 'popular-mommy-me-1' and collections['mommy-and-me'] != blank
+      assign resolved_canonical_url = request.origin | append: collections['mommy-and-me'].url
+    endif
 
     assign parameterized_product_noindex = false
     if request.page_type == 'product'
