@@ -55114,3 +55114,30 @@ Owner decisions: kids' sleepwear stays on sale, and the supplier requests for CP
 Open:
 - Unfulfilled order #9560 from 2026-08-16 is past the Mail Order Rule window and needs an owner decision on a customer delay notice or refund. The 2026-09-24 order is within window.
 - Pre-existing outdated `meta_description` translations remain on the 6 swimsuit products; they contain no claims.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-family-bundle-discount
+
+- task_entities: automatic BXGY discount `gid://shopify/DiscountAutomaticNode/1315733110881` "Family bundle: 3rd piece 20% off"; unpublished smart collection `gid://shopify/Collection/363979571297` `family-bundle-eligible` (VARIANT_PRICE > 0); `assets/dlm-holiday-order-by.js`
+- task_stage: DONE, LIVE_VERIFIED
+- next_action_id: OWNER_DECIDE_BUNDLE_MESSAGING_ON_PDP_AND_CART
+
+Owner request (2026-09-27): "Make sure our target margins are met. Set up a family bundle discount and Christmas order-by dates."
+
+Evidence and design:
+- Unit-economics model: the repo convention is all-in non-marketing cost 50% of price (Cost per item = price × 0.50) and a marketing cap of about 15% of revenue (650% ROAS). Real per-product landed costs are not recorded; 1688 quotes are sparse.
+- Orders, last 12 months, quantities only: 18 non-cancelled; items per order {2:10, 3:2, 4:4, 5:1, 9:1}; 44% already 3+; median 2; AOV $82.78; 0 used a discount code.
+- Rejected "3+ items 10% off": it gives away 10% on the 44% of orders that already buy 3+. Per-order margins would be gross 44.4% and after-ads 29.0%, and program-level it is margin-negative.
+- Chosen "buy 2, get the 3rd piece 20% off": BXGY, once per order, on the cheapest qualifying piece, combinesWith all false. Existing codes are all non-combinable, so there is no stacking. A 3-piece order at about $33 each gives gross 46.4% and after-ads 31.0%. It targets the dominant 2-piece order.
+
+Done (via the Shopify connector; the stored token lacks `read_discounts`/`write_discounts`):
+- Created the unpublished smart collection (880 products, 0 publications, storefront 404) and the BXGY discount (ACTIVE from 2026-09-27, no end date).
+- VERIFIED with a live storefront test cart (cleared afterward; no checkout):
+  - 2 pieces $59.98: no discount.
+  - 3 pieces $93.97: −$5.99 on the cheapest $29.99 child piece, so gross about 46.6% and after-ads about 31.2%.
+  - 5 pieces $147.96: −$5.99 once.
+- Christmas order-by: already live. `dlm-holiday-order-by.js` targets Dec 24, 90-day lead, localized. The live jingle-bells PDP shows "Order by Tue, Dec 8 for estimated Christmas arrival". All 28 Christmas-tagged storefront products qualify; 0 Christmas products lack the tag (1 false positive, a tropical "holiday resort" shirt). No change needed.
+- Rollback: `discountAutomaticDelete(id: DiscountAutomaticNode/1315733110881)` and `collectionDelete(Collection/363979571297)`.
+
+Open:
+- The offer is invisible until the cart. Shoppers only see it applied in cart and checkout.
+- Advertising it on the PDP/cart needs 21-language theme copy and touches surfaces claimed by peer sessions (cart drawer, PDP). Owner decision needed.
