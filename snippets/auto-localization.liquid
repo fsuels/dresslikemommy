@@ -1,0 +1,22 @@
+{%- comment -%}
+  First-visit localization (assets/auto-localization.js).
+  The store is not on Shopify Plus, so Shopify does not pick the visitor's country by itself:
+  every new visitor starts in the primary market (United States / USD). This hands the script
+  the current context and the enabled countries and languages. The script then:
+    - once per browser, switches a visitor who is still on the primary country to the enabled
+      country Shopify detects for their IP (Canada -> CAD, Germany -> EUR), keeping the language;
+    - offers (never forces) the enabled language their browser prefers, in that language.
+  Bots, the theme editor, and URLs with an explicit ?country= are left alone.
+{%- endcomment -%}
+{%- unless request.design_mode -%}
+  <script id="AutoLocalizationConfig" type="application/json">
+    {
+      "primaryCountry": "US",
+      "country": {{ localization.country.iso_code | json }},
+      "language": {{ localization.language.iso_code | json }},
+      "countries": {{ localization.available_countries | map: 'iso_code' | json }},
+      "languages": {{ localization.available_languages | map: 'iso_code' | json }}
+    }
+  </script>
+  <script defer src="{{ 'auto-localization.js' | asset_url }}"></script>
+{%- endunless -%}

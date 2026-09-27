@@ -779,6 +779,7 @@
     {%- if localization.available_countries.size > 1 or localization.available_languages.size > 1 -%}
       {{ 'component-localization-form.css' | asset_url | stylesheet_tag: preload: true }}
       <script defer src="{{ 'localization-form.js' | asset_url }}"></script>
+      {% render 'auto-localization' %}
     {%- endif -%}
 
     {%- if settings.predictive_search_enabled -%}
