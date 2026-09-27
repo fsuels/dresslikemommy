@@ -55177,3 +55177,20 @@ Owner request (Claude Code chat, session "website look improvements"): fix the c
   - LIVE_VERIFIED, without interception, on desktop 1440 and iPhone 13: initial, empty-tap, size-pick and add-to-cart states; no page errors; the de-DE browser gets German labels; the mobile sticky bar scrolls to the builder.
 - Residual: with the family add-all list non-empty, the CTA can carry `aria-disabled="true"` while the list handler owns the click. There is no visual effect, but screen readers may announce it as dimmed.
 - Rollback: `git revert 9c9bde2`, then `sync_live_theme_from_main.py --apply`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-winter-mommy-and-me-pajamas-top-rows
+
+- task_entities: collections `mommy-and-me` (320794427489) and `pajamas` (both MANUAL); products rainbow-hearts, tomato-gingham, blue-gingham-collar, charcoal-leopard-lace and confetti-dots mommy-and-me pajamas
+- task_stage: LIVE_VERIFIED
+- next_action_id: NONE
+
+Session [57a715] activated 5 new 2026 winter velvet Mommy & Me pajama designs. Manual collections append new members at the bottom (positions 113–117 and 23–27), where shoppers would not see them.
+- `collectionReorderProducts` moved them to:
+  - `mommy-and-me` positions 6–10, after the 5 fall top rows;
+  - `pajamas` positions 1–5.
+- Storefront `products.json` readback confirms both. The relative order of all other members is unchanged.
+- Before-state (full ordered id lists): session scratchpad `reorder_before.json`.
+
+Christmas dresses are on HOLD: the proven suppliers have no 2026-created mother-daughter Christmas dresses. Do not build or repoint `/collections/christmas-dresses` until they exist.
+
+Rollback: move the 5 ids back to the end.
