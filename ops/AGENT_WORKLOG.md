@@ -55142,6 +55142,42 @@ Open:
 - The offer is invisible until the cart. Shoppers only see it applied in cart and checkout.
 - Advertising it on the PDP/cart needs 21-language theme copy and touches surfaces claimed by peer sessions (cart drawer, PDP). Owner decision needed.
 
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-drawer-wallet-two-row-cap
+
+- task_entities: commit `80576d3`; `assets/component-cart-drawer.css`; live theme `133290917985`; PROB-2026-09-24-MOBILE-CART-TO-CHECKOUT
+- task_stage: VERIFY
+- next_action_id: MOBILE_CART_TO_CHECKOUT_REMEASURE
+
+Handoff from the drawer claim owner ("Website sales improvement", CEO sprint): compact the 183 px express-wallet stack without hiding the wallets. The session "Conversion improvements" did the work under the owner's cart-drawer request.
+
+- Finding: Shopify renders the wallets inside a closed shadow root and forces one column for 4 wallets below 430px wide, so theme CSS cannot make a 2-per-row grid. The owner's fallback was used: two rows plus a peek, with the rest reachable by a normal scroll.
+- IMPLEMENTED `80576d3`: at `max-width:749px` and 651–760px tall, `.drawer__footer .cart-drawer__dynamic-checkout-buttons` gets `max-height:112px; overflow-y:auto; overscroll-behavior:contain`. `#CartDrawer-Footer`, the wallet markup and `ensureExpressCheckoutButtons` are untouched.
+- Release: the GitHub sync dropped the push. Before-state live = `80576d3^`; the one file was upserted, and its MD5 now equals `80576d3`. The storefront serves the rule.
+- LIVE_VERIFIED (headless, real add-to-cart, no injection):
+  - iPhone 13: items area 161→232 px, footer 434→363 px. The line's title, size and price are fully visible. Check out, Shop Pay and Amazon Pay are on screen, PayPal peeks, and G Pay is reachable by scrolling the block.
+  - Galaxy S9+ and iPhone 14 Pro Max: same result.
+  - Pixel 7 and iPhone SE: layout unchanged.
+- Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-cart-drawer-copy-trim/README.md` (follow-up section) and `after_wallet_cap_iphone13.png`.
+- Rollback: `git revert 80576d3`, then upsert the CSS file from `80576d3^`.
+- Next: re-measure mobile cart→checkout in Shopify analytics after a full week of traffic. Exclude the crawler spike days.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-matching-set-cta-and-font-live
+
+Owner request (Claude Code chat, session "website look improvements"): fix the collection sort override (#1), the matching-set font (#2) and the "Pick a size" button (#3) from the same-day look audit; push to main and verify live on desktop and mobile.
+
+- #1 collection sort: already fixed by `0025bf9` (another session). LIVE_VERIFIED in headless Chromium, desktop and iPhone 13: `mommy-and-me`, `pajamas` and `family-pajamas` render the same first 5 handles as `products.json` (admin MANUAL order), and the sort select shows `manual`. No `assets/facets.js` write.
+- #2 and #3: IMPLEMENTED in `9c9bde2`, touching `assets/product-desktop-ux-20260513-ruler-sync.js` and `assets/component-product-desktop-ux-ruler-sync.css`.
+  - Before a size is picked, the builder CTA is `aria-disabled` (not `disabled`) and reads the localized `addCurrentPiece` label in filled green. A tap without a complete selection adds `.is-attempted` to the builder, which reveals the inline "Pick a size" / "Pick a {axis}" hints (now hidden until then, normal weight, #9a4a0f) and scrolls to the first one.
+  - base.css's dimmed `[aria-disabled]` button look is overridden for this CTA.
+  - Builder buttons use `font-family: inherit` (they were rendering in Arial).
+  - The in-flight add still uses `disabled`. Both sticky bars gate on `DLMMatchingSetStickyState.isReady`, and the dlm-family-builder capture listener is unaffected.
+- VERIFIED:
+  - Pre-release: `node --check`, `git diff --check`, and a live-DOM harness that swapped in the local files on Ladybug Dots, Beanie Ghost and `/de`.
+  - Release: the GitHub sync dropped the push. `sync_live_theme_from_main.py --apply` uploaded exactly the 2 drifting files (applied 2, verified 2 by MD5).
+  - LIVE_VERIFIED, without interception, on desktop 1440 and iPhone 13: initial, empty-tap, size-pick and add-to-cart states; no page errors; the de-DE browser gets German labels; the mobile sticky bar scrolls to the builder.
+- Residual: with the family add-all list non-empty, the CTA can carry `aria-disabled="true"` while the list handler owns the click. There is no visual effect, but screen readers may announce it as dimmed.
+- Rollback: `git revert 9c9bde2`, then `sync_live_theme_from_main.py --apply`.
+
 ## AGENT_CONTINUITY_ANCHOR: 2026-09-27-free-distribution-lane
 
 - task_entities: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/lanes/free-distribution.md`; orders `#9572`, `#9560`; channels `gid://shopify/Channel/121919832161` (Microsoft Copilot), `gid://shopify/Channel/136587837537` (Meta AI)
