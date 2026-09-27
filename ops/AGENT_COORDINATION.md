@@ -1,5 +1,9 @@
 # Agent Coordination Registry
 
+## Bundle offer announcement bar claim — 2026-09-27
+
+Status: ACTIVE_WRITE_CLAIM (release pending owner approval for `main`). Owner (chat, 2026-09-27): "We need to make money! Do something get people to order from us." The Claude Code cloud session on branch `claude/revenue-growth-strategy-f0njpo` is sole writer for the `sections.announcements.default_promo` and `shipping_country_promo` values in `locales/*.json`, the three fallback promo strings in `sections/announcement-bar.liquid`, and the mobile announcement-item rule in `assets/dlm-header.css`. No product, price, discount, collection, feed, ad, spend or customer-messaging write. Anchor `2026-09-27-bundle-offer-announcement-bar`. Rollback: `git revert` the release commit.
+
 ## Family bundle discount claim — 2026-09-27
 
 Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED (2026-09-27). Discount `gid://shopify/DiscountAutomaticNode/1315733110881` is ACTIVE. Collection `gid://shopify/Collection/363979571297` (`family-bundle-eligible`, 880 products) is unpublished; the storefront returns 404. Test cart: 2 pieces no discount; 3 pieces −$5.99 (20% on the cheapest $29.99 piece); 5 pieces −$5.99 (once per order); cart cleared. Anchor `2026-09-27-family-bundle-discount`. Owner request (chat): "Make sure our target margins are met. Set up a family bundle discount and Christmas order-by dates." The root Claude Code session "Website design recommendations" is the sole writer for these two new objects only:

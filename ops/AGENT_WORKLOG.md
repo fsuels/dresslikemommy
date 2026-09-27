@@ -55141,3 +55141,22 @@ Done (via the Shopify connector; the stored token lacks `read_discounts`/`write_
 Open:
 - The offer is invisible until the cart. Shoppers only see it applied in cart and checkout.
 - Advertising it on the PDP/cart needs 21-language theme copy and touches surfaces claimed by peer sessions (cart drawer, PDP). Owner decision needed.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-bundle-offer-announcement-bar
+
+- task_entities: announcement bar keys `sections.announcements.default_promo` / `shipping_country_promo` in all 35 `locales/*.json`; `sections/announcement-bar.liquid` (en/es/fr fallback strings); `assets/dlm-header.css` (mobile one-item rule); discount `gid://shopify/DiscountAutomaticNode/1315733110881`
+- task_stage: BUILD done on branch `claude/revenue-growth-strategy-f0njpo`; release BLOCKED on owner approval to push to `main`
+- next_action_id: OWNER_APPROVE_MAIN_RELEASE_BUNDLE_ANNOUNCEMENT
+
+Why: owner (chat, 2026-09-27): "We need to make money! Do something get people to order from us." The family bundle discount (anchor `2026-09-27-family-bundle-discount`) is live but invisible until the cart, so it cannot change what shoppers add. The announcement bar is the one site-wide surface not held by a peer claim (the PDP strip and cart drawer are claimed).
+
+Done:
+- Discount re-read via the Shopify connector: ACTIVE, buy 2 → 1 piece 20% off, once per order, no end date, combines with nothing.
+- Announcement copy is now "BUY 2, GET A 3RD PIECE 20% OFF | STANDARD SHIPPING INCLUDED TO {{ country }} | SECURE CHECKOUT" (and the localized equivalent in 34 other locales). "Express options at checkout" was dropped. No urgency, stock or new shipping claims.
+- Phones: the bar was one nowrap line with an ellipsis, so it showed "STANDARD SHIPPING INCLUDED TO UNITED STA…". Now only the lead item (the offer) renders below 990px.
+- Checks: every locale file parses as JSON; `git diff --check` clean. Theme Check is not installed in the cloud container, so it was not run.
+- Not done: the push to `main` was refused by the session's permission layer (production deploy), so nothing is live. No Shopify writes.
+
+Release (after owner yes): fast-forward `main` to this branch's commit, run `sync_live_theme_from_main.py` (add `--apply` on drift), then read back `/`, `/de`, `/fr` on desktop and a 390px phone.
+Rollback: `git revert` the commit on `main` and re-sync.
+Also seen: order #9572 (placed 2026-09-24, PAID) is still UNFULFILLED; the owner needs to place it with BuckyDrop.

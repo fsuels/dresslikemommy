@@ -15,13 +15,13 @@
   assign announcement_locale = request.locale.iso_code | downcase
   assign announcement_static_promo = 'sections.announcements.default_promo' | t
   assign announcement_default_promo = announcement_static_promo
-  assign announcement_default_promo_fallback_en = 'STANDARD SHIPPING INCLUDED | EXPRESS OPTIONS AT CHECKOUT | SECURE CHECKOUT'
+  assign announcement_default_promo_fallback_en = 'BUY 2, GET A 3RD PIECE 20% OFF | STANDARD SHIPPING INCLUDED | SECURE CHECKOUT'
   if localization.country.name != blank
     assign announcement_default_promo = 'sections.announcements.shipping_country_promo' | t: country: localization.country.name
   elsif announcement_locale contains 'es' and announcement_default_promo == announcement_default_promo_fallback_en
-    assign announcement_default_promo = 'ENVÍO ESTÁNDAR INCLUIDO | OPCIONES EXPRÉS AL PAGAR | PAGO SEGURO'
+    assign announcement_default_promo = 'COMPRA 2 Y LLÉVATE LA 3.ª PRENDA CON UN 20 % DE DESCUENTO | ENVÍO ESTÁNDAR INCLUIDO | PAGO SEGURO'
   elsif announcement_locale contains 'fr' and announcement_default_promo == announcement_default_promo_fallback_en
-    assign announcement_default_promo = 'LIVRAISON STANDARD INCLUSE | OPTIONS EXPRESS AU PAIEMENT | PAIEMENT SÉCURISÉ'
+    assign announcement_default_promo = 'ACHETEZ-EN 2, LA 3E PIÈCE À -20 % | LIVRAISON STANDARD INCLUSE | PAIEMENT SÉCURISÉ'
   endif
 -%}
 

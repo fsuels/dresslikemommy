@@ -65,6 +65,12 @@
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
+  /* One line on phones: show only the lead item instead of a truncated run-on. */
+  .announcement-bar-section .announcement-bar__sep,
+  .announcement-bar-section .announcement-bar__item ~ .announcement-bar__item {
+    display: none;
+  }
 }
 
 /* ---------- Header shell ---------- */
