@@ -55695,3 +55695,12 @@ Owner request (Claude Code chat, session "Website visual improvements" [f7baa5])
 - **Accessories assessment (owner asked):** single $5–10 accessories fail the 50%-landed single-order rule (US freight about ¥45 per parcel).
   - Next: matching family SETS at $30+ (beanie or Christmas-hat family sets, Mommy & Me scarf sets).
   - Children's jewelry needs CPSIA lead/cadmium test reports first. Adult-only jewelry is acceptable.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-pom-pom-star-placed-and-linked
+
+- task_entities: product 9474007728225 (pom-pom-star-family-matching-sweaters); related metafields on nordic-yoke, santa-hat-reindeer, candy-cane-reindeer and christmas-reindeer family sweaters
+- task_stage: LIVE_VERIFIED
+- next_action_id: NONE (round complete: 6 sweatshirts and 2 knits)
+
+- **Placement:** PDP 200. Automatically #1 in family-sweaters (28), christmas-sweaters (16), the Christmas hub (31), fall-winter (54) and couples (33).
+- **Related links:** pom-pom-star → Santa Hat Reindeer, Candy Cane Reindeer, Nordic Yoke and Christmas Reindeer; the storefront related API readback matches. Nordic Yoke and the 3 red knits list pom-pom-star first.
