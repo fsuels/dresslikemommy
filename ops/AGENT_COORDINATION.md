@@ -1,5 +1,18 @@
 # Agent Coordination Registry
 
+## Honest reviews and social proof claim — 2026-09-27
+
+Status: ACTIVE_WRITE_CLAIM. Owner request (Claude Code chat): "do all your recommendations", free solutions only (no paid Judge.me plan). The Claude Code session "website improvements" is sole writer for:
+- locale keys `products.trust.trusted_since`, `sections.home_category_copy.trust_families_since` and `products.product.review_thanks_note`;
+- `snippets/home-category-localized-copy.liquid`;
+- `templates/index.json` `category_icons.trust_item_2` only;
+- `trusted_since` values in `snippets/product-page-copy-map.liquid`;
+- new `sections/dlm-review-note.liquid` and its slot in `templates/product.json`;
+- the Judge.me review-request email text;
+- Shopify discount REVIEW10 (`gid://shopify/DiscountCodeNode/1315698704481`).
+
+Never publishes hidden reviews. Never fabricates ratings or counters. No customer emails are sent. Rollback: `git revert`, REVIEW10 `discountCodeDeactivate`, and restoring the Judge.me email text from the before-state.
+
 ## Collection page upgrade claim — 2026-09-27
 
 Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED (2026-09-27; anchor `2026-09-27-collection-redesign-live-and-membership-change1`). Theme redesign `11c1efd` LIVE_VERIFIED on MAIN (13/13 files after the dropped sync); collection-membership change 1 applied with zero visible loss (6 stale-index members remain; product re-index needs owner approval). History: applied owner-approved collection-membership change 1 (owner in chat: "owner approved release … then apply COLLECTION_MEMBERSHIP_PACKET change 1 with before-state and readback"). Added scope: Shopify smart-collection `ruleSet` only, on `mommy-and-me` (`gid://shopify/Collection/320794427489`), `pajamas` (`240129605`), `tops` (`240128197`) and `sweaters` (`240153477`): all conditions plus `TAG NOT_EQUALS "Family Matching"`. No sortOrder, manual position, title, SEO, product, translation, feed, ad or spend write. Before-state and rollback mutations: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-collection-page-upgrade/change1_before_state.json`. Original: Owner request (September 27, chat): "the collection page the filters and the way button work I need it to be better … the best possible page", then "do your recommendations!". The root Claude Code session "collection page upgrade" (worktree `/Users/fsuels/Projects/dlm-collection-upgrade`, branch `collection-page-upgrade`) is the sole writer for: `assets/facets.js`, `snippets/facets.liquid`, `assets/component-facets.css`, `snippets/price-facet.liquid`, new `snippets/facet-sort-options.liquid`, `assets/theme-inline-body-static-01.css`, the sort `<option>` loop in `sections/main-search.liquid`, `sections/main-collection-product-grid.liquid`, `assets/template-collection.css`, `snippets/card-product.liquid`, `assets/component-card.css`, and new `assets/dlm-collection-*`, `assets/dlm-card-*`, `assets/dlm-facets-*`, `snippets/dlm-card-*`, `snippets/dlm-facet-*` files; plus one UNPUBLISHED preview theme. Subagents write disjoint file lanes; the root is the sole committer. Step 1 removes the client-side forced `created-descending` re-sort, which overrode the owner-approved MANUAL orders of `mommy-and-me`, `pajamas` and `family-pajamas` (admin before-state of all 43 handles: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-collection-page-upgrade/sort_before_state.json`). No collection, product, Search & Discovery, translation, `locales/*.json`, menu, feed, ad or spend write; filter-value grouping is prepared as an approval packet only. Rollback: revert the commits.

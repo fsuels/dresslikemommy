@@ -54622,3 +54622,28 @@ Not done (owner chose "Skip it"): no past-order review-request import. The owner
 Declined: the owner asked for "random stars" and traffic indicators. Fabricated ratings and fake viewer counters were declined as deceptive.
 
 Truthful alternative data (LIVE_VERIFIED, ShopifyQL, all time): 8,543 orders, 8,138 customers, 22,420 items. Per product over the last 365 days the maximum is 8 orders, so per-product sales badges are weak.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-honest-social-proof-families-since-2017
+
+- task_entities: locales/*.json (`products.trust.trusted_since`, `sections.home_category_copy.trust_families_since`), `snippets/home-category-localized-copy.liquid`, `templates/index.json` category_icons trust_item_2, `snippets/product-page-copy-map.liquid`; discount REVIEW10 `gid://shopify/DiscountCodeNode/1315698704481`
+- task_stage: RELEASED_TO_GIT_MAIN, LIVE_READBACK_REQUIRED
+- next_action_id: EDIT_JUDGEME_REQUEST_EMAIL_THEN_REVIEW_NOTE
+
+Owner said: "do all your recommendations", free solutions only.
+
+Fact basis (LIVE_VERIFIED, ShopifyQL): 8,543 orders and 8,138 customers since 2017. The first orders are in 2017; 2012–2016 show 0.
+
+Theme change:
+- The PDP trust-strip slot ("Family matching made easy"; the German value literally meant "family reunification") and homepage trust pill 2 ("Matching looks for family moments") now read "8,000+ families since 2017".
+- All 35 locales have native translations.
+- The copy-map `trusted_since` values match; other values are unchanged.
+
+REVIEW10 (created via the Shopify connector; LIVE_VERIFIED readback):
+- 10% off the entire order, all customers, once per customer.
+- Combines with shipping discounts only; no end date; starts 2026-09-27 06:30 UTC.
+- It is meant only for the Judge.me request email and is not shown on the storefront.
+- An old expired 2019 THANKYOU10 (repeat customers only) exists and was left untouched.
+
+Held: the review thank-you note on the PDP does not ship until the Judge.me request email actually contains REVIEW10. Until then the note would be false.
+
+Checks: theme check 0 errors; copy-map tests OK; `git diff --check` clean; the locale round-trip was byte-identical before the edit.

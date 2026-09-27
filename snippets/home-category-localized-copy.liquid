@@ -15,6 +15,8 @@
       assign normalized_key = 'trust-easy-outfits'
     when 'helpful-sizing-support'
       assign normalized_key = 'trust-sizing-support'
+    when '8-000-families-since-2017'
+      assign normalized_key = 'trust-families-since'
     when 'family-matching-made-easy'
       assign normalized_key = 'trust-family-matching'
     when 'responds-within-1-business-day'
@@ -44,7 +46,7 @@
   assign localized_text = fallback_text
 
   case normalized_key
-    when 'heading-category', 'heading-occasion', 'trust-free-shipping', 'trust-matching-moments', 'trust-easy-outfits', 'trust-sizing-support', 'trust-family-matching', 'trust-family-support', 'mommy-me', 'family-matching', 'pajamas', 'matching-dresses', 'swimsuits', 'daddy-me', 'christmas', 'halloween', 'vacation', 'photo-days', 'birthdays', 'beach-days', 'caption-mommy-me', 'caption-family-matching', 'caption-pajamas', 'caption-matching-dresses', 'caption-swimsuits', 'caption-daddy-me', 'caption-christmas', 'caption-halloween', 'caption-vacation', 'caption-photo-days', 'caption-birthdays', 'caption-beach-days', 'badge-most-loved', 'badge-vacation-favorite', 'badge-spring-event-pick', 'badge-new-pajama-drop', 'cta-shop-this-look', 'cta-shop-new-pajamas', 'link-mother-daughter-dresses', 'link-family-vacation', 'link-spring-dresses', 'link-new-pajamas'
+    when 'heading-category', 'heading-occasion', 'trust-free-shipping', 'trust-matching-moments', 'trust-easy-outfits', 'trust-sizing-support', 'trust-families-since', 'trust-family-matching', 'trust-family-support', 'mommy-me', 'family-matching', 'pajamas', 'matching-dresses', 'swimsuits', 'daddy-me', 'christmas', 'halloween', 'vacation', 'photo-days', 'birthdays', 'beach-days', 'caption-mommy-me', 'caption-family-matching', 'caption-pajamas', 'caption-matching-dresses', 'caption-swimsuits', 'caption-daddy-me', 'caption-christmas', 'caption-halloween', 'caption-vacation', 'caption-photo-days', 'caption-birthdays', 'caption-beach-days', 'badge-most-loved', 'badge-vacation-favorite', 'badge-spring-event-pick', 'badge-new-pajama-drop', 'cta-shop-this-look', 'cta-shop-new-pajamas', 'link-mother-daughter-dresses', 'link-family-vacation', 'link-spring-dresses', 'link-new-pajamas'
       assign locale_copy_key = normalized_key | replace: '-', '_' | prepend: 'sections.home_category_copy.'
       assign localized_text = locale_copy_key | t
   endcase
