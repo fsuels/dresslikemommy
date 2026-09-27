@@ -54386,3 +54386,29 @@ Guardrails: no title, status, SEO, variant, collection, publication, translation
 Residual:
 - Shopify-native Google & YouTube and Pinterest app field mappings were not inspected. They are not repo-controlled and not a documented tag consumer.
 - Nothing yet prevents a manual Admin edit or a future import from re-adding such tags.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-shop-by-occasion-live
+
+- task_entities: commit `6a88d23`; MAIN `133290917985`; collections `matching-family-christmas-outfits` (`363955388513`), `family-photo-outfits` (`363955421281`)
+- task_stage: DONE, LIVE_VERIFIED
+- problem_ids: none opened (GitHub sync delay recurrence noted under PROB-2026-09-24-GITHUB-THEME-SYNC-STALL-AND-SYNC-BACK-REVERT)
+- next_action_id: OWNER_PICK_CHRISTMAS_PAJAMA_DESIGNS_AND_LISTING_ROUTE
+
+Why: the owner said "release it" and asked to verify the live store.
+
+Verified:
+- Live files: 47/47 equal `6a88d23`. MAIN `updatedAt` is 2026-09-27T02:54:19Z. That is about 18 minutes after the push, when the sync poll first reported 0/47, so it came from the delayed sync or the owner's CLI push.
+- Homepages (curl, no preview cookie) in EN, FR and DE:
+  - 4 occasion tiles: Christmas, Halloween, Photo Days and Vacation, each with its curated photo and a localized caption.
+  - Mega-menu occasion links reach both new hubs.
+  - No Liquid errors.
+  - The header Christmas link is correctly absent until 1015.
+- Collection pages: both hubs return 200 in EN/FR/DE with the localized `<title>`, H1 and meta description, and no `&amp;#` double escape. The Christmas hub shows 14 products.
+- Browser, live theme:
+  - Desktop 1440: 4-column occasion row; the new tile assets return 200.
+  - Mobile 375: the Christmas hub shows 14 products with no horizontal scroll, and the DE homepage tiles and drawer occasion group render.
+- The stored translations for de `caption_photo_days`, es `photo_days` and fr `photo_days` already read "für", "Días" and "Séances". The locale-file push updated them, so no write was needed.
+
+Left as is: de `caption_vacation` still reads "fuer". This predates this work and is outside its scope.
+
+Next: the owner picks the Christmas pajama designs from `2026-09-26-christmas-pajama-line/shortlist_sheet.jpg`. This goes first because the Christmas hub fills automatically as those listings go live, and the Dec 8 order-by cutoff is the binding constraint.
