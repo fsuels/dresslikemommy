@@ -48,3 +48,9 @@ Report: `image_seo_audit_20260926T184335Z.csv`.
 - `7ec0a83` JSON-LD captions live on MAIN at 22:06:06Z after a delayed GitHub sync; verified on EN and /es PDPs, all ld+json parses.
 - Scheduled Claude task `daily-image-alt-review` (daily at about 07:42 local) writes image-specific alt text for queued images; receipts in `daily/`.
 - Remaining gap: alt text/captions are English on translated storefronts.
+
+## Flag follow-up (owner: "fix this, I will do your recommendation")
+
+- Already done by a parallel session (anchor `2026-09-26-listing-title-photo-and-blog-image-fixes`, commits `0937756`, `55d3884`): 7 title/photo corrections with translations, Monster Bloom to DRAFT, 12 + 8 off-topic blog featured images. Independent live readback here: all 7 EN titles correct; Monster Bloom PDP 404.
+- Monster Bloom recommendation: keep DRAFT, do not delete (reversible; the hood copies a TV character).
+- Fixed here: `7109122097249`, whose photos show a two-piece halter flounce bikini with high-waisted bottoms, while the copy said one-shoulder, asymmetrical and a black base. English title/SEO/5 body passages updated (handle, size chart, price, media and variants unchanged); 20 locale title/meta/body passages replaced positionally; the Hebrew "pepper" mistranslation of ruffle was corrected before registering. 0 userErrors, 80/80 fields current. Live EN/ES/JA titles verified. Receipts: `one-shoulder-fix/`.
