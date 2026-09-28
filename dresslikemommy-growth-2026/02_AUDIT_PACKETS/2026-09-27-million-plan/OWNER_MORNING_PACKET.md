@@ -4,6 +4,8 @@ Prepared by the CEO session overnight (2026-09-27). The items are ranked by how 
 
 Everything that doesn't need you keeps running without you. Tonight that means conversion fixes on the site, Christmas catalog growth with ChatGPT photoshoots, and the product-visibility fixes. See `ops/AGENT_WORKLOG.md`.
 
+**Sep 27 result (Shopify, LIVE_VERIFIED):** 2 orders, **$164.66**, including Together Heart. That's up from 0 orders the previous day. Real funnel: about 22 carts → 6 checkouts → 2 orders. Test carts from QA were excluded.
+
 ## Why these matter (LIVE_VERIFIED 2026-09-27 ~02:00 EDT, Shopify analytics)
 
 - In the last 30 days the store had 6.7k sessions, 151 add-to-carts and **9 orders**.
