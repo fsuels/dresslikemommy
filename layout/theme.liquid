@@ -110,20 +110,21 @@
   {%- if product_lcp_media != blank and product_lcp_media.preview_image != blank -%}
     {%- assign product_lcp_image = product_lcp_media.preview_image -%}
     {% comment %}theme-check-disable AssetPreload{% endcomment %}
+    {%- comment -%}
+      Must request exactly the file the gallery <img> picks, or phones download
+      the main photo twice. Keep widths and sizes identical to
+      snippets/product-thumbnail.liquid (media_size "large" = 0.65, one column).
+    {%- endcomment -%}
+    {%- assign product_lcp_widths = '246,493,600,713,823,990,1100,1206,1346,1426,1646,1946' | split: ',' -%}
     <link
       rel="preload"
       as="image"
-      href="{{ product_lcp_image | image_url: width: 823 }}"
+      fetchpriority="high"
+      href="{{ product_lcp_image | image_url: width: 1946 }}"
       imagesrcset="
-        {%- if product_lcp_image.width >= 493 -%}{{ product_lcp_image | image_url: width: 493 }} 493w,{%- endif -%}
-        {%- if product_lcp_image.width >= 600 -%}{{ product_lcp_image | image_url: width: 600 }} 600w,{%- endif -%}
-        {%- if product_lcp_image.width >= 713 -%}{{ product_lcp_image | image_url: width: 713 }} 713w,{%- endif -%}
-        {%- if product_lcp_image.width >= 823 -%}{{ product_lcp_image | image_url: width: 823 }} 823w,{%- endif -%}
-        {%- if product_lcp_image.width >= 990 -%}{{ product_lcp_image | image_url: width: 990 }} 990w,{%- endif -%}
-        {%- if product_lcp_image.width >= 1100 -%}{{ product_lcp_image | image_url: width: 1100 }} 1100w,{%- endif -%}
-        {{ product_lcp_image | image_url }} {{ product_lcp_image.width }}w
+        {%- for w in product_lcp_widths -%}{%- assign lcp_w = w | plus: 0 -%}{{ product_lcp_image | image_url: width: lcp_w }} {{ lcp_w }}w{%- unless forloop.last -%}, {% endunless -%}{%- endfor -%}
       "
-      imagesizes="(min-width: 990px) 50vw, 100vw"
+      imagesizes="(min-width: {{ settings.page_width }}px) {{ settings.page_width | minus: 100 | times: 0.65 | round }}px, (min-width: 990px) calc(65vw - 10rem), (min-width: 750px) calc((100vw - 11.5rem) / 2), calc(100vw / 1 - 4rem)"
     >
     {% comment %}theme-check-enable AssetPreload{% endcomment %}
   {%- endif -%}

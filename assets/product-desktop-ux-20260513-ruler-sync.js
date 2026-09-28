@@ -991,6 +991,70 @@ var IMAGE_BASED_SIZE_GUIDE_PRESETS = [
   },
 ];
 
+// Family bundle line in the matching-set header. Mirrors the live
+// automatic discount "Family bundle: 3rd piece 20% off" (Shopify BXGY,
+// once per order, on the cheapest piece); if that discount changes or
+// ends, update or remove FAMILY_BUNDLE_PERCENT and this copy.
+var FAMILY_BUNDLE_PERCENT = 20;
+var FAMILY_OFFER_COPY_BY_LOCALE = {
+  en: { family4: 'Family of 4 (Mom, Dad + 2 kids)', mom2: 'Mom + 2 kids', dad2: 'Dad + 2 kids', adults2: '2 adults + 1 child', line: '{party} from {price}', note: '3rd piece 20% off, applied automatically in your cart' },
+  ar: { family4: 'عائلة من 4 (الأم والأب + طفلان)', mom2: 'الأم + طفلان', dad2: 'الأب + طفلان', adults2: 'بالغان + طفل واحد', line: '{party} ابتداءً من {price}', note: 'خصم 20% على القطعة الثالثة، يُطبَّق تلقائيًا في السلة' },
+  cs: { family4: 'Rodina 4 osob (máma, táta + 2 děti)', mom2: 'Máma + 2 děti', dad2: 'Táta + 2 děti', adults2: '2 dospělí + 1 dítě', line: '{party} od {price}', note: '3. kus o 20 % levněji, sleva se automaticky uplatní v košíku' },
+  da: { family4: 'Familie på 4 (mor, far + 2 børn)', mom2: 'Mor + 2 børn', dad2: 'Far + 2 børn', adults2: '2 voksne + 1 barn', line: '{party} fra {price}', note: '3. del 20 % rabat, trækkes automatisk fra i kurven' },
+  de: { family4: 'Familie mit 4 (Mama, Papa + 2 Kinder)', mom2: 'Mama + 2 Kinder', dad2: 'Papa + 2 Kinder', adults2: '2 Erwachsene + 1 Kind', line: '{party} ab {price}', note: '3. Teil 20 % günstiger, automatisch im Warenkorb abgezogen' },
+  el: { family4: 'Οικογένεια 4 ατόμων (μαμά, μπαμπάς + 2 παιδιά)', mom2: 'Μαμά + 2 παιδιά', dad2: 'Μπαμπάς + 2 παιδιά', adults2: '2 ενήλικες + 1 παιδί', line: '{party} από {price}', note: '20% έκπτωση στο 3ο κομμάτι, εφαρμόζεται αυτόματα στο καλάθι' },
+  es: { family4: 'Familia de 4 (mamá, papá + 2 niños)', mom2: 'Mamá + 2 niños', dad2: 'Papá + 2 niños', adults2: '2 adultos + 1 niño', line: '{party} desde {price}', note: '3.ª prenda con 20 % de descuento, aplicado automáticamente en tu carrito' },
+  fi: { family4: '4 hengen perhe (äiti, isä + 2 lasta)', mom2: 'Äiti + 2 lasta', dad2: 'Isä + 2 lasta', adults2: '2 aikuista + 1 lapsi', line: '{party} alkaen {price}', note: '3. tuote 20 % alennuksella, vähennetään automaattisesti ostoskorissa' },
+  fr: { family4: 'Famille de 4 (maman, papa + 2 enfants)', mom2: 'Maman + 2 enfants', dad2: 'Papa + 2 enfants', adults2: '2 adultes + 1 enfant', line: '{party} dès {price}', note: '3e pièce à -20 %, appliqué automatiquement au panier' },
+  he: { family4: 'משפחה של 4 (אמא, אבא + 2 ילדים)', mom2: 'אמא + 2 ילדים', dad2: 'אבא + 2 ילדים', adults2: '2 מבוגרים + ילד אחד', line: '{party} החל מ-{price}', note: '20% הנחה על הפריט השלישי, מוחלת אוטומטית בעגלה' },
+  hi: { family4: '4 लोगों का परिवार (माँ, पिता + 2 बच्चे)', mom2: 'माँ + 2 बच्चे', dad2: 'पिता + 2 बच्चे', adults2: '2 वयस्क + 1 बच्चा', line: '{party} {price} से', note: 'तीसरे पीस पर 20% छूट, कार्ट में अपने आप लागू' },
+  it: { family4: 'Famiglia di 4 (mamma, papà + 2 bimbi)', mom2: 'Mamma + 2 bimbi', dad2: 'Papà + 2 bimbi', adults2: '2 adulti + 1 bimbo', line: '{party} da {price}', note: '3° capo scontato del 20%, applicato automaticamente nel carrello' },
+  ja: { family4: '4人家族（ママ・パパ＋子ども2人）', mom2: 'ママ＋子ども2人', dad2: 'パパ＋子ども2人', adults2: '大人2人＋子ども1人', line: '{party} {price}から', note: '3点目20%オフ、カートで自動適用' },
+  ko: { family4: '4인 가족 (엄마, 아빠 + 아이 2명)', mom2: '엄마 + 아이 2명', dad2: '아빠 + 아이 2명', adults2: '성인 2명 + 아이 1명', line: '{party} {price}부터', note: '3번째 상품 20% 할인, 장바구니에서 자동 적용' },
+  nl: { family4: 'Gezin van 4 (mama, papa + 2 kinderen)', mom2: 'Mama + 2 kinderen', dad2: 'Papa + 2 kinderen', adults2: '2 volwassenen + 1 kind', line: '{party} vanaf {price}', note: '3e stuk 20% korting, automatisch toegepast in je winkelwagen' },
+  no: { family4: 'Familie på 4 (mamma, pappa + 2 barn)', mom2: 'Mamma + 2 barn', dad2: 'Pappa + 2 barn', adults2: '2 voksne + 1 barn', line: '{party} fra {price}', note: '3. plagg 20 % rabatt, trekkes automatisk fra i handlekurven' },
+  pl: { family4: 'Rodzina 4-osobowa (mama, tata + 2 dzieci)', mom2: 'Mama + 2 dzieci', dad2: 'Tata + 2 dzieci', adults2: '2 dorosłych + 1 dziecko', line: '{party} od {price}', note: '3. sztuka 20% taniej, rabat naliczany automatycznie w koszyku' },
+  pt: { family4: 'Família de 4 (mãe, pai + 2 filhos)', mom2: 'Mãe + 2 filhos', dad2: 'Pai + 2 filhos', adults2: '2 adultos + 1 criança', line: '{party} a partir de {price}', note: '3.ª peça com 20% de desconto, aplicado automaticamente no carrinho' },
+  ro: { family4: 'Familie de 4 (mama, tata + 2 copii)', mom2: 'Mama + 2 copii', dad2: 'Tata + 2 copii', adults2: '2 adulți + 1 copil', line: '{party} de la {price}', note: 'A 3-a piesă cu 20% reducere, aplicată automat în coș' },
+  ru: { family4: 'Семья из 4 человек (мама, папа + 2 ребёнка)', mom2: 'Мама + 2 ребёнка', dad2: 'Папа + 2 ребёнка', adults2: '2 взрослых + 1 ребёнок', line: '{party} от {price}', note: 'скидка 20% на 3-ю вещь применяется в корзине автоматически' },
+  sv: { family4: 'Familj på 4 (mamma, pappa + 2 barn)', mom2: 'Mamma + 2 barn', dad2: 'Pappa + 2 barn', adults2: '2 vuxna + 1 barn', line: '{party} från {price}', note: '3:e plagget 20 % rabatt, dras automatiskt i varukorgen' },
+  zh: { family4: '四口之家（妈妈、爸爸＋2个孩子）', mom2: '妈妈＋2个孩子', dad2: '爸爸＋2个孩子', adults2: '2个大人＋1个孩子', line: '{party} {price}起', note: '第3件8折，购物车中自动优惠' },
+};
+
+function getFamilyOffer(groups) {
+  // Cheapest piece per role, preferring sizes in stock.
+  var minByRole = Object.create(null);
+  (groups || []).forEach(function (group) {
+    var roleKey = group.roleKey || group.key;
+    if (roleKey === 'girl' || roleKey === 'boy' || roleKey === 'baby') roleKey = 'child';
+    var options = group.options || [];
+    var available = options.filter(function (option) { return option.available && option.price > 0; });
+    available.forEach(function (option) {
+      if (!(roleKey in minByRole) || option.price < minByRole[roleKey]) minByRole[roleKey] = option.price;
+    });
+  });
+  var kid = minByRole.child;
+  var pieces = null;
+  var partyKey = '';
+  if (kid && minByRole.mother && minByRole.father) {
+    pieces = [minByRole.mother, minByRole.father, kid, kid];
+    partyKey = 'family4';
+  } else if (kid && minByRole.mother) {
+    pieces = [minByRole.mother, kid, kid];
+    partyKey = 'mom2';
+  } else if (kid && minByRole.father) {
+    pieces = [minByRole.father, kid, kid];
+    partyKey = 'dad2';
+  } else if (kid && minByRole.adult) {
+    pieces = [minByRole.adult, minByRole.adult, kid];
+    partyKey = 'adults2';
+  }
+  if (!pieces) return null;
+  var subtotal = pieces.reduce(function (sum, price) { return sum + price; }, 0);
+  var cheapest = Math.min.apply(Math, pieces);
+  return { partyKey: partyKey, total: subtotal - Math.floor((cheapest * FAMILY_BUNDLE_PERCENT) / 100) };
+}
+
 function getLocaleRoot() {
   var locale = document.documentElement.getAttribute('lang') || document.documentElement.lang || '';
   var root = normalizeText(locale).split(/[-_]/)[0] || 'en';
@@ -2124,8 +2188,8 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     try {
       var stored = window.localStorage && window.localStorage.getItem(BUNDLE_UNIT_STORAGE_KEY);
       if (stored === 'imperial' || stored === 'metric') return stored;
-    } catch (e) { /* localStorage may be blocked; default to metric */ }
-    return 'metric';
+    } catch (e) { /* localStorage may be blocked; fall back to the country default */ }
+    return window.__dlmDefaultUnitSystem === 'imperial' ? 'imperial' : 'metric';
   })();
   var closedPanels = Object.create(null);
 
@@ -4188,6 +4252,32 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     });
   }
 
+  function renderFamilyOffer(groups) {
+    var copy = FAMILY_OFFER_COPY_BY_LOCALE[getLocaleRoot()];
+    var header = builder.querySelector('.product-matching-set__header');
+    var node = builder.querySelector('[data-matching-set-offer]');
+    var offer = copy ? getFamilyOffer(groups) : null;
+    if (!offer || !header) {
+      if (node) node.setAttribute('hidden', 'hidden');
+      return;
+    }
+    if (!node) {
+      node = document.createElement('p');
+      node.className = 'product-matching-set__offer';
+      node.setAttribute('data-matching-set-offer', '');
+      var intro = header.querySelector('.product-matching-set__copy');
+      header.insertBefore(node, intro ? intro.nextSibling : null);
+    }
+    var html =
+      '<strong>' +
+      escapeHtml(interpolateLabel(copy.line, { party: copy[offer.partyKey], price: formatMoney(offer.total, currency) })) +
+      '</strong> <span>' +
+      escapeHtml(copy.note) +
+      '</span>';
+    if (node.innerHTML !== html) node.innerHTML = html;
+    node.removeAttribute('hidden');
+  }
+
   function renderBuilder(preservedSelections) {
     // Pass `true` so we get every variant (including OOS combos) plus
     // the axes map. When Type is implicit per role (mother↔Dress,
@@ -4205,6 +4295,9 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       skipTypeFilter: typeIsImplicit,
     });
     roleGroupsCache = groups;
+    try {
+      renderFamilyOffer(groups);
+    } catch (_familyOfferError) { /* never block the builder */ }
 
     // Optional debug dump. Enable in browser console with
     //   window.DLM_BUNDLE_DEBUG = true;
@@ -4508,7 +4601,8 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     wrapper.getAttribute('data-size-guide-compare-hint') || 'Open the full chart below to compare nearby sizes.';
   var unitToggleLabel = wrapper.getAttribute('data-size-guide-unit-toggle-label') || 'Size chart units';
   var groups = parsed ? buildSizeGuideGroups(parsed) : [];
-  var selectedUnitSystem = getStoredSizeGuideUnitSystem() || 'metric';
+  var selectedUnitSystem =
+    getStoredSizeGuideUnitSystem() || (window.__dlmDefaultUnitSystem === 'imperial' ? 'imperial' : 'metric');
   var scheduledGuideRender = null;
   var fitModal = null;
   var activeFitModalGroupKey = '';

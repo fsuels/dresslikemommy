@@ -939,6 +939,8 @@
 
   <script>
     window.DLM_PRODUCT_PAGE_COPY = {% render 'product-page-copy-map' %};
+    {%- comment -%} Size charts open in inches for countries that measure in inches; a shopper's own cm/in choice still wins. {%- endcomment -%}
+    window.__dlmDefaultUnitSystem = {% if localization.country.iso_code == 'US' or localization.country.iso_code == 'LR' or localization.country.iso_code == 'MM' %}'imperial'{% else %}'metric'{% endif %};
   </script>
 
   <script src="{{ 'product-info.js' | asset_url }}" defer="defer"></script>

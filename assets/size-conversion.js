@@ -462,7 +462,7 @@ document.addEventListener("DOMContentLoaded", function () {
   const sizeChartWrapper  = document.querySelector(".size-chart-wrapper");
   const sizeChartContent  = document.getElementById("size-chart-content");
   const hasModernSizeGuide = !!document.querySelector("[data-matching-size-guide]");
-  let selectedUnitSystem  = getStoredUnitSystem() || "metric";
+  let selectedUnitSystem  = getStoredUnitSystem() || (window.__dlmDefaultUnitSystem === "imperial" ? "imperial" : "metric");
   initGlobalSizeDisplayFormatting();
   if (!sizeSelect) {
     return;
