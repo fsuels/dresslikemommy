@@ -55865,3 +55865,16 @@ Owner request (Claude Code chat, session "Website visual improvements" [f7baa5])
 - **Why not released:** the only paths it affects (quick-add-bulk, quick-order-list) are not used on this storefront. Every path we use (product form, quick-add modal, family builder, complete-the-family, drawer quantity/remove) already re-renders the whole drawer via `renderContents` or refreshes the drawer inner, and the bubble is updated by each sender. The change adds DOM insertion/removal logic that can only be verified live with cart adds, which we are avoiding to protect analytics.
 - **Side note:** `dlm-family-builder.js` publishes the literal event name `'cartUpdate'` instead of `PUB_SUB_EVENTS.cartUpdate`. It is harmless today because the builder refreshes the drawer itself. Revisit only if a cartUpdate subscriber needs it.
 - The commit stays in the worktree for reuse if a bulk/quick-order feature is ever enabled.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-burgundy-pair-and-little-lamb-placed
+
+- task_stage: LIVE_VERIFIED
+- task_entities: burgundy-ruffle-mommy-and-me-sweaters, burgundy-trim-crew-daddy-and-me-sweaters, little-lamb-family-matching-sweatshirts (session [57a715]); together-heart related list; `mommy-and-me` MANUAL
+
+- **Burgundy pair:** mom↔dad `complementary_products` link ("Complete the family look").
+- **Burgundy ruffle** moved to `mommy-and-me` position 10.
+- **Little Lamb:** `related_products` → Together Heart, Smiley Heart, Little Heart, Moon and Star. Together Heart's related list now also includes Little Lamb.
+- **Storefront readback:**
+  - mommy-and-me #10; Mommy & Me `sweaters` #1; `daddy-me` #1 (burgundy crew);
+  - `family-sweaters` #1 and `family-tops` #1 (Little Lamb);
+  - new-arrivals and fall-winter 1–3.
