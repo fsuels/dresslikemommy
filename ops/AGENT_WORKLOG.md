@@ -55926,3 +55926,17 @@ Next: the owner approves packet items 1–5, starting with the shared negative l
 - **Not changed:** no listing was built or archived. Live products from 赛美人 (7-day promise, 100% measured 48h pickup) and 斯蒂琪 (15-day promise, our 2.6-day median lead) stay live pending the owner's call.
 
 **Update (owner decisions, same day):** keep the live 赛美人 and 斯蒂琪 listings but add no new designs from slow-promise suppliers; skip Papa Bear and drop 艾莉雅. Recorded in `TRUSTED-SUPPLIERS.md`. The next action is fresh 2026 fall/winter family sweater sourcing from suppliers that ship within 48h.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-family-matching-hub-consolidation
+
+- task_entities: collections 377555589 (`matching-outfits`, hub), 33122287713 (`new-women-outfits`), 92758311009 (`popular-family-matching`), 355558883425 (`daddy-me-shirts`); menu `main-menu` item 479417106529; theme commit 7aafd97; live theme 133290917985
+- task_stage: VERIFY done; MEASURE pending (external clock)
+- next_action_id: GSC_READ_FAMILY_MATCHING_HUB_2026_10_26
+
+Why: owner SEO brief (family-matching collection ~23.7k impressions at ~pos 58). Search Console showed Google ranks `/collections/matching-outfits` (7.7k impr/3 mo, pos 47; receives the `/collections/family-matching` 301), not `new-women-outfits` (247 English impr). Supersedes the hub choice in anchor `2026-09-24-family-matching-outfits-seo-target`.
+
+Done (LIVE_VERIFIED): matching-outfits rule + TAG "Family Matching" (79 → 182 live products, superset); SEO fields and buyer-guide description fixed (swimwear return sentence matches the refund policy); daddy-me-shirts titled "Father and Son Matching Hawaiian Shirts"; main-menu FAMILY MATCHING → matching-outfits; theme 7aafd97 moves all hub links, canonicals popular-family-matching and English new-women-outfits to matching-outfits, and sets English H1/title/meta/intro. Theme applied with `sync_live_theme_from_main.py --apply` (GitHub sync lag), 0/366 drift. Grinch: all 6 products ARCHIVED, none live.
+
+Rollback, evidence and measurement: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-28-family-matching-hub-consolidation/README.md`.
+
+Routed: nightgowns need 2026 sourcing (1 active product) → merch queue; localized hub copy for no/da/fi/cs/ro/he → translation lane. Scope split with peer sessions "English collection pages SEO ranking" (couples, pajamas, tops, sweaters, Thanksgiving, blog Grinch blocks) and "ads and SEO brief" (ads; 5 nightgown 404 redirects).
