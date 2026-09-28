@@ -55855,3 +55855,13 @@ Owner request (Claude Code chat, session "Website visual improvements" [f7baa5])
 - The closeout's own translate step does not fill a product nothing has pre-seeded.
 - The website session links the hats from the Christmas knits.
 - Rollback: set to DRAFT.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-cart-heading-refresh-not-released
+
+- task_stage: DECIDED_NOT_RELEASED
+- task_entities: subagent commit 6f79ddb (worktree `agent-a891fcef6d534ba34`: `assets/cart.js`, `snippets/cart-drawer.liquid`, test); `assets/dlm-family-builder.js` ~l.1019
+
+- **What it does:** a subagent built a refresh of the drawer "Cart (N)" heading, the empty panel and the cart bubble inside `CartItems.onCartUpdate`: 4 new failing-then-passing tests; 53 related tests pass.
+- **Why not released:** the only paths it affects (quick-add-bulk, quick-order-list) are not used on this storefront. Every path we use (product form, quick-add modal, family builder, complete-the-family, drawer quantity/remove) already re-renders the whole drawer via `renderContents` or refreshes the drawer inner, and the bubble is updated by each sender. The change adds DOM insertion/removal logic that can only be verified live with cart adds, which we are avoiding to protect analytics.
+- **Side note:** `dlm-family-builder.js` publishes the literal event name `'cartUpdate'` instead of `PUB_SUB_EVENTS.cartUpdate`. It is harmless today because the builder refreshes the drawer itself. Revisit only if a cartUpdate subscriber needs it.
+- The commit stays in the worktree for reuse if a bulk/quick-order feature is ever enabled.
