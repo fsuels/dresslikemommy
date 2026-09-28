@@ -55816,3 +55816,35 @@ Shopify sessions for 2026-09-27 show 41 add-to-carts out of 69 sessions in the 1
 - Excluding it, the day is about 22 real carts, 6 checkouts (~27%) and 2 orders ($164.66), in line with the 14-day baseline. No regression from the drawer releases.
 - **Treat 2026-09-27 14:00 UTC ATC data as test traffic** in any funnel or paid-growth analysis.
 - Future real-cart QA should use a preview theme or a single session, to limit pixel pollution.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-mommy-and-me-legacy-swim-dress-rewrite-live
+
+Owner request (Claude Code chat, session "Website visual improvements" [f7baa5]): rewrite the older "Category – Design" Mommy & Me listings (swimsuits and dresses first) into canonical "Design Name — Details" titles and handles with 301 redirects, plus 20-locale title translations, using the guarded before-state/rollback workflow, and verify clean mobile cards in en, de and fr.
+
+- task_entities: 38 products in `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-mommy-and-me-legacy-swim-dress-rewrite/plan.json`; `sections/category-icons.liquid` (`category:dresses` curated tile handle).
+- Scope selection:
+  - 52 ACTIVE non-split swim/dress members were found.
+  - Excluded: title source-fact watches `6719764463713` and `7516369715297`, and 12 whose EN cards were already clean (short titles).
+- English titles:
+  - Built from the current title, description and image alt text.
+  - "<Design> Mommy and Me <Category> — <Details>", ≤70 characters.
+  - Handles are slugs of the design name, ≤60 characters, and qualify for the card rule.
+  - Checked: new handles free, no redirect conflicts, no handle translations, no live theme JSON references, no TITLE-rule collection change.
+  - Fact corrections:
+    - navy/orange: "Dresses and Shirts" → dresses only (options are Girl and Mother);
+    - royal-blue paisley: "Family" → "Mommy and Me" (Mother and Child sizes);
+    - leopard long-sleeve: "mesh" is from the image alt ("sheer mesh sleeve panels").
+- Translations:
+  - de by the parent; the other 19 by 5 read-only subagents.
+  - Parent checks: `validate_canonical.py` (em dash first, design length, script, markers), a duplicate/prefix-similarity check, and live card-fit injection at 390px and 320px in every locale (0 clipped after fixes).
+  - An independent reviewer found 28 issues. 27 were fixed (compound hyphenation, grammar, "paréo" → "cache-maillot", Arabic "aquatic" → "watercolor", pt-BR garment, similar names, Greek "tulle"). The disputed mesh-sleeve claim was kept on image evidence.
+- Release:
+  - `apply_rewrite.py`, guarded on live title and handle, ran for 37 products, then `7227374534753`.
+  - Then commit `8f31a49` (tile handle) was pushed and upserted immediately. The live file before the upload equalled the previous main (MD5); drift is now 0.
+- VERIFIED:
+  - admin after-state for 38/38: title, handle and 20 translations equal plan, not outdated; collections, SEO and ACTIVE unchanged;
+  - new URL 200, old URL 301 (EN and `/de`); de/fr/ja storefront titles match;
+  - phone Mommy & Me across all pages: the 38 have 0 clipped in en/de/fr; EN clipped 40 → 3 (2 held products + cartoon pajamas); de 10 and fr 5 remaining are outside scope (held, pajamas, skipped-short-EN listings with long translations);
+  - home Dresses tile renders with the renamed product's image alt.
+- Residual: Merchant/Pinterest/ads pick up the new links on their next feed or crawl (old links 301). A peer's uncommitted local edits to `sections/category-icons.liquid` must merge the tile-line change.
+- Rollback: `python3 <packet>/apply_rewrite.py all --execute --rollback`, then `git revert 8f31a49` and upload that file.
