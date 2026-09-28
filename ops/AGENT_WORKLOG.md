@@ -55807,3 +55807,12 @@ Decision: the only decisive test is a real desktop payment (the owner's money, s
 - `new-arrivals`, `fall-winter`, Mommy & Me `sweaters` and (red pieces) `christmas-sweaters` already include them through their rules.
 
 Rollback: restore the daddy rules from the before file; move the 4 back; delete the 8 `complementary` metafields.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-analytics-caveat-test-cart-traffic
+
+- task_stage: DONE (measurement note)
+
+Shopify sessions for 2026-09-27 show 41 add-to-carts out of 69 sessions in the 14:00 UTC hour ("mobile direct"). This is the Conversion session's headless real-cart wallet readback on 5 device sizes, not shoppers.
+- Excluding it, the day is about 22 real carts, 6 checkouts (~27%) and 2 orders ($164.66), in line with the 14-day baseline. No regression from the drawer releases.
+- **Treat 2026-09-27 14:00 UTC ATC data as test traffic** in any funnel or paid-growth analysis.
+- Future real-cart QA should use a preview theme or a single session, to limit pixel pollution.
