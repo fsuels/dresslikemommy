@@ -55748,3 +55748,20 @@ Owner request (Claude Code chat, session "Website visual improvements" [f7baa5])
 - Rollback: `python3 <packet>/apply_titles.py <packet>/translations/<locale>.json --execute --rollback` per locale. For the 4 patched pairs, first revert `patch_log.json` "to" → "from".
 
 Update to `2026-09-27-image-alt-translations-live` (LIVE_VERIFIED): at a peer session's request (19 listings with rewritten English alts), the digest state re-queued those alts plus new-listing images. 127 alts x 20 locales were registered, plus catch-ups for 3 new Mommy & Me sweater listings, with 0 user errors and 0 readback mismatches. The final `translate_image_alts.py queue` shows 0 images needing translation. Receipts: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-image-seo/translations/apply_peer_*.json`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-desktop-checkout-break-evidence
+
+- task_entities: PROB-2026-09-24-STOREFRONT-404-AND-DESKTOP-CHECKOUT; ShopifyQL `sessions` by device and month; abandoned checkouts Sep 12; orders #9554–#9574 payment details
+- task_stage: DIAGNOSE done (read-only); BLOCKED on the owner's test payment
+- next_action_id: OWNER_DESKTOP_TEST_ORDER_THEN_REFUND
+
+Why: the owner asked the CEO to pick the next unclaimed sales item. The 30-day funnel showed desktop reached checkout 27 times with 0 completions, against 10 of 28 on mobile.
+
+Findings (aggregate reads; no customer PII stored):
+- Monthly desktop completed checkouts: Oct 2 · Nov 2 · Dec 3 · Jan 2 · Feb 2 · Mar 4 · Apr 6 · May 7 · Jun 9 · Jul 5 · **Aug 0 (of 7 reached) · Sep 0 (of 26)**. Mobile Aug 10, Sep 8.
+- Sep 11 accounts for 14 desktop reaches: 8 identical $14.99 swimsuit abandoned checkouts with US addresses on Sep 12 UTC, either a declined shopper or card testing. Excluding it: 0 of 12.
+- Payment details on the orders since Jul 31 (21 orders): Shop Pay, Apple Pay, PayPal, Shop Pay Installments, one local method, and plain cards on Aug 4, 6, 15 and 29. So card processing works in general. The API does not expose device per order.
+- Confounders: desktop sessions Jul 2,242 → Aug 8,763 → Sep 3,928, with a desktop add-to-cart rate of 1.1% against 5.8% on mobile (bot-like), and agent desktop QA reached checkout in September.
+- No checkout-related change logged around Aug 1; the repo git history begins 2026-08-27.
+
+Decision: the only decisive test is a real desktop payment (the owner's money, so an owner action). If desktop checkout is broken, it was about a third of historical orders, so this is the largest single leak on the site. Updated `ops/PROBLEM_TRACKER.md`.
