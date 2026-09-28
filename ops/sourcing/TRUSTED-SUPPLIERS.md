@@ -95,6 +95,8 @@ Lead = PO created → stocked at the BuckyDrop warehouse (median / p90 days). So
     - 绪宸 (义乌): 1 year, pickup 74.6%, service 3.0. **Fails.**
     - 档幻 (义乌): 1 year, pickup 79%. **Fails.**
   - Scanner fix: many Chinese pages label the season field `上市年份/季节` (with a slash).
+- **Round 3 (same night):** siblings Christmas search. 24 offers scanned, 2 pass shipping and season; both stores fail the gate: 橘佑 (湖州织里) 3 years, 94.6% pickup; 悟凡 1 year. Winner of the night: **腾云鸽 / TYG Kids** (see Tier B), with 3 siblings sweaters live.
+  - "现货" (in stock) family-sweater searches return only 12-digit, pre-2026 offers. In-stock family knits are old designs, and fresh 2026 ones are made to order (3–10 day promises), so the freshness and 48h rules rarely overlap for family knitwear. Kids' knitwear factories (TYG, 金贝儿) are the exception.
 
 ## Avoid (failed the gate on 2026-09-26)
 
