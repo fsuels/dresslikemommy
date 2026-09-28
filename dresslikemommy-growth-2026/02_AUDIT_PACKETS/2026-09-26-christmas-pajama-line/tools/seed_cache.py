@@ -104,7 +104,9 @@ def build_for(spec_path: Path) -> dict[str, dict[str, str]]:
         pet = ns.get("PET", False)
         swf = ns.get("SWF", False)
         knit = ns.get("KNIT", False)
+        krole = ns.get("KROLE")
         sk = lambda key: (key + "_mm" if mm and key in ("fam_text", "p1", "p2", "kf1_text", "kf4_text", "cta", "kf5_label")
+                          else key + ("_knm" if krole == "mommy" else "_knd") if krole and key in ("fam_text", "p1", "kf1_text")
                           else key + "_swk" if knit and key in ("fam_text", "p1", "p2", "kf1_text")
                           else key + "_swf" if swf and key in ("fam_text", "p1", "kf1_text")
                           else key + "_sw" if sw and key in ("fam_text", "p1", "p2", "kf1_text")
@@ -142,7 +144,7 @@ def build_for(spec_path: Path) -> dict[str, dict[str, str]]:
         if tag_re.findall(body_loc) != tag_re.findall(body_en):
             errors.append(f"{p}: body tag sequence differs from source")
         t = tr[("templates_mm_fleece" if spec.get("title_variant") == "fleece" else "templates_mm") if mm
-               else "templates_swk" if knit else "templates_swf" if swf else "templates_sw" if sw else "templates_pet" if pet else "templates"]
+               else ("templates_knm" if krole == "mommy" else "templates_knd") if krole else "templates_swk" if knit else "templates_swf" if swf else "templates_sw" if sw else "templates_pet" if pet else "templates"]
         mapping = {
             ns["TITLE"]: t["title"].replace("{P}", print_loc),
             ns["SEO_TITLE"]: t["seo_title"].replace("{P}", print_loc),

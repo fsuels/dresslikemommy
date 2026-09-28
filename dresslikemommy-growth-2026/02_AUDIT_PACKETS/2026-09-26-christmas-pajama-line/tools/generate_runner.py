@@ -96,7 +96,8 @@ def main() -> None:
         fetch_image(spec["image_url"], image)
     chart = ROOT / "ops/listings" / f"source-size-chart-{handle}.jpg"
     if not chart.exists():
-        shutil.copyfile(CHART_IMAGES[spec.get("chart_source", "factory")], chart)
+        src = ROOT / spec["chart_image"] if spec.get("chart_image") else CHART_IMAGES[spec.get("chart_source", "factory")]
+        shutil.copyfile(src, chart)
     spec_json = json.dumps(spec, ensure_ascii=False, indent=1)
     if "'''" in spec_json:
         raise SystemExit("spec contains a triple quote")

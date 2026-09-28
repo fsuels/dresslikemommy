@@ -55765,3 +55765,29 @@ Findings (aggregate reads; no customer PII stored):
 - No checkout-related change logged around Aug 1; the repo git history begins 2026-08-27.
 
 Decision: the only decisive test is a real desktop payment (the owner's money, so an owner action). If desktop checkout is broken, it was about a third of historical orders, so this is the largest single leak on the site. Updated `ops/PROBLEM_TRACKER.md`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-mommy-daddy-knit-pairs-and-accessory-hats
+
+- task_entities: 东莞森大 offers 1085288498274, 1073329703081, 1084175103382, 1075113265832 (8 listings `*-mommy-and-me-sweaters` / `*-daddy-and-me-sweaters`); hat offer 1070411224313 (`christmas-knit-family-matching-hats`, DRAFT)
+- task_stage: VERIFY
+- next_action_id: FINISH_XMAS_HAT_IMAGES_AND_ACTIVATE
+
+**8 Mommy & Me / Daddy & Me knit sweaters: ACTIVE, LIVE_VERIFIED.**
+- Each 森大 offer sells a women's/girls' style and a men's/boys' crew, listed as separate Mommy & Me and Daddy & Me products.
+- Charts are transcribed per offer into the spec (`chart_rows` / `fit_rows`): half chest doubled; adult heights not published.
+- Every listing: 4 QA'd images, closeout PASS, 8/8 channels, US/DE/GB/AU/CA markets.
+- **Copy corrected after image QA** (Codex retranslation, body updated before activation):
+  - Red Lace Bow: the collar is red knit; only the bow and cuff lace are white.
+  - Charcoal Cream Collar: scoop neckline over a cream collar insert, not a keyhole.
+- **Engine additions:**
+  - `knit_role` mommy/daddy: audiences, target gender, types "Mommy and Me Sweaters" / "Daddy and Me Sweaters", templates `templates_knm` / `templates_knd`.
+  - Design texts `collar_knit` and `cardigan_knit`; spec `chart_image`.
+  - Final-verify fit check fixed: column 2 is weight, 3 is height; height "-" allowed when the chart publishes none.
+  - "male" added to metafield strings (Google gender for Daddy & Me).
+- **Tooling fixes:**
+  - `attach_images.py` alt text is now product-accurate. 57 legacy "Christmas pajamas" alts on 19 non-pajama listings were rewritten; the alt session re-translated them; before-state in scratchpad.
+  - `attach_images.py` is now idempotent after the vendor image is removed. A re-run had duplicated the hero; red-striped-cuff was reordered.
+  - Activation goes through a guarded finish script (closeout must PASS).
+- **Accessory:** Christmas knit family hats DRAFT (Tree Stripe / Garland × Adult Hat $18.99, Child Hat $18.99, Parent & Child Set $23.99, Family Set of 4 $32.99).
+  - Supplier 洛阳戴姿容: 7 years, 100% pickup and fulfillment, listed 2026-07, release 2026年秋季.
+  - Created by `tools/accessories/create_xmas_knit_hats.py` (not the engine). "Not for children under 3" is stated (small pom-poms).

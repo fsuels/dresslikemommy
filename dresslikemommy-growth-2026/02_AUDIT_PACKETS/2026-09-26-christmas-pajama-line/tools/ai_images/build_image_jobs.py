@@ -345,6 +345,16 @@ def main() -> None:
                            .replace("sweatshirts", "knit sweaters").replace("sweatshirt", "knit sweater")
                            .replace("its color (only colors from the list above; raglan colors keep their contrast sleeves and cream body), the chest print",
                                     "its color (only colors from the list above), the knit pattern and texture, the chest motif"))
+        if spec.get("knit_role"):  # mommy & me / daddy & me pair: only the two of them appear
+            pair = ("a mom and her daughter", "mom", "daughter (a girl)", "women's") if spec["knit_role"] == "mommy" else ("a dad and his son", "dad", "son (a boy)", "men's")
+            base_prompt = (base_prompt.replace("a natural-looking family (mom, dad, a girl and a boy)", f"a natural-looking pair: {pair[0]}")
+                           .replace("Mom and dad wear adult knit sweaters; a girl and a boy wear child knit sweaters.",
+                                    f"Only {pair[0]} appear (no other people): the {pair[1]} wears the {pair[3]} knit sweater and the {pair[2]} wears the matching child knit sweater.")
+                           .replace("the whole family standing together outdoors on a fall day, all four knit sweaters clearly visible",
+                                    f"{pair[0]} standing together outdoors on a fall day, both knit sweaters clearly visible")
+                           .replace("Keep the same model family across images 1, 3 and 6", "Keep the same two models across images 1, 3 and 6")
+                           .replace("same family", "same pair")
+                           .replace("crew neckline, ribbed cuffs and hem", "collar or neckline, buttons, trims, cuffs and hem exactly as in the vendor photos"))
         if len(spec.get("colors", [])) == 1:  # single-color listing: everyone wears the one color
             base_prompt = (base_prompt.replace(" The family can mix colors, exactly like the vendor photos.", " Everyone wears this one color, exactly like the vendor photos.")
                            .replace(" Show at least two of the listed colors across the family, like the vendor photos.", "")

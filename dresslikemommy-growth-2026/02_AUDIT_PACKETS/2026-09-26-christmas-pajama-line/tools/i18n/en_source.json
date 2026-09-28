@@ -40,7 +40,13 @@
   "p1_swk": "The whole family can wear the same knit sweater, with child and adult sizes. Pick a size for each family member separately to build your matching look.",
   "p2_swk": "Each size is one knit sweater; the pants in the photos are not included. Chest is the full chest measurement and garment length is the top length. Height and weight are a general fit guide, and child ages are typical for those heights. Measurements are approximate, so compare with a sweater that fits well today.",
   "kf1_text_swk": "The same knit sweater in child and adult sizes.",
-  "h3_chart_swk": "Size Chart - Sweater"
+  "h3_chart_swk": "Size Chart - Sweater",
+  "fam_text_knm": "One cozy knit look for mom and her little one, made for fall outings, the holidays, and photos together.",
+  "p1_knm": "Mom and child can wear the same knit sweater design, with child and women's sizes. Pick a size for each of you separately to build your matching look.",
+  "kf1_text_knm": "The same knit design in child and women's sizes.",
+  "fam_text_knd": "One cozy knit look for dad and his little one, made for fall outings, the holidays, and photos together.",
+  "p1_knd": "Dad and child can wear the same knit sweater design, with child and men's sizes. Pick a size for each of you separately to build your matching look.",
+  "kf1_text_knd": "The same knit design in child and men's sizes."
  },
  "fabric_text": {
   "polyester": "Soft, cotton-feel knit made of 100% polyester.",
@@ -99,7 +105,9 @@
   "button_round": "Long-sleeve button-front top with a round neckline, plus full-length pants with an elastic waist and gathered ankles.",
   "button_lace_fleece": "Long-sleeve button-front top with a lace-trimmed collar and pocket, plus full-length pants with an elastic waist.",
   "dog_vest": "Sleeveless dog vest with black binding at the neck, leg openings, and curved hem, and small snap closures down the center.",
-  "crew_knit": "Long-sleeve crewneck knit sweater with a ribbed neckline, cuffs, and hem."
+  "crew_knit": "Long-sleeve crewneck knit sweater with a ribbed neckline, cuffs, and hem.",
+  "collar_knit": "Long-sleeve knit sweater with a contrast collar and ribbed cuffs and hem.",
+  "cardigan_knit": "Long-sleeve button-front knit cardigan with a contrast collar and ribbed cuffs and hem."
  },
  "size_variants": {
   "child:Child 2 Years>Child 14 Years:9|mother:Mother S>Mother 3XL:6|father:Father S>Father 3XL:6": {
@@ -141,6 +149,16 @@
    "size_text": "Child 6-12 Months through Child 13-14 Years, and Adult S through Adult 4XL.",
    "kf5_text": "Nine child sizes and seven adult sizes; see the size chart for measurements.",
    "size_short": "Child 6-12 Months to 13-14 Years, Adult S–4XL."
+  },
+  "child:Child 6-12 Months>Child 13-14 Years:9|mother:Mother S>Mother 3XL:6": {
+   "size_text": "Child 6-12 Months through Child 13-14 Years, and Mother S through Mother 3XL.",
+   "kf5_text": "Nine child sizes and six women's sizes; see the size chart for measurements.",
+   "size_short": "Child 6-12 Months to 13-14 Years, Mother S–3XL."
+  },
+  "child:Child 6-12 Months>Child 13-14 Years:9|father:Father S>Father 4XL:7": {
+   "size_text": "Child 6-12 Months through Child 13-14 Years, and Father S through Father 4XL.",
+   "kf5_text": "Nine child sizes and seven men's sizes; see the size chart for measurements.",
+   "size_short": "Child 6-12 Months to 13-14 Years, Father S–4XL."
   }
  },
  "templates": {
@@ -173,7 +191,11 @@
   "Fall": "Fall",
   "Family Sweaters": "Family Sweaters",
   "Crewneck Sweater": "Crewneck Sweater",
-  "Family Matching Sweaters": "Family Matching Sweaters"
+  "Family Matching Sweaters": "Family Matching Sweaters",
+  "Mommy and Me Sweaters": "Mommy and Me Sweaters",
+  "Daddy and Me Sweaters": "Daddy and Me Sweaters",
+  "Daddy and Me": "Daddy and Me",
+  "male": "male"
  },
  "colors": {
   "Navy": "Navy (color)",
@@ -189,7 +211,8 @@
   "Burgundy": "Burgundy",
   "Red": "Red",
   "Black": "Black",
-  "White": "White"
+  "White": "White",
+  "Charcoal": "Charcoal"
  },
  "designs": {
   "beary-cozy-family-matching-pajamas": {
@@ -539,6 +562,54 @@
    "print_sentence": "A big fuzzy cream star outline with little red pom-poms at its points sits on the front of the red knit sweater, with the word \"STAR\" embroidered inside and a small star on one shoulder.",
    "feature_label": "Fuzzy star:",
    "feature_text": "A soft, textured cream star with red pom-poms for a playful holiday look."
+  },
+  "charcoal-cream-collar-mommy-and-me-sweaters": {
+   "print": "Charcoal Cream Collar",
+   "print_sentence": "A charcoal gray knit sweater with a wide scoop neckline over a cream knit collar insert, and a cream layered hem.",
+   "feature_label": "Cream collar:",
+   "feature_text": "A soft cream collar and hem that brighten the charcoal knit."
+  },
+  "charcoal-layered-daddy-and-me-sweaters": {
+   "print": "Charcoal Layered",
+   "print_sentence": "A charcoal gray crewneck knit sweater with a small cream shirt-style tab at the neck and a cream layered hem.",
+   "feature_label": "Layered look:",
+   "feature_text": "A cream collar tab and hem that look like a shirt underneath."
+  },
+  "navy-cable-crew-daddy-and-me-sweaters": {
+   "print": "Navy Cable Crew",
+   "print_sentence": "A navy cable-knit crewneck sweater with ribbed neckline, cuffs, and hem.",
+   "feature_label": "Cable knit:",
+   "feature_text": "A classic navy cable knit that goes with everything."
+  },
+  "navy-pearl-gingham-mommy-and-me-sweaters": {
+   "print": "Navy Pearl Gingham",
+   "print_sentence": "A navy cable-knit cardigan with a blue gingham ruffle collar edged in little faux pearls, pearl-look buttons, and gingham ruffles at the cuffs and hem.",
+   "feature_label": "Gingham ruffles:",
+   "feature_text": "Blue gingham ruffles and pearl details on a navy cable knit."
+  },
+  "red-cable-cardigan-mommy-and-me-sweaters": {
+   "print": "Red Cable Cardigan",
+   "print_sentence": "A red cable-knit cardigan with a cream Peter Pan collar, gold buttons, and cream trim at the cuffs and hem.",
+   "feature_label": "Peter Pan collar:",
+   "feature_text": "A cream collar and gold buttons on a cozy cable knit."
+  },
+  "red-cable-crew-daddy-and-me-sweaters": {
+   "print": "Red Cable Crew",
+   "print_sentence": "A red cable-knit crewneck sweater with cream trim at the neckline, cuffs, and hem.",
+   "feature_label": "Cable knit:",
+   "feature_text": "Classic cable texture with cream tipping."
+  },
+  "red-lace-bow-mommy-and-me-sweaters": {
+   "print": "Red Lace Bow",
+   "print_sentence": "A red knit sweater with a pointed knit collar, a big white lace bow with little pearl accents at the neck, and white lace trim at the cuffs.",
+   "feature_label": "Lace bow:",
+   "feature_text": "A sweet white lace bow with pearl accents for a dressy mommy-and-me look."
+  },
+  "red-striped-cuff-daddy-and-me-sweaters": {
+   "print": "Red Striped Cuff",
+   "print_sentence": "A red crewneck knit sweater with thin cream stripes at the cuffs and hem.",
+   "feature_label": "Striped trim:",
+   "feature_text": "Classic cream tipping at the cuffs and hem."
   }
  },
  "templates_mm": {
@@ -570,5 +641,15 @@
   "title": "{P} Family Matching Sweaters — Knit Crewneck",
   "seo_title": "{P} Family Sweaters | Dress Like Mommy",
   "seo_description": "{P}: matching knit sweaters for mom, dad, girls & boys in {FABRIC}. {SIZES}"
+ },
+ "templates_knm": {
+  "title": "{P} Mommy and Me Sweaters — Matching Knits",
+  "seo_title": "{P} Mommy & Me Sweaters | Dress Like Mommy",
+  "seo_description": "{P}: matching knit sweaters for mom and daughter in {FABRIC}. {SIZES}"
+ },
+ "templates_knd": {
+  "title": "{P} Daddy and Me Sweaters — Matching Knits",
+  "seo_title": "{P} Daddy & Me Sweaters | Dress Like Mommy",
+  "seo_description": "{P}: matching knit sweaters for dad and son in {FABRIC}. {SIZES}"
  }
 }

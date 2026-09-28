@@ -39,13 +39,36 @@ def gql(query: str, variables: dict | None = None) -> dict:
 
 
 def alts_for(spec: dict) -> list[tuple[str, str]]:
+    """Alt text per image, worded for what the listing actually sells."""
     name = spec["print_name"]
-    return [
-        ("image1.png", spec["media_alt"]),
-        ("image3.png", f"Family in matching {name} Christmas pajamas on Christmas morning by the tree."),
-        ("image5.png", f"{name} matching Christmas pajama sets for an adult and a child, laid out without models."),
-        ("image6.png", f"Family relaxing together at home in matching {name} Christmas pajamas."),
-    ]
+    mode, role = spec.get("mode", "family_christmas"), spec.get("knit_role")
+    if mode == "family_sweatshirt":
+        garment = "knit sweaters" if spec.get("garment") == "sweater" else "sweatshirts"
+        who = {"mommy": "Mom and daughter", "daddy": "Dad and son"}.get(role, "Family")
+        adult = {"mommy": "a woman", "daddy": "a man"}.get(role, "an adult")
+        rest = [(f"{who} out together in matching {name} {garment}."),
+                (f"{name} matching {garment} for {adult} and a child, laid out without models."),
+                (f"{who} relaxing together at home in matching {name} {garment}.")]
+    elif mode == "mommy_me":
+        rest = [(f"Mom and daughter in matching {name} pajamas at home."),
+                (f"{name} matching pajama sets for a woman and a child, laid out without models."),
+                (f"Mom and daughter relaxing together in matching {name} pajamas.")]
+    elif mode == "family_pet":
+        rest = [(f"Dog in the {name} vest with the family at Christmas."),
+                (f"{name} dog vest laid out without models."),
+                (f"Dog in the {name} vest relaxing at home.")]
+    else:
+        rest = [(f"Family in matching {name} Christmas pajamas on Christmas morning by the tree."),
+                (f"{name} matching Christmas pajama sets for an adult and a child, laid out without models."),
+                (f"Family relaxing together at home in matching {name} Christmas pajamas.")]
+    return [("image1.png", spec["media_alt"]), ("image3.png", rest[0]), ("image5.png", rest[1]), ("image6.png", rest[2])]
+
+
+def legacy_alts(spec: dict) -> list[str]:
+    name = spec["print_name"]
+    return [f"Family in matching {name} Christmas pajamas on Christmas morning by the tree.",
+            f"{name} matching Christmas pajama sets for an adult and a child, laid out without models.",
+            f"Family relaxing together at home in matching {name} Christmas pajamas."]
 
 
 def media_nodes(pid: str) -> list[dict]:
@@ -84,6 +107,9 @@ def main() -> None:
             raise SystemExit(f"{handle}: not an unpublished DRAFT")
         pid = product["id"]
         existing_alts = [n["alt"] for n in media_nodes(pid)]
+        if [a for a in existing_alts] == [alt for _, alt in plan]:  # already attached and vendor image removed: idempotent no-op
+            print(handle, "OK", len(existing_alts), "images (already attached)")
+            continue
         for fname, alt in plan:
             if alt in existing_alts and fname != "image1.png":
                 continue
