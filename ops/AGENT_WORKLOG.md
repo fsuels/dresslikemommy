@@ -55878,3 +55878,22 @@ Owner request (Claude Code chat, session "Website visual improvements" [f7baa5])
   - mommy-and-me #10; Mommy & Me `sweaters` #1; `daddy-me` #1 (burgundy crew);
   - `family-sweaters` #1 and `family-tops` #1 (Little Lamb);
   - new-arrivals and fall-winter 1–3.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-burgundy-pair-little-lamb-live-ailiya-gate-fail
+
+- task_entities: `burgundy-ruffle-mommy-and-me-sweaters`, `burgundy-trim-crew-daddy-and-me-sweaters` (东莞森大); `little-lamb-family-matching-sweatshirts` (深圳市斯蒂琪 offers 1081613475540 + 1079575361234); owner-requested 广州市艾莉雅 offer 1035677749750 and its store's 2026 Christmas pajamas (session [57a715])
+- task_stage: LIVE_VERIFIED (3 listings); BLOCKED_ON_OWNER (艾莉雅 exception)
+- next_action_id: OWNER_DECIDE_AILIYA_EXCEPTION
+
+- **3 listings: ACTIVE, LIVE_VERIFIED.** Each: 4 QA'd Codex images, closeout PASS, 8/8 channels, US/DE/GB/AU/CA markets; public `.js` readback 100% available.
+  - Burgundy Ruffle (Mommy & Me) ↔ Burgundy Trim Crew (Daddy & Me), $36.99–$47.99.
+  - Little Lamb family sweatshirts: light blue + cream, Child 80–150 cm + Adult S–4XL, $29.99 / $38.99. Both offers are fresh (listed 2026-08/09; release Fall 2026 / Winter 2026). The vendor photo's cap/dog logos are absent from the AI images.
+  - The website session was asked to place and cross-link all three.
+- **Owner request, 艾莉雅 Christmas pajamas: not listed; the criteria fail.**
+  - Supplier: established June 2023, 4 years on 1688 (rule ≥5), 48h pickup 87% (rule ≥95%).
+  - Offer 1035677749750 is tagged Spring 2026, which fails the season rule for Christmas.
+  - The store has about 60 Christmas family pajamas listed May–Sep 2026; one read (1087656337767) is tagged 2026年秋季.
+  - Every design includes kids' sizes (test-report hold, packet #14). Several are superhero or cartoon-IP prints.
+  - 1688 started throttling after the store scan; reads stopped, no bypass.
+- Tooling committed: `build_specs_senda_pairs.py` (burgundy pair), `build_specs_stq_lamb.py`, lamb/bur design translations.
+- Rollback: set the 3 listings to DRAFT.

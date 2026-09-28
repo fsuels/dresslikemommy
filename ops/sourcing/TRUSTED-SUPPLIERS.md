@@ -83,7 +83,7 @@ Lead = PO created → stocked at the BuckyDrop warehouse (median / p90 days). So
 | 深圳市欧美妮服装有限公司 | "Ships in 25 days" |
 | 惠州市天穗服饰有限公司 | 15-day dispatch; service 3.5 (it is 6 years old and in Huizhou; re-check if it speeds up) |
 | 普宁市茂兴发织造制衣有限公司 | 4 years |
-| 广州市艾莉雅服饰有限公司 | 4 years |
+| 广州市艾莉雅服饰有限公司 | Re-checked 2026-09-28 on owner request: established June 2023, 4 years on 1688, 48h pickup 87% (fulfillment 97%, service 4.0). Its 2026 Christmas family pajamas all include kids' sizes (test-report hold) and several are superhero/cartoon-IP prints. Offer 1035677749750 is tagged Spring 2026. Listing needs an explicit owner exception |
 | 衣林商贸(广州)有限公司 | 卡通 IP-term designs; MOQ 4 on some offers |
 | 东营大不同工贸 | 81% fulfillment; cartoon fleece onesies |
 | Xingcheng (兴城, Liaoning) swimwear vendors | About 2,500 km away. PO P3116387771001 (order #9566) sat in "Purchasing Pending" from 2026-09-08 |

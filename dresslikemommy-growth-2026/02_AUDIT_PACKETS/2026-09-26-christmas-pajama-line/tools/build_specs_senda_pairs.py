@@ -80,6 +80,17 @@ DESIGNS = [
                     feature=("Cable knit:", "A classic navy cable knit that goes with everything."),
                     alt="Dad and son in matching navy cable-knit crewneck sweaters.", main="00.jpg", refs=["02.jpg", "09.jpg"],
                     tags=["Navy", "Cable Knit"])),
+    dict(offer="1074933693109", listed="2026-08-13", kids=KID_HALF_A, color=("Burgundy", "BUR", ["Red", "White"]),
+         mommy=dict(style="酒红色开衫", name="Burgundy Ruffle", code="BRCD", women=[(55, 45, 56), (57, 47, 57), (59, 49, 58), (61, 51, 59), (63, 53, 60), (65, 55, 61)],
+                    sentence="A burgundy knit cardigan with small buttons, a tie at the waist, and white lace ruffles at the cuffs and hem.",
+                    feature=("Lace ruffles:", "Soft white lace ruffles at the cuffs and hem with a sweet tie waist."),
+                    alt="Mom and daughter in matching burgundy knit cardigans with white lace ruffle cuffs and hems.", main="00.jpg", refs=["09.jpg", "02.jpg"],
+                    tags=["Christmas Sweaters", "Burgundy", "Cardigan", "Ruffle"]),
+         daddy=dict(style="酒红色圆领", name="Burgundy Trim Crew", code="BTCR", men=MEN_A,
+                    sentence="A burgundy crewneck knit sweater with cream trim at the neckline and a cream layered hem.",
+                    feature=("Cream trim:", "A cream neckline and layered hem that brighten the burgundy knit."),
+                    alt="Dad and son in matching burgundy crewneck knit sweaters with cream trim.", main="00.jpg", refs=["02.jpg", "09.jpg"],
+                    tags=["Christmas Sweaters", "Burgundy"])),
 ]
 
 
