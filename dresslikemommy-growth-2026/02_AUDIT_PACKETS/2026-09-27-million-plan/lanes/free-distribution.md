@@ -166,9 +166,24 @@ Find targets: search Google for `"matching family christmas pajamas" 2026`, `bes
 - **Family-share tracking** (theme; committed on branch `claude/marketing-distribution-strategy-88o5mn`, NOT live): the product-page share icon now shares a localized "Should we all match?" note (35 locales) plus `utm_source=family_share&utm_medium=pdp_share&utm_campaign=matching_look`. Browser-tested against the live PDP with the new JS swapped in (native share payload and clipboard fallback both correct). Release to `main` was blocked by this session's permission guard and needs the owner's OK.
 - **Shop app:** Shopify's help center says eligible stores are added to Shop automatically, even without the Shop channel installed. Appearing in Shop *search* also needs a custom domain, a long selling history, steady order volume and positive reviews ([Shopify Help](https://help.shopify.com/en/manual/online-sales-channels/shop/eligibility/requirements)). Low reviews and low volume are the likely blockers, so the Judge.me past-order review import (owner packet item 4) also unlocks Shop. Installing the free Shop channel (owner, Apps → Sales channels) adds the store-page settings.
 
-## 6. Queue
+## 6. Queue (updated 2026-09-27 after owner approval)
 
-1. **Needs owner yes now:** email C-1 (or a 10% test); `read_markets` scope; Judge.me import; creator-code terms (§4.5). Fulfil or mark `#9572` and `#9560`.
-2. **Owner can do in 10 minutes, no approval needed:** §4.1 personal network post.
-3. **Agent next, after owner yes on §4.5:** create the creator discount codes (reversible) and a tracking sheet.
-4. **Pinterest lane:** give it §4.2 if it isn't already publishing designed pins.
+Owner approved in chat: **email C-1, creator terms (§4.5), `read_markets`**. The owner also asked to grow beyond past buyers ("find online ways to grow this").
+
+**Owner steps, in this order:**
+
+1. **Send C-1, Wave 1 now (Tier A + add-on, 355 people).** No API can create Shopify Messaging campaigns, so this is an admin step.
+   - Go to Marketing → Create campaign → Shopify Messaging email.
+   - Copy the text from `email.md` "C-1 Launch" (updated: order by Dec 8, plus a sweaters line).
+   - Recipients: `Xmas 2026 C-1 Tier A: subscribed buyers since 2024` + `Xmas 2026 C-1 add-on: subscribers, no order, joined last 12 months`.
+   - Send a test to yourself, then send.
+   - Two days later: if bounces are under 2% and spam complaints under 0.1%, send to `…Tier B…` (1,728). Five days after that, send to `…Tier C…` (3,183).
+   - Why now and not Oct 20: the designs are live today, and every extra week before Dec 8 is more buying time.
+2. **Upload Pinterest batch 1** (`../pinterest/`).
+3. **Google feed:** add `read_markets` to the "DLM Operator Scripts" Dev Dashboard app, reinstall, run `refresh_shopify_admin_token.py` on your machine, then tell the feed session "go" (`paid.md` O1). This container holds no store credentials, so it cannot run the rebuild.
+4. **Outreach:** send pitches 1–9 from `../outreach/pitches.md`, and sign up for HARO and Source of Sources (free).
+5. **Decide on samples (money):** about 2–3 sample sets for Emily Reviews / Mom Does Reviews. Ideal deadline Nov 15; with 12–16 day delivery, order them by about Oct 25.
+6. **Release the family-share button** (commit `c7ef0f2`) to `main`.
+7. **Ship or mark** `#9572` and `#9560`.
+
+**Agent next (no owner step needed):** create creator codes as creators accept (P4); run the 24h and 7-day readbacks by `utm_source` and campaign; turn the pins into short videos for Reels/TikTok/Shorts/Pinterest video.

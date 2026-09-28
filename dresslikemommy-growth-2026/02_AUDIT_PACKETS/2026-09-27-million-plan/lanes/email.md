@@ -233,6 +233,14 @@ Discount codes the owner creates in **Discounts** before turning anything on:
 
 ## 2. Christmas 2026 launch campaign (3 emails and 1 optional)
 
+**C-1 readiness (LIVE_VERIFIED 2026-09-27):** 28 Christmas designs are ACTIVE on `/collections/christmas-pajamas` and `/collections/christmas-sweaters` with final images. The wave segments were created via the Admin API with counts read back:
+- `Xmas 2026 C-1 Tier A: subscribed buyers since 2024` = 307
+- `Xmas 2026 C-1 add-on: subscribers, no order, joined last 12 months` = 48
+- `Xmas 2026 C-1 Tier B: subscribed buyers 2021-2023` = 1,728
+- `Xmas 2026 C-1 Tier C: subscribed buyers before 2021` = 3,183
+
+That is 5,266 sends in total, inside the 10,000 free. The owner approved C-1 in chat on 2026-09-27. Gate items 1–3 and 5 pass. Item 4 (test send to the owner) happens in the Messaging editor before the first wave.
+
 **Pre-send gate.** Every item must pass before email C-1 goes out:
 1. The Christmas 2026 designs are **ACTIVE and published to the Online Store**. All of them are DRAFT in `ops/listings/` today.
 2. `/collections/christmas-pajamas` shows the designs with final images, not the single vendor placeholder image.
@@ -247,6 +255,8 @@ Discount codes the owner creates in **Discounts** before turning anything on:
 | C-2 Order by Dec 5 | Thu **Nov 19**, 10:00 ET | US engaged: S9 | A real, date-based planning reminder, before the Black Friday inbox rush |
 | C-3 Last call | Thu **Dec 3**, 10:00 ET | US engaged who haven't bought Christmas 2026: S10 | The final reminder before the recommended order date |
 | C-4 (optional) Gift card | Tue **Dec 8** | S10 | Only if the owner unarchives a digital gift card (section 3) |
+
+**Date reconciliation (2026-09-27):** the live PDP order-by line (`assets/dlm-holiday-order-by.js`) says "Order by Tue, Dec 8 for estimated Christmas arrival". C-1 now matches it. C-2 and C-3 below still use the more cautious Dec 5. Before C-2, pick one date for both the site and the emails, and never shorten the estimate.
 
 **Deadline math** (shown so nobody rounds it into a promise): an order placed Sat Dec 5, plus the 12–16 day standard estimate, lands Dec 17–21. That is an estimate, not a guarantee. The copy says "expected by about December 21" and "estimate". Recheck the US estimate on a product page before C-2 and C-3. If the estimate has changed, move the date. **Never shorten it.**
 
@@ -285,7 +295,9 @@ If a month would go over 10,000, cut the least-engaged tier first. Do not accept
   >
   > **Sizes for everyone:** Child 2–14 Years, Mother S–3XL and Father S–3XL (some styles to 4XL). Kids' sets are $32.99 and adult sets are $35.99. Each person's set is sold separately, so you build exactly the family you have.
   >
-  > **Plan ahead:** standard shipping is included and the delivery estimate is 12–16 days. For Christmas delivery in the US, we recommend ordering by **Saturday, December 5**. Earlier means more time for try-ons.
+  > **New this year: matching family Christmas sweaters** too, in reindeer, Santa and Nordic knits for the whole family: https://dresslikemommy.com/collections/christmas-sweaters
+  >
+  > **Plan ahead:** standard shipping is included and the delivery estimate is 12–16 days. For estimated Christmas arrival in the US, order by **Tuesday, December 8**. Every product page shows the date. Ordering earlier gives more time for try-ons and exchanges.
 - CTA button: `Shop Christmas pajamas` → `https://dresslikemommy.com/collections/christmas-pajamas`
 - Product block: 6 products, in this order: Jolly Crew, Classic Red Plaid, Evergreen Fair Isle, Let It Snow, Lights Out Reindeer, Plaid Tree Trio.
 - Footer line (non-US readers): `Outside the US? Delivery estimates vary by country. Check the estimate for your country on any product page before ordering.`
