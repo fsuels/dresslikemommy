@@ -2,7 +2,7 @@
 
 Integration status: `GENERATED`
 
-Last generated: 2026-09-23 22:53
+Last generated: 2026-09-28 12:23
 
 Purpose: identify command-layer files that risk becoming side documents nobody uses.
 
@@ -49,7 +49,7 @@ No new `ops/marketing/` artifact counts as done unless it is either:
 | `ops/marketing/prompt_log.md` | `PASS_CORE` | `true` | `2` | `false` | none |
 | `ops/marketing/review_log.md` | `PASS_CORE` | `true` | `5` | `true` | none |
 | `ops/marketing/reviewer_checklist.md` | `PASS_CORE` | `true` | `7` | `true` | none |
-| `ops/marketing/spend_authorization.md` | `PASS_CORE` | `true` | `10` | `true` | none |
+| `ops/marketing/spend_authorization.md` | `PASS_CORE` | `true` | `12` | `true` | none |
 | `ops/marketing/team_registry.md` | `PASS_CORE` | `true` | `3` | `false` | none |
 | `ops/marketing/us_primary_keyword_lane.md` | `PASS_INTEGRATED` | `true` | `11` | `true` | none |
 

@@ -210,7 +210,7 @@ def check_spend_authority_agreement() -> CheckResult:
     status = parse_spend_status()
     if not status:
         return CheckResult("spend_authority_agreement", False, "could not parse Status from ops/marketing/spend_authorization.md")
-    if status not in {"APPROVED_ACTIVE", "PENDING_OWNER_APPROVAL"}:
+    if status not in {"APPROVED_ACTIVE", "PENDING_OWNER_APPROVAL", "REVOKED_BY_OWNER"}:
         return CheckResult("spend_authority_agreement", False, f"unexpected spend status {status}")
 
     failures: list[str] = []

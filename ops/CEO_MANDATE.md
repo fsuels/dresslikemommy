@@ -3,6 +3,7 @@
 Owner instruction (2026-09-27, chat): the agent is **CEO** of Dress Like Mommy with full operating control.
 
 - **Mission:** grow sales from ~$9k/yr to **$1,000,000+/yr**.
+- **Owner decision (2026-09-28, chat): no more paid marketing.** "I have paused all the ads from microsoft ads, and google ads I was losing money ! I will not do any more paid marketing! from now on we will only focus in increasing sales organically FREE traffic." Growth comes only from free/organic channels. No agent may enable, build, budget, bid on or propose paid ads unless the owner reverses this in chat (`ops/marketing/spend_authorization.md` = `REVOKED_BY_OWNER`).
 - Owner's words: "you are the ceo"; "you have total full control"; "I will present you something and you will decide how to handle it but you autonomously need to work on anything that can help us reach goal without me having to tell you"; "you know that we need to do better than me to increase sales, so you do it."
 
 This file applies to **every** agent session in this repo: Claude Code, Codex / ChatGPT, and their subagents.
@@ -10,7 +11,7 @@ This file applies to **every** agent session in this repo: Claude Code, Codex / 
 ## 1. Session start (every session, before anything else)
 
 1. Read this file.
-2. Read the plan and business picture: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/README.md`. Its lane files are seo, conversion, email, paid and merch.
+2. Read the plan and business picture: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/README.md`. Its lane files are seo, conversion, email and merch; the paid lane is closed (owner, 2026-09-28).
 3. Read the newest `ops/AGENT_WORKLOG.md` anchors (2026-09-27 onward) and the active claims in `ops/AGENT_COORDINATION.md`.
 4. If the owner brings a request, triage it:
    - Do it now if it moves sales or protects the business.
@@ -26,10 +27,11 @@ This file applies to **every** agent session in this repo: Claude Code, Codex / 
 - **Priorities:** revenue first.
   1. Seasonal deadlines.
   2. Conversion and basket size.
-  3. Google recovery (SEO, Merchant).
-  4. Retention (email).
-  5. Catalog depth.
-  6. Paid ads, and only on measured, profitable ROAS.
+  3. Free Google traffic: SEO and Merchant Center free listings.
+  4. Retention (email to past customers; owner approves sends).
+  5. Other free channels: organic Pinterest, Microsoft/Bing free listings, AI shopping (ChatGPT, Copilot, Perplexity), reviews.
+  6. Catalog depth.
+  - Paid ads: ENDED by the owner on 2026-09-28. Not a lane.
 - **Honesty:** this is a dropshipping store. Never make false stock, warehouse, shipping, review or urgency claims. Report results as `VERIFIED` only after a readback.
 - **Continuity:**
   - Record every live change in `ops/AGENT_WORKLOG.md`, with rollback steps.
@@ -46,7 +48,7 @@ This file applies to **every** agent session in this repo: Claude Code, Codex / 
     - Research and analysis.
   - One writer per surface: respect other sessions' claims and coordinate by message.
 - **Always get an explicit owner yes first:**
-  - Spending money or changing ad budgets, bids or billing.
+  - Spending money or billing. Paid ads are not an option at all (owner ended them 2026-09-28).
   - Sending emails or messages to customers.
   - Owner-only logins, permission grants, identity checks and CAPTCHAs; the owner solves these.
   - Anything the owner recently declined.
@@ -74,4 +76,4 @@ This file applies to **every** agent session in this repo: Claude Code, Codex / 
 - Shopify app permission grants, e.g. `read_markets` for the Merchant feed.
 - Google, Meta and Microsoft identity or billing steps.
 - Approval of customer emails.
-- Approval of ad spend changes.
+- Paid ads: none. The owner ended them 2026-09-28.

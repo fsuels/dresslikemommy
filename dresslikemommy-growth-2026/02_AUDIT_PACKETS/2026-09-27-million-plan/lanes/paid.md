@@ -1,5 +1,7 @@
 # Paid-acquisition lane: scaling model to $1M a year (2026-09-27)
 
+> **CLOSED 2026-09-28 by the owner: no paid marketing.** Everything below is history. Do not execute any of it; see `ops/marketing/spend_authorization.md` (`REVOKED_BY_OWNER`).
+
 Lane: paid acquisition, planning only. Parent packet: `2026-09-27-million-plan`.
 Task class: `BUILD` (local plan). No ad-platform, Merchant, Shopify, GA4 or browser action happened, and no credential was read.
 

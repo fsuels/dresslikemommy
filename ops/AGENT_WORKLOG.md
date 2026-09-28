@@ -56079,3 +56079,28 @@ Blocked / risks:
 - 85 products still have no verified material. They need readable supplier pages, one slow manual read at a time; if 1688 challenges, the owner solves the CAPTCHA.
 
 Rollback: before values are in round2/*receipts.json and title_tr_before.json, plus the round-1 before_state.json.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-owner-ends-paid-marketing-organic-only
+
+- task_entities: Google Ads 650-997-2886 (7 campaigns), legacy Google Ads 399-097-6848, Microsoft Ads 477439 (15 campaigns), Microsoft Merchant Center store 291388; `ops/marketing/spend_authorization.md`; `ops/CEO_MANDATE.md`; million-plan README §4
+- task_stage: VERIFY done (spend readback); durable-rule change
+- problem_ids: none
+- next_action_id: OWNER_CONFIRM_LEGACY_399_PAUSED; then CEO executes the organic queue (million-plan README §4)
+
+Owner (chat, 2026-09-28): "I have paused all the ads from microsoft ads, and google ads I was losing money ! I will not do any more paid marketing! from now on we will only focus in increasing sales organically FREE traffic."
+
+Readback (read-only, same day):
+- Microsoft 477439: campaign grid "Today" total spend 0.00 across 15 campaigns; 11 rows read, all "Campaign paused", 0 Eligible. Account banner: "None of your ads are running, because you have paused your campaigns."
+- Google 650-997-2886: GB/AU/US/CA Search Daily and US Shopping Daily = Paused; PMax "Campaign #1" and the old US Search $200 total = Removed. "Campaigns in your current view" budget $0.00/day.
+- Legacy Google 399-097-6848 (the IT test that spent ~$53 in Sep): not listed under the testhqfinds login (only manager 700-107-9966 and DLM 650). UNVERIFIED; owner to confirm.
+- Microsoft Merchant store 291388 "dresslikemommy shopify": Approved; 899 US offers "pending according to image crawling"; store issue "26% of offers in this store are not targeted". Free-listing eligibility not found in the UI yet (follow-up in the organic queue).
+
+Done (durable records; no platform writes):
+- `ops/marketing/spend_authorization.md` Status `APPROVED_ACTIVE` → `REVOKED_BY_OWNER`; owner-decision banner added to current_marketing_state, action_queue, blocker_board (standing-authority row) and operator_cockpit; cockpit re-rendered.
+- `ops/scripts/check_continuity_integrity.py` accepts `REVOKED_BY_OWNER`; `ops/scripts/render_marketing_cockpit.py` reports it.
+- AGENTS.md/CLAUDE.md (byte-identical): routing step 4 now says paid marketing is ENDED; CEO Mandate line adds "Growth is free/organic traffic only."
+- `ops/CEO_MANDATE.md`: owner decision, priorities re-ranked (free Google, email, other free channels), paid removed as a lane.
+- Million-plan README: banner, channel rows, new §4 organic queue; `lanes/paid.md` marked CLOSED.
+- The "ads brief triage" session's shared-negative claim (Google BLOCKED) is moot under this decision; not cleared here (not this session's claim).
+
+Rollback: only by a new owner chat message reversing the decision; then restore the Status line and remove the banners.

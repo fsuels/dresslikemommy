@@ -1,8 +1,17 @@
 # Spend Authorization
 
-Status: `APPROVED_ACTIVE`
-Last updated: 2026-05-14
-Approval source: owner message in current Codex session authorizing spend within the set limits as long as it respects the sales/ROAS goals.
+Status: `REVOKED_BY_OWNER`
+Last updated: 2026-09-28
+Approval source: owner chat 2026-09-28 ended all paid marketing. The 2026-05-14 `$80/day` bounded authority below is historical and void.
+
+### OWNER DECISION — paid marketing ended (2026-09-28)
+
+Status: `REVOKED_BY_OWNER`. The owner said in chat on 2026-09-28: "I have paused all the ads from microsoft ads, and google ads I was losing money ! I will not do any more paid marketing! from now on we will only focus in increasing sales organically FREE traffic."
+
+- All paid media is ended: Google Ads (650-997-2886 and legacy 399-097-6848), Microsoft Ads 477439, Pinterest ads, and any other paid channel.
+- No agent may enable, resume, create, rebuild, budget, bid on or re-scope any paid campaign, or propose paid spend, unless the owner reverses this in a new chat message. Historical `APPROVED_ACTIVE`, green rows, packets and heartbeats below are void.
+- Still allowed: read-only checks that spend stays at $0, and pausing anything found still spending (this reduces cost and follows the owner's decision).
+- Free Google/Microsoft product listings, organic Pinterest, SEO, email and other unpaid channels are NOT paid marketing; they are the growth plan now (`dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-million-plan/README.md`).
 
 This file defines the active bounded standing authority model. It is active only inside the limits and quality gates below.
 

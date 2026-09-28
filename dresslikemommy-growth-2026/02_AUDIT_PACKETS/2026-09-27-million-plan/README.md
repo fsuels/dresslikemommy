@@ -1,5 +1,7 @@
 # Dress Like Mommy — $1M Turnaround: Complete Business Picture + Plan
 
+> **2026-09-28 owner decision: no paid marketing, free/organic traffic only.** The owner paused every Google and Microsoft Ads campaign because they were losing money. Readback the same day: Microsoft 477439 $0 today, all campaigns read are paused; Google Ads 650-997-2886 has 5 campaigns Paused and 2 Removed, $0.00/day live budget. Legacy Google Ads 399-097-6848 (IT test that spent ~$53 in Sep) is not visible from the testhqfinds login, so it is unverified. The organic queue in §4 replaces the old plan order.
+
 Owner goal (2026-09-27): take the store from ~$9k/yr to **$1,000,000+/yr**. The owner named Claude **CEO with full operating control**. Every new session starts here, then reads the lane files and the latest `ops/AGENT_WORKLOG.md` anchors named `2026-09-27-*` or later.
 
 Status labels: `LIVE_VERIFIED` means read back on the date shown. `REPO_KNOWN` means taken from repo files. `ESTIMATE` means inferred.
@@ -52,44 +54,41 @@ Status labels: `LIVE_VERIFIED` means read back on the date shown. `REPO_KNOWN` m
 |---|---|
 | Google organic | #1 source. SEO lane: `lanes/seo.md`. |
 | Google Merchant 513542500 | Free listings restored ~Sep 1: 738 clicks in 28 days and rising. US quality "Great". Gaps: 1 image per offer, no return info, no store rating. |
-| Google Ads DLM 650-997-2886 | 7 campaigns, $60/day budgets. US Shopping manual CPC; Search US/GB/AU/CA; PMax $5. 0 conversions. Purchase action is "Awaiting conversions". |
-| Microsoft Ads | 15 campaigns, $150/day in budgets but ~$2/day actual. $57.71 spent over 30 days, 0 conversions. ~255 clicks came from the audience/partner network. |
+| Google Ads DLM 650-997-2886 | ENDED by owner 2026-09-28. 5 Paused, 2 Removed (read back). Lost money: ~$103 spent Sep 6–28, 0 Shopify cpc orders. |
+| Microsoft Ads | ENDED by owner 2026-09-28. All campaigns read are paused, $0 today (read back). ~$58 spent in 30 days, 0 conversions. |
 | Pinterest | Approved merchant; catalog ingested (~5.2k items). Organic 2.9k impressions in 30 days. No active ads. A separate lane owns publishing. |
 | Email | Shopify Messaging. No automations are live. The pack is ready: `lanes/email.md` (the owner must approve sends). |
 | ChatGPT / AI search | Produced a $102 order in Aug 2026. Worth optimizing product data. |
 
 Logins: the owner's logged-in Chrome test profile (Google Ads, Merchant, GA4, Search Console). The Claude browser pane has 1688, BuckyDrop, Shopify admin, Pinterest and Microsoft Ads tabs.
 
-## 4. Plan (execution queue, no human timelines)
+## 4. Plan: organic / free traffic only (re-ranked 2026-09-28)
 
-1. **Christmas, the time-boxed season.** The last safe US order date is about Dec 5. Work at 12 weeks out:
-   - 11 new 2026 designs plus 5 restored winners: done except plaid-reindeer's activation.
-   - Next: +12 designs from proven suppliers (佐雅, 衣林, 天益, 赛美人).
-   - Christmas leads the homepage from Oct 1.
-2. **Conversion and basket size:**
-   - "Complete the family" cart upsell (build in progress).
-   - Visible size chart; price, arrival and returns line under the photo; reviews.
-   - `lanes/conversion.md`.
-3. **Google recovery:**
-   - SEO theme fixes (build in progress): the six head-collection rewrites.
-   - Stop archive churn.
-   - Canonicals and hreflang.
-   - Merchant feed with all images and return policy.
-   - `lanes/seo.md`.
-4. **Retention:** email automations, then a Christmas campaign to past customers (10k+ customer records). Needs the owner's yes. `lanes/email.md`.
-5. **Catalog:** about 470 active designs are needed for $1M (257 today). Rounds: Christmas → winter pajamas / nightgowns → spring 2027 dresses and jumpsuits (the largest season). `lanes/merch.md`.
-6. **Paid, only after 1–3:**
-   - Validate purchase tracking with one real test order.
-   - Microsoft audience-network opt-out.
-   - Scale on measured ROAS gates. At 42% landed cost, 650% ROAS gives a 35% net.
-   - `lanes/paid.md`.
+Every lane below is free. Budget = $0 ad spend; the only costs are product, freight and existing apps.
+
+**Doing now (CEO standing authority):**
+1. **Christmas catalog + pages (seasonal clock: last safe US order ~Dec 5).** Finish plaid-reindeer; +12 2026 designs from proven suppliers; Christmas collections indexed and internally linked before October so Google ranks them in time. Free traffic needs pages live early; Google takes weeks to rank.
+2. **Google free listings (Merchant 513542500).** Already the fastest-growing free source (938 clicks / 28 days on 2026-09-28). Fix feed gaps: more than one image per offer, remaining item issues (shipping currency mismatch, missing price/availability), color/material coverage.
+3. **SEO.** Head-collection rewrites, no archive churn (keep ranking URLs alive or 301 them), Christmas/Thanksgiving/winter guides linking to collections, review stars in structured data once reviews exist. `lanes/seo.md`.
+4. **Other free shopping surfaces.** Microsoft Merchant Center free listings (Bing/Copilot shopping), Shopify agentic storefronts / AI shopping (ChatGPT, Copilot, Perplexity; ChatGPT referrals were the best unpaid intent source: 207 sessions, 23 carts). Verify each is on.
+5. **Organic Pinterest.** The family-matching niche is visual; the catalog is already ingested (~5.2k items). Raise original-Pin cadence using the 4-image AI photoshoots, every Pin linking to a live collection.
+6. **Conversion and basket size** (makes every free visitor worth more): complete-the-family upsell, size chart, reviews. `lanes/conversion.md`.
+
+**Needs owner yes (free, but customer-facing or owner-only):**
+- Email to past customers (10k+ records; Shopify Email is free for the first 10k emails a month): welcome + win-back automations and the Christmas campaign. Repeat buyers fell from 1,493 orders to 62; this is the largest free revenue lever. `lanes/email.md`.
+- Review requests to past buyers (Judge.me/Loox) → stars on product pages and in Google.
+- Google Customer Reviews opt-in and Merchant return policy → free store rating and return annotations in Shopping.
+- Merchant Center promotion for FAMILY10 → free "special offer" tag on free listings (owner must create; the classifier blocks the agent).
+
+**Waiting on an external clock:** Google re-crawl/re-score of feed and collection changes; Christmas season.
+
+**Closed:** paid ads (owner, 2026-09-28). `lanes/paid.md` is history only.
 
 ## 5. Owner-only actions outstanding
 
 - Solve 1688 CAPTCHAs when they appear.
 - Approve customer emails (automations and campaign).
-- Approve ad changes: Microsoft audience opt-out; any budget change.
-- Place one test order for tracking validation.
+- Confirm legacy Google Ads account 399-097-6848 (Italy test campaign) is paused; it is not visible from the testhqfinds login.
 - Republish the Gift Card (Q4 was 31% of 2025 sales). Declined for now.
 - Export Search Console data (16 months of performance plus indexing) for the SEO diagnosis.
 

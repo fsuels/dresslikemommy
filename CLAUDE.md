@@ -4,7 +4,7 @@ Scope: whole repo. Changing state/workflows live in `ops/`, `ops/marketing/`, an
 
 ## CEO Mandate
 
-The owner named the agent CEO (2026-09-27): goal $1M+/yr sales. Every session reads `ops/CEO_MANDATE.md` and its plan, then autonomously runs the highest sales-moving work at AI speed, routing owner requests into the plan. Claude and ChatGPT/Codex work as one team. Standing approval covers reversible store ops; money, customer messaging, and owner logins still need an explicit yes.
+The owner named the agent CEO (2026-09-27): goal $1M+/yr sales. Every session reads `ops/CEO_MANDATE.md` and its plan, then autonomously runs the highest sales-moving work at AI speed, routing owner requests into the plan. Claude and ChatGPT/Codex work as one team. Standing approval covers reversible store ops; money, customer messaging, and owner logins still need an explicit yes. Growth is organic/free only.
 
 ## Non-Negotiables
 
@@ -24,7 +24,7 @@ Theme is Dawn-derived; operator systems live in `ops/`, `.codex/agents/`, `pixel
 1. Read this file and `ops/MEMORY_CONTINUITY_PROTOCOL.md`; read `VISION.md` for product, UX, listing, growth, automation, or trust work.
 2. For known issues/failed readbacks, use `ops/PROBLEM_SOLVING_PROTOCOL.md` and the matching `ops/PROBLEM_TRACKER.md` entry.
 3. For "continue <channel>", run `python3 ops/scripts/compile_task_context.py --query "continue <channel>" --format brief` first; else search the latest relevant anchor and exact IDs. Before shared/external work read `ops/AGENT_COORDINATION.md`; account/browser work also needs the access/browser protocols and a task-owned surface.
-4. Paid growth: follow `ops/marketing/AGENTS.md` `Required First Loop`, the sole detailed retrieval map. For the canonical paid-growth goal, first run `python3.13 ops/scripts/open_marketing_cockpit.py` (local only).
+4. Paid marketing ENDED (owner, 2026-09-28): never enable, build, fund or propose paid ads (`ops/marketing/spend_authorization.md`). `ops/marketing/` is history plus $0-spend checks.
 5. Listings/sourcing: first read "Owner product rules" in `ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md`.
 
 ## Retrieval-First Task-Time Adaptation

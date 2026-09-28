@@ -817,7 +817,9 @@ def build_html() -> str:
     next_tasks = extract_bullets(sections.get("Next 3 Tasks", ""), limit=3)
     assumptions = extract_bullets(sections.get("Assumptions", ""))
     risks = extract_bullets(sections.get("Risks / Approval Needed", ""))
-    if "APPROVED_ACTIVE" in spend_text:
+    if "REVOKED_BY_OWNER" in spend_text:
+        spend_status = "REVOKED_BY_OWNER"
+    elif "APPROVED_ACTIVE" in spend_text:
         spend_status = "APPROVED_ACTIVE"
     elif "PENDING_OWNER_APPROVAL" in spend_text:
         spend_status = "PENDING_OWNER_APPROVAL"
