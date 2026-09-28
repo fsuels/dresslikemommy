@@ -102,4 +102,5 @@ Every lane below is free. Budget = $0 ad spend; the only costs are product, frei
 - **Nov 1:** move the remaining Halloween products to the end of the mixed collections; keep them ACTIVE (no archive churn).
 - **Dec 8** (the last estimated US Christmas order date on PDPs): review holiday messaging. After it, the order-by line hides itself, so decide the post-cutoff message: Gift Card (owner decision) or "arrives after Christmas".
 - **Dec 26:** the hero's Christmas window ends Dec 31 and it then falls back to Halloween copy. Add a winter/new-year edition, or change the hero setting, before Jan 1.
+- **When siblings product #3 is ACTIVE** (session [57a715] will ping): add Siblings to the "Who's matching" menu. Append `siblings-matching-outfits:siblings` to `column_3` of the `shop` case in `snippets/dlm-mega-panel.liquid`, add the `storefront.mega_menu.siblings` label to every `locales/*.json` (native translations), then release via main + `sync_live_theme_from_main.py --apply` and upload the locale files with the key-diff check. Consider a homepage category tile too.
 - **Anytime the owner answers:** `OWNER_MORNING_PACKET.md` items 1–9.
