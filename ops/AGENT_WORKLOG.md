@@ -55848,3 +55848,10 @@ Owner request (Claude Code chat, session "Website visual improvements" [f7baa5])
   - home Dresses tile renders with the renamed product's image alt.
 - Residual: Merchant/Pinterest/ads pick up the new links on their next feed or crawl (old links 301). A peer's uncommitted local edits to `sections/category-icons.liquid` must merge the tile-line change.
 - Rollback: `python3 <packet>/apply_rewrite.py all --execute --rollback`, then `git revert 8f31a49` and upload that file.
+
+**Update: christmas-knit-family-matching-hats ACTIVE, LIVE_VERIFIED.**
+- Readback: 8/8 variants, 4 QA'd Codex images, closeout PASS, 8/8 channels, US/DE/GB/AU/CA markets.
+- Hat copy (title, body, SEO, type, option names/values, 4 metafield values) was translated with ChatGPT-app Codex and registered directly: 280 translations; tags, numbers and non-English checks passed.
+- The closeout's own translate step does not fill a product nothing has pre-seeded.
+- The website session links the hats from the Christmas knits.
+- Rollback: set to DRAFT.
