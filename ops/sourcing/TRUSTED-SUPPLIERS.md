@@ -9,7 +9,7 @@ Tiers:
 
 Readings are from the 1688 detail page on the date shown. Re-read them each round.
 
-**Shipping-speed rule (owner 2026-09-28, ALWAYS):** ship in 24h, 48h at most. Suppliers whose offers promise 3/7/15-day dispatch no longer pass for new listings, even where the 48h pickup rate or our own lead times look fast. Live listings from such suppliers (赛美人 "7 days", 斯蒂琪 "15-day" promise, 陈树保 "7 days") await the owner's decision; do not add new ones.
+**Shipping-speed rule (owner 2026-09-28, ALWAYS):** ship in 24h, 48h at most. Suppliers whose offers promise 3/7/15-day dispatch no longer pass for new listings, even where the 48h pickup rate or our own lead times look fast. Owner decision 2026-09-28: keep the live listings from 赛美人 ("7 days" promise) and 斯蒂琪 ("15-day" promise), whose real shipping is fast, but add no new designs from them (or 陈树保, "7 days") unless their pages promise 24/48h.
 
 ## Tier A — preferred
 
@@ -85,7 +85,7 @@ Lead = PO created → stocked at the BuckyDrop warehouse (median / p90 days). So
 | 深圳市欧美妮服装有限公司 | "Ships in 25 days" |
 | 惠州市天穗服饰有限公司 | 15-day dispatch; service 3.5 (it is 6 years old and in Huizhou; re-check if it speeds up) |
 | 普宁市茂兴发织造制衣有限公司 | 4 years |
-| 广州市艾莉雅服饰有限公司 | Re-checked 2026-09-28 on owner request: established June 2023, 4 years on 1688, 48h pickup 87% (fulfillment 97%, service 4.0). Its 2026 Christmas family pajamas all include kids' sizes (test-report hold) and several are superhero/cartoon-IP prints. Offer 1035677749750 is tagged Spring 2026. Listing needs an explicit owner exception |
+| 广州市艾莉雅服饰有限公司 | Re-checked 2026-09-28 on owner request: established June 2023, 4 years on 1688, 48h pickup 87% (fulfillment 97%, service 4.0). Its 2026 Christmas family pajamas all include kids' sizes (test-report hold) and several are superhero/cartoon-IP prints. Offer 1035677749750 is tagged Spring 2026. Owner 2026-09-28: first approved a Fall/Winter 2026 exception, then chose to skip the store after the 48h rule (Papa Bear 1074652891666 promises 48h, but the store's pickup is 87%; its other Sep 2026 designs say "Ships in 15 days"). Not listed |
 | 衣林商贸(广州)有限公司 | 卡通 IP-term designs; MOQ 4 on some offers |
 | 东营大不同工贸 | 81% fulfillment; cartoon fleece onesies |
 | Xingcheng (兴城, Liaoning) swimwear vendors | About 2,500 km away. PO P3116387771001 (order #9566) sat in "Purchasing Pending" from 2026-09-08 |

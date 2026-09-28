@@ -55924,3 +55924,5 @@ Next: the owner approves packet items 1–5, starting with the shared negative l
   - Papa Bear 1074652891666 promises 48h, but the store's 48h pickup is 87%. Awaiting the owner.
   - Also failed: 1076035438148 (15 days), 1063796921991 (Spring 2026), 965428349430 (Autumn 2025, published 2025-08).
 - **Not changed:** no listing was built or archived. Live products from 赛美人 (7-day promise, 100% measured 48h pickup) and 斯蒂琪 (15-day promise, our 2.6-day median lead) stay live pending the owner's call.
+
+**Update (owner decisions, same day):** keep the live 赛美人 and 斯蒂琪 listings but add no new designs from slow-promise suppliers; skip Papa Bear and drop 艾莉雅. Recorded in `TRUSTED-SUPPLIERS.md`. The next action is fresh 2026 fall/winter family sweater sourcing from suppliers that ship within 48h.
