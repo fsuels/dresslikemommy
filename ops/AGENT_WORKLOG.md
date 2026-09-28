@@ -56182,3 +56182,21 @@ Addendum (2026-09-28, same session): Christmas guide translations LIVE_VERIFIED.
 - **LIVE_VERIFIED:** en/de/fr/ja/es/ar all render `DlmMega-shop`, with the Siblings link present (Siblings / Geschwister / Frères et sœurs / きょうだい / Hermanos / الإخوة والأخوات) and 0 Liquid errors.
 
 Rollback: `git revert` both commits, `--apply`, then re-upload the locale files from the reverted main.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-localized-storefront-breaks-fixed
+
+- task_stage: LIVE_VERIFIED (captions, ja color filter); REPO_VERIFIED (breadcrumbs, back-to-results)
+- task_entities: main commit (cherry-pick of subagent 8df98ce): `assets/global.js`, `sections/category-icons.liquid`, `snippets/breadcrumbs.liquid`, `snippets/dlm-card-swatches.liquid`, `snippets/dlm-facet-active-values.liquid`, `snippets/facets.liquid`, `snippets/home-category-card-caption.liquid`; MAIN 133290917985
+
+A follow-up to the Shop mega-menu fix: a subagent audited English-only logic that breaks on localized storefronts and fixed 5 real breaks. English output is unchanged.
+1. **Home category captions** were looked up by the translated tile label. Now keyed by collection handle. Live /de: 10/10 captions, previously 4.
+2. **Facet de-duplication** used `handleize`, which strips non-Latin text, so the ja/ko/ar/he/hi color and size filters collapsed ('パパ L' = 'ママ L'). Non-ASCII labels are now keyed by the label; color and type filters are detected by param name. Live /ja mommy-and-me: 58 distinct colors, previously 1.
+3. **Card swatches:** the ja option name 'カラー' was added (ja previously showed 0 swatches).
+4. **Breadcrumbs:** the subcategory group was lost on non-Latin locales; fixed the same way.
+5. **"Back to results"** (`global.js`) only recognized unprefixed paths, so /de PDPs could return shoppers to the English collection. It now strips the locale root via `Shopify.routes.root`.
+
+Checks: `node --check`, theme check (299 files, 0 offenses), `git diff --check`, and liquidjs before/after.
+
+**Note:** repeated scripted fetches triggered Shopify's 429 "Verifying your connection" bot check for this IP. Live checks were then done in the real browser pane. Throttle scripted readbacks.
+
+Rollback: `git revert`, then `sync_live_theme_from_main.py --apply`.
