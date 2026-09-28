@@ -33,3 +33,22 @@ Five archived Mommy & Me nightgown/pajama product URLs returned 404. They were t
 3. Pause Italy campaign `DLM_IT_SEARCH_NATIVE_IT_EXACT_015_TEST_20260519`: 545 sessions, 1 order.
 4. Google Ads: read back PMax/cross-network status. If it is live, pause it or set location to US "Presence" only. Confirm Purchase is the only primary conversion.
 5. GA4: add shopifybooster.pro and trafficheap.cc as unwanted referrals (a measurement-only change).
+
+## Item 1 execution (owner approved 2026-09-28)
+
+The list was narrowed within the approval to 30 terms. "free" was dropped because it would block "free shipping" buyers. "costume" was dropped because Halloween family outfits are in season.
+
+- **Microsoft Ads 477439: LIVE_VERIFIED.** 18 missing terms were added to the existing shared list "DLM - Master negatives (safety + junk)" (nkl 225400852690227), which is already attached to all 15 campaigns. The other 12 terms were already present. Readback after reload: 57 → 75 terms, 15 campaigns; all 18 are present with the right match types (eid Exact, the rest Phrase).
+  - Added: vendor, vendors, aliexpress, myntra, indian, [eid], abaya, twining, uncinetto, chance loves, maternity, grinch, stitch, rudolph, secondhand, ebay, temu, doll.
+  - Rollback: select those 18 rows in the list and choose Remove.
+  - Observation: Microsoft shows all 15 campaigns paused ("None of your ads are running"), so the list takes effect only when a campaign resumes.
+- **Google Ads 650-997-2886: BLOCKED. Nothing changed.**
+  - Before-state: "You don't have any negative keyword lists yet".
+  - API: the stored refresh token returns `invalid_grant`, so the owner has to re-consent.
+  - Owner Chrome: Google Ads shows an "ad-blocker-detected" overlay that intercepts clicks, so the list create form does not open.
+  - Built-in browser: signed in to a different Google account and got a reCAPTCHA; I stopped there.
+  - Unblock: the owner pauses the ad blocker for ads.google.com in the testhqfinds Chrome profile. Then create "DLM - Shared junk negatives" with the 30 terms in `dlm_negative_keywords.csv` and attach it to the 5 active Search/Shopping campaigns.
+- **Existing Microsoft negatives that hurt us (owner decision; not changed):**
+  - "knit" and "knitting" block family knit-sweater searches, and sweaters were the first sales of the season.
+  - "halloween", "costume" and "costumes" block in-season Halloween outfit searches.
+  - "hot" blocks "hot pink".

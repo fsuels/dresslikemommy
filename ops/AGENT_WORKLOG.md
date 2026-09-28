@@ -55971,3 +55971,19 @@ Checked, no change:
 - Hindi/Spanish are kept, because removing a language recreates URL churn.
 
 Rollback: see the packet README.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-shared-negatives-microsoft-live-google-blocked
+
+- task_entities: Microsoft Ads 477439 shared list "DLM - Master negatives (safety + junk)" nkl 225400852690227; Google Ads 650-997-2886; packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-ads-seo-brief-triage/`
+- task_stage: VERIFY done (Microsoft), BLOCKED (Google)
+- next_action_id: OWNER_PAUSE_ADBLOCKER_ON_GOOGLE_ADS
+
+Why: the owner approved item 1 (shared negative list on both ad accounts).
+
+Done: Microsoft master list went from 57 to 75 terms (+18 missing; 12 already present), still attached to all 15 campaigns. Read back after a reload with the right match types. Rollback: remove those 18 rows. The list was narrowed to 30 terms by dropping "free" and "costume" (in-season Halloween, free-shipping buyers).
+Blocked on Google, nothing changed, 0 lists before:
+- The API refresh token returns invalid_grant.
+- The owner's Chrome shows Google Ads' ad-blocker overlay, which intercepts clicks.
+- The built-in browser is signed in to another Google account and hit a reCAPTCHA; I stopped there.
+Findings: all 15 Microsoft campaigns now show paused. Existing Microsoft negatives "knit/knitting", "halloween/costume(s)" and "hot" block in-season buyers; removing them needs an owner decision.
+Next: the owner pauses the ad blocker for ads.google.com in the testhqfinds Chrome profile. Then create the Google shared list from the CSV and attach it to the 5 active Search/Shopping campaigns.
