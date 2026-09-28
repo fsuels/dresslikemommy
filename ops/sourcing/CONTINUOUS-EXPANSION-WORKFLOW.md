@@ -21,7 +21,7 @@ These are standing owner instructions. Details are in the numbered sections belo
    - use Taobao/Tmall via BuckyDrop only under the same gates;
    - record every reading in `TRUSTED-SUPPLIERS.md`;
    - new vendors stay Tier B until an on-time order proves them.
-3. **Supplier gate (§3):** ≥5 years on 1688, ≥97% fulfillment, ≥95% 48h pickup or ≤7-day dispatch, dropship MOQ 1, service ≥4.0, Guangdong preferred. **Exceptions (e.g. <5 years) only with the owner's explicit yes.**
+3. **Supplier gate (§3):** ≥5 years on 1688, ≥97% fulfillment, **ships in 24h, 48h at most, ALWAYS** (owner 2026-09-28: "I need shipments faster 24 max 48 hours." / "ALWAYS"): the offer's dispatch promise must be 24h or 48h and the store's 48h pickup rate ≥95%; a 3-, 7- or 15-day promise fails, even under a supplier exception. Dropship MOQ 1, service ≥4.0, Guangdong preferred. **Exceptions (e.g. <5 years) only with the owner's explicit yes.**
 4. **Current-year designs only (§4):**
    - BOTH the 1688 listing date AND the release-year attribute must be the current year.
    - **Fresh and in season** (owner 2026-09-28: "always make sure the listings we are adding are fresh! year 2026 for the correct season"):
@@ -91,7 +91,7 @@ Platforms: 1688 is primary. Through BuckyDrop the store can also buy from Taobao
 |---|---|
 | Years on 1688 (入驻N年) | ≥ 5 (prefer ≥ 8) |
 | Overall fulfillment (综合履约率) | ≥ 97% |
-| 48h pickup rate (48h揽收率) or dispatch promise | ≥ 95%, or ships in ≤ 7 days |
+| Dispatch promise (发货时效) AND 48h pickup rate (48h揽收率) | promise 24h or 48h (never 3/7/15 days) AND pickup ≥ 95% (owner rule 2026-09-28, always) |
 | Dropship / one-piece orders (代发, 1件起批) | yes, MOQ 1 |
 | Orderable by our account | price visible, no `Upgrade➜Buy` |
 | Stock | stock shown for the sizes we list |

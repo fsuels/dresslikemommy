@@ -55911,3 +55911,16 @@ Already done before this brief: the beach-swimwear redirect, Grinch products arc
 Coordination: the session "Family-matching collection SEO ranking" claimed organic SEO (matching-outfits consolidation, nightgown/Hawaiian collections), and I told it about the redirects. The ads side stays with this lane.
 Corrections: the brief's checkout drop is likely polluted by agent-test traffic; its CPC caps exceed the owner's $0.20 cap; the maternity negative is temporary; the PMax state needs a live readback.
 Next: the owner approves packet items 1–5, starting with the shared negative list (32 terms, zero spend risk).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-owner-rule-ship-within-48h-always
+
+- task_entities: owner rule 3 in `ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md` (supplier gate); `ops/sourcing/TRUSTED-SUPPLIERS.md`; 艾莉雅 offers 1074652891666, 1076035438148, 1063796921991, 965428349430 (session [57a715])
+- task_stage: DECIDED (rule); BLOCKED_ON_OWNER (existing 7/15-day suppliers; 艾莉雅 Papa Bear)
+- next_action_id: OWNER_DECIDE_LIVE_SLOW_PROMISE_SUPPLIERS
+
+- **Owner rule (2026-09-28), verbatim:** "I need shipments faster 24 max 48 hours." then "ALWAYS". It replaces the gate's "≥95% 48h pickup or ≤7-day dispatch". Now the offer must promise 24h/48h dispatch AND the store's 48h pickup rate must be ≥95%. A 3-, 7- or 15-day promise fails, even under a supplier exception.
+- **Context:** the owner approved a 艾莉雅 Fall/Winter 2026 exception, then rejected the "≤7 days" wording.
+  - Scan of 8 of that store's Sep 2026 designs: all Fall 2026 but "Ships in 15 days", so they fail.
+  - Papa Bear 1074652891666 promises 48h, but the store's 48h pickup is 87%. Awaiting the owner.
+  - Also failed: 1076035438148 (15 days), 1063796921991 (Spring 2026), 965428349430 (Autumn 2025, published 2025-08).
+- **Not changed:** no listing was built or archived. Live products from 赛美人 (7-day promise, 100% measured 48h pickup) and 斯蒂琪 (15-day promise, our 2.6-day median lead) stay live pending the owner's call.

@@ -9,6 +9,8 @@ Tiers:
 
 Readings are from the 1688 detail page on the date shown. Re-read them each round.
 
+**Shipping-speed rule (owner 2026-09-28, ALWAYS):** ship in 24h, 48h at most. Suppliers whose offers promise 3/7/15-day dispatch no longer pass for new listings, even where the 48h pickup rate or our own lead times look fast. Live listings from such suppliers (赛美人 "7 days", 斯蒂琪 "15-day" promise, 陈树保 "7 days") await the owner's decision; do not add new ones.
+
 ## Tier A — preferred
 
 | Supplier | Store | Categories | Years | Fulfillment | 48h pickup | Dispatch | Dropship resellers | Ship-from | Last read | Notes |
