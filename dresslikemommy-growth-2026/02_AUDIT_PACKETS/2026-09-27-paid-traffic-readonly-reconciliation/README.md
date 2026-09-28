@@ -44,3 +44,12 @@ No change was made on either platform.
 - Microsoft Q&A (learn.microsoft.com answers 2288824, 2289637, 2288982): the ad-group "Ad distribution" and −100% audience bid opt-outs are removed or being deprecated, and search campaigns now serve audience ads automatically. The remaining lever is a website exclusion list built from the Website URL (publisher) report, at campaign or account level.
 - Context: in the US Search campaign, Audience ads were $29.43 of $44.03. The largest source, ad group "Mommy & Me Swimsuits" ($24.32), is already paused.
 ### 3 — Google Shopping Halloween CPC push: HELD by owner.
+
+### 1 (follow-up) — Website exclusions for audience placements: DONE, LIVE_VERIFIED (owner: "Yes, do all your recommendations")
+- Source: Website URL (publisher) report, all campaigns, 9/20–9/26/2026: 71 rows, 17,423 impressions, 305 clicks. The audience rows are dominated by msn.com (about 150 clicks).
+- Microsoft UI: "Microsoft sites such as MSN.com cannot be excluded." Account-level lists need the manager account. msn.com, outlook.live.com and bing.com were therefore dropped from the candidate list (`audience_exclusion_list.txt`).
+- An existing campaign-level list, "DLM - Audience junk placements" (id 8864812499693), already held 24 sites, associated with 15 campaigns (created earlier by another session). It already covered 20 of the 22 candidates.
+- Added: `microsoftcasualgames.com` (valid; 10 clicks, $1.55 in the week). Rejected by Microsoft validation: `www.yahoo.com` (syndication partner).
+- Readback after reload: the list shows 25 websites including microsoftcasualgames.com; 15 campaign associations unchanged.
+- Residual: msn.com audience traffic cannot be excluded. The remaining levers are ad-group status: the CA "Mommy & Me Swimsuits" ad group had 1,135 msn impressions, 20 clicks and $3.21 in the week; Latinos "Vestidos mamá e hija" had 1,799 msn impressions and 8 clicks. The US swimsuit ad group is already paused. This needs a separate owner decision.
+- Rollback: remove microsoftcasualgames.com from the list.
