@@ -1,0 +1,89 @@
+{%- comment -%}
+  English buyer guides for collections whose English pages rank on Google pages
+  2-5 for their head terms (GSC Jun 26 - Sep 25 2026; packet
+  2026-09-28-gsc-english-seo-fixes). English only: callers use it when the
+  storefront language is en, so localized pages keep their current copy.
+  Fields: display_title, meta_title, meta_description, lead (plain text),
+  heading (plain text), guide (HTML). Unknown handle or field: blank.
+  Dropshipping truth: no stock, warehouse, fast-shipping, review or bestseller
+  claims; delivery points to the product page.
+  Usage: {% render 'collection-guide-english-terms', handle: collection.handle, field: 'guide' %}
+{%- endcomment -%}
+{%- liquid
+  assign cg_base = routes.collections_url
+  assign cg_delivery = 'Standard shipping is included, and each product page shows its estimated delivery window.'
+-%}
+{%- case handle -%}
+  {%- when 'couples' -%}
+    {%- case field -%}
+      {%- when 'display_title' -%}Matching Couple Outfits
+      {%- when 'meta_title' -%}Matching Couple Outfits – His and Hers Matching Clothes
+      {%- when 'meta_description' -%}Matching couple outfits: his and hers sweaters, Christmas pajamas, heart tees and tropical shirts for men and women, in separate sizes. Shipping included.
+      {%- when 'lead' -%}Matching couple outfits let the two of you coordinate without dressing identically: the same knit, print or holiday pattern, cut for men and for women.
+      {%- when 'heading' -%}How to choose matching couple outfits
+      {%- when 'guide' -%}
+        <p>This collection holds his and hers matching clothes for the season: cable-knit and Fair Isle sweaters, matching Christmas pajamas, heart-graphic tees and sweatshirts, and tropical shirt-and-dress sets for vacations.</p>
+        <ul>
+          <li><strong>Holiday cards and Christmas morning:</strong> <a href="{{ cg_base }}/christmas-pajamas">matching Christmas pajamas</a> or <a href="{{ cg_base }}/christmas-sweaters">Christmas sweaters</a>.</li>
+          <li><strong>Date nights and fall photos:</strong> coordinating knits in burgundy, navy or cream.</li>
+          <li><strong>Trips and cruises:</strong> a floral shirt for him and a matching dress for her.</li>
+        </ul>
+        <p><strong>Ordering for two:</strong> each person is a separate choice. Pick his size and style and add it to your bag, then pick hers and add it too. Men's and women's cuts measure differently, so check the size chart on each product page. Planning to include the kids later? Most styles also come in <a href="{{ cg_base }}/matching-outfits">family matching sizes</a>. {{ cg_delivery }}</p>
+    {%- endcase -%}
+  {%- when 'pajamas' -%}
+    {%- case field -%}
+      {%- when 'display_title' -%}Mommy and Me Pajamas
+      {%- when 'meta_title' -%}Mommy and Me Matching Pajamas – Mother Daughter PJ Sets
+      {%- when 'meta_description' -%}Mommy and me matching pajamas: soft mother daughter PJ sets and nightgowns in cotton and gauze prints, long or short sleeve, sized for mom and girls.
+      {%- when 'lead' -%}Mommy and me matching pajamas are the easiest way to match: button-up PJ sets, cotton and gauze sleepwear and nightgowns in the same print for mom and her girl.
+      {%- when 'heading' -%}How to choose mommy and me pajamas
+      {%- when 'guide' -%}
+        <p><strong>Season:</strong> long-sleeve sets and multi-layer cotton gauze suit fall and winter; short-sleeve sets and nightgowns are cooler for spring and summer.</p>
+        <p><strong>Print:</strong> florals, gingham, fruit and animal prints photograph well on holiday mornings, sleepovers and birthdays.</p>
+        <p><strong>Sizing:</strong> pajamas are meant to be relaxed, so size each person with the chart on the product page and go up if your daughter is between sizes.</p>
+        <p>Want the whole family in pajamas? Shop <a href="{{ cg_base }}/family-pajamas">matching family pajamas</a> or <a href="{{ cg_base }}/christmas-pajamas">matching family Christmas pajamas</a>. {{ cg_delivery }}</p>
+    {%- endcase -%}
+  {%- when 'family-tops' -%}
+    {%- case field -%}
+      {%- when 'display_title' -%}Family Matching Shirts & Tops
+      {%- when 'meta_title' -%}Family Matching Shirts – Tees, Sweatshirts & Button-Ups
+      {%- when 'meta_description' -%}Family matching shirts for mom, dad and kids: matching T-shirts, sweatshirts, sweaters and button-up shirts, sized per person from baby to adult.
+      {%- when 'lead' -%}Family matching shirts are the simplest way to coordinate everyone: pick one design and choose a size for each person, from baby to adult.
+      {%- when 'heading' -%}Which matching family shirts to choose
+      {%- when 'guide' -%}
+        <ul>
+          <li><strong>T-shirts:</strong> heart, stripe and graphic tees for birthdays, trips, theme-park days and casual photos.</li>
+          <li><strong>Button-up shirts:</strong> tropical, palm and plaid prints for vacations, cruises and dressier pictures.</li>
+          <li><strong>Sweatshirts and sweaters:</strong> crewnecks and knits for fall photos, <a href="{{ cg_base }}/thanksgiving-family-outfits">Thanksgiving</a> and the holidays.</li>
+        </ul>
+        <p><strong>Sizing:</strong> each shirt lists separate adult and kids' sizes, and the size chart on every product page shows chest and length. Pair a shirt with jeans or shorts everyone already owns, or see <a href="{{ cg_base }}/matching-outfits">family matching outfits</a> for full sets and dresses. {{ cg_delivery }}</p>
+    {%- endcase -%}
+  {%- when 'family-sweaters' -%}
+    {%- case field -%}
+      {%- when 'display_title' -%}Matching Family Sweaters
+      {%- when 'meta_title' -%}Matching Family Sweaters, Cardigans & Sweatshirts
+      {%- when 'meta_description' -%}Matching family sweaters for mom, dad and kids: cable knits, Fair Isle, cardigans and crewneck sweatshirts for fall photos, Thanksgiving and Christmas.
+      {%- when 'lead' -%}Matching family sweaters make fall and winter photos look planned while keeping everyone warm, with knits, cardigans and crewneck sweatshirts sized per person.
+      {%- when 'heading' -%}How to choose matching family sweaters
+      {%- when 'guide' -%}
+        <p><strong>For fall and Thanksgiving:</strong> cable knits, heart graphics and neutral crewnecks in burgundy, navy, cream and gray; see our <a href="{{ cg_base }}/thanksgiving-family-outfits">Thanksgiving family outfits</a>.</p>
+        <p><strong>For Christmas:</strong> reindeer, Santa and Fair Isle designs; see <a href="{{ cg_base }}/christmas-sweaters">Christmas sweaters</a>. <strong>For everyday:</strong> sweatshirts wash easily and layer over tees.</p>
+        <p><strong>Sizing:</strong> knits vary by style, so check the size chart on each product page for chest and length, and go up a size for a relaxed fit. Shopping for just mom and daughter? See <a href="{{ cg_base }}/sweaters">mommy and me sweaters</a>. {{ cg_delivery }}</p>
+    {%- endcase -%}
+  {%- when 'thanksgiving-family-outfits' -%}
+    {%- case field -%}
+      {%- when 'display_title' -%}Matching Family Thanksgiving Outfits
+      {%- when 'meta_title' -%}Matching Family Thanksgiving Outfits – Sweaters & Plaid
+      {%- when 'meta_description' -%}Matching family Thanksgiving outfits: plaid button-ups, cable-knit sweaters, cardigans and fall sweatshirts for mom, dad and kids, sized per person.
+      {%- when 'lead' -%}Matching family Thanksgiving outfits for the dinner table and the group photo: plaid button-ups, cable knits, cardigans and cozy sweatshirts, with a size for every family member.
+      {%- when 'heading' -%}Thanksgiving outfit ideas for the whole family
+      {%- when 'guide' -%}
+        <ul>
+          <li><strong>Classic plaid:</strong> matching plaid button-ups for the whole family, easy to pair with jeans.</li>
+          <li><strong>Cozy knits:</strong> burgundy, navy, red and charcoal sweaters and cardigans, including mommy and me and daddy and me pairs.</li>
+          <li><strong>Relaxed and comfy:</strong> heart and graphic sweatshirts for a long day of cooking, football and leftovers.</li>
+        </ul>
+        <p><strong>Photo tip:</strong> pick one color family, such as burgundy and cream or navy and gray, and give everyone a piece in it; it looks coordinated without being identical. Size each person with the chart on the product page.</p>
+        <p><strong>Timing:</strong> Thanksgiving is Thursday, November 26, 2026. Check the estimated delivery window on each product page and order early so everything arrives before dinner. Looking ahead to December? See <a href="{{ cg_base }}/christmas-pajamas">matching family Christmas pajamas</a> and <a href="{{ cg_base }}/family-sweaters">matching family sweaters</a>. Standard shipping is included.</p>
+    {%- endcase -%}
+{%- endcase -%}

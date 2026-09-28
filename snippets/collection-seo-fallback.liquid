@@ -257,6 +257,31 @@
     endcase
   endif
 
+  comment
+    English head terms from GSC (2026-09-28-gsc-english-seo-fixes): English pages
+    of these handles take title, H1 and meta from collection-guide-english-terms.
+  endcomment
+  assign en_term_guide = false
+  if seo_lang == 'en'
+    capture en_term_meta_title
+      render 'collection-guide-english-terms', handle: collection_handle, field: 'meta_title'
+    endcapture
+    assign en_term_meta_title = en_term_meta_title | strip
+    if en_term_meta_title != blank
+      capture en_term_display_title
+        render 'collection-guide-english-terms', handle: collection_handle, field: 'display_title'
+      endcapture
+      capture en_term_meta_description
+        render 'collection-guide-english-terms', handle: collection_handle, field: 'meta_description'
+      endcapture
+      assign effective_display_title = en_term_display_title | strip
+      assign effective_meta_title = en_term_meta_title
+      assign head_meta_description = en_term_meta_description | strip
+      assign force_theme_seo = true
+      assign en_term_guide = true
+    endif
+  endif
+
   if collection_handle == 'christmas-pajamas' and seo_lang == 'en'
     assign force_theme_seo = true
   endif
@@ -523,6 +548,13 @@
       assign head_lead = head_lead | strip
       assign head_guide_html = head_guide_html | strip
     endif
+  endif
+
+  if en_term_guide and head_lead == blank
+    capture head_lead
+      render 'collection-guide-english-terms', handle: collection_handle, field: 'lead'
+    endcapture
+    assign head_lead = head_lead | strip
   endif
 
   capture generated_body_description

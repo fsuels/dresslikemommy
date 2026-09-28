@@ -166,6 +166,27 @@
       endcase
       endcapture
 
+      comment
+        English head terms from GSC (2026-09-28-gsc-english-seo-fixes): English
+        pages of these handles render collection-guide-english-terms instead.
+      endcomment
+      assign cse_lang = request.locale.iso_code | default: localization.language.iso_code | default: 'en' | downcase | split: '-' | first
+      if cse_lang == 'en'
+        capture en_term_guide_html
+          render 'collection-guide-english-terms', handle: collection_handle, field: 'guide'
+        endcapture
+        assign en_term_guide_html = en_term_guide_html | strip
+        if en_term_guide_html != blank
+          capture seo_rich_output
+            echo '<div class="collection-seo-rich__intro"><h2>'
+            render 'collection-guide-english-terms', handle: collection_handle, field: 'heading'
+            echo '</h2></div><div class="collection-seo-rich__copy">'
+            echo en_term_guide_html
+            echo '</div>'
+          endcapture
+        endif
+      endif
+
       if seo_rich_output contains 'collection-seo-rich__eyebrow'
         assign seo_eyebrow_open = '<p class="collection-seo-rich__eyebrow">'
         assign seo_rich_segments = seo_rich_output | split: seo_eyebrow_open
