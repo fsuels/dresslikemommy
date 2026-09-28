@@ -56127,3 +56127,16 @@ Next: validate and register the Codex translations of the 3 Christmas guides for
 Addendum (2026-09-28, same session): Christmas guide translations LIVE_VERIFIED. Codex (Pro plan) translated the 3 Christmas guides for ar, cs, el, fi, he, hi, ja, ko, no, pt-BR, ro, ru. All 12 passed the HTML/href/number/length validator; 144 fields registered, 0 errors; independent readback 144/144 equal and not outdated; live /ar/, /fi/, /ja/ collection guide titles and the /pt/ article H1 verified. Evidence and rollback: packet §5. next_action_id: RECHECK_MC_AGE_GROUP_AFTER_FULL_SYNC.
 
 **Update (round 2, same night):** after the owner cleared the CAPTCHA, a slow scan of 133 couples, Mommy & Me and maternity offers found none that pass every rule. Near-misses are in `TRUSTED-SUPPLIERS.md`; the best is 孕韵美, maternity, 12 years, 93% pickup. 1688 search then went to empty pages (throttled); paused, no bypass. No store changes.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-siblings-collection-and-couples-rule-fix
+
+- task_stage: LIVE_VERIFIED
+- task_entities: new collection `siblings-matching-outfits` (gid://shopify/Collection/364032000097); `couples` (290635284577); product 9475561062497 (teddy-bear-siblings-christmas-sweaters, session [57a715])
+- next_action_id: ADD_SIBLINGS_TO_NAV_WHEN_3_PLUS_PRODUCTS
+
+- **Siblings collection:** created "Siblings Matching Outfits", a smart disjunctive collection (TYPE CONTAINS "Siblings" OR TAG "Siblings"), with SEO title/description, published to the Online Store. Live 200 with the first siblings product.
+  - Nav and category tiles are deferred until it has ≥3 products, so shoppers don't land on a 1-item page and the empty-collection noindex guard doesn't apply.
+- **Couples fix:** my earlier TAG "Christmas Sweaters" / "Christmas Pajamas" rules also pulled in the kids-only siblings sweater and the Mommy & Me / Daddy & Me single-parent sweaters. Replaced them with TAG "Father Pajama Set", TAG "Father Onesie", TAG "Adult Sweater" and TYPE CONTAINS "Family Matching Sweatshirts": sets with adult sizes for both partners.
+  - Live: 46 products, no siblings or Mommy/Daddy & Me items.
+  - Before-rules: scratchpad `couples_rules_before_v2.json`.
+- **Not done by design:** no "Complete the family look" link from family Christmas sets to the siblings sweater, because it is not the same print (owner feedback on the dog vest: add-ons must match the family look).
