@@ -56025,3 +56025,26 @@ Open:
 - Applied the owner's new 24–48h rule. Nothing qualified for listing: the family-apparel stores with 48h promises fail tenure or the 95% pickup rate. The one that passes shipping sells kids/teen sizes with brand lettering. Details are in the `TRUSTED-SUPPLIERS.md` 48h-rule section.
 - Tooling (scratchpad, read-only CDP): `scan_offers.py` now reads `deliveryLimit`; `gate_suppliers.py` reads the store via `sellerWinportUrl`.
 - No store or listing changes.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-merchant-feed-attribute-enrichment
+
+- task_entities: Merchant 513542500 (Shopify App API sources); 293 active Shopify products (`seo.description`, which is the Google feed description); evidence `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-merchant-feed-attribute-enrichment/` (before_state.json, plan.json, receipts.json, build.py, finalize.py)
+- task_stage: VERIFY
+- problem_ids: PROB-2026-09-27-PRODUCT-TRANSLATION-AUTOMATION-OFF (new 429 evidence)
+- next_action_id: VERIFY_MC_SHIRTS_TOPS_DESCRIPTION_RECOMMENDATION_DROP
+
+Why: the owner told the CEO that improving the Merchant Center feed is the cheapest way to grow. MC Overview's top growth card is "Update descriptions for Shirts & Tops: add missing details to 62,560 products". The report asks for Color, Pattern and Material and flags even today's rewritten descriptions (for example "4 Colors… Made of cotton" names no color and no pattern). All prioritized MC fixes are already resolved. In the last 28 days there were 709 clicks total; 87 ad clicks cost $19.06.
+
+Done (standing product-data authority, reversible):
+- Each active product's current seo.description is kept verbatim as the lead, so the organic snippet's first ~155 chars do not change. A structured tail is appended, built only from store data:
+  - `Color(s):` comes from variant Color option values, or from the title when there is no Color option. Design-name values such as "Red Panda" are excluded.
+  - `Pattern:` comes from `custom.pattern`. A wrong "Solid" is corrected from the title (5 products: stripe, geometric, tropical, ombré, dinosaur). Design-name values with no real motif are dropped (15 products), never guessed.
+  - `Material:` comes from the body's exact % composition, then exact fabric tags, then the fiber named in the product's own summary or its "Fabric:" line. It is omitted when ambiguous.
+- Result: 293/293 APPLIED_VERIFIED, with an independent full re-read of 295/295 matching and 0 SEO title changes. Coverage: color 237, pattern 279, material 205. Max length 277 chars. 2 products with an empty seo.description were skipped on purpose.
+- Rollback: restore `seo.description` per product from before_state.json.
+
+Found: the translation backend's Google endpoint returns 429, so the repo translation script fails every field (logged in PROB-2026-09-27-PRODUCT-TRANSLATION-AUTOMATION-OFF). The LaunchAgent stays unloaded per the owner's Sep 26 shutdown.
+
+- Translations for all 20 locales: ChatGPT/Codex (Pro plan) translated 211 attribute terms plus 4 labels (validated: complete, numbers preserved). The appended text is the current translated lead plus the translated tail, registered via `translationsRegister` with the new digest. Result: 5,836 REGISTERED. 4 were skipped because there was no existing translated lead (2 bikinis × ru/sv). An independent 60-sample readback matched 60/60 with outdated=false. The live /de/ product page serves the new German text. Receipts: translation_receipts.json; rollback: re-register the `before` values.
+
+Next: verify that MC's Shirts & Tops description recommendation (62,560) drops after the Google app re-syncs and Google re-crawls. Google's report refresh is an external clock. Then extend color and material coverage to the 56 products without color and 87 without material, and only from supplier-verified facts.

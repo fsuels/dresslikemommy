@@ -1,0 +1,19 @@
+You are translating product-attribute vocabulary for a family matching clothing store (Google Shopping feed descriptions).
+
+Input: terms.json in this directory — a JSON array of English strings. Each string is a garment COLOR name, a PATTERN/print description, or a MATERIAL/fabric composition.
+
+Task: write translations.json in this directory with this exact shape:
+{
+  "labels": { "<locale>": { "Color": "...", "Colors": "...", "Pattern": "...", "Material": "..." } },
+  "terms":  { "<locale>": { "<english term exactly as in terms.json>": "<translation>" } }
+}
+Locales (use these exact keys): ar, cs, da, de, el, es, fi, fr, he, hi, it, ja, ko, nl, no, pl, pt-BR, ro, ru, sv
+
+Rules:
+- Every locale must contain every term from terms.json, keys copied byte-for-byte.
+- Natural retail wording a shopper in that market would read on a product page. Sentence case (capitalize the first letter where the script has case).
+- Keep percentages and numbers exactly (e.g. "54% cotton, 46% polyester" -> keep 54% and 46%). Use the locale's normal spacing before % only if that is standard (fr uses a narrow no-break space is NOT required; plain "54 %" or "54%" both fine).
+- Design names inside prints (e.g. "Good luck smile print", "Jolly crew print", "We are family red print", "Ho ho santa print") should be translated meaningfully as a print description; keep "Ho ho" / "Boo" as-is.
+- "Solid" means solid color (no print). "Multicolor" means multicolored.
+- No extra commentary, no markdown; translations.json must be valid JSON (UTF-8, ensure non-ASCII characters are written directly).
+After writing, run a quick self-check with python3 that the file loads and every locale has every term, and print the counts.
