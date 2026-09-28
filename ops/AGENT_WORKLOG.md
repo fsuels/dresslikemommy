@@ -55897,3 +55897,17 @@ Owner request (Claude Code chat, session "Website visual improvements" [f7baa5])
   - 1688 started throttling after the store scan; reads stopped, no bypass.
 - Tooling committed: `build_specs_senda_pairs.py` (burgundy pair), `build_specs_stq_lamb.py`, lamb/bur design translations.
 - Rollback: set the 3 listings to DRAFT.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-ads-seo-brief-triage
+
+- task_entities: packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-ads-seo-brief-triage/`; UrlRedirect 406752165985, 406752198753, 406752231521, 406752264289, 406752297057
+- task_stage: VERIFY done (redirects); HOLD (ad-account items need owner yes)
+- next_action_id: OWNER_APPROVE_SHARED_NEGATIVE_LIST
+
+Why: the owner pasted an external "Ads, keywords and SEO brief" (Sep 26, GA4/GSC/Shopify). I triaged it against the live state.
+
+Done: 5 archived nightgown/pajama product URLs (the former rankers for "mother daughter nightgowns", pos 6) went from 404 to 301 → `/collections/pajamas`. Readback: all five return 301 on www. Rollback: urlRedirectDelete on the ids above.
+Already done before this brief: the beach-swimwear redirect, Grinch products archived, family-matching redirect, Microsoft audience exclusions, abandoned-checkout automation.
+Coordination: the session "Family-matching collection SEO ranking" claimed organic SEO (matching-outfits consolidation, nightgown/Hawaiian collections), and I told it about the redirects. The ads side stays with this lane.
+Corrections: the brief's checkout drop is likely polluted by agent-test traffic; its CPC caps exceed the owner's $0.20 cap; the maternity negative is temporary; the PMax state needs a live readback.
+Next: the owner approves packet items 1–5, starting with the shared negative list (32 terms, zero spend risk).
