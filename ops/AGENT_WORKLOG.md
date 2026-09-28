@@ -56048,3 +56048,34 @@ Found: the translation backend's Google endpoint returns 429, so the repo transl
 - Translations for all 20 locales: ChatGPT/Codex (Pro plan) translated 211 attribute terms plus 4 labels (validated: complete, numbers preserved). The appended text is the current translated lead plus the translated tail, registered via `translationsRegister` with the new digest. Result: 5,836 REGISTERED. 4 were skipped because there was no existing translated lead (2 bikinis × ru/sv). An independent 60-sample readback matched 60/60 with outdated=false. The live /de/ product page serves the new German text. Receipts: translation_receipts.json; rollback: re-register the `before` values.
 
 Next: verify that MC's Shirts & Tops description recommendation (62,560) drops after the Google app re-syncs and Google re-crawls. Google's report refresh is an external clock. Then extend color and material coverage to the 56 products without color and 87 without material, and only from supplier-verified facts.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-merchant-feed-round2-truth-fixes-and-gap-fill
+
+- task_entities: Merchant 513542500; Shopify seo.title/seo.description/custom.pattern plus meta_title/meta_description translations; evidence `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-27-merchant-feed-attribute-enrichment/round2/`
+- task_stage: VERIFY
+- problem_ids: PROB-2026-09-27-PRODUCT-TRANSLATION-AUTOMATION-OFF (per-change Codex path reused)
+- next_action_id: RECHECK_MC_SHIRTS_TOPS_CARD_AFTER_GOOGLE_REEVALUATION
+
+MC readback: the Shirts & Tops description card went 62,560 → 62,230. The sampled offers already show the new EN/FR/ES/IT/DA/DE descriptions, but the "Add to description" column is not re-scored yet (Google clock). 28-day clicks are 938.
+
+Done (standing product-data authority; each item read back):
+- Truth fixes. The Google app uses seo.title as the Shopping title. Four summer products had wrong pattern words and were fixed in the SEO title, custom.pattern and the description tail:
+  - rainbow tee "Christmas Print" → "Rainbow Print"
+  - battery tee "Halloween Print" → "Battery Graphic Print"
+  - green tropical trunks "Green Christmas Print" → "Green Tropical Leaf Print"
+  - pink/black trunks "Christmas" → "Pink Black Color Block"
+  - The cable-knit "Heart Print" → "Embroidered Heart"
+  - Translated titles: 92 registered (the product-type and brand segments kept, only the pattern segment swapped); ru/sv on 3 products have no title translation and fall back to the corrected English. Descriptions: 100 registered.
+- Supplier facts, from the 1688 attribute table:
+  - black-bow-mommy-and-me-set → Material: 100% polyester
+  - skyfade-family-matching-set → Material: Cotton (the attribute value; the seller headline "100% cotton" was not used)
+  - EN written plus 40 translations.
+- Color gaps: 42 filled from the shopify.color-pattern category metafield (visible photo color), read via the Shopify connector (the Admin token lacks read_metaobjects). 2 were excluded as contradicting their own copy (ocean-dot, summer-plaid). EN plus 840 translations.
+- Final readback: 295/295 descriptions match. Coverage of 292: color 279, pattern 279, material 207. shopify.fabric was deliberately not used as a source (it records guesses and autofill errors).
+
+Blocked / risks:
+- 1688 anti-bot CAPTCHA was triggered by rapid same-origin fetches of the 36 recorded offers, after 3 reads. The tab was closed and no CAPTCHA was attempted. Peers using 1688 may briefly see challenges.
+- Supplier offer for `black-white-spelling-family-matching-tops` is DELISTED ("商品已下架") while the product is ACTIVE: route it to the sourcing lane (re-source or draft).
+- 85 products still have no verified material. They need readable supplier pages, one slow manual read at a time; if 1688 challenges, the owner solves the CAPTCHA.
+
+Rollback: before values are in round2/*receipts.json and title_tr_before.json, plus the round-1 before_state.json.
