@@ -56104,3 +56104,22 @@ Done (durable records; no platform writes):
 - The "ads brief triage" session's shared-negative claim (Google BLOCKED) is moot under this decision; not cleared here (not this session's claim).
 
 Rollback: only by a new owner chat message reversing the decision; then restore the Status line and remove the banners.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-organic-feed-age-groups-brand-and-christmas-cluster
+
+- task_entities: Merchant 513542500; 5,950 active variants (`mm-google-shopping.age_group`/`gender`); 81 products (vendor); collections `matching-family-christmas-outfits`, `christmas-pajamas`, `christmas-sweaters`, `christmas-tops`; theme `5ec1df3`; packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-28-organic-feed-and-christmas-seo/`
+- task_stage: VERIFY done (feed + theme); BUILD in progress (guide translations)
+- problem_ids: none
+- next_action_id: REGISTER_CHRISTMAS_GUIDE_TRANSLATIONS_12_LOCALES
+
+Why: owner continuation "continue the organic plan, starting with the Merchant feed (more photos per product) and the Christmas collection SEO" (million-plan README §4, free traffic only).
+
+Done (CEO standing authority, reversible; each read back):
+- Premise disproved: "1 image per offer" is false. All 296 active products have 2–13 images; MC offer details show 1+3, 1+3 and 1+6 images. Removed from the queue.
+- Found and fixed: baby/child sizes were sent to Google as Age group Adult (5,564 variants had no variant age group). Set 5,556 `age_group` + 1,983 `gender` variant metafields from the Size option; 0 errors; 5,950/5,950 readback match. MC shows the onesie "Baby 3-6 Months" as "Infant (3–12 months old)" ~10 min later.
+- Brand: 81 products vendor `dresslikemommy.com` → `Dress Like Mommy` (May 2026 canonical); readback 296/296. Listing engine `runner_engine.py` VENDOR and the knit-hat creator fixed so new listings keep it.
+- Christmas cluster (theme `5ec1df3`): localized link row between the Christmas collections plus a Christmas styling-guide section (2026 pajama, sweater, photo-outfit guides). GitHub sync dropped the push; `sync_live_theme_from_main.py --apply` (2 files, MD5) and template upsert after live==pre-change check; drift 0. Live EN, /de/, /ja/ verified; theme check 0 offenses.
+- Checked: all 296 active products are published on Online Store, Google, FB&IG, Pinterest, Microsoft and TikTok. No AI-shopping (agentic storefront) channel exists; enabling it is an owner terms step.
+
+Rollback: packet `variant_age_gender_changes.csv` (delete created metafields), `vendor_before.json`, revert `5ec1df3` and re-run the sync with `--apply` plus re-upsert the previous template.
+Next: validate and register the Codex translations of the 3 Christmas guides for ar, cs, el, fi, he, hi, ja, ko, no, pt-BR, ro, ru.

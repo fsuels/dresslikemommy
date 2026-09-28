@@ -46,7 +46,7 @@ FABRIC_GIDS = {
     "modal_knit": ["gid://shopify/Metaobject/139931877473"],  # modal is a viscose-type rayon
 }[SPEC["fabric_key"]]
 FABRIC_LABEL = {"polyester": "Polyester", "polyblend": "Polyester", "poly95": "Polyester", "cotton": "Cotton", "cvc": "Cotton, Polyester", "cotton35": "Cotton", "cotton65": "Cotton", "poly_velvet": "Polyester", "cotton_sweat": "Cotton", "coral_fleece": "Polyester", "cotton_blend_sweat": "Cotton, Polyester", "modal_knit": "Modal"}[SPEC["fabric_key"]]
-VENDOR = "dresslikemommy.com"
+VENDOR = "Dress Like Mommy"
 # Mode: "family_christmas" (mom, dad and kids; the 2026 Christmas line) or
 # "mommy_me" (mother and child only; season-neutral winter copy).
 MODE = SPEC.get("mode", "family_christmas")

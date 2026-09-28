@@ -80,7 +80,7 @@ def main(dry: bool) -> None:
         ("shopify", "target-gender", refs, json.dumps(["gid://shopify/Metaobject/129972502625"])),
     ]
     inp = {
-        "title": TITLE, "handle": HANDLE, "status": "DRAFT", "vendor": "dresslikemommy.com",
+        "title": TITLE, "handle": HANDLE, "status": "DRAFT", "vendor": "Dress Like Mommy",
         "productType": "Family Matching Accessories", "descriptionHtml": BODY, "tags": TAGS,
         "category": "gid://shopify/TaxonomyCategory/aa-2-17-16",
         "seo": {"title": SEO_TITLE, "description": SEO_DESC},
