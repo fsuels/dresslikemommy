@@ -83,6 +83,17 @@ Lead = PO created → stocked at the BuckyDrop warehouse (median / p90 days). So
   - 温州淘气服饰 (1075669977840): 8 years, 48h pickup 95.2%, but kids/teen heights 120–180 only and "MOY" lettering. **Not listed.**
   - 东莞森大: the remaining unlisted 2026 designs (1073022779254, 1073038207460, 1076187552789) promise 3 days, and 1084384863476 promises 10. Its 8 live knits stay (owner decision); no new 森大 designs.
 - 1688 offer search hit a CAPTCHA after these searches; stopped per rule 12.
+- **Round 2 (same night, slow-paced), couples / Mommy & Me / maternity:** 26 couples + 54 Mommy & Me + 53 maternity offers scanned.
+  - Couples keywords returned mostly kids' makers.
+  - Mommy & Me: the fast-shipping hits are women-only cardigans, not mother-daughter sets. One girls' sweater dress (台州祥红) is kids-only.
+  - Maternity stores promising 48h, gated from `creditdetail`:
+    - 孕韵美 (广州越秀): 12 years, 2,211 orders/30d, 48h pickup 93.06%. **Fails pickup narrowly; best near-miss.**
+    - 四季好孕 (广州): 3 years, pickup 98.41%. **Fails tenure.**
+    - 威华 (广州增城): 1 year, pickup 100%. **Fails tenure.**
+    - 欣聚 (广州): 1 year; its season tag is "其他". **Fails.**
+    - 绪宸 (义乌): 1 year, pickup 74.6%, service 3.0. **Fails.**
+    - 档幻 (义乌): 1 year, pickup 79%. **Fails.**
+  - Scanner fix: many Chinese pages label the season field `上市年份/季节` (with a slash).
 
 ## Avoid (failed the gate on 2026-09-26)
 

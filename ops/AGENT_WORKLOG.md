@@ -56125,3 +56125,5 @@ Rollback: packet `variant_age_gender_changes.csv` (delete created metafields), `
 Next: validate and register the Codex translations of the 3 Christmas guides for ar, cs, el, fi, he, hi, ja, ko, no, pt-BR, ro, ru.
 
 Addendum (2026-09-28, same session): Christmas guide translations LIVE_VERIFIED. Codex (Pro plan) translated the 3 Christmas guides for ar, cs, el, fi, he, hi, ja, ko, no, pt-BR, ro, ru. All 12 passed the HTML/href/number/length validator; 144 fields registered, 0 errors; independent readback 144/144 equal and not outdated; live /ar/, /fi/, /ja/ collection guide titles and the /pt/ article H1 verified. Evidence and rollback: packet §5. next_action_id: RECHECK_MC_AGE_GROUP_AFTER_FULL_SYNC.
+
+**Update (round 2, same night):** after the owner cleared the CAPTCHA, a slow scan of 133 couples, Mommy & Me and maternity offers found none that pass every rule. Near-misses are in `TRUSTED-SUPPLIERS.md`; the best is 孕韵美, maternity, 12 years, 93% pickup. 1688 search then went to empty pages (throttled); paused, no bypass. No store changes.
