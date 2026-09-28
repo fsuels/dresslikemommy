@@ -170,6 +170,10 @@
         assign effective_display_title = 'Matching Family Christmas Pajamas'
       when 'new-women-outfits'
         assign effective_display_title = 'Matching Family Outfits'
+      when 'matching-outfits'
+        assign effective_display_title = 'Family Matching Outfits'
+      when 'daddy-me-shirts'
+        assign effective_display_title = 'Father and Son Matching Hawaiian Shirts'
     endcase
   endif
 
@@ -240,6 +244,19 @@
       when 'new-women-outfits'
         assign effective_meta_title = 'Matching Family Outfits for Mom, Dad & Kids | Dress Like Mommy'
         assign head_meta_description = 'Matching family outfits: coordinated dresses, shirts, tees and sweaters for mom, dad, kids and baby, for photos, trips and holidays. Shipping included.'
+      when 'matching-outfits'
+        comment
+          2026-09-28: the hub Google ranks for "family matching outfits" (see layout/theme.liquid).
+        endcomment
+        assign effective_meta_title = 'Family Matching Outfits for Mom, Dad & Kids | Dress Like Mommy'
+        assign head_meta_description = 'Family matching outfits for mom, dad, kids and baby: coordinating sets, sweaters, pajamas, dresses and swimwear, sized per person. Shipping included.'
+      when 'daddy-me-shirts'
+        comment
+          2026-09-28: Search Console ranks this page 12-17 for "father son matching hawaiian shirts";
+          every product is a short-sleeve tropical, palm or floral cotton button-up.
+        endcomment
+        assign effective_meta_title = 'Father and Son Matching Hawaiian Shirts | Dress Like Mommy'
+        assign head_meta_description = 'Matching father and son Hawaiian shirts: cotton tropical, palm and floral short-sleeve button-ups for dad and boys, for trips, cruises and photos.'
       when 'daddy-me', 'daddy-and-me'
         assign effective_meta_title = 'Daddy and Me Outfits – Matching Dad and Kid Shirts & Tees'
         assign head_meta_description = 'Daddy and me outfits: matching shirts, tees, Hawaiian button-ups and swim trunks for dads, sons and daughters, in adult and kids sizes. Shipping included.'
@@ -563,6 +580,8 @@
       echo head_lead
       echo '</p>'
       echo head_guide_html
+    elsif seo_lang == 'en' and collection_handle == 'matching-outfits'
+      echo '<p>Family matching outfits put mom, dad and the kids in one print or color story, from coordinating sets and sweaters to matching pajamas, dresses and swimwear. Each person is sized separately, and many styles run from baby to adult sizes, so the whole family can match for photos, trips and holidays.</p>'
     elsif seo_lang == 'en' and collection_handle == 'new-women-outfits'
       echo '<p>Matching family outfits put the whole family in one print or color story, so your photos look planned without anyone wearing an identical piece. Most sets pair a dress for mom and daughter with a coordinating shirt for dad and son, and each person is sized separately, with many styles running from baby to adult sizes.</p>'
     elsif body_description_key != blank

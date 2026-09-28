@@ -61,11 +61,11 @@
     assign custom_product_handle = 'ladybug-dots-mommy-and-me-pajamas'
     assign custom_image_index = 0
     assign card_label = 'storefront.menu.new_pajama_styles' | t
-  elsif menu_link_url contains '/collections/new-women-outfits'
+  elsif menu_link_url contains '/collections/matching-outfits' or menu_link_url contains '/collections/new-women-outfits'
     assign card_asset = 'family-mega-menu-promo.jpg'
-    assign fallback_collection = collections['new-women-outfits']
+    assign fallback_collection = collections['matching-outfits']
     if fallback_collection == blank
-      assign fallback_collection = collections['matching-outfits']
+      assign fallback_collection = collections['new-women-outfits']
     endif
     if fallback_collection == blank
       assign fallback_collection = collections['family-matching-outfits']
@@ -119,9 +119,9 @@
         assign menu_link_url = '/collections/pajamas'
       endif
     when 'matching-outfits', 'family-matching', 'family-matching-outfits', 'new-women-outfits'
-      assign fallback_collection = collections['new-women-outfits']
+      assign fallback_collection = collections['matching-outfits']
       if fallback_collection == blank
-        assign fallback_collection = collections['matching-outfits']
+        assign fallback_collection = collections['new-women-outfits']
       endif
       if fallback_collection == blank
         assign fallback_collection = collections['family-matching-outfits']

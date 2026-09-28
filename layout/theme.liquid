@@ -27,11 +27,18 @@
       assign resolved_canonical_url = resolved_canonical_url | split: '?' | first
     endif
     comment
-      popular-family-matching lists the same products as new-women-outfits,
-      the page targeting "family matching outfits"; point its canonical there.
+      2026-09-28: Search Console shows Google ranks /collections/matching-outfits for
+      "family matching outfits" (it also receives the /collections/family-matching 301),
+      so it is the hub. Its rules now include every "Family Matching" tagged product,
+      a superset of popular-family-matching and new-women-outfits. English
+      new-women-outfits points there too; localized copies keep their own canonical
+      because they already earn clicks.
     endcomment
-    if request.page_type == 'collection' and collection.handle == 'popular-family-matching' and collections['new-women-outfits'] != blank
-      assign resolved_canonical_url = request.origin | append: collections['new-women-outfits'].url
+    if request.page_type == 'collection' and collection.handle == 'popular-family-matching' and collections['matching-outfits'] != blank
+      assign resolved_canonical_url = request.origin | append: collections['matching-outfits'].url
+    endif
+    if request.page_type == 'collection' and collection.handle == 'new-women-outfits' and request.locale.iso_code == 'en' and collections['matching-outfits'] != blank
+      assign resolved_canonical_url = request.origin | append: collections['matching-outfits'].url
     endif
     comment
       SEO lane fix #4 (2026-09-27): daddy-and-me duplicates daddy-me (same title,

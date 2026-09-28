@@ -33,7 +33,7 @@
     {% assign has_family_sets_context = true %}
   {% endif %}
   {% if has_family_matching_context and category1_collection == blank %}
-    {% assign category1_handle = 'new-women-outfits' %}
+    {% assign category1_handle = 'matching-outfits' %}
     {% assign category1_collection = collections[category1_handle] %}
     {% assign category1_display_label = 'sections.breadcrumbs.cat_family_matching' | t %}
   {% endif %}
@@ -71,7 +71,7 @@
   {% assign family_sets_collection = collections['family-sets'] %}
   {% if has_family_sets_context %}
     {% if category1_collection == blank %}
-      {% assign category1_handle = 'new-women-outfits' %}
+      {% assign category1_handle = 'matching-outfits' %}
       {% assign category1_collection = collections[category1_handle] %}
       {% assign category1_display_label = 'sections.breadcrumbs.cat_family_matching' | t %}
     {% endif %}

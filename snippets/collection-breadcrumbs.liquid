@@ -20,10 +20,10 @@
 {% assign is_couples_collection_nav = false %}
 {% assign is_family_matching_nav = false %}
 {% assign daddy_button_downs_filter_param = 'dlm-daddy-filter=button-downs' %}
-{% assign family_matching_hub_handle = 'new-women-outfits' %}
+{% assign family_matching_hub_handle = 'matching-outfits' %}
 {% assign family_matching_hub_collection = collections[family_matching_hub_handle] %}
 {% if family_matching_hub_collection == blank %}
-  {% assign family_matching_hub_handle = 'matching-outfits' %}
+  {% assign family_matching_hub_handle = 'new-women-outfits' %}
   {% assign family_matching_hub_collection = collections[family_matching_hub_handle] %}
 {% endif %}
 {% if family_matching_hub_collection == blank %}

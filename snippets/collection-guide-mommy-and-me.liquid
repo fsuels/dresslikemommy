@@ -13,9 +13,9 @@
     assign cg_lang = 'no'
   endif
 
-  assign cg_family_url = routes.collections_url | append: '/new-women-outfits'
-  if collections['new-women-outfits'] != blank
-    assign cg_family_url = collections['new-women-outfits'].url
+  assign cg_family_url = routes.collections_url | append: '/matching-outfits'
+  if collections['matching-outfits'] != blank
+    assign cg_family_url = collections['matching-outfits'].url
   endif
   assign cg_swim_url = routes.collections_url | append: '/swimsuits'
   if collections['swimsuits'] != blank
