@@ -55791,3 +55791,19 @@ Decision: the only decisive test is a real desktop payment (the owner's money, s
 - **Accessory:** Christmas knit family hats DRAFT (Tree Stripe / Garland × Adult Hat $18.99, Child Hat $18.99, Parent & Child Set $23.99, Family Set of 4 $32.99).
   - Supplier 洛阳戴姿容: 7 years, 100% pickup and fulfillment, listed 2026-07, release 2026年秋季.
   - Created by `tools/accessories/create_xmas_knit_hats.py` (not the engine). "Not for children under 3" is stated (small pom-poms).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-27-mommy-daddy-sweaters-placed-and-paired
+
+- task_entities: collections `daddy-me` (95600640097), `daddy-and-me` (91940126817) and `mommy-and-me` (320794427489, MANUAL); 4 Mommy & Me and 4 Daddy & Me sweaters from 东莞森大 (session [57a715])
+- task_stage: LIVE_VERIFIED
+- next_action_id: PLACE_CHRISTMAS_HAT_SET_WHEN_ACTIVE
+
+- **Daddy & Me gap:** both collections matched only TAG "Daddy & Me Collection", so the new Daddy & Me sweaters were absent. Added a disjunctive rule, TYPE CONTAINS "Daddy and Me", which matches only the new line and future "Daddy and Me …" types.
+  - "Father Son" was rejected as a rule because it also pulls in 5 whole-family sets.
+  - Live: the 4 new sweaters are the top of `/collections/daddy-me`.
+  - Before-rules: scratchpad `daddy_rules_before.json`.
+- **`mommy-and-me` (MANUAL):** the 4 new sweaters were appended at 118–121; moved to positions 6–9, after the fall top 5. Live readback matches.
+- **Family-look pairs:** `complementary_products` links mom↔dad pieces from the same offer: Red Lace Bow↔Red Striped Cuff, Red Cable Cardigan↔Red Cable Crew, Navy Pearl Gingham↔Navy Cable Crew, Charcoal Cream Collar↔Charcoal Layered. The PDP shows "Complete the family look"; the API readback returns the pair.
+- `new-arrivals`, `fall-winter`, Mommy & Me `sweaters` and (red pieces) `christmas-sweaters` already include them through their rules.
+
+Rollback: restore the daddy rules from the before file; move the 4 back; delete the 8 `complementary` metafields.
