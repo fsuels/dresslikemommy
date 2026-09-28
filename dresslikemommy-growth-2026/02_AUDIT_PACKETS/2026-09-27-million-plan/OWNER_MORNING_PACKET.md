@@ -43,6 +43,7 @@ Fernando
 Dress Like Mommy
 ```
 
+- **#9575** (NEW, Sep 28, US): Tropical Leaf Mommy & Me swimsuit, **Mother M**, $24.99, paid. Confirm it's placed at BuckyDrop. It's a 2024 swim listing: if the source is the slow Xingcheng (兴城) swim vendor, like stuck #9560/#9566, re-source from a Guangdong swim supplier to avoid another 3+ week delay. I couldn't check: Chrome is disconnected, and BuckyDrop isn't logged in on my built-in browser.
 - **Also stuck at BuckyDrop:**
   - **#9560**: "Purchased" since Aug 16 (6 weeks; Xingcheng swim supplier).
   - **#9566**: "In Procurement" since Sep 8.
