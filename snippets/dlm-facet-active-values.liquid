@@ -12,7 +12,7 @@
 {%- for filter in filters -%}
   {%- liquid
     if hide_product_type
-      if filter.label == 'Type' or filter.label == 'Product type'
+      if filter.label == 'Type' or filter.label == 'Product type' or filter.param_name == 'filter.p.product_type'
         continue
       endif
     endif
@@ -27,6 +27,10 @@
   {%- for value in filter.active_values -%}
     {%- liquid
       assign value_key = value.label | strip | handleize
+      assign value_label_encoded = value.label | url_encode
+      if value_key == blank or value_label_encoded contains '%C' or value_label_encoded contains '%D' or value_label_encoded contains '%E' or value_label_encoded contains '%F'
+        assign value_key = value.label | strip | downcase | replace: ',', '-'
+      endif
       assign value_token = ',' | append: value_key | append: ','
       if seen_active_filter_value_keys contains value_token
         continue

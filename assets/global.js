@@ -52,8 +52,19 @@ function toSameOriginUrl(value) {
   }
 }
 
+// Strips the current storefront's locale root (e.g. '/de/') so '/de/collections/x' reads as
+// '/collections/x'. On a localized storefront, paths outside its root return '' (not reused as results URLs).
+function stripLocaleRoot(pathname) {
+  const root = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+  const prefix = root.replace(/\/+$/, '');
+  if (!prefix) return pathname;
+  if (pathname === prefix) return '/';
+  return pathname.startsWith(`${prefix}/`) ? pathname.slice(prefix.length) : '';
+}
+
 function isResultsPagePath(pathname) {
-  return pathname.startsWith('/collections/') || pathname.startsWith('/search');
+  const path = stripLocaleRoot(pathname);
+  return path.startsWith('/collections/') || path.startsWith('/search');
 }
 
 function sanitizeResultsLabel(value) {
@@ -156,7 +167,7 @@ function getPreferredBackToResultsLabel(
   searchResultsLabel = DEFAULT_BACK_TO_SEARCH_RESULTS_LABEL
 ) {
   const referrerUrl = toSameOriginUrl(document.referrer);
-  if (referrerUrl && referrerUrl.pathname.startsWith('/search')) {
+  if (referrerUrl && stripLocaleRoot(referrerUrl.pathname).startsWith('/search')) {
     return searchResultsLabel;
   }
 

@@ -122,6 +122,7 @@
   {% assign rendered_subcategory_label_key = blank %}
   {% if subcategory_collection != blank and subcategory_display_label != blank %}
     {% assign rendered_subcategory_label_key = subcategory_display_label | handleize %}
+    {% if rendered_subcategory_label_key == blank %}{% assign rendered_subcategory_label_key = subcategory_display_label | downcase | replace: '|', '-' %}{% endif %}
   {% endif %}
 
   {% assign collection_display_label = blank %}
@@ -241,6 +242,7 @@
             {% endcapture %}
             {% assign subcat_display_label = resolved_subcat_display_label | strip %}
             {% assign subcat_display_label_key = subcat_display_label | handleize %}
+            {% if subcat_display_label_key == blank %}{% assign subcat_display_label_key = subcat_display_label | downcase | replace: '|', '-' %}{% endif %}
             {% assign seen_subcategory2_label_key = '|' | append: subcat_display_label_key | append: '|' %}
             {% unless subcat_display_label_key == blank or subcat_display_label_key == rendered_subcategory_label_key or seen_subcategory2_label_keys contains seen_subcategory2_label_key %}
               {% if valid_subcats == '' %}

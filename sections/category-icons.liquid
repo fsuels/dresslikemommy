@@ -415,7 +415,7 @@
                 {%- endcapture -%}
                 {%- assign icon_label = icon_label_localized | strip -%}
                 {%- capture icon_caption -%}
-                  {%- render 'home-category-card-caption', icon_label: icon_label_source -%}
+                  {%- render 'home-category-card-caption', icon_label: icon_label_source, collection_handle: block.settings.collection.handle -%}
                 {%- endcapture -%}
                 {%- assign icon_caption = icon_caption | strip -%}
                 <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
@@ -814,7 +814,7 @@
             {%- endcapture -%}
             {%- assign icon_label = icon_label_localized | strip -%}
             {%- capture icon_caption -%}
-              {%- render 'home-category-card-caption', icon_label: icon_label_source -%}
+              {%- render 'home-category-card-caption', icon_label: icon_label_source, collection_handle: block.settings.collection.handle -%}
             {%- endcapture -%}
             {%- assign icon_caption = icon_caption | strip -%}
             <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>

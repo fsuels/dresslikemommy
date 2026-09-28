@@ -15,7 +15,7 @@
 {% endcomment %}
 {%- liquid
   assign swatch_max = 4
-  assign swatch_keywords = 'color|colour|farbe|couleur|colore|kleur|färg|farve|farge|väri|barva|szín|culoare|χρώμα|χρωμα|цвет|renk|颜色|顏色|색상|màu|warna|צבע|لون|रंग|spalva|boja|farba|kolor|print|pattern|muster|motif|estampado|stampa' | split: '|'
+  assign swatch_keywords = 'color|colour|farbe|couleur|colore|kleur|färg|farve|farge|väri|barva|szín|culoare|χρώμα|χρωμα|цвет|renk|颜色|顏色|색상|カラー|màu|warna|צבע|لون|रंग|spalva|boja|farba|kolor|print|pattern|muster|motif|estampado|stampa' | split: '|'
   assign swatch_option = nil
 
   for swatch_candidate in product.options_with_values

@@ -46,7 +46,7 @@
   assign dlm_active_count = 0
   for filter in results.filters
     if hide_product_type_active_filters
-      if filter.label == 'Type' or filter.label == 'Product type'
+      if filter.label == 'Type' or filter.label == 'Product type' or filter.param_name == 'filter.p.product_type'
         continue
       endif
     endif
@@ -135,11 +135,11 @@
                 assign filter_label_key = filter.label | strip | downcase
                 assign filter_param_key = filter.param_name | downcase
                 assign is_color_filter = false
-                if filter_label_key == 'color' or filter_label_key == 'colour'
+                if filter_label_key == 'color' or filter_label_key == 'colour' or filter_param_key contains 'option.color'
                   assign is_color_filter = true
                 endif
                 assign is_product_type_filter = false
-                if filter.label == 'Type' or filter.label == 'Product type'
+                if filter.label == 'Type' or filter.label == 'Product type' or filter.param_name == 'filter.p.product_type'
                   assign is_product_type_filter = true
                 endif
                 if hide_product_type_active_filters and is_product_type_filter
@@ -268,6 +268,11 @@
                             {% liquid
                               assign value_label = value.label | strip
                               assign value_key = value_label | handleize
+                              # handleize drops non-Latin text ('パパ L' and 'ママ L' both become 'l'); key those labels by the label itself.
+                              assign value_label_encoded = value_label | url_encode
+                              if value_key == blank or value_label_encoded contains '%C' or value_label_encoded contains '%D' or value_label_encoded contains '%E' or value_label_encoded contains '%F'
+                                assign value_key = value_label | downcase | replace: ',', '-'
+                              endif
                               assign value_token = ',' | append: value_key | append: ','
                               if value_label == blank
                                 continue
@@ -617,11 +622,11 @@
                     assign filter_label_key = filter.label | strip | downcase
                     assign filter_param_key = filter.param_name | downcase
                     assign is_color_filter = false
-                    if filter_label_key == 'color' or filter_label_key == 'colour'
+                    if filter_label_key == 'color' or filter_label_key == 'colour' or filter_param_key contains 'option.color'
                       assign is_color_filter = true
                     endif
                     assign is_product_type_filter = false
-                    if filter.label == 'Type' or filter.label == 'Product type'
+                    if filter.label == 'Type' or filter.label == 'Product type' or filter.param_name == 'filter.p.product_type'
                       assign is_product_type_filter = true
                     endif
 
@@ -717,6 +722,11 @@
                               {% liquid
                                 assign value_label = value.label | strip
                                 assign value_key = value_label | handleize
+                                # handleize drops non-Latin text ('パパ L' and 'ママ L' both become 'l'); key those labels by the label itself.
+                                assign value_label_encoded = value_label | url_encode
+                                if value_key == blank or value_label_encoded contains '%C' or value_label_encoded contains '%D' or value_label_encoded contains '%E' or value_label_encoded contains '%F'
+                                  assign value_key = value_label | downcase | replace: ',', '-'
+                                endif
                                 assign value_token = ',' | append: value_key | append: ','
                                 if value_label == blank
                                   continue
