@@ -72,6 +72,18 @@ Lead = PO created → stocked at the BuckyDrop warehouse (median / p90 days). So
   - 东莞市娜蒂亚服饰 (1085512696474): 1 year, fails tenure.
   - 深圳市幸洲跨境贸易 (1080560053703): fulfillment 85%, release Spring 2025.
 
+### 48h-rule sourcing round (2026-09-28, owner: "I need shipments faster 24 max 48 hours" / "ALWAYS")
+
+- **Method:** each offer's page data field `deliveryLimit` gives the promised dispatch days (e.g. `承诺10天发货` = 10). Pass means 1 or 2, a Fall/Winter 2026 release, and a store 48h pickup rate ≥95% read from `creditdetail`.
+- **Result:** 62 fresh 2026 family/kids sweater and sweatshirt offers from keyword search. 27 promise ≤48h with a Fall/Winter 2026 tag, but most are kids-only makers (not our categories). None of the family ones passes the supplier gate yet:
+  - 义乌市蝶柔服饰 (`laimengde`; 1076499959683, 1081899632608 family sweatshirts): 11 years, factory, 8,431 orders/30d, but 48h pickup 89.4%. **Fails.**
+  - 福州市台江区悟凡贸易 (1084344548305, 1074894761162): 1 year, 48h pickup 76%. **Fails.**
+  - 清河县松华服装厂 (1078086111927 Fair Isle wool): 3 years. **Fails tenure.**
+  - 义乌市亮玥贸易 (1086172772169 Christmas family sweaters): 1 year, service 3.5. **Fails.**
+  - 温州淘气服饰 (1075669977840): 8 years, 48h pickup 95.2%, but kids/teen heights 120–180 only and "MOY" lettering. **Not listed.**
+  - 东莞森大: the remaining unlisted 2026 designs (1073022779254, 1073038207460, 1076187552789) promise 3 days, and 1084384863476 promises 10. Its 8 live knits stay (owner decision); no new 森大 designs.
+- 1688 offer search hit a CAPTCHA after these searches; stopped per rule 12.
+
 ## Avoid (failed the gate on 2026-09-26)
 
 | Supplier | Reason |

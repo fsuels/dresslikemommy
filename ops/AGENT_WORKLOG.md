@@ -56015,3 +56015,13 @@ Open:
 - Clarity: clarity.microsoft.com is not signed in. Needs the owner to sign in (and accept terms), then create a project, install it gated on Shopify customer-privacy analytics consent, and add a privacy-policy line.
 - Order #9560 is still unfulfilled at 43 days (already in OWNER_MORNING_PACKET).
 - Follow-ups: cart-drawer thumbnails load at page load (`snippets/cart-drawer.liquid`); inch values show 2 decimals (e.g. 38.58); checkout logo.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-48h-rule-sweater-sourcing-round-1
+
+- task_entities: 62 scanned 1688 offers (family/kids sweaters and sweatshirts); suppliers 蝶柔, 悟凡, 松华, 亮玥, 淘气, 森大 (session [57a715])
+- task_stage: BLOCKED (1688 search CAPTCHA)
+- next_action_id: OWNER_CLEAR_1688_SEARCH_CAPTCHA_THEN_CONTINUE_48H_SOURCING
+
+- Applied the owner's new 24–48h rule. Nothing qualified for listing: the family-apparel stores with 48h promises fail tenure or the 95% pickup rate. The one that passes shipping sells kids/teen sizes with brand lettering. Details are in the `TRUSTED-SUPPLIERS.md` 48h-rule section.
+- Tooling (scratchpad, read-only CDP): `scan_offers.py` now reads `deliveryLimit`; `gate_suppliers.py` reads the store via `sellerWinportUrl`.
+- No store or listing changes.
