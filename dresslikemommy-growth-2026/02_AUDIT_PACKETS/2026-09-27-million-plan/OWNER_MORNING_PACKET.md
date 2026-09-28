@@ -11,11 +11,33 @@ Everything that doesn't need you keeps running without you. Tonight that means c
 - US over 60 days: 115 carts → 48 checkouts → **10 completed (21%)**.
 - Money is being left at the cart and checkout. Example: on 2026-09-22 a US shopper built a **$249.91, 9-piece family cart** (Pink Horizon + Light Blue Halter + Coastal Blue Stripe), entered an address, and left. Nothing followed up, because no recovery email is on.
 
-## Urgent operations
+## Urgent operations (orders; read 2026-09-28 ~10:00 CST in BuckyDrop)
 
-- **Order #9572** ($95.36, 4 raglan tees, placed Sep 24) is paid but **unfulfilled after 3 days**. Please place it with BuckyDrop; late shipping hurts reviews and repeat buying.
+- **#9572** = BuckyDrop S3117776666001 / PO P3117776666001. 4 raglan tees, ships to Germany, paid Sep 24.
+  - Status: **"Shipment From Seller"**. The supplier shipped to BuckyDrop, but the warehouse hasn't stocked it in.
+  - You authorized me to ask BuckyDrop to ship and update tracking. My WhatsApp send was blocked because the app is on another desktop Space, where I can't reach it in the background, and the full-screen approval timed out.
+  - The ready-to-paste message is below.
+- **#9574** (Greece, paid Sep 27): Color-Block knit, **Mother XL + Child 1-2 Years**. **Not placed at BuckyDrop**: the original 玺召 offer is delisted.
+  - The exact design exists only on old 1688 offer 934491728301. It fails: listed 2025-06, 15-day dispatch, only adult size M, so no Mother XL.
+  - Best in-stock alternatives (sourcing session, read-only):
+    1. **Taobao 739904873782**: rainbow-stripe knit with a bear, Dongguan, ships ≤3 days, ¥103–109, Mother XL + toddler 90 in stock. Top pick.
+    2. Taobao 692948627113: similar, ¥110.
+  - **Your call:** message the buyer to offer #1 or a refund. Customer messaging needs your yes.
+- **Also stuck at BuckyDrop:**
+  - **#9560**: "Purchased" since Aug 16 (6 weeks; Xingcheng swim supplier).
+  - **#9566**: "In Procurement" since Sep 8.
+  - Both are now long past our 12–16 day promise. Chase them, or refund plus an apology.
+- **Order #9574 sourcing is now active**, per your 2026-09-28 request. It was previously marked owner-owned.
 
-- **Order #9574** (Color-Block knit): **OWNER-OWNED.** You are sourcing it yourself ("let me take care of that"); agents won't chase it. If you want it, the reference candidate is 1688 offer 934491728301.
+Ready-to-paste WhatsApp message for the "BD-suelsferro@hotmail.com" group (Scott is in it):
+
+```
+Hi Scott and team, Fernando here (Dress Like Mommy).
+1) #9572 = S3117776666001 / P3117776666001 (4 raglan tees, to Germany). Placed Sep 24 and still "Shipment From Seller". Please check with the seller, stock it in, ship to the customer as soon as possible and update the tracking number. Thank you!
+2) #9574 (new order, Greece): we need our Color-Block knit sweater in Mother XL + Child 1-2 Years (Multi Color). The original 1688 seller delisted it. Can you help find an in-stock seller of the same design on 1688/Taobao? Photos: https://www.dresslikemommy.com/products/color-block-mommy-and-me-sweaters
+Backup option if the exact one can't be found: Taobao 739904873782, 妈妈XL + 女宝90码. Please confirm stock for those 2 sizes, but do NOT buy yet until I confirm.
+Thanks!
+```
 
 ## Decisions
 
