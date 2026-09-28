@@ -1,0 +1,77 @@
+{%- comment -%}
+  Cross-links between the Christmas collections (organic SEO, 2026-09-28).
+  Renders only on the Christmas collections listed in cc_handles and links to
+  the other ones that currently show at least cc_min products, so Google and
+  shoppers can move through the whole Christmas range. Link text is the
+  collection title, which Shopify already translates; only the eyebrow is
+  translated inline here (locales/*.json are owned by another lane).
+  Usage: {% render 'collection-christmas-cluster', collection: collection %}
+{%- endcomment -%}
+{%- liquid
+  assign cc_handles = 'matching-family-christmas-outfits,christmas-pajamas,christmas-sweaters,christmas-tops' | split: ','
+  assign cc_min = 4
+  assign cc_current = collection.handle | default: ''
+  assign cc_active = false
+  for cc_handle in cc_handles
+    if cc_handle == cc_current
+      assign cc_active = true
+    endif
+  endfor
+
+  assign cc_lang = request.locale.iso_code | default: 'en' | downcase | split: '-' | first
+  if cc_lang == 'nb'
+    assign cc_lang = 'no'
+  endif
+-%}
+{%- if cc_active -%}
+  {%- capture cc_links -%}
+    {%- for cc_handle in cc_handles -%}
+      {%- if cc_handle == cc_current -%}{%- continue -%}{%- endif -%}
+      {%- assign cc_collection = collections[cc_handle] -%}
+      {%- if cc_collection == blank or cc_collection.products_count < cc_min -%}{%- continue -%}{%- endif -%}
+      <li><a class="collection-christmas-cluster__link" href="{{ cc_collection.url }}">{{ cc_collection.title | escape }}</a></li>
+    {%- endfor -%}
+  {%- endcapture -%}
+  {%- if cc_links != blank -%}
+    {%- capture cc_label -%}
+      {%- case cc_lang -%}
+        {%- when 'es' -%}Más looks navideños a juego
+        {%- when 'fr' -%}Plus de tenues de Noël assorties
+        {%- when 'de' -%}Weitere passende Weihnachtslooks
+        {%- when 'it' -%}Altri look natalizi coordinati
+        {%- when 'nl' -%}Meer bijpassende kerstlooks
+        {%- when 'pt' -%}Mais looks de Natal combinando
+        {%- when 'da' -%}Flere matchende julelooks
+        {%- when 'sv' -%}Fler matchande julkläder
+        {%- when 'no' -%}Flere matchende juleantrekk
+        {%- when 'pl' -%}Więcej pasujących świątecznych stylizacji
+        {%- when 'cs' -%}Další sladěné vánoční outfity
+        {%- when 'fi' -%}Lisää yhteensopivia jouluasuja
+        {%- when 'el' -%}Περισσότερα ταιριαστά χριστουγεννιάτικα σύνολα
+        {%- when 'ro' -%}Mai multe ținute de Crăciun asortate
+        {%- when 'ru' -%}Больше одинаковых рождественских образов
+        {%- when 'ja' -%}クリスマスのおそろいコーデをもっと見る
+        {%- when 'ko' -%}크리스마스 커플룩 더 보기
+        {%- when 'ar' -%}المزيد من إطلالات عيد الميلاد المتطابقة
+        {%- when 'he' -%}עוד לוקים תואמים לחג המולד
+        {%- when 'hi' -%}और मैचिंग क्रिसमस लुक्स
+        {%- else -%}More matching Christmas looks
+      {%- endcase -%}
+    {%- endcapture -%}
+    <nav class="collection-christmas-cluster" aria-label="{{ cc_label | strip | escape }}">
+      <p class="collection-christmas-cluster__label">{{ cc_label | strip }}</p>
+      <ul class="collection-christmas-cluster__list list-unstyled" role="list">{{ cc_links }}</ul>
+    </nav>
+    {%- style -%}
+      .collection-christmas-cluster { margin-top: 1.6rem; }
+      .collection-christmas-cluster__label { margin: 0 0 0.8rem; font-size: 1.3rem; font-weight: 600; letter-spacing: 0.04rem; }
+      .collection-christmas-cluster__list { display: flex; flex-wrap: wrap; gap: 0.8rem; margin: 0; }
+      .collection-christmas-cluster__link {
+        display: inline-flex; align-items: center; min-height: 4.4rem; padding: 0 1.6rem;
+        border: 1px solid rgba(var(--color-foreground), 0.25); border-radius: 2.2rem;
+        color: rgb(var(--color-foreground)); font-size: 1.4rem; text-decoration: none;
+      }
+      .collection-christmas-cluster__link:hover { border-color: rgb(var(--color-foreground)); text-decoration: underline; }
+    {%- endstyle -%}
+  {%- endif -%}
+{%- endif -%}
