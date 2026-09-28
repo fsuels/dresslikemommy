@@ -56200,3 +56200,20 @@ Checks: `node --check`, theme check (299 files, 0 offenses), `git diff --check`,
 **Note:** repeated scripted fetches triggered Shopify's 429 "Verifying your connection" bot check for this IP. Live checks were then done in the real browser pane. Throttle scripted readbacks.
 
 Rollback: `git revert`, then `sync_live_theme_from_main.py --apply`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-breadcrumb-home-translations
+
+- task_stage: LIVE_VERIFIED
+- task_entities: commit b06e795; `general.breadcrumbs.home` and `sections.breadcrumbs.home` in 22 `locales/*.json`
+
+- **Problem:** breadcrumb "Home" was translated literally as a house in 22 locales (de Heim, ja 家, it Casa, pt Lar, ru Дом, tr Ev, zh 家, ko 집, ar بيت, …). It is visible on every page and in the BreadcrumbList JSON-LD.
+- **Fix:** replaced with each language's web-standard home-page term:
+  - de Startseite, ja ホーム, it Home, pt Início, ru Главная, tr Ana Sayfa;
+  - zh-CN 首页, zh-TW 首頁, ko 홈, ar الرئيسية, he דף הבית, hi होम;
+  - fi Etusivu, pl Strona główna, nl Home, id Beranda, th หน้าแรก;
+  - hr Početna, hu Kezdőlap, sl Domov, da Forside.
+- **Release:** main commit, then `themeFilesUpsert` of the 22 files after a key-diff check (only the two keys differed).
+- **Live /de:** the visible breadcrumb reads "Startseite › Familienlook › Pyjamas" and the JSON-LD starts with "Startseite".
+- **Follow-ups:**
+  - The old "Christmas pajamas breadcrumb shows Mommy and Me" issue is resolved; the trail is now Family Matching › Pajamas.
+  - Minor: the BreadcrumbList JSON-LD on `christmas-pajamas` has only 2 items (Home, Pajamas) while the visible trail has 3.
