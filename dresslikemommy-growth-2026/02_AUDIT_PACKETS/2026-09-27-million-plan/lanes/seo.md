@@ -270,3 +270,34 @@ Google already ranks this URL at pos 13.7 for the term. `family-swimsuits` keeps
 Status 2026-09-27 (anchor `2026-09-27-seo-build-live-readback`): fix #1(d) is DONE: all 74 old Christmas redirects land on `/collections/christmas-pajamas` (15 live products). Fixes #3, #4, #8, #9 and #10 are LIVE_VERIFIED; #11 was checked only on the whitelisted `family-swimsuits` (no noindex). Fix #2's rule is in `ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md`. Still open: #5 (owner Merchant access), #6 (reviews, claimed), #12–#15, and the owner's fresh GSC export. The paragraph below is the original recommendation.
 
 **Activate and fill `/collections/christmas-pajamas`, then repoint the 74 Christmas redirects to it (fix #1).** It goes first because Christmas is the store's largest proven demand (31% of 2025 sales, and 79% of Q4 was holiday product), demand starts in early October, and today the head URL for that demand shows one product.
+
+## Appendix: Search Console baseline, 2026-09-27 (LIVE_VERIFIED, read-only, owner's GSC)
+
+Last 28 days (Aug 29–Sep 25), web: **904 clicks, 51.9K impressions, 1.7% CTR, average position 15.7**. Use this as the "before" for the 09-27 releases:
+- head-collection titles and translations in 20 locales;
+- Product JSON-LD with returns and delivery time;
+- 3 Christmas articles in 9 languages;
+- 46 blog internal links;
+- page-weight cuts.
+
+Re-read after the measurement window (~Oct 25) and compare the same 28-day metrics.
+
+Top pages by clicks:
+
+| Page | Clicks | Impressions |
+|---|---:|---:|
+| /el/blogs/news/mommy-and-me-matching-outfit-ideas | 60 | 495 |
+| /da/collections/dresses | 35 | 513 |
+| /da | 33 | 1,069 |
+| /nl/collections/dresses | 32 | 659 |
+| /no/collections/dresses | 28 | 445 |
+| / (home) | 25 | 4,118 |
+
+**Leaks (high impressions, low CTR):**
+- Home: 4,118 impressions, 0.6% CTR.
+- `/collections/daddy-me-shirts`: 1,518 impressions, 0.9%.
+- Query **"family matching outfits": 2,091 impressions, 6 clicks (0.3%)**. The title and target work shipped today, so re-check the position of this query first.
+
+Localized dress collections (da/nl/no) and localized blogs are the store's best organic earners, which supports continuing native translations.
+
+**Indexing:** all 3 new Christmas articles were already indexed within hours of publishing. Re-indexing was requested for the Christmas pajama guide, whose content changed after the crawl.
