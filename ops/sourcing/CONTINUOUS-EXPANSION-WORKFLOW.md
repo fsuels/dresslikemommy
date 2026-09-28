@@ -24,6 +24,11 @@ These are standing owner instructions. Details are in the numbered sections belo
 3. **Supplier gate (§3):** ≥5 years on 1688, ≥97% fulfillment, ≥95% 48h pickup or ≤7-day dispatch, dropship MOQ 1, service ≥4.0, Guangdong preferred. **Exceptions (e.g. <5 years) only with the owner's explicit yes.**
 4. **Current-year designs only (§4):**
    - BOTH the 1688 listing date AND the release-year attribute must be the current year.
+   - **Fresh and in season** (owner 2026-09-28: "always make sure the listings we are adding are fresh! year 2026 for the correct season"):
+     - The release attribute (上市年份季节 / "Year and season of release") must name the current year AND a season that fits the selling window.
+     - Fall, winter and holiday lines need 2026 Autumn/Fall/Winter (秋季/冬季/秋冬). Spring/summer lines need 2026 Spring/Summer.
+     - A "Spring 2026" tag on a Christmas or winter item fails. So does a year-only attribute, unless the listing date and the design clearly place it in the season.
+     - Record the exact attribute text in the spec evidence.
    - Never restore archived or old designs as "new". The owner rejected the 5 restored 2025 Christmas winners on 2026-09-27.
    - No licensed characters or look-alikes. Read the real fabric composition.
 5. **Pricing (§6):** landed cost ≤50% of price on a single-item order; net ≥35%. The BuckyDrop shortcut is (CNY cost + domestic) / 7.11 × 4.2, with compare-at = price + $10; always run the 50% test. Record the real unit cost.
