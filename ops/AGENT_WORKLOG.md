@@ -55940,3 +55940,34 @@ Done (LIVE_VERIFIED): matching-outfits rule + TAG "Family Matching" (79 → 182 
 Rollback, evidence and measurement: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-28-family-matching-hub-consolidation/README.md`.
 
 Routed: nightgowns need 2026 sourcing (1 active product) → merch queue; localized hub copy for no/da/fi/cs/ro/he → translation lane. Scope split with peer sessions "English collection pages SEO ranking" (couples, pajamas, tops, sweaters, Thanksgiving, blog Grinch blocks) and "ads and SEO brief" (ads; 5 nightgown 404 redirects).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-gsc-english-seo-fixes
+
+- task_entities: theme `6c70aff`; collections couples 290635284577, pajamas, family-tops 140957712481, family-sweaters, thanksgiving-family-outfits 364000444513 (new); product 7230336729185; article 559651979361 plus 7 more; packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-28-gsc-english-seo-fixes/`
+- task_stage: VERIFY done; outcome measurement waits on Google recrawl
+- next_action_id: GSC_REREAD_28D_AFTER_2026-09-28
+
+Why: the owner pasted a 3-month GSC brief. English pages rank on Google pages 2–5 with near-zero clicks; there are Christmas and Thanksgiving gaps and a Grinch trademark risk.
+
+Findings (GSC, read live):
+- "family/matching family shirts" (2.1K impr, 0–1 clicks) lands on the heart T-shirt product.
+- "mommy and me matching pajamas" lands on the non-www homepage.
+- Thanksgiving (690 impr) lands on a 2016-dated post that pushed Christmas PJs.
+- family-sweaters owns "matching family sweaters", so there is no cannibalization.
+- The theme's collection-seo-fallback overrides admin copy. `/collections/pajamas` showed the H1 "Matching Family Pajamas", the same as family-pajamas.
+
+Done (all LIVE_VERIFIED):
+- A new EN-only snippet sets title, H1, meta, lead and guide for couples, pajamas (→ "Mommy and Me Pajamas"), family-tops (→ "Family Matching Shirts & Tops"), family-sweaters and thanksgiving. Localized pages are unchanged.
+- The GitHub sync did not fire, so `sync_live_theme_from_main.py --apply` pushed 3 files; 0 drift after.
+- Admin SEO updated on the 4 collections.
+- New manual collection with 30 active fall knits, plaid and sweatshirts, published.
+- The heart T-shirt SEO title now leads with "Matching Family Shirts".
+- The Thanksgiving post was rewritten with 8 live products, and the other 4 fall posts link to the new collection.
+- Grinch product blocks were removed from 3 published posts.
+- GSC Request indexing sent for the 6 URLs.
+
+Checked, no change:
+- The non-www homepage 301s to www; GSC reports "Page with redirect" with the www canonical.
+- Hindi/Spanish are kept, because removing a language recreates URL churn.
+
+Rollback: see the packet README.
