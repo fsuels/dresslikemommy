@@ -60,6 +60,7 @@ Report: `image_seo_audit_20260926T184335Z.csv`.
 - Catch-up batches (`apply_catchup*`) covered 5 Christmas pajama listings created by another session during the run.
 - Apply receipts per locale: `translations/apply_<locale>_<UTC>.json` (every before/after value). Locales with stale old translations were re-run with `--force`.
 - Rollback: re-register `before` values from the receipts, or `translationsRemove` for key `alt`.
+- 2026-09-27/28 peer request: another session rewrote 3 English alts on each of 19 sweatshirt/sweater/Mommy & Me listings. The source-digest state queued them automatically with ~70 new-listing images. 127 alts x 20 locales plus 2 catch-ups (Red Lace Bow, Red Cable Cardigan, Navy Pearl Gingham) were registered: 0 user errors, 0 readback mismatches. The final queue shows 0 missing. Receipts: `translations/apply_peer_*.json`.
 - Ongoing: the `daily-image-alt-review` scheduled task now also runs the translation queue/apply after the English alt pass (`docs/agent-loops/image-seo-loop.md`).
 
 ## Flag follow-up (owner: "fix this, I will do your recommendation")

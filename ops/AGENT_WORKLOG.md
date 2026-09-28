@@ -55746,3 +55746,5 @@ Owner request (Claude Code chat, session "Website visual improvements" [f7baa5])
   - re-audit: 40 marker findings, all on the 2 held products.
 - Residual: the complete older titles are long, so most still clamp to 2 lines on phone cards (e.g. `/de` Mommy & Me pages 2–3). The durable fix is the canonical "Design Name — Details" rewrite, as done for the 4 knit products.
 - Rollback: `python3 <packet>/apply_titles.py <packet>/translations/<locale>.json --execute --rollback` per locale. For the 4 patched pairs, first revert `patch_log.json` "to" → "from".
+
+Update to `2026-09-27-image-alt-translations-live` (LIVE_VERIFIED): at a peer session's request (19 listings with rewritten English alts), the digest state re-queued those alts plus new-listing images. 127 alts x 20 locales were registered, plus catch-ups for 3 new Mommy & Me sweater listings, with 0 user errors and 0 readback mismatches. The final `translate_image_alts.py queue` shows 0 images needing translation. Receipts: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-image-seo/translations/apply_peer_*.json`.
