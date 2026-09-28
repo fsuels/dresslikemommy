@@ -55987,3 +55987,31 @@ Blocked on Google, nothing changed, 0 lists before:
 - The built-in browser is signed in to another Google account and hit a reCAPTCHA; I stopped there.
 Findings: all 15 Microsoft campaigns now show paused. Existing Microsoft negatives "knit/knitting", "halloween/costume(s)" and "hot" block in-season buyers; removing them needs an owner decision.
 Next: the owner pauses the ad blocker for ads.google.com in the testhqfinds Chrome profile. Then create the Google shared list from the CSV and attach it to the 5 active Search/Shopping campaigns.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-checkout-audit-pdp-fixes
+
+- task_entities: theme commit `9dbbc84` (files `assets/product-desktop-ux-20260513-ruler-sync.js`, `assets/component-product-desktop-ux-ruler-sync.css`, `assets/size-conversion.js`, `sections/main-product.liquid`, `layout/theme.liquid`); automatic discount `DiscountAutomaticNode/1315733110881` (read only); order #9560 (read only)
+- task_stage: DONE, LIVE_VERIFIED
+- next_action_id: OWNER_SIGN_IN_CLARITY_THEN_INSTALL_WITH_CONSENT
+
+Owner request (2026-09-28): act on the checkout audit #4 (cart→checkout drop; hypotheses price shock, delivery time, cm size charts, slow PNG images, checkout logo; install Microsoft Clarity).
+
+Evidence:
+- ShopifyQL, last 30 days: mobile 2,868 sessions → 162 with cart adds → 28 reached checkout → 10 completed; desktop 48 → 28 → 0. The leak is mobile cart→checkout (83% drop).
+- Live cart test: the BXGY "3rd piece 20% off" applies in USD (family of 4 $137.96 → $131.37) and EUR (€141.80 → €135.01). Test carts cleared; no checkout submitted.
+- Images: originals are PNG, but the CDN already serves WebP to browsers (about 180–234 KB); converting the originals is not the fix. The real bug was the `<head>` preload using different widths/sizes from the gallery `<img>`, so phones downloaded the main photo twice.
+- Delivery: 3 US orders with delivery scans arrived in 11.6–12.6 days, so "12–16 days" is honest; kept unchanged. The store token lacks `read_all_orders` (only 60 days visible), and 13 YunExpress shipments have no tracking events in Shopify.
+- Checkout logo: the checkout header shows a script-font "Dress Like Mommy" wordmark that differs from the site's bear-and-text logo (checkout editor setting; not changed).
+
+Done (live via GitHub `main` → `sync_live_theme_from_main.py --apply`, applied 5 / verified 5, then 0 drift):
+- PDP "Build your matching set" shows a family price with the live discount applied, e.g. "Family of 4 (Mom, Dad + 2 kids) from $131.37 · 3rd piece 20% off, applied automatically in your cart"; Mom/Dad + 2 kids and 2 adults + 1 child variants; 21 languages; hidden when roles don't fit. If the BXGY discount changes or ends, update or remove `FAMILY_BUNDLE_PERCENT` and `FAMILY_OFFER_COPY_BY_LOCALE`.
+- Size charts default to inches for US/LR/MM (`window.__dlmDefaultUnitSystem`); a shopper's saved cm/in choice still wins.
+- The LCP preload now uses the same 12 widths and `sizes` as `snippets/product-thumbnail.liquid` (media_size large = 0.65) plus `fetchpriority="high"`.
+- Readback: US mobile PDP shows the offer at $131.37, size table in inches, and one main-photo request (713w, preload reused). The DE PDP shows "Familie mit 4 … ab 135,01 €" with metric units.
+
+Rollback: `git revert 9dbbc84`, then run `python3 ops/scripts/sync_live_theme_from_main.py --apply`.
+
+Open:
+- Clarity: clarity.microsoft.com is not signed in. Needs the owner to sign in (and accept terms), then create a project, install it gated on Shopify customer-privacy analytics consent, and add a privacy-policy line.
+- Order #9560 is still unfulfilled at 43 days (already in OWNER_MORNING_PACKET).
+- Follow-ups: cart-drawer thumbnails load at page load (`snippets/cart-drawer.liquid`); inch values show 2 decimals (e.g. 38.58); checkout logo.
