@@ -1,0 +1,12 @@
+You are a professional e-commerce translator. Translate the three blog articles in source.json from English into natural, fluent Arabic for shoppers of Dress Like Mommy, an online store for matching family outfits.
+
+Write the result to out.json in this folder: the same structure as source.json (same article keys, same field keys: title, summary_html, meta_description, body_html), with every value translated. Do not print it; write the file.
+
+Hard rules:
+1. HTML: keep every tag, attribute and href exactly as in the source, in the same order. Translate only the human-readable text between tags. Do not add, drop, merge or reorder elements. Every <a href="..."> must keep its exact href.
+2. Keep product and brand names that are proper names in the source (e.g. "Dress Like Mommy") unchanged; you may translate descriptive product names (e.g. "Classic Red Plaid pajamas") naturally.
+3. Keep all numbers, sizes, dates, percentages and units exactly (e.g. 100% polyester, 2–14 Y, S–3XL). Do not convert units.
+4. Do not add any claims that are not in the source (no stock, warehouse, fast shipping, reviews, bestseller or discount claims). Keep hedged wording hedged.
+5. meta_description: at most 160 characters. title: at most 70 characters.
+6. Use the natural search phrase a Arabic-speaking parent would type for "matching family Christmas pajamas / sweaters / photo outfits".
+7. Output must be valid JSON (UTF-8, no comments). After writing, re-open out.json, parse it, and check that for each article body_html has the same number of <a  tags and the same hrefs as the source. Fix any mismatch before finishing.

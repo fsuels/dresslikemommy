@@ -38,7 +38,15 @@ Before: the four Christmas collections (`matching-family-christmas-outfits` 38 d
 - Release: GitHub sync dropped the push again; `sync_live_theme_from_main.py --apply` (2 files, MD5-verified) and a themeFilesUpsert of the template after confirming live == pre-change main. Drift after: 0.
 - Live readback: EN, `/de/`, `/ja/` show the row and 3 guides with localized URLs; `/collections/pajamas` unchanged. Desktop row visible under the intro. On mobile the theme hides everything under the H1 by design ("products first"); the links stay in the HTML and the guide cards below the grid carry the links there.
 
-## 5. Open
+## 5. Christmas guide translations (LIVE_VERIFIED)
 
-- The 3 Christmas guides have no translation in ar, cs, el, fi, he, hi, ja, ko, no, pt-BR, ro, ru (title, body, summary, meta). Codex translation job running; validate (HTML/href parity, numbers, length) before `translationsRegister`.
-- Recheck Merchant Center after the next full sync for "Age group" issues and query matching.
+The 3 Christmas guides had no translation in ar, cs, el, fi, he, hi, ja, ko, no, pt-BR, ro, ru. ChatGPT-app Codex (Pro plan, no API) translated title, body, summary and meta description per locale (`guide_translations/codex_prompt_example_ar.txt`); logs show no external translation calls.
+- Validator `christmas_guide_translation_validate_register.py`: identical tag sequence and hrefs, every source number present, not left in English, title ≤80 / meta ≤170 chars. 12/12 locales OK.
+- Registered with `translationsRegister` against current digests: 144 fields, 0 user errors. Arabic was re-registered once because its job rewrote the file after the first registration.
+- Independent readback: 144/144 equal the validated files, none outdated. Live: `/ar/` and `/fi/` Christmas collections show translated guide titles; `/pt/blogs/news/family-christmas-photo-outfits-2026` serves the Portuguese H1.
+- Rollback: `translationsRemove` for those locales/keys on the 3 article IDs. Files: `guide_translations/<locale>.json`.
+
+## 6. Open
+
+- Recheck Merchant Center after the next full sync for age-group issues and baby/kids query matching.
+- Owner: Shopify AI shopping (agentic storefronts) terms; see million-plan README §4.

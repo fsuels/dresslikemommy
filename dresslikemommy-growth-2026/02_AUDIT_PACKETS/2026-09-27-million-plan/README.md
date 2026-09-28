@@ -68,8 +68,8 @@ Every lane below is free. Budget = $0 ad spend; the only costs are product, frei
 
 **Doing now (CEO standing authority):**
 1. **Christmas catalog + pages (seasonal clock: last safe US order ~Dec 5).** Finish plaid-reindeer; +12 2026 designs from proven suppliers; Christmas collections indexed and internally linked before October so Google ranks them in time. Free traffic needs pages live early; Google takes weeks to rank.
-2. **Google free listings (Merchant 513542500).** Already the fastest-growing free source (938 clicks / 28 days on 2026-09-28). Fix feed gaps: more than one image per offer, remaining item issues (shipping currency mismatch, missing price/availability), color/material coverage.
-3. **SEO.** Head-collection rewrites, no archive churn (keep ranking URLs alive or 301 them), Christmas/Thanksgiving/winter guides linking to collections, review stars in structured data once reviews exist. `lanes/seo.md`.
+2. **Google free listings (Merchant 513542500).** Already the fastest-growing free source (938 clicks / 28 days on 2026-09-28). 2026-09-28: the "1 image per offer" gap was false (offers send 3–6 extra photos); fixed baby/child sizes sent as Age group Adult (5,950 sizes) and brand consistency (81 products). Next: remaining item issues, color/material coverage.
+3. **SEO.** 2026-09-28: Christmas collections now cross-link and show the 3 Christmas guides (theme `5ec1df3`); the 3 guides are now translated into all 20 languages. Head-collection rewrites, no archive churn (keep ranking URLs alive or 301 them), Christmas/Thanksgiving/winter guides linking to collections, review stars in structured data once reviews exist. `lanes/seo.md`.
 4. **Other free shopping surfaces.** Microsoft Merchant Center free listings (Bing/Copilot shopping), Shopify agentic storefronts / AI shopping (ChatGPT, Copilot, Perplexity; ChatGPT referrals were the best unpaid intent source: 207 sessions, 23 carts). Verify each is on.
 5. **Organic Pinterest.** The family-matching niche is visual; the catalog is already ingested (~5.2k items). Raise original-Pin cadence using the 4-image AI photoshoots, every Pin linking to a live collection.
 6. **Conversion and basket size** (makes every free visitor worth more): complete-the-family upsell, size chart, reviews. `lanes/conversion.md`.
@@ -78,6 +78,7 @@ Every lane below is free. Budget = $0 ad spend; the only costs are product, frei
 - Email to past customers (10k+ records; Shopify Email is free for the first 10k emails a month): welcome + win-back automations and the Christmas campaign. Repeat buyers fell from 1,493 orders to 62; this is the largest free revenue lever. `lanes/email.md`.
 - Review requests to past buyers (Judge.me/Loox) → stars on product pages and in Google.
 - Google Customer Reviews opt-in and Merchant return policy → free store rating and return annotations in Shopping.
+- Shopify AI shopping (agentic storefronts: ChatGPT, Copilot, Perplexity) → free product placement in AI answers; needs the owner to accept Shopify's terms in admin. All 296 products are already on Google, Microsoft, Pinterest, FB/IG and TikTok.
 - Merchant Center promotion for FAMILY10 → free "special offer" tag on free listings (owner must create; the classifier blocks the agent).
 
 **Waiting on an external clock:** Google re-crawl/re-score of feed and collection changes; Christmas season.

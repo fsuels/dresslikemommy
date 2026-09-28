@@ -56123,3 +56123,5 @@ Done (CEO standing authority, reversible; each read back):
 
 Rollback: packet `variant_age_gender_changes.csv` (delete created metafields), `vendor_before.json`, revert `5ec1df3` and re-run the sync with `--apply` plus re-upsert the previous template.
 Next: validate and register the Codex translations of the 3 Christmas guides for ar, cs, el, fi, he, hi, ja, ko, no, pt-BR, ro, ru.
+
+Addendum (2026-09-28, same session): Christmas guide translations LIVE_VERIFIED. Codex (Pro plan) translated the 3 Christmas guides for ar, cs, el, fi, he, hi, ja, ko, no, pt-BR, ro, ru. All 12 passed the HTML/href/number/length validator; 144 fields registered, 0 errors; independent readback 144/144 equal and not outdated; live /ar/, /fi/, /ja/ collection guide titles and the /pt/ article H1 verified. Evidence and rollback: packet §5. next_action_id: RECHECK_MC_AGE_GROUP_AFTER_FULL_SYNC.
