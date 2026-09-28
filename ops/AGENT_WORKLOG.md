@@ -56140,3 +56140,22 @@ Addendum (2026-09-28, same session): Christmas guide translations LIVE_VERIFIED.
   - Live: 46 products, no siblings or Mommy/Daddy & Me items.
   - Before-rules: scratchpad `couples_rules_before_v2.json`.
 - **Not done by design:** no "Complete the family look" link from family Christmas sets to the siblings sweater, because it is not the same print (owner feedback on the dog vest: add-ons must match the family look).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-first-siblings-listing-live-48h-supplier
+
+- task_entities: `teddy-bear-siblings-christmas-sweaters` (ACTIVE), `red-truck-siblings-christmas-sweaters`, `nordic-hearts-siblings-christmas-sweaters` (DRAFT); supplier 腾云鸽 / TYG Kids offers 1060255226703, 1060255226364, 1060266274215; collection `siblings-matching-outfits` (website session) (session [57a715])
+- task_stage: LIVE_VERIFIED (teddy bear); BUILD (red truck, nordic hearts)
+- next_action_id: FINISH_SIBLINGS_2_AND_3_THEN_PING_WEBSITE_FOR_NAV
+
+- **First Siblings (brother & sister) product.** Siblings is an owner focus category that had 0 products.
+  - Supplier 腾云鸽 (TYG Kids) passes every gate, including the 24–48h rule: 14 years, 99.8% pickup and fulfillment, "48-Hour Shipping", MOQ 1, Autumn 2026 tag, 67% cotton / 33% polyester.
+  - Price $27.99 (compare-at $37.99); landed $13.56 = 48%.
+- **Teddy Bear readback:** ACTIVE, 8/8 channels, US/DE/GB/AU/CA markets, 5/5 sizes available, 4 QA'd Codex images, closeout PASS (480 translations).
+  - Mobile PDP checked: the full-width photo and the "Size guide & fit" table render; the theme converts the chart to inches for the US.
+  - The theme needs `<table id="size-chart" class="size-chart">` under "Size Chart - …"; the first body without it was fixed, re-translated and re-closed out.
+- **New reusable tooling** in `tools/accessories/`:
+  - `create_siblings_sweater.py`: standalone productSet for kids-only siblings sweaters, with copy guard, 50% margin check and `--update-body`.
+  - `translate_standalone.py`: lists the fields the completeness audit checks, has ChatGPT-app Codex translate them and registers the translations with digests.
+- **Rejected:** TYG red-nosed reindeer designs (Rudolph look-alike).
+- The website session created `/collections/siblings-matching-outfits` and adds nav/tiles at 3+ products.
+- Rollback: set to DRAFT.
