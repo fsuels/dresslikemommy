@@ -56168,3 +56168,17 @@ Addendum (2026-09-28, same session): Christmas guide translations LIVE_VERIFIED.
   - Fixed by replacing that single de cache entry with the Codex translation (working copy only; not on main), then re-registering and re-running → PASS.
   - Lesson: when a standalone listing fails `body_source_language_leakage` after registering good translations, check the shared cache entry for that exact source.
 - Rollback: set to DRAFT.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-siblings-nav-and-localized-shop-menu-fix
+
+- task_stage: LIVE_VERIFIED
+- task_entities: `snippets/dlm-mega-panel.liquid` (column_3), `storefront.mega_menu.siblings` in 35 `locales/*.json`, `snippets/header-mega-menu.liquid` and `snippets/header-drawer.liquid` (Shop key detection); MAIN 133290917985
+
+- **Siblings nav:** siblings reached 3 ACTIVE products, so it was added to the "Who's matching" column (after Couples) with native labels in all 35 locale files.
+  - The code went via main plus `--apply`.
+  - The locale files were uploaded with `themeFilesUpsert` after a key-diff check (only `storefront.mega_menu.siblings` differed).
+- **Bug found:** the whole **Shop mega panel was missing on every non-English storefront**. `header-mega-menu`/`header-drawer` picked the `shop` key only when `link.title == 'shop'` or `link.url == '/collections/all'`, but localized titles are translated and URLs are prefixed (`/de/collections/all`). Mommy/Daddy panels were unaffected because they use "contains".
+- **Fix:** also match `link.handle == 'shop'` and `routes.root_url` / `routes.all_products_collection_url`. Two lines.
+- **LIVE_VERIFIED:** en/de/fr/ja/es/ar all render `DlmMega-shop`, with the Siblings link present (Siblings / Geschwister / Frères et sœurs / きょうだい / Hermanos / الإخوة والأخوات) and 0 Liquid errors.
+
+Rollback: `git revert` both commits, `--apply`, then re-upload the locale files from the reverted main.
