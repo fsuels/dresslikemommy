@@ -23,6 +23,24 @@ Everything that doesn't need you keeps running without you. Tonight that means c
     1. **Taobao 739904873782**: rainbow-stripe knit with a bear, Dongguan, ships ≤3 days, ¥103–109, Mother XL + toddler 90 in stock. Top pick.
     2. Taobao 692948627113: similar, ¥110.
   - **Your call:** message the buyer to offer #1 or a refund. Customer messaging needs your yes.
+Ready-to-send buyer email for **#9574**. It goes out only if you approve; customer messaging is your call. Attach 2–3 photos of the Taobao 739904873782 sweater.
+
+```
+Subject: Your Dress Like Mommy order #9574 – an update on your sweaters
+
+Hi [first name],
+
+Thank you for your order! We're sorry: the Color-Block knit sweater you chose was just discontinued by our maker, and we can't get it in Mother XL and Child 1-2 Years.
+
+We'd love to offer you a similar matching set instead, a cozy rainbow-stripe knit with a little bear, in the same sizes (Mother XL and Child 1-2 Years), at no extra cost. Photos attached.
+
+Would you like us to send this set instead? If you'd prefer, we'll refund your order in full right away. Just reply "swap" or "refund".
+
+Thank you for your patience,
+Fernando
+Dress Like Mommy
+```
+
 - **Also stuck at BuckyDrop:**
   - **#9560**: "Purchased" since Aug 16 (6 weeks; Xingcheng swim supplier).
   - **#9566**: "In Procurement" since Sep 8.
