@@ -125,7 +125,7 @@
                   assign normalized_link_url = link.url | split: '?' | first
                   if use_family_direct_link and family_hub_destination_visible
                     assign dlm_mega_key = 'family'
-                  elsif normalized_link_title == 'shop' or normalized_link_url == '/' or normalized_link_url == '/collections/all'
+                  elsif link.handle == 'shop' or normalized_link_title == 'shop' or normalized_link_url == '/' or normalized_link_url == '/collections/all' or normalized_link_url == routes.root_url or normalized_link_url == routes.all_products_collection_url
                     assign dlm_mega_key = 'shop'
                     assign nav_link_url = routes.all_products_collection_url | append: '?sort_by=created-descending'
                   elsif normalized_link_url contains '/collections/mommy-and-me'
