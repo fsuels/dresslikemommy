@@ -56159,3 +56159,12 @@ Addendum (2026-09-28, same session): Christmas guide translations LIVE_VERIFIED.
 - **Rejected:** TYG red-nosed reindeer designs (Rudolph look-alike).
 - The website session created `/collections/siblings-matching-outfits` and adds nav/tiles at 3+ products.
 - Rollback: set to DRAFT.
+
+**Update (same session): Siblings #2 and #3 ACTIVE, LIVE_VERIFIED.**
+- `red-truck-siblings-christmas-sweaters` (TYG 1060255226364, item 3210) and `nordic-hearts-siblings-christmas-sweaters` (TYG 1060266274215, item 3225).
+- Each has 4 QA'd Codex images, 480 translations, closeout PASS, 8/8 channels, 5/5 sizes, $27.99, and a theme size chart. German pages return 200.
+- `/collections/siblings-matching-outfits` lists all 3; the website session was asked to add the nav and tiles.
+- **Closeout gotcha:** the shared `ops/content/shopify-product-translation-live-cache.json` stored a bad German body for red-truck (first sentence left in English, from the Google fallback). The closeout's `--force-refresh` translate step reused it and failed the language audit twice.
+  - Fixed by replacing that single de cache entry with the Codex translation (working copy only; not on main), then re-registering and re-running → PASS.
+  - Lesson: when a standalone listing fails `body_source_language_leakage` after registering good translations, check the shared cache entry for that exact source.
+- Rollback: set to DRAFT.
