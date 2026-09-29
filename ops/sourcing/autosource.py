@@ -11,6 +11,9 @@ and closes (never the owner's own tabs). Read-only. A CAPTCHA/login page => exit
 Subcommands
   lock acquire|release                 run lock (stale after 150 min)
   next                                 this round's category (rotates through ROTATION) and the command to run
+  elapsed                              minutes since this run took the lock (continue categories until 50)
+  recent [HOURS]                       audit: products this job built recently + live readback + QA sheets
+  unpublish HANDLE "<reason>"          audit: set an autosource-built product back to DRAFT
   seen                                 print how many offer ids were already screened
   search "<中文 keywords>"             1688 keyword search -> family-titled 2026 offer ids (+titles), unseen only
   scan ID[,ID..]                       offer pages: release season, 48h promise (deliveryLimit), fabric, supplier
@@ -833,6 +836,47 @@ def cmd_lock(action: str) -> None:
         print("lock released")
 
 
+def cmd_elapsed() -> None:
+    try:
+        start = float(LOCK.read_text().split()[0])
+    except Exception:
+        print("no active lock"); return
+    mins = int((time.time() - start) / 60)
+    print(f"ELAPSED {mins} min —", "CONTINUE with `next`" if mins < 50 else "STOP: write the worklog append, commit, release the lock")
+
+
+def cmd_recent(hours: float = 26) -> None:
+    """Products this job built recently (recipes touched in the last N hours) with a live readback, for the audit."""
+    cut = time.time() - hours * 3600
+    for f in sorted((STATE / "recipes").glob("*.json"), key=lambda p: p.stat().st_mtime):
+        if f.stat().st_mtime < cut:
+            continue
+        h = f.stem
+        try:
+            j = json.load(urllib.request.urlopen(f"https://www.dresslikemommy.com/products/{h}.js?x={int(time.time())}", timeout=30))
+            live = f"LIVE imgs {len(j['images'])} avail {sum(v['available'] for v in j['variants'])}/{len(j['variants'])} ${min(v['price'] for v in j['variants'])/100}"
+        except Exception:
+            live = "not live (draft or missing)"
+        qa = WORK / f"{h}_review.jpg"
+        if (ROOT / "uploads" / h / "ai" / "image1.png").exists() and not qa.exists():
+            try:
+                sh([PY, "ai_images/review_sheet.py", h, str(qa)], cwd=T)
+            except SystemExit:
+                pass
+        print(h, "|", live, "| QA sheet:", qa if qa.exists() else "-", "| vendor sheet:", WORK / f"sheet_{json.loads(f.read_text())['offer_id']}.jpg")
+
+
+def cmd_unpublish(handle: str, reason: str) -> None:
+    """Audit action: set a listing this job built back to DRAFT (reversible) and log why."""
+    if not (STATE / "recipes" / f"{handle}.json").exists():
+        raise SystemExit("refused: only products built by autosource can be unpublished by the audit")
+    sys.path.insert(0, str(T / "ai_images"))
+    import attach_images as A  # noqa
+    p = A.gql("query($h:String!){productByHandle(handle:$h){id status}}", {"h": handle})["productByHandle"]
+    r = A.gql("mutation($i:ProductUpdateInput!){productUpdate(product:$i){product{status} userErrors{message}}}", {"i": {"id": p["id"], "status": "DRAFT"}})["productUpdate"]
+    print(handle, p["status"], "->", (r["product"] or {}).get("status"), r["userErrors"], "| reason:", reason)
+
+
 def main() -> None:
     a = sys.argv[1:]
     if not a:
@@ -841,6 +885,9 @@ def main() -> None:
     if c == "lock": cmd_lock(a[1])
     elif c == "seen": print(len(load_seen()), "offers screened;", len(known_offer_ids()), "known ids")
     elif c == "next": cmd_next()
+    elif c == "elapsed": cmd_elapsed()
+    elif c == "recent": cmd_recent(float(a[1]) if len(a) > 1 else 26)
+    elif c == "unpublish": cmd_unpublish(a[1], a[2] if len(a) > 2 else "audit")
     elif c == "search": cmd_search(a[1])
     elif c == "scan": cmd_scan(a[1], float(a[2]) if len(a) > 2 else 35)
     elif c == "gate": cmd_gate(a[1])

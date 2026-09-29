@@ -37,6 +37,9 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 
 ## Steps of one run
 
+**Nonstop mode (owner 2026-09-29: "you need to work nonstop without me having to prompt you"):** one run works through as many categories as fit. After each category (steps 1–7), run `autosource.py elapsed`; while it says CONTINUE, go back to step 1 (`next`) for the next category. When it says STOP, or on a CAPTCHA, do steps 8–10 once, covering every category of this run. Build every product that passes; there is no per-run cap. Quality rules never relax to hit a count.
+
+
 0. **Lock:** `autosource.py lock acquire`. If it prints LOCKED, stop immediately. Always `lock release` at the end, even after errors.
 1. **Pick the category:** `autosource.py next` prints this round's category and the exact command to run (search or catalog). Run it.
 2. **Screen:** `autosource.py scan <IDS>`, using the IDS line from step 1; it paces itself.

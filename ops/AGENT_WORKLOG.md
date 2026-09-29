@@ -56386,3 +56386,10 @@ Rollback: disable the scheduled task; unpublish engine articles listed in ENGINE
 - 1081369158022: scan PASS, but `gate` printed "? years < 3" (parser miss; the same line says est. April 2018, about 8 years; pickup 99.97, fulfillment 99.97, returns 0.03, service 4.5, 3547 orders). Design fails rule 5: smiley-face print with garbled lettering ("ROLLINGARTIST", "POLIZEI" hat). Skipped.
 - 1079028063347: scan PASS, gate same "? years" parse miss. Embroidered pony matches the Polo-pony look-alike ban (rule 5), not captured. Skipped.
 - Supplier note for the CEO session: autosource.py `gate` fails to parse tenure for this shop (shows "? years"), so it will reject every offer from 辰承 even though est. April 2018 and the stats meet the standard gate. Fix the tenure parser before the next 辰承 round.
+
+**Update (2026-09-29): nonstop mode and daily audit.**
+- The owner wants it "nonstop without me having to prompt you".
+- Each hourly `autosource` run now loops categories (`next` … `elapsed`) until about 50 minutes, then commits and releases the lock; the next hourly run continues the rotation.
+- New scheduled task `autosource-daily-audit` (08:22 daily, opus): an independent reviewer of everything `autosource` made live in the last 26 h (`recent`, QA sheets, recipes/specs). It can only `unpublish` autosource-built products back to DRAFT, with a logged reason.
+- `weekly-2026-supplier-rescreen` was disabled: superseded, and it stalled on permission prompts.
+- First autosource run (manual trigger) completed a full round (辰承 catalog: 3 screened, 0 built; correct skips), commit c3f1a37. It exposed the English-page tenure parse bug, fixed in f086c28.
