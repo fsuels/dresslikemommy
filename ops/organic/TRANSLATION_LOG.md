@@ -18,3 +18,8 @@
 - 2026-09-29T14:54Z october-family-style-cozy-matching-looks-for-autumn: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
 - 2026-09-29T14:56Z fall-family-matching-outfits: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
 - 2026-09-29T14:57Z mommy-and-me-fall-fashion-cozy-coordinating-outfits: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:00Z best-fall-colors-for-family-matching-looks: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:00Z fall-festival-matching-outfits-for-the-whole-family: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:01Z daddy-and-me-fall-outfit-ideas: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:02Z pumpkin-spice-and-everything-nice-fall-family-fashion: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:04Z new-year-new-matching-looks-family-fashion: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
