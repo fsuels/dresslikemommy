@@ -309,6 +309,13 @@ def build_article_input(draft: ArticleDraft, blog_id: Optional[str] = None, publ
         article_input["blogId"] = blog_id
     if draft.publish_date and not (publish_override is True and is_future_publish_date(draft.publish_date)):
         article_input["publishDate"] = draft.publish_date
+    seo_metafields = [
+        {"namespace": "global", "key": key, "type": "single_line_text_field", "value": value}
+        for key, value in (("title_tag", draft.seo_title), ("description_tag", draft.seo_description))
+        if value
+    ]
+    if seo_metafields:
+        article_input["metafields"] = seo_metafields
     if draft.image_url:
         article_input["image"] = {
             "url": draft.image_url,

@@ -56334,3 +56334,23 @@ Findings (ShopifyQL, 10 days to 2026-09-28, LIVE_VERIFIED):
 Test-cart log (owner approved in chat; exclude from funnel reports): 2026-09-28 04:20:59–04:24:42 UTC, headless Chromium, iPhone 13 profile, analytics/pixel endpoints aborted (monorail, trekkie, web-pixels, otlp, Google/Meta/Pinterest/TikTok/Bing/Clarity). 5 carts (US ×3, CA ×2, GB ×2 across runs) of Mother M + Child 1-2Y dress; checkout first screen only, no email, no payment; `/cart/clear.js` read back 0 items each time. Lesson: blocking `Trekkie`/`monorail` also aborts checkout-web JS chunks (`/cdn/shopifycloud/checkout-web/assets/`), which renders a blank checkout. Allow that path when checking checkout.
 
 Next: the owner's one desktop test order (then cancel and refund) is still the largest open checkout question: desktop completed 0 of 26 in September.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-organic-traffic-engine-hourly
+
+- task_entities: scheduled task `organic-traffic-engine` (hourly, Sonnet); `ops/organic/` (ORGANIC_ENGINE.md, BACKLOG.md, ENGINE_LOG.md, RUN_LOCK, receipts/); `ops/scripts/organic_engine.py`; `ops/scripts/publish_blog_articles.py`; `ops/tests/test_organic_engine.py`
+- task_stage: BUILD done; first run pending
+- problem_ids: none
+- next_action_id: VERIFY_FIRST_ENGINE_RUN (read ENGINE_LOG + live article check); engine then works backlog F0 (article repair, 5 per run) and the Christmas BUILD queue
+
+Owner (chat, 2026-09-28): an agent "working non stop … bringing more customers … organic free traffic from SEO", "create routine … without me having to prompt it", "use the sonnet 5.5 whenever possible", "Do it every 1 hour".
+
+Built:
+- `ops/scripts/organic_engine.py` (new): inventory, live `check`, `article-links` (live articles linking to non-active products/dead collections or carrying unsupported claims; 63 of 70 flagged on 2026-09-29) and `article-body` (guarded body repair, full before-body in receipt), `lint-article` quality/honesty gate, `collection-seo` (refuses theme-owned head collections), `article-seo`, `redirect` (refuses live sources, dead targets, duplicates). Dry run by default; receipts carry before-state and rollback.
+- `publish_blog_articles.py`: frontmatter `seo_title`/`seo_description` now written as `global.title_tag`/`description_tag` metafields (they were parsed but dropped before).
+- Playbook, backlog, log and run lock under `ops/organic/`; standing claim at the top of `ops/AGENT_COORDINATION.md`.
+- Scheduled task `~/.claude/scheduled-tasks/organic-traffic-engine/SKILL.md`, cron `20 * * * *`, frontmatter `model: sonnet`; caps 1 new article per run, 3 per UTC day. `daily-image-alt-review` also pinned to `model: sonnet`.
+- `.claude/settings.local.json` (gitignored) allowlists only the engine's commands, WebSearch, WebFetch for the storefront and writes under `ops/organic/` and the article drafts folder.
+
+Checks: `python3 -m unittest ops.tests.test_organic_engine` 9/9 OK; `py_compile` OK; live read-only inventory (53 collections, 262 articles, 70 published) and `check` on 3 URLs OK; `article-seo` dry run OK (no write).
+
+Rollback: disable the scheduled task; unpublish engine articles listed in ENGINE_LOG.md; restore SEO values from receipts; delete created redirects by id.

@@ -1,5 +1,9 @@
 # Agent Coordination Registry
 
+## Organic traffic engine claim — 2026-09-28
+
+Status: ACTIVE_STANDING (recurring). Owner request (chat, 2026-09-28): a nonstop agent that grows free organic traffic, on Sonnet where possible. The scheduled task `organic-traffic-engine` (hourly, `~/.claude/scheduled-tasks/organic-traffic-engine/SKILL.md`) is sole writer for: NEW Style Journal articles it creates in blog `news` (and their later updates), SEO title/description metafields of live articles, SEO title/description of collections NOT in `THEME_OWNED_COLLECTIONS` (`ops/scripts/organic_engine.py`), and new URL redirects for dead URLs; caps and rollback in `ops/organic/ORGANIC_ENGINE.md`. Not touched: theme, git, products, feeds, translations, menus, collection membership, old unpublished articles, off-site posting, email, ads, spend. Other sessions that need one of these surfaces: add a row to `ops/organic/BACKLOG.md` tagged `HOLD` with the handle, and the engine skips it. Log: `ops/organic/ENGINE_LOG.md`; receipts `ops/organic/receipts/`.
+
 ## English collection SEO from GSC brief claim — 2026-09-28
 
 Status: DONE_LIVE_VERIFIED_CLAIM_RELEASED (2026-09-28). Anchor `2026-09-28-gsc-english-seo-fixes`. Owner request (chat): "fix all this! very important!" about a pasted 3-month GSC brief. The Claude Code session "English collection pages SEO ranking" was sole writer for:
