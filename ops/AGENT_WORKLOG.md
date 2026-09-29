@@ -56722,3 +56722,14 @@ Why: owner continuation "recheck Merchant store-quality image scores when the 30
 - Rule failures: many offers with missing release attribute, Fall/Autumn 2027 release (5), Summer/Spring 2026 release, dispatch promises of 3-45 days (all maternity vendors), 1078648270315 (supplier PASS 8y, rule 7: tiny star chest print on template beach photo set, class-activity styling).
 - 野狼魅力 catalog (chentian1788): 21 new offers were school/kindergarten activity uniforms, smiley, China-themed or summer. Only 3 scanned/recorded (1081135751015, 1085281351575, 1086176566268); the rest hit two consecutive scan websocket timeouts (1688 tab stuck), so 18 ids stay unrecorded and will be re-listed next catalog round (all expected skips on rules 5/7/season).
 - Tooling note: `decide` refuses ids that were not scanned ("not screened yet"), so bulk-skipping unscanned ids is not possible.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-autosource-maternity-sweatshirts-p4
+
+- task_entities: search "孕妇卫衣 2026秋冬" page 4 (22 new offers); scanned 15, 0 passed
+- task_stage: NO_QUALIFIER
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Category: maternity sweatshirts, results page 4. The `scan` of all 22 ids exceeded the 600s foreground limit (1688 pacing) and was moved to the background. Only 15 results printed before the run wrapped up. Scanned 15, passed 0.
+- Every scanned offer failed rule 2 (release attribute missing, "Other", or spring/autumn rather than 2026 Fall/Winter). Several also failed rule 3 (dispatch promise 4, 5, 15 or 25 days).
+- Not scanned (7 ids, no verdict): 1087180952019, 1085003633966, 1082125041867, 1083273688989, 1083351603829, 1077509829756, 1079513452359. The next round should rescan them in batches of 8 or fewer.
+- No products built. Nothing BLOCKED (no CAPTCHA).
