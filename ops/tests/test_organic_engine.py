@@ -114,6 +114,10 @@ class TranslationCheckTest(unittest.TestCase):
         self.assertEqual(engine.locale_prefix("pt-BR"), "/pt")
         self.assertIn('href="/pt/collections/x"', engine.localize_hrefs('<a href="/collections/x">x</a>', "pt-BR"))
 
+    def test_nordic_for_is_not_flagged_as_english(self):
+        norsk = "Klær for hele familien, for bilder, for ferie, for jul, for hverdagen, for mamma og for barn og for pappa."
+        self.assertEqual(engine.check_translation("meta_description", "x" * len(norsk), norsk, "no"), [])
+
     def test_meta_length_caps(self):
         self.assertTrue(engine.check_translation("meta_description", "x" * 150, "y" * 170, "de"))
 

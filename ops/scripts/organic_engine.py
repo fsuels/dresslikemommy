@@ -597,7 +597,8 @@ def check_translation(key: str, src: str, value: str, locale: str) -> List[str]:
         got = sorted(re.findall(r'href="([^"]+)"', value))
         if expected != got:
             problems.append(f"hrefs differ from localized source (expected e.g. {expected[:2]})")
-    if len(re.findall(r"\b(the|and|with|for|your)\b", text_of(value), re.I)) > 6 and locale not in ("en",):
+    # English-only function words ("for" is also Danish/Norwegian/Swedish, so it is not counted).
+    if len(re.findall(r"\b(the|and|with|your|this|that)\b", text_of(value), re.I)) > 6 and locale not in ("en",):
         problems.append("looks untranslated (many English words)")
     return problems
 
