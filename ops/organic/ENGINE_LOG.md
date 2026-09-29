@@ -96,3 +96,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (`article-links` reports 0 articles needing fix).
 - Research: none (backlog has ≥5 open ENGINE items)
 - Flags for MAIN/OWNER: O1: request indexing for the new shirts-for-pictures article. One unlisted `grep -c` was run by mistake (read-only).
+
+## 2026-09-29T17:24Z run
+- Build: SKIPPED: daily cap of 5 new articles already reached (5 published today, UTC day 2026-09-29). Next build (next UTC day): backlog #7b father-and-son button-up shirts, then #2 baby's first Christmas.
+- Fix: 0 items (`article-links` reports 0 articles needing fix; token valid until 03:01Z).
+- Research: none (backlog has ≥5 open ENGINE items)
+- Flags for MAIN/OWNER: none new.
