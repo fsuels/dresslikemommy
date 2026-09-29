@@ -56393,3 +56393,18 @@ Rollback: disable the scheduled task; unpublish engine articles listed in ENGINE
 - New scheduled task `autosource-daily-audit` (08:22 daily, opus): an independent reviewer of everything `autosource` made live in the last 26 h (`recent`, QA sheets, recipes/specs). It can only `unpublish` autosource-built products back to DRAFT, with a logged reason.
 - `weekly-2026-supplier-rescreen` was disabled: superseded, and it stalled on permission prompts.
 - First autosource run (manual trigger) completed a full round (辰承 catalog: 3 screened, 0 built; correct skips), commit c3f1a37. It exposed the English-page tenure parse bug, fixed in f086c28.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-ceo-operator-loop
+
+- task_entities: scheduled task `ceo-organic-operator` (every 2 h at :50, `model: sonnet`); `ops/scripts/ceo_worktree.py`; `ops/organic/CEO_LOG.md`, `CEO_LOCK`, `GSC_INDEXING_LOG.md`; Search Console property sc-domain:dresslikemommy.com
+- task_stage: BUILD done; first loop run pending
+- problem_ids: none
+- next_action_id: VERIFY_FIRST_CEO_LOOP_RUN (CEO_LOG entry + pushed SHA)
+
+Owner (chat, 2026-09-29): keep working without the owner typing the continuation prompt; "you have full access and authority over my computer". The loop runs the standing prompt "review the organic engine's last runs, commit its new files to main, and take the MAIN items in ops/organic/BACKLOG.md" on Sonnet.
+
+- `ops/scripts/ceo_worktree.py` (new): unattended runs never run git in the dirty, lagging shared checkout. `start` makes a worktree at the origin/main tip under `~/dlm-ceo-worktrees/` (outside tmp so theme check inspects files); `check` runs `git diff --check`, JSON validity, `shopify theme check` errors (verified it blocks a broken Liquid snippet and passes a valid one), strict continuity when worklog/coordination/AGENTS/CLAUDE change, and engine tests; `commit` rebases onto a moved origin/main and pushes; `sync-theme` wraps `sync_live_theme_from_main.py`; `organic` commits the engine's `ops/organic/**` and its articles.
+- Search Console (owner's Chrome test profile): sitemap `https://www.dresslikemommy.com/sitemap.xml` re-submitted (Success, 7,516 discovered); URL Inspection "Indexing requested" for `/blogs/news/matching-couples-christmas-pajamas-and-sweaters` (was "URL is unknown to Google"). Overview readback: 7,076 indexed / 22,983 not indexed pages.
+- `.claude/settings.local.json` (gitignored) allowlists the helper, worktree-folder edits and the Claude in Chrome tools for the loop.
+
+Rollback: disable the scheduled task; revert pushed commits by SHA (listed in `ops/organic/CEO_LOG.md`).
