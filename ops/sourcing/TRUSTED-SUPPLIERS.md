@@ -108,6 +108,10 @@ Lead = PO created → stocked at the BuckyDrop warehouse (median / p90 days). So
   - 野狼魅力: 38 family/kids offers, mostly school/kindergarten activity uniforms and big smiley faces (Smiley-mark risk).
     - Family designs: small hearts (≈ our Little Heart), cartoons, "GOOD LUCKY", and a PRADA-like "PADA" print (IP, excluded).
     - Only red "little sun" 1085936274165 is fresh, with moderate appeal; not listed.
+- **Round 7 (family sweatshirt titles only, 17 scanned, 16 pass shipping and season):**
+  - New stores fail: 潢川莱梦德 (9 y, pickup 88.3%), 东莞汐小逗 (1 y), 潢川圣瑞 (4 y, 100% pickup, but 109 orders/30d).
+  - 明地一族's 8 new designs are school/activity-style prints (SMILE smiley, "CHINA", patriotic themes, astronaut, "Hello!"), a poor fit for US/EU and partly IP-risky. None listed.
+  - Built this round from 辰承: **Hooray Sun** and **Happy Faces** family sweatshirts (both LIVE).
 - **Re-check of 3–4-year near-misses under the owner's new strict rule (2026-09-28).** None qualifies yet:
   - 松华 (Fair Isle wool; est. 2023-09): pickup 97.80%, fulfillment 97.85%, quality returns 0.29%, disputes 0%, service 4.5, but 347 orders/30d (<500).
   - 创贸 (虎门 Christmas sweatshirt; est. 2024-03): pickup 100%, returns 0.99%, but 101 orders/30d.
