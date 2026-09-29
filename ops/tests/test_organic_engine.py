@@ -92,6 +92,11 @@ class LinkHealthTest(unittest.TestCase):
         self.assertIn("happiness guarantee", health["banned_claims"])
         self.assertIn("bestsellers", health["banned_claims"])
 
+    def test_dead_article_links(self):
+        body = '<a href="/blogs/news/live-guide">a</a> <a href="/el/blogs/news/old-guide-2024">b</a>'
+        health = engine.link_health(body, set(), set(), {"live-guide"})
+        self.assertEqual(health["dead_articles"], ["old-guide-2024"])
+
     def test_clean_body(self):
         body = '<a href="/products/live-one">a</a> <a href="/collections/christmas-pajamas">b</a> Standard shipping included.'
         self.assertFalse(any(engine.link_health(body, {"live-one"}, {"christmas-pajamas"}).values()))

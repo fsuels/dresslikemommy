@@ -408,15 +408,18 @@ def cmd_article_seo(args) -> int:
 
 
 PRODUCT_LINK_RE = re.compile(r'href="(?:https?://(?:www\.)?dresslikemommy\.com)?(?:/[a-z]{2}(?:-[a-z]{2})?)?/(?:collections/[^/"]+/)?products/([^"/?#]+)')
+ARTICLE_LINK_RE = re.compile(r'href="(?:https?://(?:www\.)?dresslikemommy\.com)?(?:/[a-z]{2}(?:-[a-z]{2})?)?/blogs/news/([^"/?#]+)"')
 COLLECTION_LINK_RE = re.compile(r'href="(?:https?://(?:www\.)?dresslikemommy\.com)?(?:/[a-z]{2}(?:-[a-z]{2})?)?/collections/([^"/?#]+)"')
 
 
-def link_health(body: str, live_products: set, live_collections: set) -> Dict:
+def link_health(body: str, live_products: set, live_collections: set, live_articles: Optional[set] = None) -> Dict:
     products = PRODUCT_LINK_RE.findall(body or "")
     collections = COLLECTION_LINK_RE.findall(body or "")
+    articles = ARTICLE_LINK_RE.findall(body or "")
     return {
         "dead_products": sorted({h for h in products if h not in live_products}),
         "dead_collections": sorted({h for h in collections if h not in live_collections}),
+        "dead_articles": sorted({h for h in articles if live_articles is not None and h not in live_articles}),
         "banned_claims": sorted({m.group(0).lower() for m in BANNED_RE.finditer(text_of(body))}),
     }
 
@@ -431,16 +434,18 @@ def live_sets(admin: Admin):
 def cmd_article_links(args) -> int:
     admin = Admin(args.store_domain)
     live_products, live_collections = live_sets(admin)
+    bodies = admin.paged(ARTICLE_BODIES_Q, "articles")
+    live_articles = {a["handle"] for a in bodies}
     rows = []
-    for article in admin.paged(ARTICLE_BODIES_Q, "articles"):
-        health = link_health(article["body"], live_products, live_collections)
+    for article in bodies:
+        health = link_health(article["body"], live_products, live_collections, live_articles)
         if any(health.values()):
             rows.append({"handle": article["handle"], "title": article["title"], **health})
             if args.bodies_dir:
                 out = Path(args.bodies_dir) / f"{article['handle']}.html"
                 out.parent.mkdir(parents=True, exist_ok=True)
                 out.write_text(article["body"], encoding="utf-8")
-    rows.sort(key=lambda r: -(len(r["dead_products"]) + len(r["dead_collections"]) + len(r["banned_claims"])))
+    rows.sort(key=lambda r: -(len(r["dead_products"]) + len(r["dead_collections"]) + len(r["dead_articles"]) + len(r["banned_claims"])))
     write_json(args.output, {"at": now_stamp(), "articles_needing_fix": len(rows), "rows": rows})
     print(f"articles needing fix: {len(rows)} -> {args.output}")
     return 0
@@ -458,7 +463,8 @@ def cmd_article_body(args) -> int:
         problems.append("article is unpublished; body edits only on live articles")
     else:
         live_products, live_collections = live_sets(admin)
-        health = link_health(new_body, live_products, live_collections)
+        live_articles = {a["handle"] for a in admin.paged(ARTICLE_BODIES_Q, "articles")}
+        health = link_health(new_body, live_products, live_collections, live_articles)
         problems += [f"{k}: {v}" for k, v in health.items() if v]
         old_words, new_words = len(text_of(before["body"]).split()), len(text_of(new_body).split())
         if new_words < old_words * 0.85:
