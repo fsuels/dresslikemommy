@@ -56438,3 +56438,19 @@ Rollback: revert the commit that touches this snippet.
 - next_action_id: NEXT_AUTOSOURCE_ROUND
 
 - Category: siblings. 1688 showed a CAPTCHA/login page during the first search (exit code 3). Stopped 1688 work for this run and did not bypass it. Screened 0, passed 0, no new listings. The owner may need to clear the 1688 session in the helper browser before the next hourly run.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-autosource-mixed-categories
+
+- task_entities: 1075986068919, 1084803064437, 1081588927419, 1084852540062, 1083808582070, 1079425911489, 1080795118611, 1081371115150, 1084097060021
+- task_stage: NO_QUALIFIER
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Categories run: Mommy & Me sweatshirts, family sweaters, TYG Kids catalog, Daddy & Me, Christmas family sweatshirts, 格莱美 (Dongguan) catalog. No new listings built this run.
+- Mommy & Me sweatshirts: 2 screened, 2 scan-pass. 1086884836439 failed the supplier gate (pickup 89%, fulfillment 92%). 1075986068919 passed the gate but was skipped on appeal (rule 7): tiny generic heart chest print on a template photo set with summer beach photos.
+- Family sweaters: 8 screened, 1 scan-pass; 1084803064437 failed the gate (1 year on 1688, pickup 84%, fulfillment 87%). Other 7 failed the ship/season scan.
+- TYG Kids catalog: 0 family offers since 2026-06-01.
+- Daddy & Me: 1 screened, failed scan (1080356577192, three-stripe hoodie; brand look-alike concern anyway).
+- Christmas family sweatshirts: 3 scan-pass, all 3 failed the supplier gate (1075357645611 pickup 85%; 1075905497034 pickup 88%; 1078986965152 pickup 89%).
+- 格莱美 (shop2j8l6k6928792, Dongguan, 6 years, 100%/100%, service 4.5, 3007 orders): 22 screened, 21 scan-pass, 1 failed (1081383818215, Fall 2024 release). Rule 5 skips: 11 Year-of-the-Sheep/2027 New Year designs (1084788931073, 1086736833132, 1084407443517, 1087388272982, 1084969758931, 1085672009501, 1085569680363, 1080061954598, 1086033453426, 1085824981779, 1082961933952); smiley designs 1080035875533 and 1080353962382; Halloween ghost/pumpkin 1084579260865 (too late to ship for the season).
+- Supplier gate PASS for the 7 remaining: 1083808582070, 1084852540062, 1081588927419, 1079425911489, 1080795118611, 1081371115150, 1084097060021.
+- QUEUED, not built: 1081588927419 ("Pure joy" heart raglan hoodie, beige/brick red, unlined cost 45 kids / 58 adult, own size charts in desc 01-03, kids 80-150 + adult S-4XL) and 1084852540062 ("Cupcat" cup-cat raglan hoodie, same look/charts). Both look strong in the vendor photos. Not built because the real fabric % could not be read with this run's tools (scan output truncates "Cotton2 Main fabric composition..."); rule 8 requires the honest %. Duplicate check against live store products also not possible in this run (no Grep). Next run: read the composition on the offer page, check duplicates, then build. 1081371115150 and 1084097060021 (heart / graffiti heart) and 1083808582070, 1079425911489, 1080795118611 still need a visual look.
