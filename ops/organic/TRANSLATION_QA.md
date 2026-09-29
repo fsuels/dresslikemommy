@@ -387,3 +387,58 @@ Remaining, not changed:
 - English product names (Vibrant Rainbow, Pastel Bloom, Lights Out Reindeer, We Are Family, Let It Snow etc.) kept as names.
 - Non-localized `/policies/refund-policy` hrefs and the stray `</h3></h3>` in christmas-matching-family-pajamas are identical to the English source.
 - "Dia dos Namorados" (12 June in Brazil) kept for the source's Valentine's Day; shipping and delivery-estimate wording follows the English source.
+
+## Spanish sweep
+
+Date 2026-09-29. Locale es, URL folder /es. Full sweep of the 15 blog articles (live page fetched, stored translation edited via `organic_engine.py translate-apply --execute`; every write read back `verified: true`). Receipts: `ops/organic/receipts/2026-09-29/esqa-<handle>.json`. Target register: neutral Spanish for Spain and Latin America (tú for the reader, ustedes for the family; carrito, suéteres, bañadores, teléfono). English, other languages, products and theme untouched. Fixed articles were verified by Admin readback only, not re-graded on the live page.
+
+| Article | Grade | Main problems found (fixed unless noted) |
+|---|---|---|
+| mommy-and-me-outfits-for-every-budget | B -> A | H1 "para mamá y yo" calque against the "mamá e hija" meta title; " :" spacing before the colon in 11 list items. |
+| daddy-and-me-matching-outfits-the-ultimate-guide | B -> A | "Papá y yo"/"Looks a Juego Papá y Yo" calque in H1, meta title, meta description and a link label; Title Case; mixed tú and vosotros imperatives; capitalised list items after a colon; "cool", "casual" and "jerséis" mixed with "suéteres". |
+| best-matching-swimsuits-for-the-whole-family | B -> A | H1 "trajes de baño" against "bañadores" in the body; H2 "conjuntos a juego para los bañadores a juego" stacked; truncated "Little Tr... \| DLM" heading; "papá &amp; bebé" ampersands (heading, alt, link, text); vosotros verbs; "con estrategia" calque. |
+| fall-family-matching-outfits | A- -> A | Title Case H1 only. |
+| best-matching-family-outfits-for-winter | B -> A | Title Case meta title; capitalised link labels mid-sentence and missing space before "y mantén"; "jerséis" vs "suéteres"; "una parte de arriba de pijama favoritos" agreement. |
+| the-complete-guide-to-family-matching-outfits | B -> A | Title Case meta title with "Outfits" and "outfits" in meta description; "Mamá y yo"/"Papá y yo" labels (category list, link labels, "Empieza con mamá y yo"); "jerséis" x3; "la pana quedan estupendas". |
+| what-to-wear-for-family-photos-matching-outfit-ideas | B -> A | Title Case meta title and "outfits" in title and meta description; English "Mommy and Me"/"Daddy and Me" in 4 link labels; "madre-hija" hyphen compounds; "cesta" against the site's "carrito"; "Extiende los conjuntos juntos"; "quiénes sois"; "jerséis" x2. |
+| holiday-family-matching-outfits-complete-guide | B -> A | 6 image alt texts left in English; Title Case H1 and meta title; "Outfits" in meta title and description; "con estrategia" calque. |
+| christmas-matching-family-pajamas | B -> A | Title Case H1; truncated English-derived headings and alt texts ("... \| DLM", "&amp;") repeated as "El set Conjuntos ..."; "vuestro/vuestros". |
+| matching-family-christmas-pajamas-guide-2026 | B+ -> A | Meta title "pijamas navideñas" (feminine) against "pijamas navideños"; whole article in vosotros mixed with tú ("Si prefieres ... elige"); "jerséis". |
+| family-christmas-photo-outfits-2026 | B+ -> A | Whole article in vosotros (Spain-only register), "jerséis"/"jersey" in meta description and body; "preguntad". |
+| daddy-and-me-christmas-outfits | B+ -> A | "colección papá y yo" and "camisetas papá y yo" link labels; vosotros forms ("vais", "sois pareja", "Sentaos", "Probad", "estéis") mixed with tú; "soporte de móvil". |
+| matching-family-christmas-shirts | B -> A | 98-character keyword-stacked H1; whole article in vosotros; stray spaces before punctuation (2); "jersey"; "seguir un paquete". |
+| matching-family-shirts-for-pictures | B -> A | Title Case H1, meta title and 8 headings; "jerséis"; "móvil"; "coleteros". |
+| matching-couples-christmas-pajamas-and-sweaters | B+ -> A | "¿Pijamas o suéteres: cuál elegir?" with the inverted mark at the wrong place; "calefaccionada" (regional); "luz suave y pareja" (ambiguous with couple); "disfrutar diciembre"; "Elijan lo que los dos se sientan cómodos usando". |
+
+Result: 0 C, 14 B/B+, 1 A- before; all 15 A after edits. Recurring causes: "Mamá y yo"/"Papá y yo" calques, Title Case in titles and headings, "outfits" in meta fields, vosotros forms (or vosotros mixed with tú) in a Latin American-facing store, "jerséis" against the site's "suéteres", and English or truncated product names in headings and alt text.
+
+Remaining, not changed:
+- Product-name link text and headings taken from English titles ("Vibrant Rainbow", "Pastel Bloom", "Buffalo Plaid Tree"), the stray `</h3></h3>` in christmas-matching-family-pajamas, and non-localized `/policies/refund-policy` hrefs are identical to the English source.
+- "vaqueros", "rebajas" and "Papá Noel" kept as understood in both regions; shipping and delivery-estimate wording follows the English source.
+- The H1 of the-complete-guide-to-family-matching-outfits ("La guía completa para combinar conjuntos familiares") differs from its meta title but is a valid translation.
+
+## Finnish sweep
+
+Date 2026-09-29. Scope: all 15 fi articles, read from the Admin translation (title, meta title, meta description, summary, body incl. alt text and link labels). Every write read back `verified: true`; receipts `ops/organic/receipts/2026-09-29/fiqa-<handle>.json`. English, other languages, products and theme untouched. Fixed articles were verified by Admin readback only, not re-graded on the live page.
+
+| Article | Grade | Main problems found (fixed unless noted) |
+|---|---|---|
+| mommy-and-me-outfits-for-every-budget | B -> A | "yhteensopiva/yhteensopivuus" for "matching" about 30 times (means technical compatibility), "Äiti ja minä" title calque, "äidin ja tyttären muoti", "»yhteensopivia settejä«", "suunnittelijaasu" missing hyphen, English-order link sentences, duplicate "Seuraa". |
+| daddy-and-me-matching-outfits-the-ultimate-guide | B -> A | "Isä ja minä" calque in title, 8 headings, meta and link labels; Title Case meta title and "Täydellinen"; "yhteensopiva" throughout; "Kevyet kerrokset ovat ystäviäsi"; "asioille"; "perhesetit" left in nominative after "kokoelmiimme"; capital after dash in list. |
+| best-matching-swimsuits-for-the-whole-family | B -> A | Title used "yhteensopivat uima-asut" against meta "samanlaiset"; H2 tautology "samanlaisia asuja samanlaisiin uima-asuihin"; clumsy opening; "&amp;" and truncated "Little Tr... | DLM" heading and alt; "yhteensopivuus"; "(muokattava)". |
+| fall-family-matching-outfits | B -> A | "yhteensopivat" for "matching" in title, meta, headings and 4 alt texts; "kun lähdet ulos täydellisesti sointuvissa"; "vaalit" vs plural; "Sisätilaisiin"; "asusi" for a family. |
+| best-matching-family-outfits-for-winter | B -> A | Title Case meta title; "yhteensopiva" in title, meta, summary; missing space before "ja" after link; capitalised link labels mid-sentence; "rakenteiden" (textures) calque; "yhdistä tämä artikkeli meidän oppaaseemme"; "vetoketjullista kaula-aukkoa". |
+| the-complete-guide-to-family-matching-outfits | B -> A | Title Case meta title; "yhteensopiva" about 35 times; "Äiti ja minä"/"Isä ja minä" category labels and 4 link labels; "Yhteensopiva ei tarkoita identtistä"; "ja yhteensopivat neuleet" case slip; "</a>-mallistot" missing space. |
+| what-to-wear-for-family-photos-matching-outfit-ideas | B -> A | Title Case title and meta title; "Yhdenmukaiset"; English "Mommy and Me"/"Daddy and Me" in 4 link labels; "yksivärisen paidan yhteensopivassa sävyssä"; "Levitä asut yhteen" (2); "Hälyiset kuosit"; "toppikokoelmaamme ... löytämiseksi". |
+| holiday-family-matching-outfits-complete-guide | B -> A | 6 image alt texts left in English; Title Case meta title; "Tässä oppaamme" without verb; "samaa tyyliä olevat"; "yhteen sovitetun ilmeen, jonka on helppo mukautua"; "yhteensopivuus on yhtä kaunista". |
+| christmas-matching-family-pajamas | B -> A | Truncated English product titles ("... | DLM") in 3 headings, 3 alt texts and 2 sentences; "yhteensopiva" as "matching"; "kunkin käyttäjän tietoja"; "älykkäästi"; "Mommylta". Left: stray `</h3></h3>` (identical to source). |
+| matching-family-christmas-pajamas-guide-2026 | A- -> A | Title "osto-opas" vs meta "ostosopas"; "100%" without space. |
+| family-christmas-photo-outfits-2026 | A- -> A | Opening "yhteensopivien joulukuvausasujen" and "yhteensopivia asuja" for own clothes. |
+| daddy-and-me-christmas-outfits | B -> A | Ungrammatical title "Isä ja lapsi yhteensopivat joulupuvut" (joulupuvut = Christmas suits); "isä ja minä"/"isä ja lapsi" compounds in body and 2 link labels; "yhteensopiva" as "matching"; "selkäreppua"; "näyttävät pariskunnalta"; singular and plural imperatives mixed in one list; link labels in nominative before "-mallisto". |
+| matching-family-christmas-shirts | B -> A | 97-char title; garbled "tarvitsemissanneko'issa"; stray space before period; "joulupuvuista" for outfits (2); "suuntaa-antavia"; "koko luettelo"; "Höyrystäkää"; "nauttia" for "nauttien"; nominative link labels after "kokoelmamme"/"selailkaa". |
+| matching-family-shirts-for-pictures | B -> A | Title Case in title, meta title and 8 headings; 94-char title; "päällysvaatteet" (outerwear) for tops; "anteeksiantavia" calque; "Levitä paidat"; "yhtä suuremman/suurempi"; mixed sg/pl address; nominative labels after "kokoelmasta"; "yhteensopivat pipot ... yhdessä yhteisessä värissä". |
+| matching-couples-christmas-pajamas-and-sweaters | B -> A | 100-char title; "yhteensopiva" as "matching"; "väriperheestä" (color family) calque; "sopia yhdestä" address mix; "Etsi" vs plural; "näyttää ... yhteensopiva pari". |
+
+Result: 0 C, 12 B, 3 A- before; all 15 A after edits. Recurring causes: "yhteensopiva" used for every "matching" (replaced with "samanlainen", "samaa tyyliä", "yhteen sointuva" by context), "Äiti ja minä"/"Isä ja minä" calques, Title Case in older articles, English left in alt text and link labels, "joulupuvut" for Christmas outfits, and mixed singular/plural imperatives.
+
+Remaining, not changed: English product names inside link labels (e.g. "Classic Red Plaid -pyjamat", "Jingle Bells Santa -neuleet") and English option words "Mother/Father/Child/Baby/Adult" that mirror the store's variant names; the stray `</h3></h3>` in christmas-matching-family-pajamas; non-localized `/policies/refund-policy` hrefs. Mixed "te/sinä" address across articles follows the source.
