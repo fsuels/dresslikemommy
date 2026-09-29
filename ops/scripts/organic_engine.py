@@ -64,6 +64,8 @@ BANNED_CLAIMS = [
     r"1688", r"buckydrop", r"aliexpress", r"taobao", r"\bdropship", r"\bchatgpt\b", r"\bai[- ]generated\b",
     r"\b(dog|cat|pet)s?\b", r"\bhappiness guarantee\b", r"\bmoney[- ]back\b", r"\bfree shipping on all orders\b",
     r"\bdisney\b",
+    # Owner 2026-09-28: Christmas order-by deadlines only near the cutoff (late Nov), never months early.
+    r"\border(?:ed|ing)? by (?:dec(?:ember)?|nov(?:ember)?)\.? ?\d", r"\bby (?:dec(?:ember)?)\.? ?\d{1,2}\b",
 ]
 BANNED_RE = re.compile("|".join(BANNED_CLAIMS), re.IGNORECASE)
 
@@ -521,8 +523,14 @@ def cmd_translate_queue(args) -> int:
     admin = Admin(args.store_domain)
     article, source, status = article_translation_state(admin, args.handle, *resource_args(args))
     todo = {l: keys for l, keys in status.items() if keys}
+    current = {}
+    if getattr(args, "include_current", False):
+        for locale, keys in todo.items():
+            res = admin.gql(TRANSLATABLE_Q, {"id": article["id"], "l": locale})["translatableResource"]
+            current[locale] = {t["key"]: t["value"] for t in res["translations"] if t["key"] in keys and t["value"]}
     payload = {"handle": args.handle, "article_id": article["id"],
                "source": {k: v["value"] for k, v in source.items()},
+               "current_translations": current,
                "locales_needing_work": todo,
                "link_rule": "in body_html, prefix every internal href with the locale folder: /collections/x -> /<prefix>/collections/x",
                "locale_prefixes": {l: locale_prefix(l) for l in todo}}
@@ -545,7 +553,10 @@ def translation_priority() -> List[str]:
 
 def cmd_translate_next(args) -> int:
     admin = Admin(args.store_domain)
-    for handle in translation_priority():
+    order = translation_priority()
+    # Then every other published article, so no live guide is left with stale or missing translations.
+    order += [a["handle"] for a in admin.paged(ARTICLES_Q, "articles") if a["isPublished"] and a["handle"] not in order]
+    for handle in order:
         article = find_article(admin, handle)
         if not article or not article["isPublished"]:
             continue
@@ -727,6 +738,7 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     p = sub.add_parser("translate-queue")
     p.add_argument("--handle", required=True)
+    p.add_argument("--include-current", action="store_true", help="also output the existing (outdated) translations, for surgical edits")
     p.add_argument("--collection", action="store_true", help="translate a collection (default fields: meta_title, meta_description)")
     p.add_argument("--keys", default="", help="with --collection: comma-separated fields, e.g. meta_title,meta_description,title")
     p.add_argument("--output", required=True)

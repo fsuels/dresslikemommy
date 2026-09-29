@@ -56,7 +56,8 @@ class LintArticleTest(unittest.TestCase):
         self.assertIn("missing collection", errors)
 
     def test_unsupported_claims_fail(self):
-        for claim in ("Fast shipping on every order", "our best sellers", "ships from our warehouse", "sourced on 1688", "matching dog sweater"):
+        for claim in ("Order by December 8 for Christmas", "arrives if you order by Dec 5",
+                      "Fast shipping on every order", "our best sellers", "ships from our warehouse", "sourced on 1688", "matching dog sweater"):
             with self.subTest(claim=claim):
                 self.assertIn("banned", " ".join(self.lint(article(extra=claim))["errors"]))
 
