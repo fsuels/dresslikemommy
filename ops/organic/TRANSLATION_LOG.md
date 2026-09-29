@@ -23,3 +23,31 @@
 - 2026-09-29T15:01Z daddy-and-me-fall-outfit-ideas: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
 - 2026-09-29T15:02Z pumpkin-spice-and-everything-nice-fall-family-fashion: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
 - 2026-09-29T15:04Z new-year-new-matching-looks-family-fashion: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:05Z transitioning-from-summer-to-fall-family-matching-tips: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:06Z daddy-and-me-christmas-outfits: all 20 locales (title, body, summary, meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:08Z matching-family-christmas-shirts: all 20 locales (title, body, summary, meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:13Z matching-family-outfits-for-pumpkin-patch-photos: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:13Z best-family-matching-outfits-for-harvest-season: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:14Z mommy-and-me-matching-outfit-ideas: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:14Z daddy-and-me-matching-outfits-the-ultimate-guide: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:16Z family-matching-pajamas-our-top-picks-for-cozy-nights: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:16Z september-style-guide-transitional-family-matching-looks: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:18Z transitional-weather-family-matching-style-guide: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:18Z how-to-style-cozy-mommy-and-me-looks-in-january: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:18Z back-to-school-matching-outfits-for-first-day-photos: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:18Z mommy-and-me-back-to-school-style-guide: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:20Z autumn-matching-family-style-plaid-flannel-and-more: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:20Z apple-picking-matching-outfits-for-the-whole-family: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:21Z matching-couples-christmas-pajamas-and-sweaters: ro, pl, de, fr, es, pt-BR, sv, fi, ja, ko VERIFIED (3 left for this article)
+- 2026-09-29T15:21Z mommy-and-me-outfits-for-every-budget: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:21Z mommy-and-me-valentines-day-outfits: all 20 locales VERIFIED; English meta had 'Free shipping over $50!' — fixed below, meta re-translation queued — CEO parallel worker
+- 2026-09-29T15:22Z adorable-matching-valentines-day-looks-for-the-whole-family: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:22Z back-to-school-daddy-and-me-photo-outfits: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:26Z best-matching-outfits-for-family-beach-trips: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:26Z best-matching-swimsuits-for-the-whole-family: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:31Z mothers-day-matching-outfits-mommy-and-me-guide: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:31Z matching-family-outfits-for-mothers-day-brunch: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:32Z easter-sunday-family-matching-outfits: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:32Z mommy-and-me-easter-outfit-ideas: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:33Z fathers-day-daddy-and-me-matching-outfit-ideas: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:33Z floral-matching-outfits-for-spring: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
