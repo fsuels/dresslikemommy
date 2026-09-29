@@ -56217,3 +56217,12 @@ Rollback: `git revert`, then `sync_live_theme_from_main.py --apply`.
 - **Follow-ups:**
   - The old "Christmas pajamas breadcrumb shows Mommy and Me" issue is resolved; the trail is now Family Matching › Pajamas.
   - Minor: the BreadcrumbList JSON-LD on `christmas-pajamas` has only 2 items (Home, Pajamas) while the visible trail has 3.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-scribble-heart-placed
+
+- task_stage: DONE (placement is automatic; related links set)
+- task_entities: scribble-heart-family-matching-sweatshirts (session [57a715]); together-heart and little-lamb related lists
+
+- **Placement:** the new family sweatshirt joined 12 collections automatically through its type and tags: family-sweaters, family-tops, fall-winter, new-arrivals, couples, family-photo-outfits, and more.
+- **Related links** (`related_products`): scribble-heart → Together Heart, Little Lamb, Smiley Heart, Little Heart and Eternal Bliss Hearts. Little Lamb lists scribble-heart first; Together Heart appends it.
+- **Fulfillment note** from [57a715]: 东莞格莱美 (1688 1081176338077, 48h) is the faster backup source for the live Santa and Friends family sweatshirts. Recorded in TRUSTED-SUPPLIERS.
