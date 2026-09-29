@@ -10,6 +10,9 @@ Subcommands (every write is dry-run unless --execute is passed):
   article-seo     set one published article's SEO title/description (before-state + readback)
   article-links   read-only: live articles ranked by links to non-active products / dead collections
   article-body    replace one live article's body HTML (full before-body kept in the receipt)
+  translate-queue read-only: which article fields are missing/outdated in which storefront languages
+  translate-next  read-only: pick the next article + up to N languages to translate (engine articles, then repaired ones)
+  translate-apply register an article's translations from a JSON file (validated; digest-bound; readback)
 
 Only the Shopify Admin API and the public storefront are touched. No theme, product,
 feed, translation, ad or spend writes are possible from this script.
@@ -125,6 +128,14 @@ ARTICLE_BODIES_Q = """query($cursor: String) { articles(first: 50, after: $curso
 ACTIVE_PRODUCTS_Q = """query($cursor: String) { products(first: 250, after: $cursor, query: "status:active") {
   nodes { handle onlineStoreUrl } pageInfo { hasNextPage endCursor } } }"""
 ARTICLE_BODY_Q = """query($q: String!) { articles(first: 5, query: $q) { nodes { id handle isPublished body } } }"""
+SHOP_LOCALES_Q = "{ shopLocales { locale primary published } }"
+TRANSLATABLE_Q = """query($id: ID!, $l: String!) { translatableResource(resourceId: $id) {
+  translatableContent { key value digest locale } translations(locale: $l) { key value outdated } } }"""
+TRANSLATIONS_REGISTER_M = """mutation($id: ID!, $t: [TranslationInput!]!) { translationsRegister(resourceId: $id, translations: $t) {
+  userErrors { field message } translations { key locale } } }"""
+# Highest-click storefront languages first (GSC, 2026-09-29: el, da, no, nl, he lead; then it, cs, ro, pl).
+LOCALE_PRIORITY = ["el", "da", "no", "nl", "he", "it", "cs", "ro", "pl", "de", "fr", "es", "pt-BR", "sv", "fi", "ja", "ko", "ru", "ar", "hi"]
+TRANSLATE_KEYS = ("title", "body_html", "summary_html", "meta_title", "meta_description")
 REDIRECTS_Q = """query($q: String!) { urlRedirects(first: 10, query: $q) { nodes { id path target } } }"""
 REDIRECT_CREATE_M = """mutation($r: UrlRedirectInput!) { urlRedirectCreate(urlRedirect: $r) {
   urlRedirect { id path target } userErrors { field message } } }"""
@@ -453,6 +464,140 @@ def cmd_article_body(args) -> int:
     return 0 if verified and not result["userErrors"] else 1
 
 
+def locale_prefix(locale: str) -> str:
+    """Storefront URL folder for a locale (Shopify serves pt-BR at /pt)."""
+    return "/" + ("pt" if locale == "pt-BR" else locale.lower())
+
+
+def localize_hrefs(body: str, locale: str) -> str:
+    return re.sub(r'href="/(collections|products|blogs|pages)/', lambda m: f'href="{locale_prefix(locale)}/{m.group(1)}/', body)
+
+
+def article_translation_state(admin: "Admin", handle: str):
+    article = find_article(admin, handle)
+    if not article:
+        raise SystemExit(f"article {handle} not found")
+    locales = [l["locale"] for l in admin.gql(SHOP_LOCALES_Q)["shopLocales"] if l["published"] and not l["primary"]]
+    locales.sort(key=lambda l: LOCALE_PRIORITY.index(l) if l in LOCALE_PRIORITY else 99)
+    source, status = {}, {}
+    for locale in locales:
+        res = admin.gql(TRANSLATABLE_Q, {"id": article["id"], "l": locale})["translatableResource"]
+        source = {c["key"]: c for c in res["translatableContent"] if c["key"] in TRANSLATE_KEYS and (c["value"] or "").strip()}
+        done = {t["key"]: t for t in res["translations"]}
+        status[locale] = [k for k in source if k not in done or done[k]["outdated"] or not (done[k]["value"] or "").strip()]
+    return article, source, status
+
+
+def cmd_translate_queue(args) -> int:
+    admin = Admin(args.store_domain)
+    article, source, status = article_translation_state(admin, args.handle)
+    todo = {l: keys for l, keys in status.items() if keys}
+    payload = {"handle": args.handle, "article_id": article["id"],
+               "source": {k: v["value"] for k, v in source.items()},
+               "locales_needing_work": todo,
+               "link_rule": "in body_html, prefix every internal href with the locale folder: /collections/x -> /<prefix>/collections/x",
+               "locale_prefixes": {l: locale_prefix(l) for l in todo}}
+    write_json(args.output, payload)
+    print(f"{args.handle}: {len(todo)} of {len(status)} locales need work -> {args.output}")
+    return 0
+
+
+def translation_priority() -> List[str]:
+    """Engine-built articles first, then articles whose English body was repaired (their translations are stale)."""
+    log = (ROOT / "ops/organic/ENGINE_LOG.md").read_text(encoding="utf-8") if (ROOT / "ops/organic/ENGINE_LOG.md").exists() else ""
+    built = re.findall(r"/blogs/news/([a-z0-9-]+)", "\n".join(l for l in log.splitlines() if l.startswith("- Build:")))
+    repaired = sorted({p.stem[len("body-"):] for p in (ROOT / "ops/organic/receipts").rglob("body-*.json")})
+    order = []
+    for handle in built + repaired:
+        if handle not in order:
+            order.append(handle)
+    return order
+
+
+def cmd_translate_next(args) -> int:
+    admin = Admin(args.store_domain)
+    for handle in translation_priority():
+        article = find_article(admin, handle)
+        if not article or not article["isPublished"]:
+            continue
+        _, source, status = article_translation_state(admin, handle)
+        todo = {l: keys for l, keys in status.items() if keys}
+        if not todo:
+            continue
+        picked = dict(list(todo.items())[: args.max_locales])
+        payload = {"handle": handle, "article_id": article["id"], "source": {k: v["value"] for k, v in source.items()},
+                   "locales_this_run": picked, "locales_left_after_this_run": len(todo) - len(picked),
+                   "locale_prefixes": {l: locale_prefix(l) for l in picked},
+                   "link_rule": "in body_html, prefix every internal href with the locale folder: /collections/x -> /<prefix>/collections/x"}
+        write_json(args.output, payload)
+        print(f"{handle}: {len(picked)} locales this run ({', '.join(picked)}); {len(todo) - len(picked)} left -> {args.output}")
+        return 0
+    print("nothing to translate: every engine-built and repaired article is current in all languages")
+    write_json(args.output, {"handle": None})
+    return 0
+
+
+def check_translation(key: str, src: str, value: str, locale: str) -> List[str]:
+    problems = []
+    if not value.strip():
+        return ["empty"]
+    ratio = len(value) / max(len(src), 1)
+    if not 0.4 <= ratio <= 2.6:
+        problems.append(f"length ratio {ratio:.2f} looks wrong")
+    if key == "meta_title" and len(value) > 70:
+        problems.append(f"meta_title {len(value)} chars > 70")
+    if key == "meta_description" and len(value) > 165:
+        problems.append(f"meta_description {len(value)} chars > 165")
+    if key == "body_html":
+        for tag in ("h2", "h3", "p", "li", "a"):
+            a, b = len(re.findall(rf"<{tag}[\s>]", src, re.I)), len(re.findall(rf"<{tag}[\s>]", value, re.I))
+            if a != b:
+                problems.append(f"<{tag}> count {b} != source {a}")
+        expected = sorted(re.findall(r'href="([^"]+)"', localize_hrefs(src, locale)))
+        got = sorted(re.findall(r'href="([^"]+)"', value))
+        if expected != got:
+            problems.append(f"hrefs differ from localized source (expected e.g. {expected[:2]})")
+    if len(re.findall(r"\b(the|and|with|for|your)\b", text_of(value), re.I)) > 6 and locale not in ("en",):
+        problems.append("looks untranslated (many English words)")
+    return problems
+
+
+def cmd_translate_apply(args) -> int:
+    admin = Admin(args.store_domain)
+    article, source, status = article_translation_state(admin, args.handle)
+    wanted = json.loads(Path(args.translations).read_text(encoding="utf-8"))
+    rows, problems = [], []
+    for locale, fields in wanted.items():
+        if locale not in status:
+            problems.append(f"{locale}: not a published storefront language")
+            continue
+        for key, value in fields.items():
+            if key not in source:
+                problems.append(f"{locale}.{key}: not a translatable field of this article")
+                continue
+            issues = check_translation(key, source[key]["value"], value, locale)
+            if issues:
+                problems.append(f"{locale}.{key}: " + "; ".join(issues))
+            rows.append({"locale": locale, "key": key, "value": value, "translatableContentDigest": source[key]["digest"]})
+    receipt = {"at": now_stamp(), "handle": args.handle, "rows": len(rows), "problems": problems, "executed": False}
+    if problems or not args.execute:
+        write_json(args.receipt, receipt)
+        print(json.dumps(receipt, indent=2, ensure_ascii=False)[:3000])
+        return 1 if problems else 0
+    errors = []
+    for locale in sorted({r["locale"] for r in rows}):
+        batch = [{k: r[k] for k in ("locale", "key", "value", "translatableContentDigest")} for r in rows if r["locale"] == locale]
+        result = admin.gql(TRANSLATIONS_REGISTER_M, {"id": article["id"], "t": batch})["translationsRegister"]
+        errors += result["userErrors"]
+    _, _, after = article_translation_state(admin, args.handle)
+    unresolved = {l: [k for k in wanted[l] if k in after.get(l, [])] for l in wanted}
+    verified = not errors and not any(unresolved.values())
+    receipt.update(executed=True, user_errors=errors, unresolved_after=unresolved, verified=verified)
+    write_json(args.receipt, receipt)
+    print(json.dumps({k: receipt[k] for k in ("handle", "rows", "user_errors", "unresolved_after", "verified")}, indent=2))
+    return 0 if verified else 1
+
+
 def cmd_redirect(args) -> int:
     source, target = args.source.strip(), args.target.strip()
     problems = []
@@ -516,6 +661,23 @@ def main(argv: Optional[List[str]] = None) -> int:
     p.add_argument("--receipt", required=True)
     p.add_argument("--execute", action="store_true")
     p.set_defaults(func=cmd_redirect)
+
+    p = sub.add_parser("translate-queue")
+    p.add_argument("--handle", required=True)
+    p.add_argument("--output", required=True)
+    p.set_defaults(func=cmd_translate_queue)
+
+    p = sub.add_parser("translate-next")
+    p.add_argument("--max-locales", type=int, default=6)
+    p.add_argument("--output", required=True)
+    p.set_defaults(func=cmd_translate_next)
+
+    p = sub.add_parser("translate-apply")
+    p.add_argument("--handle", required=True)
+    p.add_argument("--translations", required=True, help='JSON {"<locale>": {"<key>": "<translated value>"}}')
+    p.add_argument("--receipt", required=True)
+    p.add_argument("--execute", action="store_true")
+    p.set_defaults(func=cmd_translate_apply)
 
     p = sub.add_parser("article-seo")
     p.add_argument("--handle", required=True)

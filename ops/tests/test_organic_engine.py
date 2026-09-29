@@ -96,5 +96,26 @@ class LinkHealthTest(unittest.TestCase):
         self.assertFalse(any(engine.link_health(body, {"live-one"}, {"christmas-pajamas"}).values()))
 
 
+class TranslationCheckTest(unittest.TestCase):
+    SRC = '<h2>Pick</h2><p>Start with <a href="/collections/couples">couples</a> and <a href="/blogs/news/guide">the guide</a>.</p>'
+
+    def test_localized_links_pass(self):
+        good = '<h2>Επιλογή</h2><p>Ξεκινήστε με <a href="/el/collections/couples">ζευγάρια</a> και <a href="/el/blogs/news/guide">τον οδηγό</a>.</p>'
+        self.assertEqual(engine.check_translation("body_html", self.SRC, good, "el"), [])
+
+    def test_unprefixed_or_dropped_links_fail(self):
+        bad = '<h2>Επιλογή</h2><p>Ξεκινήστε με <a href="/collections/couples">ζευγάρια</a> και τον οδηγό.</p>'
+        problems = " ".join(engine.check_translation("body_html", self.SRC, bad, "el"))
+        self.assertIn("<a> count", problems)
+        self.assertIn("hrefs differ", problems)
+
+    def test_pt_br_uses_pt_folder(self):
+        self.assertEqual(engine.locale_prefix("pt-BR"), "/pt")
+        self.assertIn('href="/pt/collections/x"', engine.localize_hrefs('<a href="/collections/x">x</a>', "pt-BR"))
+
+    def test_meta_length_caps(self):
+        self.assertTrue(engine.check_translation("meta_description", "x" * 150, "y" * 170, "de"))
+
+
 if __name__ == "__main__":
     unittest.main()
