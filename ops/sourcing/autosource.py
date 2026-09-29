@@ -19,6 +19,7 @@ Subcommands
   scan ID[,ID..]                       offer pages: release season, 48h promise (deliveryLimit), fabric, supplier
   gate ID[,ID..]                       store creditdetail stats + automatic owner-rule verdict
   catalog HOST                         a passing store's 2026 offers (store listing, not search)
+  dupcheck "<english words>"           duplicate check: store products (any status) whose title has ALL the words, e.g. dupcheck "heart hoodie"
   capture ID                           description images + manifest (ops/sourcing/vendor-images/<id>/desc/)
   skus ID                              per-SKU prices/stock -> ops/sourcing/state/skus/<id>.json
   spec RECIPE.json                     write engine spec from a recipe (family_sweatshirt engine path)
@@ -175,7 +176,7 @@ def cmd_search(kw: str) -> None:
 
 
 SCAN_JS = r"""(()=>{const t=(document.body.innerText||'').replace(/\s+/g,' ');const h=document.documentElement.innerHTML;
-const g=k=>{const m=t.match(new RegExp('('+k+')\\s*(.{0,40})'));return m?m[2]:''};
+const g=k=>{const m=t.match(new RegExp('('+k+')\\s*(.{0,120})'));return m?m[2]:''};
 const imgs=[...new Set([...document.querySelectorAll('img')].map(i=>i.src).filter(s=>/cbu01\.alicdn\.com\/img\/ibank/.test(s)))];
 return JSON.stringify({title:document.title.slice(0,90),company:(h.match(/"companyName":"([^"]+)"/)||[])[1]||'',
 host:(h.match(/"sellerWinportUrl"\s*:\s*"https?:\/\/([a-z0-9-]+\.1688\.com)/)||[])[1]||'',
@@ -205,7 +206,7 @@ def cmd_scan(ids: str, gap: float = 35) -> None:
             r["scanned"] = time.strftime("%Y-%m-%d")
             seen[oid] = {k: r[k] for k in ("title", "company", "host", "release", "dl", "main", "moq", "pass_ship_season", "scanned")}
             save_seen(seen)
-            print(("PASS " if ok else "fail ") + oid, "| dl", r["dl"], "|", r["release"][:14], "|", r["company"][:16], "|", r["main"][:22], "|", r["title"][:60], flush=True)
+            print(("PASS " if ok else "fail ") + oid, "| dl", r["dl"], "|", r["release"][:14], "|", r["company"][:16], "| fabric:", r["fabric"][:40], "| composition:", r["main"][:90], "|", r["title"][:60], flush=True)
             time.sleep(gap)
     finally:
         tab.close()
@@ -866,6 +867,20 @@ def cmd_recent(hours: float = 26) -> None:
         print(h, "|", live, "| QA sheet:", qa if qa.exists() else "-", "| vendor sheet:", WORK / f"sheet_{json.loads(f.read_text())['offer_id']}.jpg")
 
 
+def cmd_dupcheck(words: str) -> None:
+    """Rule 6 helper: list store products (active, draft or archived) whose title contains every word."""
+    sys.path.insert(0, str(T / "ai_images"))
+    import attach_images as A  # noqa
+    terms = [w for w in re.findall(r"[A-Za-z0-9']+", words) if len(w) > 1]
+    if not terms:
+        raise SystemExit('usage: dupcheck "<english words>"')
+    q = " AND ".join(f"title:*{w}*" for w in terms)
+    nodes = A.gql("query($q:String!){products(first:50,query:$q){nodes{handle title status featuredImage{url}}}}", {"q": q})["products"]["nodes"]
+    print(f"{len(nodes)} store products match {terms}")
+    for n in nodes:
+        print(n["status"], "|", n["handle"], "|", n["title"][:80], "|", (n.get("featuredImage") or {}).get("url", "")[:120])
+
+
 def cmd_unpublish(handle: str, reason: str) -> None:
     """Audit action: set a listing this job built back to DRAFT (reversible) and log why."""
     if not (STATE / "recipes" / f"{handle}.json").exists():
@@ -892,6 +907,7 @@ def main() -> None:
     elif c == "scan": cmd_scan(a[1], float(a[2]) if len(a) > 2 else 35)
     elif c == "gate": cmd_gate(a[1])
     elif c == "catalog": cmd_catalog(a[1], a[2] if len(a) > 2 else "2026-06-01")
+    elif c == "dupcheck": cmd_dupcheck(a[1])
     elif c == "capture": cmd_capture(a[1])
     elif c == "skus": cmd_skus(a[1])
     elif c == "spec": cmd_spec(a[1])

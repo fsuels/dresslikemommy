@@ -56454,3 +56454,17 @@ Rollback: revert the commit that touches this snippet.
 - 格莱美 (shop2j8l6k6928792, Dongguan, 6 years, 100%/100%, service 4.5, 3007 orders): 22 screened, 21 scan-pass, 1 failed (1081383818215, Fall 2024 release). Rule 5 skips: 11 Year-of-the-Sheep/2027 New Year designs (1084788931073, 1086736833132, 1084407443517, 1087388272982, 1084969758931, 1085672009501, 1085569680363, 1080061954598, 1086033453426, 1085824981779, 1082961933952); smiley designs 1080035875533 and 1080353962382; Halloween ghost/pumpkin 1084579260865 (too late to ship for the season).
 - Supplier gate PASS for the 7 remaining: 1083808582070, 1084852540062, 1081588927419, 1079425911489, 1080795118611, 1081371115150, 1084097060021.
 - QUEUED, not built: 1081588927419 ("Pure joy" heart raglan hoodie, beige/brick red, unlined cost 45 kids / 58 adult, own size charts in desc 01-03, kids 80-150 + adult S-4XL) and 1084852540062 ("Cupcat" cup-cat raglan hoodie, same look/charts). Both look strong in the vendor photos. Not built because the real fabric % could not be read with this run's tools (scan output truncates "Cotton2 Main fabric composition..."); rule 8 requires the honest %. Duplicate check against live store products also not possible in this run (no Grep). Next run: read the composition on the offer page, check duplicates, then build. 1081371115150 and 1084097060021 (heart / graffiti heart) and 1083808582070, 1079425911489, 1080795118611 still need a visual look.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-autosource-unblock-fabric-and-dupcheck
+
+- task_entities: `ops/sourcing/autosource.py`, `ops/sourcing/AUTOSOURCE_RUNBOOK.md`, scheduled tasks `autosource`, `ceo-organic-operator`, `organic-traffic-engine`
+- task_stage: BUILD done; next autosource round should build the queued offers 1081588927419 and 1084852540062
+- problem_ids: none
+- next_action_id: VERIFY_NEXT_AUTOSOURCE_BUILDS
+
+Owner asked "where are the new listings?" on 2026-09-29: zero products were added overnight.
+- Cause 1: the autosource run froze 00:25–09:48 EDT on an unanswered approval prompt (it called Monitor), which blocked every later hourly run. The CEO loop froze the same way (in-app browser call). The CEO session stopped both runs, added a FREEZE GUARD to all three routine prompts (foreground only; no Monitor/ScheduleWakeup/in-app browser/unlisted tools) and a watchdog step to the CEO loop (stop any routine run idle >90 min).
+- Cause 2: the resumed round found 7 gate-passing offers but built none: `scan` captured only 40 characters after the fabric label and printed 22 (rule 8 needs the real %), and duplicate checks relied on Grep, which scheduled runs lack. `SCAN_JS` now captures 120 characters and `scan` prints `fabric:` and the full `composition:`; new read-only `autosource.py dupcheck "<words>"` lists store products of any status whose title has every word (tested: "heart hoodie" → 1 archived; "raglan" → 5). Runbook rules 6 and 8 point to both.
+- Organic engine: daily new-article cap raised 3 → 5 until Nov 15 (Christmas pages must be live by mid-Oct; every audited engine article passed).
+
+Rollback: revert this commit; the routine prompts live in `~/.claude/scheduled-tasks/*/SKILL.md`.

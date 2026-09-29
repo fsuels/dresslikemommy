@@ -30,9 +30,9 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
    - No "SMILE"/smiley-face prints (Smiley® mark).
    - No national/patriotic or Chinese-New-Year themes (off-market).
    - No garbled or odd lettering.
-6. **No duplicates:** compare the vendor photos with our live and archived store products of the same type (Grep specs and `ops/sourcing/TRUSTED-SUPPLIERS.md`). A near-identical print on a different garment counts as a duplicate.
+6. **No duplicates:** compare the vendor photos with our live and archived store products of the same type (run `autosource.py dupcheck "<2-3 english design words>"` for each candidate, e.g. `dupcheck "heart hoodie"`, and Read the matching products' images; Grep may be unavailable in scheduled runs). A near-identical print on a different garment counts as a duplicate.
 7. **Appeal:** skip tiny or generic chest logos on template photo sets, school/kindergarten activity uniforms, and summer-themed text on winter items.
-8. **Real fabric:** state the real fabric % honestly.
+8. **Real fabric:** state the real fabric % honestly. `scan` now prints the full `composition:` text from the offer page; if it is still empty, Read the offer's captured description images before deciding.
 9. **Price:** landed ≤50% of price (the engine formula does this); compare-at = price + $10.
 
 ## Steps of one run
