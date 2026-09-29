@@ -56695,3 +56695,17 @@ Why: owner continuation "recheck Merchant store-quality image scores when the 30
 - Look failures (gate PASS but skipped): 1076062730956, 1079574238193 (shop11f78…, 8 years) and 1076123646457, 1077701233547 (河南明地一族, 11 years) are the same colourful summer-beach class-activity template with tiny cartoon/flower chest prints (appeal rule 7: template photo set, school activity uniform). 1064549029003 (森大, 9 years, gate PASS): small embroidered brand-style figure logo on a plain red cable knit, Chinese-New-Year red, no distinctive print (rules 5 and 7).
 - Other scan failures: dispatch promise 3-45 days, or release attribute missing/Summer/2027 (couples hoodies, accessories, maternity, couples knits).
 - Supplier near-misses: 森大 (senda831) and 河南明地一族 (mdyz8899) pass the supplier gate; revisit if they list a distinct print.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-autosource-queue-and-make-life-sweet
+
+- task_entities: make-life-sweet-family-matching-sweatshirts (offer 1078519857484, MLSW); `ops/sourcing/autosource.py` (`queue`, `decide`, scan fail reasons, gate-passing store catalogs in rotation); runbook step 0c; task prompt
+- task_stage: LIVE_VERIFIED
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Runs since paging (16:53Z CAPTCHA stop; 17:53Z and 18:53Z full rounds, pages 1-3, about 114 offers screened): 0 new listings. Most offers fail the 24/48h promise or the fresh 2026 Fall/Winter release; five suppliers failed the stats gate. Paging works; the constraint is the rule mix, not the search depth.
+- Bug: candidates queued in worklog prose were lost. The 野狼魅力 offers were already "seen", so `catalog` hid them from IDS. New `queue` lists offers that passed scan (and gate, if run) with no recorded decision; new `decide ID "built <handle>|skip: <rule + reason>"` records it in autosource_seen.json. Backfilled 133 decisions (103 legacy 2026-09-28 manual screenings, 30 documented skips) + 10 today. Queue is now 0. Runbook step 0c + task prompt: `pending` → `queue` → new searches.
+- Bug: `scan` did not say why an offer failed (a run guessed "shipping gate"). It now prints and stores `why` (dispatch days or release value).
+- Yield: `next` now also rotates the catalogs of every store that passed the supplier gate (currently 明地一族 mdyz8899, 森大 senda831, 圣瑞 shop11f78…, 拓茵 shop66to…; the list grows automatically), alongside the fixed ROTATION.
+- Queued 野狼魅力 review: gate PASS (est. June 2022, strict 3-4 yr stats met). Skipped 1079314552681 (big smiley + GOOD LUCKY, rule 5), 1079501676685 (smiley row + Chinese lettering, rule 5), 1079750601231 / 1079991875410 / 1084175581242 (heart prints; Scribble Heart, Eternal Bliss Hearts and Little Heart already live, rule 6).
+- LIVE: make-life-sweet-family-matching-sweatshirts, Family Matching, kids $26.99 / adults $30.99 (compare-at +$10), 7 colours × 13 sizes = 91 variants, cotton 100%, offer's own chart (image 06; jin→kg; 5XL, Apricot and fleece-lined not listed). QA: lettering, bunting, cherries and sun match the vendor print; 9:16. The little sun is a kawaii sun character (eyes, tiny mouth, blush), the same as the vendor garment; judged not a smiley-face mark (rule 5 targets smiley-face prints). Closeout PASS on attempt 1; readback 4 imgs, 91/91 available, 8/8 channels.
+- Panda chart re-checked against its own offer chart (image 05: 15-25 jin for 100 cm, M 155-165 cm): correct. The two 野狼魅力 offers use different charts, so charts are never reused across offers.

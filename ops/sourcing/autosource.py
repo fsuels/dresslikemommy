@@ -873,6 +873,18 @@ SEARCH_PAGES = 5  # each keyword reads the next results page on its next turn (p
 ROT_FILE = STATE / "autosource_rotation.json"
 
 
+def passing_store_catalogs() -> list:
+    """Catalog turns for every store whose offers passed the supplier gate (beyond the fixed ROTATION): new designs from
+    proven 48h stores are the best yield, and keyword searches mostly surface slow-dispatch or stale offers."""
+    fixed = {arg for kind, arg, _ in ROTATION if kind == "catalog"}
+    hosts = {}
+    for v in load_seen().values():
+        h = v.get("host")
+        if v.get("gate_pass") and h and h not in fixed:
+            hosts.setdefault(h, v.get("company", "")[:12])
+    return [("catalog", h, f"{c} (gate-passing store) new designs") for h, c in sorted(hosts.items())]
+
+
 def cmd_next() -> None:
     try:
         i = json.loads(ROT_FILE.read_text())["next"]
@@ -882,11 +894,12 @@ def cmd_next() -> None:
         pages = json.loads(ROT_FILE.read_text()).get("pages", {})
     except Exception:
         pages = {}
-    kind, arg, label = ROTATION[i % len(ROTATION)]
+    rot = ROTATION + passing_store_catalogs()
+    kind, arg, label = rot[i % len(rot)]
     page = pages.get(arg, 0) % SEARCH_PAGES + 1 if kind == "search" else 1
     if kind == "search":
         pages[arg] = page
-    ROT_FILE.write_text(json.dumps({"next": (i + 1) % len(ROTATION), "last": label, "at": time.strftime("%Y-%m-%dT%H:%M:%S"), "pages": pages}, ensure_ascii=False) + "\n")
+    ROT_FILE.write_text(json.dumps({"next": (i + 1) % len(rot), "last": label, "at": time.strftime("%Y-%m-%dT%H:%M:%S"), "pages": pages}, ensure_ascii=False) + "\n")
     print(f"THIS ROUND: {label}" + (f" (results page {page})" if kind == "search" else ""))
     print(f"RUN: /usr/bin/python3 ops/sourcing/autosource.py {kind} \"{arg}\"" + (f" {page}" if page > 1 else ""))
 
