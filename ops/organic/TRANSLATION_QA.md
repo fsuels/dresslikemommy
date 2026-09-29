@@ -193,3 +193,117 @@ Remaining, not changed:
 - Product-link headings such as "Τροπικά σύνολα ... | DLM" in christmas-matching-family-pajamas are truncated source product titles, kept as translated.
 - "outfit", "look", "layers" stay as Greek-usage loanwords across the articles; `/policies/refund-policy` links in two articles carry no `/el/` prefix (source structure kept).
 - Title Case remains in the titles and meta titles of some articles not flagged as errors (for example what-to-wear-for-family-photos-matching-outfit-ideas, best-matching-family-outfits-for-winter, christmas-matching-family-pajamas).
+
+## Romanian sweep
+
+Date 2026-09-29. Scope: 15 live Romanian (`ro`) blog articles, read as a strict native editor against the stored Admin translations (same text as the live page). Fixes registered with `organic_engine.py translate-apply --execute`; every write read back `verified: true`. Receipts: `ops/organic/receipts/2026-09-29/roqa-<handle>.json`. English, other languages, products and theme untouched.
+
+| Article | Grade | Main problems fixed |
+|---|---|---|
+| mommy-and-me-matching-outfit-ideas | B -> A | Title said "fiică" while meta and body say "copil"; Title Case title and 9 headings; 187-char meta description; "o comisioane de marți"; "piesă statement"; "mini-tine"; "devine dintr-o idee ... o tradiție". |
+| mommy-and-me-outfits-for-every-budget | B+ -> A | Title Case title; "Sfaturi inteligente de cumpărături" (smart-shopping calque). |
+| daddy-and-me-matching-outfits-the-ultimate-guide | B -> A | Title Case title and meta title; "tati și eu"/"mami și eu" calques of "daddy and me" (about 13 places); "copiilori" typo; "cele mai rapid crescătoare"; "atent" for thoughtful gift; duplicated "tricourile asortate, tricourile de echipă"; "mini-voi". |
+| best-matching-swimsuits-for-the-whole-family | B+ -> A | Keyword-stacked H2s ("ținutele asortate pentru costumele de baie asortate"); "strategic" accessories calque; "styling" in heading and image alt. |
+| fall-family-matching-outfits | A- -> A | Title Case title; "straturi inteligent" (layer smartly calque). |
+| the-complete-guide-to-family-matching-outfits | B -> A | "Mămică și eu"/"Tătic și eu" category labels and link text; Title Case meta title; "una dintre cele mai bune moduri" (gender); "Cumpără inteligent"; "mod gemeni"; meta description mixed tu/voi. |
+| what-to-wear-for-family-photos-matching-outfit-ideas | B+ -> A | English "Mommy and Me"/"Daddy and Me" left in link labels (4); Title Case meta title; capital after colon in title. |
+| holiday-family-matching-outfits-complete-guide | B -> A | 6 image alt texts left in English; Title Case meta title; "magic la"; "styling"; "straturi cu cap"; "strategic" accessories. |
+| christmas-matching-family-pajamas | B+ -> A | Stray double `</h3></h3>` (3); "cerbi" (deer) for reindeer print in heading, alt and body; "straturi cu cap". |
+| matching-family-christmas-sweaters-guide-2026 | A | No errors found; unchanged. |
+| family-christmas-photo-outfits-2026 | A | No errors found; unchanged. |
+| daddy-and-me-christmas-outfits | B -> A | Keyword-stacked title and meta title ("tată și copil asortate ... tați și copii"); "tată și eu" in two link labels; "plimbare în spate" for piggyback; "elegant în cameră"; repeated "tată și copil" in summary. |
+| matching-family-christmas-shirts | B -> A | 100-char title; meta description cut off mid-sentence; "pozei de familie" (number); "o casă caldă"; "practice pe copii"; "cere aproape nicio planificare"; stray spaces before punctuation after links. |
+| matching-family-shirts-for-pictures | B -> A | 94-char Title Case title, Title Case meta title and 8 headings; "îngăduitoare" (forgiving calque); "topurile împart o culoare"; "păstra bugetul"; "pentru familie pentru poze". |
+| family-christmas-card-photo-ideas | B -> A | Title Case title, meta title and 6 headings; broken agreement "topuri de familie noastre"; imperatives "Planific-o", "transport-le". |
+
+Result: 0 C, 9 B, 4 B+/A- and 2 A before; all 15 A after edits (13 written, 2 unchanged).
+
+Remaining, not changed:
+- Product names inside link labels and headings (for example "Jingle Bells Santa", "Vibrant Rainbow", truncated "... | DLM" titles) stay as source product titles.
+- Loanwords "look", "outfit", "cool", "wow" and "Valentine's Day" kept as normal Romanian usage; `/policies/refund-policy` hrefs carry no `/ro/` prefix (source structure).
+
+## Italian sweep
+
+Date 2026-09-29. Scope: 15 live Italian (`it`) blog articles, read as a strict native editor against the stored Admin translations (title, body, summary, meta) and the live pages. Fixes registered with `organic_engine.py translate-apply --execute`; every write read back `verified: true`. Receipts: `ops/organic/receipts/2026-09-29/itqa-<handle>.json`. English, other languages, products and theme untouched; no stock, shipping-speed, discount or review claims added. The three SEO meta titles ("Costumi coordinati famiglia...", "Costumi mamma e figlia coordinati...", "Outfit coordinati papà e figlio...") were kept.
+
+| Article | Grade | Main problems fixed |
+|---|---|---|
+| best-matching-swimsuits-for-the-whole-family | B+ -> A | Redundant H2s ("outfit coordinati per i costumi coordinati"); tu/voi mixed in body and closing CTA. |
+| mother-daughter-matching-swimsuits-complete-guide-for-summer | A- -> A | Untranslated "Papà e Me" collection label. |
+| daddy-and-me-matching-outfits-the-ultimate-guide | B -> A | H1 "Papà e Me Abiti coordinati" (untranslated, "abiti" = dresses); link label with no article at sentence start; "Papà e Io"; "sembrano voluti"; tu heading. |
+| mommy-and-me-matching-outfit-ideas | B -> A | H1 "Mamma e Me Abiti coordinati"; meta description calque "che abbiniamo io e la mamma" and "vacanze, vacanze"; Title Case meta title and 9 headings; "fatte per essere coordinati"; "coordinazioni"; "sono tuoi amici"; "facile e da Instagram". |
+| mommy-and-me-outfits-for-every-budget | B -> A | H1 "Mamma e Me Abiti per ogni budget"; "fare il gemellaggio" (town twinning). |
+| fall-family-matching-outfits | B -> A | H1 "Coordinati Familiari Autunnali" (Title Case, not natural). |
+| the-complete-guide-to-family-matching-outfits | B -> A | "abiti coordinati" in H1 (dresses); Title Case meta title; "Mamma e Me"/"Papà e Me" and "mamma e me" left as pseudo-English in labels and links. |
+| what-to-wear-for-family-photos-matching-outfit-ideas | B+ -> A | English "Mommy and Me"/"Daddy and Me" link labels; Title Case meta title. |
+| holiday-family-matching-outfits-complete-guide | B -> A | 6 image alt texts left in English; Title Case H1 and meta title; tu/voi mix ("fate"). |
+| christmas-matching-family-pajamas | B+ -> A | Title Case H1; stray double `</h3></h3>` x3 (not in English); "curare i vostri" vs tu body; "per voi". |
+| matching-family-christmas-sweaters-guide-2026 | A- -> A | "consegna ... può essere troppo tardi" (agreement/idiom). |
+| family-christmas-photo-outfits-2026 | A | None. |
+| daddy-and-me-christmas-outfits | B -> A | Stacked H1 ("papà e figlio ... papà e bambini"); "maglione in maglia"; "maglie per la famiglia" for tops; "coppia" for father and son; "cavalcata sulle spalle"; "tutta la casa". |
+| matching-family-christmas-shirts | B+ -> A | 104-char H1; "il programma è una casa calda" (calque); "quasi nessuna pianificazione"; "tutta la casa"; stray spaces before punctuation after two links. |
+| family-christmas-card-photo-ideas | B -> A | Title Case in H1, meta title and 6 headings; "carta" for gift wrap; "facile da dimensionare" (size calque); "appare voluta". |
+
+Result: 0 C, 11 B/B+, 3 A- and 1 A before; all 15 A after edits (14 written, 1 no change). Recurring cause: older articles show "Mamma e Me"/"Papà e Me" pseudo-English labels, "abiti" for "outfit", Title Case and tu/voi mixing; engine-written 2026 guides are clean.
+
+Remaining, not changed:
+- `/policies/refund-policy` links in two articles carry no `/it/` prefix (source structure; the engine href check requires it).
+- Product-link headings such as "Outfit tropicali da spiaggia ... | DLM" in christmas-matching-family-pajamas are truncated source product titles, kept.
+- CTA buttons use "Scopri ..." (tu) while bodies use voi; treated as brand CTA style. "4 luglio" kept as in the English source.
+
+## Czech sweep
+
+Date 2026-09-29. Scope: 15 live Czech (`cs`) blog articles, read as a strict native editor against the live pages and stored Admin translations. Fixes registered with `organic_engine.py translate-apply --execute`; 14 writes read back `verified: true`. Receipts: `ops/organic/receipts/2026-09-29/csqa-<handle>.json`. English, other languages, products and theme untouched.
+
+| Article | Grade | Main problems fixed |
+|---|---|---|
+| mommy-and-me-matching-outfit-ideas | B -> A | Title Case in meta title and 9 headings; "pastelové barvy jsou vaši přátelé" (gender mismatch); "joggery"; "štědrovečerní ráno"; "fotíte se na fotky". |
+| mommy-and-me-outfits-for-every-budget | B+ -> A | "Střední třída" for mid-range; "Sledujte svátečních slevy" (wrong case). |
+| daddy-and-me-matching-outfits-the-ultimate-guide | B -> A | "Nejlepší průvodce" title and Title Case meta title; "kostky" for checks; "přátelé" gender slip; "Sejděte na jejich úroveň"; "pozorný" set; "Nakupujte" heading; "nevyrovná pouto" (needs dative). |
+| best-matching-swimsuits-for-the-whole-family | B+ -> A | "Doplňky ... strategicky" calque; "vzpomínky ... vracet". |
+| fall-family-matching-outfits | A- | No real errors; unchanged. |
+| the-complete-guide-to-family-matching-outfits | B+ -> A | Title Case meta title; "z zábavné" (needs "ze"); "kostce", "ideální bod", "působit příliš"; "Nakupujte" heading. |
+| what-to-wear-for-family-photos-matching-outfit-ideas | B -> A | Title Case meta title; English "Mommy and Me"/"Daddy and Me" left in link labels; "pro vaši destinaci" calque (x2); "projdou i pohybují"; "vypadali i se cítili"; "oporou celého looku". |
+| holiday-family-matching-outfits-complete-guide | B -> A | 6 image alt texts left in English; Title Case meta title; "Dne Díkůvzdání" capitals; "usnadňují obléct". |
+| christmas-matching-family-pajamas | B+ -> A | "jelenů/jeleny" (deer) for reindeer; "sladěných do páru"; "nechá" for growth room; stray `</h3></h3>` (x3). |
+| matching-family-christmas-sweaters-guide-2026 | B+ -> A | Title and meta description dropped "sladěné"; "obrázek" for graphic (x3); "plány" for "plánem"; "druhý" agreement; "s soby". |
+| family-christmas-photo-outfits-2026 | A- -> A | "Tulení" (non-standard) for cuddling. |
+| daddy-and-me-christmas-outfits | B -> A | Repetitive 75-char title ("pro tátu a dítě ... pro tátu a děti"); "na cokoli, kde jsou hosté"; "vézt dítě", "pošetilá fotka"; "lícovaly". |
+| matching-family-christmas-shirts | B -> A | 86-char title; "vyhřátý dům"; "dodací okno"; "vyžaduje téměř žádné"; "vyparte"; "teplé domovy"; "domácí vzhled"; stray spaces before punctuation (x3). |
+| matching-family-shirts-for-pictures | B -> A | Title Case in title, meta title and 8 headings; title repeated "trička"; "shovívavá" (forgiving calque); "Otevřený stín"; "pečovatelský štítek"; link label in wrong case. |
+| family-christmas-card-photo-ideas | B+ -> A | Title Case after colon; "dodací okno"; stray "hoodies"; "v pozdním odpoledni". |
+
+Result: 0 C, 13 B/B+, 2 A- before; 14 A and 1 A- (fall-family-matching-outfits, unchanged) after edits. Recurring cause: Title Case (Czech uses sentence case), calques from English ("dodací okno", "destinace", "Nakupujte", "ideální bod"), and English left in link labels and alt text.
+
+Remaining, not changed:
+- Product-link headings such as "Tropické plážové outfity ... | DLM" in christmas-matching-family-pajamas are truncated source product titles.
+- "koncept", "outfit", "look" stay as Czech-usage loanwords; `/policies/refund-policy` links carry no `/cs/` prefix (source structure kept).
+- "Tipy redakce" and product-name link labels kept as translated.
+
+## Polish sweep
+
+Date 2026-09-29. Scope: 15 live Polish (`pl`) blog articles, read as a strict native editor against the stored Admin translations (same text as the live page). Fixes registered with `organic_engine.py translate-apply --execute`; every write read back `verified: true`. Receipts: `ops/organic/receipts/2026-09-29/plqa-<handle>.json`. English, other languages, products and theme untouched.
+
+| Article | Grade | Main problems fixed |
+|---|---|---|
+| mommy-and-me-matching-outfit-ideas | B -> A | Title "Mama i ja Pasujące stroje"; meta description "stroje dla mamy i dla mnie" and "Kupuj wygląd!" (Shop the looks calque); Title Case in meta title and 9 headings; "Pastele to Twoi przyjaciele"; "nie tylko dla mam". |
+| mommy-and-me-outfits-for-every-budget | B+ -> A | Title "Mama i ja Stroje"; meta description "z wskazówkami"/"przy każdym budżecie"; "Koszulki w takim samym stylu" for matching tees (3 places). |
+| daddy-and-me-matching-outfits-the-ultimate-guide | B -> A | "Tata i ja"/"mama i ja" calque in title and about 11 body spots; Title Case meta title; "z wskazówkami"; "łatwy w użyciu" for a gift; "kurtki na koszulki"; "chwile rodzinnych stylizacji"; capitals after dashes. |
+| best-matching-swimsuits-for-the-whole-family | B -> A | Title Case title; "z wskazówkami"; "zakryciu" calque; "na po plaży"; H2s stacking "pasujące ... pasujących"; "tata & niemowlę" ampersands; "strategicznie". |
+| fall-family-matching-outfits | A- -> A | "nic nie równa się z radością"; "casualowym"; "zmierzyć się" (measure oneself) for taking measurements; clumsy title. |
+| the-complete-guide-to-family-matching-outfits | B -> A | "rodzinne stylizacje w pasującym stylu" calque in intro and 5 headings; Title Case meta title; "Mama i ja"/"Tata i ja" link labels; "na zdjęciach i święta"; "z looki bliźniaków". |
+| what-to-wear-for-family-photos-matching-outfit-ideas | B -> A | Title Case meta title; "co ubrać"; English "Mommy and Me"/"Daddy and Me" left in 4 link labels; "do jesiennymi tłami"; "Nie chcesz ... sam"; "Akcenty w ... flaneli". |
+| holiday-family-matching-outfits-complete-guide | B -> A | 6 image alt texts left in English; Title Case meta title; "w tym samym stylu" calque in 8 places; "Porady stylizacyjne dla rodzinnych stylizacji"; "strategicznie"; "dobrane ubrania". |
+| christmas-matching-family-pajamas | A- -> A | "Warstw z głową" (broken verb); "Nadruk w jelenie"; "dobranie do siebie jest równie piękne". |
+| matching-family-christmas-sweaters-guide-2026 | B+ -> A | Title and meta description lost "pasujące"; "mogą połączyć kartkę"; "przejść przez rozmiary" calque; "pierwszy/drugi" for plural sweaters; "podejmując decyzję o zakupie". |
+| family-christmas-photo-outfits-2026 | A -> A | Only the opening sentence ("Planowanie ... zacznijcie") had a syntax slip. |
+| daddy-and-me-christmas-outfits | B -> A | 83-char keyword-stacked title and "tata i dziecko" meta title; "w pasujący sposób"; "w zdjęciach"; "gdzie są goście"; "pasować do dziecka"; "wygląda" vs plural; link labels left in nominative after "kolekcja". |
+| matching-family-christmas-shirts | B -> A | 98-char title repeating "koszulki"; "w rodzinnym stylu"; "ciepły dom" calque; "cały dom"; stray spaces before punctuation (3); "wymaga prawie żadnego"; "okazuje się to zwariowane". |
+| matching-family-shirts-for-pictures | B -> A | Title Case in title, meta title and 8 headings; "wyrozumiałe" and "otwarty cień" calques; "pozwalają mówić topom"; link labels in nominative after "kolekcji"; "Wyraziste ... sprawdza się". |
+| family-christmas-card-photo-ideas | B -> A | Title Case in title, meta title and 6 headings; doubled "nasz nasz"; link labels in nominative after "kolekcja"; "Look z jednakową koszulką"; "a na trzy w stronę aparatu". |
+
+Result: 0 C, 12 B/B+, 3 A/A- before; all 15 A after edits. Recurring causes: "Mama i ja"/"Tata i ja" and "w tym samym/pasującym stylu" calques, Title Case, "z wskazówkami", untranslated alt text in older articles, and collection link labels left in nominative after "kolekcja".
+
+Remaining, not changed:
+- Product-name link text and headings from English source titles ("Vibrant Rainbow", "Pastel Bloom", "Big Trouble | DLM"), the stray `</h3></h3>` in christmas-matching-family-pajamas, and non-localized `/policies/refund-policy` hrefs (identical to source).
+- Mixed "Ty/Wy" address and lowercase "wasz" versus "Wasz" follow the source and were left as accepted Polish usage.
