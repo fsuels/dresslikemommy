@@ -1,0 +1,102 @@
+{%- comment -%}
+  Related style guides for collection pages (2026-09-29). Links each mapped
+  collection to 2-3 live articles in the `news` blog (internal links + a path
+  from the product grid to buying advice). Article url/title are localized by
+  Shopify. Heading translations are inline because locales/*.json are owned by
+  another lane; English is the fallback. Renders nothing when the collection is
+  unmapped or none of its articles exist.
+  Usage: {% render 'collection-related-guides', collection: collection %}
+{%- endcomment -%}
+{%- liquid
+  assign crg_handles = ''
+  case collection.handle
+    when 'christmas-pajamas'
+      assign crg_handles = 'matching-family-christmas-pajamas-guide-2026,family-christmas-card-photo-ideas,matching-couples-christmas-pajamas-and-sweaters'
+    when 'christmas-sweaters', 'family-sweaters'
+      assign crg_handles = 'matching-family-christmas-sweaters-guide-2026,family-christmas-card-photo-ideas'
+    when 'matching-family-christmas-outfits'
+      assign crg_handles = 'family-christmas-photo-outfits-2026,matching-family-christmas-shirts,daddy-and-me-christmas-outfits'
+    when 'mommy-and-me'
+      assign crg_handles = 'mommy-and-me-matching-outfit-ideas,mommy-and-me-outfits-for-every-budget'
+    when 'daddy-me', 'daddy-and-me', 'daddy-me-shirts'
+      assign crg_handles = 'daddy-and-me-matching-outfits-the-ultimate-guide,daddy-and-me-christmas-outfits'
+    when 'couples'
+      assign crg_handles = 'matching-couples-christmas-pajamas-and-sweaters'
+    when 'family-pajamas', 'pajamas'
+      assign crg_handles = 'family-matching-pajamas-our-top-picks-for-cozy-nights,matching-family-christmas-pajamas-guide-2026'
+    when 'swimsuits', 'family-swimsuits'
+      assign crg_handles = 'best-matching-swimsuits-for-the-whole-family,mother-daughter-matching-swimsuits-complete-guide-for-summer'
+    when 'dresses', 'mother-daughter-matching-dresses'
+      assign crg_handles = 'mommy-and-me-summer-dress-guide,mommy-and-me-matching-outfit-ideas'
+    when 'thanksgiving-family-outfits'
+      assign crg_handles = 'thanksgiving-family-matching-outfit-ideas,best-matching-outfits-for-thanksgiving-dinner'
+    when 'family-photo-outfits'
+      assign crg_handles = 'what-to-wear-for-family-photos-matching-outfit-ideas,fall-family-photo-outfits-for-november'
+    when 'fall-winter'
+      assign crg_handles = 'fall-family-matching-outfits,best-matching-family-outfits-for-winter'
+    when 'matching-outfits', 'new-women-outfits'
+      assign crg_handles = 'the-complete-guide-to-family-matching-outfits,what-to-wear-for-family-photos-matching-outfit-ideas'
+  endcase
+
+  assign crg_articles = ''
+  assign crg_count = 0
+  if crg_handles != blank
+    assign crg_list = crg_handles | split: ','
+    for crg_handle in crg_list
+      if crg_count < 3
+        assign crg_key = 'news/' | append: crg_handle
+        assign crg_article = articles[crg_key]
+        if crg_article != blank
+          assign crg_count = crg_count | plus: 1
+          assign crg_articles = crg_articles | append: crg_handle | append: ','
+        endif
+      endif
+    endfor
+  endif
+-%}
+{%- if crg_count > 0 -%}
+  {%- liquid
+    assign crg_lang = request.locale.iso_code | default: localization.language.iso_code | default: 'en' | downcase | split: '-' | first
+    if crg_lang == 'nb'
+      assign crg_lang = 'no'
+    endif
+  -%}
+  {{ 'section-collection-seo.css' | asset_url | stylesheet_tag }}
+  <section class="collection-related-guides collection-seo-rich page-width page-width--narrow" style="padding-bottom: 3.2rem;">
+    <h2 class="collection-seo-rich__eyebrow">
+      {%- case crg_lang -%}
+        {%- when 'es' -%}Guías de estilo
+        {%- when 'fr' -%}Guides de style
+        {%- when 'de' -%}Stilratgeber
+        {%- when 'it' -%}Guide di stile
+        {%- when 'nl' -%}Stijlgidsen
+        {%- when 'pt' -%}Guias de estilo
+        {%- when 'da' -%}Stilguides
+        {%- when 'sv' -%}Stilguider
+        {%- when 'no' -%}Stilguider
+        {%- when 'pl' -%}Poradniki stylizacji
+        {%- when 'cs' -%}Stylové průvodce
+        {%- when 'ja' -%}スタイルガイド
+        {%- when 'ko' -%}스타일 가이드
+        {%- when 'ru' -%}Гиды по стилю
+        {%- when 'ar' -%}أدلة الأناقة
+        {%- when 'he' -%}מדריכי סטייל
+        {%- when 'hi' -%}स्टाइल गाइड
+        {%- when 'el' -%}Οδηγοί στυλ
+        {%- when 'ro' -%}Ghiduri de stil
+        {%- when 'fi' -%}Tyylioppaat
+        {%- else -%}Style guides
+      {%- endcase -%}
+    </h2>
+    <div class="collection-seo-rich__links" style="margin-top: 1.2rem;">
+      {%- assign crg_found = crg_articles | split: ',' -%}
+      {%- for crg_handle in crg_found -%}
+        {%- if crg_handle != blank -%}
+          {%- assign crg_key = 'news/' | append: crg_handle -%}
+          {%- assign crg_article = articles[crg_key] -%}
+          <a class="collection-seo-rich__link" href="{{ crg_article.url }}">{{ crg_article.title | escape }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </section>
+{%- endif -%}

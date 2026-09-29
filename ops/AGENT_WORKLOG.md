@@ -56612,3 +56612,12 @@ Rollback: upsert the saved before-files.
 - NEW LIVE: panda-family-matching-sweatshirts, child $26.99 / adult $30.99, 39 variants, 4 images, listing-localization PASS, LIVE readback avail 39/39. Supplier 野狼魅力 (4 yrs, pickup 99.56%, fulfillment 99.56%, 18,276 orders/30d) passes the strict 3-4 year gate. Unlined Apricot/Green/White only; fleece-lined, sweatpants and 5XL excluded.
 - Skipped: 1077199873574 sunflower (smiley face in flower centre, rule 5); 1079432459532 "NICE." (smiley print, rule 5); 1075802179680 (supplier pickup 89%/fulfillment 91.5%); all couples/maternity/vests/accessories/jackets candidates failed scan (shipping, season or fabric).
 - Not yet reviewed from 野狼魅力 catalog (passed scan, same supplier): 1079750601231, 1079314552681, 1079501676685, 1078519857484 (candidates for next round; check smiley/generic-logo rules and dupes). Other listed items are school uniforms, smiley, summer or China-themed (skipped).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-collection-related-guides
+
+- task_entities: snippets/collection-related-guides.liquid (new); sections/main-collection-seo.liquid (one render after the guide branches); blog `news` articles
+- task_stage: IMPLEMENTED, live readback pending Shopify GitHub sync
+- next_action_id: NEXT_COLLECTION_GUIDE_LINKS_READBACK
+
+- Why: internal links from collection pages to 2-3 live style guides (the guides earn the best click rates in Greek/Hebrew) and a path from product grid to buying advice.
+- What: presentation Liquid only, no JS, no locales/*.json edits. A `case collection.handle` maps to article handles; only articles that exist via `articles['news/<handle>']` render (max 3) as pill links using existing collection-seo-rich classes; article.url/title are localized by Shopify; heading translated inline for 21 languages, English fallback. Unmapped collections render nothing.

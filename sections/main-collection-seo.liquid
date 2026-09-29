@@ -221,6 +221,9 @@
       </div>
     </section>
   {% endif %}
+
+  {%- comment -%}Related style guides: internal links to news articles, rendered after whichever guide branch shows.{%- endcomment -%}
+  {% render 'collection-related-guides', collection: collection %}
 {% endif %}
 
 {% schema %}
