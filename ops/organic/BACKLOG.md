@@ -10,7 +10,7 @@ Existing live guides that already cover a topic (do not duplicate; link to them 
 |---|---|---|---|---|---|
 | 1 | MAIN | BLOCKED 2026-09-29: 0 active Christmas dress products (catalog gap, not a content gap; sourcing first) | mommy and me christmas dresses | — | — |
 | 2 | ENGINE | OPEN | baby's first christmas matching family outfits / pajamas with baby | `babys-first-christmas-matching-family-outfits` | christmas-pajamas, family-pajamas, matching-family-christmas-outfits, family-sweaters |
-| 3 | ENGINE | OPEN (do first: `couples` already earns ~3.4k impressions and no page exists) | matching couples christmas pajamas / sweaters | `matching-couples-christmas-pajamas-and-sweaters` | couples, christmas-pajamas, christmas-sweaters, pajamas |
+| 3 | ENGINE | DONE 2026-09-29 https://www.dresslikemommy.com/blogs/news/matching-couples-christmas-pajamas-and-sweaters (hero image is a family sweatshirt from `couples`; swap for a couple photo if one appears) | matching couples christmas pajamas / sweaters | `matching-couples-christmas-pajamas-and-sweaters` | couples, christmas-pajamas, christmas-sweaters, pajamas |
 | 4 | ENGINE | OPEN | daddy and me christmas outfits | `daddy-and-me-christmas-outfits` | daddy-me, daddy-me-shirts, christmas-tops, christmas-pajamas |
 | 5 | ENGINE | OPEN | matching family christmas shirts / tees for photos and parties | `matching-family-christmas-shirts` | christmas-tops, christmas-sweaters, family-tops, matching-family-christmas-outfits |
 | 6 | ENGINE | OPEN | maternity christmas photo outfits with the family | `maternity-christmas-family-photo-outfits` | maternity, matching-family-christmas-outfits, family-photo-outfits, christmas-pajamas |
@@ -25,7 +25,7 @@ Existing live guides that already cover a topic (do not duplicate; link to them 
 
 | # | Tag | Status | Item |
 |---|---|---|---|
-| F0 | ENGINE | OPEN | **Top priority FIX.** Repair 63 live articles: 128 dead product links, 9 dead collection links (`family-matching`, `headbands`), unsupported claims in 53 ("one of our bestsellers", "happiness guarantee", "free shipping on all orders", "customer reviews", Disney). 5 per run via `article-links` + `article-body` (see playbook). |
+| F0 | ENGINE | OPEN (5 of 63 repaired 2026-09-29: best-fall-colors, october-family-style, transitional-weather, spring-break, late-summer; 58 left, rerun `article-links`) | **Top priority FIX.** Repair 63 live articles: 128 dead product links, 9 dead collection links (`family-matching`, `headbands`), unsupported claims in 53 ("one of our bestsellers", "happiness guarantee", "free shipping on all orders", "customer reviews", Disney). 5 per run via `article-links` + `article-body` (see playbook). |
 | F1 | ENGINE | OPEN | SEO title/description for live articles missing them (65 of 70 have no custom title tag; start with Christmas/Thanksgiving/winter ones). Query-first title ≤65, description 110–160. |
 | F2 | ENGINE | OPEN | Collection SEO meta review for non-theme-owned collections with products: christmas-sweaters, christmas-tops, matching-family-christmas-outfits, family-photo-outfits, matching-family-vacation-outfits, mother-daughter-matching-dresses, matching-hawaiian-outfits, maternity, thanksgiving-family-outfits. Only change weak/missing/templated meta. |
 | F3 | ENGINE | OPEN | Dead-URL recovery: take 404 paths from the latest GSC 404 audit packet (`dresslikemommy-growth-2026/02_AUDIT_PACKETS/*/` files from `build_gsc_404_audit.py`), redirect each to the closest live collection (≤10 per run). |

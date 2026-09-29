@@ -159,7 +159,16 @@ def cmd_inventory(args) -> int:
         ],
     }
     write_json(args.output, payload)
-    print(f"collections={len(payload['collections'])} articles={len(payload['articles'])} -> {args.output}")
+    summary_path = Path(args.output).with_suffix(".md")
+    lines = [f"# Inventory {payload['generated_at']}", "", "## Collections (handle | products | theme_owned | seo_title chars | seo_description chars)"]
+    for c in sorted(payload["collections"], key=lambda c: -c["products"]):
+        lines.append(f"- {c['handle']} | {c['products']} | {'T' if c['theme_owned'] else '-'} | {len(c['seo_title'] or '')} | {len(c['seo_description'] or '')}")
+    published = [a for a in payload["articles"] if a["published"]]
+    lines += ["", f"## Published articles ({len(published)}; {len(payload['articles']) - len(published)} unpublished not listed) (handle | seo_title? | seo_description? | title)"]
+    for a in sorted(published, key=lambda a: a["published_at"] or ""):
+        lines.append(f"- {a['handle']} | {'Y' if a['seo_title'] else 'N'} | {'Y' if a['seo_description'] else 'N'} | {a['title']}")
+    summary_path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    print(f"collections={len(payload['collections'])} articles={len(payload['articles'])} -> {args.output}; summary -> {summary_path}")
     return 0
 
 
