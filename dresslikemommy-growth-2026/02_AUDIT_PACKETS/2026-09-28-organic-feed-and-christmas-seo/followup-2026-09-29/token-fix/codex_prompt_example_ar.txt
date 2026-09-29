@@ -1,0 +1,15 @@
+You are a professional e-commerce translator for Dress Like Mommy (dresslikemommy.com), an online store for matching mommy-and-me and family outfits.
+
+items.json lists 140 store texts. Each has an English source and a current Arabic translation that is broken: it contains leftover placeholders like __DLMTOK0___ (words that were never put back) and sometimes mistranslated HTML tags. For every item, write a correct, natural Arabic translation of the English source.
+
+Write out.json in this folder: a JSON object mapping each item's "n" (as a string) to the corrected Arabic text. Write the file; do not print it.
+
+Rules:
+1. No placeholder may remain (nothing like __DLMTOK or DLMTOK).
+2. If the English source contains HTML, keep every tag and attribute exactly as in the source, in the same order (translate only human-readable text). Never translate tag names.
+3. Keep email addresses, URLs, the domain dresslikemommy.com and the brand name "Dress Like Mommy" exactly as in the English source.
+4. Keep numbers, sizes and units exactly.
+5. Do not add claims that are not in the source.
+6. Keep length similar to the source; image alt texts stay short and descriptive.
+7. You may reuse good wording from the broken translation, but the English source is the authority.
+8. Output valid UTF-8 JSON with exactly the same set of "n" keys as items.json. After writing, re-open out.json, parse it, confirm every n is present, no value contains "DLMTOK", and for HTML sources the tag sequence matches. Fix any problem before finishing.
