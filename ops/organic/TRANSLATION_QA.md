@@ -307,3 +307,83 @@ Result: 0 C, 12 B/B+, 3 A/A- before; all 15 A after edits. Recurring causes: "Ma
 Remaining, not changed:
 - Product-name link text and headings from English source titles ("Vibrant Rainbow", "Pastel Bloom", "Big Trouble | DLM"), the stray `</h3></h3>` in christmas-matching-family-pajamas, and non-localized `/policies/refund-policy` hrefs (identical to source).
 - Mixed "Ty/Wy" address and lowercase "wasz" versus "Wasz" follow the source and were left as accepted Polish usage.
+
+## Sample sweep (11 languages)
+
+Date 2026-09-29. Scope: de, fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi (the 11 lower-traffic storefront languages). Sample of 3 live articles per language (33 pages): mommy-and-me-matching-outfit-ideas (M), matching-family-christmas-sweaters-guide-2026 (S), family-christmas-card-photo-ideas (C). Each page was read as a strict native editor (page title, meta description, body, link labels). Every B/C article (22) was fixed with `organic_engine.py translate-apply --execute`; every write read back `verified: true`. Receipts: `ops/organic/receipts/2026-09-29/sqa-<locale>-<handle>.json`. English, products and theme untouched. Fixed articles were verified by Admin readback only, not re-graded on the live page.
+
+| Language | M | S | C | Main problems found (fixed unless noted) |
+|---|---|---|---|---|
+| de | A- | B | A- | S: "Guide", "die Größen aller durchzugehen", "Wählt ein Teil ... jede tragende Person", "Kinder 2 Jahre führen" (carry calque), "über die weiße Brust", keyword-stacked meta title. Left: ihr/Sie address differs between articles. |
+| fr | B | A- | B | M and C: Title Case in meta title and about 8 headings each (French uses sentence case); "looks maman et moi" calque; "rendre étrangement à l'image"; "prenez des tenues"; "facile à dimensionner"; 191-char meta description. S left: "Enfant 2 ans" size labels. |
+| es | B | B | B | Title Case (M, C); Spain vs Latin American mix in S (suéteres/jerséis, mezclilla, Santa, ustedes vs vosotros); "Niño 2 años" size labels; "las pijamas"; "Cuelguen/reúnanse" beside tú imperatives; "Colócate ... muy juntos"; "fácil de dimensionar". |
+| pt-BR | B | A- | B | Title Case in title, meta title and headings (M, C); "4 de Julho"; "são seus amigos"; "conjuntos combinando ... para mamãe e eu" meta calque; "fácil de dimensionar". S left: "Infantil 2 anos" size labels. |
+| sv | B | B | B | Title Case (M, C); "mamma och barn-looksen" and "pappa och barn-looks" calques; "mini-du"; keyword-stacked C meta title ("Julkortsfoto Familj ..."); English product names in S link labels (Santa Tree Delivery/Topper); "Barn 2 år" size labels; "snöflinge-" compounds; C link labelled "jultröjor" for the shirts guide; "snöret" for ribbon. |
+| fi | C | B | B | M: "yhteensopivat/yhteensopivuus" for every "matching" (31 times on the page), Title Case in title/meta/headings, "Äiti ja Minä Samanlaiset Asut" broken title, "lehtimäisen", "Osta tyylit!". S: 11 English product names in link labels ("Santa Tree Delivery -puserot" ...), "Lapsi 2 vuotta" size labels, "siroittavat", "geometrisiä". C: Title Case, "useissa koossa", "joulun asujen kokoelma", singular imperative with plural object. |
+| ja | B | A- | A | M: meta description calque ("ママと私のお揃いの服", "見た目を購入しましょう"), H1 "ママと私 マッチング衣装", mixed おそろい/お揃い. S left: keyword-stacked title "お揃いクリスマスセーター家族向け2026年ガイド", "トナカイ・ロー", "下半身" for the lower part. |
+| ko | B | B | A- | M: "커플룩" (couples' look) used for mother-child outfits 36 times, "엄마와 나 의상" and "룩을 쇼핑해보세요" meta calques, "발렌타인데이", stray space before a period. S: "탄 색 순록" (tan transliterated), "초록 트림", "상품/제품 페이지" mix, honorific mix, "잘 맞는 좋아하는 스웨터". |
+| ru | B | B | B | M: H1 "Мама и я Сочетающиеся наряды", meta "наряды для нас с мамой", "достойным Instagram", "вторничные дела". S: English/Title Case link labels ("Свитеры Jingle Bells Санта", "Ряд оленей"), "Ребёнок 2 года" size labels, "Покажите перед свитеров", "первой носки". C: Title Case in title, meta title and 6 headings; "свитера"; "в верхней одежде" (outerwear) for tops. |
+| ar | B | A- | A- | M: meta description "الملابس المتطابقة أنا وأمي" and "تسوق المظهر" calques, masculine "اكتشف" against feminine body, "زهرية" (pink, not floral) for floral dresses, "الألوان الباستيل صديقتك". Left: S/C vocabulary differs (كنزات vs سترات, كريسماس vs عيد الميلاد). |
+| hi | B | A- | A- | M: meta description "माँ और मेरे मैचिंग आउटफिट", "आकस्मिक दिन" (accidental) for casual days, "छुट्टियाँ, छुट्टियाँ" repeated, "माँ और मैं" title calque. Left in S: "कोई छोटी गतिविधि खींचें"; in C: "एक ही रंग परिवार की गर्म परतें". |
+
+Result: 1 C, 21 B, 11 A/A- before; the 22 B/C articles were edited (0 C left in the sample). Recurring causes: Title Case headings in languages that use sentence case (fr, es, pt-BR, sv, fi, ru), "Mommy and Me" and "Shop the looks" calques in older M articles, English or Title Case product names left in link labels, and calqued size labels ("Child 2 years"). The newer S and C articles were better than M in every language, so remaining errors sit mostly in older articles.
+
+RECOMMENDATION: Full 15-article native sweep needed for fi (C), then es, sv, ru (three B each), and fr, pt-BR, ko (two B each). de, ja, ar and hi (one B each, all in the oldest article or a single guide) do not need a full sweep; check only their other older articles (the M-style ones with "Shop the looks" meta descriptions) with a targeted grep for calqued meta descriptions.
+
+## French sweep
+
+Date 2026-09-29. Scope: 15 live French (`fr`) blog articles, read as a strict native editor against the stored Admin translations (same text as the live page; live pages also fetched). Fixes registered with `organic_engine.py translate-apply --execute`; every write read back `verified: true`. Receipts: `ops/organic/receipts/2026-09-29/frqa-<handle>.json`. English, other languages, products and theme untouched.
+
+| Article | Grade | Main problems fixed |
+|---|---|---|
+| mommy-and-me-outfits-for-every-budget | B+ -> A | "twinner" anglicism; title "mère-enfant" vs "maman et fille" in the rest; "n'importe quel budget" meta; "$30" price formats; "La porte d'entrée dans la mode". |
+| daddy-and-me-matching-outfits-the-ultimate-guide | B -> A | "papa et moi" / "maman et moi" calque in title, headings and about 12 body spots; Title Case meta title; "matchy"; "points de style"; "facile à utiliser" for a gift; ampersand heading; capitals after colons; "tee-shirts" vs "t-shirts". |
+| best-matching-swimsuits-for-the-whole-family | B -> A | Redundant "maillots assortis ... assortis" in intro and two headings; truncated product heading "Little Tr... \| DLM"; ampersands "papa & bébé" in heading, alt, body, link; "Accessoirisez avec stratégie". |
+| fall-family-matching-outfits | A- -> A | Alt text "à l'honneur de Dress Like Mommy". |
+| best-matching-family-outfits-for-winter | B+ -> A | Title Case meta title; "Achetez plus intelligemment" summary calque; link labels capitalised mid-sentence; "faire déguisement"; "tout en restant chaude"; "même histoire visuelle". |
+| the-complete-guide-to-family-matching-outfits | B -> A | Title Case meta title; "Maman et moi"/"Papa et moi" category and link labels; "resort"; "couches" for layers; capitals after colons in 8 headings/bullets; "faire cliché"; "faire déguisement". |
+| what-to-wear-for-family-photos-matching-outfit-ideas | B -> A | Title Case meta title; English "Mommy and Me"/"Daddy and Me" left in 4 link labels; "que porte-t-on tous"; "couches" for layers; "Restez ... respirant"; "hiver / de fêtes"; "faisant partie d'une équipe". |
+| holiday-family-matching-outfits-complete-guide | B -> A | 6 image alt texts left in English; Title Case meta title; "resort"; "pyjamas de Noël famille assortis" word order; "Accessoirisez avec stratégie". |
+| christmas-matching-family-pajamas | B -> A | Truncated "... \| DLM" product names in 3 headings, 3 alt texts and 2 body sentences; ampersands "roses & bleus"; "Un imprimé cerf ... donner le thème". Left: stray `</h3></h3>` (identical to source). |
+| matching-family-christmas-pajamas-guide-2026 | A | No change needed. |
+| family-christmas-photo-outfits-2026 | A | No change needed. |
+| daddy-and-me-christmas-outfits | A- -> A | "s'assortir avec votre enfant"; "un t-shirt imprimé à une journée"; "papa et moi" in 2 link labels; "s'accordent bien comme un duo". |
+| matching-family-christmas-shirts | B -> A | 119-char title; 2 stray spaces before punctuation after links. |
+| matching-family-shirts-for-pictures | B -> A | Title Case in title, meta title and 8 headings; "t-shirts famille"/"pulls famille" noun-adjunct calques in title, meta, summary and 4 link labels; "demande presque aucune". |
+| matching-couples-christmas-pajamas-and-sweaters | A- -> A | 106-char title. |
+
+Result: 0 C, 11 B/B+, 4 A/A- before; 13 edited, 2 left unchanged; all 15 A after edits (Admin readback only, live pages not re-graded). Recurring causes: "papa et moi"/"maman et moi" calques, Title Case in a sentence-case language, English alt text and product names with "... | DLM" truncation, "resort" and "couches" anglicisms, and "$" price formats.
+
+Remaining, not changed:
+- English product names (Vibrant Rainbow, Pastel Bloom, Big Trouble, Buffalo Plaid Tree, Fair Isle etc.) kept as names.
+- Non-localized `/policies/refund-policy` hrefs and the stray `</h3></h3>` are identical to the English source.
+- Mixed straight and curly apostrophes in the 2026 guides, and regular (not non-breaking) spaces before `:?!;`.
+
+## Brazilian Portuguese sweep
+
+Date 2026-09-29. Locale pt-BR, URL folder /pt. Full sweep of the 15 blog articles (live page fetched, stored translation edited via `organic_engine.py translate-apply --execute`; every write read back `verified: true`). Receipts: `ops/organic/receipts/2026-09-29/pt-BRqa-<handle>.json`.
+
+| Article | Grade | Main problems found (fixed unless noted) |
+|---|---|---|
+| mommy-and-me-outfits-for-every-budget | B -> A | Title Case title; "mini-você"; "Combinando premium"/"Combinando com orçamento enxuto" headings; « » quotes; " :" spacing in 11 list items; "memórias" for lembranças. |
+| daddy-and-me-matching-outfits-the-ultimate-guide | B -> A | "papai e eu"/"mamãe e eu" calque in about 15 places incl. headings and meta; Title Case title; "pai e filho" only, no daughters; "embora vocês vão ficar"; "shorts de banho" for bermudas; "mini-eu". |
+| best-matching-swimsuits-for-the-whole-family | B -> A | "looks combinando para roupas de banho combinando" stacked in two H2s; heading "Big Trouble ... Tr... \| DLM" truncated product title; "papai &amp; bebê" ampersands; English "styling" in alt; "estratégia"; "memórias". |
+| fall-family-matching-outfits | A- -> A | Title Case title; "iguaizinhas" for a mixed group; "Escolhas da editoria"; "memórias". |
+| best-matching-family-outfits-for-winter | B -> A | Title Case title and meta title; link labels capitalised mid-sentence; missing space before "e mantenha"; "combine este post com"; "vermelho escuro". |
+| the-complete-guide-to-family-matching-outfits | B -> A | Title Case meta title and doubled "para" in title; "Mamãe e eu"/"Papai e eu" category and link labels and body; "polos coordenadas"; "4 de Julho"; capitalised text after colons in step and level lines. |
+| what-to-wear-for-family-photos-matching-outfit-ideas | B -> A | Title Case title and meta title; English "Mommy and Me"/"Daddy and Me" left in 4 link labels; "sacola" where the site says Carrinho; "Fresco, limpo" agreeing with a feminine palette. |
+| holiday-family-matching-outfits-complete-guide | B -> A | 6 image alt texts left in English; Title Case meta title; "estratégia"; "memórias". |
+| christmas-matching-family-pajamas | B -> A | Truncated "... \| DLM" product titles in 2 headings, 2 alt texts and 2 sentences plus 1 truncated alt; "&amp;" for "e"; "estratégia". |
+| matching-family-christmas-pajamas-guide-2026 | A- -> A | One slip: "paleta de cores mais frias". |
+| family-christmas-photo-outfits-2026 | A -> A | No errors found; unchanged. |
+| daddy-and-me-christmas-outfits | B+ -> A | Title Case-like title; "coleção pai e eu"/"camisetas pai e eu" calque in link labels; "quase todos neutros"; mixed singular and plural imperatives in the photo list. |
+| matching-family-christmas-shirts | B -> A | 101-char title repeating "camisetas"; two stray spaces before punctuation; "é lido como um grupo" calque; "assar"; singular "escolha" in a plural-address article. |
+| matching-family-shirts-for-pictures | B -> A | Title Case in title, meta title and 8 headings; keyword-stacked 93-char title; "família combinando" noun-stack in 4 link labels and meta description; "textura distrativa"; "moletom gola redonda". |
+| matching-couples-christmas-pajamas-and-sweaters | A- -> A | "Pensem onde" (missing "em"); "timer" beside "temporizador" elsewhere. |
+
+Result: 0 C, 11 B/B+, 4 A/A- before; 14 edited, 1 left unchanged; all 15 A after edits (Admin readback only, live pages not re-graded). Recurring causes: "papai e eu"/"mamãe e eu" and "Mommy and Me" calques, Title Case in a sentence-case language, truncated English "... | DLM" product titles, English alt text, "memórias" and "estratégia" anglicisms.
+
+Remaining, not changed:
+- English product names (Vibrant Rainbow, Pastel Bloom, Lights Out Reindeer, We Are Family, Let It Snow etc.) kept as names.
+- Non-localized `/policies/refund-policy` hrefs and the stray `</h3></h3>` in christmas-matching-family-pajamas are identical to the English source.
+- "Dia dos Namorados" (12 June in Brazil) kept for the source's Valentine's Day; shipping and delivery-estimate wording follows the English source.
