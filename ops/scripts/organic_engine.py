@@ -473,24 +473,33 @@ def localize_hrefs(body: str, locale: str) -> str:
     return re.sub(r'href="/(collections|products|blogs|pages)/', lambda m: f'href="{locale_prefix(locale)}/{m.group(1)}/', body)
 
 
-def article_translation_state(admin: "Admin", handle: str):
-    article = find_article(admin, handle)
+def article_translation_state(admin: "Admin", handle: str, kind: str = "article", keys=TRANSLATE_KEYS):
+    if kind == "collection":
+        article = admin.gql(COLLECTION_BY_HANDLE_Q, {"handle": handle})["collectionByHandle"]
+    else:
+        article = find_article(admin, handle)
     if not article:
-        raise SystemExit(f"article {handle} not found")
+        raise SystemExit(f"{kind} {handle} not found")
     locales = [l["locale"] for l in admin.gql(SHOP_LOCALES_Q)["shopLocales"] if l["published"] and not l["primary"]]
     locales.sort(key=lambda l: LOCALE_PRIORITY.index(l) if l in LOCALE_PRIORITY else 99)
     source, status = {}, {}
     for locale in locales:
         res = admin.gql(TRANSLATABLE_Q, {"id": article["id"], "l": locale})["translatableResource"]
-        source = {c["key"]: c for c in res["translatableContent"] if c["key"] in TRANSLATE_KEYS and (c["value"] or "").strip()}
+        source = {c["key"]: c for c in res["translatableContent"] if c["key"] in keys and (c["value"] or "").strip()}
         done = {t["key"]: t for t in res["translations"]}
         status[locale] = [k for k in source if k not in done or done[k]["outdated"] or not (done[k]["value"] or "").strip()]
     return article, source, status
 
 
+def resource_args(args):
+    if getattr(args, "collection", False):
+        return "collection", tuple(k.strip() for k in args.keys.split(",")) if args.keys else ("meta_title", "meta_description")
+    return "article", TRANSLATE_KEYS
+
+
 def cmd_translate_queue(args) -> int:
     admin = Admin(args.store_domain)
-    article, source, status = article_translation_state(admin, args.handle)
+    article, source, status = article_translation_state(admin, args.handle, *resource_args(args))
     todo = {l: keys for l, keys in status.items() if keys}
     payload = {"handle": args.handle, "article_id": article["id"],
                "source": {k: v["value"] for k, v in source.items()},
@@ -564,7 +573,7 @@ def check_translation(key: str, src: str, value: str, locale: str) -> List[str]:
 
 def cmd_translate_apply(args) -> int:
     admin = Admin(args.store_domain)
-    article, source, status = article_translation_state(admin, args.handle)
+    article, source, status = article_translation_state(admin, args.handle, *resource_args(args))
     wanted = json.loads(Path(args.translations).read_text(encoding="utf-8"))
     rows, problems = [], []
     for locale, fields in wanted.items():
@@ -589,7 +598,7 @@ def cmd_translate_apply(args) -> int:
         batch = [{k: r[k] for k in ("locale", "key", "value", "translatableContentDigest")} for r in rows if r["locale"] == locale]
         result = admin.gql(TRANSLATIONS_REGISTER_M, {"id": article["id"], "t": batch})["translationsRegister"]
         errors += result["userErrors"]
-    _, _, after = article_translation_state(admin, args.handle)
+    _, _, after = article_translation_state(admin, args.handle, *resource_args(args))
     unresolved = {l: [k for k in wanted[l] if k in after.get(l, [])] for l in wanted}
     verified = not errors and not any(unresolved.values())
     receipt.update(executed=True, user_errors=errors, unresolved_after=unresolved, verified=verified)
@@ -664,6 +673,8 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     p = sub.add_parser("translate-queue")
     p.add_argument("--handle", required=True)
+    p.add_argument("--collection", action="store_true", help="translate a collection (default fields: meta_title, meta_description)")
+    p.add_argument("--keys", default="", help="with --collection: comma-separated fields, e.g. meta_title,meta_description,title")
     p.add_argument("--output", required=True)
     p.set_defaults(func=cmd_translate_queue)
 
@@ -674,6 +685,8 @@ def main(argv: Optional[List[str]] = None) -> int:
 
     p = sub.add_parser("translate-apply")
     p.add_argument("--handle", required=True)
+    p.add_argument("--collection", action="store_true", help="translate a collection (default fields: meta_title, meta_description)")
+    p.add_argument("--keys", default="", help="with --collection: comma-separated fields, e.g. meta_title,meta_description,title")
     p.add_argument("--translations", required=True, help='JSON {"<locale>": {"<key>": "<translated value>"}}')
     p.add_argument("--receipt", required=True)
     p.add_argument("--execute", action="store_true")
