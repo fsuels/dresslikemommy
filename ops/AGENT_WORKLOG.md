@@ -56373,3 +56373,16 @@ Rollback: disable the scheduled task; unpublish engine articles listed in ENGINE
   - Commit only through a clean worktree with a vendor-URL refusal.
 - Codex work dirs moved from this session's scratchpad to /tmp/dlm-codex (codex_translate_designs.py, run_image_jobs.sh, translate_standalone.py).
 - Rollback: disable the scheduled task; remove the allow rules.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-autosource-chencheng-dongguan-new-designs
+
+- task_entities: 1081369158022, 1079028063347, 1055061519324
+- task_stage: NO_QUALIFIER
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Category searched: 辰承 (Dongguan, 48h) new designs, catalog shop859424j2546y8.1688.com (199 offers, 7 family offers since 2026-06-01, 3 new).
+- Screened 3, scan PASS 2, built 0, no new listings.
+- 1055061519324: failed scan (Summer 2026, kindergarten sports-day uniform; rules 2 and 7).
+- 1081369158022: scan PASS, but `gate` printed "? years < 3" (parser miss; the same line says est. April 2018, about 8 years; pickup 99.97, fulfillment 99.97, returns 0.03, service 4.5, 3547 orders). Design fails rule 5: smiley-face print with garbled lettering ("ROLLINGARTIST", "POLIZEI" hat). Skipped.
+- 1079028063347: scan PASS, gate same "? years" parse miss. Embroidered pony matches the Polo-pony look-alike ban (rule 5), not captured. Skipped.
+- Supplier note for the CEO session: autosource.py `gate` fails to parse tenure for this shop (shows "? years"), so it will reject every offer from 辰承 even though est. April 2018 and the stats meet the standard gate. Fix the tenure parser before the next 辰承 round.

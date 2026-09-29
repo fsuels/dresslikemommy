@@ -144,3 +144,5 @@ Lead = PO created → stocked at the BuckyDrop warehouse (median / p90 days). So
 ## Other sourcing platforms (via BuckyDrop)
 
 BuckyDrop can also buy from Taobao, Tmall, Xianyu, JD, Weidian, Vipshop and Dewu. **1688 stays primary** for factory prices and dropship terms. Use Taobao/Tmall only when a clearly stronger design or brand-quality shop is not available on 1688. Apply the same gate using that platform's equivalents: shop age, DSR scores, dispatch promise and stock. Record those shops here as well.
+
+- 2026-09-28 东莞市辰承服饰有限公司 (shop859424j2546y8.1688.com): established April 2018 (~8 years), 48h pickup 99.97%, fulfillment 99.97%, quality returns 0.03%, disputes 0.00, service 4.5, 3,547 orders/30d, Dongguan. Meets the standard gate; `gate` tenure parser printed "? years". Round yielded no listable design (smiley print with garbled lettering; Polo-style pony embroidery). Already supplied Hooray Sun (1081053551587).
