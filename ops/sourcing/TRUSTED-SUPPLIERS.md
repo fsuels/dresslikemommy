@@ -100,6 +100,14 @@ Lead = PO created → stocked at the BuckyDrop warehouse (median / p90 days). So
     - 档幻 (义乌): 1 year, pickup 79%. **Fails.**
   - Scanner fix: many Chinese pages label the season field `上市年份/季节` (with a slash).
 - **Round 3 (same night):** siblings Christmas search. 24 offers scanned, 2 pass shipping and season; both stores fail the gate: 橘佑 (湖州织里) 3 years, 94.6% pickup; 悟凡 1 year. Winner of the night: **腾云鸽 / TYG Kids** (see Tier B), with 3 siblings sweaters live.
+- **Catalog reviews of the new 48h stores (same night):**
+  - 格莱美: 28 new family sweatshirts (Sep 2026).
+    - Mostly red/cream raglans with 2027 Year-of-the-Goat lamb graphics (Chinese New Year theme, weak for US/EU).
+    - One Halloween hoodie (too late).
+    - Christmas raglan 1080803375273 (cream body, olive/rust sleeves) uses the same Christmas character print as our live Santa and Friends, so it is a near-duplicate and skipped.
+  - 野狼魅力: 38 family/kids offers, mostly school/kindergarten activity uniforms and big smiley faces (Smiley-mark risk).
+    - Family designs: small hearts (≈ our Little Heart), cartoons, "GOOD LUCKY", and a PRADA-like "PADA" print (IP, excluded).
+    - Only red "little sun" 1085936274165 is fresh, with moderate appeal; not listed.
   - "现货" (in stock) family-sweater searches return only 12-digit, pre-2026 offers. In-stock family knits are old designs, and fresh 2026 ones are made to order (3–10 day promises), so the freshness and 48h rules rarely overlap for family knitwear. Kids' knitwear factories (TYG, 金贝儿) are the exception.
 - **Round 4:** "kids' Christmas sweaters, boys & girls" search, 14 new offers scanned. Two pass shipping and season; both fail tenure:
   - 东莞大朗棉羊羊毛织厂: 2 years, pickup 84.6%.
