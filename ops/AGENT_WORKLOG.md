@@ -56644,3 +56644,17 @@ Rollback: upsert the saved before-files.
 - Screened 2 before the CAPTCHA, 0 passed. 1087056001363 failed the fresh gate (release attribute 2027 autumn, not 2026). 1080599055957 failed the shipping gate (deliveryLimit 2 read, but the scan marked it fail; individual-proprietorship supplier).
 - Scan of 1078019438038 hit a 1688 CAPTCHA/login page (exit 3). Stopped 1688 work per runbook; nothing bypassed. The remaining 4 ids were not scanned.
 - No new listings this run. Retry the same category next round once the CAPTCHA clears.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-localized-titles-round2
+
+- task_entities: locales/sv.json and locales/it.json `sections.collection_seo.meta_titles.{new_women_outfits,dresses}`; Shopify collection `trunks` nl/pl translations (receipt `ops/organic/receipts/2026-09-29/locseo2-trunks.json`); GSC striking-distance action 23
+- task_stage: IMPLEMENTED, live readback pending Shopify GitHub sync
+- next_action_id: NEXT_LOCALIZED_TITLES_READBACK
+
+- Why: the localized theme titles led with generic or bare translations and ranked poorly (sv new-women-outfits 667 impr 3.4% pos 15.4; it new-women-outfits 481 impr 0.6% pos 8; sv dresses "mamma dotter klänning" 110 impr pos 9.2). The nl/pl trunks meta led with "daddy and me"/"taty i syna" wording and carried free-shipping and returns claims.
+- Before -> after (theme, locale keys only, no description keys touched):
+  - sv new_women_outfits: "Familjematchande kläder | Klänningar, badkläder och familj Set" -> "Matchande familjekläder | Klänningar, badkläder och set"
+  - sv dresses: "Mamma och jag Klänningar | Mamma Dotter" -> "Mamma dotter klänning | Matchande klänningar"
+  - it new_women_outfits: "Abiti coordinati per la famiglia | Abiti, costumi da bagno e famiglia Set" -> "Outfit coordinati famiglia | Abiti, costumi e set"
+- Before -> after (Shopify translations, collection trunks): nl title "Daddy en ik zwemshorts - bijpassende vader-zoon shorts | Dress Like Mommy" -> "Vader en zoon zwembroeken | Bijpassende zwemshorts"; pl title "Spodenki do pływania dla taty i syna – ... | Ubierz się jak mama – Dress Like Mommy" -> "Kąpielówki ojciec i syn | Pasujące stroje kąpielowe"; nl/pl descriptions rewritten without the free-shipping/returns claims (old nl/pl descriptions read "Gratis verzending + 30 dagen retourrecht" / "Darmowa wysyłka + 30 dni na zwrot").
+- Rollback: revert this commit for the theme keys; re-register the previous nl/pl values above via `organic_engine.py translate-apply --collection --handle trunks`.
