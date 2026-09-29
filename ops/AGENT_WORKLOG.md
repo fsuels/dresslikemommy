@@ -56633,3 +56633,14 @@ Rollback: upsert the saved before-files.
 - New `autosource.py pending` lists autosource DRAFTs with the steps left. Runbook step 0b and the task prompt make every run resume them before new sourcing.
 - Search yield: 1688 serves only about 12 offers per results page in this session (verified with page height and ID count; not a scraper miss), so page 1 repeated every hour. `next` now pages each keyword through results pages 1–5 (`search "<kw>" <page>`, `&beginPage=N`, verified live). Four searches were added: family hoodies, Mommy & Me dresses, couples hoodies, Christmas family knits.
 - Queue for the next rounds (from the 15:08Z run): 野狼魅力 offers 1079750601231, 1079314552681, 1079501676685, 1078519857484 passed scan; they still need a look (smiley/generic-logo rules, dupes). Search "亲子装 卫衣" page 1 surfaced 1062900677018 (Christmas/New Year red hoodie; check the season and the New-Year theme rule).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-autosource-couples-sweatshirts
+
+- task_entities: 1087056001363, 1080599055957, 1078019438038 (scan blocked), 1082819466142, 1086940108498, 1071131127483 (not scanned)
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Category: couples sweatshirts (search "情侣卫衣 2026秋冬", page 1): 48 results, 6 new family-titled 2026 offers.
+- Screened 2 before the CAPTCHA, 0 passed. 1087056001363 failed the fresh gate (release attribute 2027 autumn, not 2026). 1080599055957 failed the shipping gate (deliveryLimit 2 read, but the scan marked it fail; individual-proprietorship supplier).
+- Scan of 1078019438038 hit a 1688 CAPTCHA/login page (exit 3). Stopped 1688 work per runbook; nothing bypassed. The remaining 4 ids were not scanned.
+- No new listings this run. Retry the same category next round once the CAPTCHA clears.
