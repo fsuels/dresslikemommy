@@ -44,8 +44,13 @@ USER_AGENT = "Mozilla/5.0 (compatible; DLM-organic-engine/1.0)"
 # Head collections whose title/meta/copy the theme forces (snippets/collection-seo-fallback.liquid).
 # Admin SEO edits there do not render, so the engine refuses them; change the theme instead.
 THEME_OWNED_COLLECTIONS = {
-    "mommy-and-me", "christmas-pajamas", "new-women-outfits", "daddy-me", "daddy-and-me",
-    "swimsuits", "family-pajamas", "popular-mommy-me-1", "popular-family-matching", "all",
+    # Mirrors force_theme_seo in snippets/collection-seo-fallback.liquid (2026-09-29): their titles/meta come from
+    # theme code and locale keys, so admin SEO fields and their translations never render.
+    "mommy-and-me", "swimsuits", "family-swimsuits", "family-sets", "matching-family-vacation-outfits",
+    "matching-outfits", "family-matching", "family-matching-outfits", "new-women-outfits", "dresses",
+    "mother-daughter-matching-dresses", "maxi-dresses", "daddy-me", "daddy-and-me", "daddy-me-t-shirts",
+    "matching-couples-t-shirts", "family-pajamas", "christmas-pajamas",
+    "popular-mommy-me-1", "popular-family-matching", "all",
 }
 
 # Claims a dropshipping store cannot back up (CLAUDE.md non-negotiables).
@@ -508,6 +513,8 @@ def resource_args(args):
 
 
 def cmd_translate_queue(args) -> int:
+    if getattr(args, "collection", False) and args.handle in THEME_OWNED_COLLECTIONS:
+        print(f"NOTE: {args.handle} is theme-owned: its localized title/meta come from theme locale keys; translating admin meta will not change the live page.")
     admin = Admin(args.store_domain)
     article, source, status = article_translation_state(admin, args.handle, *resource_args(args))
     todo = {l: keys for l, keys in status.items() if keys}
