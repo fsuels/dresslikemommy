@@ -56257,3 +56257,21 @@ Rollback: `git revert`, then `sync_live_theme_from_main.py --apply`.
   - The Siblings page breadcrumb no longer shows the wrong parent ("Mommy and Me"). It is now Home › Siblings Matching Outfits.
   - facets.js hides the pill automatically if the collection ever becomes empty (the same mechanism already hides the 0-product Maternity pill).
 - Rollback: revert this commit.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-bundle-offer-copy-and-christmas-order-by-timing
+
+- task_entities: automatic BXGY `DiscountAutomaticNode/1315733110881` "Family bundle: 3rd piece 20% off" (unchanged); `assets/product-desktop-ux-20260513-ruler-sync.js`; `snippets/automatic-discount-promo.liquid`; `snippets/cart-drawer.liquid`; `sections/main-cart-footer.liquid`; `assets/dlm-holiday-order-by.js`; `snippets/dlm-pdp-value-strip.liquid`
+- task_stage: DONE, LIVE_VERIFIED
+- supersedes next_action: OWNER_DECIDE_BUNDLE_MESSAGING_ON_PDP_AND_CART (owner decided in chat)
+
+Owner (2026-09-28) disliked the PDP line "Mom + 2 kids from $73.18 / 3rd piece 20% off…" and approved the simpler version; then asked that the Christmas "Order by Tue, Dec 8" line show only at the end of November, not in September.
+
+Done:
+- PDP: removed the computed party total (sticker shock, assumed family size, odd cents). The builder header now reads "Buy 2, get the 3rd piece 20% off" + "Mix and match any pieces. Applied automatically in your cart." in the 21 published locales.
+- Cart drawer and cart page: `automatic-discount-promo` rewritten from the expired "10% off 2+" copy. States: 0–1 pieces offer; 2 pieces "Add 1 more piece and get 20% off it"; bundle discount present "3rd piece 20% off applied"; 3+ without the bundle discount shows nothing.
+- Christmas order-by lead 90 → 14 days before the cutoff (US cutoff ~Dec 8 → first shows ~Nov 24); the Liquid slot mirror matches. Halloween unchanged.
+- Commits `04b9329`, `3c0970b`. The GitHub→Shopify sync dropped both pushes; `sync_live_theme_from_main.py --apply` uploaded exactly those 6 files, verified 6/6, re-check 0 drift.
+
+Verification (live): EN + /de scribble-heart PDP show the new line, no old total; jingle-bells PDP shows no order-by line; 375px no overflow. Storefront test carts (cleared, no checkout) read the cart-drawer section: 1 item offer, 2 items nudge, 3+ applied (−$5.39 on the cheapest piece), DE copy in all three states, /cart page applied state. Theme Check 299 files 0 offenses; `node --check` passed.
+
+Note: the first test cart in the built-in browser already held 1 item; `/cart/clear.js` removed it.
