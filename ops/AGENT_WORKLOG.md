@@ -56275,3 +56275,9 @@ Done:
 Verification (live): EN + /de scribble-heart PDP show the new line, no old total; jingle-bells PDP shows no order-by line; 375px no overflow. Storefront test carts (cleared, no checkout) read the cart-drawer section: 1 item offer, 2 items nudge, 3+ applied (−$5.39 on the cheapest piece), DE copy in all three states, /cart page applied state. Theme Check 299 files 0 offenses; `node --check` passed.
 
 Note: the first test cart in the built-in browser already held 1 item; `/cart/clear.js` removed it.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-hooray-sun-placed
+
+- task_stage: DONE
+- **Placement:** hooray-sun-family-matching-sweatshirts (session [57a715]; supplier 东莞辰承, 48h) joined its collections automatically by type/tags, including family-sweaters.
+- **Related links** (`related_products`): hooray-sun → Scribble Heart, Little Lamb, Together Heart. Scribble Heart and Little Lamb now list hooray-sun first.
