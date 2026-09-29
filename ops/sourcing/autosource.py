@@ -16,7 +16,7 @@ Subcommands
   recent [HOURS]                       audit: products this job built recently + live readback + QA sheets
   unpublish HANDLE "<reason>"          audit: set an autosource-built product back to DRAFT
   seen                                 print how many offer ids were already screened
-  search "<中文 keywords>"             1688 keyword search -> family-titled 2026 offer ids (+titles), unseen only
+  search "<中文 keywords>" [PAGE]      1688 keyword search -> family-titled 2026 offer ids (+titles), unseen only
   scan ID[,ID..]                       offer pages: release season, 48h promise (deliveryLimit), fabric, supplier
   gate ID[,ID..]                       store creditdetail stats + automatic owner-rule verdict
   attrs ID                             full attribute text of one offer (fabric %, sizes) when scan is too short
@@ -158,10 +158,10 @@ def stop_blocked(tab: Tab, what: str) -> None:
 
 
 # ---------------------------------------------------------------- 1688 read steps
-def cmd_search(kw: str) -> None:
+def cmd_search(kw: str, page: int = 1) -> None:
     q = urllib.parse.quote(kw.encode("gbk"))
     tab = Tab()
-    tab.go(f"https://s.1688.com/selloffer/offer_search.htm?keywords={q}", 6)
+    tab.go(f"https://s.1688.com/selloffer/offer_search.htm?keywords={q}" + (f"&beginPage={page}" if page > 1 else ""), 6)
     if tab.blocked():
         stop_blocked(tab, "search")
     tab.scroll(10, 1200, 0.7)
@@ -171,7 +171,7 @@ def cmd_search(kw: str) -> None:
     known = known_offer_ids()
     fam = {i: t for i, t in res.items() if i > "1040000000000" and FAMILY_RE.search(t) and i not in known}
     (WORK / "last_search.json").write_text(json.dumps(fam, ensure_ascii=False, indent=1), encoding="utf-8")
-    print(f"results {len(res)}; new family-titled 2026 offers {len(fam)}")
+    print(f"page {page}: results {len(res)}; new family-titled 2026 offers {len(fam)}")
     for i, t in fam.items():
         print(i, "|", t[:70])
     print("IDS", ",".join(fam))
@@ -860,7 +860,12 @@ ROTATION = [
     ("search", "情侣毛衣 圣诞 2026", "couples Christmas knits"),
     ("search", "孕妇卫衣 2026秋冬", "maternity sweatshirts"),
     ("search", "亲子装 外套 2026秋冬", "family jackets"),
+    ("search", "亲子装 连帽卫衣 2026秋冬", "family hoodies"),
+    ("search", "母女装 连衣裙 2026秋冬", "Mommy & Me dresses"),
+    ("search", "情侣 连帽卫衣 2026秋冬", "couples hoodies"),
+    ("search", "亲子装 圣诞 毛衣 2026", "Christmas family knits"),
 ]
+SEARCH_PAGES = 5  # each keyword reads the next results page on its next turn (page 1 alone repeats hour after hour)
 ROT_FILE = STATE / "autosource_rotation.json"
 
 
@@ -869,10 +874,17 @@ def cmd_next() -> None:
         i = json.loads(ROT_FILE.read_text())["next"]
     except Exception:
         i = 0
+    try:
+        pages = json.loads(ROT_FILE.read_text()).get("pages", {})
+    except Exception:
+        pages = {}
     kind, arg, label = ROTATION[i % len(ROTATION)]
-    ROT_FILE.write_text(json.dumps({"next": (i + 1) % len(ROTATION), "last": label, "at": time.strftime("%Y-%m-%dT%H:%M:%S")}) + "\n")
-    print(f"THIS ROUND: {label}")
-    print(f"RUN: /usr/bin/python3 ops/sourcing/autosource.py {kind} \"{arg}\"")
+    page = pages.get(arg, 0) % SEARCH_PAGES + 1 if kind == "search" else 1
+    if kind == "search":
+        pages[arg] = page
+    ROT_FILE.write_text(json.dumps({"next": (i + 1) % len(ROTATION), "last": label, "at": time.strftime("%Y-%m-%dT%H:%M:%S"), "pages": pages}, ensure_ascii=False) + "\n")
+    print(f"THIS ROUND: {label}" + (f" (results page {page})" if kind == "search" else ""))
+    print(f"RUN: /usr/bin/python3 ops/sourcing/autosource.py {kind} \"{arg}\"" + (f" {page}" if page > 1 else ""))
 
 
 # ---------------------------------------------------------------- lock
@@ -970,7 +982,7 @@ def main() -> None:
     elif c == "pending": cmd_pending()
     elif c == "recent": cmd_recent(float(a[1]) if len(a) > 1 else 26)
     elif c == "unpublish": cmd_unpublish(a[1], a[2] if len(a) > 2 else "audit")
-    elif c == "search": cmd_search(a[1])
+    elif c == "search": cmd_search(a[1], int(a[2]) if len(a) > 2 else 1)
     elif c == "scan": cmd_scan(a[1], float(a[2]) if len(a) > 2 else 35)
     elif c == "gate": cmd_gate(a[1])
     elif c == "attrs": cmd_attrs(a[1])
