@@ -167,7 +167,7 @@ def main(key: str, dry: bool) -> None:
         ("shopify", "target-gender", refs, json.dumps([G["unisex"]])),
     ]
     inp = {
-        "title": d["title"], "handle": d["handle"], "status": "DRAFT", "vendor": "dresslikemommy.com",
+        "title": d["title"], "handle": d["handle"], "status": "DRAFT", "vendor": "Dress Like Mommy",
         "productType": "Siblings Matching Sweaters", "descriptionHtml": b, "tags": tags,
         "category": "gid://shopify/TaxonomyCategory/aa-1-13-12",
         "seo": {"title": d["seo_title"], "description": d["seo_desc"]},

@@ -56226,3 +56226,22 @@ Rollback: `git revert`, then `sync_live_theme_from_main.py --apply`.
 - **Placement:** the new family sweatshirt joined 12 collections automatically through its type and tags: family-sweaters, family-tops, fall-winter, new-arrivals, couples, family-photo-outfits, and more.
 - **Related links** (`related_products`): scribble-heart → Together Heart, Little Lamb, Smiley Heart, Little Heart and Eternal Bliss Hearts. Little Lamb lists scribble-heart first; Together Heart appends it.
 - **Fulfillment note** from [57a715]: 东莞格莱美 (1688 1081176338077, 48h) is the faster backup source for the live Santa and Friends family sweatshirts. Recorded in TRUSTED-SUPPLIERS.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-scribble-heart-family-sweatshirts-live-48h-suppliers
+
+- task_entities: `scribble-heart-family-matching-sweatshirts` (ACTIVE; 1688 1085930330528, 合肥野狼魅力); suppliers 格莱美 / 辰承 / 明地一族 (Tier B); vendor fix on 9 of this session's products (session [57a715])
+- task_stage: LIVE_VERIFIED
+- next_action_id: CONTINUE_48H_SOURCING_FAMILY_SWEATSHIRTS
+
+- **Scribble Heart family sweatshirts: ACTIVE, LIVE_VERIFIED.**
+  - Readback: 52/52 variants (4 colours × kids 2-3→13-14 Years + adult M–4XL), 4 QA'd Codex images, closeout PASS, 8/8 channels.
+  - Price $26.99 / $32.99.
+  - Supplier: 13 years, 99.56% pickup, "48-Hour Shipping", 100% cotton, 2026年秋季.
+  - Built with `build_specs_ylm_heart.py`. The spec needs engine labels (`Child …`/`Adult …`); raw vendor labels break the audience logic.
+  - Renamed from "Rainbow Heart" because shortcode RBHT is taken by `rainbow-hearts-mommy-and-me-pajamas`.
+  - New size-range translations (kids 2-3→13-14, adult M→4XL) were added to `i18n/tr_*.json` and `en_source.json` via Codex.
+- **Round 5 search ("亲子装 圣诞卫衣"):** 21 offers, 14 pass shipping and season. Four new stores pass every gate: 明地一族, 辰承, 格莱美, 野狼魅力.
+  - 格莱美's Christmas design = our live Santa and Friends. It is recorded as the faster 48h backup source.
+  - Details in `TRUSTED-SUPPLIERS.md`.
+- **Vendor fix:** peer commit f6fcc03 standardized the brand to "Dress Like Mommy". This session's local engine copy was stale, so 4 live listings (3 siblings + scribble heart) and 5 held drafts were created as `dresslikemommy.com`. All 9 were updated to "Dress Like Mommy" (readback OK); local engine and scripts were synced.
+  - Rollback: vendor `dresslikemommy.com`.
