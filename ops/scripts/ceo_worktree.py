@@ -14,6 +14,10 @@ pushed from there.
   sync-theme --name N [--apply]      compare live theme with origin/main (run after a theme commit)
   finish --name N              remove worktree N
   organic --message-file F     commit the organic engine's files (ops/organic/**, its articles) from the shared checkout
+  push-pending                 push commits parked on ceo-pending/* branches after an SSH failure
+
+GitHub access: fetch uses SSH and falls back to HTTPS via the gh CLI (read-only account); push needs the
+SSH key and is retried with backoff. If push still fails, the commit is parked on a ceo-pending/* branch.
 """
 
 from __future__ import annotations
@@ -24,6 +28,7 @@ import re
 import shutil
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parents[2]
@@ -46,12 +51,36 @@ def tree(name: str) -> Path:
     return ROOT / name
 
 
+HTTPS_URL = "https://github.com/fsuels/dresslikemommy.git"
+GH_CRED = ["-c", "credential.helper=", "-c", "credential.helper=!gh auth git-credential"]
+
+
+def fetch_main(cwd: Path) -> None:
+    """Refresh origin/main: SSH first, then HTTPS (gh credentials) into the same ref."""
+    for attempt in range(3):
+        if run(["git", "fetch", "-q", "origin", "main"], cwd, check=False).returncode == 0:
+            return
+        https = run(["git", *GH_CRED, "fetch", "-q", HTTPS_URL, "+refs/heads/main:refs/remotes/origin/main"], cwd, check=False)
+        if https.returncode == 0:
+            return
+        time.sleep(10 * (attempt + 1))
+    raise SystemExit("FAILED: cannot fetch origin/main over SSH or HTTPS")
+
+
+def push_main(cwd: Path) -> bool:
+    for attempt in range(4):
+        if run(["git", "push", "-q", "origin", "HEAD:main"], cwd, check=False).returncode == 0:
+            return True
+        time.sleep(15 * (attempt + 1))
+    return False
+
+
 def cmd_start(args) -> int:
     path = tree(args.name)
     if path.exists():
         raise SystemExit(f"{path} already exists; run finish --name {args.name} first")
     ROOT.mkdir(parents=True, exist_ok=True)
-    run(["git", "fetch", "-q", "origin", "main"], REPO)
+    fetch_main(REPO)
     run(["git", "worktree", "add", "-q", "--detach", str(path), "origin/main"], REPO)
     print(json.dumps({"path": str(path), "base": run(["git", "rev-parse", "HEAD"], path).stdout.strip()}))
     return 0
@@ -120,15 +149,18 @@ def commit_and_push(path: Path, message: str) -> str:
         message = message.rstrip() + "\n\n" + TRAILER + "\n"
     subprocess.run(["git", "commit", "-q", "-F", "-"], cwd=path, input=message, text=True, check=True, capture_output=True)
     for _ in range(3):
-        run(["git", "fetch", "-q", "origin", "main"], path)
+        fetch_main(path)
         if run(["git", "merge-base", "--is-ancestor", "origin/main", "HEAD"], path, check=False).returncode:
             rebase = run(["git", "rebase", "-q", "origin/main"], path, check=False)
             if rebase.returncode:
                 run(["git", "rebase", "--abort"], path, check=False)
                 raise SystemExit("rebase conflict with a newer origin/main; nothing pushed")
-        push = run(["git", "push", "-q", "origin", "HEAD:main"], path, check=False)
-        if push.returncode == 0:
+        if push_main(path):
             return run(["git", "rev-parse", "--short", "HEAD"], path).stdout.strip()
+        # A rejected push after a fresh fetch usually means SSH itself failed: park the commit.
+        branch = f"ceo-pending/{path.name}-{time.strftime('%Y%m%dT%H%M%S', time.gmtime())}"
+        run(["git", "branch", branch, "HEAD"], path)
+        raise SystemExit(f"PUSH FAILED (SSH): commit parked on branch {branch}; run `ceo_worktree.py push-pending` later")
     raise SystemExit("push rejected 3 times; nothing pushed")
 
 
@@ -138,9 +170,39 @@ def cmd_commit(args) -> int:
     return 0
 
 
+def cmd_push_pending(args) -> int:
+    branches = [b.strip() for b in run(["git", "branch", "--list", "ceo-pending/*", "--format=%(refname:short)"], REPO).stdout.splitlines() if b.strip()]
+    if not branches:
+        print("no pending commits")
+        return 0
+    name = "pending-push"
+    path = tree(name)
+    if path.exists():
+        cmd_finish(argparse.Namespace(name=name))
+    cmd_start(argparse.Namespace(name=name))
+    pushed = []
+    try:
+        for branch in branches:
+            pick = run(["git", "cherry-pick", branch], path, check=False)
+            if pick.returncode:
+                run(["git", "cherry-pick", "--abort"], path, check=False)
+                print(f"skip {branch}: conflicts with main (resolve by hand)")
+                continue
+            pushed.append(branch)
+        if pushed and push_main(path):
+            for branch in pushed:
+                run(["git", "branch", "-D", branch], REPO, check=False)
+            print(json.dumps({"pushed": run(["git", "rev-parse", "--short", "HEAD"], path).stdout.strip(), "branches": pushed}))
+            return 0
+        print(json.dumps({"pushed": None, "branches": pushed}))
+        return 1
+    finally:
+        cmd_finish(argparse.Namespace(name=name))
+
+
 def cmd_sync_theme(args) -> int:
     path = tree(args.name)
-    run(["git", "fetch", "-q", "origin", "main"], path)
+    fetch_main(path)
     cmd = [sys.executable, "ops/scripts/sync_live_theme_from_main.py"] + (["--apply"] if args.apply else [])
     result = run(cmd, path, check=False, timeout=600)
     print(result.stdout[-3000:] + result.stderr[-1000:])
@@ -199,6 +261,8 @@ def main() -> int:
     p.add_argument("--name", required=True)
     p.add_argument("--apply", action="store_true")
     p.set_defaults(func=cmd_sync_theme)
+    p = sub.add_parser("push-pending")
+    p.set_defaults(func=cmd_push_pending)
     p = sub.add_parser("organic")
     p.add_argument("--message-file", required=True)
     p.set_defaults(func=cmd_organic)
