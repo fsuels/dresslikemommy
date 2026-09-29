@@ -56570,3 +56570,21 @@ Addendum (2026-09-29, same session): full leaked-placeholder sweep. 328 live tra
 - `spec` now refuses more than 100 variants (the engine verifies `variants(first: 100)`; an 8 × 13 build failed after creating its DRAFT) and refuses a second product for an offer that already has a recipe (use `"overwrite": true` to fix the existing one). The runbook states both.
 - The stray 104-variant DRAFT from the failed build was set to ARCHIVED (reversible, never had photos or went live); its recipe is removed from `ops/sourcing/state/recipes/`.
 - Resume `cute-happy-bunny-bear-family-matching-sweatshirts`: `translate` → `images` → `review` → QA → `finish` (the next autosource run is instructed by its worklog anchor).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-localized-collection-titles-striking-distance
+
+- task_entities: locales/nl.json, locales/no.json, locales/da.json (sections.collection_seo meta_titles.dresses and meta_descriptions.dresses); locales/he.json, locales/ro.json, locales/cs.json (meta_titles.swimsuits and meta_descriptions.swimsuits); /nl /no /da collections/dresses, /he /ro /cs collections/swimsuits
+- task_stage: IMPLEMENTED, live readback pending Shopify GitHub sync
+- next_action_id: NEXT_LOCALE_SEO_LIVE_READBACK
+
+- Why: Search Console shows these localized collection pages just off page 1; titles now lead with the exact local search phrase. Copy makes no stock, shipping-speed, price, review or bestseller claims.
+- Title before -> after:
+  - nl dresses: "Jurken voor moeder en dochter | Dress Like Mommy" -> "Moeder dochter jurken | Dress Like Mommy"
+  - no dresses: "Mamma og meg kjoler | Mor Datter" -> "Mor og datter kjole | Matchende kjoler"
+  - da dresses: "Kjoler til mor og datter | Dress Like Mommy" -> "Mor og datter kjole | Matchende kjoler"
+  - he swimsuits: "בגדי ים משפחתיים תואמים | אמא ובת" -> "בגדי ים תואמים אמא ובת | Dress Like Mommy"
+  - ro swimsuits: "Costume de baie potrivite pentru familie | Mama si fiica" -> "Costume de baie mama fiica | Dress Like Mommy"
+  - cs swimsuits: "Vhodné rodinné plavky | Máma & dcera" -> "Plavky máma a dcera | Dress Like Mommy"
+- Meta descriptions for the same six keys rewritten to 126-145 characters (each contains the target phrase; nl uses "moeder en dochter jurk", ro uses "costum de baie mama si fiica").
+- Checks: git diff shows only the 12 key values across 6 locale files; titles are 38-45 characters.
+- Rollback: revert the commit; Shopify's GitHub sync restores the previous locale values.
