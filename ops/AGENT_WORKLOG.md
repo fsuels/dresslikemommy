@@ -56245,3 +56245,15 @@ Rollback: `git revert`, then `sync_live_theme_from_main.py --apply`.
   - Details in `TRUSTED-SUPPLIERS.md`.
 - **Vendor fix:** peer commit f6fcc03 standardized the brand to "Dress Like Mommy". This session's local engine copy was stale, so 4 live listings (3 siblings + scribble heart) and 5 held drafts were created as `dresslikemommy.com`. All 9 were updated to "Dress Like Mommy" (readback OK); local engine and scripts were synced.
   - Rollback: vendor `dresslikemommy.com`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-siblings-main-collection-pill
+
+- task_entities: `snippets/collection-breadcrumbs.liquid`; collection `siblings-matching-outfits` (3 kids-only Christmas sweaters)
+- task_stage: VERIFY (pushed to main; live readback pending in this entry's commit follow-up)
+
+- **Owner report:** the "Main collections" pill row on `/collections/all` had no Siblings pill.
+- **Fix:** Siblings added to the main pill row between Couples and Maternity. The label reuses `storefront.mega_menu.siblings`, which already exists in all 35 locales, so no locale edits were needed.
+  - The pill is highlighted when you are on `siblings-matching-outfits`.
+  - The Siblings page breadcrumb no longer shows the wrong parent ("Mommy and Me"). It is now Home › Siblings Matching Outfits.
+  - facets.js hides the pill automatically if the collection ever becomes empty (the same mechanism already hides the 0-product Maternity pill).
+- Rollback: revert this commit.
