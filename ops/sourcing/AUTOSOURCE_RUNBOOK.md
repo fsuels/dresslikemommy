@@ -42,6 +42,7 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 
 
 0. **Lock:** `autosource.py lock acquire`. If it prints LOCKED, stop immediately. Always `lock release` at the end, even after errors.
+0b. **Resume first:** `autosource.py pending` lists autosource DRAFTs an earlier run left mid-build, with the steps still to do. Finish each one (same QA rules; the recipe is in `ops/sourcing/state/recipes/<handle>.json`, the spec already exists — do not run `spec` again) before sourcing anything new. If a step fails twice, leave it DRAFT and record why.
 1. **Pick the category:** `autosource.py next` prints this round's category and the exact command to run (search or catalog). Run it.
 2. **Screen:** `autosource.py scan <IDS>`, using the IDS line from step 1; it paces itself.
 3. **Supplier check:** `autosource.py gate <ids that printed PASS>`. Keep the gate PASS ones.

@@ -12,6 +12,7 @@ Subcommands
   lock acquire|release                 run lock (stale after 150 min)
   next                                 this round's category (rotates through ROTATION) and the command to run
   elapsed                              minutes since this run took the lock (continue categories until 50)
+  pending                              autosource DRAFTs left by an earlier run + the steps still to do (resume first)
   recent [HOURS]                       audit: products this job built recently + live readback + QA sheets
   unpublish HANDLE "<reason>"          audit: set an autosource-built product back to DRAFT
   seen                                 print how many offer ids were already screened
@@ -924,6 +925,28 @@ def cmd_recent(hours: float = 26) -> None:
         print(h, "|", live, "| QA sheet:", qa if qa.exists() else "-", "| vendor sheet:", WORK / f"sheet_{json.loads(f.read_text())['offer_id']}.jpg")
 
 
+def cmd_pending() -> None:
+    """Autosource products still in DRAFT (an earlier run stopped mid-build) and the steps left, so each run resumes them first."""
+    sys.path.insert(0, str(T / "ai_images"))
+    import attach_images as A  # noqa
+    n = 0
+    for f in sorted((STATE / "recipes").glob("*.json")):
+        h = f.stem
+        p = A.gql("query($h:String!){productByHandle(handle:$h){status translations(locale:\"de\"){key}}}", {"h": h})["productByHandle"]
+        if not p or p["status"] != "DRAFT":
+            continue
+        n += 1
+        standalone = json.loads(f.read_text(encoding="utf-8")).get("kind") == "standalone"
+        imgs = (ROOT / "uploads" / h / "ai" / "image1.png").exists()
+        translated = bool(p["translations"])
+        if standalone:
+            left = ["review", "QA", "standalone-finish"] if imgs else ["images", "review", "QA", "standalone-finish"]
+        else:
+            left = (["translate"] if not translated else []) + ([] if imgs else ["images"]) + ["review", "QA", "finish"]
+        print(f"PENDING {h} | translated(de)={translated} photos={imgs} | next: {' -> '.join(left)}")
+    print(f"{n} pending draft(s)" + ("; resume them before new sourcing" if n else ""))
+
+
 def cmd_unpublish(handle: str, reason: str) -> None:
     """Audit action: set a listing this job built back to DRAFT (reversible) and log why."""
     if not (STATE / "recipes" / f"{handle}.json").exists():
@@ -944,6 +967,7 @@ def main() -> None:
     elif c == "seen": print(len(load_seen()), "offers screened;", len(known_offer_ids()), "known ids")
     elif c == "next": cmd_next()
     elif c == "elapsed": cmd_elapsed()
+    elif c == "pending": cmd_pending()
     elif c == "recent": cmd_recent(float(a[1]) if len(a) > 1 else 26)
     elif c == "unpublish": cmd_unpublish(a[1], a[2] if len(a) > 2 else "audit")
     elif c == "search": cmd_search(a[1])
