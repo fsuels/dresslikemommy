@@ -56430,3 +56430,11 @@ Rollback: revert the commit that touches this snippet.
 - evidence: screening activity is present (autosource_seen.json updated 2026-09-29 00:24 local; vendor sheets for offers 1075986068919 and 1081369158022 in /tmp/autosource/; rotation updated 00:09). No offer has reached build/finish.
 - actions: none (no unpublish).
 - follow-up for owner/CEO loop: the job screens offers but produces zero listings; check whether the gate is rejecting every candidate or rounds end before `capture/build`. AUTOSOURCE_LOCK dated 2026-09-28 23:53 still present (auto-stale after 150 min).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-autosource-siblings
+
+- task_entities: none (search "兄妹装 秋冬 2026" never returned results)
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Category: siblings. 1688 showed a CAPTCHA/login page during the first search (exit code 3). Stopped 1688 work for this run and did not bypass it. Screened 0, passed 0, no new listings. The owner may need to clear the 1688 session in the helper browser before the next hourly run.
