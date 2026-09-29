@@ -8,6 +8,7 @@ Subcommands (every write is dry-run unless --execute is passed):
   collection-seo  update one collection's SEO title/description (before-state + readback)
   redirect        create one URL redirect after checking the target is live
   article-seo     set one published article's SEO title/description (before-state + readback)
+  product-seo     set one ACTIVE product's search-result SEO title/description (not the product title; readback)
   article-links   read-only: live articles ranked by links to non-active products / dead collections
   article-body    replace one live article's body HTML (full before-body kept in the receipt)
   translate-queue read-only: which article fields are missing/outdated in which storefront languages
@@ -151,6 +152,8 @@ TRANSLATIONS_REGISTER_M = """mutation($id: ID!, $t: [TranslationInput!]!) { tran
 # Highest-click storefront languages first (GSC, 2026-09-29: el, da, no, nl, he lead; then it, cs, ro, pl).
 LOCALE_PRIORITY = ["el", "da", "no", "nl", "he", "it", "cs", "ro", "pl", "de", "fr", "es", "pt-BR", "sv", "fi", "ja", "ko", "ru", "ar", "hi"]
 TRANSLATE_KEYS = ("title", "body_html", "summary_html", "meta_title", "meta_description")
+PRODUCT_SEO_Q = """query($q: String!) { products(first: 5, query: $q) { nodes { id handle title status onlineStoreUrl seo { title description } } } }"""
+PRODUCT_UPDATE_M = """mutation($p: ProductUpdateInput!) { productUpdate(product: $p) { product { id seo { title description } } userErrors { field message } } }"""
 REDIRECTS_Q = """query($q: String!) { urlRedirects(first: 10, query: $q) { nodes { id path target } } }"""
 REDIRECT_CREATE_M = """mutation($r: UrlRedirectInput!) { urlRedirectCreate(urlRedirect: $r) {
   urlRedirect { id path target } userErrors { field message } } }"""
@@ -624,6 +627,36 @@ def cmd_translate_apply(args) -> int:
     return 0 if verified else 1
 
 
+def find_product(admin: "Admin", handle: str) -> Optional[Dict]:
+    nodes = admin.gql(PRODUCT_SEO_Q, {"q": f"handle:{handle}"})["products"]["nodes"]
+    return next((n for n in nodes if n["handle"] == handle), None)
+
+
+def cmd_product_seo(args) -> int:
+    problems = check_meta(args.seo_title, args.seo_description)
+    admin = Admin(args.store_domain)
+    before = find_product(admin, args.handle)
+    if not before:
+        problems.append(f"product {args.handle} not found")
+    elif before["status"] != "ACTIVE" or not before["onlineStoreUrl"]:
+        problems.append("product is not active on the online store")
+    receipt = {"at": now_stamp(), "handle": args.handle, "before": before, "requested": {"title": args.seo_title, "description": args.seo_description}, "problems": problems, "executed": False}
+    if problems or not args.execute:
+        write_json(args.receipt, receipt)
+        print(json.dumps(receipt, indent=2, ensure_ascii=False))
+        return 1 if problems else 0
+    seo = {"title": args.seo_title if args.seo_title is not None else before["seo"]["title"],
+           "description": args.seo_description if args.seo_description is not None else before["seo"]["description"]}
+    result = admin.gql(PRODUCT_UPDATE_M, {"p": {"id": before["id"], "seo": seo}})["productUpdate"]
+    after = find_product(admin, args.handle)
+    verified = not result["userErrors"] and after["seo"] == seo
+    receipt.update(executed=True, user_errors=result["userErrors"], after=after, verified=verified,
+                   rollback={"title": before["seo"]["title"], "description": before["seo"]["description"]})
+    write_json(args.receipt, receipt)
+    print(json.dumps({k: receipt[k] for k in ("handle", "user_errors", "verified")}, indent=2))
+    return 0 if verified else 1
+
+
 def cmd_redirect(args) -> int:
     source, target = args.source.strip(), args.target.strip()
     problems = []
@@ -712,6 +745,14 @@ def main(argv: Optional[List[str]] = None) -> int:
     p.add_argument("--receipt", required=True)
     p.add_argument("--execute", action="store_true")
     p.set_defaults(func=cmd_translate_apply)
+
+    p = sub.add_parser("product-seo")
+    p.add_argument("--handle", required=True)
+    p.add_argument("--seo-title")
+    p.add_argument("--seo-description")
+    p.add_argument("--receipt", required=True)
+    p.add_argument("--execute", action="store_true")
+    p.set_defaults(func=cmd_product_seo)
 
     p = sub.add_parser("article-seo")
     p.add_argument("--handle", required=True)
