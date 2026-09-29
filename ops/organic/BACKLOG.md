@@ -34,7 +34,7 @@ Existing live guides that already cover a topic (do not duplicate; link to them 
 
 | # | Tag | Status | Item |
 |---|---|---|---|
-| M1 | MAIN | OPEN | Theme: link the newest seasonal guides from the Christmas and Thanksgiving collection pages (theme-owned copy). |
+| M1 | MAIN | OPEN | Theme: in `snippets/collection-guide-christmas-pajamas.liquid`, English (`else`) branch of the `guide` field only, add one closing sentence linking the live guides `/blogs/news/matching-family-christmas-pajamas-guide-2026` and `/blogs/news/family-christmas-photo-outfits-2026` (e.g. "For more ideas, read our <a href=...>matching family Christmas pajamas guide</a> and <a href=...>Christmas photo outfit ideas</a>."). Keep other languages unchanged (those articles are English-only). Verify live on `/collections/christmas-pajamas`: both links present, 1 H1, no robots meta. |
 | M2 | MAIN | OPEN | Review wording risk: collection `best-sellers` and article `black-friday-deals-top-matching-family-outfits` (bestseller/deal claims need evidence). |
 | O1 | DONE 2026-09-29 | CEO loop now requests indexing for new engine articles each run (log `GSC_INDEXING_LOG.md`); sitemap re-submitted. Remaining owner part: none. Old text: Search Console: submit sitemap + request indexing for each new engine article (owner's Chrome GSC login). Also export 16 months of GSC performance for the SEO diagnosis. |
 | O2 | OWNER | OPEN | Bing Webmaster Tools: import the site from Search Console (free Bing/Copilot/DuckDuckGo traffic). |
