@@ -623,6 +623,10 @@ def cmd_redirect(args) -> int:
     existing = admin.gql(REDIRECTS_Q, {"q": f"path:{source}"})["urlRedirects"]["nodes"]
     if any(r["path"].rstrip("/") == source.rstrip("/") for r in existing):
         problems.append(f"redirect already exists: {existing}")
+    chained = admin.gql(REDIRECTS_Q, {"q": f"path:{target}"})["urlRedirects"]["nodes"]
+    chained = [r for r in chained if r["path"].rstrip("/") == target.rstrip("/")]
+    if chained:
+        problems.append(f"target {target} is itself a redirect source ({chained[0]['target']}); Shopify refuses chains - use {chained[0]['target']}")
     receipt = {"at": now_stamp(), "source": source, "target": target, "source_status": source_page["status"], "target_status": target_page["status"], "problems": problems, "executed": False}
     if problems or not args.execute:
         write_json(args.receipt, receipt)
