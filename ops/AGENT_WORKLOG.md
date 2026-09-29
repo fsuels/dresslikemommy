@@ -56306,3 +56306,12 @@ Note: the first test cart in the built-in browser already held 1 item; `/cart/cl
 - **Placement:** happy-faces-family-matching-sweatshirts (session [57a715]; 东莞辰承, 48h) joined its collections automatically by type/tags.
 - **Related links:** happy-faces → Hooray Sun, Scribble Heart, Together Heart; Hooray Sun lists happy-faces first.
 - **Not added to Mommy & Me / Daddy & Me:** those collections are curated to single-parent-and-child sets (owner-approved Mommy & Me ordering keeps whole-family items out of the top), and this is a whole-family set.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-matching-set-intro-shortened
+
+- task_entities: `products.product.matching_set.copy` in 24 `locales/*.json`; `snippets/product-page-copy-map.liquid` `matching_set_copy`; `sections/main-product.liquid` runtime key; `FAMILY_BUNDLE_COPY_BY_LOCALE` in `assets/product-desktop-ux-20260513-ruler-sync.js`
+- task_stage: DONE, LIVE_VERIFIED
+
+Owner asked for a less wordy builder header. Now: "Build your matching set / Pick a size for each person. Priced per piece. / Buy 2, get the 3rd 20% off. No code needed." in the 21 published locales (plus nb, pt-PT, ro-RO). German uses informal "Wähle" to match its "Stelle dein…" heading.
+
+Release: commits `9656281`, `f14514c`. Code files via `sync_live_theme_from_main.py --apply` (verified). Locale JSON: live-vs-main flattened diff was exactly `products.product.matching_set.copy` in all 24 files, then themeFilesUpsert and read-back. Live EN/DE/JA PDP headers read the new copy.
