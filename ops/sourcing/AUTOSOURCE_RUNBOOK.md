@@ -5,7 +5,8 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 ## Command rules (unattended: anything else stalls or is refused)
 
 - The ONLY shell command shape is `/usr/bin/python3 ops/sourcing/autosource.py <subcommand> …`, run from the repo root. Never use cd, &&, pipes, redirection, other scripts, ls/cat/grep, `python3 -c`, git, or curl.
-- Read files and images with the Read tool, and search with Grep/Glob.
+- Read files and images with the Read tool. Do not rely on Grep/Glob (unattended runs may not have them): use `autosource.py dupe` for duplicate checks and `autosource.py attrs <id>` for the full offer attributes.
+- Run every command in the foreground. Never use Monitor, ScheduleWakeup, background runs or browser tools: an unanswered approval prompt freezes the job and blocks every later hourly run (it froze for 9 hours on 2026-09-29).
 - Write only these files, with the Write tool:
   - `/tmp/autosource/recipe_<handle>.json`
   - `/tmp/autosource/worklog_append.md`
@@ -30,7 +31,7 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
    - No "SMILE"/smiley-face prints (Smiley® mark).
    - No national/patriotic or Chinese-New-Year themes (off-market).
    - No garbled or odd lettering.
-6. **No duplicates:** compare the vendor photos with our live and archived store products of the same type (Grep specs and `ops/sourcing/TRUSTED-SUPPLIERS.md`). A near-identical print on a different garment counts as a duplicate.
+6. **No duplicates:** run `autosource.py dupe "<print words>,<garment word>"` (store products in every status plus local specs/recipes) and compare the vendor photos with the hits of the same type. A near-identical print on a different garment counts as a duplicate.
 7. **Appeal:** skip tiny or generic chest logos on template photo sets, school/kindergarten activity uniforms, and summer-themed text on winter items.
 8. **Real fabric:** state the real fabric % honestly.
 9. **Price:** landed ≤50% of price (the engine formula does this); compare-at = price + $10.
@@ -47,6 +48,7 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 4. **Look before building:** for each survivor, run `autosource.py capture <id>` and open `/tmp/autosource/sheet_<id>.jpg` with Read.
    - Judge rules 5–7 and duplicates.
    - Find the size-chart image and read it at full size (Read the file in `ops/sourcing/vendor-images/<id>/desc/`).
+   - If `scan` shows no fabric % (or you need colours/sizes), run `autosource.py attrs <id>` and read the composition there ("Main fabric component content 100（%）", "Material composition Cotton:100%").
    - If it passes, run `autosource.py skus <id>`.
 5. **Build one product at a time.** Write `/tmp/autosource/recipe_<handle>.json` (schema below), then run:
    1. `spec <recipe>`
@@ -76,7 +78,7 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 {
  "offer_id": "1081053551587", "handle": "hooray-sun-family-matching-sweatshirts", "shortcode": "HRSN",
  "print_name": "Hooray Sun", "title_variant": "everyday",
- "garment": "sweater (only for knits; omit for sweatshirts)", "knit_role": "mommy|daddy (only for 2-person knit pairs; omit otherwise)",
+ "garment": "sweater (knits) | hoodie (pullover hoodies); omit for crewneck sweatshirts", "knit_role": "mommy|daddy (only for 2-person knit pairs; omit otherwise)",
  "chart_no_sleeve": false,
  "colors": [{"name": "Cream", "token": "CRM", "vendor_value": "<exact SKU colour value from skus output>"}],
  "color_pattern_ids": ["69641928801"], "color_pattern_labels": ["Beige"],
@@ -105,7 +107,9 @@ Recipe notes:
 - **Sleeve:** if the chart has no sleeve column (only 肩宽 shoulder), set `"chart_no_sleeve": true` and omit sleeve.
 - **Colour-pattern metaobject ids:** Red 69600804961, Green 70220546145, White 69639733345, Beige 69641928801, Blue 69639766113, Pink 69963645025, Purple 130284126305, Yellow 69622104161, Black 69943132257, Gray 69944672353.
 - **Codes and names:** the shortcode must be 4 unused capital letters. The handle and print name must not repeat an existing product name.
-- **fabric_key:** cotton_sweat (cotton), cotton_blend_sweat (cotton/polyester), modal_knit (modal/viscose knit). design_key: crew_sweatshirt, crew_knit, collar_knit, cardigan_knit.
+- **fabric_key:** cotton_sweat (cotton), cotton_blend_sweat (cotton/polyester), modal_knit (modal/viscose knit). design_key: crew_sweatshirt, raglan_hoodie (with `"garment": "hoodie"`: contrast hood + raglan sleeves; hoodie title, style and tags), crew_knit, collar_knit, cardigan_knit.
+- **Two linings of one print** (unlined / fleece-lined): list the unlined colour only (precedent: Hooray Sun, Pure Joy Heart); note the exclusion in `exclusions_note`.
+- **Garbled lettering:** skip designs whose small captions or text read as nonsense in the vendor photos (e.g. "Cupcat" cup captions, 2026-09-29); the AI photos copy them.
 - **Engine path** (`spec` → `build` → `translate` → `images` → `review` → `finish`): family sweatshirts and sweaters, and Mommy & Me / Daddy & Me knit pairs (`knit_role`).
 - **Standalone path** for what the engine can't model — **siblings (kids-only), couples (adults-only), maternity (women-only)**: write `/tmp/autosource/recipe_<handle>.json` in the standalone schema below, then `standalone <recipe>` → `images <handle>` → `review <handle>` (QA) → `standalone-finish <handle>`.
 

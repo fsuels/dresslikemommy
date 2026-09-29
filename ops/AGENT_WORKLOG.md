@@ -56517,3 +56517,23 @@ Why: owner asked to implement the agentic-storefronts step and continue ("rechec
 Done (each read back): Merchant age groups verified 10/10 after sync; remaining MC item issues are crawl-only (no feed action); store-quality image scores explained and queued behind their 30-day window; localized "December 8"/"days" left in English by Codex in 10 guide locales (readback 144/144); fixed 10 collection translations with leaked `__DLMTOK` placeholders (rescan 0); backlog M2: best-sellers meta rewritten truthfully in EN + 20 locales (20/20) and theme phrase "top-rated" removed.
 Blocked: Shopify admin logged out in the in-app browser and Chrome; enabling agentic storefronts needs the owner's login and terms acceptance.
 Rollback: packet §7 files (before-states); revert the theme commit and re-run `sync-theme --apply`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-autosource-glm-hoodies-and-tool-fixes
+
+- task_entities: pure-joy-heart-family-matching-hoodies (offer 1081588927419, PJHD); skipped 1084852540062, 1081371115150, 1084097060021, 1083808582070, 1079425911489, 1080795118611; `ops/sourcing/autosource.py`; `ops/sourcing/AUTOSOURCE_RUNBOOK.md`; engine `runner_engine.py` + `seed_cache.py` + `i18n/*`
+- task_stage: LIVE_VERIFIED
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+CEO session finished the 格莱美 (Dongguan, 6 years, 100%/100%, service 4.5) queue left by the overnight run and fixed the three gaps that stopped it:
+
+- Fabric %: `scan` cut the composition at 40 characters ("Cotton2 Main fabric component content 10"). It now stores a separate `pct` field and prints "Cotton 100%". New `attrs <id>` prints the offer's full attribute text.
+- Duplicates without Grep: new `dupe "<words>,<words>"` lists store products in every status plus local specs/recipes. The runbook no longer relies on Grep/Glob and repeats the foreground-only freeze guard.
+- `translate` leaked `SHOPIFY_STORE_DOMAIN=offline.invalid` (set by engine_loader for offline spec loads) into register_direct; `add_size_strings` now restores the variable. `commit` now also carries `seed_cache.py`.
+- Engine: opt-in `"garment": "hoodie"` (SWH) with design key `raglan_hoodie`. Hoodie title/SEO templates (`templates_swh`), size note `p2_swh`, `p1_swh`, `kf1_text_swh`, style/type/label "Hooded Sweatshirt" and hoodie tags. The new strings were translated into all 20 locales with ChatGPT-app Codex and merged into `en_source.json` + `tr_*.json`. Crewneck products are unchanged (the flag is opt-in).
+
+Results:
+
+- LIVE: `pure-joy-heart-family-matching-hoodies` (Family Matching, first autosource hoodie), kids $35.99 / adults $45.99 (compare-at +$10; landed ≈48%), 15 variants (kids 80-150 cm, adult S-4XL), cotton 100%, 4 ChatGPT-app Codex photos QA-passed against the vendor garment. Localization closeout `status: passed` (attempt 2; attempt 1 failed at audit_full_product_before_size_repair and the retry passed). Readback: 4 imgs, 15/15 available, 8/8 channels; /de and /ja titles localized. Existing store-wide gap seen: the size value "6-12 Months" stays English in localized variant titles (also on hooray-sun-family-matching-sweatshirts); not caused by this build.
+- `finish` now prints the `[listing-localization]` line of each attempt and an explicit `PASS on attempt N` line (the attempt-1 FAILED line alone read like a failed activation).
+- Skipped (rule): 1084852540062 "Cupcat" hoodie (rule 5: garbled cup captions the AI photos would copy); 1081371115150 "Behappy" heart raglan crewneck (rule 6: near-duplicate of Pure Joy Heart and the live Red Heart Raglan tops); 1084097060021 doodle heart (rule 5: garbled "mue joy"/"llove" lettering); 1083808582070 small red horse badge (rule 5: pony-logo look-alike / Year-of-the-Horse theme); 1079425911489 tiny cartoon-face chest badge (rule 7 and character look-alike risk); 1080795118611 palm-tree beach line art (rule 7: summer theme on a winter sweatshirt).
+- Fleece-lined variants, baby jumpsuits and hats of the Pure Joy offer are not listed (precedent: Hooray Sun).

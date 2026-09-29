@@ -18,6 +18,8 @@ Subcommands
   search "<中文 keywords>"             1688 keyword search -> family-titled 2026 offer ids (+titles), unseen only
   scan ID[,ID..]                       offer pages: release season, 48h promise (deliveryLimit), fabric, supplier
   gate ID[,ID..]                       store creditdetail stats + automatic owner-rule verdict
+  attrs ID                             full attribute text of one offer (fabric %, sizes) when scan is too short
+  dupe "word word,other words"         duplicate check: store products (all statuses) + local specs/recipes
   catalog HOST                         a passing store's 2026 offers (store listing, not search)
   capture ID                           description images + manifest (ops/sourcing/vendor-images/<id>/desc/)
   skus ID                              per-SKU prices/stock -> ops/sourcing/state/skus/<id>.json
@@ -181,6 +183,7 @@ return JSON.stringify({title:document.title.slice(0,90),company:(h.match(/"compa
 host:(h.match(/"sellerWinportUrl"\s*:\s*"https?:\/\/([a-z0-9-]+\.1688\.com)/)||[])[1]||'',
 release:g('Year and season of (?:release|launch)|上市年份/?季节'),published:g('商品发布时间'),
 fabric:g('Fabric name|面料名称'),main:g('Main fabric composition|主面料成分'),
+pct:(t.match(/(?:Main fabric component content|Content of main fabric[a-z ]*|主面料成分含量|主面料成分的含量)\s*[：:(（%]*\s*(\d{1,3}(?:\.\d+)?)/i)||[])[1]||'',
 dl:(h.match(/"deliveryLimit":(\d+)/)||[])[1]||'',dlt:(h.match(/"deliveryLimitText":"([^"]+)"/)||[])[1]||'',
 moq:(t.match(/(\d+)\s*件起批/)||[])[1]||'',img:imgs[0]||''})})()"""
 
@@ -203,12 +206,47 @@ def cmd_scan(ids: str, gap: float = 35) -> None:
             ok = r["dl"] in ("1", "2") and season_ok(r["release"])
             r["pass_ship_season"] = ok
             r["scanned"] = time.strftime("%Y-%m-%d")
-            seen[oid] = {k: r[k] for k in ("title", "company", "host", "release", "dl", "main", "moq", "pass_ship_season", "scanned")}
+            r["main"] = re.split(r"\d|Main fabric|主面料", r["main"])[0].strip()
+            seen[oid] = {k: r[k] for k in ("title", "company", "host", "release", "dl", "main", "pct", "moq", "pass_ship_season", "scanned")}
             save_seen(seen)
-            print(("PASS " if ok else "fail ") + oid, "| dl", r["dl"], "|", r["release"][:14], "|", r["company"][:16], "|", r["main"][:22], "|", r["title"][:60], flush=True)
+            print(("PASS " if ok else "fail ") + oid, "| dl", r["dl"], "|", r["release"][:14], "|", r["company"][:16], "|", f'{r["main"][:14]} {r["pct"]}%', "|", r["title"][:60], flush=True)
             time.sleep(gap)
     finally:
         tab.close()
+
+
+ATTRS_JS = r"""(()=>{const t=(document.body.innerText||'').replace(/\s+/g,' ');
+const i=t.search(/Product attributes|商品属性|Material|材质|面料名称|Fabric name/);return i<0?t.slice(0,2500):t.slice(Math.max(0,i-100),i+2500)})()"""
+
+
+def cmd_attrs(oid: str) -> None:
+    """Full attribute text of one offer (fabric %, sizes, season) when `scan` output is too short to judge."""
+    tab = Tab()
+    try:
+        tab.go(f"https://detail.1688.com/offer/{oid}.html", 5)
+        if tab.blocked():
+            stop_blocked(tab, f"attrs {oid}")
+        tab.scroll()
+        print(tab.js(ATTRS_JS))
+    finally:
+        tab.close()
+
+
+def cmd_dupe(words: str) -> None:
+    """Duplicate check without Grep: store products (any status) whose title matches any word, plus local specs/recipes."""
+    sys.path.insert(0, str(T / "ai_images"))
+    import attach_images as A  # noqa
+    hits = {}
+    for w in [x.strip() for x in words.split(",") if x.strip()]:
+        q = " ".join(f"title:*{x}*" for x in w.split())
+        for e in A.gql("query($q:String!){products(first:40,query:$q){nodes{handle status title}}}", {"q": q})["products"]["nodes"]:
+            hits[e["handle"]] = f'{e["status"]:<8} {e["title"][:70]}'
+        for f in list((T / "specs").glob("*.json")) + list((STATE / "recipes").glob("*.json")):
+            if all(x.lower() in f.read_text(encoding="utf-8", errors="ignore").lower() for x in w.split()):
+                hits.setdefault(f.stem, f"LOCAL    {f.relative_to(ROOT)}")
+    print(f"{len(hits)} possible duplicates for: {words}")
+    for h, v in sorted(hits.items()):
+        print(v, "|", h)
 
 
 CREDIT_JS = r"""JSON.stringify((document.body.innerText||'').replace(/\s+/g,' '))"""
@@ -503,8 +541,14 @@ def codex(dirpath: Path, prompt: str, timeout: int = 2400) -> None:
 
 def add_size_strings(handle: str) -> None:
     sys.path.insert(0, str(T))
+    saved = os.environ.get("SHOPIFY_STORE_DOMAIN")
     import seed_cache  # noqa
     ns = seed_cache.load(T / "specs" / f"{handle}.json")
+    # engine_loader sets SHOPIFY_STORE_DOMAIN=offline.invalid for offline loading; later subprocesses (register_direct) inherit os.environ
+    if saved is None:
+        os.environ.pop("SHOPIFY_STORE_DOMAIN", None)
+    else:
+        os.environ["SHOPIFY_STORE_DOMAIN"] = saved
     key = ns["size_key"]()
     en = {"size_text": ns["size_range_phrase"](), "kf5_text": ns["counts_phrase"](), "size_short": ns["size_short"]()}
     src = json.loads((T / "i18n/en_source.json").read_text(encoding="utf-8"))
@@ -570,10 +614,11 @@ def cmd_finish(handle: str) -> None:
     ok = False
     for attempt in (1, 2):
         p = subprocess.run([PY, "ops/scripts/finalize_shopify_listing_localization.py", "--handles", handle], cwd=ROOT, capture_output=True, text=True, timeout=3600)
-        last = (p.stdout + p.stderr).strip().splitlines()[-1]
-        print(last)
+        lines = [l for l in p.stdout.splitlines() if "[listing-localization]" in l] or (p.stdout + p.stderr).strip().splitlines()[-1:]
+        print(f"attempt {attempt}:", lines[-1] if lines else "(no output)")
         if p.returncode == 0:
             ok = True
+            print(f"[listing-localization] PASS on attempt {attempt}")
             break
         time.sleep(20)
     if not ok:
@@ -720,6 +765,7 @@ def cmd_standalone_finish(handle: str) -> None:
 COMMIT_PATHS = [
     "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-christmas-pajama-line/tools/i18n",
     "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-christmas-pajama-line/tools/runner_engine.py",
+    "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-christmas-pajama-line/tools/seed_cache.py",
     "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-christmas-pajama-line/tools/ai_images/build_image_jobs.py",
     "ops/sourcing/TRUSTED-SUPPLIERS.md", "ops/sourcing/AUTOSOURCE_RUNBOOK.md", "ops/sourcing/autosource.py",
     "ops/sourcing/state/autosource_seen.json", "ops/sourcing/state/autosource_rotation.json", "ops/sourcing/state/recipes",
@@ -734,6 +780,7 @@ def cmd_commit(message: str) -> None:
         sh(["git", "worktree", "add", "--detach", str(WT), "origin/main"])
     sh(["git", "checkout", "-q", "--detach", "origin/main"], cwd=WT)
     sh(["git", "reset", "-q", "--hard", "origin/main"], cwd=WT)
+    consumed = []  # append files are deleted only after a successful push, so a refused/failed commit can be retried
     for rel in COMMIT_PATHS:
         src, dst = ROOT / rel, WT / rel
         if not src.exists():
@@ -746,28 +793,29 @@ def cmd_commit(message: str) -> None:
             if blk.exists():
                 with open(dst, "a", encoding="utf-8") as f:
                     f.write("\n" + blk.read_text(encoding="utf-8").strip() + "\n")
-                blk.unlink()
+                consumed.append(blk)
         elif rel == "ops/sourcing/TRUSTED-SUPPLIERS.md":
             blk = WORK / "suppliers_append.md"
             if blk.exists():
                 with open(dst, "a", encoding="utf-8") as f:
                     f.write("\n" + blk.read_text(encoding="utf-8").strip() + "\n")
-                blk.unlink()
+                consumed.append(blk)
         else:
             dst.parent.mkdir(parents=True, exist_ok=True)
             shutil.copy2(src, dst)
     sh(["git", "add", "-A"], cwd=WT)
     diff = sh(["git", "diff", "--cached"], cwd=WT)
-    if re.search(r"alicdn\.com|detail\.1688\.com/offer|https?://shop[0-9a-z]+\.1688\.com", diff):
+    if re.search(r"alicdn\.com|detail\.1688\.com/offer/\d|https?://shop[0-9a-z]+\.1688\.com", diff):
         raise SystemExit("REFUSED: staged diff contains vendor/source URLs")
     if not diff.strip():
         print("nothing to commit"); return
+    done = lambda: [b.unlink() for b in consumed if b.exists()]
     sh(["git", "diff", "--cached", "--check"], cwd=WT)
     sh(["git", "commit", "-q", "-m", message + "\n\nCo-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>"], cwd=WT)
     for _ in range(3):
         p = subprocess.run(["git", "push", "-q", "origin", "HEAD:main"], cwd=WT, capture_output=True, text=True)
         if p.returncode == 0:
-            print("pushed", sh(["git", "log", "--oneline", "-1"], cwd=WT).strip()); return
+            print("pushed", sh(["git", "log", "--oneline", "-1"], cwd=WT).strip()); done(); return
         r = subprocess.run(["git", "pull", "-q", "--rebase", "origin", "main"], cwd=WT, capture_output=True, text=True)
         if r.returncode != 0:  # append-only files: keep both sides
             for f in ("ops/AGENT_WORKLOG.md", "ops/sourcing/TRUSTED-SUPPLIERS.md"):
@@ -891,6 +939,8 @@ def main() -> None:
     elif c == "search": cmd_search(a[1])
     elif c == "scan": cmd_scan(a[1], float(a[2]) if len(a) > 2 else 35)
     elif c == "gate": cmd_gate(a[1])
+    elif c == "attrs": cmd_attrs(a[1])
+    elif c == "dupe": cmd_dupe(a[1])
     elif c == "catalog": cmd_catalog(a[1], a[2] if len(a) > 2 else "2026-06-01")
     elif c == "capture": cmd_capture(a[1])
     elif c == "skus": cmd_skus(a[1])

@@ -54,6 +54,7 @@ MM = MODE == "mommy_me"
 SW = MODE == "family_sweatshirt"  # unisex family crewneck sweatshirt (child + adult sizes)
 SWF = SW and SPEC.get("title_variant") == "everyday"  # season-neutral sweatshirt copy (no Christmas wording)
 KNIT = SW and SPEC.get("garment") == "sweater"  # knit family sweater on the sweatshirt engine path
+SWH = SW and SPEC.get("garment") == "hoodie"  # pullover hoodie on the sweatshirt path (hoodie copy, style and tags)
 KROLE = SPEC.get("knit_role") if KNIT else None  # "mommy" (mother + child) / "daddy" (father + child) knit pairs
 PET = MODE == "family_pet"  # matching pet piece sold beside a family print (dog sizes only)
 LISTING_MODE = "Mommy and Me" if (MM or KROLE == "mommy") else ("Daddy and Me" if KROLE == "daddy" else "Family Matching")
@@ -560,6 +561,7 @@ DESIGN_TEXT = {
     "zip_stand": "Long-sleeve zip-up top with a stand collar and two front pockets, plus full-length pants with an elastic waist and gathered ankles.",
     "button_round": "Long-sleeve button-front top with a round neckline, plus full-length pants with an elastic waist and gathered ankles.",
     "button_lace_fleece": "Long-sleeve button-front top with a lace-trimmed collar and pocket, plus full-length pants with an elastic waist.",
+    "raglan_hoodie": "Long-sleeve pullover hoodie with a contrast hood and raglan sleeves, plus ribbed cuffs and hem.",
     "crew_knit": "Long-sleeve crewneck knit sweater with a ribbed neckline, cuffs, and hem.",
     "collar_knit": "Long-sleeve knit sweater with a contrast collar and ribbed cuffs and hem.",
     "cardigan_knit": "Long-sleeve button-front knit cardigan with a contrast collar and ribbed cuffs and hem.",
@@ -616,6 +618,14 @@ SHARED_EN = {
     "fam_text_swf": "One easy matching look for mom, dad, and the kids, made for weekend outings, trips, and family photos.",
     "p1_swf": "The whole family can wear the same sweatshirt, with child and adult sizes. Pick a size and color for each family member separately to build your matching look.",
     "kf1_text_swf": "The same sweatshirt in child and adult sizes.",
+    "p1_swh": "The whole family can wear the same hoodie, with child and adult sizes. Pick a size for each family member separately to build your matching look.",
+    "p2_swh": (
+        "Each size is one hooded sweatshirt; the pants and hats in the photos are not included. "
+        "Chest is the full chest measurement and garment length is the top length. Height "
+        "and weight are a general fit guide, and child ages are typical for those heights. "
+        "Measurements are approximate, so compare with a hoodie that fits well today."
+    ),
+    "kf1_text_swh": "The same hoodie in child and adult sizes.",
     "fam_text_swk": "One cozy knit look for mom, dad, and the kids, made for fall outings, the holidays, and family photos.",
     "p1_swk": "The whole family can wear the same knit sweater, with child and adult sizes. Pick a size for each family member separately to build your matching look.",
     "p2_swk": (
@@ -751,6 +761,9 @@ def en_segments() -> dict:
     if SWF:
         for key in ("fam_text", "p1", "kf1_text"):
             seg[key] = SHARED_EN[key + "_swf"]
+    if SWH:
+        for key in ("p1", "p2", "kf1_text"):
+            seg[key] = SHARED_EN[key + "_swh"]
     if KNIT:
         for key in ("fam_text", "p1", "p2", "kf1_text", "h3_chart"):
             seg[key] = SHARED_EN[key + "_swk"]
@@ -779,6 +792,10 @@ elif KNIT:
     TITLE_TEMPLATE = "{P} Family Matching Sweaters — Knit Crewneck"
     SEO_TITLE_TEMPLATE = "{P} Family Sweaters | Dress Like Mommy"
     SEO_DESCRIPTION_TEMPLATE = "{P}: matching knit sweaters for mom, dad, girls & boys in {FABRIC}. {SIZES}"
+elif SWH:
+    TITLE_TEMPLATE = "{P} Family Matching Hoodies — Pullover Tops"
+    SEO_TITLE_TEMPLATE = "{P} Family Hoodies | Dress Like Mommy"
+    SEO_DESCRIPTION_TEMPLATE = "{P}: matching hoodies for mom, dad, girls & boys in {FABRIC}. {SIZES}"
 elif SWF:
     TITLE_TEMPLATE = "{P} Family Matching Sweatshirts — Crewneck Tops"
     SEO_TITLE_TEMPLATE = "{P} Family Sweatshirts | Dress Like Mommy"
@@ -897,7 +914,7 @@ def build_tags() -> list[str]:
         values = [
             "Family Matching", "Mommy and Me", "Daddy and Me", "Sweatshirts", "Family Sweatshirts", "Sweaters",
             "Matching Family Sweatshirts", "Matching Family Tops", "Matching Family Outfits", "Tops",
-            "Crewneck Sweatshirt", "Child Sweatshirt", "Adult Sweatshirt", "Long Sleeve Top",
+            *(("Hoodies", "Hooded Sweatshirt", "Family Hoodies") if SWH else ("Crewneck Sweatshirt",)), "Child Sweatshirt", "Adult Sweatshirt", "Long Sleeve Top",
             "Fall", "Family Photos", PRINT_NAME, *SPEC["extra_tags"],
         ]
         values.extend(r["picker_label"] for r in SIZE_CHART)
@@ -1012,9 +1029,9 @@ def build_variants() -> list[dict]:
 
 
 SUBCATEGORY2 = "Christmas Pet" if PET else ("Family Sweaters" if KNIT else "Family Sweatshirts" if SWF else "Christmas Sweatshirts" if SW else ("Winter Pajamas" if MM else "Christmas Pajamas"))
-STYLE_VALUE = "Dog Vest" if PET else ("Crewneck Sweater" if KNIT else "Crewneck Sweatshirt" if SW else f"{SLEEVE_STYLE} Knit Pajama Set")
-TYPE_VALUE = "Dog Vest" if PET else ("Crewneck Sweater" if KNIT else "Crewneck Sweatshirt" if SW else "Two-Piece Pajama Set")
-LABEL3 = "Dog Vest" if PET else ("Crewneck Sweater" if KNIT else "Crewneck Sweatshirt" if SW else f"{SLEEVE_STYLE} Pajama Set")
+STYLE_VALUE = "Dog Vest" if PET else ("Crewneck Sweater" if KNIT else ("Hooded Sweatshirt" if SWH else "Crewneck Sweatshirt") if SW else f"{SLEEVE_STYLE} Knit Pajama Set")
+TYPE_VALUE = "Dog Vest" if PET else ("Crewneck Sweater" if KNIT else ("Hooded Sweatshirt" if SWH else "Crewneck Sweatshirt") if SW else "Two-Piece Pajama Set")
+LABEL3 = "Dog Vest" if PET else ("Crewneck Sweater" if KNIT else ("Hooded Sweatshirt" if SWH else "Crewneck Sweatshirt") if SW else f"{SLEEVE_STYLE} Pajama Set")
 GOOGLE_GENDER = "female" if (MM or KROLE == "mommy") else ("male" if KROLE == "daddy" else "unisex")
 LABEL2 = "Winter Pajamas" if MM else ("Fall" if (SWF or KNIT) else "Christmas")
 LABEL4 = "Christmas Pet" if PET else (("Mommy and Me Sweaters" if KROLE == "mommy" else "Daddy and Me Sweaters") if KROLE else "Family Matching Sweaters" if KNIT else "Family Matching Sweatshirts" if SWF else "Family Christmas Sweatshirts" if SW else ("Mommy and Me Pajamas" if MM else "Family Christmas Pajamas"))
@@ -1220,7 +1237,7 @@ def run_variant_model_guard(variants: list[dict]) -> None:
         (temp_dir / "vendor-evidence.json").write_text(json.dumps({
             "title": SPEC["vendor_title"],
             "notes": (
-                ("one knit sweater sold only as a " if KNIT else "one crewneck sweatshirt sold only as a " if SW else "one complete two-piece Christmas pajama set sold only as a ") +
+                ("one knit sweater sold only as a " if KNIT else "one hooded sweatshirt sold only as a " if SWH else "one crewneck sweatshirt sold only as a " if SW else "one complete two-piece Christmas pajama set sold only as a ") +
                 "single purchasable item; the vendor color selector has exactly "
                 f"{len(SPEC['vendor_color_values'])} value(s): {', '.join(SPEC['vendor_color_values'])} "
                 "(design codes, not separate garments); the size selector lists Dad, Mom, "
