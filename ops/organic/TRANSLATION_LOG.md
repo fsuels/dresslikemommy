@@ -51,3 +51,16 @@
 - 2026-09-29T15:32Z mommy-and-me-easter-outfit-ideas: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
 - 2026-09-29T15:33Z fathers-day-daddy-and-me-matching-outfit-ideas: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
 - 2026-09-29T15:33Z floral-matching-outfits-for-spring: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:35Z end-of-summer-matching-family-beach-looks: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:35Z end-of-summer-mommy-and-me-beach-style: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:36Z mommy-and-me-valentines-day-outfits: corrected meta_description re-translated in all 20 locales VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:36Z hot-weather-family-coordinating-outfit-ideas: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:36Z late-summer-family-matching-outfit-ideas: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:37Z family-matching-outfits-spring-photos: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:37Z daddy-and-me-spring-outfits: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:42Z family-christmas-card-photo-ideas: all 20 locales (title, body, summary, meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:44Z mommy-and-me-summer-dress-guide: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:44Z mother-daughter-matching-swimsuits-complete-guide-for-summer: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:51Z last-chance-summer-matching-family-outfits: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:51Z matching-family-outfits-for-august-vacations: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:51Z red-white-and-blue-patriotic-family-matching-looks: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
