@@ -56421,3 +56421,12 @@ Added one closing sentence to the English (`else`) branch of the `guide` field l
 Checks: `ceo_worktree.py check`; live readback of `/collections/christmas-pajamas` after theme sync.
 
 Rollback: revert the commit that touches this snippet.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-autosource-audit
+
+- task_stage: VERIFIED
+- scope: independent daily audit of autosource-built products (last 26h; also checked 72h)
+- result: 0 products to audit. `autosource.py recent 26` and `recent 72` returned no rows; `ops/sourcing/state/recipes/` does not exist, so no autosource product has been built/listed yet.
+- evidence: screening activity is present (autosource_seen.json updated 2026-09-29 00:24 local; vendor sheets for offers 1075986068919 and 1081369158022 in /tmp/autosource/; rotation updated 00:09). No offer has reached build/finish.
+- actions: none (no unpublish).
+- follow-up for owner/CEO loop: the job screens offers but produces zero listings; check whether the gate is rejecting every candidate or rounds end before `capture/build`. AUTOSOURCE_LOCK dated 2026-09-28 23:53 still present (auto-stale after 150 min).
