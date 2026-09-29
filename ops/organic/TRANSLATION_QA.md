@@ -442,3 +442,90 @@ Date 2026-09-29. Scope: all 15 fi articles, read from the Admin translation (tit
 Result: 0 C, 12 B, 3 A- before; all 15 A after edits. Recurring causes: "yhteensopiva" used for every "matching" (replaced with "samanlainen", "samaa tyyliä", "yhteen sointuva" by context), "Äiti ja minä"/"Isä ja minä" calques, Title Case in older articles, English left in alt text and link labels, "joulupuvut" for Christmas outfits, and mixed singular/plural imperatives.
 
 Remaining, not changed: English product names inside link labels (e.g. "Classic Red Plaid -pyjamat", "Jingle Bells Santa -neuleet") and English option words "Mother/Father/Child/Baby/Adult" that mirror the store's variant names; the stray `</h3></h3>` in christmas-matching-family-pajamas; non-localized `/policies/refund-policy` hrefs. Mixed "te/sinä" address across articles follows the source.
+
+## Swedish sweep
+
+Date 2026-09-29. Scope: 15 live Swedish (`sv`) blog articles, read as a strict native editor against the stored Admin translations (same text as the live page; live pages also fetched, all 15 returned 200). Fixes registered with `organic_engine.py translate-apply --execute`; every write read back `verified: true`. Receipts: `ops/organic/receipts/2026-09-29/svqa-<handle>.json`. English, other languages, products and theme untouched.
+
+| Article | Grade | Main problems fixed |
+|---|---|---|
+| mommy-and-me-outfits-for-every-budget | B -> A | "mamma och dotter-outfits/-looks/-mode/-klänning/-kollektion" hyphen calques (about 9, plus title/meta/H1 mismatch "barn" vs "dotter"); "påslaget", "reavarningar", "fyll på lagret", "kännas som en händelse"; "matchande för hela familjen" label. |
+| daddy-and-me-matching-outfits-the-ultimate-guide | B -> A | Title Case meta title; "pappa och jag" calques (2), "mamma och jag-mode", "har sitt stora ögonblick", "far och son", "på date"; "tornera"; capitals after dashes (5); ampersands in heading and link label; "lätt att använda" for a gift. |
+| best-matching-swimsuits-for-the-whole-family | B -> A | Truncated product heading "Little Tr... \| DLM"; ampersands "pappa & bebis" in heading, alt, body and link; "mor och dotter" vs "mamma och dotter" (4); "matchande" repeated in heading and intro; "Välj accessoarer strategiskt"; "2-3". |
+| fall-family-matching-outfits | A- | No change needed. |
+| best-matching-family-outfits-for-winter | B -> A | Title Case meta title; capitalised link labels mid-sentence and missing space before "och"; "Hjärttryck" for embroidered hearts; "hals med halv dragkedja"; "fotograferas rent"; "visuella berättelse"; "lager-alternativ". |
+| the-complete-guide-to-family-matching-outfits | B -> A | Title Case meta title; "samstämd" (agreeing) used for "coordinated" about 12 times; "Mamma och jag"/"Pappa och jag" category and link labels; "resortsemestrar"; "Halloween-kostymer"; "perfekt terräng"; "matchningssäsong". |
+| what-to-wear-for-family-photos-matching-outfit-ideas | B -> A | Title Case meta title; "samstämma/samstämda" about 10 times; English "Mommy and Me"/"Daddy and Me" in 4 link labels; "mamma-dotter-klänningar/-stilar/-klänningslooks"; 9 em dashes for en dashes; "Lägg till struktur", "i gyllene timmens ljus", "känns igen från vårens". |
+| holiday-family-matching-outfits-complete-guide | B -> A | 6 image alt texts left in English; Title Case meta title; "resortresa"; "värna för alltid"; "samstämd". |
+| christmas-matching-family-pajamas | B -> A | Truncated "... \| DLM" product names in 3 headings, 3 alt texts, 2 sentences and 2 link labels; ampersands; "julpyjamasar" vs "julpyjamas" in title; "XMAS" in heading; "bör ha till jul"; "rekommenderar vi att tvätta". Left: stray `</h3></h3>` (identical to source). |
+| matching-family-christmas-pajamas-guide-2026 | A- -> A | "juldagens morgon" (calque of Christmas morning; Swedes celebrate julafton); capitals after two colons. |
+| family-christmas-photo-outfits-2026 | A- -> A | "juldagens morgon"; "Vid fotografering hemma, lämna"; capital after a colon. |
+| daddy-and-me-christmas-outfits | B -> A | Title and meta title "Pappa och barn matchande julkläder" (English word order); "pappa och jag-kollektionen/-tröjorna" (2); "pappa och barn-look" (2); "looker"; "ryggsäcksåktur". |
+| matching-family-christmas-shirts | B -> A | 93-char title; two stray spaces before punctuation after links; "festlig ... fest" repeat; "looker"; "ljust accessoar"; typo "taklju"; "nära en deadline". |
+| matching-family-shirts-for-pictures | B -> A | Title Case in title, meta title and 8 headings; 88-char title; "familjetröjor" (sweater collection word) for shirts in title, meta, summary, FAQ and one link label; "samstämd"; "Crème" (5); "Pressa tröjorna"; "vecklinjer", "Öppen skugga"; English-style "familjefoto-outfits" label. |
+| matching-couples-christmas-pajamas-and-sweaters | B -> A | 87-char title; "Paret med dolt detalj" gender slip; "Créme"; "Jullovets evenemang fylls snabbt". |
+
+Result: 0 C, 12 B, 3 A/A- before; 14 edited, 1 left unchanged; all 15 A after edits (Admin readback only, live pages not re-graded). Recurring causes: "mamma och jag/dotter-" and "pappa och jag" calques with hyphenated compounds, "samstämd" for "coordinated", Title Case in older articles, English alt text and "... | DLM" truncated product names, ampersands in headings, "juldagens morgon".
+
+Remaining, not changed:
+- English product names kept as names in link labels (Vibrant Rainbow, Pastel Bloom, Buffalo Plaid Tree, Fair Isle, We Are Family, Let It Snow etc.).
+- Non-localized `/policies/refund-policy` hrefs and the stray `</h3></h3>` are identical to the English source; "$" price formats in mommy-and-me-outfits-for-every-budget follow the source.
+- Mixed ni/du address inside several articles follows the source and was left as accepted Swedish usage.
+
+## Russian sweep
+
+Date 2026-09-29. Locale ru, URL folder /ru. Full sweep of the 15 blog articles (live pages fetched, all clean; stored Admin translation edited via `organic_engine.py translate-apply --execute`; every write read back `verified: true`). Receipts: `ops/organic/receipts/2026-09-29/ruqa-<handle>.json`. English, other languages, products and theme untouched.
+
+| Article | Grade | Main problems found (fixed unless noted) |
+|---|---|---|
+| mommy-and-me-outfits-for-every-budget | B -> A | H1 "Мама и я Наряды" calque and Title Case against a good meta title; "вещами-инвестициями"; "Покупайте не в сезон — покупайте" and "запас ... делайте запас" repeats; "повседневный casual"; missing comma before "чтобы"; "стоимость одной носки". |
+| daddy-and-me-matching-outfits-the-ultimate-guide | B -> A | "Папа и я"/"мама и я" calque in H1, 7 headings, body and 1 link label; "согласованные" bureaucratic (6); capitals after dashes (5) and after colons (4); "Лёгкие слои — ваши друзья"; "внимательный ... удобный в использовании подарок". |
+| best-matching-swimsuits-for-the-whole-family | B -> A | H1 "купальные наряды в едином стиле" against "парные купальники"; H2 "парные образы для парных купальников"; truncated "Big Trouble ... Tr... \| DLM" heading; "папа &amp; малыш" (heading, alt, link, text); "стайлинг". |
+| fall-family-matching-outfits | B+ -> A | H1 "в едином стиле" against the meta wording; "в полоску с галстуком" read as a tie (print) in 4 places; "выхода в свет"; "без ощущения формы"; "носок" for wears. |
+| best-matching-family-outfits-for-winter | B -> A | Title Case meta title; capitalised link labels mid-sentence; "Принт с сердцем"/"Флис" hyphen product labels; missing commas before "прежде чем" and "чтобы"; " - " hyphens for dashes; trailing "- хорошее дополнительное чтение"; "размерная этикетка". |
+| the-complete-guide-to-family-matching-outfits | B -> A | Title Case meta title; "Мама и я"/"Папа и я" category and link labels and "Начните с «мама и я»"; capitalised text after colons in steps and levels; missing dashes ("каждый праздник повод"); "новогодние" for Christmas. |
+| what-to-wear-for-family-photos-matching-outfit-ideas | B -> A | Title Case meta title; English "Mommy and Me"/"Daddy and Me" in 4 link labels; "как в форме"; "вне времени и элегантно" agreement; opening sentence without "ли". |
+| holiday-family-matching-outfits-complete-guide | B -> A | 6 image alt texts left in English; Title Case meta title; "гид"; meta "согласованным семейным фото"; "измерять, а не угадывать"; "без ощущения формы". |
+| christmas-matching-family-pajamas | B -> A | Truncated "... \| DLM" product titles in 2 headings, 2 alt texts and 2 sentences plus 1 truncated alt; "&amp;" for "и"; "в едином стиле" title; "с умом" three times; "для более облегающей" without a noun; "носок". |
+| matching-family-christmas-pajamas-guide-2026 | A- -> A | "гид" in title and meta title; "(cm и inches)" left in English; "посмотрите на комбинезоны". |
+| family-christmas-photo-outfits-2026 | A- -> A | "гид" in title and meta title; summary "к фото ... и мини-фотосессиям" case slip; "хочется надпись". |
+| daddy-and-me-christmas-outfits | B -> A | "новогодний" for Christmas (10 places incl. title, meta, summary); "папа и ребёнок"/"«Папа и я»" calque in title, 3 link labels and body; missing dashes (6); nominative link labels after "коллекция" (2); "Мерки приблизительные, поэтому если". |
+| matching-family-christmas-shirts | B -> A | 100-char title; "новогодние" for Christmas (6); 2 stray spaces before punctuation after links; "Три простых способа сочетать одежду с футболками"; "Современно, и легко"; "обмен размера". |
+| matching-family-shirts-for-pictures | B -> A | Title Case in title, meta title and 8 headings; 87-char title; nominative link labels after "коллекции" and "коллекцию" (3); "с твёрдыми взглядами"; "лезущей"; missing commas after 2 links. |
+| matching-couples-christmas-pajamas-and-sweaters | B+ -> A | 98-char title; "гид" in meta title; "скоординированный" (3); "Классические красный и зелёный" as a label; "поэтому если". |
+
+Result: 0 C, 13 B/B+, 2 A- before; all 15 edited and A after edits (Admin readback only, live pages not re-graded). Recurring causes: "Мама и я"/"Папа и я" and "Mommy and Me" calques, Title Case in a sentence-case language, "новогодний" for Christmas, "гид" and "согласованный" anglicism and bureaucratese, truncated English "... | DLM" product titles, English alt text, missing dashes and commas.
+
+Remaining, not changed:
+- English product names (Vibrant Rainbow, Pastel Bloom, Buffalo Plaid Tree, Fair Isle, We Are Family, Let It Snow etc.) kept as names in link labels.
+- Non-localized `/policies/refund-policy` hrefs and the stray `</h3></h3>` in christmas-matching-family-pajamas are identical to the English source; "$" price formats and delivery-estimate wording follow the source.
+- "Рождество и Новый год" in matching-family-christmas-shirts follows the translated opening and was left.
+
+## Korean sweep
+
+Date 2026-09-29. Locale ko, URL folder /ko. Full sweep of the 15 blog articles (live page fetched, stored translation edited via `organic_engine.py translate-apply --execute`; every write read back `verified: true`). Receipts: `ops/organic/receipts/2026-09-29/koqa-<handle>.json`. Target register: polite 해요체 or 합니다체 kept consistent within each article; site term 커플룩/패밀리룩 for matching outfits; meta_title at most 35 characters and meta_description 50-90 characters. English, other languages, products and theme untouched. Fixed articles were verified by Admin readback only, not re-graded on the live page.
+
+| Article | Grade | Main problems found (fixed unless noted) |
+|---|---|---|
+| mommy-and-me-outfits-for-every-budget | B -> A | H1 "엄마와 아이의 의상" against the "엄마와 딸 커플룩" meta title; stray space between link and particle in about 10 places; 합니다체 endings inside a 해요체 article; "발렌타인데이"; repeated "엄마와 딸" in the closing line. |
+| daddy-and-me-matching-outfits-the-ultimate-guide | B+ -> A | "아빠와 나 컬렉션" calque; "트로피칼"; 해요체 and 죠/거든요 endings inside a 합니다체 article; "힘들이지 않은 멋". |
+| best-matching-swimsuits-for-the-whole-family | B -> A | "아빠 & 아기" ampersands in heading, alt, text and link; truncated "Little Tr... \| DLM" heading; "최고의" calque in H1 and H2 against the "추천" meta title; "전략적으로" calque; "바디수트". |
+| fall-family-matching-outfits | A- -> A | 126-character meta description (limit 90); "준비 되셨나요" missing 가. |
+| best-matching-family-outfits-for-winter | A- -> A | Meta title "가족 맞춤 코디" (custom-tailoring reading) repeating 가족; heading "준비 되셨나요" without 가 or question mark; "똑똑하게 쇼핑하세요" calque in the summary. |
+| the-complete-guide-to-family-matching-outfits | B -> A | Meta title "가족 맞춤 의상" (tailored clothes) against the H1 "커플룩"; 107-character meta description; "엄마와 나"/"아빠와 나" calques in the category list, prose and link labels; "1단계" used for both the steps and the levels; "억지로 강요하기" redundancy; "해주세요". |
+| what-to-wear-for-family-photos-matching-outfit-ideas | B -> A | Awkward calque H1 "가족 사진을 위해 무엇을 입을지: 어울리는 복장"; 97-character meta description; "맞춤 패밀리룩"; English "Mommy and Me"/"Daddy and Me" in four link labels; 해요체 and 합니다체 mixed in the same paragraphs; "원피스 순간에 아름답습니다"; missing spaces in "만나보세요", "해보세요", "입어볼". |
+| holiday-family-matching-outfits-complete-guide | B -> A | 6 image alt texts left in English; H1 "휴일" (day off) for the holiday season; "맞춤 의상" in the meta title; 102-character meta description; 시밀러룩 against 커플룩 in the H1 and links; "전략적으로" calque. |
+| christmas-matching-family-pajamas | B -> A | Truncated English-derived headings, alt texts and link labels ("... \| DLM", "&amp;"), repeated in body sentences; 113-character meta description; 해요체 endings inside a 합니다체 article. |
+| matching-family-christmas-pajamas-guide-2026 | B+ -> A | Meta title "패밀리룩 크리스마스 잠옷 2026" noun stack; "100% polyester" and "inches" left in English; "함께 할" spacing. |
+| family-christmas-photo-outfits-2026 | A- -> A | "함께 할 활동" spacing only. |
+| daddy-and-me-christmas-outfits | B+ -> A | Redundant H1 "아빠와 아이 ... 아빠와 아이를 위한 매칭 아이디어"; "아빠와 나 컬렉션"/"아빠와 나 셔츠" link labels; 해요체 "알려드려요" in a 합니다체 meta description. |
+| matching-family-christmas-shirts | B -> A | 44-character H1 with 시밀러룩 against 커플룩 elsewhere; 시밀러룩 in 5 body places and the summary; "가족 사진" spacing; "티셔츠를 ... 대어 보세요". |
+| matching-family-shirts-for-pictures | B -> A | "단체 티셔츠" (group uniform) in H1, meta title and meta description against "커플룩 셔츠" in the body; 해요체 "정리했어요" in the meta description; missing space between link and "컬렉션"/"가이드" (3 places); "체형도 크게 가리지 않습니다"; "나무 줄". |
+| matching-couples-christmas-pajamas-and-sweaters | B+ -> A | "커플 크리스마스 커플" repeated in the H1; "고르는 법 가이드" redundant in the meta title; "아이들을 함께할", "자기 편한". |
+
+Result: 0 C, 12 B/B+, 3 A- before; 15 edited; all 15 A after edits (Admin readback only, live pages not re-graded). Recurring causes: "엄마와 나"/"아빠와 나" and "Mommy and Me" calques, "맞춤" for matching outfits, 시밀러룩 mixed with 커플룩, truncated English "... | DLM" product titles and "&amp;" in headings, meta descriptions over 90 characters, stray spaces at link/particle boundaries and in "함께 할", and 해요체/합니다체 mixing inside one article.
+
+Remaining, not changed:
+- English product names (Vibrant Rainbow, Pastel Bloom, Lights Out Reindeer, We Are Family, Let It Snow etc.) and variant labels such as "엄마(Mother)", "아동(Child)" kept as names.
+- Non-localized `/policies/refund-policy` hrefs, the `href="/"` home links and the stray `</h3></h3>` in christmas-matching-family-pajamas are identical to the English source; "$" price formats and delivery-estimate wording follow the source.
+- 시밀러룩 kept in mommy-and-me-outfits-for-every-budget as a natural variant beside 커플룩.
