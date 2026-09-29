@@ -56468,3 +56468,23 @@ Owner asked "where are the new listings?" on 2026-09-29: zero products were adde
 - Organic engine: daily new-article cap raised 3 → 5 until Nov 15 (Christmas pages must be live by mid-Oct; every audited engine article passed).
 
 Rollback: revert this commit; the routine prompts live in `~/.claude/scheduled-tasks/*/SKILL.md`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-bundle-cart-message-baseline
+
+- task_entities: commit `04b9329` (cart bundle message, live ~2026-09-29 02:30 UTC); anchors `2026-09-28-cart-to-checkout-human-funnel-and-test-carts`, `2026-09-28-bundle-offer-copy-and-christmas-order-by-timing`
+- task_stage: VERIFY (measurement window open); read-only, no store change
+- next_action_id: READOUT_WHEN_60_POST_RELEASE_PHONE_CARTS
+
+Why: the owner asked to compare the phone cart → checkout rate and the share of 3+ piece orders before and after the bundle cart message.
+
+After (2026-09-29 02:00–13:59 UTC, ShopifyQL): 31 phone sessions, 0 carts, 0 checkouts, 0 orders. Nothing to compare yet.
+
+Frozen baseline (ShopifyQL, LIVE_VERIFIED 2026-09-29):
+- Phones, 2026-08-29 → 09-28 excluding the 09-27 agent test day: 2,483 sessions → 103 carts → 24 checkouts → 10 orders. Cart → checkout 23%, checkout → order 42%.
+- Orders by pieces (refund rows excluded): Jun 1 – Sep 28 66 orders, 3+ pieces 42%, 2.92 pieces/order; Aug – Sep 28 21 orders, 38%; Sep 1–28 11 orders, 27%, 2.45 pieces/order.
+
+Readout rule:
+- Cart → checkout: compare once ≥60 phone carts have accrued after release (about 3–4 phone carts/day now that paid traffic has ended). Exclude logged agent test windows.
+- 3+ piece share: compare once ≥15 orders have accrued after release.
+- Success: cart → checkout ≥30% and 3+ share ≥45%. No effect: cart → checkout ≤23% and 3+ share ≤38%; then test the next hypothesis (the cart drawer opening after each builder add), not more promo copy.
+- Confound: the same release also changed PDP bundle copy, and Christmas and the Oct 1 season shift both start in the window. The readout measures the whole release, not the cart line alone.
