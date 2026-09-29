@@ -187,6 +187,21 @@
         assign noindex_follow = true
       endunless
     endif
+
+    comment
+      GSC fix 6 (2026-09-29): ?page=N beyond the last page answered 200 with a
+      self-canonical (soft 404). `paginate` does not exist outside the section's
+      paginate block, so derive the last page from the unfiltered product count and
+      the collection grid page size (templates/collection.json, products_per_page 36;
+      keep this constant equal to it, or lower the page size only with this line).
+    endcomment
+    if collection != blank and current_page > 1
+      assign dlm_collection_last_page = collection.all_products_count | plus: 35 | divided_by: 36
+      if current_page > dlm_collection_last_page
+        assign should_noindex = true
+        assign noindex_follow = true
+      endif
+    endif
   endif
 
   assign social_image_url = blank

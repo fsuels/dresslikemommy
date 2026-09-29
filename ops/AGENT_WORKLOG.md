@@ -56488,3 +56488,19 @@ Readout rule:
 - 3+ piece share: compare once ≥15 orders have accrued after release.
 - Success: cart → checkout ≥30% and 3+ share ≥45%. No effect: cart → checkout ≤23% and 3+ share ≤38%; then test the next hypothesis (the cart drawer opening after each builder add), not more promo copy.
 - Confound: the same release also changed PDP bundle copy, and Christmas and the Oct 1 season shift both start in the window. The readout measures the whole release, not the cart line alone.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-theme-malformed-locale-links
+
+- task_entities: backlog M4, M5, M6 (`ops/organic/BACKLOG.md`, `ops/organic/GSC_INDEXING_DIAGNOSIS.md` fixes 5, 6, 7); files `snippets/meta-tags.liquid`
+- task_stage: BUILD (M5), DIAGNOSE (M4, M6)
+- next_action_id: VERIFY_LIVE_OUT_OF_RANGE_PAGE_NOINDEX
+
+M5 changed: `snippets/meta-tags.liquid` now outputs `noindex, follow` on a collection page whose `current_page` is above the last page, derived as `ceil(collection.all_products_count / 36)` (`paginate` is not available in the head; 36 = `products_per_page` in `templates/collection.json`, the schema maximum, so a lower real page size is the only risk direction; keep the constant equal to it).
+
+M4 not changed: no server-side source exists. `shipping-country-confirmation` and `shipping-country-checker-modal` already handle a `routes.root_url` without a trailing slash (since 2026-05-10). Live readback 2026-09-29 of `/fr /it /nl /ja /pt /de /es` home, product and `/fr` cart, collection, shipping-info, faqs: every shipping-info href is `/xx/pages/shipping-info`, and zero `xxpages/` strings. The GSC `/frpages/...` URLs are historical. The client-side JS repair in `layout/theme.liquid` stays as a harmless guard.
+
+M6 not changed: English `new-women-outfits` canonical is `matching-outfits` and `/es/` is self-canonical, matching the documented intent in `layout/theme.liquid` ("localized copies keep their own canonical"); neither carries a robots meta (the 155 noindexed URLs are stale, the handle is in the thin-collection whitelist). Open finding: English hreflang `en`/`x-default` for that page points at a URL whose canonical is `matching-outfits`; the fix would be an owner/CEO decision (keep English self-canonical, or accept the mixed cluster).
+
+Checks: `ceo_worktree.py check`; live readback listed above; M5 live proof recorded after sync.
+
+Rollback: revert this commit.
