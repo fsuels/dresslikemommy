@@ -108,6 +108,12 @@ Lead = PO created → stocked at the BuckyDrop warehouse (median / p90 days). So
   - 野狼魅力: 38 family/kids offers, mostly school/kindergarten activity uniforms and big smiley faces (Smiley-mark risk).
     - Family designs: small hearts (≈ our Little Heart), cartoons, "GOOD LUCKY", and a PRADA-like "PADA" print (IP, excluded).
     - Only red "little sun" 1085936274165 is fresh, with moderate appeal; not listed.
+- **Re-check of 3–4-year near-misses under the owner's new strict rule (2026-09-28).** None qualifies yet:
+  - 松华 (Fair Isle wool; est. 2023-09): pickup 97.80%, fulfillment 97.85%, quality returns 0.29%, disputes 0%, service 4.5, but 347 orders/30d (<500).
+  - 创贸 (虎门 Christmas sweatshirt; est. 2024-03): pickup 100%, returns 0.99%, but 101 orders/30d.
+  - 四季好孕 (maternity): pickup 98.41%, but 441 orders/30d.
+  - 鑫盛盛: pickup 95.37% (<97%). 橘佑: pickup 94.56%.
+  - All stay on watch; re-read when order volume rises.
   - "现货" (in stock) family-sweater searches return only 12-digit, pre-2026 offers. In-stock family knits are old designs, and fresh 2026 ones are made to order (3–10 day promises), so the freshness and 48h rules rarely overlap for family knitwear. Kids' knitwear factories (TYG, 金贝儿) are the exception.
 - **Round 4:** "kids' Christmas sweaters, boys & girls" search, 14 new offers scanned. Two pass shipping and season; both fail tenure:
   - 东莞大朗棉羊羊毛织厂: 2 years, pickup 84.6%.
