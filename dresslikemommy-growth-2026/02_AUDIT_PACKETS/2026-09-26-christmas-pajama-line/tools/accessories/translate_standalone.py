@@ -22,7 +22,7 @@ from ops.scripts.poll_shopify_product_translations import (  # noqa: E402
     ShopifyClient, collect_resource_snapshots, resolve_target_locales, should_translate_field)
 from ops.scripts.shopify_admin_config import load_access_token, resolve_store_domain  # noqa: E402
 
-SCRATCH = Path("/private/tmp/claude-501/-Users-fsuels-Projects-dresslikemommy/a76726b8-00be-4d83-af09-8ad9c025381c/scratchpad")
+SCRATCH = Path("/tmp/dlm-codex")
 CODEX = "/Applications/ChatGPT.app/Contents/Resources/codex"
 PROMPT = """You are a professional e-commerce translator for Dress Like Mommy, a store of matching family outfits.
 TASK: source_en.json maps each English string to itself. For each of these locales: {LOCALES}, write ./out/<locale>.json (create ./out) with exactly the same keys (the English strings) and the translated string as each value.

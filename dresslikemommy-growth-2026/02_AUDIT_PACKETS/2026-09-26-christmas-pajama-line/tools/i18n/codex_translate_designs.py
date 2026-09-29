@@ -16,7 +16,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 CODEX = "/Applications/ChatGPT.app/Contents/Resources/codex"
-WORK = Path("/private/tmp/claude-501/-Users-fsuels-Projects-dresslikemommy/a76726b8-00be-4d83-af09-8ad9c025381c/scratchpad/codex_i18n")
+WORK = Path("/tmp/dlm-codex/codex_i18n")
 LOCALES = ["ar", "cs", "da", "de", "el", "es", "fi", "fr", "he", "hi", "it", "ja", "ko", "nl", "no", "pl", "pt-BR", "ro", "ru", "sv"]
 KEYS = ("print", "print_sentence", "feature_label", "feature_text")
 

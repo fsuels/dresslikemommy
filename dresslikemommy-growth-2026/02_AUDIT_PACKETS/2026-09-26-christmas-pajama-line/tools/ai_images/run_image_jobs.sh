@@ -4,7 +4,7 @@
 set -uo pipefail
 ROOT=/Users/fsuels/Projects/dresslikemommy
 A=$ROOT/dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-christmas-pajama-line/tools/ai_images
-WORK=/private/tmp/claude-501/-Users-fsuels-Projects-dresslikemommy/a76726b8-00be-4d83-af09-8ad9c025381c/scratchpad/ai_jobs
+WORK=/tmp/dlm-codex/ai_jobs
 CODEX=/Applications/ChatGPT.app/Contents/Resources/codex
 mkdir -p "$WORK" "$A/logs"
 for handle in "$@"; do
