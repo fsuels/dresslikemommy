@@ -64,3 +64,25 @@
 - 2026-09-29T15:51Z last-chance-summer-matching-family-outfits: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
 - 2026-09-29T15:51Z matching-family-outfits-for-august-vacations: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
 - 2026-09-29T15:51Z red-white-and-blue-patriotic-family-matching-looks: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:52Z black-friday-deals-top-matching-family-outfits: all 20 locales of the expanded body + meta VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:52Z spring-break-matching-looks-for-the-whole-family: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:52Z spring-matching-outfits-for-mommy-and-me: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:52Z summer-matching-family-outfits: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T15:52Z summer-vacation-matching-family-outfits-guide: all 20 locales (body + meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-29T16:16Z matching-outfit-sizing-guide-right-fit-for-everyone: all 20 locales current VERIFIED (0 left) — CEO gap worker
+- 2026-09-29T16:16Z ultimate-gift-guide-matching-outfits-for-every-occasion: all 20 locales current VERIFIED (0 left) — CEO gap worker
+- 2026-09-29T16:16Z best-matching-outfits-for-thanksgiving-dinner: all 20 locales current VERIFIED (0 left) — CEO gap worker
+- 2026-09-29T16:16Z matching-family-christmas-sweaters-guide-2026: all 20 locales current VERIFIED (0 left; Dec-8 sentence fix pending) — CEO gap worker
+- 2026-09-29T16:16Z matching-family-christmas-pajamas-guide-2026: all 20 locales current VERIFIED (0 left; Dec-8 sentence fix pending) — CEO gap worker
+- 2026-09-29T16:16Z family-christmas-photo-outfits-2026: all 20 locales current VERIFIED (0 left; Dec-8 sentence fix pending) — CEO gap worker
+- 2026-09-29T16:16Z halloween-family-matching-costume-ideas: all 20 locales current VERIFIED (0 left; Dec-8 sentence fix pending) — CEO gap worker
+- 2026-09-29T16:17Z fall-festival-matching-outfits-for-the-whole-family: all 20 locales current VERIFIED (0 left) — CEO gap worker
+- 2026-09-29T16:17Z best-matching-family-outfits-for-winter: all 20 locales current VERIFIED (0 left) — CEO gap worker
+- 2026-09-29T16:17Z how-to-care-for-your-matching-family-outfits: all 20 locales current VERIFIED (0 left) — CEO gap worker
+- 2026-09-29T16:18Z daddy-and-me-matching-outfits-the-ultimate-guide: all 20 locales current VERIFIED (0 left) — CEO gap worker
+- 2026-09-29T16:18Z apple-picking-matching-outfits-for-the-whole-family: all 20 locales current VERIFIED (0 left) — CEO gap worker
+- 2026-09-29T16:18Z best-fall-colors-for-family-matching-looks: all 20 locales current VERIFIED (0 left) — CEO gap worker
+- 2026-09-29T16:18Z matching-couples-christmas-pajamas-and-sweaters: ru, ar, hi VERIFIED (0 left for this article)
+- 2026-09-29T16:19Z matching-family-christmas-sweaters-guide-2026: early 'December 8' sentence replaced in English + 20 locales (surgical) VERIFIED (0 left) — CEO claim-fix worker
+- 2026-09-29T16:19Z matching-family-christmas-pajamas-guide-2026: early 'December 8' sentence replaced in English + 20 locales (surgical) VERIFIED (0 left) — CEO claim-fix worker
+- 2026-09-29T16:19Z family-christmas-photo-outfits-2026: early 'December 8' sentence replaced in English + 20 locales (surgical) VERIFIED (0 left) — CEO claim-fix worker
