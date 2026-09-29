@@ -113,6 +113,8 @@ COLLECTION_BY_HANDLE_Q = """query($handle: String!) { collectionByHandle(handle:
   id handle title productsCount { count } seo { title description } } }"""
 COLLECTION_UPDATE_M = """mutation($input: CollectionInput!) { collectionUpdate(input: $input) {
   collection { id handle seo { title description } } userErrors { field message } } }"""
+COLLECTION_PRODUCTS_Q = """query($id: ID!, $cursor: String) { collection(id: $id) { products(first: 250, after: $cursor) {
+  nodes { handle } pageInfo { hasNextPage endCursor } } } }"""
 ARTICLE_BY_HANDLE_Q = """query($q: String!) { articles(first: 5, query: $q) { nodes { id handle title isPublished
   seoTitle: metafield(namespace: "global", key: "title_tag") { value }
   seoDesc: metafield(namespace: "global", key: "description_tag") { value } } } }"""
@@ -133,15 +135,35 @@ def text_of(html_text: str) -> str:
     return html.unescape(re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", stripped))).strip()
 
 
+def live_product_handles(admin: "Admin") -> set:
+    return {p["handle"] for p in admin.paged(ACTIVE_PRODUCTS_Q, "products") if p["onlineStoreUrl"]}
+
+
+def live_counts(admin: "Admin", collections: List[Dict], live_products: set) -> Dict[str, int]:
+    """Products a shopper can actually see: active and on the online store (admin productsCount includes drafts/archived)."""
+    counts = {}
+    for c in collections:
+        handles, cursor = [], None
+        while True:
+            data = admin.gql(COLLECTION_PRODUCTS_Q, {"id": c["id"], "cursor": cursor})["collection"]["products"]
+            handles += [n["handle"] for n in data["nodes"]]
+            if not data["pageInfo"]["hasNextPage"]:
+                break
+            cursor = data["pageInfo"]["endCursor"]
+        counts[c["handle"]] = sum(1 for h in handles if h in live_products)
+    return counts
+
+
 def cmd_inventory(args) -> int:
     admin = Admin(args.store_domain)
     collections = admin.paged(COLLECTIONS_Q, "collections")
+    counts = live_counts(admin, collections, live_product_handles(admin))
     articles = admin.paged(ARTICLES_Q, "articles")
     payload = {
         "generated_at": now_stamp(),
         "collections": [
             {
-                "handle": c["handle"], "title": c["title"], "products": c["productsCount"]["count"],
+                "handle": c["handle"], "title": c["title"], "products": counts[c["handle"]], "products_admin": c["productsCount"]["count"],
                 "smart": c["ruleSet"] is not None, "theme_owned": c["handle"] in THEME_OWNED_COLLECTIONS,
                 "seo_title": c["seo"]["title"], "seo_description": c["seo"]["description"],
                 "description_words": len(text_of(c["descriptionHtml"]).split()), "updated_at": c["updatedAt"],
@@ -160,7 +182,7 @@ def cmd_inventory(args) -> int:
     }
     write_json(args.output, payload)
     summary_path = Path(args.output).with_suffix(".md")
-    lines = [f"# Inventory {payload['generated_at']}", "", "## Collections (handle | products | theme_owned | seo_title chars | seo_description chars)"]
+    lines = [f"# Inventory {payload['generated_at']}", "", "## Collections (handle | live products | theme_owned | seo_title chars | seo_description chars)"]
     for c in sorted(payload["collections"], key=lambda c: -c["products"]):
         lines.append(f"- {c['handle']} | {c['products']} | {'T' if c['theme_owned'] else '-'} | {len(c['seo_title'] or '')} | {len(c['seo_description'] or '')}")
     published = [a for a in payload["articles"] if a["published"]]
@@ -304,8 +326,10 @@ def cmd_collection_seo(args) -> int:
     before = admin.gql(COLLECTION_BY_HANDLE_Q, {"handle": args.handle})["collectionByHandle"]
     if not before:
         problems.append(f"collection {args.handle} not found")
-    elif before["productsCount"]["count"] < 3:
-        problems.append(f"collection has {before['productsCount']['count']} products; fix membership before SEO")
+    else:
+        live = live_counts(admin, [before], live_product_handles(admin))[args.handle]
+        if live < 3:
+            problems.append(f"collection shows {live} live products (theme noindexes <3); fix the catalog before SEO")
     receipt = {"at": now_stamp(), "handle": args.handle, "before": before, "requested": {"title": args.seo_title, "description": args.seo_description}, "problems": problems, "executed": False}
     if problems or not args.execute:
         write_json(args.receipt, receipt)
@@ -367,9 +391,10 @@ def link_health(body: str, live_products: set, live_collections: set) -> Dict:
 
 
 def live_sets(admin: Admin):
-    products = {p["handle"] for p in admin.paged(ACTIVE_PRODUCTS_Q, "products") if p["onlineStoreUrl"]}
-    collections = {c["handle"] for c in admin.paged(COLLECTIONS_Q, "collections") if c["productsCount"]["count"] >= 3}
-    return products, collections | {"all"}
+    products = live_product_handles(admin)
+    collections = admin.paged(COLLECTIONS_Q, "collections")
+    counts = live_counts(admin, collections, products)
+    return products, {h for h, n in counts.items() if n >= 3} | {"all"}
 
 
 def cmd_article_links(args) -> int:
