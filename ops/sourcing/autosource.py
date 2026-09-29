@@ -230,6 +230,20 @@ def credit(tab: Tab, host: str) -> dict:
         "orders30": g(r"最近30天支付订单数\s*(\d+)") or g(r"orders in the last 30 days\s*(\d+)"),
         "warehouse": g(r"仓库地址\s*(\S{2,14})"),
     }
+    if not d["years"] and d["established"]:
+        # English UI shows only the founding date ("Established in april 2018" / "2018.04成立"); use it as the tenure fallback.
+        est = d["established"].strip()
+        m = re.match(r"(\d{4})\.(\d{2})", est)
+        if m:
+            y, mo = int(m.group(1)), int(m.group(2))
+        else:
+            mm = re.match(r"([A-Za-z]+)\s+(\d{4})", est)
+            months = ["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"]
+            y, mo = (int(mm.group(2)), months.index(mm.group(1)[:3].lower()) + 1) if mm and mm.group(1)[:3].lower() in months else (0, 0)
+        if y:
+            now = time.localtime()
+            d["years"] = str(int(((now.tm_year - y) * 12 + now.tm_mon - mo) // 12))
+            d["years_source"] = "founding date"
     return d
 
 
