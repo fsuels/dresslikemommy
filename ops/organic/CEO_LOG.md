@@ -23,3 +23,11 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Indexing: SKIPPED. No new engine articles since the 13:50Z batch (daily cap reached; 14:24Z built none).
 - MAIN item: none taken; the commit step needs GitHub access first.
 - Flags for owner: GitHub SSH key is not usable from the scheduled-task environment (publickey denied). Check ssh-agent / key loading for the LaunchAgent session.
+
+## 2026-09-29T16:53Z CEO loop
+- Watchdog: no frozen routines (all 5 checked, latest runs succeeded). push-pending: nothing pending (GitHub SSH works again).
+- Review: engine 15:24Z and 16:24Z runs (card-photo and shirts-for-pictures articles, 7 repairs). Shirts article and card-photo article: 200, 1 h1, robots none, 1704 and 1296 words, no banned claims flagged. `article-links` reports 0 articles needing fix.
+- Commit: pushed d8676a7 (shirts article, translation receipt, log, backlog).
+- Indexing: BLOCKED by Search Console "Quota exceeded" on the first request (shirts article is unknown to Google); card-photo article not inspected. Retry next UTC day.
+- MAIN item: M3 marked DONE from the `article-links` clean report; no other OPEN MAIN row is doable (#1 catalog gap, S1 low value, M6 needs a decision). No theme change shipped.
+- Flags for owner: none. Unchecked: winter guide `-2024`/`-2025` blog links (tool does not flag them).
