@@ -15,3 +15,11 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Indexing: daddy-and-me and matching-family-christmas-shirts were already on Google; indexing re-requested for both.
 - MAIN item: M1 found already in main and live (0 theme files differ); marked DONE. No new theme change needed.
 - Flags for owner: none. M2 (bestseller/deal wording evidence) still open.
+
+## 2026-09-29T14:51Z CEO loop
+- Watchdog: no frozen routines (autosource running, 6 min old).
+- Review: engine 14:24Z run was throttled by Shopify and wrote nothing live; 7 articles remain in F0. Live `organic_engine.py check` returned 429 on all 3 URLs (site rate limit), so no page-level verdict this run.
+- Commit: BLOCKED. `ceo_worktree.py organic` failed at `git fetch origin main`: "Permission denied (publickey)" (GitHub SSH auth). Engine files remain uncommitted in the shared checkout.
+- Indexing: SKIPPED. No new engine articles since the 13:50Z batch (daily cap reached; 14:24Z built none).
+- MAIN item: none taken; the commit step needs GitHub access first.
+- Flags for owner: GitHub SSH key is not usable from the scheduled-task environment (publickey denied). Check ssh-agent / key loading for the LaunchAgent session.
