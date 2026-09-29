@@ -79,19 +79,29 @@ class Admin:
         self.token = load_access_token(token)
 
     def gql(self, query: str, variables: Optional[Dict] = None) -> Dict:
+        """POST a GraphQL call; back off and retry when Shopify throttles (several agents share one API budget)."""
         body = json.dumps({"query": query, "variables": variables or {}}).encode("utf-8")
-        request = urllib.request.Request(
-            self.endpoint, data=body, method="POST",
-            headers={"Content-Type": "application/json", "X-Shopify-Access-Token": self.token},
-        )
-        try:
-            with urllib.request.urlopen(request, timeout=40) as response:
-                decoded = json.loads(response.read().decode("utf-8"))
-        except urllib.error.HTTPError as error:
-            raise RuntimeError(f"Shopify HTTP {error.code}: {error.read().decode('utf-8', 'replace')[:300]}") from error
-        if decoded.get("errors"):
-            raise RuntimeError(f"Shopify GraphQL errors: {decoded['errors']}")
-        return decoded["data"]
+        for attempt in range(8):
+            request = urllib.request.Request(
+                self.endpoint, data=body, method="POST",
+                headers={"Content-Type": "application/json", "X-Shopify-Access-Token": self.token},
+            )
+            try:
+                with urllib.request.urlopen(request, timeout=40) as response:
+                    decoded = json.loads(response.read().decode("utf-8"))
+            except urllib.error.HTTPError as error:
+                if error.code in (429, 502, 503) and attempt < 7:
+                    time.sleep(2 * (attempt + 1))
+                    continue
+                raise RuntimeError(f"Shopify HTTP {error.code}: {error.read().decode('utf-8', 'replace')[:300]}") from error
+            errors = decoded.get("errors")
+            if errors and "THROTTLED" in json.dumps(errors).upper() and attempt < 7:
+                time.sleep(2 * (attempt + 1))
+                continue
+            if errors:
+                raise RuntimeError(f"Shopify GraphQL errors: {errors}")
+            return decoded["data"]
+        raise RuntimeError("Shopify GraphQL still throttled after retries")
 
     def paged(self, query: str, root: str, variables: Optional[Dict] = None) -> List[Dict]:
         nodes, cursor = [], None
