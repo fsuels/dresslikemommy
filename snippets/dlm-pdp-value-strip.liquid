@@ -15,7 +15,7 @@
   width (min-width) so the JS swap from "12-16 days" to a date range does not
   rewrap. The holiday order-by slot (filled by assets/dlm-holiday-order-by.js)
   is reserved only for Christmas/Halloween-tagged products inside that
-  script's lead window; LEAD mirrors its HOLIDAYS[*].lead (Christmas 90,
+  script's lead window; LEAD mirrors its HOLIDAYS[*].lead (Christmas 14,
   Halloween 60). The script hides the slot when no line applies.
 {%- endcomment -%}
 {%- liquid
@@ -67,7 +67,7 @@
     if vs_christmas
       assign vs_target = vs_year | append: '-12-24' | date: '%s' | plus: 0
       assign vs_days = vs_target | minus: vs_now | divided_by: 86400
-      assign vs_open_until = vs_window_max | plus: 90
+      assign vs_open_until = vs_window_max | plus: 14
       if vs_days >= vs_window_max and vs_days <= vs_open_until
         assign vs_holiday_slot = true
       endif

@@ -27,11 +27,13 @@
 
   // month is 0-based. Christmas targets Dec 24 because many storefront
   // markets celebrate on Christmas Eve. `lead` is how many days before the
-  // cutoff the line starts to show: gift shoppers plan Christmas earlier.
+  // cutoff the line starts to show. Christmas uses 14 so a US cutoff of about
+  // Dec 8 first shows around Nov 24 (owner, 2026-09-28: a December date read
+  // in September confuses shoppers).
   // snippets/dlm-pdp-value-strip.liquid mirrors these leads to reserve space.
   var HOLIDAYS = {
     halloween: { month: 9, day: 31, lead: 60, tag: /^(family )?halloween\b/ },
-    christmas: { month: 11, day: 24, lead: 90, tag: /^(family )?christmas\b/ }
+    christmas: { month: 11, day: 24, lead: 14, tag: /^(family )?christmas\b/ }
   };
   var ORDER = ['halloween', 'christmas'];
 
