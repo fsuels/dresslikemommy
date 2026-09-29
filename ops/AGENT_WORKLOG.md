@@ -56588,3 +56588,16 @@ Addendum (2026-09-29, same session): full leaked-placeholder sweep. 328 live tra
 - Meta descriptions for the same six keys rewritten to 126-145 characters (each contains the target phrase; nl uses "moeder en dochter jurk", ro uses "costum de baie mama si fiica").
 - Checks: git diff shows only the 12 key values across 6 locale files; titles are 38-45 characters.
 - Rollback: revert the commit; Shopify's GitHub sync restores the previous locale values.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-locale-json-sync-gap-fixed
+
+- task_entities: live theme 133290917985 `locales/{nl,no,da,he,ro,cs}.json`; commit 2a48d33; `ops/scripts/ceo_worktree.py sync-locales`
+- task_stage: VERIFY done
+- problem_ids: none (fixed in session)
+- next_action_id: after any locale JSON commit run `ceo_worktree.py sync-locales --apply` and read the pages back
+
+Shopify's GitHub integration did not apply commit 2a48d33 (localized striking-distance titles for `dresses` nl/no/da and `swimsuits` he/ro/cs): the live files were last updated 02:44Z and still held the old values 11+ minutes after the push. Key-level diff of live vs origin/main showed exactly the 2 intended keys per file, so the CEO session upserted main's versions via themeFilesUpsert (before-state saved in `ops/organic/receipts/2026-09-29/theme-locale-before/`). Readback: /nl/collections/dresses "Moeder dochter jurken", /no and /da "Mor og datter kjole | Matchende kjoler", /he swimsuits "בגדי ים תואמים אמא ובת", /ro "Costume de baie mama fiica", /cs "Plavky máma a dcera". Full audit afterwards: 0 of 56 locale files drift from main.
+
+New `ceo_worktree.py sync-locales [--apply]`: compares every live locale file with origin/main key by key; --apply upserts only files with ≤ 20 differing keys (backup first) and refuses larger drift for manual review.
+
+Rollback: upsert the saved before-files.

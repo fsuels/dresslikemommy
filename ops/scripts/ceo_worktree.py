@@ -15,6 +15,8 @@ pushed from there.
   finish --name N              remove worktree N
   organic --message-file F     commit the organic engine's files (ops/organic/**, its articles) from the shared checkout
   push-pending                 push commits parked on ceo-pending/* branches after an SSH failure
+  sync-locales [--apply]       compare live theme locales/*.json with origin/main key by key; --apply upserts files
+                               whose drift is small (<= 20 keys), because Shopify's GitHub sync can drop JSON pushes
 
 GitHub access: fetch uses SSH and falls back to HTTPS via the gh CLI (read-only account); push needs the
 SSH key and is retried with backoff. If push still fails, the commit is parked on a ceo-pending/* branch.
@@ -200,6 +202,61 @@ def cmd_push_pending(args) -> int:
         cmd_finish(argparse.Namespace(name=name))
 
 
+LIVE_THEME = "gid://shopify/OnlineStoreTheme/133290917985"
+
+
+def _flat(d, prefix=""):
+    out = {}
+    for k, v in d.items():
+        key = f"{prefix}.{k}" if prefix else k
+        out.update(_flat(v, key)) if isinstance(v, dict) else out.__setitem__(key, v)
+    return out
+
+
+def _locale_json(text: str) -> dict:
+    return _flat(json.loads(re.sub(r"^\s*/\*.*?\*/", "", text, flags=re.S)))
+
+
+def cmd_sync_locales(args) -> int:
+    sys.path.insert(0, str(REPO))
+    from ops.scripts.organic_engine import Admin  # noqa: E402
+    admin = Admin()
+    fetch_main(REPO)
+    files = [f for f in run(["git", "ls-tree", "--name-only", "origin/main", "locales/"], REPO).stdout.split() if f.endswith(".json")]
+    drift, stamp = [], time.strftime("%Y%m%dT%H%M%SZ", time.gmtime())
+    for i in range(0, len(files), 10):
+        chunk = files[i:i + 10]
+        query = '{theme(id:"%s"){files(filenames:%s,first:10){nodes{filename body{... on OnlineStoreThemeFileBodyText{content}}}}}}' % (LIVE_THEME, json.dumps(chunk))
+        for node in admin.gql(query)["theme"]["files"]["nodes"]:
+            main_text = run(["git", "show", f"origin/main:{node['filename']}"], REPO).stdout
+            live, main = _locale_json(node["body"]["content"]), _locale_json(main_text)
+            keys = sorted(k for k in set(live) | set(main) if live.get(k) != main.get(k))
+            if keys:
+                drift.append({"filename": node["filename"], "keys": keys, "live": node["body"]["content"], "main": main_text})
+    for d in drift:
+        print(f"{d['filename']}: {len(d['keys'])} keys differ, e.g. {d['keys'][:4]}")
+    if not drift:
+        print("locales in sync")
+        return 0
+    if not args.apply:
+        return 1
+    big = [d["filename"] for d in drift if len(d["keys"]) > 20]
+    small = [d for d in drift if len(d["keys"]) <= 20]
+    backup = REPO / "ops/organic/receipts" / time.strftime("%Y-%m-%d", time.gmtime()) / f"theme-locale-before-{stamp}"
+    backup.mkdir(parents=True, exist_ok=True)
+    for d in small:
+        (backup / d["filename"].split("/")[-1]).write_text(d["live"], encoding="utf-8")
+    if small:
+        files_in = [{"filename": d["filename"], "body": {"type": "TEXT", "value": d["main"]}} for d in small]
+        res = admin.gql("mutation($t:ID!,$f:[OnlineStoreThemeFilesUpsertFileInput!]!){themeFilesUpsert(themeId:$t,files:$f){upsertedThemeFiles{filename} userErrors{filename message}}}",
+                        {"t": LIVE_THEME, "f": files_in})["themeFilesUpsert"]
+        print(json.dumps({"upserted": [x["filename"] for x in res["upsertedThemeFiles"] or []], "errors": res["userErrors"], "backup": str(backup)}))
+    if big:
+        print(f"REFUSED (drift > 20 keys, review by hand): {big}")
+        return 1
+    return 0
+
+
 def cmd_sync_theme(args) -> int:
     path = tree(args.name)
     fetch_main(path)
@@ -261,6 +318,9 @@ def main() -> int:
     p.add_argument("--name", required=True)
     p.add_argument("--apply", action="store_true")
     p.set_defaults(func=cmd_sync_theme)
+    p = sub.add_parser("sync-locales")
+    p.add_argument("--apply", action="store_true")
+    p.set_defaults(func=cmd_sync_locales)
     p = sub.add_parser("push-pending")
     p.set_defaults(func=cmd_push_pending)
     p = sub.add_parser("organic")
