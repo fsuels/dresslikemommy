@@ -56299,3 +56299,10 @@ Note: the first test cart in the built-in browser already held 1 item; `/cart/cl
 - **Engine:** opt-in spec flag `chart_no_sleeve` for charts that publish shoulder but no sleeve (Sleeve shows "-"). No effect on other specs.
 - **Owner rule update (same night):** 3–4-year suppliers are allowed only with strict stats; see CONTINUOUS-EXPANSION-WORKFLOW rule 3.
 - Rollback: set to DRAFT.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-happy-faces-placed
+
+- task_stage: DONE
+- **Placement:** happy-faces-family-matching-sweatshirts (session [57a715]; 东莞辰承, 48h) joined its collections automatically by type/tags.
+- **Related links:** happy-faces → Hooray Sun, Scribble Heart, Together Heart; Hooray Sun lists happy-faces first.
+- **Not added to Mommy & Me / Daddy & Me:** those collections are curated to single-parent-and-child sets (owner-approved Mommy & Me ordering keeps whole-family items out of the top), and this is a whole-family set.
