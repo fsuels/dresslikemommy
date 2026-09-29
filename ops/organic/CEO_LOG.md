@@ -31,3 +31,11 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Indexing: BLOCKED by Search Console "Quota exceeded" on the first request (shirts article is unknown to Google); card-photo article not inspected. Retry next UTC day.
 - MAIN item: M3 marked DONE from the `article-links` clean report; no other OPEN MAIN row is doable (#1 catalog gap, S1 low value, M6 needs a decision). No theme change shipped.
 - Flags for owner: none. Unchecked: winter guide `-2024`/`-2025` blog links (tool does not flag them).
+
+## 2026-09-29T18:51Z CEO loop
+- Watchdog: no frozen routines (all 5 checked, latest runs succeeded). push-pending: nothing pending.
+- Review: engine 17:24Z and 18:24Z runs only skipped (daily cap of 5 articles reached), no live writes. Shirts and card-photo articles re-checked live: 200, 1 h1, no robots meta, 1704 and 1296 words.
+- Commit: pushed 6cec2d1 (Spanish/French/Finnish/Portuguese translation QA receipts, TRANSLATION_QA.md).
+- Indexing: SKIPPED. GSC daily quota was exhausted at 16:55Z and resets next UTC day; I1 URLs stay OPEN for the next run after 00:00Z.
+- MAIN item: none doable (#1 catalog gap, S1 low value, M6 needs owner decision). No theme change shipped.
+- Flags for owner: none.
