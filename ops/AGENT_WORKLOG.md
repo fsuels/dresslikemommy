@@ -56539,3 +56539,23 @@ Results:
 - Fleece-lined variants, baby jumpsuits and hats of the Pure Joy offer are not listed (precedent: Hooray Sun).
 
 Addendum (2026-09-29, same session): full leaked-placeholder sweep. 328 live translated fields with `__DLMTOK` placeholders (alt texts, collection metafields, shop meta, 1 Arabic menu link, 4 page bodies incl. the Arabic contact email) re-translated by Codex from English, validated (no token, HTML/email/URL parity), registered 328/0 errors, readback 328/328, rescan PAGE/LINK/SHOP/COLLECTION 0 hits. Evidence packet §7 `token-fix/`. Agentic storefronts: auto-enabled by Shopify 2026-03-24; owner only needs to confirm toggles at admin.shopify.com/agentic.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-autosource-mommy-me-knits-and-yelang-catalog
+
+- task_entities: 1088036424157 (cute-happy-bunny-bear-family-matching-sweatshirts, DRAFT), cute-happy-bear-bunny-family-matching-sweatshirts (stray DRAFT, delete/archive)
+- task_stage: BLOCKED_SHOPIFY_TOKEN_401
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Round 1, Mommy & Me knits (search "母女装 毛衣 开衫 2026秋冬"): 12 results, 0 new family-titled 2026 offers.
+- Round 2, 野狼魅力 catalog (chentian1788.1688.com, 13 yrs, pickup 99.56%, ful 99.56%, ret 0.03%): 37 NEW offers listed. Scanned 7 obvious family sweatshirt candidates, all 7 passed scan and gate (deliveryLimit 2, 2026 autumn, supplier passes every rule). Remaining ~30 are school/activity uniforms, smiley, China/New-Year red, summer, or fleece duplicates of the same prints; not scanned.
+- Looked at 4 sheets:
+  - 1085054951005 / 1088035388394: tiny chest hearts on the template photo set, and hearts already covered (Little Heart, Scribble Heart, Eternal Bliss Hearts). SKIPPED rule 6/7.
+  - 1085936274165 (colour-ray sun): duplicate of live Hooray Sun. SKIPPED rule 6.
+  - 1085036379642 (今天会很好 Chinese-character art print): Chinese lettering, off-market. SKIPPED rule 5.
+  - 1088036424157 (bunny + bear "CUTE HAPPY" bubble lettering, 65/35 cotton/poly, unlined 8 colours + fleece + pants): passed all rules; no dupe.
+- Build of 1088036424157:
+  - First build (handle cute-happy-bear-bunny-family-matching-sweatshirts, code CHBB, 8 colours x 13 sizes = 104 variants) FAILED final verify (Shopify 100-variant cap). It left a stray DRAFT with that handle; the spec file can't be overwritten from the unattended run. CEO session: archive/delete that draft.
+  - Lesson: 13 sizes (7 kids + M-4XL) limits a family sweatshirt to 7 colours. Recipe with 7 colours (dropped Apricot, near-identical to White) rebuilt as cute-happy-bunny-bear-family-matching-sweatshirts (code CHBR): OK 91 variants x 100 stock, DRAFT.
+  - `translate` ran Codex and merged 20 locales, but `register_direct.py` failed twice with 401 Unauthorized against the Admin API (stored 24h token expired mid-run; hourly refresh agent likely not run). Per the rules: stop, product left DRAFT. images/review/finish NOT RUN.
+- To resume: refresh the Admin token, then run `autosource.py translate`, `images`, `review`, QA, `finish` for cute-happy-bunny-bear-family-matching-sweatshirts (recipe /tmp/autosource/recipe_cute-happy-bunny-bear-family-matching-sweatshirts.json, spec already written).
+- No new LIVE products this run.

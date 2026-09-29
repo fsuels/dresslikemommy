@@ -103,6 +103,7 @@ Recipe notes:
   - Adult S–4XL.
   - Skip sizes the store can't represent: 5XL, baby rompers.
   - Height→age examples: 80 cm → 6-12 Months, 90 → 1-2, 100 → 2-3, 110 → 4, 120 → 5-6, 130 → 6-7 or 7-8, 140 → 9-10, 150 → 11-12, 160 → 13-14.
+- **At most 100 variants** (colours × sizes): the engine verifies `variants(first: 100)`, and `spec` refuses more. Drop the weakest colours before building (2026-09-29: an 8-colour × 13-size build failed after its DRAFT was created). One offer = one product: never rebuild the same offer under a new handle.
 - **Chest:** full chest (胸围) as published; 半胸围 ×2. Weights: 斤 ÷ 2 = kg.
 - **Sleeve:** if the chart has no sleeve column (only 肩宽 shoulder), set `"chart_no_sleeve": true` and omit sleeve.
 - **Colour-pattern metaobject ids:** Red 69600804961, Green 70220546145, White 69639733345, Beige 69641928801, Blue 69639766113, Pink 69963645025, Purple 130284126305, Yellow 69622104161, Black 69943132257, Gray 69944672353.

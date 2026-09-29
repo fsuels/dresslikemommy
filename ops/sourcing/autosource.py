@@ -445,6 +445,13 @@ def cmd_spec(recipe_path: str) -> None:
     See the runbook for the recipe schema."""
     rc = json.loads(Path(recipe_path).read_text(encoding="utf-8"))
     oid = rc["offer_id"]
+    n_var = len(rc["colors"]) * len(rc["sizes"])
+    if n_var > 100:  # the engine's create/verify queries read variants(first: 100); a bigger product fails after the DRAFT exists
+        raise SystemExit(f"{n_var} variants > 100: drop colours or sizes before building (nothing was created)")
+    other = [f.stem for f in (STATE / "recipes").glob("*.json")
+             if f.stem != rc["handle"] and json.loads(f.read_text(encoding="utf-8")).get("offer_id") == oid]
+    if other and not rc.get("overwrite"):
+        raise SystemExit(f"offer {oid} already has a product ({', '.join(other)}): fix that one (recipe with \"overwrite\": true) instead of a new handle")
     sk = json.loads((STATE / "skus" / f"{oid}.json").read_text(encoding="utf-8"))
     prices, stock = sk["prices"], sk["stock"]
     kid = adult = 0.0
