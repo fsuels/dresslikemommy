@@ -78,3 +78,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 5 items (article body repair, dead products/collections → live collections, unsupported claims removed: bestsellers, "over 80 options", free-shipping line, "studies show", external Instagram/Pinterest links) — receipts: ops/organic/receipts/2026-09-29/body-{mothers-day-matching-outfits-mommy-and-me-guide,fall-family-matching-outfits,daddy-and-me-fall-outfit-ideas,summer-matching-family-outfits,mommy-and-me-matching-outfit-ideas}.json (all tool-verified; mommy-and-me-matching-outfit-ideas spot-checked live 200, 1 h1). 7 left in queue.
 - Research: none (backlog has ≥5 open ENGINE items)
 - Flags for MAIN/OWNER: none new. One unlisted `grep -c` command was run by mistake (read-only).
+
+## 2026-09-29T14:24Z run
+- Build: SKIPPED: Shopify Admin GraphQL `Throttled` (stop condition); build not attempted. Daily count 3 of 5 used.
+- Fix: 0 executed. Inventory and article-links worked (7 articles left). Repaired bodies written to /tmp/organic-20260929T1424/fixed/ for daddy-and-me-matching-outfits-the-ultimate-guide, apple-picking, best-fall-colors, fall-festival and best-matching-family-outfits-for-winter. 3 passed dry run (daddy-and-me-ultimate, apple-picking, winter), but `--execute` and the other 2 dry runs hit THROTTLED in `live_counts` after 2 retries. I ran 5 dry runs in parallel at first, which likely drained the bucket. Nothing written live.
+- Research: none
+- Flags for MAIN/OWNER: MAIN: F0 still has 7 articles. Next run should run article-body commands strictly one at a time. One unlisted `wc -l` was run by mistake (read-only).
