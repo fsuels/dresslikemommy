@@ -56559,3 +56559,14 @@ Addendum (2026-09-29, same session): full leaked-placeholder sweep. 328 live tra
   - `translate` ran Codex and merged 20 locales, but `register_direct.py` failed twice with 401 Unauthorized against the Admin API (stored 24h token expired mid-run; hourly refresh agent likely not run). Per the rules: stop, product left DRAFT. images/review/finish NOT RUN.
 - To resume: refresh the Admin token, then run `autosource.py translate`, `images`, `review`, QA, `finish` for cute-happy-bunny-bear-family-matching-sweatshirts (recipe /tmp/autosource/recipe_cute-happy-bunny-bear-family-matching-sweatshirts.json, spec already written).
 - No new LIVE products this run.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-autosource-token-leak-and-variant-cap-fix
+
+- task_entities: `ops/sourcing/autosource.py` (`add_size_strings`, `cmd_spec`); stray DRAFT `cute-happy-bear-bunny-family-matching-sweatshirts` (now ARCHIVED); `cute-happy-bunny-bear-family-matching-sweatshirts` (DRAFT, to resume)
+- task_stage: VERIFIED
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- The 401 in the 14:44Z run was self-inflicted: `engine_loader.load` sets `SHOPIFY_ADMIN_ACCESS_TOKEN=offline` (and domain `offline.invalid`) in os.environ, and `register_direct` inherited them. The stored Admin token was valid (other Admin calls in the same run succeeded). `add_size_strings` now restores both variables; tested (env identical before/after).
+- `spec` now refuses more than 100 variants (the engine verifies `variants(first: 100)`; an 8 × 13 build failed after creating its DRAFT) and refuses a second product for an offer that already has a recipe (use `"overwrite": true` to fix the existing one). The runbook states both.
+- The stray 104-variant DRAFT from the failed build was set to ARCHIVED (reversible, never had photos or went live); its recipe is removed from `ops/sourcing/state/recipes/`.
+- Resume `cute-happy-bunny-bear-family-matching-sweatshirts`: `translate` → `images` → `review` → QA → `finish` (the next autosource run is instructed by its worklog anchor).

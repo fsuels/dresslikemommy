@@ -548,14 +548,17 @@ def codex(dirpath: Path, prompt: str, timeout: int = 2400) -> None:
 
 def add_size_strings(handle: str) -> None:
     sys.path.insert(0, str(T))
-    saved = os.environ.get("SHOPIFY_STORE_DOMAIN")
+    env_keys = ("SHOPIFY_STORE_DOMAIN", "SHOPIFY_ADMIN_ACCESS_TOKEN")
+    saved = {k: os.environ.get(k) for k in env_keys}
     import seed_cache  # noqa
     ns = seed_cache.load(T / "specs" / f"{handle}.json")
-    # engine_loader sets SHOPIFY_STORE_DOMAIN=offline.invalid for offline loading; later subprocesses (register_direct) inherit os.environ
-    if saved is None:
-        os.environ.pop("SHOPIFY_STORE_DOMAIN", None)
-    else:
-        os.environ["SHOPIFY_STORE_DOMAIN"] = saved
+    # engine_loader sets offline placeholders (domain offline.invalid, token "offline"); later subprocesses
+    # (register_direct) inherit os.environ, so restore both (a leaked token gave 401 on 2026-09-29)
+    for k, v in saved.items():
+        if v is None:
+            os.environ.pop(k, None)
+        else:
+            os.environ[k] = v
     key = ns["size_key"]()
     en = {"size_text": ns["size_range_phrase"](), "kf5_text": ns["counts_phrase"](), "size_short": ns["size_short"]()}
     src = json.loads((T / "i18n/en_source.json").read_text(encoding="utf-8"))
