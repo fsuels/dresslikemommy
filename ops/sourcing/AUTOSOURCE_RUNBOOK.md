@@ -103,8 +103,42 @@ Recipe notes:
 - **Colour-pattern metaobject ids:** Red 69600804961, Green 70220546145, White 69639733345, Beige 69641928801, Blue 69639766113, Pink 69963645025, Purple 130284126305, Yellow 69622104161, Black 69943132257, Gray 69944672353.
 - **Codes and names:** the shortcode must be 4 unused capital letters. The handle and print name must not repeat an existing product name.
 - **fabric_key:** cotton_sweat (cotton), cotton_blend_sweat (cotton/polyester), modal_knit (modal/viscose knit). design_key: crew_sweatshirt, crew_knit, collar_knit, cardigan_knit.
-- **What can be automated:** family sweatshirts and sweaters, and Mommy & Me / Daddy & Me knit pairs (`knit_role`).
-  - Siblings-only (kids-only), couples-only (adults-only) and maternity have no engine mode yet. Shortlist them in `suppliers_append.md` with offer id, supplier stats and why they pass. The CEO session builds them.
+- **Engine path** (`spec` → `build` → `translate` → `images` → `review` → `finish`): family sweatshirts and sweaters, and Mommy & Me / Daddy & Me knit pairs (`knit_role`).
+- **Standalone path** for what the engine can't model — **siblings (kids-only), couples (adults-only), maternity (women-only)**: write `/tmp/autosource/recipe_<handle>.json` in the standalone schema below, then `standalone <recipe>` → `images <handle>` → `review <handle>` (QA) → `standalone-finish <handle>`.
+
+## Standalone recipe schema (siblings / couples / maternity)
+
+```json
+{
+ "kind": "standalone", "audience": "kids|adults|women", "offer_id": "1060255226703", "handle": "teddy-bear-siblings-christmas-sweaters", "code": "SBTB",
+ "print_name": "Teddy Bear Fair Isle",
+ "title": "≤70 chars", "seo_title": "≤60 chars … | Dress Like Mommy", "seo_desc": "≤155 chars",
+ "product_type": "Siblings Matching Sweaters | Couples Matching Sweatshirts | Maternity Sweaters",
+ "category1": "Siblings | Couples | Maternity", "subcategory": "Sweaters", "subcategory2": "Christmas Sweaters", "style": "Crewneck Sweater", "type": "Knit Sweater",
+ "google_gender": "unisex|female|male", "taxonomy_gid": "gid://shopify/TaxonomyCategory/aa-1-13-12",
+ "color_pattern_ids": ["69641928801"], "fabric_ids": ["69622399073", "69622366305"],
+ "colors": [{"name": "Cream", "token": "CRM", "vendor_value": "<exact SKU colour value>"}],
+ "sizes": [{"label": "2T", "vendor_size": "<exact SKU size value>", "suffix": "2T", "age": "2", "height": 90, "weight": "-", "chest": 62, "sleeve": 34, "length": 39, "size_gid": "129972863073"}],
+ "grams": 250, "lead": "one honest paragraph", "bullets": [["Matching look:", "…"], ["Fabric:", "…"], ["Sizes:", "…"], ["Care:", "Follow the care label sewn into each garment."]],
+ "chart_garment": "Sweater", "closing": "Pair them with …",
+ "tags": ["Siblings", "Brother and Sister", "Sweaters", "Christmas"],
+ "ai_refs": ["04.jpg", "13.jpg", "10.jpg"],
+ "image_prompt": "full Codex photoshoot prompt",
+ "alts": ["alt for image1", "alt for image3", "alt for image5", "alt for image6"],
+ "translation_note": "- '<print name>' is the print name; 'Siblings' means brother and sister matching outfits."
+}
+```
+
+Standalone recipe notes:
+
+- **product_type** must contain Sweaters, Sweatshirts, Tops, Dresses or Sets, so the product joins new-arrivals.
+- **taxonomy_gid:** aa-1-13-12 for sweaters, aa-1-13-14 for sweatshirts.
+- **image_prompt:** copy the structure of `uploads/teddy-bear-siblings-christmas-sweaters/ai/prompt.txt`: exact garment description, IMAGE 1/3/5/6 scenes, 9:16, no text or logos, PRODUCT LOCK, and who wears it.
+- **Colours are optional.** If the offer has only one colour, omit `colors` and set `"vendor_color": "<value>"`.
+- **Size-metaobject ids** are optional; give them for all sizes or none:
+  - Kids: 2-3y 129972863073, 3-4y 129972895841, 4-5y 129972928609, 5-6y 129972961377, 6 129972994145, 8 129973026913, 10 129971552353, 12 129971650657.
+  - Adults: S 129975255137, M 129975222369, L 129975189601, XL 129975287905, 2XL 129975156833, 3XL 139840421985, 4XL 139840716897.
+- **Fabric ids:** Cotton 69622399073, Polyester 69622366305, Viscose/Modal 139931877473.
 
 ## Worklog append format (`/tmp/autosource/worklog_append.md`)
 

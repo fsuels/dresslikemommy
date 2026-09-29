@@ -24,6 +24,8 @@ Subcommands
   images HANDLE                        build image job + ChatGPT-app Codex photos (4 images)
   review HANDLE                        write QA sheet /tmp/autosource/<handle>_review.jpg (inspect with Read)
   finish HANDLE                        attach -> localization closeout (must PASS) -> activate -> readback
+  standalone RECIPE.json               siblings/couples/maternity DRAFT (no engine mode) + stage photo job
+  standalone-finish HANDLE             attach -> Codex translations -> closeout -> activate -> readback
   commit "<message>"                   commit + push this round's repo files from a clean worktree
 """
 from __future__ import annotations
@@ -534,7 +536,8 @@ def cmd_translate(handle: str) -> None:
 
 
 def cmd_images(handle: str) -> None:
-    print(sh([PY, "ai_images/build_image_jobs.py", handle], cwd=T).strip()[-300:])
+    if (T / "specs" / f"{handle}.json").exists():
+        print(sh([PY, "ai_images/build_image_jobs.py", handle], cwd=T).strip()[-300:])
     print("prompt:", ROOT / "uploads" / handle / "ai/prompt.txt")
     print(sh(["bash", "ai_images/run_image_jobs.sh", handle], cwd=T, timeout=4 * 3600)[-400:])
 
@@ -563,6 +566,137 @@ def cmd_finish(handle: str) -> None:
     p = json.load(urllib.request.urlopen(f"https://www.dresslikemommy.com/products/{handle}.js?x={int(time.time())}", timeout=30))
     print("LIVE", p["title"], "| vendor", p.get("vendor"), "| imgs", len(p["images"]), "| avail", sum(v["available"] for v in p["variants"]), "/", len(p["variants"]),
           "| price", min(v["price"] for v in p["variants"]) / 100, max(v["price"] for v in p["variants"]) / 100)
+
+
+# ---------------------------------------------------------------- standalone path (siblings / couples / maternity)
+BLOCKED_WORDS = ("1688", "alibaba", "taobao", "supplier", "vendor", "grinch", "stitch", "disney", "rudolph", "season")
+GID = lambda n: f"gid://shopify/Metaobject/{n}"
+AGE_GIDS = {"kids": ["128116523105"], "adults": ["128116490337"], "women": ["128116490337"]}
+TGENDER = {"unisex": "129972502625", "female": "129971617889", "male": "130231107681"}
+
+
+def st_body(rc: dict) -> str:
+    cols = [("Size", "label"), ("Age", "age"), ("Height (cm)", "height"), ("Weight (kg)", "weight"), ("Chest/Bust (cm)", "chest"),
+            ("Sleeve (cm)", "sleeve"), ("Garment Length (cm)", "length")]
+    cols = [(h, k) for h, k in cols if any(str(s.get(k, "")).strip() not in ("", "-") for s in rc["sizes"])]
+    fmt = lambda k, v: (f"{v} cm" if k in ("height", "chest", "sleeve", "length") else f"{v} kg" if k == "weight" else str(v)) if str(v) not in ("", "-") else "-"
+    head = "".join(f"<th>{h}</th>" for h, _ in cols)
+    rows = "".join("<tr>" + "".join(f"<td>{fmt(k, s.get(k, '-'))}</td>" for _, k in cols) + "</tr>" for s in rc["sizes"])
+    bullets = "".join(f"<li><strong>{a}</strong> {b}</li>" for a, b in rc["bullets"])
+    return (f"<p>{rc['lead']}</p><ul>{bullets}</ul>"
+            f"<h3>Size Chart - {rc.get('chart_garment', 'Top')}</h3>"
+            f'<table id="size-chart" class="size-chart"><thead><tr>{head}</tr></thead><tbody>{rows}</tbody></table>'
+            f"<p>{rc.get('chart_footnote', 'Measurements are taken with the garment laid flat; allow 1-2 cm difference.')}</p>"
+            f"<p>{rc.get('closing', '')}</p>")
+
+
+def cmd_standalone(recipe_path: str) -> None:
+    """Create a DRAFT for a listing the engine has no mode for (kids-only siblings, adults-only couples, maternity),
+    stock 100/variant, and stage the photo job. Then run: images HANDLE, review HANDLE, standalone-finish HANDLE."""
+    sys.path.insert(0, str(T / "ai_images"))
+    import attach_images as A  # noqa
+    rc = json.loads(Path(recipe_path).read_text(encoding="utf-8"))
+    oid, h = rc["offer_id"], rc["handle"]
+    sk = json.loads((STATE / "skus" / f"{oid}.json").read_text(encoding="utf-8"))
+    colors = rc.get("colors") or [{"name": None, "vendor_value": rc.get("vendor_color", "")}]
+    cost = 0.0
+    for c in colors:
+        for s in rc["sizes"]:
+            key = f"{c['vendor_value']}>{s['vendor_size']}" if c["vendor_value"] else s["vendor_size"]
+            if key not in sk["prices"] or (sk["stock"].get(key) or 0) < 40:
+                raise SystemExit(f"missing/low-stock SKU {key}")
+            cost = max(cost, float(sk["prices"][key]))
+    grams = rc.get("grams", 300)
+    landed = (cost + 3 + 45.4 + 8.2 * grams / 100) / 7.11
+    pr = math.ceil(2.06 * landed - 0.99) + 0.99
+    body = st_body(rc)
+    payload = " ".join([rc["title"], rc["seo_title"], rc["seo_desc"], body, *rc["tags"]]).lower()
+    bad = [w for w in BLOCKED_WORDS if re.search(rf"\b{re.escape(w)}\b", payload)]
+    if bad or len(rc["title"]) > 70 or len(rc["seo_title"]) > 60 or len(rc["seo_desc"]) > 155:
+        raise SystemExit(f"copy check failed: {bad} title {len(rc['title'])} seo {len(rc['seo_title'])} desc {len(rc['seo_desc'])}")
+    if landed > pr / 2:
+        raise SystemExit("margin rule failed")
+    opts = [{"name": "Size", "values": [{"name": s["label"]} for s in rc["sizes"]]}]
+    if colors[0]["name"]:
+        opts.insert(0, {"name": "Color", "values": [{"name": c["name"]} for c in colors]})
+    variants = []
+    for c in colors:
+        for s in rc["sizes"]:
+            ov = ([{"optionName": "Color", "name": c["name"]}] if c["name"] else []) + [{"optionName": "Size", "name": s["label"]}]
+            variants.append({"optionValues": ov, "price": f"{pr:.2f}", "compareAtPrice": f"{pr + 10:.2f}",
+                             "sku": f"DLM-{rc['code']}-{(c.get('token') or 'STD')}-{s['suffix']}", "inventoryPolicy": "DENY", "taxable": True,
+                             "inventoryItem": {"cost": f"{landed:.2f}", "tracked": True, "requiresShipping": True}})
+    text, refs = "single_line_text_field", "list.metaobject_reference"
+    mfs = [("custom", "category1", text, rc["category1"]), ("custom", "subcategory", text, rc["subcategory"]),
+           ("custom", "subcategory2", text, rc["subcategory2"]), ("custom", "pattern", text, rc["print_name"]),
+           ("custom", "style", text, rc["style"]), ("custom", "type", text, rc["type"]),
+           ("mm-google-shopping", "custom_product", "boolean", "false"), ("mm-google-shopping", "gender", text, rc["google_gender"]),
+           ("mm-google-shopping", "age_group", text, "kids" if rc["audience"] == "kids" else "adult"), ("mm-google-shopping", "condition", text, "new"),
+           ("mm-google-shopping", "custom_label_0", text, rc["category1"]), ("mm-google-shopping", "custom_label_1", text, rc["print_name"]),
+           ("mm-google-shopping", "custom_label_2", text, rc.get("label2", "Fall")), ("mm-google-shopping", "custom_label_3", text, rc["style"]),
+           ("mm-google-shopping", "custom_label_4", text, rc["product_type"]),
+           ("shopify", "age-group", refs, json.dumps([GID(x) for x in AGE_GIDS[rc["audience"]]])),
+           ("shopify", "color-pattern", refs, json.dumps([GID(x) for x in rc["color_pattern_ids"]])),
+           ("shopify", "fabric", refs, json.dumps([GID(x) for x in rc["fabric_ids"]])),
+           ("shopify", "target-gender", refs, json.dumps([GID(TGENDER[rc["google_gender"]])]))]
+    if all(s.get("size_gid") for s in rc["sizes"]):
+        mfs.append(("shopify", "size", refs, json.dumps(list(dict.fromkeys(GID(s["size_gid"]) for s in rc["sizes"])))))
+    inp = {"title": rc["title"], "handle": h, "status": "DRAFT", "vendor": "Dress Like Mommy", "productType": rc["product_type"],
+           "descriptionHtml": body, "tags": sorted(set(rc["tags"] + [s["label"] for s in rc["sizes"]])), "category": rc["taxonomy_gid"],
+           "seo": {"title": rc["seo_title"], "description": rc["seo_desc"]}, "productOptions": opts, "variants": variants,
+           "metafields": [{"namespace": n, "key": k, "type": t, "value": v} for n, k, t, v in mfs]}
+    ex = A.gql("query($h:String!){productByHandle(handle:$h){id status}}", {"h": h})["productByHandle"]
+    if ex:
+        if ex["status"] != "DRAFT":
+            raise SystemExit("exists and not DRAFT; refusing")
+        inp["id"] = ex["id"]
+    r = A.gql("mutation($i:ProductSetInput!){productSet(synchronous:true,input:$i){product{id handle status} userErrors{field message}}}", {"i": inp})["productSet"]
+    if r["userErrors"]:
+        raise SystemExit(r["userErrors"])
+    print(r["product"]["id"], h, "DRAFT", f"price ${pr:.2f} (landed ${landed:.2f})", len(variants), "variants")
+    print(sh([PY, "set_inventory_100.py", h], cwd=T).strip().splitlines()[-1])
+    ai = ROOT / "uploads" / h / "ai"
+    ai.mkdir(parents=True, exist_ok=True)
+    for i, f in enumerate(rc["ai_refs"][:3], 1):
+        shutil.copy(ROOT / f"ops/sourcing/vendor-images/{oid}/desc/{f}", ai / f"ref{i}.jpg")
+    (ai / "prompt.txt").write_text(rc["image_prompt"], encoding="utf-8")
+    (STATE / "recipes").mkdir(parents=True, exist_ok=True)
+    shutil.copy(recipe_path, STATE / "recipes" / f"{h}.json")
+    print("photo job staged:", ai / "prompt.txt", "-> next: images", h)
+
+
+def cmd_standalone_finish(handle: str) -> None:
+    sys.path.insert(0, str(T / "ai_images"))
+    import attach_images as A  # noqa
+    rc = json.loads((STATE / "recipes" / f"{handle}.json").read_text(encoding="utf-8"))
+    p = A.gql("query($h:String!){productByHandle(handle:$h){id status}}", {"h": handle})["productByHandle"]
+    have = [n["alt"] for n in A.media_nodes(p["id"])]
+    for f, alt in zip(("image1.png", "image3.png", "image5.png", "image6.png"), rc["alts"]):
+        if alt not in have:
+            A.upload(p["id"], ROOT / "uploads" / handle / "ai" / f, alt)
+    for _ in range(30):
+        if all(n["status"] == "READY" for n in A.media_nodes(p["id"])):
+            break
+        time.sleep(3)
+    ts = T / "accessories/translate_standalone.py"
+    extra = rc.get("translation_note", "- The print name is a product style name.")
+    print(sh([PY, str(ts), handle, "source", extra], cwd=T / "accessories").strip().splitlines()[-1])
+    print(sh([PY, str(ts), handle, "run"], cwd=T / "accessories", timeout=3000).strip().splitlines()[-1])
+    print(sh([PY, str(ts), handle, "register"], cwd=T / "accessories").strip().splitlines()[-1])
+    ok = False
+    for _ in (1, 2):
+        q = subprocess.run([PY, "ops/scripts/finalize_shopify_listing_localization.py", "--handles", handle], cwd=ROOT, capture_output=True, text=True, timeout=3600)
+        print((q.stdout + q.stderr).strip().splitlines()[-1])
+        if q.returncode == 0:
+            ok = True; break
+        print(sh([PY, str(ts), handle, "register"], cwd=T / "accessories").strip().splitlines()[-1])
+    if not ok:
+        raise SystemExit(f"CLOSEOUT FAILED {handle} — left DRAFT")
+    print(sh([PY, "activate_listing.py", handle], cwd=T).strip().splitlines()[-1])
+    time.sleep(8)
+    j = json.load(urllib.request.urlopen(f"https://www.dresslikemommy.com/products/{handle}.js?x={int(time.time())}", timeout=30))
+    print("LIVE", j["title"], "| imgs", len(j["images"]), "| avail", sum(v["available"] for v in j["variants"]), "/", len(j["variants"]),
+          "| price", min(v["price"] for v in j["variants"]) / 100)
 
 
 # ---------------------------------------------------------------- commit
@@ -705,6 +839,8 @@ def main() -> None:
     elif c == "images": cmd_images(a[1])
     elif c == "review": cmd_review(a[1])
     elif c == "finish": cmd_finish(a[1])
+    elif c == "standalone": cmd_standalone(a[1])
+    elif c == "standalone-finish": cmd_standalone_finish(a[1])
     elif c == "commit": cmd_commit(a[1])
     else:
         print(__doc__); sys.exit(2)
