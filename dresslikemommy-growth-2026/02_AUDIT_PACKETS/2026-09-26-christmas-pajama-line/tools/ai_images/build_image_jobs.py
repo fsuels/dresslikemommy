@@ -62,7 +62,9 @@ LETTERING = {
     "blue-plaid-reindeer": None,
     "green-plaid-merry-tree": "\"a very Merry Christmas\" in white script on and under the decorated tree, copied exactly as in the reference photos",
     "buffalo-plaid-tree": '"MERRY Christmas" in red and black buffalo plaid letters under the tree, copied exactly as in the reference photos',
+    "hooray-sun": 'the word "HOORAY" on the ADULT sweatshirts only, in chunky rounded letters colored left to right: H dark brown, O gray, O orange, R dark brown, A tan, Y tan, exactly as in the vendor close-up; the CHILD sweatshirts have NO lettering at all',
     "sky-stripe": 'the small cream label on the chest with tiny "HMP" letters and a bunny, copied exactly as in the reference photos',
+    "happy-faces": 'a SMALL cartoon face print (about palm size) on the LEFT chest of every sweatshirt, with black lettering in a gentle arc: the DAD sweatshirt shows a short black-haired boy face with orange cheeks and "HAPPY DAD" arched BELOW the face; the MOM sweatshirt shows a girl face with a black bob, bangs and round black glasses with "HAPPY MOM" arched ABOVE the face; the GIRL sweatshirt shows a girl face with two black pigtails tied with small red bows and "HAPPY BABY" arched below; the BOY sweatshirt shows a short black-haired boy face and "HAPPY BABY" arched below. Spell each exactly (HAPPY DAD, HAPPY MOM, HAPPY BABY) and keep the print small; no other text anywhere',
 }
 ROLE_NOTES = {
     "candy-cane-santa": "The red and white candy cane stripe runs over ONE shoulder and down ONE sleeve only; the other sleeve is plain green. Keep that asymmetry.",
@@ -71,7 +73,9 @@ ROLE_NOTES = {
     "team-santa": "The adult tops and the child top carry different lettering; keep each version on the right person.",
     "snowy-village-stripes": "The adult tops show a snowy village scene; the child top shows its own festive character graphic. Keep each version on the right person.",
     "plaid-reindeer": "The reindeer graphic varies slightly by family member (different hat or scarf); keep the versions shown in the references.",
+    "hooray-sun": "Adults (mom and dad) wear the HOORAY lettering sweatshirt; children wear the sweatshirt with ONLY a rust-orange half sun with short rounded rays (no text). Keep each version on the right person. Nothing else is printed: no rainbow, no extra words, no logos.",
     "snowy-reindeer": "The tops are SHORT-SLEEVE. Do not make them long-sleeve.",
+    "happy-faces": "Each person wears ONLY their own face print: dad = HAPPY DAD, mom = HAPPY MOM, girl = pigtail HAPPY BABY, boy = short-hair HAPPY BABY. Colors are only cream (warm off-white) and chocolate brown; mix them across the family like the vendor photos. No baby romper, no hats, no caps, no text on hats. ",
 }
 
 PROMPT = """DRESS LIKE MOMMY — RELIABLE PHOTOSHOOT SYSTEM (automated run)

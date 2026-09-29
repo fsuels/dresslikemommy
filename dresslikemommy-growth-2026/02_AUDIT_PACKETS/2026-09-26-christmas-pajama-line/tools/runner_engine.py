@@ -1125,7 +1125,9 @@ def validate_preflight(body: str, variants: list[dict]) -> None:
         missing = [f for f in required if f not in row or row[f] in (None, "")]
         if missing:
             errors.append(f"{row.get('vendor_label')} missing {missing}")
-        for field in (("chest_cm", "length_cm") if PET else ("chest_cm", "length_cm", "sleeve_cm") if SW else
+        # chart_no_sleeve: the supplier's own chart publishes no sleeve length (e.g. only 肩宽
+        # shoulder), so the Sleeve cell stays "-" rather than borrowing another measurement.
+        for field in (("chest_cm", "length_cm") if (PET or (SW and SPEC.get("chart_no_sleeve"))) else ("chest_cm", "length_cm", "sleeve_cm") if SW else
                       ("chest_cm", "length_cm", "sleeve_cm", "pant_cm") if NO_HIP else
                       ("chest_cm", "length_cm", "sleeve_cm", "pant_cm", "hip_cm")):
             if not isinstance(row[field], (int, float)) or row[field] <= 0:

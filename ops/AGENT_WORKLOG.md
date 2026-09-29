@@ -56281,3 +56281,21 @@ Note: the first test cart in the built-in browser already held 1 item; `/cart/cl
 - task_stage: DONE
 - **Placement:** hooray-sun-family-matching-sweatshirts (session [57a715]; supplier 东莞辰承, 48h) joined its collections automatically by type/tags, including family-sweaters.
 - **Related links** (`related_products`): hooray-sun → Scribble Heart, Little Lamb, Together Heart. Scribble Heart and Little Lamb now list hooray-sun first.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-parallel-builders-hooray-sun-happy-faces-live
+
+- task_entities: `hooray-sun-family-matching-sweatshirts` (HRSN, product 9475688956001) and `happy-faces-family-matching-sweatshirts` (HPFC, product 9475691577441), both from 东莞辰承 (1688 1081053551587 / 1079896638732) (session [57a715] + 2 builder subagents)
+- task_stage: LIVE_VERIFIED
+- next_action_id: CONTINUE_SCOUT_PLUS_PARALLEL_BUILDERS
+
+- **Owner asked to move faster with more agents.** New operating model:
+  - One scout lane reads 1688 at a safe pace (parallel 1688 readers trigger CAPTCHAs).
+  - It captures each passing product's description and SKU data.
+  - A background builder subagent per product does spec → draft → Codex images/translations → QA → closeout → activation.
+  - Builders hold `/tmp/dlm_i18n.lock` around the shared `i18n/tr_*.json` writes; only the parent commits.
+- **Both LIVE_VERIFIED; the parent re-checked the public readback and the photo QA sheets.**
+  - Hooray Sun: 30 variants, $30.99 / $38.99. Adults "HOORAY", kids rust half-sun; cream/white; 95% cotton / 5% spandex.
+  - Happy Faces: 60 variants. The print choice is modelled in the colour values ("Cream – Mom & Girl", "Cream – Dad & Boy", "Brown – …"); HAPPY DAD / HAPPY MOM / HAPPY BABY faces. Adult "Girls" SKU = HAPPY MOM, inferred from the offer photos (verify on the first order).
+- **Engine:** opt-in spec flag `chart_no_sleeve` for charts that publish shoulder but no sleeve (Sleeve shows "-"). No effect on other specs.
+- **Owner rule update (same night):** 3–4-year suppliers are allowed only with strict stats; see CONTINUOUS-EXPANSION-WORKFLOW rule 3.
+- Rollback: set to DRAFT.
