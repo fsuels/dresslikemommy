@@ -12,6 +12,8 @@ Subcommands
   lock acquire|release                 run lock (stale after 150 min)
   next                                 this round's category (rotates through ROTATION) and the command to run
   elapsed                              minutes since this run took the lock (continue categories until 50)
+  queue                                scanned offers that passed but have no decision yet (review before new searches)
+  decide ID "built <handle>|skip: <rule + reason>"   record the decision so the offer leaves the queue
   pending                              autosource DRAFTs left by an earlier run + the steps still to do (resume first)
   recent [HOURS]                       audit: products this job built recently + live readback + QA sheets
   unpublish HANDLE "<reason>"          audit: set an autosource-built product back to DRAFT
@@ -206,11 +208,13 @@ def cmd_scan(ids: str, gap: float = 35) -> None:
             r = json.loads(tab.js(SCAN_JS))
             ok = r["dl"] in ("1", "2") and season_ok(r["release"])
             r["pass_ship_season"] = ok
+            r["why"] = "; ".join(([] if r["dl"] in ("1", "2") else [f"dispatch promise {r['dl'] or '?'} days (needs 1-2)"]) +
+                                 ([] if season_ok(r["release"]) else [f"release '{r['release'][:24] or 'missing'}' (needs 2026 Fall/Winter)"]))
             r["scanned"] = time.strftime("%Y-%m-%d")
             r["main"] = re.split(r"\d|Main fabric|主面料", r["main"])[0].strip()
-            seen[oid] = {k: r[k] for k in ("title", "company", "host", "release", "dl", "main", "pct", "moq", "pass_ship_season", "scanned")}
+            seen[oid] = {k: r[k] for k in ("title", "company", "host", "release", "dl", "main", "pct", "moq", "pass_ship_season", "why", "scanned")}
             save_seen(seen)
-            print(("PASS " if ok else "fail ") + oid, "| dl", r["dl"], "|", r["release"][:14], "|", r["company"][:16], "|", f'{r["main"][:14]} {r["pct"]}%', "|", r["title"][:60], flush=True)
+            print(("PASS " if ok else f"fail ({r['why']}) ") + oid, "| dl", r["dl"], "|", r["release"][:14], "|", r["company"][:16], "|", f'{r["main"][:14]} {r["pct"]}%', "|", r["title"][:60], flush=True)
             time.sleep(gap)
     finally:
         tab.close()
@@ -937,6 +941,27 @@ def cmd_recent(hours: float = 26) -> None:
         print(h, "|", live, "| QA sheet:", qa if qa.exists() else "-", "| vendor sheet:", WORK / f"sheet_{json.loads(f.read_text())['offer_id']}.jpg")
 
 
+def cmd_queue() -> None:
+    """Offers that passed the ship/season scan (and the gate, if run) but have no recorded decision: review these before new searches."""
+    seen = load_seen()
+    built = {str(json.loads(f.read_text(encoding="utf-8")).get("offer_id")) for f in [*(STATE / "recipes").glob("*.json"), *(T / "specs").glob("*.json")]}
+    rows = [(i, v) for i, v in seen.items() if v.get("pass_ship_season") and v.get("gate_pass") is not False
+            and not v.get("decision") and i not in built]
+    for i, v in sorted(rows, key=lambda x: x[1].get("scanned", "")):
+        step = "gate" if v.get("gate_pass") is None else "capture + look"
+        print(f"QUEUED {i} | {v.get('company', '')[:14]} | {v.get('main', '')} {v.get('pct', '')}% | next: {step} | {v.get('title', '')[:60]}")
+    print(f"{len(rows)} queued offer(s)" + ("; decide each with `decide ID \"built <handle>\"` or `decide ID \"skip: <rule + reason>\"`" if rows else ""))
+
+
+def cmd_decide(oid: str, text: str) -> None:
+    seen = load_seen()
+    if oid not in seen:
+        raise SystemExit(f"{oid} not screened yet")
+    seen[oid]["decision"] = f"{time.strftime('%Y-%m-%d')} {text}"
+    save_seen(seen)
+    print(oid, "->", seen[oid]["decision"])
+
+
 def cmd_pending() -> None:
     """Autosource products still in DRAFT (an earlier run stopped mid-build) and the steps left, so each run resumes them first."""
     sys.path.insert(0, str(T / "ai_images"))
@@ -980,6 +1005,8 @@ def main() -> None:
     elif c == "next": cmd_next()
     elif c == "elapsed": cmd_elapsed()
     elif c == "pending": cmd_pending()
+    elif c == "queue": cmd_queue()
+    elif c == "decide": cmd_decide(a[1], a[2])
     elif c == "recent": cmd_recent(float(a[1]) if len(a) > 1 else 26)
     elif c == "unpublish": cmd_unpublish(a[1], a[2] if len(a) > 2 else "audit")
     elif c == "search": cmd_search(a[1], int(a[2]) if len(a) > 2 else 1)

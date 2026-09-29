@@ -56682,3 +56682,16 @@ Why: owner continuation "recheck Merchant store-quality image scores when the 30
 - M6: decided to accept the mixed hreflang cluster (Shopify-generated tags, Google ignores alternates on non-canonical URLs); keeps the Sep 28 English consolidation and the earning localized copies. Backlog row updated.
 - Reviews (plan §4 SEO "review stars"): only 1 real review on 304 active products; stars need owner-approved review requests.
 - Price floor (conversion fix #15, standing pricing authority): 54 child variants $17.99 → $19.99 on 5 swimsuits; readback 54/54; rollback `swim_under_before.json`. Finding: Shopify unitCost is a 50%-of-price placeholder, not supplier cost.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-autosource-multi-category-no-qualifier
+
+- task_entities: none built (0 new listings). Offers screened: 1073280613741, 1082673714933, 1081114779239, 1083114222067, 1060800060662, 1083643346453, 1082919940509, 1080128068603, 1080832474379, 1084088830219, 1041066441844, 1046042411269, 1044092731645, 1078516190002, 1041612075298, 1081662096789, 1079287654287, 1074869762717, 1080739751359, 1086091064508, 1076062730956, 1076123646457, 1079574238193, 1077701233547, 1086688893552, 1078728992708, 1085533453646, 1077531433074, 1082806527440, 1064549029003, 1058648198705, 1073941301240, 1073095381657, 1077510968038, 1079267656131, 1077361263736, 1078816377257, 1080306502546, 1079295834091, 1078643593840, 1078261968470, 1076739891732, 1084272094853, 1052489548309
+- task_stage: NO_QUALIFIER
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Categories searched (page 2 and 3 of the search rotation): family jackets, hoodies, Mommy & Me dresses/sweatshirts/knits, couples hoodies/sweatshirts/Christmas knits, Christmas family knits and sweatshirts, family sweatshirts/sweaters/vests, Daddy & Me, siblings, maternity knits and sweatshirts, accessories; catalogs of 辰承 (no new offers), TYG Kids (0 family offers), 格莱美 (all seen), 野狼魅力 (only school-activity uniforms, smiley, national-theme and summer items).
+- About 44 offers screened; 9 passed the scan; 0 passed every rule.
+- Gate failures: 1084088830219 (0 years, pickup 81%, service 3.5); 1081662096789, 1079287654287, 1074869762717, 1073941301240 (pickup 85-89%, fulfillment 85-92%); 1078728992708 and 1077361263736 (supplier established July 2026, 0 years); 1077531433074 (1 year, pickup 77%).
+- Look failures (gate PASS but skipped): 1076062730956, 1079574238193 (shop11f78…, 8 years) and 1076123646457, 1077701233547 (河南明地一族, 11 years) are the same colourful summer-beach class-activity template with tiny cartoon/flower chest prints (appeal rule 7: template photo set, school activity uniform). 1064549029003 (森大, 9 years, gate PASS): small embroidered brand-style figure logo on a plain red cable knit, Chinese-New-Year red, no distinctive print (rules 5 and 7).
+- Other scan failures: dispatch promise 3-45 days, or release attribute missing/Summer/2027 (couples hoodies, accessories, maternity, couples knits).
+- Supplier near-misses: 森大 (senda831) and 河南明地一族 (mdyz8899) pass the supplier gate; revisit if they list a distinct print.
