@@ -56621,3 +56621,15 @@ Rollback: upsert the saved before-files.
 
 - Why: internal links from collection pages to 2-3 live style guides (the guides earn the best click rates in Greek/Hebrew) and a path from product grid to buying advice.
 - What: presentation Liquid only, no JS, no locales/*.json edits. A `case collection.handle` maps to article handles; only articles that exist via `articles['news/<handle>']` render (max 3) as pill links using existing collection-seo-rich classes; article.url/title are localized by Shopify; heading translated inline for 21 languages, English fallback. Unmapped collections render nothing.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-autosource-resume-cute-happy-and-search-paging
+
+- task_entities: cute-happy-bunny-bear-family-matching-sweatshirts (offer 1088036424157, CHBR); `ops/sourcing/autosource.py` (`pending`, search paging, env restore); scheduled task `autosource` SKILL.md
+- task_stage: LIVE_VERIFIED
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- CEO session resumed the DRAFT that the 14:44Z run left blocked on the self-inflicted 401. `translate` registered 380 translations with none missing (the env-restore fix works end to end). QA passed: the CUTE HAPPY bubble lettering with bunny + bear matches the vendor garment, purple/white shown, 9:16. `finish`: `[listing-localization] PASS on attempt 1`; ACTIVE 8/8 channels. LIVE readback: 4 imgs, 91/91 available, $26.99 / $31.99 (7 colours × 13 sizes). /de title and all 7 colour names are localized (Blau, Gelb, Grün, Lila, Rosa, Rot, Weiß).
+- Two unattended runs today (14:44Z, 15:08Z) each completed a full round with no stall. They used `dupe`/`attrs`, gated correctly, committed and released the lock. The second put panda-family-matching-sweatshirts live.
+- New `autosource.py pending` lists autosource DRAFTs with the steps left. Runbook step 0b and the task prompt make every run resume them before new sourcing.
+- Search yield: 1688 serves only about 12 offers per results page in this session (verified with page height and ID count; not a scraper miss), so page 1 repeated every hour. `next` now pages each keyword through results pages 1–5 (`search "<kw>" <page>`, `&beginPage=N`, verified live). Four searches were added: family hoodies, Mommy & Me dresses, couples hoodies, Christmas family knits.
+- Queue for the next rounds (from the 15:08Z run): 野狼魅力 offers 1079750601231, 1079314552681, 1079501676685, 1078519857484 passed scan; they still need a look (smiley/generic-logo rules, dupes). Search "亲子装 卫衣" page 1 surfaced 1062900677018 (Christmas/New Year red hoodie; check the season and the New-Year theme rule).
