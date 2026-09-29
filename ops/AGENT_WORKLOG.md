@@ -56408,3 +56408,16 @@ Owner (chat, 2026-09-29): keep working without the owner typing the continuation
 - `.claude/settings.local.json` (gitignored) allowlists the helper, worktree-folder edits and the Claude in Chrome tools for the loop.
 
 Rollback: disable the scheduled task; revert pushed commits by SHA (listed in `ops/organic/CEO_LOG.md`).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-christmas-pajamas-guide-links
+
+- task_entities: `snippets/collection-guide-christmas-pajamas.liquid`; `/collections/christmas-pajamas`; BACKLOG M1; articles `matching-family-christmas-pajamas-guide-2026`, `family-christmas-photo-outfits-2026`
+- task_stage: BUILD done; live readback pending sync
+- problem_ids: none
+- next_action_id: VERIFY_LIVE_LINKS
+
+Added one closing sentence to the English (`else`) branch of the `guide` field linking the two live guides. Other languages unchanged (articles are English-only).
+
+Checks: `ceo_worktree.py check`; live readback of `/collections/christmas-pajamas` after theme sync.
+
+Rollback: revert the commit that touches this snippet.
