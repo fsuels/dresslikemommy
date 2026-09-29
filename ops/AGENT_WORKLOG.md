@@ -56315,3 +56315,22 @@ Note: the first test cart in the built-in browser already held 1 item; `/cart/cl
 Owner asked for a less wordy builder header. Now: "Build your matching set / Pick a size for each person. Priced per piece. / Buy 2, get the 3rd 20% off. No code needed." in the 21 published locales (plus nb, pt-PT, ro-RO). German uses informal "Wähle" to match its "Stelle dein…" heading.
 
 Release: commits `9656281`, `f14514c`. Code files via `sync_live_theme_from_main.py --apply` (verified). Locale JSON: live-vs-main flattened diff was exactly `products.product.matching_set.copy` in all 24 files, then themeFilesUpsert and read-back. Live EN/DE/JA PDP headers read the new copy.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-28-cart-to-checkout-human-funnel-and-test-carts
+
+- task_entities: PROB-2026-09-24-MOBILE-CART-TO-CHECKOUT; PROB-2026-09-27-AGENT-TEST-TRAFFIC-POLLUTES-ANALYTICS; PROB-2026-09-24-STOREFRONT-404-AND-DESKTOP-CHECKOUT; product `willow-wildflower-family-matching-set`; markets US/CA/GB
+- task_stage: DIAGNOSE + VERIFY done; no store, theme or setting write
+- next_action_id: OWNER_DESKTOP_TEST_ORDER_THEN_REFUND (unchanged, from `2026-09-28-desktop-checkout-break-evidence`)
+
+Why: the owner pasted a brief ("fix this"): 10 days 116 carts → 18 checkouts → 5 orders; Sep 27 69 carts → 6 → 1; Canada + UK 105 visits, 0 checkouts. Session "Store conversion rate issues" [339f3f].
+
+Findings (ShopifyQL, 10 days to 2026-09-28, LIVE_VERIFIED):
+- The brief's numbers include agent traffic. Sep 27 US mobile direct had 218 sessions (normal ~20) and 44 carts; 37 were the cable-knit sweater test carts (see `2026-09-27-analytics-caveat-test-cart-traffic`), plus 4 blank-referrer desktop carts. US desktop direct carts/checkouts (7/6, 0 orders) sit on agent QA days (Sep 24, 26, 27). Human estimate: about 68 carts → 12 checkouts → 5 orders. Checkout → order (~40%) is normal; cart → checkout (~18%) is the real leak, concentrated in US mobile Google search (26 carts → 6 checkouts).
+- Canada: most sessions were Microsoft display placements (msn, thewordfinder, imdb, aviationa2z, wrestlingheadlines, amazon-adsystem; 0-second, 100% bounce). Paid ads have since ended. Real Google search: CA 25 sessions / 0 carts, UK 26 / 2 carts. At a 1% rate that is ~0.5 expected orders, so zero is not a signal.
+- Walked the full mobile path (iPhone 13 emulation, trackers blocked): builder shows the exact piece price before adding ("Ready to add Mother · M · $35.99"); drawer shows free standard shipping, delivery dates, Check out above the fold, Shop Pay/Amazon Pay/PayPal wallets. Checkout loads for US $71.98, CA CA$104.00, GB £64.00 with express checkout, card, Shop Pay (+ installments), PayPal, USDC; no taxes or shipping cost added before address. No cart or checkout defect found.
+- CA/GB price note: CAD rate 1.4366 plus .00 rounding (CA$52 per $35.99 piece); GB carries the +15% market adjustment (£32). Only a watch item at this sample size.
+- Duplicate avoided: this session built a cart "3rd piece 20% off" nudge, but peer commit `04b9329` (anchor `2026-09-28-bundle-offer-copy-and-christmas-order-by-timing`) shipped the same nudge first, LIVE_VERIFIED; this session's version was discarded unreleased.
+
+Test-cart log (owner approved in chat; exclude from funnel reports): 2026-09-28 04:20:59–04:24:42 UTC, headless Chromium, iPhone 13 profile, analytics/pixel endpoints aborted (monorail, trekkie, web-pixels, otlp, Google/Meta/Pinterest/TikTok/Bing/Clarity). 5 carts (US ×3, CA ×2, GB ×2 across runs) of Mother M + Child 1-2Y dress; checkout first screen only, no email, no payment; `/cart/clear.js` read back 0 items each time. Lesson: blocking `Trekkie`/`monorail` also aborts checkout-web JS chunks (`/cdn/shopifycloud/checkout-web/assets/`), which renders a blank checkout. Allow that path when checking checkout.
+
+Next: the owner's one desktop test order (then cancel and refund) is still the largest open checkout question: desktop completed 0 of 26 in September.
