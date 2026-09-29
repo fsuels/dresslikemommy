@@ -90,3 +90,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 7 items (article body repair, run one at a time, no throttling: dead collections family-matching/christmas-tops/family-swimsuits/leggings/maternity → live collections, dead red-stripe product link → family-sweaters, "guaranteed arrival" wording removed) — receipts: ops/organic/receipts/2026-09-29/body-{daddy-and-me-matching-outfits-the-ultimate-guide,apple-picking-matching-outfits-for-the-whole-family,best-fall-colors-for-family-matching-looks-2,fall-festival-matching-outfits-for-the-whole-family-2,best-matching-family-outfits-for-winter-2,ultimate-gift-guide-matching-outfits-for-every-occasion,matching-family-christmas-sweaters-guide-2026}.json (all tool-verified; gift guide spot-checked live 200, 1 h1). `article-links` now reports 0 articles needing fix (F0 done).
 - Research: none (backlog has ≥5 open ENGINE items)
 - Flags for MAIN/OWNER: MAIN: winter guide still links `-2024`/`-2025` blog handles that may be dead (not flagged by the tool; check). O1: request indexing for the new card-photo article.
+
+## 2026-09-29T16:24Z run
+- Build: matching family shirts for pictures → https://www.dresslikemommy.com/blogs/news/matching-family-shirts-for-pictures (VERIFIED: 200, 1 h1, lint 0 errors, 1366 words). 5th engine article of the UTC day (5 of 5, cap reached).
+- Fix: 0 items (`article-links` reports 0 articles needing fix).
+- Research: none (backlog has ≥5 open ENGINE items)
+- Flags for MAIN/OWNER: O1: request indexing for the new shirts-for-pictures article. One unlisted `grep -c` was run by mistake (read-only).
