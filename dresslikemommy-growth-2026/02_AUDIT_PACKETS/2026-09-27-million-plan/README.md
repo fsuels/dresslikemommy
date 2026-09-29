@@ -81,7 +81,7 @@ Every lane below is free. Budget = $0 ad spend; the only costs are product, frei
 - Shopify AI shopping (agentic storefronts: ChatGPT, Copilot, Perplexity) → free product placement in AI answers; needs the owner to accept Shopify's terms in admin. All 296 products are already on Google, Microsoft, Pinterest, FB/IG and TikTok.
 - Merchant Center promotion for FAMILY10 → free "special offer" tag on free listings (owner must create; the classifier blocks the agent).
 
-**Waiting on an external clock:** Google re-crawl/re-score of feed and collection changes; Christmas season.
+**Waiting on an external clock:** Google re-crawl/re-score of feed and collection changes; Merchant store-quality image scores ("Images per offer", high-resolution %) recheck on or after 2026-10-27; Christmas season.
 
 **Closed:** paid ads (owner, 2026-09-28). `lanes/paid.md` is history only.
 

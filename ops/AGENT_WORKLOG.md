@@ -56670,3 +56670,15 @@ Rollback: upsert the saved before-files.
 - Supplier-gate failures: 1062900677018 (0 years), 1071874081218 (pickup 86.8%), 1086430921573 (pickup 77%, service 3.5), 1085924062012 (2 years), 1078936290826 红旺博凯 (pickup 85.1%, fulfillment 85.2%).
 - 1078728992184: supplier PASS (7 years, pickup 98.3%), but a plain cable-knit kids polo in the supplier's branded template photos, kids sizes only; skipped for appeal (rule 7).
 - New LIVE handles: none. No CAPTCHA.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-m6-decision-reviews-check-swim-price-floor
+
+- task_entities: backlog M6 (`new-women-outfits` canonical/hreflang); review metafields (Loox/Judge.me/reviews.*); 54 variants of 5 swimsuit products; packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-28-organic-feed-and-christmas-seo/` §7
+- task_stage: VERIFY done
+- next_action_id: RECHECK_MC_STORE_QUALITY_IMAGES_ON_OR_AFTER_2026-10-27
+
+Why: owner continuation "recheck Merchant store-quality image scores when the 30-day window passes, then the next MAIN/SEO item".
+- Image scores: 30-day window not passed (Sep 27 source cleanup); recheck on or after 2026-10-27, added to the plan's external-clock list.
+- M6: decided to accept the mixed hreflang cluster (Shopify-generated tags, Google ignores alternates on non-canonical URLs); keeps the Sep 28 English consolidation and the earning localized copies. Backlog row updated.
+- Reviews (plan §4 SEO "review stars"): only 1 real review on 304 active products; stars need owner-approved review requests.
+- Price floor (conversion fix #15, standing pricing authority): 54 child variants $17.99 → $19.99 on 5 swimsuits; readback 54/54; rollback `swim_under_before.json`. Finding: Shopify unitCost is a 50%-of-price placeholder, not supplier cost.
