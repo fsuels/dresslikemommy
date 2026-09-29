@@ -164,3 +164,32 @@ Full read of the stored `da` values (title, meta title, meta description, summar
 Danish verdict: body copy was mostly natural. Recurring defects were the "Mor og mig / Far og mig" calque in titles, wrong or non-word compounds ("Julematchende", "jul outfits", "feriestøj"), "samstemt" for "coordinated", English Title Case in titles, meta titles and headings, and leftover English in link labels and alt texts. These fixes are the editor's own; no independent re-read yet.
 
 Not changed: product-name link text that comes from English source product titles ("Jingle Bells", "Ho Ho", "We Are Family", "Isbjørn jul"); the stray `</h3></h3>` and product-title headings in christmas-matching-family-pajamas, which come from the English source; the "Barn 2 år" size labels; "Godt tip" style choices; non-localized `/policies/refund-policy` hrefs (identical to source).
+
+## Greek sweep
+
+Date 2026-09-29. Scope: 15 live Greek (`el`) blog articles, read as a strict native editor against the stored Admin translations (same text as the live page). Fixes registered with `organic_engine.py translate-apply --execute`; every write read back `verified: true`. Receipts: `ops/organic/receipts/2026-09-29/elqa-<handle>.json`. English, other languages, products and theme untouched. No Greek case-ending errors were found in link labels (the "οδηγό" forms sit correctly after "τον").
+
+| Article | Grade | Main problems fixed |
+|---|---|---|
+| mommy-and-me-matching-outfit-ideas | A- -> A | Title and meta title kept (10% CTR). Only bare "Αγίου Βαλεντίνου:" label and "φορέματα καλοκαιρινά" word order. |
+| mommy-and-me-outfits-for-every-budget | B+ -> A | "Αγίου Βαλεντίνου" without "του"; calque H2 "συμβουλές αγορών για να εξοικονομήσετε". |
+| daddy-and-me-matching-outfits-the-ultimate-guide | B -> A | Meta title/description said "μπαμπάς και γιος" only (article covers daughters) and stacked keywords; "ψαγμένο" for "cool"; "στοχαστικό" for "thoughtful"; "layers ... φίλοι" gender mismatch; "Ψωνίστε" heading. |
+| fall-family-matching-outfits | B+ -> A | "ελαστικά κοψίματα"; "αμέτρητες φορές και πλύσεις". |
+| best-matching-family-outfits-for-winter | B -> A | Title lacked the article ("Καλύτερα ..."); "Αγοράστε πιο έξυπνα" summary (Shop smarter calque); "κρατήστε ... στο παιχνίδι" (in play calque). |
+| the-complete-guide-to-family-matching-outfits | B+ -> A | "μόδα-κίνημα"; "Μην πηδήξετε κατευθείαν". |
+| what-to-wear-for-family-photos-matching-outfit-ideas | A- -> A | "κολοκυθιές" (plants) for pumpkin patches. |
+| holiday-family-matching-outfits-complete-guide | B -> A | 6 image alt texts left in English; fragment intro; "δεν μετριούνται"; "Δείτε ... να δείτε"; "και οι δύο"; repetitive title. |
+| christmas-matching-family-pajamas | B -> A | Title "για Συντονισμό"; "τίποτα δεν έχουν ... από τη χαρά"; "ίδιοι" (children are neuter); "ασορτάρετε" non-standard; "στρατηγικά αξεσουάρ" calque; stray double `</h3></h3>`. |
+| matching-family-christmas-sweaters-guide-2026 | B+ -> A | "ίδια" for "matching" in meta and summary; "Ασορτί" dropped from title; "γλειφιτζούρι" (lollipop) for candy cane; "να περάσετε τα μεγέθη"; "κάθε χρήστη"; "κόψιμο" for cropping. |
+| family-christmas-photo-outfits-2026 | A- -> A | "ίδιες πιτζάμες" (identical) for "matching pajamas" in meta description and summary. |
+| daddy-and-me-christmas-outfits | B -> A | Keyword-stacked title, meta title, meta description and summary ("μπαμπάς και παιδί ... μπαμπάδες και παιδιά"); "ψήσιμο" for baking; "γάρνισμα"/"ένα κρεμ γιακά"; "πλάτη με καβάλα"; "Η αστεία". |
+| matching-family-christmas-shirts | B -> A | 126-char title; "Αν το πρόγραμμα είναι ζεστό σπίτι"; "εύκολα στα παιδιά"; "κοντά σε προθεσμία"; "ψήσιμο" for baking; stray space before comma. |
+| matching-family-shirts-for-pictures | B -> A | Title repeated "φωτογραφίες" three times; Title Case in meta title and 8 headings; "του καθενού"; "επιεική" (forgiving calque). |
+| family-christmas-card-photo-ideas | B+ -> A | Title Case in title and 6 headings; "πλατιές λήψεις ... κόβονται"; "στο γοφό"; "Μπλε ναυτικό". |
+
+Result: 0 C, 12 B/B+, 3 A- before; all 15 A after edits. Recurring cause: engine-written articles are mostly clean; older articles carry English word order, Title Case and a few wrong-word calques.
+
+Remaining, not changed:
+- Product-link headings such as "Τροπικά σύνολα ... | DLM" in christmas-matching-family-pajamas are truncated source product titles, kept as translated.
+- "outfit", "look", "layers" stay as Greek-usage loanwords across the articles; `/policies/refund-policy` links in two articles carry no `/el/` prefix (source structure kept).
+- Title Case remains in the titles and meta titles of some articles not flagged as errors (for example what-to-wear-for-family-photos-matching-outfit-ideas, best-matching-family-outfits-for-winter, christmas-matching-family-pajamas).
