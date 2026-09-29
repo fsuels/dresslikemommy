@@ -56504,3 +56504,16 @@ M6 not changed: English `new-women-outfits` canonical is `matching-outfits` and 
 Checks: `ceo_worktree.py check`; live readback listed above; M5 live proof recorded after sync.
 
 Rollback: revert this commit.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-merchant-recheck-token-leaks-bestsellers-truth
+
+- task_entities: Merchant 513542500; Christmas guide articles (3) × 10 locales; 10 collection translations; collection `best-sellers` 57621741665; `snippets/collection-seo-fallback.liquid`; packet `dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-28-organic-feed-and-christmas-seo/` §7
+- task_stage: VERIFY done; BLOCKED (agentic storefronts: owner login)
+- problem_ids: none new (archived-product token leaks logged in packet, not customer-visible)
+- next_action_id: OWNER_LOGIN_SHOPIFY_ENABLE_AGENTIC_STOREFRONTS
+
+Why: owner asked to implement the agentic-storefronts step and continue ("recheck Merchant age groups after Google's full sync, then the remaining Merchant item issues and the next SEO item").
+
+Done (each read back): Merchant age groups verified 10/10 after sync; remaining MC item issues are crawl-only (no feed action); store-quality image scores explained and queued behind their 30-day window; localized "December 8"/"days" left in English by Codex in 10 guide locales (readback 144/144); fixed 10 collection translations with leaked `__DLMTOK` placeholders (rescan 0); backlog M2: best-sellers meta rewritten truthfully in EN + 20 locales (20/20) and theme phrase "top-rated" removed.
+Blocked: Shopify admin logged out in the in-app browser and Chrome; enabling agentic storefronts needs the owner's login and terms acceptance.
+Rollback: packet §7 files (before-states); revert the theme commit and re-run `sync-theme --apply`.
