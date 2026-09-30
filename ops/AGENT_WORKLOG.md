@@ -56893,3 +56893,11 @@ Why: owner continuation "recheck Merchant store-quality image scores when the 30
   - 18 圣瑞 summer short-sleeve family tees: rule 2 (Summer release).
 - Supplier near-miss: 上海莫雷 passes the supplier gate but sells Disney-licensed kids' knits only, so nothing usable.
 - Store catalogs for the gate-passing stores held no unseen fall/winter family offers; the pool is nearly exhausted on these queries. Next run: try fresh query terms (e.g. matching family pajama-free knit sets, couples hoodies p4, new supplier discovery) once the CAPTCHA clears.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-maternity
+
+- task_entities: none (no offers screened)
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Run started clean: 0 pending drafts, 0 queued offers. Round was maternity (results page 3, query "孕妇毛衣 2026秋冬"). The search returned exit code 3: 1688 showed a CAPTCHA/login page. Stopped all 1688 work per the runbook; nothing bypassed. 0 screened, 0 passed, 0 new listings. The owner or CEO session needs to clear the 1688 login/CAPTCHA in the sourcing browser before the next round can search.
