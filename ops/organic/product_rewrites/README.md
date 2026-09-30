@@ -1,0 +1,20 @@
+# Product copy honesty rewrites
+
+Generated 2026-09-30 from a read-only scan of ACTIVE products (308 scanned, 10 flagged). Nothing was written to Shopify. Each `<handle>.html` is a proposed replacement for the full description; size-chart tables are copied byte-for-byte from the live body. Review, then apply through the normal product-edit path.
+
+Scan phrases: forever, intact, suitable for all, never fails, onlookers, financial burden, best quality, high quality guarantee, 100% satisfaction, fast shipping, in stock, bestseller, perfect gift for everyone, fits all.
+
+| Handle | Title | Matched | Note |
+|---|---|---|---|
+| mom-child-matching-two-piece-swimsuit | Mom & Child Matching Two Piece Swimsuit | forever, intact, never fails, onlookers, financial burden | Removed forever/intact, onlookers, financial burden, 'exclusive', 'sure to be a hit', chlorine-resistant claim and generic feature boilerplate; kept fabric (82/18 nylon/spandex), care, sizes, size chart. |
+| matching-mom-child-one-shoulder-swimsuit | Matching Mom & Child One Shoulder Swimsuit | forever, intact, never fails, onlookers, financial burden | Same vendor boilerplate removed; kept one-shoulder style, fabric, care, sizes, size chart. |
+| matching-mommy-and-me-hollow-out-bikini | Matching Mommy and Me Hollow-Out One-Piece Swimsuit – Tropical Print | forever, intact, never fails, onlookers, financial burden | Boilerplate plus 'perfect birthday gift' hype removed; kept hollow-out one-piece, tropical print, fabric, care, chart. |
+| matching-mommy-me-orange-print-swimsuit | Matching Mommy & Me Orange Print Swimsuit | forever, intact, never fails, onlookers, financial burden | Boilerplate removed; fabric ratio not stated in source so only 'polyester fiber and spandex'; garment cut not stated, so none invented. |
+| matching-mommy-me-sunflower-print-swimsuit | Matching Mommy & Me Sunflower Print Swimsuit | forever, intact, never fails, onlookers, financial burden | Boilerplate and 'child will treasure it' / 'big reaction' hype removed; kept sunflower print, fabric, care, chart. |
+| red-botanical-mommy-and-me-swimsuits | Red Botanical Mommy and Me Swimsuits — Ruffle One-Piece | suitable for all | 'Suitable for all body types', 'flatters any body type', 'premium', 'long-lasting' removed; kept ruffle one-piece, tropical print, nylon/polyester blend. Three vendor-hosted image tags after the chart were dropped from the rewrite (supplier URLs) - re-add real store images if wanted. |
+| elegant-beige-chiffon-family-matching-dresses-mother-daughter-summer-outfits | Beige Chiffon Mother & Daughter Matching Summer Dresses | suitable for all | FALSE POSITIVE on 'suitable for all' (source says 'suitable for all-day wear'); still tightened: removed 'timeless', 'lasting memories', all-day-wear claim; kept chiffon, pleats, puff sleeves, loose fit. |
+| cute-dinosaur-family-matching-t-shirts-what-are-you-doing-hug-design | Family Matching T-Shirts – Cute Dinosaur Hug Design | suitable for all | Removed 'suitable for all ages' and 'high-quality fabric ... durability'; kept messages, colors, soft breathable fabric, sizes. |
+| eternal-love-family-matching-t-shirts-colorful-heart-design | Family Matching T-Shirts – Eternal Love Colorful Heart Design | forever | Removed 'love that lasts forever' and 'unforgettable' hype; kept Eternal text, heart graphic, crew/raglan styles. |
+| white-lace-mommy-and-me-dresses | White Lace Mommy and Me Dresses — Cami Dress | forever | Removed 'keep forever', 'softest matching moment', 'grab your set' and 'picture-perfect' hype; kept fabric, lace details, care, size range and chart. |
+
+Uncertain: swimsuit garment types for orange/sunflower sets are not stated in source; size charts in the swimsuit bodies are identical across all six, so per-design child size sets were not verified (see 1688 size-set memory). Phrases outside the scan list (e.g. 'premium', 'perfect for') were also removed where found in flagged bodies but other active products were not scanned for them.
