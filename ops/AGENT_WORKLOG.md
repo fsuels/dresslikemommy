@@ -56733,3 +56733,14 @@ Why: owner continuation "recheck Merchant store-quality image scores when the 30
 - Every scanned offer failed rule 2 (release attribute missing, "Other", or spring/autumn rather than 2026 Fall/Winter). Several also failed rule 3 (dispatch promise 4, 5, 15 or 25 days).
 - Not scanned (7 ids, no verdict): 1087180952019, 1085003633966, 1082125041867, 1083273688989, 1083351603829, 1077509829756, 1079513452359. The next round should rescan them in batches of 8 or fewer.
 - No products built. Nothing BLOCKED (no CAPTCHA).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-heredoc-freeze-guard
+
+- task_entities: `ops/sourcing/autosource.py` (`calc`, lock stale 100 min); `ops/sourcing/AUTOSOURCE_RUNBOOK.md`; scheduled task `autosource` SKILL.md; DRAFT duck-parade-family-matching-sweatshirts (offer 1087968749959, resumes via `pending`)
+- task_stage: VERIFIED
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- The 22:53Z run froze 23:18Z-00:43Z on an approval prompt for an inline `python3 - <<EOF` heredoc, right after it created the Duck Parade DRAFT (reported by the CEO session, which stopped the turn). The stopped run left AUTOSOURCE_LOCK; the CEO session released it at 00:43Z so the 00:53Z run is not blocked.
+- Guard: the SKILL.md freeze guard and runbook now forbid python heredocs, `python3 -` and `python3 -c`. New `autosource.py calc "<arithmetic>"` (AST-limited to numbers and + - * / // % ** ( ); tested, rejects names/calls) covers jin->kg and variant-count maths.
+- Lock stale threshold 150 -> 100 min, so a stopped or frozen run blocks at most one hourly run (the watchdog stops runs idle >90 min).
+- Duck Parade (7 colours × 14 sizes = 98 variants, 65/35 cotton/poly, 河南明地一族) is listed by `pending` (translate -> images -> review -> QA -> finish) for the next run.

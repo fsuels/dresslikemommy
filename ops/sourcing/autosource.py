@@ -9,9 +9,10 @@ Runbook and rules: ops/sourcing/AUTOSOURCE_RUNBOOK.md (read first).
 and closes (never the owner's own tabs). Read-only. A CAPTCHA/login page => exit code 3, stop the round.
 
 Subcommands
-  lock acquire|release                 run lock (stale after 150 min)
+  lock acquire|release                 run lock (stale after 100 min: a stopped or frozen run never blocks more than one hourly run)
   next                                 this round's category (rotates through ROTATION) and the command to run
   elapsed                              minutes since this run took the lock (continue categories until 50)
+  calc "15*0.5, 25/2, 7*13"            arithmetic (jin->kg, variant counts); never use python heredocs instead
   queue                                scanned offers that passed but have no decision yet (review before new searches)
   decide ID "built <handle>|skip: <rule + reason>"   record the decision so the offer leaves the queue
   pending                              autosource DRAFTs left by an earlier run + the steps still to do (resume first)
@@ -914,7 +915,7 @@ def cmd_lock(action: str) -> None:
                 age = now - float(LOCK.read_text().split()[0])
             except Exception:
                 age = 1e9
-            if age < 150 * 60:
+            if age < 100 * 60:
                 print(f"LOCKED: another sourcing round started {int(age/60)} min ago. Stop this run.")
                 sys.exit(4)
         LOCK.write_text(f"{now} {time.strftime('%Y-%m-%dT%H:%M:%S')}\n")
@@ -952,6 +953,29 @@ def cmd_recent(hours: float = 26) -> None:
             except SystemExit:
                 pass
         print(h, "|", live, "| QA sheet:", qa if qa.exists() else "-", "| vendor sheet:", WORK / f"sheet_{json.loads(f.read_text())['offer_id']}.jpg")
+
+
+def cmd_calc(expr: str) -> None:
+    """Arithmetic for unattended runs (jin -> kg, variant counts, cm ranges): numbers, + - * / // % ** and parentheses only.
+    Runs must never use python heredocs or `python3 -` (not pre-approved: the run freezes on an approval prompt)."""
+    import ast
+    import operator as op
+    ops = {ast.Add: op.add, ast.Sub: op.sub, ast.Mult: op.mul, ast.Div: op.truediv, ast.FloorDiv: op.floordiv,
+           ast.Mod: op.mod, ast.Pow: op.pow, ast.USub: op.neg, ast.UAdd: op.pos}
+
+    def ev(n):
+        if isinstance(n, ast.Expression):
+            return ev(n.body)
+        if isinstance(n, ast.Constant) and isinstance(n.value, (int, float)):
+            return n.value
+        if isinstance(n, ast.BinOp) and type(n.op) in ops:
+            return ops[type(n.op)](ev(n.left), ev(n.right))
+        if isinstance(n, ast.UnaryOp) and type(n.op) in ops:
+            return ops[type(n.op)](ev(n.operand))
+        raise SystemExit("calc accepts numbers and + - * / // % ** ( ) only")
+    for part in expr.split(","):
+        v = ev(ast.parse(part.strip(), mode="eval"))
+        print(part.strip(), "=", round(v, 4) if isinstance(v, float) else v)
 
 
 def cmd_queue() -> None:
@@ -1019,6 +1043,7 @@ def main() -> None:
     elif c == "elapsed": cmd_elapsed()
     elif c == "pending": cmd_pending()
     elif c == "queue": cmd_queue()
+    elif c == "calc": cmd_calc(a[1])
     elif c == "decide": cmd_decide(a[1], a[2])
     elif c == "recent": cmd_recent(float(a[1]) if len(a) > 1 else 26)
     elif c == "unpublish": cmd_unpublish(a[1], a[2] if len(a) > 2 else "audit")

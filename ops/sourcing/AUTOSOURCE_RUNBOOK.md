@@ -6,6 +6,7 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 
 - The ONLY shell command shape is `/usr/bin/python3 ops/sourcing/autosource.py <subcommand> …`, run from the repo root. Never use cd, &&, pipes, redirection, other scripts, ls/cat/grep, `python3 -c`, git, or curl.
 - Read files and images with the Read tool. Do not rely on Grep/Glob (unattended runs may not have them): use `autosource.py dupe` for duplicate checks and `autosource.py attrs <id>` for the full offer attributes.
+- Never run python heredocs, `python3 -` or `python3 -c` (a run froze 90 minutes on one, 2026-09-29). Use `autosource.py calc "<arithmetic>"` for conversions and counts.
 - Run every command in the foreground. Never use Monitor, ScheduleWakeup, background runs or browser tools: an unanswered approval prompt freezes the job and blocks every later hourly run (it froze for 9 hours on 2026-09-29).
 - Write only these files, with the Write tool:
   - `/tmp/autosource/recipe_<handle>.json`
