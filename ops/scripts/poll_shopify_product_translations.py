@@ -1694,7 +1694,19 @@ def should_translate_field(resource_type: str, key: str, value: str, *, option_r
     allowed_fields = RESOURCE_FIELD_ALLOWLIST.get(resource_type)
     if not allowed_fields or key not in allowed_fields:
         return False
+    if resource_type == "Metafield" and is_json_data(value):  # e.g. msft_bingads.product_status {"pending":0,...}: data, not shopper text
+        return False
     return human_facing(value, key)
+
+
+def is_json_data(value: str) -> bool:
+    text = clean(value)
+    if not text or text[0] not in "{[":
+        return False
+    try:
+        return isinstance(json.loads(text), (dict, list))
+    except ValueError:
+        return False
 
 
 def collect_resource_snapshots(

@@ -56975,3 +56975,17 @@ Recurring mistakes for the hourly job:
 - Family accessories page 4: 0 new offers.
 - Couples Christmas knits page 4: 2 new offers, both failed rule 2. One had no release attribute and the other was labelled 2027 Autumn.
 - Maternity sweatshirts search: BLOCKED_1688_CAPTCHA (exit code 3). Stopped 1688 work for this run without bypassing it.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-product-translation-glossary-and-bulk-repair
+
+- task_entities: `ops/organic/PRODUCT_GLOSSARY.json` (CEO session); `ops/content/translation_glossary.json`; engine `tools/i18n/tr_*.json` (templates_mm/_mm_fleece/_knm/_knd, metafield_strings, shared.kf3_label, fabric_text/fabric_seo); `tools/register_direct.py --allow-live`; `ops/scripts/poll_shopify_product_translations.py` (JSON metafields); new `ops/scripts/codex_fill_missing_translations.py`
+- task_stage: IMPLEMENTED; live repairs VERIFIED by readback; metafield fill in progress
+- next_action_id: NATIVE_EDITOR_TITLE_QA (CEO session)
+
+- Bulk option repair (b375f07 logic, `--option-resources-only --deterministic-repairs-only --force-refresh --execute`): 308/308 active products, 8,020 option values corrected (months, neutral child, reviewed colours), 0 failed. Two Shopify throttles were retried.
+- Engine templates: the 24 strings behind engine titles, SEO titles and descriptions, the Mommy/Daddy and Me metafield labels, and the "Soft knit:" label were re-translated by ChatGPT-app Codex under PRODUCT_GLOSSARY rules (435 values changed, 0 validation errors; `seed_cache --dry-run` validates 79 specs × 20 locales). Examples: nl "Mama en ik-truien" → "Bijpassende gebreide truien voor mama en kind"; da "Mor og mig" → "til mor og barn"; he "לאמא ואני" → "לאמא ולילד"; "Soft knit" → nl "Zacht breisel", da "Blød strik" (was jersey/tricot). The tables reached main in a143c64.
+- Live engine products re-registered with `register_direct.py --allow-live` (opt-in; only values whose English source equals the validated seed; no shared cache): 49 ACTIVE engine products. Fields whose English changed after the build (SEO meta descriptions from the organic engine) keep their own translations and are reported, not overwritten. Readback: /nl, /el, /da, /he titles show the glossary phrases.
+- MT glossary: 11 phrase terms merged from PRODUCT_GLOSSARY (Mommy/Daddy & Me variants, Mother/Father Daughter/Son, Soft Knit, Buffalo Plaid). Only unambiguous multi-word phrases, because the glossary substitutes by substring; other keys unchanged.
+- Audit false positive: `should_translate_field` skips Metafield values that parse as JSON objects/arrays (msft_bingads.product_status).
+- Missing metafields (custom.type "Swimwear", custom.pattern "Solid" on older products): the free MT fallback is rate-limited (Google 429), so these never got translated. `codex_fill_missing_translations.py` collects only fields with NO translation across products, translates the unique strings once with Codex and registers them by digest (dry-run by default). Store-wide run in progress.
+- Open (not in this change): design-name translations that read word-for-word (el "Μπορντό με στρογγυλή λαιμόκοψη και τελειώματα", nl "Bordeaux met ronde hals en bies"); "Family story" and "Print" labels on knits; cardigan-vs-sweater title wording (QA #5, #6, #8); vendor-boilerplate claims on about 6 older products.

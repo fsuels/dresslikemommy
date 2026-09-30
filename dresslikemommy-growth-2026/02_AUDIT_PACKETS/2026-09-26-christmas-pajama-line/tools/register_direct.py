@@ -29,6 +29,7 @@ import ops.scripts.poll_shopify_product_translations as poller  # noqa: E402
 import seed_cache  # noqa: E402  (validated seed builder; its main() is not run)
 
 DRY = "--dry-run" in sys.argv
+ALLOW_LIVE = "--allow-live" in sys.argv  # re-register corrected seed strings on ACTIVE engine-built products (explicit opt-in)
 handles = [a for a in sys.argv[1:] if not a.startswith("--")]
 LOCALES = seed_cache.LOCALES
 
@@ -46,8 +47,12 @@ def main() -> None:
             {"h": handle},
         )
         product = data["productByHandle"]
-        if not product or product["status"] != "DRAFT" or product.get("publishedAt"):
+        if not product:
+            raise SystemExit(f"{handle}: not found")
+        if not ALLOW_LIVE and (product["status"] != "DRAFT" or product.get("publishedAt")):
             raise SystemExit(f"{handle}: not an unpublished DRAFT: {product}")
+        if ALLOW_LIVE and product["status"] not in ("DRAFT", "ACTIVE"):
+            raise SystemExit(f"{handle}: {product['status']} products are not re-registered")
         snapshots = poller.collect_resource_snapshots(client, product["id"], LOCALES, 100)
         recent = poller.RecentProduct(product_gid=product["id"], product_id=product["id"].split("/")[-1],
                                       handle=handle, title=product["title"], status="DRAFT",
@@ -78,7 +83,9 @@ def main() -> None:
         report[handle] = {"product_id": product["id"], "registered": registered,
                           "matched": sorted(f"{a}.{b}" for a, b in matched_keys), "missing_required": sorted(missing)}
         print(handle, "registered" if not DRY else "would register", registered, "missing:", sorted(missing))
-        if missing:
+        if missing and ALLOW_LIVE:  # live products: fields edited after the build (e.g. SEO meta) keep their own translations
+            print(f"{handle}: left unchanged (English edited since build): {sorted(missing)}")
+        elif missing:
             raise SystemExit(f"{handle}: stored source does not match seed for {sorted(missing)}")
     out = TOOLS / "run_logs" / ("register_direct_dry.json" if DRY else "register_direct.json")
     existing = json.loads(out.read_text()) if out.exists() else {}
