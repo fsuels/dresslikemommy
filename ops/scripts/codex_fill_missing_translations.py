@@ -17,6 +17,7 @@ import argparse
 import json
 import subprocess
 import sys
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -106,8 +107,16 @@ def register(execute: bool) -> None:
     n = 0
     for rid, trs in per_resource.items():
         for i in range(0, len(trs), 100):
-            c.register_translations(rid, trs[i:i + 100])
+            for attempt in range(5):  # Shopify throttles long bulk runs; back off and retry
+                try:
+                    c.register_translations(rid, trs[i:i + 100])
+                    break
+                except Exception as exc:  # noqa: BLE001
+                    if "THROTTLED" not in str(exc).upper() or attempt == 4:
+                        raise
+                    time.sleep(10 * (attempt + 1))
             n += len(trs[i:i + 100])
+            time.sleep(0.3)
     print(f"registered {n} translations on {len(per_resource)} resources")
 
 

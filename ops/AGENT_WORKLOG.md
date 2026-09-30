@@ -56999,3 +56999,12 @@ Recurring mistakes for the hourly job:
 - No pending drafts, empty queue. Categories run: family jackets p4, family hoodies p4, Mommy & Me dresses p4, couples hoodies p4 (0 new), Christmas family knits p4 (0 new), family sweatshirts p4 (0 new); catalog rounds for 明地一族, 森大, 圣瑞, 莫雷 (all offers already seen), 拓茵/唯庭/辰承 (0 offers returned). Then Mommy & Me sweatshirts p4 hit a 1688 CAPTCHA/login (exit 3); stopped, no bypass.
 - Screened 5, passed scan 2, passed gate 0, built 0. No new live listings.
 - Skipped: 1080305651692 (release Fall 2027, fresh rule); 1072310760462 (supplier 0 years on 1688); 1083119130419 (supplier fulfillment 95.45% <97, 36 orders); 1082804918533 (no release season attribute); 1052478292797 (Summer 2026 release, no 24/48h promise).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-missing-product-metafield-translations-filled
+
+- task_entities: `ops/scripts/codex_fill_missing_translations.py` (throttle retry); 197 active products
+- task_stage: VERIFIED
+- next_action_id: NATIVE_EDITOR_TITLE_QA (CEO session)
+
+- Store-wide `collect` over 308 active products found 979 fields with no translation at all (950 metafield values such as custom.type "Swimwear" and custom.pattern "Solid", 26 option values, 3 option names) on 197 products, from 157 unique English strings. ChatGPT-app Codex translated them once under PRODUCT_GLOSSARY rules (e.g. nl Badmode / Effen / Mama en kind; de Bademode / Einfarbig; he בגדי ים / חלק; ja スイムウェア / 無地). Registered 18,225 translations on 979 resources by digest (existing translations untouched).
+- Re-audit of the CEO QA sample (6 products incl. both swimsuits, argyle cardigan, burgundy daddy & me, buffalo plaid PJs, Pure Joy hoodies): missing 0, outdated 0, source-equal 0. Remaining: body_source_language_leakage on the two 2022 swimsuits (ru, sv), which are vendor-boilerplate bodies the QA report flags for a source rewrite (unsupported claims), so they are left for that rewrite.
