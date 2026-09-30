@@ -56989,3 +56989,13 @@ Recurring mistakes for the hourly job:
 - Audit false positive: `should_translate_field` skips Metafield values that parse as JSON objects/arrays (msft_bingads.product_status).
 - Missing metafields (custom.type "Swimwear", custom.pattern "Solid" on older products): the free MT fallback is rate-limited (Google 429), so these never got translated. `codex_fill_missing_translations.py` collects only fields with NO translation across products, translates the unique strings once with Codex and registers them by digest (dry-run by default). Store-wide run in progress.
 - Open (not in this change): design-name translations that read word-for-word (el "Μπορντό με στρογγυλή λαιμόκοψη και τελειώματα", nl "Bordeaux met ronde hals en bies"); "Family story" and "Print" labels on knits; cardigan-vs-sweater title wording (QA #5, #6, #8); vendor-boilerplate claims on about 6 older products.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-multi-category-blocked-captcha
+
+- task_entities: 1080305651692, 1072310760462, 1083119130419, 1082804918533, 1052478292797
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- No pending drafts, empty queue. Categories run: family jackets p4, family hoodies p4, Mommy & Me dresses p4, couples hoodies p4 (0 new), Christmas family knits p4 (0 new), family sweatshirts p4 (0 new); catalog rounds for 明地一族, 森大, 圣瑞, 莫雷 (all offers already seen), 拓茵/唯庭/辰承 (0 offers returned). Then Mommy & Me sweatshirts p4 hit a 1688 CAPTCHA/login (exit 3); stopped, no bypass.
+- Screened 5, passed scan 2, passed gate 0, built 0. No new live listings.
+- Skipped: 1080305651692 (release Fall 2027, fresh rule); 1072310760462 (supplier 0 years on 1688); 1083119130419 (supplier fulfillment 95.45% <97, 36 orders); 1082804918533 (no release season attribute); 1052478292797 (Summer 2026 release, no 24/48h promise).
