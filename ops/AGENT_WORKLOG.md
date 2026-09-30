@@ -56958,3 +56958,20 @@ Independent audit of the 7 autosource products from the last 26h (QA sheet, vend
 Recurring mistakes for the hourly job:
 1. Convert 斤 to kg in every chart. The CHBR recipe copied raw jin values while sibling products from the same template store converted them.
 2. Evidence lines must always carry the gate readout (years, pickup, fulfillment, service) and the deliveryLimit line. Two recipes omitted or misstated them.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-nonstop-round
+
+- task_entities: cute-happy-bunny-bear-family-matching-sweatshirts (offer resumed from DRAFT); screened offers 1086029157765, 1087072964253, 1081066951633, 1082200581053, 1082614900279, 1085937590328
+- task_stage: LIVE_VERIFIED for the resumed draft; BLOCKED_1688_CAPTCHA at the maternity sweatshirts search
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Resumed pending DRAFT cute-happy-bunny-bear-family-matching-sweatshirts. The QA sheet matched the vendor print (Cute Happy bunny and bear, purple and cream). The 4 images were 9:16 with no extra logos. `finish` printed the listing-localization PASS line and `ACTIVE OK channels=8/8`. LIVE readback: price 26.99, compare-at 31.99, avail 91/91.
+- Queue was empty at the start of the run.
+- Mommy & Me knits page 4: 0 new offers.
+- 野狼魅力 catalog (chentian1788): 38 family offers, all already seen; 0 new.
+- Couples sweatshirts page 4: 0 new offers.
+- Maternity page 4: 4 new offers, all failed the scan. Three had a 20-day dispatch promise (the fourth 45 days) and none had a 2026 Fall/Winter release (rules 2 and 3).
+- Family vests page 4: 0 new offers.
+- Family accessories page 4: 0 new offers.
+- Couples Christmas knits page 4: 2 new offers, both failed rule 2. One had no release attribute and the other was labelled 2027 Autumn.
+- Maternity sweatshirts search: BLOCKED_1688_CAPTCHA (exit code 3). Stopped 1688 work for this run without bypassing it.
