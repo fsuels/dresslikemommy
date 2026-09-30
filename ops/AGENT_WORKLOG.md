@@ -56744,3 +56744,13 @@ Why: owner continuation "recheck Merchant store-quality image scores when the 30
 - Guard: the SKILL.md freeze guard and runbook now forbid python heredocs, `python3 -` and `python3 -c`. New `autosource.py calc "<arithmetic>"` (AST-limited to numbers and + - * / // % ** ( ); tested, rejects names/calls) covers jin->kg and variant-count maths.
 - Lock stale threshold 150 -> 100 min, so a stopped or frozen run blocks at most one hourly run (the watchdog stops runs idle >90 min).
 - Duck Parade (7 colours × 14 sizes = 98 variants, 65/35 cotton/poly, 河南明地一族) is listed by `pending` (translate -> images -> review -> QA -> finish) for the next run.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-29-autosource-resume-duck-parade
+
+- task_entities: duck-parade-family-matching-sweatshirts
+- task_stage: BLOCKED_CLOSEOUT_FAILED (product left DRAFT)
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Resumed pending DRAFT duck-parade-family-matching-sweatshirts: translate done (360 strings registered, 20 locales), images done (4, 9:16), review sheet QA passed (print, lettering and colours match the vendor photo; no logos or extra text; kids and adults wear the right prints).
+- `finish` failed twice at `[listing-localization] audit_full_product_before_size_repair` (audit_shopify_product_translation_completeness.py --fail-on-issues). Product NOT activated, stays DRAFT. Evidence: ops/listings/duck-parade-family-matching-sweatshirts-localization-closeout.json. CEO session should read that JSON, fix the translation completeness issue, then re-run `finish`.
+- No new sourcing searches this run (time spent on the resume; the two `images`/`finish` steps each exceeded 10 minutes).
