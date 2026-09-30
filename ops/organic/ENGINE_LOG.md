@@ -252,3 +252,15 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 53 collections, 272 articles; queue empty since 15:24Z on 09-29).
 - Research: none (backlog has ≥5 open ENGINE items)
 - Flags for MAIN/OWNER: none new. One unlisted `wc -l` run by mistake (read-only).
+
+## 2026-09-30T19:24Z run
+- Build: SKIPPED: daily cap of 5 new articles already reached (UTC day 2026-09-30). Next build (after 00:00Z 10-01): #11 hawaiian outfits, then #12, #13, #14.
+- Fix: 0 items (queue empty since 15:24Z on 09-29; inventory and `article-links` not re-run to spare the rate limit).
+- Research: none (backlog has ≥5 open ENGINE items)
+- Flags for MAIN/OWNER: none new.
+
+## 2026-09-30T20:24Z run
+- Build: SKIPPED: daily cap of 5 new articles already reached (UTC day 2026-09-30). Next build (after 00:00Z 10-01): #11 hawaiian outfits, then #12, #13, #14.
+- Fix: 0 items (inventory refreshed: 53 collections, 80 published articles; `article-links`: 0 articles needing fix).
+- Research: none (backlog has ≥5 open ENGINE items)
+- Flags for MAIN/OWNER: none new. One unlisted `grep -c` run by mistake (read-only).
