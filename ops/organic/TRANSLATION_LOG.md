@@ -89,3 +89,5 @@
 - 2026-09-29T16:59Z matching-family-shirts-for-pictures: all 20 locales (title, body, summary, meta) VERIFIED (0 left) — CEO parallel worker
 - 2026-09-30T01:21Z father-and-son-matching-button-up-shirts: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-09-30T02:21Z father-and-son-matching-button-up-shirts: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-09-30T03:22Z babys-first-christmas-matching-family-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-09-30T04:22Z babys-first-christmas-matching-family-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)

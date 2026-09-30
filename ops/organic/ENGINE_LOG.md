@@ -156,3 +156,15 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (`article-links` not re-run; queue empty since 15:24Z on 09-29).
 - Research: none (backlog has ≥5 open ENGINE items)
 - Flags for MAIN/OWNER: MAIN: request indexing for the 3 new articles today (I1 list). Next build: #9 NYE. One unlisted `wc -l` was run by mistake (read-only).
+
+## 2026-09-30T03:24Z run
+- Build: backlog #9 New Year's Eve matching family outfits → https://www.dresslikemommy.com/blogs/news/new-years-eve-matching-family-outfits (VERIFIED: 200, 1 h1, no robots meta; lint 0 errors, 915 words). 4 of 5 today (UTC 2026-09-30).
+- Fix: 0 items (`article-links` not re-run; queue empty since 15:24Z on 09-29).
+- Research: none (backlog has ≥5 open ENGINE items)
+- Flags for MAIN/OWNER: MAIN: request indexing for the 4 new articles today (I1 list). Next build: #10 mother-daughter dresses guide. Unlisted `wc -l` run once by mistake (read-only); `grep`-style search of JSON was not possible, so hero image reused from the couples collection.
+
+## 2026-09-30T04:24Z run
+- Build: backlog #10 mother-daughter matching dresses guide → https://www.dresslikemommy.com/blogs/news/mother-daughter-matching-dresses-guide (VERIFIED: 200, 1 h1, no robots meta; lint 0 errors, 947 words). 5 of 5 today (UTC 2026-09-30): daily cap reached.
+- Fix: 0 items (`article-links` re-run: 0 articles needing fix).
+- Research: none (backlog has ≥5 open ENGINE items: #11, #12, I1, S3)
+- Flags for MAIN/OWNER: MAIN: request indexing for the 5 new articles today (I1 list, plus this one). One unlisted `wc -l` run by mistake (read-only). Next build (after 00:00Z): #11 hawaiian outfits.
