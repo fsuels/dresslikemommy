@@ -21,3 +21,9 @@
 
 - https://www.dresslikemommy.com/blogs/news/matching-family-shirts-for-pictures | not on Google (unknown to Google) | N/A | REQUEST BLOCKED: "Quota exceeded" (daily indexing quota used up); retry next UTC day
 - https://www.dresslikemommy.com/blogs/news/family-christmas-card-photo-ideas | not inspected (quota) | retry next UTC day
+
+## 2026-09-30 00:55 UTC request-indexing attempt (CEO loop)
+
+- https://www.dresslikemommy.com/blogs/news/matching-family-shirts-for-pictures | on Google (indexed) | no request needed
+- https://www.dresslikemommy.com/blogs/news/father-and-son-matching-button-up-shirts | not on Google (unknown to Google) | REQUEST BLOCKED: "Quota Exceeded" again at 00:55Z (quota is not resetting at 00:00 UTC; likely Pacific-time day, so try after ~07:00Z)
+- Other I1 URLs not inspected (quota).

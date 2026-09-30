@@ -132,3 +132,15 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed; `article-links` not re-run, queue was empty at 21:24Z).
 - Research: none (backlog has ≥5 open ENGINE items)
 - Flags for MAIN/OWNER: none new.
+
+## 2026-09-29T23:24Z run
+- Build: SKIPPED: daily cap of 5 new articles already reached (UTC day 2026-09-29). Next build (after 00:00Z): #7b father-and-son button-up shirts, then #2 baby's first Christmas.
+- Fix: 0 items (token valid until 03:01Z; inventory and `article-links` not re-run, queue empty since 15:24Z).
+- Research: none (backlog has ≥5 open ENGINE items)
+- Flags for MAIN/OWNER: none new. One unlisted `wc -l` was run by mistake (read-only).
+
+## 2026-09-30T00:24Z run
+- Build: backlog #7b father-and-son matching button-up shirts → https://www.dresslikemommy.com/blogs/news/father-and-son-matching-button-up-shirts (VERIFIED: 200, 1 h1, no robots meta; lint 0 errors, 884 words). 1 of 5 today (UTC 2026-09-30).
+- Fix: 0 items (`article-links` not re-run this hour; queue empty since 15:24Z on 09-29).
+- Research: none (backlog has ≥5 open ENGINE items)
+- Flags for MAIN/OWNER: MAIN: request indexing for the new article (I1 list). Next build: #2 baby's first Christmas (check baby sizes first).
