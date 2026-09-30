@@ -87,3 +87,5 @@
 - 2026-09-29T16:19Z matching-family-christmas-pajamas-guide-2026: early 'December 8' sentence replaced in English + 20 locales (surgical) VERIFIED (0 left) — CEO claim-fix worker
 - 2026-09-29T16:19Z family-christmas-photo-outfits-2026: early 'December 8' sentence replaced in English + 20 locales (surgical) VERIFIED (0 left) — CEO claim-fix worker
 - 2026-09-29T16:59Z matching-family-shirts-for-pictures: all 20 locales (title, body, summary, meta) VERIFIED (0 left) — CEO parallel worker
+- 2026-09-30T01:21Z father-and-son-matching-button-up-shirts: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-09-30T02:21Z father-and-son-matching-button-up-shirts: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)

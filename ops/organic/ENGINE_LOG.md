@@ -144,3 +144,15 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (`article-links` not re-run this hour; queue empty since 15:24Z on 09-29).
 - Research: none (backlog has ≥5 open ENGINE items)
 - Flags for MAIN/OWNER: MAIN: request indexing for the new article (I1 list). Next build: #2 baby's first Christmas (check baby sizes first).
+
+## 2026-09-30T01:24Z run
+- Build: backlog #2 baby's first Christmas → https://www.dresslikemommy.com/blogs/news/babys-first-christmas-matching-family-outfits (VERIFIED: 200, 1 h1, no robots meta; lint 0 errors, 1088 words). 2 of 5 today (UTC 2026-09-30). Baby-size claim limited to burgundy-trim-crew (6-12 Months confirmed on live product JSON).
+- Fix: 0 items (`article-links` not re-run; queue empty since 15:24Z on 09-29).
+- Research: none (backlog has ≥5 open ENGINE items)
+- Flags for MAIN/OWNER: MAIN: request indexing for the new article (add to I1 list). One unlisted `grep -c` was run by mistake (read-only). Next build: #8 cruise, #9 NYE.
+
+## 2026-09-30T02:24Z run
+- Build: backlog #8 matching family cruise outfits → https://www.dresslikemommy.com/blogs/news/matching-family-cruise-outfits (VERIFIED: 200, 1 h1, no robots meta; lint 0 errors, 986 words). 3 of 5 today (UTC 2026-09-30).
+- Fix: 0 items (`article-links` not re-run; queue empty since 15:24Z on 09-29).
+- Research: none (backlog has ≥5 open ENGINE items)
+- Flags for MAIN/OWNER: MAIN: request indexing for the 3 new articles today (I1 list). Next build: #9 NYE. One unlisted `wc -l` was run by mistake (read-only).
