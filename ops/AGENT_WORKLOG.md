@@ -57066,3 +57066,15 @@ Recurring mistakes for the hourly job:
 - Searched page 1 for family vests, matching family accessories, couples Christmas knits, maternity sweatshirts, family jackets and family hoodies: every search returned 0 new family-titled 2026 offers, so nothing was scanned, gated or built.
 - The Mommy & Me dresses search ("母女装 连衣裙 2026秋冬") hit a 1688 CAPTCHA/login page (exit code 3). 1688 work stopped for this run; not bypassed. Recorded BLOCKED_1688_CAPTCHA.
 - No new live handles. No pending drafts or queued offers at start.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-multi-category
+
+- task_entities: 1077402015036
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Categories run (about 6 min): couples hoodies, Christmas family knits, family sweatshirts, Mommy & Me sweatshirts, family sweaters, Daddy & Me p2 searches; catalogs for 明地一族, 森大, 圣瑞, 莫雷, 拓茵, 唯庭, 辰承 and TYG. No draft or queue items were pending.
+- Screened 1, passed scan 1, built 0. No new live products. Every other result was already seen.
+- Skipped: 1077402015036 (湖州芊宸服饰, Cotton 60% kids set), rule 4: supplier fulfillment 90.10% < 97% (7 years, pickup 98.81%).
+- Catalogs 辰承 (shop859424j2546y8) and TYG (tygtzd) returned 0 offers; they may need a new URL or be blocked.
+- BLOCKED_1688_CAPTCHA on the search "亲子装 圣诞 卫衣 2026" page 2. Stopped 1688 work for this run; the CAPTCHA was not bypassed.
