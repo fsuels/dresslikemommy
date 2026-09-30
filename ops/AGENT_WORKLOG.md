@@ -57090,3 +57090,14 @@ Recurring mistakes for the hourly job:
 - Searches page 2: siblings (兄妹装), Mommy & Me knits, maternity sweaters, family vests: 0 new 2026 offers. Couples sweatshirts: 1 new, 1086890324789, skipped rule 2 (release 2025 autumn, Christmas hoodie).
 - Matching family accessories search (亲子 帽子围巾 2026冬, page 2) hit a 1688 CAPTCHA/login (exit 3). Stopped 1688 work, did not bypass.
 - New LIVE products this run: none.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-captcha-block
+
+- task_entities: none (no new handles)
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Run start: 0 pending drafts, 0 queued offers.
+- Searched page 2 of: couples Christmas knits, maternity sweatshirts, family jackets. Each returned 0 new family-titled 2026 offers (nothing screened, nothing passed).
+- Family hoodies page 2 search hit a 1688 CAPTCHA/login page (exit code 3). Stopped 1688 work for this run; did not bypass. Owner/CEO session must clear the 1688 login/CAPTCHA before the next round.
+- No new listings built. No products changed.
