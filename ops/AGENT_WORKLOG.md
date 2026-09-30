@@ -57020,3 +57020,15 @@ Recurring mistakes for the hourly job:
 - Maternity search (孕妇毛衣 2026秋冬, p5) hit a 1688 CAPTCHA/login page (exit 3). Stopped 1688 work; not bypassed.
 - Screened/passed: 0/0. New live products: none.
 - Note: catalogs and later result pages are exhausted for the current queries; next run should try new query wording or page 1-3 of fresh keywords once the CAPTCHA clears.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-honest-copy-rewrites-and-title-fixes-applied
+
+- task_entities: 10 products from `ops/organic/product_rewrites/` (5 boilerplate swimsuits, red-botanical-mommy-and-me-swimsuits, beige chiffon dresses, dinosaur and eternal-love tees, white-lace-mommy-and-me-dresses); `ops/organic/PRODUCT_TITLE_FIXES.json` (72 products × el/da/no/nl/he); red-cable-cardigan-mommy-and-me-sweaters, argyle-wool-mommy-and-me-cardigans; `ops/scripts/codex_fill_missing_translations.py` (`--types/--keys/--include-outdated`, body HTML with poller size repair); `tools/register_direct.py` (title fixes win)
+- task_stage: LIVE_VERIFIED (closeout audit results in the follow-up line)
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Honest copy (CEO session drafts, reviewed before publishing): each size table was verified identical to live (whitespace-normalized), with no URLs and none of the scan phrases (forever, intact, onlookers, financial burden, suitable for all, premium, guarantee…). Before-state saved in /tmp/autosource/rewrite_backup/<handle>.html. descriptionHtml applied with productUpdate; readback identical for all 10.
+- Bodies re-translated with ChatGPT-app Codex (the MT fallback is still rate-limited): 10 bodies × 20 locales; every translation keeps the source's exact tag sequence and all numbers; body_html goes through the poller's `repair_product_html_translation` before registration. Registered 200.
+- Title fixes (CEO native-editor QA): 360 titles registered on 72 products (el/da/no/nl/he) against the current title digest; 0 errors. Readback e.g. nl "Bordeaux met ronde hals en contrastrand – truien voor papa en kind — bijpassend breisel". `register_direct` now prefers PRODUCT_TITLE_FIXES titles, so a later `--allow-live` run cannot revert them.
+- Cardigans: both English titles said "Sweaters" although the specs describe button-front cardigans. English title and SEO title changed to "… Mommy and Me Cardigans" (red: "Red Cable Mommy and Me Cardigans — Matching Knits"); the 15 other locales' titles and all 20 SEO titles were re-translated by Codex and registered (70).
+- Open: the engine's knit-pair template still says "Sweaters" for future cardigan builds (needs a cardigan title template × 20 locales).

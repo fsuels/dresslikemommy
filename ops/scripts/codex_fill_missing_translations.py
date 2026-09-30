@@ -26,7 +26,8 @@ for p in (ROOT, ROOT / "ops" / "scripts"):
         sys.path.insert(0, str(p))
 
 from ops.scripts.poll_shopify_product_translations import (  # noqa: E402
-    ShopifyClient, collect_resource_snapshots, resolve_target_locales, should_translate_field)
+    ShopifyClient, collect_resource_snapshots, infer_product_context, repair_product_html_translation,
+    resolve_target_locales, should_translate_field)
 from ops.scripts.shopify_admin_config import load_access_token, resolve_store_domain  # noqa: E402
 
 WORK = Path("/tmp/dlm-codex/fill_missing")
@@ -42,6 +43,8 @@ RULES:
 - Follow glossary.json (store glossary with rules) where a term applies: gender-neutral 'Mommy and Me'/'Daddy and Me' values, never the
   'and me' pronoun pattern; 'Child' neutral; Norwegian 'pysjamas'; Hebrew unpointed.
 - Never leave a value in English unless the store glossary or the language itself uses the same word.
+- Some values are product description HTML: keep every tag, attribute, comment and table cell exactly as in the source and translate
+  only the visible text; keep numbers, units (cm, in, kg, lbs) and size codes; add no claims; natural fluent shopping copy.
 Do not ask questions; write all files, then reply DONE."""
 
 
@@ -49,20 +52,21 @@ def client() -> ShopifyClient:
     return ShopifyClient(resolve_store_domain("", fallback_domain="dresslikemommy-com.myshopify.com"), load_access_token(""))
 
 
-def collect(handles: list[str]) -> None:
+def collect(handles: list[str], types: set[str] = FILL_TYPES, keys: set[str] | None = None, include_outdated: bool = False) -> None:
     c = client()
     locales = resolve_target_locales(c, "")
     WORK.mkdir(parents=True, exist_ok=True)
     plan, sources = [], {}
     for i, product in enumerate(c.products_by_handles(handles), 1):
         for s in collect_resource_snapshots(c, product.product_gid, locales, 100):
-            if s.resource_type not in FILL_TYPES:
+            if s.resource_type not in types:
                 continue
             for item in s.translatable_content:
                 key, value, digest = item.get("key", ""), item.get("value") or "", item.get("digest", "")
-                if not should_translate_field(s.resource_type, key, value):
+                if not should_translate_field(s.resource_type, key, value) or (keys and key not in keys):
                     continue
-                missing = [l for l in locales if (l, key) not in s.existing_translations]
+                missing = [l for l in locales if (l, key) not in s.existing_translations
+                           or (include_outdated and s.existing_translations[(l, key)].outdated)]
                 if missing:
                     plan.append({"handle": product.handle, "resource_id": s.resource_id, "type": s.resource_type, "key": key,
                                  "value": value, "digest": digest, "locales": missing})
@@ -89,9 +93,13 @@ def register(execute: bool) -> None:
     plan = json.loads((WORK / "plan.json").read_text(encoding="utf-8"))
     out = {l: json.loads((WORK / "out" / f"{l}.json").read_text(encoding="utf-8")) for l in plan["locales"]}
     per_resource, problems = {}, []
+    contexts: dict[str, dict] = {}
     for row in plan["rows"]:
         for l in row["locales"]:
             t = (out[l].get(row["value"]) or "").strip()
+            if t and row["type"] == "Product" and row["key"] == "body_html":  # same size-label/chart repair the poller applies
+                ctx = contexts.setdefault(row["handle"], infer_product_context(type("P", (), {"handle": row["handle"], "title": ""})(), []))
+                t = repair_product_html_translation(row["value"], t, l, product_context=ctx)
             if not t:
                 problems.append((l, row["value"][:40]))
                 continue
@@ -126,10 +134,14 @@ def main() -> None:
     ap.add_argument("--handles", default="")
     ap.add_argument("--handles-file", default="")
     ap.add_argument("--execute", action="store_true")
+    ap.add_argument("--types", default=",".join(sorted(FILL_TYPES)), help="resource types, e.g. Product")
+    ap.add_argument("--keys", default="", help="only these field keys, e.g. body_html")
+    ap.add_argument("--include-outdated", action="store_true", help="also replace translations marked outdated (English changed)")
     a = ap.parse_args()
     if a.step == "collect":
         raw = Path(a.handles_file).read_text(encoding="utf-8") if a.handles_file else a.handles
-        collect([h.strip() for h in raw.replace("\n", ",").split(",") if h.strip()])
+        collect([h.strip() for h in raw.replace("\n", ",").split(",") if h.strip()], set(a.types.split(",")),
+                set(k for k in a.keys.split(",") if k) or None, a.include_outdated)
     elif a.step == "run":
         run()
     else:

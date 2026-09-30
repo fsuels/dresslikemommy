@@ -29,7 +29,9 @@ import ops.scripts.poll_shopify_product_translations as poller  # noqa: E402
 import seed_cache  # noqa: E402  (validated seed builder; its main() is not run)
 
 DRY = "--dry-run" in sys.argv
-ALLOW_LIVE = "--allow-live" in sys.argv  # re-register corrected seed strings on ACTIVE engine-built products (explicit opt-in)
+ALLOW_LIVE = "--allow-live" in sys.argv
+_TITLE_FIXES_PATH = ROOT / "ops" / "organic" / "PRODUCT_TITLE_FIXES.json"
+TITLE_FIXES = json.loads(_TITLE_FIXES_PATH.read_text(encoding="utf-8")) if _TITLE_FIXES_PATH.exists() else {}  # re-register corrected seed strings on ACTIVE engine-built products (explicit opt-in)
 handles = [a for a in sys.argv[1:] if not a.startswith("--")]
 LOCALES = seed_cache.LOCALES
 
@@ -69,6 +71,8 @@ def main() -> None:
                 payload = []
                 for loc in LOCALES:
                     value = built[loc][source]
+                    if snap.resource_type == "Product" and item["key"] == "title" and TITLE_FIXES.get(handle, {}).get(loc):
+                        value = TITLE_FIXES[handle][loc]  # native-editor title fixes (ops/organic/PRODUCT_TITLE_FIXES.json) win over the template title
                     if snap.resource_type == "Product" and item["key"] == "body_html":
                         value = poller.repair_product_html_translation(source, value, loc, product_context=context)
                     payload.append({"locale": loc, "key": item["key"], "value": value,
