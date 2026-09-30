@@ -57008,3 +57008,15 @@ Recurring mistakes for the hourly job:
 
 - Store-wide `collect` over 308 active products found 979 fields with no translation at all (950 metafield values such as custom.type "Swimwear" and custom.pattern "Solid", 26 option values, 3 option names) on 197 products, from 157 unique English strings. ChatGPT-app Codex translated them once under PRODUCT_GLOSSARY rules (e.g. nl Badmode / Effen / Mama en kind; de Bademode / Einfarbig; he בגדי ים / חלק; ja スイムウェア / 無地). Registered 18,225 translations on 979 resources by digest (existing translations untouched).
 - Re-audit of the CEO QA sample (6 products incl. both swimsuits, argyle cardigan, burgundy daddy & me, buffalo plaid PJs, Pure Joy hoodies): missing 0, outdated 0, source-equal 0. Remaining: body_source_language_leakage on the two 2022 swimsuits (ru, sv), which are vendor-boilerplate bodies the QA report flags for a source rewrite (unsupported claims), so they are left for that rewrite.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-nonstop-round
+
+- task_entities: none (no new offers)
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Start of run: 0 pending drafts, 0 queued offers.
+- Categories searched, all with 0 new family-titled 2026 offers (every result already seen): family sweaters p4, TYG Kids catalog (138 offers, 0 family since 2026-06-01), Daddy & Me p5, Christmas family sweatshirts p5, 格莱美 catalog (26 family offers, all seen), siblings p5, Mommy & Me knits p5, 野狼魅力 catalog (38 family offers, all seen), couples sweatshirts p5.
+- Maternity search (孕妇毛衣 2026秋冬, p5) hit a 1688 CAPTCHA/login page (exit 3). Stopped 1688 work; not bypassed.
+- Screened/passed: 0/0. New live products: none.
+- Note: catalogs and later result pages are exhausted for the current queries; next run should try new query wording or page 1-3 of fresh keywords once the CAPTCHA clears.
