@@ -44,6 +44,7 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 
 0. **Lock:** `autosource.py lock acquire`. If it prints LOCKED, stop immediately. Always `lock release` at the end, even after errors.
 0b. **Resume first:** `autosource.py pending` lists autosource DRAFTs an earlier run left mid-build, with the steps still to do. Finish each one (same QA rules; the recipe is in `ops/sourcing/state/recipes/<handle>.json`, the spec already exists — do not run `spec` again) before sourcing anything new. If a step fails twice, leave it DRAFT and record why.
+   If `pending` shows `stock=0`, run `autosource.py stock <handle>` first (a run stopped mid-build skips the stock step); `finish` refuses to report success unless activation printed `ACTIVE OK`.
 0c. **Then the queue:** `autosource.py queue` lists screened offers that passed but have no recorded decision (earlier runs ran out of time). Take them before new searches: `gate` if it says so, then `capture` + look, build or skip. Record every decision with `autosource.py decide <id> "built <handle>"` or `decide <id> "skip: <rule + reason>"`, also for candidates you reject during a normal round, so nothing is re-reviewed or lost.
 1. **Pick the category:** `autosource.py next` prints this round's category and the exact command to run (search or catalog). Run it.
 2. **Screen:** `autosource.py scan <IDS>`, using the IDS line from step 1; it paces itself.
@@ -107,6 +108,7 @@ Recipe notes:
   - Skip sizes the store can't represent: 5XL, baby rompers.
   - Height→age examples: 80 cm → 6-12 Months, 90 → 1-2, 100 → 2-3, 110 → 4, 120 → 5-6, 130 → 6-7 or 7-8, 140 → 9-10, 150 → 11-12, 160 → 13-14.
 - **At most 100 variants** (colours × sizes): the engine verifies `variants(first: 100)`, and `spec` refuses more. Drop the weakest colours before building (2026-09-29: an 8-colour × 13-size build failed after its DRAFT was created). One offer = one product: never rebuild the same offer under a new handle.
+- **Colour names must translate** (the seed validator rejects a translation equal to English, and an untranslated option value fails the closeout): 米色/杏色 → Cream or Apricot (never "Beige"), 湖蓝 → Lake Blue, 果绿 → Green. `translate` adds new colour names via Codex and stops with advice if one would stay identical.
 - **Chest:** full chest (胸围) as published; 半胸围 ×2. Weights: 斤 ÷ 2 = kg.
 - **Sleeve:** if the chart has no sleeve column (only 肩宽 shoulder), set `"chart_no_sleeve": true` and omit sleeve.
 - **Colour-pattern metaobject ids:** Red 69600804961, Green 70220546145, White 69639733345, Beige 69641928801, Blue 69639766113, Pink 69963645025, Purple 130284126305, Yellow 69622104161, Black 69943132257, Gray 69944672353.

@@ -12,6 +12,7 @@ Subcommands
   lock acquire|release                 run lock (stale after 100 min: a stopped or frozen run never blocks more than one hourly run)
   next                                 this round's category (rotates through ROTATION) and the command to run
   elapsed                              minutes since this run took the lock (continue categories until 50)
+  stock HANDLE                         100 stock per variant on an autosource DRAFT (pending says when it is 0)
   calc "15*0.5, 25/2, 7*13"            arithmetic (jin->kg, variant counts); never use python heredocs instead
   queue                                scanned offers that passed but have no decision yet (review before new searches)
   decide ID "built <handle>|skip: <rule + reason>"   record the decision so the offer leaves the queue
@@ -531,6 +532,13 @@ def cmd_build(handle: str) -> None:
     print(sh([PY, "set_inventory_100.py", handle], cwd=T).strip().splitlines()[-1])
 
 
+def cmd_stock(handle: str) -> None:
+    """100 stock per variant on an autosource DRAFT (the last step of `build`; a run stopped mid-build can leave 0)."""
+    if not (STATE / "recipes" / f"{handle}.json").exists():
+        raise SystemExit("refused: only autosource-built products")
+    print(sh([PY, "set_inventory_100.py", handle], cwd=T).strip().splitlines()[-1])
+
+
 def i18n_lock() -> None:
     t0 = time.time()
     while True:
@@ -589,6 +597,40 @@ def add_size_strings(handle: str) -> None:
     print("added size strings for", key)
 
 
+def add_color_strings(handle: str) -> None:
+    """Colour option values missing from tr_*.json "colors" are never registered, and the closeout audit then fails
+    with missing_translation on ProductOptionValue (Duck Parade 'Beige' / 'Lake Blue', 2026-09-30). Translate them first."""
+    spec = json.loads((T / "specs" / f"{handle}.json").read_text(encoding="utf-8"))
+    src = json.loads((T / "i18n/en_source.json").read_text(encoding="utf-8"))
+    trs = {l: json.loads((T / f"i18n/tr_{l}.json").read_text(encoding="utf-8")) for l in LOCALES}
+    missing = [c["name"] for c in spec["colors"] if any(c["name"] not in trs[l]["colors"] for l in LOCALES)]
+    if not missing:
+        return
+    d = WORK / f"colors_{handle}"
+    shutil.rmtree(d, ignore_errors=True); d.mkdir(parents=True)
+    (d / "source_en.json").write_text(json.dumps({m: m for m in missing}, ensure_ascii=False, indent=1), encoding="utf-8")
+    ex = {l: dict(list(trs[l]["colors"].items())[:8]) for l in ("de", "fr", "ja")}
+    codex(d, "You are a professional e-commerce translator for Dress Like Mommy (matching family outfits).\n"
+             f"TASK: source_en.json maps English clothing colour names (Shopify option values) to themselves. For each locale ({', '.join(LOCALES)}) "
+             "write ./out/<locale>.json (create ./out) with the same keys and the natural local shop name of that colour as value.\n"
+             "RULES: short colour names as shoppers see them on a size/colour picker; never leave English; no extra words.\n"
+             f"Match the style of these existing colour translations:\n{json.dumps(ex, ensure_ascii=False, indent=1)}\nDo not ask questions; write all files, then reply DONE.")
+    for l in LOCALES:
+        t = json.loads((d / "out" / f"{l}.json").read_text(encoding="utf-8"))
+        for m in missing:
+            if not (t.get(m) or "").strip():
+                raise SystemExit(f"colour translation missing: {l} {m}")
+            if t[m].strip().casefold() == m.casefold():  # seed_cache rejects source-equal values, so the option value would stay untranslated
+                raise SystemExit(f"colour name '{m}' stays '{t[m]}' in {l}: rename the colour in the recipe/spec to a name that translates "
+                                 "(米色/杏色 -> Cream or Apricot, 湖蓝 -> Lake Blue) and rename the Shopify option value if the DRAFT exists")
+            trs[l]["colors"].setdefault(m, t[m])
+        (T / f"i18n/tr_{l}.json").write_text(json.dumps(trs[l], ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    for m in missing:
+        src["colors"].setdefault(m, m)
+    (T / "i18n/en_source.json").write_text(json.dumps(src, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
+    print("added colour strings:", ", ".join(missing))
+
+
 def cmd_translate(handle: str) -> None:
     spec = json.loads((T / "specs" / f"{handle}.json").read_text(encoding="utf-8"))
     code = spec["shortcode"].lower()
@@ -598,6 +640,7 @@ def cmd_translate(handle: str) -> None:
     i18n_lock()
     try:
         add_size_strings(handle)
+        add_color_strings(handle)
         shutil.rmtree("/tmp/dlm-codex/codex_i18n/out", ignore_errors=True)  # codex_translate_designs.py work dir
         print(sh([PY, "i18n/codex_translate_designs.py", "run", str(src.relative_to(T))], cwd=T, timeout=3000).strip().splitlines()[-1])
         print(sh([PY, "i18n/codex_translate_designs.py", "merge", str(src.relative_to(T))], cwd=T).strip().splitlines()[-1])
@@ -639,7 +682,10 @@ def cmd_finish(handle: str) -> None:
         time.sleep(20)
     if not ok:
         raise SystemExit(f"CLOSEOUT FAILED {handle} — not activated. Evidence: ops/listings/{handle}-localization-closeout.json")
-    print(sh([PY, "activate_listing.py", handle], cwd=T).strip().splitlines()[-1])
+    act = sh([PY, "activate_listing.py", handle], cwd=T).strip().splitlines()[-1]
+    print(act)
+    if "ACTIVE OK" not in act:  # e.g. "SKIP not ready (media=4 inv=0)": stock was never set (run `build`'s set_inventory step) or photos missing
+        raise SystemExit(f"NOT ACTIVATED {handle}: {act} — product left DRAFT")
     time.sleep(8)
     p = json.load(urllib.request.urlopen(f"https://www.dresslikemommy.com/products/{handle}.js?x={int(time.time())}", timeout=30))
     print("LIVE", p["title"], "| vendor", p.get("vendor"), "| imgs", len(p["images"]), "| avail", sum(v["available"] for v in p["variants"]), "/", len(p["variants"]),
@@ -1006,7 +1052,7 @@ def cmd_pending() -> None:
     n = 0
     for f in sorted((STATE / "recipes").glob("*.json")):
         h = f.stem
-        p = A.gql("query($h:String!){productByHandle(handle:$h){status translations(locale:\"de\"){key}}}", {"h": h})["productByHandle"]
+        p = A.gql("query($h:String!){productByHandle(handle:$h){status totalInventory translations(locale:\"de\"){key}}}", {"h": h})["productByHandle"]
         if not p or p["status"] != "DRAFT":
             continue
         n += 1
@@ -1017,7 +1063,9 @@ def cmd_pending() -> None:
             left = ["review", "QA", "standalone-finish"] if imgs else ["images", "review", "QA", "standalone-finish"]
         else:
             left = (["translate"] if not translated else []) + ([] if imgs else ["images"]) + ["review", "QA", "finish"]
-        print(f"PENDING {h} | translated(de)={translated} photos={imgs} | next: {' -> '.join(left)}")
+        if not p.get("totalInventory"):
+            left = ["stock"] + left
+        print(f"PENDING {h} | stock={p.get('totalInventory')} translated(de)={translated} photos={imgs} | next: {' -> '.join(left)}")
     print(f"{n} pending draft(s)" + ("; resume them before new sourcing" if n else ""))
 
 
@@ -1044,6 +1092,7 @@ def main() -> None:
     elif c == "pending": cmd_pending()
     elif c == "queue": cmd_queue()
     elif c == "calc": cmd_calc(a[1])
+    elif c == "stock": cmd_stock(a[1])
     elif c == "decide": cmd_decide(a[1], a[2])
     elif c == "recent": cmd_recent(float(a[1]) if len(a) > 1 else 26)
     elif c == "unpublish": cmd_unpublish(a[1], a[2] if len(a) > 2 else "audit")

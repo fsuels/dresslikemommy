@@ -56754,3 +56754,15 @@ Why: owner continuation "recheck Merchant store-quality image scores when the 30
 - Resumed pending DRAFT duck-parade-family-matching-sweatshirts: translate done (360 strings registered, 20 locales), images done (4, 9:16), review sheet QA passed (print, lettering and colours match the vendor photo; no logos or extra text; kids and adults wear the right prints).
 - `finish` failed twice at `[listing-localization] audit_full_product_before_size_repair` (audit_shopify_product_translation_completeness.py --fail-on-issues). Product NOT activated, stays DRAFT. Evidence: ops/listings/duck-parade-family-matching-sweatshirts-localization-closeout.json. CEO session should read that JSON, fix the translation completeness issue, then re-run `finish`.
 - No new sourcing searches this run (time spent on the resume; the two `images`/`finish` steps each exceeded 10 minutes).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-duck-parade-colour-and-stock-fixes
+
+- task_entities: duck-parade-family-matching-sweatshirts (offer 1087968749959, DKPR); `ops/sourcing/autosource.py` (`add_color_strings`, `stock`, `finish` activation check, `pending` stock column); runbook colour-naming rule
+- task_stage: LIVE_VERIFIED
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- The 00:43Z run resumed the Duck Parade DRAFT via `pending` (no freeze): translations 360, photos, QA passed (mother duck + 3 ducklings, hearts, "Happy Together" match the vendor print). `finish` failed twice at `audit_full_product_before_size_repair`: 40 missing = 2 ProductOptionValues × 20 locales, the colours "Beige" and "Lake Blue". Neither was in `tr_*.json` "colors", so register_direct never registered them.
+- Fix 1: `translate` now calls `add_color_strings`, which translates colour names missing from the tables with ChatGPT-app Codex and merges them into `tr_*.json` + `en_source.json` (added "Lake Blue" and "Purple").
+- Fix 2: "Beige" stays "Beige" in da/de/es/fi/fr/it/nl/no/sv, and seed_cache's validator rejects source-equal values by design. The colour (vendor 米色) was renamed Cream, which is accurate for 米色 and already translated: spec, recipe and the Shopify option value (productOptionUpdate, no errors). `add_color_strings` now stops with this advice when a name would stay identical; the runbook states the naming rule.
+- Fix 3: the DRAFT had 0 stock (the frozen 22:53Z run never reached `build`'s set_inventory step), so `activate_listing` printed "SKIP not ready (media=4 inv=0)", but `finish` treated that as success and crashed on the storefront 404. `finish` now requires `ACTIVE OK`; `pending` shows stock and lists a `stock` step; new `autosource.py stock <handle>` sets 100 per variant on autosource DRAFTs.
+- LIVE: duck-parade-family-matching-sweatshirts, Family Matching, $26.99 / $33.99, 7 colours × 14 sizes = 98 variants (65/35 cotton/poly, 河南明地一族). Closeout PASS on attempt 1; readback: 4 imgs, 98/98 available, 8/8 channels; /de "Entenparade Partnerlook-Sweatshirts für die Familie", colours Creme, Gelb, Lila, Rot, Schwarz, Seeblau, Weiß.
