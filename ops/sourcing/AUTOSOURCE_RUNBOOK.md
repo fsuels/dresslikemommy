@@ -82,7 +82,7 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 {
  "offer_id": "1081053551587", "handle": "hooray-sun-family-matching-sweatshirts", "shortcode": "HRSN",
  "print_name": "Hooray Sun", "title_variant": "everyday",
- "garment": "sweater (knits) | hoodie (pullover hoodies); omit for crewneck sweatshirts", "knit_role": "mommy|daddy (only for 2-person knit pairs; omit otherwise)",
+ "garment": "sweater", "knit_role": "mommy|daddy (only for 2-person knit pairs; omit otherwise)",
  "chart_no_sleeve": false,
  "colors": [{"name": "Cream", "token": "CRM", "vendor_value": "<exact SKU colour value from skus output>"}],
  "color_pattern_ids": ["69641928801"], "color_pattern_labels": ["Beige"],
@@ -102,7 +102,7 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 
 Recipe notes:
 
-- **Size keys:** use "Child <vendor cm>" and "Adult <size>" (the engine infers the audience from the prefix). Pick picker labels the engine knows:
+- **Size keys:** use "Child <vendor cm>" and "Adult <size>" (the engine infers the audience from the prefix). Pick picker labels the engine knows: For Mommy & Me / Daddy & Me knit pairs (`knit_role`), adult keys are "Mom <size>" / "Dad <size>" with picker "Mother <size>" / "Father <size>" ("Adult" keys make the engine count 0 mothers and fail).
   - Child 6-12 Months, 1-2, 2-3, 4, 5-6, 6-7, 7-8, 9-10, 11-12, 13-14 Years.
   - Adult S–4XL.
   - Skip sizes the store can't represent: 5XL, baby rompers.
@@ -114,6 +114,9 @@ Recipe notes:
 - **Colour-pattern metaobject ids:** Red 69600804961, Green 70220546145, White 69639733345, Beige 69641928801, Blue 69639766113, Pink 69963645025, Purple 130284126305, Yellow 69622104161, Black 69943132257, Gray 69944672353.
 - **Codes and names:** the shortcode must be 4 unused capital letters. The handle and print name must not repeat an existing product name.
 - **fabric_key:** cotton_sweat (cotton), cotton_blend_sweat (cotton/polyester), modal_knit (modal/viscose knit). design_key: crew_sweatshirt, raglan_hoodie (with `"garment": "hoodie"`: contrast hood + raglan sleeves; hoodie title, style and tags), crew_knit, collar_knit, cardigan_knit.
+- **garment** is exactly `"sweater"` (knits, cardigans) or `"hoodie"` (pullover hoodies); omit it for crewneck sweatshirts. Any other text silently builds a crewneck sweatshirt.
+- **fabric_key wool_knit** for 100% wool (the fabric metafield is skipped: no verified Wool metaobject).
+- **Weight:** use the heavier of the vendor weight and the bag's volumetric weight (L×W×H cm / 6000 kg) for `child_grams`/`adult_grams`, so the 50% landed rule holds.
 - **Two linings of one print** (unlined / fleece-lined): list the unlined colour only (precedent: Hooray Sun, Pure Joy Heart); note the exclusion in `exclusions_note`.
 - **Garbled lettering:** skip designs whose small captions or text read as nonsense in the vendor photos (e.g. "Cupcat" cup captions, 2026-09-29); the AI photos copy them.
 - **Engine path** (`spec` → `build` → `translate` → `images` → `review` → `finish`): family sweatshirts and sweaters, and Mommy & Me / Daddy & Me knit pairs (`knit_role`).

@@ -452,6 +452,8 @@ def cmd_spec(recipe_path: str) -> None:
     See the runbook for the recipe schema."""
     rc = json.loads(Path(recipe_path).read_text(encoding="utf-8"))
     oid = rc["offer_id"]
+    if rc.get("garment") not in (None, "", "sweater", "hoodie"):
+        raise SystemExit(f"garment must be \"sweater\" or \"hoodie\" (omit for crewneck sweatshirts), not {rc['garment']!r}")
     n_var = len(rc["colors"]) * len(rc["sizes"])
     if n_var > 100:  # the engine's create/verify queries read variants(first: 100); a bigger product fails after the DRAFT exists
         raise SystemExit(f"{n_var} variants > 100: drop colours or sizes before building (nothing was created)")

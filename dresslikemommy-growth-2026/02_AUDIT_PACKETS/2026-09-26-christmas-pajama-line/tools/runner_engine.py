@@ -44,8 +44,9 @@ FABRIC_GIDS = {
     "coral_fleece": ["gid://shopify/Metaobject/69622366305"],
     "cotton_blend_sweat": ["gid://shopify/Metaobject/69622399073", "gid://shopify/Metaobject/69622366305"],
     "modal_knit": ["gid://shopify/Metaobject/139931877473"],  # modal is a viscose-type rayon
+    "wool_knit": [],  # no verified Wool fabric metaobject in the store (token lacks read_metaobjects); fabric metafield skipped, body states 100% wool
 }[SPEC["fabric_key"]]
-FABRIC_LABEL = {"polyester": "Polyester", "polyblend": "Polyester", "poly95": "Polyester", "cotton": "Cotton", "cvc": "Cotton, Polyester", "cotton35": "Cotton", "cotton65": "Cotton", "poly_velvet": "Polyester", "cotton_sweat": "Cotton", "coral_fleece": "Polyester", "cotton_blend_sweat": "Cotton, Polyester", "modal_knit": "Modal"}[SPEC["fabric_key"]]
+FABRIC_LABEL = {"polyester": "Polyester", "polyblend": "Polyester", "poly95": "Polyester", "cotton": "Cotton", "cvc": "Cotton, Polyester", "cotton35": "Cotton", "cotton65": "Cotton", "poly_velvet": "Polyester", "cotton_sweat": "Cotton", "coral_fleece": "Polyester", "cotton_blend_sweat": "Cotton, Polyester", "modal_knit": "Modal", "wool_knit": "Wool"}[SPEC["fabric_key"]]
 VENDOR = "Dress Like Mommy"
 # Mode: "family_christmas" (mom, dad and kids; the 2026 Christmas line) or
 # "mommy_me" (mother and child only; season-neutral winter copy).
@@ -516,6 +517,7 @@ FABRIC_TEXT = {
     "coral_fleece": "Thick, plush coral fleece made of polyester.",
     "cotton_blend_sweat": "Soft brushed sweatshirt knit of 54% cotton and 46% polyester.",
     "modal_knit": "Thick, soft knit; the main fabric is listed as modal.",
+    "wool_knit": "Warm knit; the fabric is listed as 100% wool.",
 }
 FABRIC_FEATURE = {
     "polyester": ("Soft knit:", "A cotton-feel polyester knit for cozy winter bedtimes."),
@@ -530,6 +532,7 @@ FABRIC_FEATURE = {
     "coral_fleece": ("Soft knit:", "Thick, plush fleece that keeps moms and kids warm on cold winter nights."),
     "cotton_blend_sweat": ("Soft knit:", "A soft, brushed cotton-blend knit for cool fall days."),
     "modal_knit": ("Soft knit:", "A thick, cozy knit for chilly fall and winter days."),
+    "wool_knit": ("Soft knit:", "A warm wool knit for cold fall and winter days."),
 }
 if PET:  # the family fabric sentence stays; the feature line speaks about the dog
     FABRIC_FEATURE = dict(FABRIC_FEATURE, cotton65=("Soft knit:", "The same soft cotton-blend knit as the family set."))
@@ -546,6 +549,7 @@ FABRIC_SEO = {
     "coral_fleece": "plush coral fleece",
     "cotton_blend_sweat": "soft cotton-blend sweatshirt knit",
     "modal_knit": "thick soft knit",
+    "wool_knit": "warm wool knit",
 }
 DESIGN_TEXT = {
     "crew_trim": "Long-sleeve crew-neck top with a contrast neckline trim, plus full-length pants with an elastic waist.",
@@ -663,7 +667,7 @@ SHARED_EN = {
     "kf5_label": "Full family size range:",
     "cta": "Choose the sizes you need for a cozy family Christmas.",
 }
-NUMBER_WORDS = {4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight", 9: "nine"}
+NUMBER_WORDS = {1: "one", 2: "two", 3: "three", 4: "four", 5: "five", 6: "six", 7: "seven", 8: "eight", 9: "nine", 10: "ten"}
 
 
 AUDIENCES = ("pet",) if PET else (("child", "mother") if (MM or KROLE == "mommy") else (("child", "father") if KROLE == "daddy" else (("child", "adult") if SW else ("child", "mother", "father"))))
@@ -1062,7 +1066,7 @@ def build_metafields(product_id: str) -> list[dict]:
         mf(product_id, "mm-google-shopping", "custom_label_4", text, LABEL4),
         *([] if PET else [mf(product_id, "shopify", "age-group", refs, json.dumps([AGE_GROUP_GIDS["child"], AGE_GROUP_GIDS["adult"]]))]),
         mf(product_id, "shopify", "color-pattern", refs, json.dumps(COLOR_PATTERN_GIDS)),
-        mf(product_id, "shopify", "fabric", refs, json.dumps(FABRIC_GIDS)),
+        *([mf(product_id, "shopify", "fabric", refs, json.dumps(FABRIC_GIDS))] if FABRIC_GIDS else []),
         *([] if PET else [mf(product_id, "shopify", "size", refs, json.dumps(unique_size_refs()))]),
         *([] if PET else [mf(product_id, "shopify", "target-gender", refs, json.dumps(TARGET_GENDER_GIDS))]),  # not defined for Pet Shirts
         mf(product_id, "global", "title_tag", text, SEO_TITLE),
@@ -1507,9 +1511,10 @@ def verify_product(product: dict, variants: list[dict]):
     if PET:
         add("Dog chart rows show back length and bust", all(r[4] != "-" and r[9] != "-" for r in rows), "all rows")
     elif FIT_TABLE:  # this chart publishes no waist; height and weight come from its fit guide
-        # Columns: [2] weight, [3] height. Height is "-" only where the chart publishes none (adult rows); weight always shown.
+        # Columns: [2] weight, [3] height. Each is "-" only where the chart publishes none (e.g. adult height, or kids' weight on knit charts).
         add("Waist left blank (not published) and fit guide shown",
-            all(r[8] == "-" and r[2] != "-" and (r[3] != "-" or FIT_TABLE.get(s["vendor_label"], ("", ""))[0] == "-")
+            all(r[8] == "-" and (r[2] != "-" or FIT_TABLE.get(s["vendor_label"], ("", ""))[1] == "-")
+                and (r[3] != "-" or FIT_TABLE.get(s["vendor_label"], ("", ""))[0] == "-")
                 for r, s in zip(rows, SIZE_CHART)), "all rows")
     else:
         add("Waist populated for every row", all(r[8] not in ("", "-") for r in rows), "all rows")
