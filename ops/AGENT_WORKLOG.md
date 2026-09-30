@@ -57032,3 +57032,15 @@ Recurring mistakes for the hourly job:
 - Title fixes (CEO native-editor QA): 360 titles registered on 72 products (el/da/no/nl/he) against the current title digest; 0 errors. Readback e.g. nl "Bordeaux met ronde hals en contrastrand – truien voor papa en kind — bijpassend breisel". `register_direct` now prefers PRODUCT_TITLE_FIXES titles, so a later `--allow-live` run cannot revert them.
 - Cardigans: both English titles said "Sweaters" although the specs describe button-front cardigans. English title and SEO title changed to "… Mommy and Me Cardigans" (red: "Red Cable Mommy and Me Cardigans — Matching Knits"); the 15 other locales' titles and all 20 SEO titles were re-translated by Codex and registered (70).
 - Open: the engine's knit-pair template still says "Sweaters" for future cardigan builds (needs a cardigan title template × 20 locales).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-blocked-1688-captcha
+
+- task_entities: 1062858633212
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Pending drafts: 0; queue: 0.
+- Categories searched (results page 5): family vests, matching family accessories, couples Christmas knits, maternity sweatshirts, family jackets, family hoodies, Mommy & Me dresses: all 0 new family-titled 2026 offers except family jackets (1 screened, 0 passed).
+- Skipped: 1062858633212 (Kaco Duck puffy jacket): rule 2/3, Spring 2026 release and 30-day dispatch.
+- Couples hoodies search (page 5) hit a 1688 CAPTCHA/login page (exit 3): BLOCKED_1688_CAPTCHA. Stopped 1688 work, did not bypass.
+- No new live listings this run.
