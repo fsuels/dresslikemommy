@@ -57101,3 +57101,15 @@ Recurring mistakes for the hourly job:
 - Searched page 2 of: couples Christmas knits, maternity sweatshirts, family jackets. Each returned 0 new family-titled 2026 offers (nothing screened, nothing passed).
 - Family hoodies page 2 search hit a 1688 CAPTCHA/login page (exit code 3). Stopped 1688 work for this run; did not bypass. Owner/CEO session must clear the 1688 login/CAPTCHA before the next round.
 - No new listings built. No products changed.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-mixed-categories-blocked-captcha
+
+- task_entities: 1055367110864, 1082836543290, 1087404312134
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- No pending drafts and an empty queue at start. Categories this run: Mommy & Me dresses p2, couples hoodies p2, Christmas family knits p2, family sweatshirts p2, Mommy & Me sweatshirts p2, family sweaters p2, plus catalogs of 明地一族, 森大, 圣瑞, 莫雷, 拓茵, 唯庭, 辰承 and TYG (all already seen or empty). The Daddy & Me search (page 3) hit a 1688 CAPTCHA (exit 3): BLOCKED_1688_CAPTCHA, stopped, not bypassed.
+- Screened 3 new offers, 2 passed the supplier gate, 0 built, no new live handles.
+- Skipped 1055367110864: rules 2/3, Summer 2026 release, 15-day dispatch.
+- Skipped 1082836543290 (洋泰, 12 yrs, gate PASS): rule 5, three-stripe raglan sleeves read as an Adidas look-alike; rule 7, plain template set whose other designs carry a Popeye-style character, smiley faces and the already-live Panda.
+- Skipped 1087404312134 (西嘉贝, 7 yrs, gate PASS): rule 5, "BE HAPPY" smiley-face print on every photo.
