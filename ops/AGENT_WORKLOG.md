@@ -56938,3 +56938,23 @@ Source: CEO QA sample (5 products × el/da/no/nl/he), relayed by the CEO session
 - Screened 8 new offers, 1 passed scan; 0 built, no new LIVE handles.
 - Skips: 1084918132298 rule 4 (0 years, fulfillment 92.82%); 1041680354560 and 1068206517099 rule 3 (15-day dispatch); 1079508842266 rules 2+3 (Summer 2026, 5 days); 1084256728206 rule 2 (Fall 2027); 1064240014982 rule 2 (Summer 2026); 1081312881952 rule 3 (7 days); 1084302582161 rule 3 (15 days).
 - Note: several catalog fetches returning 0 offers may be early CAPTCHA throttling rather than empty stores; recheck next round.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-audit
+
+- task_entities: pure-joy-heart-family-matching-hoodies, cute-happy-bunny-bear-family-matching-sweatshirts (1088036424157), panda-family-matching-sweatshirts, make-life-sweet-family-matching-sweatshirts, duck-parade-family-matching-sweatshirts, one-big-star-family-matching-sweatshirts, argyle-wool-mommy-and-me-cardigans
+- task_stage: ACTION_TAKEN
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+Independent audit of the 7 autosource products from the last 26h (QA sheet, vendor sheet, recipe, spec; supplier gate and scan re-run where evidence was thin).
+
+- pure-joy-heart-family-matching-hoodies: PASS. Photos match vendor (red heart + "Pure joy" script, cream body, brick-red raglan/hood); cotton 100%; dl 2; Fall 2026; chart kg converted.
+- cute-happy-bunny-bear-family-matching-sweatshirts: UNPUBLISHED (ACTIVE -> DRAFT). Photos and print are fine, but the size chart weights are the vendor's jin values shown as kg (Adult M 85-95, 4XL 155-170, Child 2-3y 15-25). Evidence line says the supplier has 13 years; gate re-run reads 4 years (est. June 2022). It passes the strict 3-4 year tier (pick 99.58, ful 99.57, ret 0.03, svc 4.0, 18,624 orders). Fix: halve the weights in the recipe/spec, rebuild the chart, correct the evidence line, then re-activate.
+- panda-family-matching-sweatshirts: PASS. PANDA lettering + panda matches the vendor; cotton 100%; weights converted; same supplier, strict tier.
+- make-life-sweet-family-matching-sweatshirts: PASS. Print matches. Minor: the sun accent has a small face, allowed by the CEO ruling 2026-09-30. There are 7 colours but only 6 colour-pattern ids (Orange has no metaobject). Cosmetic.
+- duck-parade-family-matching-sweatshirts: PASS. "Happy Together" duck print matches; 65/35 cotton-poly; no sleeve column is declared. The recipe's evidence line lacks pickup/service stats; gate re-run: 11y, pick 100, ful 100, svc 4.5, 3,149 orders, PASS.
+- one-big-star-family-matching-sweatshirts: PASS. Rainbow ONE BIG STAR lettering matches; the small face on the star is covered by the CEO ruling.
+- argyle-wool-mommy-and-me-cardigans: PASS. Argyle cardigans match the vendor (gray/navy diamonds; navy/red); Wool 100%; half-chest doubled correctly. The evidence lines omit the 24/48h shipping proof. Re-scan: `PASS 1073911770297 | dl 2 | Fall 2026`, so the rule is met but was not recorded.
+
+Recurring mistakes for the hourly job:
+1. Convert 斤 to kg in every chart. The CHBR recipe copied raw jin values while sibling products from the same template store converted them.
+2. Evidence lines must always carry the gate readout (years, pickup, fulfillment, service) and the deliveryLimit line. Two recipes omitted or misstated them.
