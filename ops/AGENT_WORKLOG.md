@@ -57056,3 +57056,13 @@ Recurring mistakes for the hourly job:
 - Skipped: 1087702936732 (Shangqiu 万畅百货, girls zip jacket set): rule 2, release is Spring 2026.
 - Observation: the known stores and first-page searches are exhausted. Next round needs new search queries or deeper pages, not re-runs of these.
 - No CAPTCHA encountered. No new LIVE products.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-multi-category-blocked-captcha
+
+- task_entities: none (no offers screened)
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Searched page 1 for family vests, matching family accessories, couples Christmas knits, maternity sweatshirts, family jackets and family hoodies: every search returned 0 new family-titled 2026 offers, so nothing was scanned, gated or built.
+- The Mommy & Me dresses search ("母女装 连衣裙 2026秋冬") hit a 1688 CAPTCHA/login page (exit code 3). 1688 work stopped for this run; not bypassed. Recorded BLOCKED_1688_CAPTCHA.
+- No new live handles. No pending drafts or queued offers at start.
