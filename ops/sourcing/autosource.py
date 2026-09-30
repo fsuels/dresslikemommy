@@ -514,6 +514,10 @@ def cmd_spec(recipe_path: str) -> None:
     (T / "specs" / f"{handle}.json").write_text(json.dumps(spec, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
     (STATE / "recipes").mkdir(parents=True, exist_ok=True)
     shutil.copy(recipe_path, STATE / "recipes" / f"{handle}.json")
+    seen = load_seen()
+    if oid in seen and not seen[oid].get("decision"):
+        seen[oid]["decision"] = f"{time.strftime('%Y-%m-%d')} built {handle}"
+        save_seen(seen)
     print(handle, f"child ${cp:.2f} (¥{kid:g})", f"adult ${ap:.2f} (¥{adult:g})", "-> spec written")
 
 
