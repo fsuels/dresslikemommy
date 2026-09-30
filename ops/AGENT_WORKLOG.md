@@ -56912,3 +56912,18 @@ Why: owner continuation "recheck Merchant store-quality image scores when the 30
 - Screened 8 new offers, 1 passed scan, 0 built, 0 new LIVE handles.
 - Skipped: 1077947189687 (rule 3, 7-day dispatch; generic kids-only), 1083773720590 and 1078406488743 (rule 2, release attribute missing), 1080570747135 (rules 2+3), 1083620475957 (passed scan; rule 4 supplier gate: 0 years, fulfillment 95.94%), 1083741585449 / 1085335740755 / 1082105011034 (rule 2, release Spring 2025; kids-only girls sets).
 - Accessories, maternity sweatshirts and jackets page 3 returned no new family-titled 2026 offers.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-product-translation-months-roles-colours
+
+- task_entities: `ops/scripts/poll_shopify_product_translations.py`; new `ops/tests/test_translation_quality_fixes.py`; example product matching-mom-child-one-shoulder-swimsuit
+- task_stage: IMPLEMENTED (code + one-product live repair VERIFIED); bulk repair of older products pending
+- next_action_id: BULK_OPTION_VALUE_REPAIR
+
+Source: CEO QA sample (5 products × el/da/no/nl/he), relayed by the CEO session.
+
+- Months: only "Years" sizes were localized, so "Child 6-12 Months" stayed English in all 20 languages. New `MONTH_SUFFIX_RE` + `MONTH_UNITS` (per-locale plural after a range): nl "Kind 6-12 maanden", de "Kind 6-12 Monate", ja "子供 6-12ヶ月".
+- Boy/girl: `infer_product_context` and `child_role_for_table` matched substrings, so "holiday season" counted as "son" and the mother-daughter one-shoulder swimsuit showed "Jongen"/"Αγόρι" (boy) sizes. Tokens now match whole words (plurals allowed), so with no real gender words the neutral child word is used.
+- Colours: option values came from machine translation (nl "Green" → "Groente", vegetables). `translated_color_value` now takes exact colour values from the listing engine's reviewed Codex colour tables (`tr_<locale>.json` "colors"); unknown colours fall through unchanged.
+- Tests: existing size-label, source-freshness and gate tests pass (the size-label test caught a plural regression, fixed); new regression test passes.
+- Live check: finalize on matching-mom-child-one-shoulder-swimsuit → /nl sizes "Kind 2-3 jaar", colours "Groen"; /el sizes "Μητέρα"/child, colours corrected. The closeout still reports FAILED for pre-existing gaps unrelated to this change: `custom.type` "Swimwear" and `custom.pattern` "Solid" were never translated, and `msft_bingads.product_status` (a JSON status value) is treated as translatable text.
+- Not changed: the glossary's word-for-word "Mommy & Me" titles and "soft knit" terms. Those are per-market wording/SEO choices (and "mother and daughter" would be wrong for mom-and-son products); they wait for exact per-locale values from the CEO QA report.

@@ -324,6 +324,7 @@ ROLE_TRANSLATIONS = {
 
 SIZE_ROLE_RE = re.compile(r"^(Child|Girl|Boy|Mother|Father|Adult)\s+(.+)$", flags=re.I)
 AGE_SUFFIX_RE = re.compile(r"^(\d+(?:\s*[-–]\s*\d+)?)\s+Years?$", flags=re.I)
+MONTH_SUFFIX_RE = re.compile(r"^(\d+(?:\s*[-–]\s*\d+)?)\s+Months?$", flags=re.I)
 SIZE_CHART_TABLE_RE = re.compile(
     r"(<table\b(?=[^>]*(?:id=[\"'][^\"']*size-chart|class=[\"'][^\"']*size-chart))[^>]*>)(.*?)(</table>)",
     flags=re.I | re.S,
@@ -496,6 +497,15 @@ YEAR_UNITS = {
     "ru": ("год", "лет", " "),
     "sv": ("år", "år", " "),
     "zh": ("岁", "岁", ""),
+}
+
+# Month ranges ("Child 6-12 Months"): plural/genitive forms that read correctly after a number range.
+MONTH_UNITS = {
+    "ar": ("أشهر", " "), "cs": ("měsíců", " "), "da": ("måneder", " "), "de": ("Monate", " "), "el": ("μηνών", " "),
+    "es": ("meses", " "), "fi": ("kuukautta", " "), "fr": ("mois", " "), "he": ("חודשים", " "), "hi": ("महीने", " "),
+    "it": ("mesi", " "), "ja": ("ヶ月", ""), "ko": ("개월", ""), "nl": ("maanden", " "), "no": ("måneder", " "),
+    "pl": ("miesięcy", " "), "pt": ("meses", " "), "ro": ("luni", " "), "ru": ("месяцев", " "), "sv": ("månader", " "),
+    "zh": ("个月", ""),
 }
 
 BODY_LABEL_TRANSLATIONS = {
@@ -1109,6 +1119,24 @@ def translated_option_name(value: str, locale: str) -> str | None:
     return locale_lookup(OPTION_NAME_TRANSLATIONS[normalized], locale, clean(value))
 
 
+COLOR_TABLE_DIR = REPO_ROOT / "dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-09-26-christmas-pajama-line/tools/i18n"
+_COLOR_TABLES: dict[str, dict[str, str]] = {}
+
+
+def translated_color_value(value: str, locale: str) -> str | None:
+    """Exact colour option values ("Green", "Light Blue") from the listing engine's reviewed per-locale colour tables,
+    so machine translation cannot turn nl "Green" into "Groente" (vegetables). Returns None for unknown values."""
+    code = {"pt": "pt-BR", "nb": "no"}.get(locale, locale)
+    if code not in _COLOR_TABLES:
+        path = COLOR_TABLE_DIR / f"tr_{code}.json"
+        try:
+            _COLOR_TABLES[code] = json.loads(path.read_text(encoding="utf-8")).get("colors", {}) if path.exists() else {}
+        except (OSError, ValueError):
+            _COLOR_TABLES[code] = {}
+    target = _COLOR_TABLES[code].get(clean(value))
+    return target if target and target.strip() else None
+
+
 def translated_garment(value: str, locale: str) -> str | None:
     source = clean(value)
     if source in GARMENT_TRANSLATIONS:
@@ -1156,6 +1184,9 @@ def infer_product_context(product: RecentProduct | None, snapshots: list[Resourc
                 text_parts.append(clean(item.get("value")))
     haystack = strip_markup(" ".join(text_parts)).lower()
 
+    def has(token: str) -> bool:  # whole words only: "season" must not count as "son", "boyfriend" not as "boy"
+        return re.search(r"(?<![a-z])" + re.escape(token) + r"(?:e?s)?(?![a-z])", haystack) is not None
+
     girl_score = sum(
         1
         for token in (
@@ -1170,7 +1201,7 @@ def infer_product_context(product: RecentProduct | None, snapshots: list[Resourc
             "mommy and me dress",
             "mommy-and-me dress",
         )
-        if token in haystack
+        if has(token)
     )
     boy_score = sum(
         1
@@ -1186,7 +1217,7 @@ def infer_product_context(product: RecentProduct | None, snapshots: list[Resourc
             "daddy and me",
             "daddy-and-me",
         )
-        if token in haystack
+        if has(token)
     )
 
     child_role = "child"
@@ -1206,13 +1237,16 @@ def child_role_for_table(source_prefix: str, source_table: str, product_context:
     product_context = product_context or {}
     context_text = strip_markup(f"{source_prefix[-500:]} {source_table}").lower()
 
-    if "dress" in context_text and product_context.get("has_girl_context") and not product_context.get("has_boy_context"):
+    def word(pattern: str) -> bool:  # whole words: "season"/"person" are not "son"
+        return re.search(r"(?<![a-z])(?:" + pattern + r")(?![a-z])", context_text) is not None
+
+    if word("dress(?:es)?") and product_context.get("has_girl_context") and not product_context.get("has_boy_context"):
         return "girl"
-    if "shirt" in context_text and product_context.get("has_boy_context") and not product_context.get("has_girl_context"):
+    if word("shirts?") and product_context.get("has_boy_context") and not product_context.get("has_girl_context"):
         return "boy"
-    if "girl" in context_text or "daughter" in context_text:
+    if word("girls?|daughters?"):
         return "girl"
-    if "boy" in context_text or "son" in context_text:
+    if word("boys?|sons?"):
         return "boy"
     return clean(product_context.get("ambiguous_child_role")) or "child"
 
@@ -1274,6 +1308,11 @@ def translated_role_size_label(
     age_match = AGE_SUFFIX_RE.match(suffix)
     if resolved_role in {"child", "girl", "boy"} and age_match:
         return translated_age_label(resolved_role, age_match.group(1), locale)
+    month_match = MONTH_SUFFIX_RE.match(suffix)
+    if resolved_role in {"child", "girl", "boy"} and month_match and locale_root(locale) in MONTH_UNITS:
+        unit, joiner = MONTH_UNITS[locale_root(locale)]
+        role_label = locale_lookup(ROLE_TRANSLATIONS[resolved_role], locale, resolved_role.title())
+        return f"{role_label} {clean(month_match.group(1)).replace('–', '-')}{joiner}{unit}"
 
     role_label = translated_role_word(
         resolved_role,
@@ -1641,6 +1680,10 @@ def deterministic_option_translation(
     garment = translated_garment(source, locale)
     if garment:
         return garment
+
+    color = translated_color_value(source, locale)
+    if color:
+        return color
 
     return translated_role_size_label(source, locale, product_context=product_context)
 
