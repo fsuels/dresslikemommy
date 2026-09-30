@@ -1036,7 +1036,8 @@ def cmd_queue() -> None:
             and not v.get("decision") and i not in built]
     for i, v in sorted(rows, key=lambda x: x[1].get("scanned", "")):
         step = "gate" if v.get("gate_pass") is None else "capture + look"
-        print(f"QUEUED {i} | {v.get('company', '')[:14]} | {v.get('main', '')} {v.get('pct', '')}% | next: {step} | {v.get('title', '')[:60]}")
+        print(f"QUEUED {i} | {v.get('company', '')[:14]} | {v.get('main', '')} {v.get('pct', '')}% | next: {step} | {v.get('title', '')[:60]}"
+              + (f"\n       CEO NOTE: {v['ceo_note']}" if v.get("ceo_note") else "") + (f"\n       {v['requeued']}" if v.get("requeued") else ""))
     print(f"{len(rows)} queued offer(s)" + ("; decide each with `decide ID \"built <handle>\"` or `decide ID \"skip: <rule + reason>\"`" if rows else ""))
 
 

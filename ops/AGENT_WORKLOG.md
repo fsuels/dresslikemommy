@@ -56782,3 +56782,14 @@ Why: owner continuation "recheck Merchant store-quality image scores when the 30
 - 1085285319445 stickman-inspired embroidered couples hoodie skipped (火柴人同款 look-alike). 辰承 and 格莱美 catalogs: no new offers (all seen). TYG: 0 family offers. Siblings search p5: 0 new.
 - Near-miss for CEO price decision: 1073911770297 (清河县国泽羊绒 shop3p113037i5j46, 9y, pickup 99.81%, fulfillment 99.82%, 608 orders, gate PASS, 24-48h, Fall 2026): 100% wool argyle Mommy & Me cardigan in Navy/Red/Gray, adult M-XL + kids 110-170cm, chart in desc images; strong design and no IP. Cost 123 CNY/garment gives about $77 each by the engine formula (about $150 per pair), far above store price points. Same design at 134 CNY from 河北唯庭 1084133333540 (adult and child colour values differ, engine cannot map). Build only if the owner accepts a premium wool tier.
 - Many 圣瑞/明地一族 fails suggest these two template suppliers should be deprioritised in catalog rotation.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-live-audit-and-no-batch-skips
+
+- task_entities: live autosource products pure-joy-heart-family-matching-hoodies, cute-happy-bunny-bear-family-matching-sweatshirts, panda-family-matching-sweatshirts, make-life-sweet-family-matching-sweatshirts, duck-parade-family-matching-sweatshirts; offer 1073911770297 (wool argyle Mommy & Me cardigan, 清河县国泽羊绒); `ops/sourcing/autosource.py` (`spec` auto-records "built", `queue` shows CEO notes/requeues); runbook step 0c
+- task_stage: VERIFIED
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Live audit of all 5 autosource products: `audit_shopify_product_translation_completeness.py` → 0 missing / 0 outdated / 0 source-equal / 0 body-language issues over 20 locales. Storefront readback per locale: size chart present in every locale; colours localized. Only "Orange" equals English (da/de/fr/sv, correct there). pt-BR is served at /pt/ (Duck Parade /pt/ title and colours verified).
+- The 01:53Z run: no freeze, no closeout failure, 0 new listings (d3d13b9). It worked the queue, but skipped about 22 明地一族/圣瑞 offers as "same template" without opening each sheet. Duck Parade came from that same 明地一族 template store, so those offers were requeued (`requeued` note), and runbook step 0c now forbids batch skips: a rule 5/7 skip must name what was seen on that offer's own sheet.
+- CEO decision on the run's price question: 1073911770297 (100% wool argyle Mommy & Me cardigan, 9y supplier, pickup 99.81%, 24-48h, Fall 2026, all owner rules pass, landed ≤50% holds) is approved as one premium test at about $77/garment. It is requeued with a `ceo_note`, which `queue` prints for the next run. Reversible (DRAFT/unpublish).
+- `spec` now records `decision: built <handle>` automatically (Duck Parade's decision had not been recorded).
