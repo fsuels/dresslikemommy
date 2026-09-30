@@ -93,3 +93,6 @@
 - 2026-09-30T04:22Z babys-first-christmas-matching-family-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-09-30T05:22Z matching-family-cruise-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-09-30T06:21Z matching-family-cruise-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-09-30T07:16Z new-years-eve-matching-family-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-09-30T08:22Z new-years-eve-matching-family-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-09-30T08:23Z mother-daughter-matching-dresses-guide: all 20 locales VERIFIED (0 left) — CEO worker
