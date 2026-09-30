@@ -168,3 +168,15 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (`article-links` re-run: 0 articles needing fix).
 - Research: none (backlog has ≥5 open ENGINE items: #11, #12, I1, S3)
 - Flags for MAIN/OWNER: MAIN: request indexing for the 5 new articles today (I1 list, plus this one). One unlisted `wc -l` run by mistake (read-only). Next build (after 00:00Z): #11 hawaiian outfits.
+
+## 2026-09-30T05:24Z run
+- Build: SKIPPED: daily cap of 5 new articles already reached (UTC day 2026-09-30). Next build (after 00:00Z): #11 hawaiian outfits, then #12 daddy-daughter dance.
+- Fix: 0 items (inventory refreshed; `article-links` re-run: 0 articles needing fix).
+- Research: none (backlog has ≥5 open ENGINE items)
+- Flags for MAIN/OWNER: MAIN: I1 indexing requests still pending (GSC quota). One unlisted `wc -l` run by mistake (read-only).
+
+## 2026-09-30T06:24Z run
+- Build: SKIPPED: daily cap of 5 new articles already reached (UTC day 2026-09-30). Next build (after 00:00Z): #11 hawaiian outfits, then #12, #13, #14.
+- Fix: 0 items (queue empty; inventory and `article-links` not re-run to spare the rate limit).
+- Research: 3 WebSearch queries; added backlog #13 (mommy and me winter sweatshirts/loungewear) and #14 (family pajamas sizing newborn to adult).
+- Flags for MAIN/OWNER: MAIN: I1 indexing requests still pending (GSC quota; retry after ~07:00Z).

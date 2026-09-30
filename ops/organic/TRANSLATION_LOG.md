@@ -91,3 +91,5 @@
 - 2026-09-30T02:21Z father-and-son-matching-button-up-shirts: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-09-30T03:22Z babys-first-christmas-matching-family-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-09-30T04:22Z babys-first-christmas-matching-family-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-09-30T05:22Z matching-family-cruise-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-09-30T06:21Z matching-family-cruise-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)

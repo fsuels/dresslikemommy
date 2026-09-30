@@ -27,3 +27,9 @@
 - https://www.dresslikemommy.com/blogs/news/matching-family-shirts-for-pictures | on Google (indexed) | no request needed
 - https://www.dresslikemommy.com/blogs/news/father-and-son-matching-button-up-shirts | not on Google (unknown to Google) | REQUEST BLOCKED: "Quota Exceeded" again at 00:55Z (quota is not resetting at 00:00 UTC; likely Pacific-time day, so try after ~07:00Z)
 - Other I1 URLs not inspected (quota).
+
+## 2026-09-30 06:52 UTC inspection (CEO loop)
+
+Inspection works again (no quota error); all inspected URLs report "URL is on Google / Page is indexed", so no request was needed:
+- /blogs/news/father-and-son-matching-button-up-shirts, /babys-first-christmas-matching-family-outfits, /matching-family-cruise-outfits, /new-years-eve-matching-family-outfits, /mother-daughter-matching-dresses-guide, /family-christmas-card-photo-ideas | indexed
+- /nl/collections/dresses | indexed
