@@ -56864,3 +56864,12 @@ Why: owner continuation "recheck Merchant store-quality image scores when the 30
 - 莫雷 (shop172d524449199): 7 single kids' knit pullovers at ¥90-114, not matching sets and too costly for the landed rule; not scanned.
 - Several catalogs (三只羊/唯庭/拓茵/国泽/辰承/TYG/格莱美/野狼魅力) returned 0 offers, and search "亲子装 毛衣" and "兄妹装" page 2 returned 0. Possibly early throttling ahead of the CAPTCHA.
 - Note: `decide` refuses offers that were not scanned, and refuses a comma list.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-family-vests
+
+- task_entities: 1080022906260, 1082269456434
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- No pending drafts. Queue: 2 offers skipped without a build (rule 5: 1080022906260 patriotic-themed, 1082269456434 Chinese Red / National Day theme; both off-market by title).
+- Round "family vests (page 2)" search hit a 1688 CAPTCHA/login page; stopped, not bypassed. 0 screened, 0 new listings.
