@@ -56848,3 +56848,19 @@ Why: owner continuation "recheck Merchant store-quality image scores when the 30
 - STRONG DESIGN BLOCKED BY ENGINE: 唯庭 (12y, pickup 97.1%, fulfilment 98.3%) offer 1083064690658, panda jacquard 100% wool Mommy & Me pullover (Beige/Gray/Red; kids 110-160, adult M/L/XL; ¥159, 48h). Passes every rule and dupes (existing Panda product is a different letter print). Fails only because SKU colour values differ by audience ("Beige (children)" vs "Beige (adult)") and the recipe schema/`spec` key `colour>size` allows one vendor_value per colour. CEO session: add per-audience vendor_value (or a size-key-dependent colour) to `cmd_spec`, then build it (half chests: adult 50/52.5/55 -> 100/105/110; kids 33..46 -> 66..92; kids 170 not sold).
 - Other skips: Disney-branded kids half-zip 1086108125119; 15/10-day dispatch 1085378222738, 1055782841405; supplier fails 1080373946860, 1080265834425; Chrome Hearts "26CH" tees and North Face-style 1996 coat in couples; maternity all 15-20 day dispatch; accessories mostly release attribute missing, solid scarf skipped.
 - Catalog rounds with nothing new: 森大, 国泽, 辰承, TYG, 格莱美 (all seen), 野狼魅力 (all seen).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-nonstop-no-qualifier
+
+- task_entities: none built; screened ~45 offers across couples Christmas knits, maternity sweatshirts, family jackets/hoodies, Mommy & Me dresses/sweatshirts/knits, couples hoodies/sweatshirts, Christmas family knits/sweatshirts, family sweatshirts/sweaters, Daddy & Me, siblings, and store catalogs (明地一族, 森大, 圣瑞, 莫雷, plus several empty catalogs)
+- task_stage: BLOCKED_1688_CAPTCHA (maternity sweaters page 2 search hit a CAPTCHA at ~35 min; stopped, not bypassed)
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Result: NO_QUALIFIER, no new listings.
+- Skips by rule:
+  - Rule 2 (release not 2026 Fall/Winter: year only, Spring, Summer, or missing): all 13 maternity offers, plus couples hoodies 1088578512400 and 1084991189297, and 1057940629797 (Summer polo).
+  - Rule 3 (dispatch >2 days): 1078844222184, 1078263064823, 1087671952736, Christmas knits 1069707369365 and 1069445400576 (15 days).
+  - Rule 5 (patriotic / National Day, off-market): 明地一族 1082269456434 and 1080022906260, both dl 2 Fall 2026 and supplier passed but theme off-market.
+  - Rule 2 (Summer 2026): 明地一族 short-sleeve offers, scanned and decided (12); 圣瑞 summer short-sleeve offers were not scanned and will show as NEW next time.
+- 莫雷 (shop172d524449199): 7 single kids' knit pullovers at ¥90-114, not matching sets and too costly for the landed rule; not scanned.
+- Several catalogs (三只羊/唯庭/拓茵/国泽/辰承/TYG/格莱美/野狼魅力) returned 0 offers, and search "亲子装 毛衣" and "兄妹装" page 2 returned 0. Possibly early throttling ahead of the CAPTCHA.
+- Note: `decide` refuses offers that were not scanned, and refuses a comma list.
