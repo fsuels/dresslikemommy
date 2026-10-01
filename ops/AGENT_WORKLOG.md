@@ -57123,3 +57123,13 @@ Recurring mistakes for the hourly job:
 - No pending drafts, empty queue. Categories run: Christmas family sweatshirts p3 (3 screened, 2 passed scan, 0 built), 格莱美 catalog (all seen), siblings p3 (0 new), Mommy & Me knits p3 (0 new), 野狼魅力 catalog (all seen), couples sweatshirts p3 (1 screened, 0 passed), maternity p3 (4 screened, 0 passed). Family vests search hit a 1688 CAPTCHA (exit 3): stopped, not bypassed.
 - Skips: 1083910391043 rule 5 red-nosed reindeer; 1080228407209 rule 4 supplier fulfillment 90.43% (<97; 7 yrs, pickup 98.84%); 1082345788774 rule 2 Summer 2026 release; 1085962508979 rule 2 release 2027 autumn; 1084601468317, 1079571208134 rule 3 dispatch 15 days; 1086044697354 rule 3 dispatch 20 days; 1084616251423 rule 3 dispatch 25 days.
 - New live products: none.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-multi-category-no-qualifier
+
+- task_entities: offers 1085737305947, 1082547786896, 1078599963903, 1076513526211, 1076859445312, 1080330583601, 1073716064945, 1083930903362, 1083280264994, 1080838528993, 1081557329343, 1056687419955
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- No pending drafts, empty queue. Categories searched (page 3): matching family accessories (0 new), couples Christmas knits (5 screened, 0 passed), maternity sweatshirts (6 screened, 0 passed), family jackets (0 new), family hoodies (0 new), Mommy & Me dresses (1 screened, 0 passed).
+- Skips: couples knits failed rule 2 (release attribute missing) and rule 3 (4-7 day dispatch); maternity failed rule 2 (missing/2027 release) and rule 3 (4-15 day dispatch); Mommy & Me dress hit was a Summer 2025 item with 7-day dispatch.
+- No new listings. Couples hoodies search (page 3) hit a 1688 CAPTCHA (exit 3): stopped, not bypassed. Retry that category next run.
