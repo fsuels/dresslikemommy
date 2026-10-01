@@ -57225,3 +57225,14 @@ Recurring mistakes for the hourly job:
   - Summer 2026 offers from Xijiabei not screened (off-season).
 - Store catalogs for the other gate-passing suppliers showed only already-seen offers.
 - BLOCKED_1688_CAPTCHA at the search "亲子装 连帽卫衣 2026秋冬" (family hoodies, page 1). Not bypassed; family hoodies still need a retry next run.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-autosource-no-qualifier-captcha
+
+- task_entities: offers 1053294385775, 1089611356107, 1088558797177, 1086543267462, 1065444981165, 1065947961486, 1065915834491, 1068466148255, 1059706783828, 1067966804702, 1066857704663, 1055162915422, 1076041892965, 1069762402364, 1081786895821, 1079508520927, 1089613732441
+- task_stage: NO_QUALIFIER (round ended on BLOCKED_1688_CAPTCHA at couples sweatshirts search page 2)
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Categories/stores covered (about 33 min): Mommy & Me dresses, couples hoodies, Christmas family knits, family sweatshirts, Mommy & Me sweatshirts, family sweaters, Daddy & Me, Christmas family sweatshirts, siblings, Mommy & Me knits; store catalogs for 明地一族, 森大, 圣瑞, 洋泰, 莫雷, 西嘉贝, 拓茵, 唯庭, 辰承, TYG Kids, 格莱美, 野狼魅力. No pending drafts and no queued offers at the start. 17 new offers screened, 2 passed the screen, 0 built, 0 new LIVE.
+- Skips: 1053294385775, 1065444981165, 1065947961486, 1065915834491, 1068466148255, 1059706783828, 1067966804702, 1066857704663, 1055162915422, 1079508520927, 1089613732441 failed rule 2 (summer or spring 2026 release; 1055162915422 also rule 3). 1076041892965 failed rule 3 (3-day dispatch). 1089611356107 and 1088558797177 (明地一族, gate PASS) failed rule 7: tiny red-cap or bear-in-cap chest logo on a template colour-set sweatshirt, 65% cotton. 1069762402364 failed rule 4 (supplier under 1 year on 1688, 287 orders). 1081786895821 failed rule 4 (pickup 89.39%, fulfillment 91.67%).
+- Most store catalogs (森大, 圣瑞, 洋泰, 莫雷, 西嘉贝, 拓茵, 唯庭, 辰承, TYG, 格莱美, 野狼魅力) returned only already-seen offers; the Christmas/Lunar New Year (羊年) lines of 格莱美 and 洋泰 stay off-market or already reviewed.
+- BLOCKED_1688_CAPTCHA on `search "情侣卫衣 2026秋冬" 2` (exit 3). Stopped 1688 work, no bypass attempted.
