@@ -57406,3 +57406,11 @@ Changes:
 - New daily routine `traffic-pulse` (Sonnet, 09:35 local): Shopify analytics connector (read-only, pre-approved in the gitignored `.claude/settings.local.json`) → daily rows + "Latest verdict" in `TRAFFIC_PULSE.md`; Search Console 7d/28d totals on Mondays via Chrome.
 - CEO loop prompt step 4b: read the verdict, check the engine actually worked while capped, use the verdict's action as the MAIN item when none is open, and report the 7-day organic average each run. traffic-pulse joins the watchdog; the disabled weekly re-screen leaves it.
 - Rollback: revert 805f52f; restore the prior routine prompts from this anchor's description; remove the analytics allow entry; disable `traffic-pulse`.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-autosource-family-jackets
+
+- task_entities: none (no offers screened)
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Run found 0 pending drafts and 0 queued offers. Category: family jackets (results page 2), search "亲子装 外套 2026秋冬". 1688 showed a CAPTCHA/login page on the first search (exit 3). Stopped 1688 work, did not bypass. Screened 0, passed 0, no new listings. Owner action: clear the 1688 CAPTCHA/login in the sourcing browser profile, or try the BuckyDrop sourcing route (owner 2026-10-01 test).
