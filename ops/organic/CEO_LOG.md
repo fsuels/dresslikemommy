@@ -300,3 +300,8 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Indexing: SKIPPED. All of today's articles already requested; no OPEN I1 row.
 - MAIN item: none doable (no OPEN MAIN row; #15a Halloween pajamas guide is ENGINE and builds after 00:00Z 10-02; C2 done).
 - Flags for owner: 1688 CAPTCHA still blocks autosource (no new products since 05:47Z).
+
+## 2026-10-01T15:10Z CEO loop (main session)
+- Scheduler global_limit again: operator's 14:50Z run kept skipping (648 recorded skips, retrying each minute); dispatched it manually 14:57Z. Engine 14:23Z, translations 14:16Z, autosource 14:54Z ran.
+- Honesty fix 5a027b1: removed the "Low stock: N left" count (products.product.inventory_low_stock_show_count) from the cart drawer and cart page (non-negotiable: no implied on-hand stock for a dropshipping store). PDP does not render the inventory block (no #Inventory on live PDPs). VERIFIED: theme synced 0 differ; live cart page + drawer render the item normally with no low-stock markup, drawer keeps the add-member link; test cart cleared.
+- Flags for owner: 1688 CAPTCHA.
