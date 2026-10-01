@@ -332,3 +332,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Flags for MAIN/OWNER: MAIN: request indexing for today's 5 articles. One unlisted `wc -l` run by mistake (read-only).
 - 2026-10-01T08:34Z CEO anchor worker: hub anchor "matching outfits" → "family matching outfits" in 1 live article (mommy-and-me-winter-sweatshirts-and-loungewear; 20 local drafts also edited, 19 not pushed: not live, lint-failing, or live body drifted from draft); translations re-registered unchanged; publish state/date preserved.
 - 2026-10-01T08:46Z CEO anchor worker: hub anchor "matching outfits" → "family matching outfits" via article-body on live bodies in 9 articles (halloween-family-matching-costume-ideas, spring-matching-outfits-for-mommy-and-me, how-to-care-for-your-matching-family-outfits, matching-outfit-sizing-guide-right-fit-for-everyone, mommy-and-me-easter-outfit-ideas, mothers-day-matching-outfits-mommy-and-me-guide, summer-matching-family-outfits, the-complete-guide-to-family-matching-outfits, what-to-wear-for-family-photos-matching-outfit-ideas) plus winter-sweatshirts earlier; translations re-registered unchanged for 8 of 9 (halloween blocked: stored translations carry stale hrefs, 20 locales still outdated); publish state/date preserved.
+
+## 2026-10-01T09:24Z run
+- Build: SKIPPED: daily cap of 5 new articles already reached (UTC 2026-10-01: #11-#15). Next build after 00:00Z 10-02: #16 pajama gift ideas, then #17.
+- Fix: 0 items (inventory refreshed: 54 collections, 277 articles; `article-links`: 0 articles needing fix).
+- Research: none (open ENGINE items: #16-#19)
+- Flags for MAIN/OWNER: MAIN: request indexing for today's 5 articles. One unlisted `grep -c` run by mistake (read-only).

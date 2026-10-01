@@ -247,3 +247,9 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Indexing: SKIPPED. All of today's articles were already requested (04:55Z, 05:08Z, 06:35Z); I1 is DONE.
 - MAIN item: none doable (no OPEN MAIN row: #1 and C1 catalog gaps, S1 low value, X1 measuring until 10-22).
 - Flags for owner: none.
+
+## 2026-10-01T09:55Z CEO loop (main session)
+- Routines on time (engine 09:24Z, translations 09:16Z: pajama-sizing guide 20/20, autosource 08:53Z, operator 08:51Z). Autosource 08:53Z run: BLOCKED_1688_CAPTCHA (no new products since 05:47Z). Owner push notification sent.
+- Theme 7ce144f: related-guides block now maps the Sep 29–Oct 1 guides to their collections (pajamas, Christmas, sweaters, sweatshirts, family-tops, daddy-me, dresses, vacation/Hawaiian, Thanksgiving, couples, family photos); all 24 handles checked as published. VERIFIED live en + de (matching-family-sweatshirts, family-tops, christmas-pajamas, daddy-me).
+- Theme 8ffb6a8: the family-tops intro is theme copy (collection-guide-english-terms.liquid), not the admin description. Added the "matching family sweatshirts and hoodies" link there. VERIFIED live. The earlier admin descriptionHtml edit is harmless and has no effect on the page.
+- Flags for owner: solve the 1688 CAPTCHA in the "1688 helper" Chrome window.
