@@ -57464,3 +57464,27 @@ Changes:
 - next_action_id: NEXT_AUTOSOURCE_ROUND
 
 - pending: 0 drafts; queue: 0 offers. First search ("孕妇装 2026秋冬", owner-priority maternity) hit a 1688 CAPTCHA/login page (exit 3). Stopped per rules; no bypass. Owner/CEO session needs to clear the 1688 login in the Chrome test profile before the next run can search.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-young-store-supplier-rule-and-season-fix
+
+- task_entities: `ops/sourcing/autosource.py` (`verdict`, `season_ok`), owner rule 3, `ops/sourcing/state/autosource_seen.json`; offers 1083351603829, 1086948321742, 1086959509356, 1087828292939, 1083847378091
+- task_stage: IMPLEMENTED + VERIFIED (7 verdict cases, 8 season cases); sourcing ON HOLD by the owner (no runs started)
+- next_action_id: OWNER_SOURCING_DIRECTION
+
+- **Owner decision (AskUserQuestion, 2026-10-01, "Yes, strict stats"):** stores aged 0–2 years, or with unreadable years, now pass the supplier gate only with:
+  - 48h pickup ≥97% and fulfillment ≥97%;
+  - 1,000+ orders in the last 30 days;
+  - service ≥4.0, quality returns ≤1%, disputes ≈0;
+  - the 24/48h dispatch promise.
+
+  They stay Tier B until an on-time order. Reason: every maternity store and most couples stores on 1688 were founded in 2026.
+- **Re-scoring stored readings:** stored store readings were re-scored offline, with no 1688 reads. Newly passing:
+  - maternity: shop1295733378004 and shop6702t5808l670;
+  - couples: shop4q9847457tb44 and shop0d35869099h11;
+  - family: four more stores.
+
+  9 offers are queued for design review (`autosource.py queue`), none built.
+- **Season-check fix (commit c53b0a3):** a Spring 2026 couples hoodie passed because 秋 appeared in a colour name. `season_ok` now reads only the release tag. Offer 1086728885666 is skipped.
+- **Earlier the same day (18:12–18:40Z):** this CEO session re-scanned 25 maternity/couples offers and gated 14 stores through CDP 9333. That was before the owner ruled 9333 to be the Santo Ruidos browser. No 9333 use since.
+- **Sourcing hold:** sourcing is on hold per the owner (session "Sonnet 5.5 cost optimization strategy", about 20:00Z). The `autosource` scheduled task was removed. It is not recreated without the owner's yes, and it needs the test-profile browser configured (`dlm_browser.json`).
+- **Rollback:** revert this commit.

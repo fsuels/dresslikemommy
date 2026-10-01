@@ -25,6 +25,7 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 4. **Supplier:** `gate` prints the verdict.
    - Standard: ≥5 years on 1688, 48h pickup ≥95%, fulfillment ≥97%, service ≥4.0, MOQ 1.
    - 3–4 years only with strict stats: pickup ≥97%, fulfillment ≥97%, quality returns ≤1%, disputes ≈0, service ≥4.0, 500+ orders in 30 days.
+   - 0–2 years (owner 2026-10-01): pickup ≥97%, fulfillment ≥97%, 1,000+ orders in 30 days, service ≥4.0, quality returns ≤1%, disputes ≈0. `gate` prints "passes young-store rule". Record these stores as Tier B in suppliers_append.md.
 5. **No IP or logos:**
    - No licensed characters or look-alikes: Disney/Mickey, Sanrio, Snoopy, Pooh, Chiikawa, Grinch, Stitch, superheroes.
    - No Rudolph-style red-nosed reindeer.

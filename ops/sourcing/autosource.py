@@ -342,13 +342,22 @@ def verdict(d: dict) -> tuple[bool, str]:
     if f("pickup48") < 95: why.append(f"48h pickup {d.get('pickup48') or '?'}% < 95")
     if f("fulfill48") and f("fulfill48") < 97: why.append(f"fulfillment {d['fulfill48']}% < 97")
     if f("service") and f("service") < 4.0: why.append(f"service {d['service']} < 4.0")
-    if y < 3: why.append(f"{d.get('years') or '?'} years < 3")
+    if y < 3:  # owner 2026-10-01 ("Yes, strict stats"): young stores (0-2y or unknown) only with top stats; Tier B until an on-time order
+        tag = f"{d.get('years') or '?'}y young store"
+        if f("pickup48") < 97: why.append(f"{tag} needs pickup ≥97")
+        if f("fulfill48") < 97: why.append(f"{tag} needs fulfillment ≥97")
+        if f("service") < 4.0: why.append(f"{tag} needs service ≥4.0")
+        if d.get("quality_return") and f("quality_return") > 1: why.append(f"{tag} needs quality returns ≤1%")
+        if d.get("dispute") and f("dispute") > 0.5: why.append(f"{tag} needs disputes ≈0")
+        if f("orders30") < 1000: why.append(f"{tag} needs 1000+ orders/30d (has {d.get('orders30') or '?'})")
     elif y < 5:  # owner 2026-09-28: 3-4 years only with strict stats
         if f("pickup48") < 97: why.append("3-4y needs pickup ≥97")
         if f("fulfill48") < 97: why.append("3-4y needs fulfillment ≥97")
         if d.get("quality_return") and f("quality_return") > 1: why.append("3-4y needs quality returns ≤1%")
         if d.get("dispute") and f("dispute") > 0.5: why.append("3-4y needs disputes ≈0")
         if f("orders30") < 500: why.append(f"3-4y needs 500+ orders/30d (has {d.get('orders30') or '?'})")
+    if not why and y < 3:
+        return True, f"passes young-store rule ({d.get('years') or '?'}y; Tier B until an on-time order)"
     return (not why, "; ".join(why) or "passes every supplier rule")
 
 
