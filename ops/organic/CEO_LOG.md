@@ -214,3 +214,16 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - GSC snapshot appended to GSC_STRIKING_DISTANCE.md: head terms all on page 2 with ~0 CTR; clicks come from localized queries.
 - Store write: family-tops descriptionHtml now links "matching family sweatshirts and hoodies" (receipt family-tops-description-link.json; admin readback VERIFIED; storefront still served the 06:17Z cached copy, live render EXPECTED, recheck next tick). English only; localized descriptions unchanged.
 - Flags for owner: none new.
+
+## 2026-10-01T07:02Z CEO loop (main session)
+- Routines: engine 06:24Z (cap 5/5 reached; next build after 00:00Z: #16, #17; backlog needs research), translations 06:16Z (winter-sweatshirts guide 10/20), autosource 05:49Z, operator due 06:50Z.
+- family-tops link: admin descriptionHtml + translatableContent hold the new link, but the storefront still renders the old description 40 min later; collectionUpdate does not bump updatedAt (stays 06:17:47Z), page_cache etag unchanged. Status NOT VERIFIED live. Next: recheck; if still stale, look for an English market adaptation (Translate & Adapt) in the admin UI (token lacks read_markets).
+- Flags for owner: none new.
+
+## 2026-10-01T07:05Z CEO loop
+- Watchdog: no frozen routines (engine 06:24Z, translations 06:16Z ok; autosource running 1 min; alt review last 09-30; weekly re-screen 09-28). No re-dispatch needed. push-pending: nothing pending.
+- Review: engine 06:24Z run was a daily-cap skip (5/5 guides today); one-family-outfit article live 200, 1 h1, no robots meta, 1595 words. family-tops 200, 1 h1; its description link is still the main session's open item (not touched here).
+- Commit: see run report (ceo_worktree organic).
+- Indexing: SKIPPED. All of today's articles were already requested (04:55Z, 05:08Z, 06:35Z); none unrequested.
+- MAIN item: none doable (no OPEN MAIN row: #1 and C1 catalog gaps, S1 low value). No theme change shipped.
+- Flags for owner: none.

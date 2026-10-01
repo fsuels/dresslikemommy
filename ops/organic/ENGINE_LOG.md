@@ -312,3 +312,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (queue empty; `article-links` not re-run).
 - Research: none (open ENGINE items: #16, #17)
 - Flags for MAIN/OWNER: MAIN: request indexing for the new article. Hero = red plaid shirt flat lay (limit=1 products.json is readable; limit=3 is too large). One unlisted `wc -l` run by mistake (read-only).
+
+## 2026-10-01T06:24Z run
+- Build: SKIPPED: daily cap of 5 new articles already reached (UTC 2026-10-01: #11-#15). Next build after 00:00Z 10-02: #16 pajama gift ideas, then #17.
+- Fix: 0 items (inventory refreshed: 54 collections; `article-links`: 0 articles needing fix).
+- Research: none (open ENGINE items: #16, #17)
+- Flags for MAIN/OWNER: MAIN: request indexing for today's 5 articles. One unlisted `wc -l` run by mistake (read-only).

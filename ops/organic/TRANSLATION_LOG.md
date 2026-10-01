@@ -104,3 +104,4 @@
 - 2026-10-01T05:40Z matching-family-shirts-for-pictures: sweatshirt-collection link added in English + 20 locales VERIFIED — CEO link worker
 - 2026-10-01T05:40Z matching-family-christmas-shirts: sweatshirt-collection link added in English + 20 locales VERIFIED — CEO link worker
 - 2026-10-01T05:40Z family-christmas-card-photo-ideas: sweatshirt-collection link added in English + 20 locales VERIFIED — CEO link worker
+- 2026-10-01T06:22Z mommy-and-me-winter-sweatshirts-and-loungewear: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
