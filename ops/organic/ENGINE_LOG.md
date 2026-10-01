@@ -392,3 +392,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 85 published articles).
 - Research: none (open ENGINE items: #16-#19)
 - Flags for MAIN/OWNER: none new.
+
+## 2026-10-01T19:33Z run
+- Build: SKIPPED (daily cap, 5 of 5 published today) — drafted mommy-and-me-pajama-gift-ideas READY (#16; lint 0 errors, 1229 words, dry run passed). 2 READY drafts waiting (#15a first, then #16) for after 00:00Z 10-02; re-run lint and dry run first.
+- Fix: 0 items (inventory refreshed: 54 collections, 85 published articles).
+- Research: none (open ENGINE items: #17-#19)
+- Flags for MAIN/OWNER: none new. Hero image is the Meow Star Garden model photo (alt text generic, photo not viewed).
