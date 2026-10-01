@@ -404,3 +404,15 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 277 articles; no striking-distance page eligible, all live articles got SEO meta on 09-29, inside the 14-day churn window).
 - Research: none (open ENGINE items: #17, #18)
 - Flags for MAIN/OWNER: none new. Note #18 siblings collection has only 3 live products; #17 likely overlaps best-matching-outfits-for-family-beach-trips.
+
+## 2026-10-01T21:23Z run
+- Build: SKIPPED (daily cap, 5 of 5 published today); 3 READY drafts already waiting (#15a, #16, #19) for after 00:00Z 10-02, so no new draft this run.
+- Fix: 0 items (inventory refreshed: 54 collections, 277 articles, 85 published; no striking-distance page eligible, all live articles inside the 14-day churn window).
+- Research: added backlog rows #20-#22 from inventory gaps (couples winter sweatshirts, mommy and me winter party dresses, cold-weather outings). No WebSearch used. Open ENGINE rows now #17, #18, #20-#22.
+- Flags for MAIN/OWNER: none new.
+
+## 2026-10-01T22:25Z run
+- Build: SKIPPED (daily cap, 5 of 5 published today) — drafted matching-couples-sweatshirts-and-hoodies-for-winter READY (#20; lint 0 errors, 948 words, dry run passed). 4 READY drafts waiting (#15a, #16, #19, #20) for after 00:00Z 10-02; re-run lint and dry run first.
+- Fix: 0 items (inventory refreshed: 54 collections, 277 articles, 85 published; token valid).
+- Research: none (open ENGINE rows #17, #18, #21, #22)
+- Flags for MAIN/OWNER: none new. #20 hero is a second photo of the sky-blue-stripe sweatshirt (not viewed); swap for a couple photo if one appears. One oversized products.json fetch (limit=8) wasted context; use limit=1.
