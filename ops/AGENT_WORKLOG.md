@@ -57456,3 +57456,11 @@ Changes:
 - next_action_id: NEXT_AUTOSOURCE_ROUND
 
 - pending: 0 drafts; queue: 0 offers. First owner-priority search (maternity, "孕妇装 2026秋冬") hit a 1688 CAPTCHA/login page (exit 3). Stopped 1688 work for this run; nothing screened, nothing built. Not bypassed. Owner needs to clear the 1688 session (or BuckyDrop sourcing path) before the next run can search.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-autosource-maternity-blocked
+
+- task_entities: none (no offers screened)
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- pending: 0 drafts; queue: 0 offers. First search ("孕妇装 2026秋冬", owner-priority maternity) hit a 1688 CAPTCHA/login page (exit 3). Stopped per rules; no bypass. Owner/CEO session needs to clear the 1688 login in the Chrome test profile before the next run can search.
