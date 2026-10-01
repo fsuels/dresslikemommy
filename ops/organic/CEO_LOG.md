@@ -286,3 +286,9 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Indexing: SKIPPED. All of today's articles already requested; no OPEN I1 row.
 - MAIN item: none shipped. C2 (cart "add another size" link) is not done unattended: the owner removed add-another chips from the PDP on 2026-10-01 because shoppers were confused, so it needs an owner/NEEDS_OPUS design call first. #15a Halloween pajamas guide builds after 00:00Z 10-02.
 - Flags for owner: 1688 CAPTCHA still blocks autosource.
+
+## 2026-10-01T14:20Z CEO loop (main session)
+- Routines on time (engine 13:24Z cap skip, translations 13:16Z: Halloween guide 20/20 with the pajamas link, autosource 12:53Z still CAPTCHA, operator 12:50Z).
+- Conversion C2 shipped: cart drawer "+ Add another family member's size" link under sized items (snippets/cart-item-add-member.liquid, 21 languages inline). Iterations: 818271b add; 44c064f fix clipping in the nowrap drawer column at 375 px; 404dc84 removed from the cart page, which already has a stronger "Complete the family" (+ Another kid / + Adult) module. VERIFIED live: en drawer and cart page, de drawer localized text + /de/ URL; test carts cleared.
+- Flag (theme honesty): cart-drawer.liquid renders products.product.inventory_low_stock_show_count when a variant has ≤10 units, a stock claim for a dropshipping store. Not changed (cart owned with peers); noted in BACKLOG C2.
+- Flags for owner: 1688 CAPTCHA.
