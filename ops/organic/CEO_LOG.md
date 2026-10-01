@@ -201,3 +201,9 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Watchdog: all DLM routines running again (engine 04:26Z, operator 04:51Z, autosource 04:38Z after the owner session stopped frozen run local_232d45ee, translations 04:05Z; next fire 05:16Z). Engine at 4/5 guides today.
 - Indexing: requested for the new matching-family-sweatshirts collection, the winter-sweatshirts guide and the Hawaiian guide (all "unknown to Google"); daddy-daughter guide already indexed on its own. Browser 1 selection held for the whole batch this time.
 - Flags for owner: none new (Santo/DLM scheduler priority still open).
+
+## 2026-10-01T05:55Z CEO loop (main session)
+- Routines on schedule (engine 05:24Z 5/5 guides today incl. one-family-outfit-for-thanksgiving-and-christmas; translations 05:16Z, daddy-daughter guide 20/20; autosource 04:38Z, San Francisco family sweatshirts live 05:20Z and in the sweatshirt collection).
+- MAIN item: Sonnet worker linked matching-family-shirts-for-pictures, matching-family-christmas-shirts and family-christmas-card-photo-ideas to /collections/matching-family-sweatshirts in English + 20 locales (one sentence each; translate-apply verified; receipts links-sweatshirts-*.json). Live check: one localized link per page on en/de/ja; 200, 1 h1.
+- Incident + fix: publish_blog_articles.py --update-existing without --publish sent isPublished=false. The 3 guides were offline (404) for a few minutes and their publishedAt reset to today. Restored the original dates (receipts/2026-10-01/restore-publish-dates.json). Fixed the publisher (37e8780): updates now preserve the live published state, creates follow frontmatter; regression tests in ops/tests/test_publish_blog_articles.py. Copied the fixed file into the shared checkout the routines run from (verified identical to main).
+- Flags for owner: none new.

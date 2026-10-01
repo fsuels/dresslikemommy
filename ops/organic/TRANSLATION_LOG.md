@@ -100,3 +100,7 @@
 - 2026-10-01T02:11Z matching-family-hawaiian-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-10-01T02:55Z collection matching-family-sweatshirts: all 20 locales (title, meta, description) VERIFIED — CEO worker
 - 2026-10-01T04:11Z daddy-daughter-dance-matching-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-10-01T05:21Z daddy-daughter-dance-matching-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-10-01T05:40Z matching-family-shirts-for-pictures: sweatshirt-collection link added in English + 20 locales VERIFIED — CEO link worker
+- 2026-10-01T05:40Z matching-family-christmas-shirts: sweatshirt-collection link added in English + 20 locales VERIFIED — CEO link worker
+- 2026-10-01T05:40Z family-christmas-card-photo-ideas: sweatshirt-collection link added in English + 20 locales VERIFIED — CEO link worker

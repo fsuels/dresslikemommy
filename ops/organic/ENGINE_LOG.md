@@ -306,3 +306,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (queue empty; `article-links` not re-run).
 - Research: no web search; added backlog ideas #15-#17 from the existing catalog.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new article. Hero is the Beanie Ghost Halloween pajama flat lay (Christmas photo too large to fetch); swap later. Slug says "newborn" but the article claims no newborn size.
+
+## 2026-10-01T05:24Z run
+- Build: backlog #15 one family outfit for Thanksgiving and Christmas → https://www.dresslikemommy.com/blogs/news/one-family-outfit-for-thanksgiving-and-christmas (VERIFIED: 200, 1 h1, no robots meta; lint 0 errors, 1238 words). 5 of 5 today (UTC 2026-10-01): daily cap reached.
+- Fix: 0 items (queue empty; `article-links` not re-run).
+- Research: none (open ENGINE items: #16, #17)
+- Flags for MAIN/OWNER: MAIN: request indexing for the new article. Hero = red plaid shirt flat lay (limit=1 products.json is readable; limit=3 is too large). One unlisted `wc -l` run by mistake (read-only).
