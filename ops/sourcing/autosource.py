@@ -206,7 +206,10 @@ created:(h.match(/"createDate"\s*:\s*"?(\d{13})/)||[])[1]||'',listedText:(t.matc
 
 
 def season_ok(r: str) -> bool:
-    return "2026" in r and bool(re.search(r"Fall|Autumn|Winter|秋|冬", r))
+    # Judge only the season tag itself ("2026年秋季", "Autumn 2026"): the captured text runs on into colour names,
+    # and "2026年春季 颜色 …【连帽春秋款】" once passed on the 秋 inside a colour name (CEO, 2026-10-01).
+    seg = " ".join(r.split()[:2])
+    return "2026" in seg and bool(re.search(r"Fall|Autumn|Winter|秋|冬", seg))
 
 
 NO_TAG_LISTED_FROM = "2026-08-01"  # owner 2026-10-01: no release attribute at all is OK when listed on/after this date
