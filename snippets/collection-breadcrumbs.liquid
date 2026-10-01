@@ -64,6 +64,7 @@
   or current_collection_handle == 'matching-hawaiian-outfits'
   or current_collection_handle == 'family-tops'
   or current_collection_handle == 'family-sweaters'
+  or current_collection_handle == 'matching-family-sweatshirts'
   or current_collection_handle == 'christmas-pajamas'
   or current_collection_handle == 'halloween-family-pajamas'
 %}
@@ -122,6 +123,8 @@
 {% elsif current_collection_handle == 'family-sweaters' %}
   {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
   {% assign current_breadcrumb_label = 'sections.breadcrumbs.label_sweaters' | t %}
+{% elsif current_collection_handle == 'matching-family-sweatshirts' %}
+  {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
 {% elsif current_collection_handle == 'new-women-outfits' or current_collection_handle == 'matching-outfits' or current_collection_handle == 'family-matching-outfits' %}
   {% assign parent_category = 'sections.breadcrumbs.cat_family_matching' | t %}
   {% assign current_breadcrumb_label = 'sections.breadcrumbs.cat_family_matching' | t %}
@@ -167,7 +170,7 @@
 {% capture mommy_swimsuits_alias_handles %},swimsuits,{% endcapture %}
 {% capture mommy_tops_alias_handles %},tops,bottoms,leggings,pants,{% endcapture %}
 {% capture mommy_sweaters_alias_handles %},sweaters,{% endcapture %}
-{% capture family_branch_handles %},matching-outfits,family-matching-outfits,new-women-outfits,family-pajamas,family-swimsuits,family-sets,matching-family-vacation-outfits,matching-hawaiian-outfits,family-tops,family-sweaters,christmas-pajamas,halloween-family-pajamas,{% endcapture %}
+{% capture family_branch_handles %},matching-outfits,family-matching-outfits,new-women-outfits,family-pajamas,family-swimsuits,family-sets,matching-family-vacation-outfits,matching-hawaiian-outfits,family-tops,family-sweaters,matching-family-sweatshirts,christmas-pajamas,halloween-family-pajamas,{% endcapture %}
 {% capture family_hub_alias_handle_tokens %},matching-outfits,family-matching-outfits,new-women-outfits,{% endcapture %}
 {% capture family_vacation_alias_handle_tokens %},family-sets,matching-family-vacation-outfits,{% endcapture %}
 
@@ -204,7 +207,7 @@
   {% when 'family' %}
     {% assign branch_row_label = 'sections.collection_navigation.within_family_matching' | t %}
     {% capture family_priority_pills %}
-      {{ family_matching_hub_handle }}::{{ 'sections.breadcrumbs.label_all' | t }}::|||family-swimsuits::{{ 'sections.breadcrumbs.label_swimsuits' | t }}::swimsuits|||family-sets::{{ 'sections.breadcrumbs.label_sets' | t }}::sets|||family-tops::{{ 'sections.breadcrumbs.label_tops' | t }}::tops|||family-sweaters::{{ 'sections.breadcrumbs.label_sweaters_short' | t }}::sweaters|||family-pajamas::{{ 'sections.breadcrumbs.label_pajamas' | t }}::pajamas
+      {{ family_matching_hub_handle }}::{{ 'sections.breadcrumbs.label_all' | t }}::|||family-swimsuits::{{ 'sections.breadcrumbs.label_swimsuits' | t }}::swimsuits|||family-sets::{{ 'sections.breadcrumbs.label_sets' | t }}::sets|||family-tops::{{ 'sections.breadcrumbs.label_tops' | t }}::tops|||family-sweaters::{{ 'sections.breadcrumbs.label_sweaters_short' | t }}::sweaters|||matching-family-sweatshirts::{{ 'sections.breadcrumbs.label_sweatshirts' | t }}|||family-pajamas::{{ 'sections.breadcrumbs.label_pajamas' | t }}::pajamas
     {% endcapture %}
     {% assign branch_pill_list = family_priority_pills | split: '|||' %}
   {% when 'daddy' %}
@@ -469,6 +472,10 @@
                         {% endif %}
                       {% when 'family-sweaters' %}
                         {% if current_collection_handle == 'family-sweaters' or current_tag_handle_tokens contains ',sweaters,' %}
+                          {% assign item_is_current = true %}
+                        {% endif %}
+                      {% when 'matching-family-sweatshirts' %}
+                        {% if current_collection_handle == 'matching-family-sweatshirts' %}
                           {% assign item_is_current = true %}
                         {% endif %}
                       {% else %}
