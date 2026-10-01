@@ -57382,3 +57382,27 @@ Owner asked why only 2-3 products went live on 2026-09-30. Evidence given: about
 - Screened 4 new offers, 3 passed the scan, 0 passed the gate, 0 built, no new LIVE handles.
 - Skipped: 1075503343225 (rule 4: supplier 0 years on 1688), 1085598616228 (rule 4: 0 years, pickup 0%), 1087186224807 (rule 4: 0 years), 1066726450237 (rule 2: no season tag, listed 2026-07-18, before 2026-08-01).
 - Supplier near-misses: none; all new-store suppliers are 0 years.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-ceo-routine-throughput-diagnosis-and-traffic-pulse
+
+- task_entities: scheduled tasks `organic-traffic-engine`, `ceo-organic-operator`, `autosource`, new `traffic-pulse`; `ops/organic/ORGANIC_ENGINE.md`, `ops/organic/TRAFFIC_PULSE.md`
+- task_stage: IMPLEMENTED + VERIFIED (traffic-pulse first run wrote rows and a verdict); EXPECTED (engine never-idle mode, first proof = next capped run)
+- next_action_id: OWNER_BUCKYDROP_SIGN_IN (unchanged; the sourcing throughput blocker)
+
+The owner asked why the routines had slowed and why listings were growing so slowly. Evidence (list_task_runs + transcripts, Shopify analytics, autosource_seen.json):
+- Engine: after the 5-article daily cap, about 19 of 24 hourly runs stopped within a minute ("cap reached"). The CEO loop also idled (about 1 min per run) because no MAIN row was open. The routines were not frozen or starved; they had no work queued.
+- Autosource: 40 runs since 09-29 produced 5 listings, and 29 of those runs ended on a 1688 CAPTCHA after about 10 minutes. Of 1,025 offers screened, 110 passed season, 48h and supplier rules, and design rules 5–7 (brand look-alikes, smileys, template photos, duplicates) rejected almost all of them. The owner-approved fix (BuckyDrop sourcing with the full vendor gate) is still blocked on the owner signing in to BuckyDrop in the helper Chrome.
+- Traffic (Shopify, referrer_source=search):
+  - Same weeks of 2025: about 110 per week. 2026-09-07 → 09-14: 300–340 per week.
+  - Paid-ad spike 09-25 → 09-28. Clean days 09-29 = 77 and 09-30 = 73, against about 53 per day mid-September.
+  - Google organic, last 14 days: 1,128 sessions → 58 carts → 3 checkouts.
+  - Blog articles are not yet among the top organic landing pages.
+
+Changes:
+- `ORGANIC_ENGINE.md` "Never idle":
+  - Once the cap is hit: draft the next article to READY (lint + dry run, no publish), make up to 3 striking-distance SEO rewrites (no page re-touched within 14 days; before numbers logged), add seasonal internal links.
+  - Research threshold raised from 5 to 8 open rows.
+  - The routine prompt points to the new section. Commit 805f52f.
+- New daily routine `traffic-pulse` (Sonnet, 09:35 local): Shopify analytics connector (read-only, pre-approved in the gitignored `.claude/settings.local.json`) → daily rows + "Latest verdict" in `TRAFFIC_PULSE.md`; Search Console 7d/28d totals on Mondays via Chrome.
+- CEO loop prompt step 4b: read the verdict, check the engine actually worked while capped, use the verdict's action as the MAIN item when none is open, and report the 7-day organic average each run. traffic-pulse joins the watchdog; the disabled weekly re-screen leaves it.
+- Rollback: revert 805f52f; restore the prior routine prompts from this anchor's description; remove the analytics allow entry; disable `traffic-pulse`.
