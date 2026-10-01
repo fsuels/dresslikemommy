@@ -13,7 +13,9 @@
   {% case collection.handle %}
     {% when 'family-pajamas' %}
       {% assign collection_empty_recovery_target_url = collections['pajamas'].url | default: '/collections/pajamas' %}
-    {% when 'family-swimsuits', 'family-sets', 'family-tops', 'family-sweaters', 'matching-family-vacation-outfits', 'matching-hawaiian-outfits', 'mother-daughter-matching-dresses' %}
+    {% when 'family-swimsuits' %}
+      {% assign collection_empty_recovery_target_url = collections['swimsuits'].url | default: '/collections/swimsuits' %}
+    {% when 'family-sets', 'family-tops', 'family-sweaters', 'matching-family-vacation-outfits', 'matching-hawaiian-outfits', 'mother-daughter-matching-dresses' %}
       {% assign collection_empty_recovery_target_url = collections['matching-outfits'].url | default: collections['new-women-outfits'].url | default: collections['family-matching-outfits'].url | default: '/collections/matching-outfits' %}
     {% when 'matching-outfits', 'family-matching-outfits', 'new-women-outfits' %}
       {% assign collection_empty_recovery_target_url = collections['mommy-and-me'].url | default: '/collections/mommy-and-me' %}

@@ -12,11 +12,12 @@
   endif
   assign family_hub_url = family_hub_collection.url | default: '/collections/matching-outfits'
   assign pajamas_url = collections['pajamas'].url | default: '/collections/pajamas'
+  assign swimsuits_url = collections['swimsuits'].url | default: '/collections/swimsuits'
   assign all_collections_url = routes.collections_url | default: '/collections'
 
-  assign recovery_eyebrow = 'Collection refresh needed'
+  assign recovery_eyebrow = 'Keep shopping'
   assign recovery_title = 'This collection is empty right now'
-  assign recovery_copy = 'Use the strongest nearby collection below instead of landing on a dead end.'
+  assign recovery_copy = 'Try one of these collections instead.'
   assign primary_button_label = 'Browse the best match'
   assign primary_button_url = recovery_redirect_url | default: family_hub_url
   assign secondary_button_label = 'Browse Mommy & Me'
@@ -25,9 +26,18 @@
   assign tertiary_button_url = all_collections_url
 
   case collection_handle
+    when 'family-swimsuits'
+      assign recovery_title = 'Shop matching swimsuits'
+      assign recovery_copy = 'Our matching swimsuits are in the Swimsuits collection.'
+      assign primary_button_label = 'Shop Swimsuits'
+      assign primary_button_url = recovery_redirect_url | default: swimsuits_url
+      assign secondary_button_label = 'Browse Family Matching'
+      assign secondary_button_url = family_hub_url
+      assign tertiary_button_label = 'Browse Mommy & Me'
+      assign tertiary_button_url = mommy_hub_url
     when 'family-pajamas'
-      assign recovery_title = 'Pajamas are available elsewhere'
-      assign recovery_copy = 'This family pajamas collection is empty, so route shoppers to the live pajamas collection and keep the Family Matching hub nearby.'
+      assign recovery_title = 'Shop matching pajamas'
+      assign recovery_copy = 'Our matching pajamas are in the Pajamas collection.'
       assign primary_button_label = 'Shop Pajamas'
       assign primary_button_url = recovery_redirect_url | default: pajamas_url
       assign secondary_button_label = 'Browse Family Matching'
@@ -35,8 +45,8 @@
       assign tertiary_button_label = 'Browse Mommy & Me'
       assign tertiary_button_url = mommy_hub_url
     when 'matching-outfits', 'family-matching-outfits', 'new-women-outfits'
-      assign recovery_title = 'Family Matching needs a fresh route'
-      assign recovery_copy = 'This hub is thin right now. Keep browsing through the stronger starting points below.'
+      assign recovery_title = 'More matching looks to explore'
+      assign recovery_copy = 'Start with one of these collections.'
       assign primary_button_label = 'Shop Mommy & Me'
       assign primary_button_url = mommy_hub_url
       assign secondary_button_label = 'Shop Pajamas'
@@ -44,8 +54,8 @@
       assign tertiary_button_label = 'Browse all collections'
       assign tertiary_button_url = all_collections_url
     when 'mommy-and-me'
-      assign recovery_title = 'Mommy & Me needs a fresh route'
-      assign recovery_copy = 'This hub is thin right now. Keep the browse moving with the closest live category below.'
+      assign recovery_title = 'More Mommy & Me looks to explore'
+      assign recovery_copy = 'Start with one of these collections.'
       assign primary_button_label = 'Shop Pajamas'
       assign primary_button_url = pajamas_url
       assign secondary_button_label = 'Browse Family Matching'
@@ -55,7 +65,7 @@
     else
       if collection_handle contains 'family-'
         assign recovery_title = 'Keep browsing Family Matching'
-        assign recovery_copy = 'This family collection is empty, so the broader Family Matching hub is the safest next stop.'
+        assign recovery_copy = 'More matching family outfits are in the Family Matching collection.'
         assign primary_button_label = 'Browse Family Matching'
         assign primary_button_url = recovery_redirect_url | default: family_hub_url
         assign secondary_button_label = 'Shop Pajamas'
@@ -64,7 +74,7 @@
         assign tertiary_button_url = mommy_hub_url
       elsif collection_handle contains 'mommy' or collection_handle == 'dresses' or collection_handle == 'swimsuits' or collection_handle == 'tops' or collection_handle == 'sweaters' or collection_handle == 'bottoms' or collection_handle == 'leggings' or collection_handle == 'pants' or collection_handle == 'formal-dresses' or collection_handle == 'maxi-dresses' or collection_handle == 'midi-dresses' or collection_handle == 'mini-dresses' or collection_handle == 'sundresses' or collection_handle == 'jumpsuits' or collection_handle == 'rompers' or collection_handle == 'skirts' or collection_handle == 'pajamas'
         assign recovery_title = 'Keep browsing Mommy & Me'
-        assign recovery_copy = 'This collection is empty, so the broader Mommy & Me hub is the safest next stop.'
+        assign recovery_copy = 'More matching mom and kid outfits are in the Mommy & Me collection.'
         assign primary_button_label = 'Browse Mommy & Me'
         assign primary_button_url = recovery_redirect_url | default: mommy_hub_url
         assign secondary_button_label = 'Shop Pajamas'
