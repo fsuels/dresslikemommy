@@ -385,6 +385,8 @@
                   {% assign force_show_pill = true %}
                   {% if item_tag_handle != blank %}
                     {% assign pill_url = family_matching_hub_filter_base_url | append: '/' | append: item_tag_handle %}
+                  {% elsif target_collection != blank %}
+                    {% assign pill_url = target_collection.url %}
                   {% else %}
                     {% assign pill_url = family_matching_hub_filter_base_url %}
                   {% endif %}
@@ -521,6 +523,8 @@
                   {% elsif current_main_branch_key == 'family' %}
                     {% if item_tag_handle != blank %}
                       {% assign pill_url = family_matching_hub_filter_base_url | append: '/' | append: item_tag_handle %}
+                    {% elsif item_handle != family_matching_hub_handle and target_collection != blank %}
+                      {% assign pill_url = target_collection.url %}
                     {% else %}
                       {% assign pill_url = family_matching_hub_filter_base_url %}
                     {% endif %}
