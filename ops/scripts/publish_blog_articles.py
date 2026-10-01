@@ -294,7 +294,18 @@ def fetch_existing_articles(store_domain: str, access_token: str, api_version: s
     return existing
 
 
-def build_article_input(draft: ArticleDraft, blog_id: Optional[str] = None, publish_override: Optional[bool] = None) -> Dict:
+def build_article_input(
+    draft: ArticleDraft,
+    blog_id: Optional[str] = None,
+    publish_override: Optional[bool] = None,
+    preserve_live_state: bool = False,
+) -> Dict:
+    """Build an ArticleInput.
+
+    Updates (preserve_live_state=True) without an explicit override leave the live
+    published state alone; on 2026-10-01 sending isPublished=false on a plain body
+    update took three live guides offline.
+    """
     article_input: Dict = {
         "title": draft.title,
         "handle": draft.handle,
@@ -302,8 +313,11 @@ def build_article_input(draft: ArticleDraft, blog_id: Optional[str] = None, publ
         "summary": draft.summary,
         "tags": draft.tags,
         "author": {"name": draft.author},
-        "isPublished": draft.is_published if publish_override is None else publish_override,
     }
+    if publish_override is not None:
+        article_input["isPublished"] = publish_override
+    elif not preserve_live_state:
+        article_input["isPublished"] = draft.is_published
 
     if blog_id:
         article_input["blogId"] = blog_id
@@ -418,7 +432,8 @@ def main() -> int:
             mutation = ARTICLE_UPDATE_MUTATION
             article_input = build_article_input(
                 draft=draft,
-                publish_override=args.publish,
+                publish_override=True if args.publish else None,
+                preserve_live_state=True,
             )
             operation = "update"
         else:
@@ -426,7 +441,7 @@ def main() -> int:
             article_input = build_article_input(
                 draft=draft,
                 blog_id=blog["id"],
-                publish_override=args.publish,
+                publish_override=True if args.publish else None,
             )
             operation = "create"
 
