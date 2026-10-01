@@ -291,6 +291,14 @@
   {%- assign schema_delivery_max = schema_delivery_parts[1] | default: schema_delivery_min | plus: 0 -%}
   {%- assign schema_handling_min = 1 -%}
   {%- assign schema_handling_max = 3 -%}
+  {%- comment -%} Made-to-order products (custom.made_to_order_days) need that many extra handling days. {%- endcomment -%}
+  {%- assign schema_mto_days = product.metafields.custom.made_to_order_days.value | default: 0 -%}
+  {%- if schema_mto_days > 0 -%}
+    {%- assign schema_delivery_min = schema_delivery_min | plus: schema_mto_days -%}
+    {%- assign schema_delivery_max = schema_delivery_max | plus: schema_mto_days -%}
+    {%- assign schema_handling_min = schema_handling_min | plus: schema_mto_days -%}
+    {%- assign schema_handling_max = schema_handling_max | plus: schema_mto_days -%}
+  {%- endif -%}
   {%- assign schema_transit_min = schema_delivery_min | minus: schema_handling_min -%}
   {%- assign schema_transit_max = schema_delivery_max | minus: schema_handling_max -%}
   {%- assign schema_delivery_valid = false -%}

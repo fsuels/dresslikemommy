@@ -3,6 +3,8 @@
   Same keys and fallbacks as the PDP (sections/main-product.liquid) and product FAQ schema.
   assets/dlm-delivery-dates.js turns the window into an arrival date range
   ("Estimated delivery: Thu, Oct 8 – Mon, Oct 12"); the day window is the no-JS fallback.
+  Optional `product`: a made-to-order product (custom.made_to_order_days) gets its
+  production days added to the window (snippets/made-to-order-window.liquid).
 {%- endcomment -%}
 {%- liquid
   assign dec_intro = 'products.additional_info.estimated_delivery' | t
@@ -12,6 +14,13 @@
   endif
   if dec_window == blank or dec_window contains 'translation missing' or dec_window contains 'business days'
     assign dec_window = '12-16 days'
+  endif
+  assign dec_mto_days = product.metafields.custom.made_to_order_days.value | default: 0
+  if dec_mto_days > 0
+    capture dec_window
+      render 'made-to-order-window', window: dec_window, extra: dec_mto_days
+    endcapture
+    assign dec_window = dec_window | strip
   endif
 -%}
 {{- dec_intro }} <strong class="dlm-delivery-window" data-dlm-delivery-window="{{ dec_window | escape }}">{{ dec_window }}</strong>
