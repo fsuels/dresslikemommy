@@ -57244,3 +57244,14 @@ Recurring mistakes for the hourly job:
 - next_action_id: NEXT_AUTOSOURCE_ROUND
 
 - Run start: 0 pending drafts, 0 queued offers. `next` picked maternity (results page 2), search "孕妇毛衣 2026秋冬". 1688 showed a CAPTCHA/login page (exit code 3). Stopped 1688 work, did not bypass. Nothing screened, nothing built. The owner or CEO session needs to clear the 1688 login/CAPTCHA in the helper browser before the next round can search.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-autosource-multi-category-captcha
+
+- task_entities: 1085195166487, 1085205393538
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Run found 0 pending drafts and 0 queued offers. Searched page 2 of: family vests, matching family accessories, couples Christmas knits, maternity sweatshirts, family jackets, family hoodies. All returned 0 new family-titled 2026 offers except couples knits (2 new).
+- Couples knits: 1085195166487 and 1085205393538 (store 深圳市龙岗区尚雅姿服装批发商行) both skipped, rule 3: dispatch promise 3 days (needs 1-2); the second also had no release attribute.
+- Mommy & Me dresses search (page 2) hit a 1688 CAPTCHA/login page: BLOCKED_1688_CAPTCHA. 1688 work stopped for this run; not bypassed.
+- New live listings this run: none.
