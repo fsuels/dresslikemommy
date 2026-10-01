@@ -253,3 +253,8 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Theme 7ce144f: related-guides block now maps the Sep 29–Oct 1 guides to their collections (pajamas, Christmas, sweaters, sweatshirts, family-tops, daddy-me, dresses, vacation/Hawaiian, Thanksgiving, couples, family photos); all 24 handles checked as published. VERIFIED live en + de (matching-family-sweatshirts, family-tops, christmas-pajamas, daddy-me).
 - Theme 8ffb6a8: the family-tops intro is theme copy (collection-guide-english-terms.liquid), not the admin description. Added the "matching family sweatshirts and hoodies" link there. VERIFIED live. The earlier admin descriptionHtml edit is harmless and has no effect on the page.
 - Flags for owner: solve the 1688 CAPTCHA in the "1688 helper" Chrome window.
+
+## 2026-10-01T10:58Z CEO loop (main session)
+- Routines on time (engine 10:24Z cap skip, translations 10:16Z, autosource 09:53Z still CAPTCHA-blocked, operator 08:51Z). No new products since 05:47Z.
+- Halloween (Oct 31) gap: halloween-family-pajamas (5 live) had no guide links, and the Halloween guide never linked it. (1) halloween-family-matching-costume-ideas live body: one sentence linking /collections/halloween-family-pajamas (article-body, receipt body-halloween-pajamas-link.json; verified; publishedAt unchanged; its 20 translations were already outdated and are queued for re-translation, which will carry the link). (2) Theme 9b0579f: related-guides maps halloween-family-pajamas → costume guide + pumpkin-patch guide; VERIFIED live. (3) BACKLOG 15a: dedicated "matching family Halloween pajamas" guide, build first on 10-02.
+- Flags for owner: 1688 CAPTCHA still blocks new products.

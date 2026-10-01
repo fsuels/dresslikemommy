@@ -108,3 +108,4 @@
 - 2026-10-01T07:22Z mommy-and-me-winter-sweatshirts-and-loungewear: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-10-01T08:22Z matching-family-pajamas-sizing-newborn-to-adult: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-10-01T09:22Z matching-family-pajamas-sizing-newborn-to-adult: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-10-01T10:24Z one-family-outfit-for-thanksgiving-and-christmas: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
