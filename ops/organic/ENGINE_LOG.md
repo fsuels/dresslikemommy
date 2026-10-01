@@ -398,3 +398,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 85 published articles).
 - Research: none (open ENGINE items: #17-#19)
 - Flags for MAIN/OWNER: none new. Hero image is the Meow Star Garden model photo (alt text generic, photo not viewed).
+
+## 2026-10-01T20:24Z run
+- Build: SKIPPED (daily cap, 5 of 5 published today) — drafted family-photo-color-palettes-by-season READY (#19; lint 0 errors, 934 words, dry run passed). 3 READY drafts waiting (#15a, #16, #19) for after 00:00Z 10-02; re-run lint and dry run first. Chose #19 over #17 (beach) because beach overlaps 3 live articles and is off-season.
+- Fix: 0 items (inventory refreshed: 54 collections, 277 articles; no striking-distance page eligible, all live articles got SEO meta on 09-29, inside the 14-day churn window).
+- Research: none (open ENGINE items: #17, #18)
+- Flags for MAIN/OWNER: none new. Note #18 siblings collection has only 3 live products; #17 likely overlaps best-matching-outfits-for-family-beach-trips.
