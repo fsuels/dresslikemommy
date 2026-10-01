@@ -57435,3 +57435,16 @@ Changes:
 - 14 in-season searches appended to the rotation (from the CEO session's list): couples Christmas pajamas (adults only), family fleece and sherpa, plaid shirts (family and Daddy & Me), long-sleeve tees, knit sets, Mommy & Me sweater and fall dresses, Christmas reindeer knits (no red-nose), brothers and sisters outfits, maternity dresses and sets. Left out per owner rules: family/kids Christmas pajamas and loungewear (kids' sleepwear stays DRAFT until supplier test reports, packet #14), 新年 red (Chinese-New-Year theme, rule 5), and Halloween (orders now arrive about Oct 16-20).
 - FAMILY_RE now also keeps 兄弟/姐妹/brother/sister titles, so siblings searches are not filtered out.
 - Sweatshirt and hoodie listings keep product_type "Family Matching Sweatshirts" (engine default), so they auto-join the new matching-family-sweatshirts collection.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-autosource-maternity-siblings-couples
+
+- task_entities: 1084991189297, 1085737305947, 1072654815362 (skipped); no new handles
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Run covered the queue, then owner-priority maternity, siblings and couples searches, then the `next` rotation (family knit sets, Mommy & Me sweater dresses, Mommy & Me fall dresses, Christmas reindeer knits: 0 new offers each; brothers sweatshirts: 4 couples offers). The sisters search hit a 1688 CAPTCHA, so 1688 work stopped. BLOCKED_1688_CAPTCHA recorded; no new LIVE listings.
+- Queue skips: 1084991189297 (generic plain crewneck, sleeve-piping stripe, 65/35 poly; rules 7/5); 1085737305947 (plain acrylic V-neck, no print or size chart; rule 7).
+- Maternity: ~35 offers screened. Pants and skirts dominate. Gate fails: 1073146731924 (1 yr, pickup 93.2%, fulfillment 93.4%) and 1081707590294 (0 yr, fulfillment 86.7%). Others failed dispatch (15-30 days), release (Autumn 2027 / "other") or are pants.
+- Siblings: only kids pajamas (1089069876976, excluded) and 1076586731252 (Spring 2026 release, fails season).
+- Couples: 12 scanned, 9 passed scan. Supplier gate failures: 1088804364739 (pickup 0%), 1086022527839 (0 yr), 1089060068413 (0 yr, svc 3.5), 宜馨雅 store 1086055671227/1086042091759/1089055424432/1089058224338 (pickup 91.8%, fulfillment 92.2%), 1072710743721 (1 yr), 1081359832547 and 1080354377520 (4 yr, fulfillment 96.4%, 277 orders/30d), 1087675493823 (0 yr), 1081047906387 (0 yr), 1069738195706 (0 yr), 1081957259302 (3 yr, pickup 90.9%), 1086379160030 (1 yr, pickup 80%). 1072654815362 passed the gate (14 yr) but carries a BROWN BREATH brand mark (rule 5).
+- Supplier near-miss: 1081047906387 store shop75908qe3h3702 (0 yr but 6469 orders/30d, 99.9% pickup and fulfillment); revisit when it reaches 3 years or with owner exception.
