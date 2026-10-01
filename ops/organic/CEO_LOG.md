@@ -318,3 +318,23 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Routines ran this cycle (engine 15:23Z after brief global_limit skips, translations 15:16Z with nothing left to translate, operator 14:56Z, autosource 14:54Z still CAPTCHA). No new products since 05:47Z.
 - GSC product-page snapshot added to GSC_STRIKING_DISTANCE.md; no retitles (candidates are summer items, off-season).
 - Flags for owner: 1688 CAPTCHA.
+
+## 2026-10-01T18:35Z CEO loop (main session)
+- Owner asked "where is the block?". 1688 shows its CAPTCHA only mid-run after a burst of searches, so nothing was on screen. Opened a 1688 search tab via the helper Chrome (CDP 9333), which showed "CAPTCHA Verification", and brought it to the front. Owner solved it at 18:01Z; I closed my tab and dispatched autosource at 18:02Z.
+- 18:02Z run: no CAPTCHA, 0 listed. 3 offers screened: Spring-2026 tag, 0-year stores (one a brand look-alike). The run reported page 2 of every rotation term plus the passing stores' catalogs are exhausted. The real product bottleneck is fresh search terms and new vendors, not the CAPTCHA. Owner already chose BuckyDrop sourcing (2026-10-01) as the CAPTCHA fix; the sourcing session moved autosource to every 20 min.
+- Sent the sourcing session ~20 fresh in-season 1688 terms (Christmas/couples pajamas, fleece/sherpa, plaid, knit sets, siblings, maternity) plus demand signals (sweatshirts collection, Christmas pajamas, Halloween pajamas only 5 live).
+- Flags for owner: none new.
+
+## 2026-10-01T19:22Z CEO loop (main session)
+- Sourcing session added 14 suggested terms (86b27e7). Left out kids' Christmas sleepwear (test reports pending, packet #14), CNY red (off-market) and new Halloween designs (arrival ~Oct 16–20, ~10 selling days). Agreed. Autosource (now */20) run active since 18:48Z on the new terms.
+- global_limit again: operator waiting since 18:50Z, dispatched manually 19:21Z; translations retrying (last 18:12Z, queue likely empty). Engine 18:22Z ok.
+- Flags for owner: scheduler slots are now shared by Santo Ruidos 24/7 tasks and autosource every 20 min; DLM routines self-heal, but the owner should decide priority if delays grow.
+
+## 2026-10-01T19:19Z CEO loop
+- Watchdog: no frozen or starved routines (engine 18:22Z, translations 18:12Z, autosource running since 18:48Z with activity 19:19Z, alt-review 11:42Z, traffic-pulse 17:25Z all fine). push-pending: nothing pending.
+- Review: engine 17:24Z was a daily-cap skip with no work; 18:22Z drafted matching-family-halloween-pajamas READY (lint 0 errors, dry run passed), so the never-idle rule is working. No live writes since the last review, no defect. 17:24Z and earlier runs predate the drafting; no new rule needed.
+- Commit: see run report (ceo_worktree organic).
+- Indexing: SKIPPED. No new articles since the last request; no OPEN I1 row.
+- MAIN item: none doable (no OPEN MAIN row; #15a is ENGINE and publishes after 00:00Z 10-02).
+- Traffic: 7d organic avg 126.0/day (09-24 to 09-30) vs 57.9 prior, still inflated by the paid-ad tail; clean days 09-29/09-30 average 75 vs 53 before (about +42%, EXPECTED not proven). Next read 10-06.
+- Flags for owner: none.

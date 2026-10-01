@@ -386,3 +386,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (token valid; queue empty since 09-29, inventory and `article-links` not re-run).
 - Research: none (open ENGINE items: #15a, #16-#19)
 - Flags for MAIN/OWNER: MAIN: request indexing for today's 5 articles. One unlisted `wc -l` run by mistake (read-only).
+
+## 2026-10-01T18:22Z run
+- Build: SKIPPED (daily cap, 5 of 5 published today) — drafted matching-family-halloween-pajamas READY (#15a; lint 0 errors, 1027 words, dry run passed). Publish first after 00:00Z 10-02 (re-run lint and dry run).
+- Fix: 0 items (inventory refreshed: 54 collections, 85 published articles).
+- Research: none (open ENGINE items: #16-#19)
+- Flags for MAIN/OWNER: none new.
