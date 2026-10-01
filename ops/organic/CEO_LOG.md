@@ -196,3 +196,8 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Indexing: pajamas-sizing article was unknown to Google; indexing requested. Winter-sweatshirts, hawaiian and daddy-daughter not requested (extension contention after the first request).
 - MAIN item: none doable (no OPEN MAIN row: #1 and C1 catalog gaps, S1 low value). No theme change shipped.
 - Flags for owner: none.
+
+## 2026-10-01T05:08Z CEO loop (main session)
+- Watchdog: all DLM routines running again (engine 04:26Z, operator 04:51Z, autosource 04:38Z after the owner session stopped frozen run local_232d45ee, translations 04:05Z; next fire 05:16Z). Engine at 4/5 guides today.
+- Indexing: requested for the new matching-family-sweatshirts collection, the winter-sweatshirts guide and the Hawaiian guide (all "unknown to Google"); daddy-daughter guide already indexed on its own. Browser 1 selection held for the whole batch this time.
+- Flags for owner: none new (Santo/DLM scheduler priority still open).

@@ -43,3 +43,10 @@ BLOCKED: Chrome's Search Console is signed in as a different Google account than
 Browser 1 loaded the property.
 - https://www.dresslikemommy.com/blogs/news/matching-family-pajamas-sizing-newborn-to-adult | not on Google (unknown to Google) | N/A | Indexing requested
 - Next URL (winter-sweatshirts) not inspected: extension contention (tab left the group after the first request). Pending: hawaiian, daddy-daughter-dance, mommy-and-me-winter-sweatshirts-and-loungewear.
+
+## 2026-10-01T05:08Z (main session, Browser 1)
+- https://www.dresslikemommy.com/collections/matching-family-sweatshirts | not on Google (unknown) | Indexing requested
+- https://www.dresslikemommy.com/blogs/news/mommy-and-me-winter-sweatshirts-and-loungewear | not on Google (unknown) | Indexing requested
+- https://www.dresslikemommy.com/blogs/news/daddy-daughter-dance-matching-outfits | ON GOOGLE (indexed on its own ~3.5 h after publish) | no request needed
+- https://www.dresslikemommy.com/blogs/news/matching-family-hawaiian-outfits | not on Google (unknown) | Indexing requested
+- Pending: none from 2026-10-01 so far.
