@@ -294,3 +294,15 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (queue empty since 15:24Z on 09-29; `article-links` not re-run to spare the rate limit).
 - Research: none (backlog has ≥5 open ENGINE items: #13, #14)
 - Flags for MAIN/OWNER: MAIN: request indexing for the new article. Hero is a Daddy and Me sweater (no dress photo in daddy-me). Next build: #13, then #14; then research.
+
+## 2026-10-01T04:04Z run
+- Build: backlog #13 mommy and me winter sweatshirts and loungewear → https://www.dresslikemommy.com/blogs/news/mommy-and-me-winter-sweatshirts-and-loungewear (VERIFIED: 200, 1 h1, no robots meta; lint 0 errors, 1081 words). 3 of 5 today (UTC 2026-10-01).
+- Fix: 0 items (queue empty; `article-links` not re-run).
+- Research: none (open ENGINE items: #14 only; next run builds #14, then research)
+- Flags for MAIN/OWNER: MAIN: request indexing for the new article. Hero reuses the panda sweatshirt photo (product JSON too large to read for a fresh image). Unlisted `grep -c` not run this time; a Grep tool call was attempted and unavailable.
+
+## 2026-10-01T04:26Z run
+- Build: backlog #14 matching family pajamas sizing → https://www.dresslikemommy.com/blogs/news/matching-family-pajamas-sizing-newborn-to-adult (VERIFIED: 200, 1 h1, no robots meta; lint 0 errors, 1081 words). 4 of 5 today (UTC 2026-10-01).
+- Fix: 0 items (queue empty; `article-links` not re-run).
+- Research: no web search; added backlog ideas #15-#17 from the existing catalog.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new article. Hero is the Beanie Ghost Halloween pajama flat lay (Christmas photo too large to fetch); swap later. Slug says "newborn" but the article claims no newborn size.
