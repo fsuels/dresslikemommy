@@ -33,3 +33,7 @@
 Inspection works again (no quota error); all inspected URLs report "URL is on Google / Page is indexed", so no request was needed:
 - /blogs/news/father-and-son-matching-button-up-shirts, /babys-first-christmas-matching-family-outfits, /matching-family-cruise-outfits, /new-years-eve-matching-family-outfits, /mother-daughter-matching-dresses-guide, /family-christmas-card-photo-ideas | indexed
 - /nl/collections/dresses | indexed
+
+## 2026-10-01 00:55 UTC (CEO loop)
+
+BLOCKED: Chrome's Search Console is signed in as a different Google account than the property owner's, and shows "Oops, you don't have access to this property" for sc-domain:dresslikemommy.com. Account switch is a stop condition, so no change was made. Pending: /blogs/news/matching-family-hawaiian-outfits (published 2026-10-01 00:24Z).
