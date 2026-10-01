@@ -266,3 +266,23 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Indexing: SKIPPED. Today's articles already requested; no unrequested ones.
 - MAIN item: none doable (no OPEN MAIN row; 15a is ENGINE, builds after 00:00Z 10-02).
 - Flags for owner: 1688 CAPTCHA still blocks autosource.
+
+## 2026-10-01T11:58Z CEO loop (main session)
+- Routines on time (engine 11:24Z cap skip, translations 11:16Z: thanksgiving+christmas guide 20/20, alt-review started 11:42Z, operator 10:52Z, autosource 10:53Z still CAPTCHA-blocked).
+- Christmas readiness: christmas-pajamas 15, matching-family-christmas-outfits 41, christmas-sweaters 25, family-pajamas 46 live; titles query-led. No action.
+- GSC health: Core Web Vitals mobile 1,439 good / 0 poor; indexing 7.08K indexed, not-indexed reasons flat vs GSC_INDEXING_DIAGNOSIS.md (crawled-not-indexed 6,046, 96% localized, expected to improve with the P1 product-translation repair). No action.
+- Organic Pinterest is its own lane (3 original Pins/rolling 168 h, review dates in ops/marketing/current_marketing_state.md). Not touched: publishing needs a per-post owner yes.
+- Flags for owner: 1688 CAPTCHA.
+
+## 2026-10-01T13:00Z CEO loop (main session)
+- Routines: all succeeded (alt-review 11:42Z, autosource audit 12:19Z, engine 12:24Z, translations 12:16Z re-translating the Halloween guide with the new pajamas link, autosource 11:49Z, operator 10:52Z).
+- Conversion audit (live, mobile 375 px + 800 px): sky-blue-stripe PDP works end to end; added Adult M ($37.99) to cart, drawer correct, cart cleared after the test. Logged C2 (basket-size "add another family member" path) in BACKLOG as the next conversion build.
+- Flags for owner: 1688 CAPTCHA (no new products since 05:47Z).
+
+## 2026-10-01T12:50Z CEO loop
+- Watchdog: no frozen or starved routines (engine 12:24Z, translations 12:16Z, autosource 11:49Z, alt-review 11:42Z all succeeded; re-screen 09-28). push-pending: nothing pending.
+- Review: engine runs since last entry were daily-cap skips (5/5 today); articles already verified in earlier entries. No defect.
+- Commit: see run report (ceo_worktree organic).
+- Indexing: SKIPPED. All of today's articles already requested; no OPEN I1 row.
+- MAIN item: none shipped. C2 (cart "add another size" link) is not done unattended: the owner removed add-another chips from the PDP on 2026-10-01 because shoppers were confused, so it needs an owner/NEEDS_OPUS design call first. #15a Halloween pajamas guide builds after 00:00Z 10-02.
+- Flags for owner: 1688 CAPTCHA still blocks autosource.
