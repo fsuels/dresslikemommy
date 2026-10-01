@@ -28,7 +28,7 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 5. **No IP or logos:**
    - No licensed characters or look-alikes: Disney/Mickey, Sanrio, Snoopy, Pooh, Chiikawa, Grinch, Stitch, superheroes.
    - No Rudolph-style red-nosed reindeer.
-   - No brand parodies (PRADA/"PADA", Polo pony, NY caps).
+   - No brand parodies or sports-brand marks (PRADA/"PADA", Polo pony, NY caps, Adidas-style three parallel sleeve/side stripes, Nike-style swoosh). A vendor colour name like "Three Stripes" is a red flag.
    - No "SMILE"/smiley-face prints (Smiley® mark).
    - No national/patriotic or Chinese-New-Year themes (off-market).
    - No garbled or odd lettering.
@@ -48,7 +48,7 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 0c. **Then the queue:** `autosource.py queue` lists screened offers that passed but have no recorded decision (earlier runs ran out of time). Take them before new searches: `gate` if it says so, then `capture` + look, build or skip. Record every decision with `autosource.py decide <id> "built <handle>"` or `decide <id> "skip: <rule + reason>"`, also for candidates you reject during a normal round, so nothing is re-reviewed or lost. Never batch-skip offers without opening each one's own contact sheet: a store's "template set" can still hold a strong design (Duck Parade came from the same 明地一族 template store). A skip for appeal (rule 7) or IP (rule 5) must name what you saw on that offer's sheet.
 1. **Pick the category:** `autosource.py next` prints this round's category and the exact command to run (search or catalog). Run it.
 2. **Screen:** `autosource.py scan <IDS>`, using the IDS line from step 1; it paces itself.
-3. **Supplier check:** `autosource.py gate <ids that printed PASS>`. Keep the gate PASS ones.
+3. **Supplier check:** `autosource.py gate <ids that printed PASS>`. Keep the gate PASS ones. One store verdict is applied to every screened offer from that store, so gate one id per store.
 4. **Look before building:** for each survivor, run `autosource.py capture <id>` and open `/tmp/autosource/sheet_<id>.jpg` with Read.
    - Judge rules 5–7 and duplicates.
    - Find the size-chart image and read it at full size (Read the file in `ops/sourcing/vendor-images/<id>/desc/`).
@@ -58,7 +58,7 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
    1. `spec <recipe>`
    2. `build <handle>`
    3. `translate <handle>`
-   4. `images <handle>` (about 10 minutes)
+   4. `images <handle>` (about 10 minutes). `translate` and `images` run detached and wait up to 9 minutes; if they print `STILL RUNNING`, run `autosource.py wait <handle> translate|images` (repeat) until it prints DONE. Never let a command run past 10 minutes.
    5. `review <handle>`
 6. **QA the photos:** Read `/tmp/autosource/<handle>_review.jpg`.
    - Reject if the print, lettering or colours differ from the vendor garment, any logo or extra text appears, the image isn't 9:16, it looks fake, or the kids and adults wear the wrong prints.

@@ -31,6 +31,7 @@ Subcommands
   spec RECIPE.json                     write engine spec from a recipe (family_sweatshirt engine path)
   build HANDLE                         generate runner, preflight, create DRAFT, stock 100/variant
   translate HANDLE                     Codex design translations + size strings + register (shared-file lock)
+  wait HANDLE translate|images         keep waiting (up to 9 min) for a translate/images job that printed STILL RUNNING
   images HANDLE                        build image job + ChatGPT-app Codex photos (4 images)
   review HANDLE                        write QA sheet /tmp/autosource/<handle>_review.jpg (inspect with Read)
   finish HANDLE                        attach -> localization closeout (must PASS) -> activate -> readback
@@ -66,6 +67,7 @@ CODEX = "/Applications/ChatGPT.app/Contents/Resources/codex"
 LOCALES = "ar cs da de el es fi fr he hi it ja ko nl no pl pt-BR ro ru sv".split()
 FAMILY_RE = re.compile(r"亲子|一家|母女|父子|母子|全家|家庭|情侣|兄妹|姐弟|孕妇|family|Family|parent|Parent|mother|Mother|couple|Couple|matern|Matern|sibling|Sibling")
 WORK.mkdir(parents=True, exist_ok=True)
+MIN_1688_GAP = 40  # seconds between any two 1688 page loads (searches, scans, gates, captures)
 
 
 # ---------------------------------------------------------------- helpers
@@ -130,6 +132,15 @@ class Tab:
         raise TimeoutError(method)
 
     def go(self, url: str, wait: float = 5) -> None:
+        if "1688.com" in url:  # pace every 1688 page load across commands: bursts of searches triggered CAPTCHAs (2026-09-30)
+            mark = WORK / "last_1688_nav"
+            try:
+                gap = time.time() - float(mark.read_text())
+            except Exception:
+                gap = 1e9
+            if gap < MIN_1688_GAP:
+                time.sleep(MIN_1688_GAP - gap)
+            mark.write_text(str(time.time()))
         self.call("Page.navigate", {"url": url})
         time.sleep(wait)
 
@@ -329,6 +340,14 @@ def cmd_gate(ids: str) -> None:
             if host not in hosts:
                 hosts[host] = credit(tab, host)
                 time.sleep(20)
+                ok_h, why_h = verdict(hosts[host])
+                n_same = 0
+                for other, v in seen.items():  # one store verdict covers every screened offer from that store
+                    if other != oid and v.get("host") == host and v.get("gate_pass") is None:
+                        v.update({"gate": hosts[host], "gate_pass": ok_h, "gate_why": why_h + " (store verdict)"})
+                        n_same += 1
+                if n_same:
+                    print(f"store verdict ({'PASS' if ok_h else 'fail'}) also applied to {n_same} other screened offer(s) from {host}")
             d = hosts[host]
             ok, why = verdict(d)
             seen.setdefault(oid, {}).update({"host": host, "gate": d, "gate_pass": ok, "gate_why": why})
@@ -637,6 +656,42 @@ def add_color_strings(handle: str) -> None:
     print("added colour strings:", ", ".join(missing))
 
 
+JOBS = WORK / "jobs"
+
+
+def run_detached(handle: str, step: str) -> None:
+    """Long steps (Codex translation ~5-10 min, photos ~10-16 min) run as a detached process so no single foreground
+    command passes the 10-minute tool limit (the harness auto-backgrounds it, and background follow-up tools freeze
+    unattended runs). This waits up to 9 minutes; if the job is still running, run `autosource.py wait HANDLE STEP`."""
+    JOBS.mkdir(parents=True, exist_ok=True)
+    log, status = JOBS / f"{handle}.{step}.log", JOBS / f"{handle}.{step}.status"
+    if status.exists() and status.read_text().startswith("RUNNING"):
+        print(f"{step} already running for {handle}"); return cmd_wait(handle, step)
+    status.write_text(f"RUNNING {time.time()}\n")
+    cmd = f'{PY} {Path(__file__).resolve()} _{step} {handle} > "{log}" 2>&1; echo "DONE $?" > "{status}"'
+    subprocess.Popen(["bash", "-c", cmd], cwd=ROOT, start_new_session=True, stdin=subprocess.DEVNULL,
+                     stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+    cmd_wait(handle, step)
+
+
+def cmd_wait(handle: str, step: str, limit: float = 540) -> None:
+    log, status = JOBS / f"{handle}.{step}.log", JOBS / f"{handle}.{step}.status"
+    if not status.exists():
+        raise SystemExit(f"no {step} job for {handle}")
+    t0 = time.time()
+    while status.read_text().startswith("RUNNING") and time.time() - t0 < limit:
+        time.sleep(10)
+    tail = "\n".join(l for l in (log.read_text(errors="ignore") if log.exists() else "").splitlines()
+                     if "NotOpenSSLWarning" not in l and "warnings.warn" not in l)[-1500:]
+    st = status.read_text().strip()
+    if st.startswith("RUNNING"):
+        print(tail[-400:]); print(f"STILL RUNNING: run `autosource.py wait {handle} {step}` again"); return
+    print(tail)
+    if st != "DONE 0":
+        raise SystemExit(f"{step} FAILED for {handle} ({st}); log {log}")
+    print(f"{step} DONE for {handle}")
+
+
 def cmd_translate(handle: str) -> None:
     spec = json.loads((T / "specs" / f"{handle}.json").read_text(encoding="utf-8"))
     code = spec["shortcode"].lower()
@@ -922,7 +977,7 @@ ROTATION = [
     ("search", "情侣 连帽卫衣 2026秋冬", "couples hoodies"),
     ("search", "亲子装 圣诞 毛衣 2026", "Christmas family knits"),
 ]
-SEARCH_PAGES = 5  # each keyword reads the next results page on its next turn (page 1 alone repeats hour after hour)
+SEARCH_PAGES = 3  # each keyword reads the next results page on its next turn (page 1 alone repeats hour after hour)
 ROT_FILE = STATE / "autosource_rotation.json"
 
 
@@ -1057,8 +1112,12 @@ def cmd_pending() -> None:
     sys.path.insert(0, str(T / "ai_images"))
     import attach_images as A  # noqa
     n = 0
+    seen = load_seen()
     for f in sorted((STATE / "recipes").glob("*.json")):
         h = f.stem
+        oid = str(json.loads(f.read_text(encoding="utf-8")).get("offer_id", ""))
+        if (seen.get(oid, {}).get("decision") or "").split(" ", 1)[-1].startswith("skip"):
+            continue  # rejected after build (e.g. audit unpublish): never resume it
         p = A.gql("query($h:String!){productByHandle(handle:$h){status totalInventory translations(locale:\"de\"){key}}}", {"h": h})["productByHandle"]
         if not p or p["status"] != "DRAFT":
             continue
@@ -1113,8 +1172,11 @@ def main() -> None:
     elif c == "skus": cmd_skus(a[1])
     elif c == "spec": cmd_spec(a[1])
     elif c == "build": cmd_build(a[1])
-    elif c == "translate": cmd_translate(a[1])
-    elif c == "images": cmd_images(a[1])
+    elif c == "translate": run_detached(a[1], "translate")
+    elif c == "images": run_detached(a[1], "images")
+    elif c == "_translate": cmd_translate(a[1])
+    elif c == "_images": cmd_images(a[1])
+    elif c == "wait": cmd_wait(a[1], a[2])
     elif c == "review": cmd_review(a[1])
     elif c == "finish": cmd_finish(a[1])
     elif c == "standalone": cmd_standalone(a[1])

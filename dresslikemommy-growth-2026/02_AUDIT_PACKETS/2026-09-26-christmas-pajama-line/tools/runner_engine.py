@@ -55,6 +55,7 @@ MM = MODE == "mommy_me"
 SW = MODE == "family_sweatshirt"  # unisex family crewneck sweatshirt (child + adult sizes)
 SWF = SW and SPEC.get("title_variant") == "everyday"  # season-neutral sweatshirt copy (no Christmas wording)
 KNIT = SW and SPEC.get("garment") == "sweater"  # knit family sweater on the sweatshirt engine path
+CARD = KNIT and SPEC.get("design_key") == "cardigan_knit"  # button-front cardigans: cardigan titles, style and tags
 SWH = SW and SPEC.get("garment") == "hoodie"  # pullover hoodie on the sweatshirt path (hoodie copy, style and tags)
 KROLE = SPEC.get("knit_role") if KNIT else None  # "mommy" (mother + child) / "daddy" (father + child) knit pairs
 PET = MODE == "family_pet"  # matching pet piece sold beside a family print (dog sizes only)
@@ -784,6 +785,15 @@ if PET:
     TITLE_TEMPLATE = "{P} Matching Dog Vest — Christmas Plaid"
     SEO_TITLE_TEMPLATE = "{P} Matching Dog Vest | Dress Like Mommy"
     SEO_DESCRIPTION_TEMPLATE = "{P}: a matching Christmas plaid vest for the family dog in {FABRIC}. {SIZES}"
+elif KROLE and CARD:
+    who, pair = ("Mommy", "mom") if KROLE == "mommy" else ("Daddy", "dad")
+    TITLE_TEMPLATE = "{P} " + who + " and Me Cardigans — Matching Knits"
+    SEO_TITLE_TEMPLATE = "{P} " + who + " & Me Cardigans | Dress Like Mommy"
+    SEO_DESCRIPTION_TEMPLATE = "{P}: matching knit cardigans for " + pair + " and child in {FABRIC}. {SIZES}"
+elif CARD:
+    TITLE_TEMPLATE = "{P} Family Matching Cardigans — Knit Button-Front"
+    SEO_TITLE_TEMPLATE = "{P} Family Cardigans | Dress Like Mommy"
+    SEO_DESCRIPTION_TEMPLATE = "{P}: matching knit cardigans for mom, dad, girls & boys in {FABRIC}. {SIZES}"
 elif KROLE == "mommy":
     TITLE_TEMPLATE = "{P} Mommy and Me Sweaters — Matching Knits"
     SEO_TITLE_TEMPLATE = "{P} Mommy & Me Sweaters | Dress Like Mommy"
@@ -909,7 +919,7 @@ def build_tags() -> list[str]:
         values = [
             "Family Matching", "Mommy and Me", "Daddy and Me", "Sweaters", "Family Sweaters",
             "Matching Family Sweaters", "Matching Family Tops", "Matching Family Outfits", "Tops",
-            "Knit Sweater", "Crewneck Sweater", "Child Sweater", "Adult Sweater", "Long Sleeve Top",
+            "Knit Sweater", *(("Cardigan", "Cardigans") if CARD else ("Crewneck Sweater",)), "Child Sweater", "Adult Sweater", "Long Sleeve Top",
             "Fall", "Winter", "Family Photos", PRINT_NAME, *SPEC["extra_tags"],
         ]
         values.extend(r["picker_label"] for r in SIZE_CHART)
@@ -1033,12 +1043,12 @@ def build_variants() -> list[dict]:
 
 
 SUBCATEGORY2 = "Christmas Pet" if PET else ("Family Sweaters" if KNIT else "Family Sweatshirts" if SWF else "Christmas Sweatshirts" if SW else ("Winter Pajamas" if MM else "Christmas Pajamas"))
-STYLE_VALUE = "Dog Vest" if PET else ("Crewneck Sweater" if KNIT else ("Hooded Sweatshirt" if SWH else "Crewneck Sweatshirt") if SW else f"{SLEEVE_STYLE} Knit Pajama Set")
-TYPE_VALUE = "Dog Vest" if PET else ("Crewneck Sweater" if KNIT else ("Hooded Sweatshirt" if SWH else "Crewneck Sweatshirt") if SW else "Two-Piece Pajama Set")
-LABEL3 = "Dog Vest" if PET else ("Crewneck Sweater" if KNIT else ("Hooded Sweatshirt" if SWH else "Crewneck Sweatshirt") if SW else f"{SLEEVE_STYLE} Pajama Set")
+STYLE_VALUE = "Dog Vest" if PET else (("Cardigan" if CARD else "Crewneck Sweater") if KNIT else ("Hooded Sweatshirt" if SWH else "Crewneck Sweatshirt") if SW else f"{SLEEVE_STYLE} Knit Pajama Set")
+TYPE_VALUE = "Dog Vest" if PET else (("Cardigan" if CARD else "Crewneck Sweater") if KNIT else ("Hooded Sweatshirt" if SWH else "Crewneck Sweatshirt") if SW else "Two-Piece Pajama Set")
+LABEL3 = "Dog Vest" if PET else (("Cardigan" if CARD else "Crewneck Sweater") if KNIT else ("Hooded Sweatshirt" if SWH else "Crewneck Sweatshirt") if SW else f"{SLEEVE_STYLE} Pajama Set")
 GOOGLE_GENDER = "female" if (MM or KROLE == "mommy") else ("male" if KROLE == "daddy" else "unisex")
 LABEL2 = "Winter Pajamas" if MM else ("Fall" if (SWF or KNIT) else "Christmas")
-LABEL4 = "Christmas Pet" if PET else (("Mommy and Me Sweaters" if KROLE == "mommy" else "Daddy and Me Sweaters") if KROLE else "Family Matching Sweaters" if KNIT else "Family Matching Sweatshirts" if SWF else "Family Christmas Sweatshirts" if SW else ("Mommy and Me Pajamas" if MM else "Family Christmas Pajamas"))
+LABEL4 = "Christmas Pet" if PET else (("Mommy and Me " if KROLE == "mommy" else "Daddy and Me ") + ("Cardigans" if CARD else "Sweaters") if KROLE else ("Family Matching Cardigans" if CARD else "Family Matching Sweaters") if KNIT else "Family Matching Sweatshirts" if SWF else "Family Christmas Sweatshirts" if SW else ("Mommy and Me Pajamas" if MM else "Family Christmas Pajamas"))
 
 
 def mf(product_id: str, namespace: str, key: str, type_: str, value: str) -> dict:
