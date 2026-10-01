@@ -57157,3 +57157,13 @@ Recurring mistakes for the hourly job:
 - Built and live: red-runner-raglan-family-matching-sweatshirts, $31.99 child / $39.99 adult, 14 variants x 100, 4 images. Closeout PASS attempt 1; ACTIVE OK channels=8/8; readback `LIVE ... avail 14 / 14 | price 31.99 39.99`. Unlined colour only (fleece-lined excluded, per precedent); 4XL and baby rompers dropped (not on chart / not representable).
 - Photo QA: print, colours, stripes match vendor; no extra text.
 - Note: `translate` and `images` each exceeded the 600s foreground timeout and were auto-backgrounded; both completed exit 0.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-remove-pdp-family-builder
+
+- task_entities: layout/theme.liquid, snippets/dlm-family-builder.liquid, assets/dlm-family-builder.js (5847163, ab8a9db)
+- task_stage: RELEASED
+- next_action_id: WATCH_PDP_MULTI_PIECE_ORDERS
+
+- Owner (2026-09-30): the PDP family list ("+ Add another family member", "+ Mother / + Father / + Child" chips, "Add all to bag", auto-switch to the next person after an add) confused shoppers; they bought one piece instead of the matching set. Restore the original flow: pick person, pick size, Add this piece to bag, repeat.
+- Removed the `{%- render 'dlm-family-builder' -%}` include from `layout/theme.liquid` (rollback named in the lane INTEGRATION.md). Asset and snippet files left in place but inert. Do not re-add without owner approval.
+- Kept: 9c9bde2 always-ready add button, bundle offer copy (04b9329, 9656281), cart "complete the family" upsell.

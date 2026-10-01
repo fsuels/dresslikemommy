@@ -351,7 +351,7 @@
   <script defer src="{{ 'dlm-delivery-dates.js' | asset_url }}"></script>
   {%- if request.page_type == 'product' -%}
     <script defer src="{{ 'dlm-holiday-order-by.js' | asset_url }}"></script>
-    {%- render 'dlm-family-builder' -%}
+    {%- comment -%}dlm-family-builder (family list, + Mother/Father/Child chips, Add all to bag) removed 2026-09-30 by owner request: shoppers found it confusing and bought single pieces. Do not re-add without owner approval.{%- endcomment -%}
   {%- endif -%}
   {%- if request.page_type == 'index' -%}
     <script defer src="{{ 'homepage-collection-card-images.js' | asset_url }}"></script>
