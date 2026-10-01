@@ -57236,3 +57236,11 @@ Recurring mistakes for the hourly job:
 - Skips: 1053294385775, 1065444981165, 1065947961486, 1065915834491, 1068466148255, 1059706783828, 1067966804702, 1066857704663, 1055162915422, 1079508520927, 1089613732441 failed rule 2 (summer or spring 2026 release; 1055162915422 also rule 3). 1076041892965 failed rule 3 (3-day dispatch). 1089611356107 and 1088558797177 (明地一族, gate PASS) failed rule 7: tiny red-cap or bear-in-cap chest logo on a template colour-set sweatshirt, 65% cotton. 1069762402364 failed rule 4 (supplier under 1 year on 1688, 287 orders). 1081786895821 failed rule 4 (pickup 89.39%, fulfillment 91.67%).
 - Most store catalogs (森大, 圣瑞, 洋泰, 莫雷, 西嘉贝, 拓茵, 唯庭, 辰承, TYG, 格莱美, 野狼魅力) returned only already-seen offers; the Christmas/Lunar New Year (羊年) lines of 格莱美 and 洋泰 stay off-market or already reviewed.
 - BLOCKED_1688_CAPTCHA on `search "情侣卫衣 2026秋冬" 2` (exit 3). Stopped 1688 work, no bypass attempted.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-autosource-maternity
+
+- task_entities: none (no offers screened)
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Run start: 0 pending drafts, 0 queued offers. `next` picked maternity (results page 2), search "孕妇毛衣 2026秋冬". 1688 showed a CAPTCHA/login page (exit code 3). Stopped 1688 work, did not bypass. Nothing screened, nothing built. The owner or CEO session needs to clear the 1688 login/CAPTCHA in the helper browser before the next round can search.
