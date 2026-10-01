@@ -4,7 +4,7 @@ Scope: whole repo. Changing state/workflows live in `ops/`, `ops/marketing/`, an
 
 ## CEO Mandate
 
-The owner named the agent CEO (2026-09-27): goal $1M+/yr sales. Every session reads `ops/CEO_MANDATE.md` and its plan, then autonomously runs the highest sales-moving work at AI speed, routing owner requests into the plan. Claude and ChatGPT/Codex work as one team. Standing approval covers reversible store ops; money, customer messaging, and owner logins still need an explicit yes. Growth is organic/free only.
+The owner named the agent CEO (2026-09-27): goal $1M+/yr sales. Every session reads `ops/CEO_MANDATE.md` and its plan, then autonomously runs the highest sales-moving work at AI speed, routing owner requests into the plan. Claude and ChatGPT/Codex work as one team. Standing approval covers reversible store ops; money, customer messaging and owner logins still need an explicit yes. Growth is organic/free only.
 
 ## Non-Negotiables
 
@@ -14,12 +14,13 @@ This guide extends the active product-specific global guide: Codex uses `~/.code
 - Keep credentials, tokens, customer PII, and vendor/source URLs out of repo files, logs, prompts, evidence, theme files, and public fields. Credentials live under `~/.config/dresslikemommy/`.
 - Never move money, change billing, or exceed exact paid-media authority.
 - No agent UI/backend belongs on the live storefront.
+- Browser: only Chrome "Profile 1" (test); never the CDP-9333 Chrome (Santo Ruidos).
 - Never approve/apply Shopify-to-Pinterest per-variant rows without shared parent `item_group_id` and parent featured `image_link` across every active market/category. Keep `check_pinterest_feed_grouping.py` wired into strict continuity.
 - Dress Like Mommy is dropshipping: no physical store or owned physical inventory. Never imply a retail location, warehouse, local/stocked/on-hand inventory, or unsupported shipping, return, review, bestseller, or promotion claims.
 
 ## Routing
 
-Theme is Dawn-derived; operator systems live in `ops/`, `.codex/agents/`, `pixels/`, `agent-backend/`, and subprojects. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/`; direction: `VISION.md`. No root app package.
+Theme is Dawn-derived; operator systems live in `ops/`, `.codex/agents/`, `pixels/`, `agent-backend/` and subprojects. Evidence: `dresslikemommy-growth-2026/02_AUDIT_PACKETS/`; direction: `VISION.md`. No root app package.
 
 1. Read this file and `ops/MEMORY_CONTINUITY_PROTOCOL.md`; read `VISION.md` for product, UX, listing, growth, automation, or trust work.
 2. For known issues/failed readbacks, use `ops/PROBLEM_SOLVING_PROTOCOL.md` and the matching `ops/PROBLEM_TRACKER.md` entry.
@@ -47,19 +48,19 @@ Persist only durable facts, verified outcomes, unresolved gates, and behavior-ch
 
 Prompt/checklist changes: freeze 3–5 failures plus a passing holdout and binary criteria, change one rule, keep it only if failures improve without weakening safety, approvals, customer truth, or passing behavior. Never edit evaluator and evaluated prompt together; promote at most one rule per weekly review, else `NO_CHANGE`.
 
-Close by verifying, updating only owning canonical memory, linking matured decisions to expected-vs-observed outcomes, and naming one owner-facing action with why it goes first. Paid-growth handoffs include the authority, uncertainty-branch, and independent-verifier fields from the canonical prompt.
+Close by verifying, updating only owning canonical memory, linking matured decisions to expected-vs-observed outcomes, and naming one owner-facing action with why it goes first. Paid-growth handoffs include the canonical prompt's authority, uncertainty-branch and independent-verifier fields.
 
 ## Execution Rules
 
 - Use the smallest effective change, existing scripts/conventions, and narrow checks. No live data, infrastructure, deployment, auth, or production-config changes unless explicitly required and currently approved.
 - One writer per campaign/feed/product cohort/theme/account surface. Parallel read-only work is allowed; writes need a narrow claim.
-- GitHub `fsuels/dresslikemommy` branch `main` is the canonical storefront. For requested fixes, review/test, commit/push to `main`, then verify Shopify sync and affected published routes. Local or unpublished fixes are incomplete; previews are temporary test/rollback copies. Maintain one site version. Report actual release blockers precisely; a tool capability limit alone is not a deployment ban.
+- GitHub `fsuels/dresslikemommy` branch `main` is the canonical storefront. For requested fixes, review/test, commit/push to `main`, then verify Shopify sync and affected published routes. Local/unpublished fixes are incomplete; previews are temporary test/rollback copies. Maintain one site version. Report real release blockers precisely; a tool limit is not a deployment ban.
 - Before external Save/Apply/Publish/Upload/Enable/Pause/Remove/Delete/Sync/Submit, confirm claim, exact authority, before-state, after-state plan, rollback. Stop on login, CAPTCHA, account switch, billing, permission, policy, or unexpected destructive prompts.
 - A fresh login page is not proof of no access; complete the recovery ladder. Absent env vars mean credentials not loaded in this shell; a stored-token `401` means regenerate/reinstall.
 - Keep theme work Dawn-compatible/minimal (presentation Liquid, vanilla/ES-module JS). Follow `docs/agent-loops/ui-browser-verification-loop.md`; verify affected desktop/mobile and country/language routes. Use the canonical listing/localized-size-chart workflow.
-- Paid-growth North Star: maximize profitable Google/Pinterest conversions at about `650% ROAS`. Judge purchases, revenue/value, CPA, ROAS; treat traffic/quality metrics diagnostically.
-- Monitoring ends with `fix now`, `execute approved bounded action`, `prepare exact approval packet`, `reroute to another safe sales-moving lane`, or `hold with evidence because no action is currently valid`. Zero impressions after 24h triggers same-day serving/auction and high-intent long-tail action.
-- Follow `ops/marketing/expert_growth_playbook_2026.md`; high-intent/low-waste, landing fit, economics, measurement, and anti-cannibalization beat cheap traffic. One blocked lane must not freeze independent work.
+- Paid-growth North Star: maximize profitable Google/Pinterest conversions at about `650% ROAS`. Judge purchases, revenue/value, CPA, ROAS; traffic/quality metrics are diagnostic.
+- Monitoring ends with `fix now`, `execute approved bounded action`, `prepare exact approval packet`, `reroute to another safe sales-moving lane`, or `hold with evidence because no action is currently valid`. Zero impressions after 24h triggers same-day action.
+- Follow `ops/marketing/expert_growth_playbook_2026.md`; high-intent/low-waste, landing fit, economics, measurement and anti-cannibalization beat cheap traffic. One blocked lane must not freeze independent work.
 - Standing spend authority is usable only when every current command-layer gate agrees. Historical `GREEN`, readiness, approval, or `LIVE_VERIFIED` text is not present authority. Otherwise no spend/enablement/upload/import/budget/bid/status/PMax/remarketing/Shopping/product/feed/conversion or Merchant/Shopify/Pinterest/GA4/GTM production write.
 
 ## Validation And Continuity
@@ -74,7 +75,7 @@ python3.13 ops/scripts/check_pinterest_feed_grouping.py --strict
 
 Strict continuity is required after continuity, command-layer, prompt, cockpit, authority, worklog, or handoff changes. Deploy only with explicit or standing (CEO Mandate) approval.
 
-`ops/AGENT_WORKLOG.md` is the canonical chronology; add an anchor after code/theme/prompt/script/external-state/durable-strategy changes. Problems remain in `PROBLEM_TRACKER.md` until fixed, disproven, safely superseded, or exactly gated. Claims live in `AGENT_COORDINATION.md`; never clear another owner’s claim. `ops/marketing/` is the only paid-growth command layer.
+`ops/AGENT_WORKLOG.md` is the canonical chronology; add an anchor after code/theme/prompt/script/external-state/durable-strategy changes. Problems remain in `PROBLEM_TRACKER.md` until fixed, disproven, safely superseded or exactly gated. Claims live in `AGENT_COORDINATION.md`; never clear another owner’s claim. `ops/marketing/` is the only paid-growth command layer.
 
 ## Final Response
 
