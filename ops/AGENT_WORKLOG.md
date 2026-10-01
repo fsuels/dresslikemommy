@@ -57277,3 +57277,19 @@ Recurring mistakes for the hourly job:
 - Skipped 1085597694183 (Labubu girls hoodie set, Shangqiu store): rule 5, licensed IP (Pop Mart Labubu).
 - 格莱美 (Dongguan) catalog hit a 1688 CAPTCHA/login page; stopped 1688 work for this run and did not bypass it. A human must clear the CAPTCHA in the autosource browser session before the next round.
 - New live handles: none.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-autosource-no-qualifier-captcha
+
+- task_entities: none built; screened 1084972916850, 1082990215549, 1086005920053, 1085962348335, 1086204736728, 1086601411291
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Start state: 0 pending drafts, 0 queued offers.
+- Categories searched (page 3 unless noted): siblings, Mommy & Me knits, family vests, matching accessories, maternity (all 0 new 2026 family offers); 野狼魅力 catalog chentian1788 (1 new offer); couples sweatshirts (4 new, 4 screened); couples Christmas knits (1 new, 1 screened).
+- Screened 5 via scan, passed 0, so no gate/build.
+  - 1082990215549, 1086005920053, 1085962348335: release 2027 Fall (not 2026 Fall/Winter).
+  - 1086204736728: release 2026 Summer.
+  - 1084972916850: 6-day dispatch promise, release missing.
+- 1086601411291 (catalog, new 2026-10-01): not scanned. China-red school opening-ceremony uniform, off-market patriotic/school-activity (rules 5/7); `decide` refused it as not screened.
+- BLOCKED_1688_CAPTCHA on the maternity sweatshirts search (page 3); stopped 1688 work per runbook, no bypass.
+- No new LIVE products this run.
