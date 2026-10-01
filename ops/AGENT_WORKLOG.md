@@ -57349,3 +57349,13 @@ Owner asked why only 2-3 products went live on 2026-09-30. Evidence given: about
 - Skipped: 1080597150821 (3-day dispatch, Summer 2026 release); 1084721954977 (Spring 2026 release); 1086601411291 (Spring 2026 release, China-red school ceremony uniform); 1082717517042 (passed scan but plain solid thermal underwear, no matching print, rule 7 appeal; Yiwu supplier).
 - 格莱美 catalog: all 26 recent family offers already seen (many 2027 sheep-year/CNY themes, off-market).
 - Maternity round not run (BLOCKED_1688_CAPTCHA); retry next run.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-autosource-no-qualifier-captcha
+
+- task_entities: 1083883743226
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Categories searched (page 1): family vests (0 new), matching family accessories (0 new), couples Christmas knits (1 new, screened 0 passed), maternity sweatshirts (0 new), family jackets (0 new), family hoodies (0 new). Mommy & Me dresses search hit a 1688 CAPTCHA (exit 3): BLOCKED_1688_CAPTCHA, stopped, not bypassed.
+- Skipped: 1083883743226 (couples sweater-dress set, Jinan store) failed rule 2: release attribute 2027 Autumn, not 2026 Fall/Winter.
+- New live listings this run: none. No pending drafts or queue at start.
