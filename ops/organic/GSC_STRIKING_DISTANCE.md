@@ -147,3 +147,21 @@ Ranked by expected extra clicks (impressions x realistic CTR gain x proximity to
 - Query-to-page mapping: "verified" entries came from a per-query page breakdown (contains match); others are inferred. Verify before writing copy.
 - Nothing was changed in Search Console, Shopify or git. Only this file was created.
 - Follow existing guardrails when writing copy: no claims about stock, warehouses, shipping speed, reviews or bestsellers that are not supported; no computed bundle totals on PDP; seasonal "order by" lines only near a real cutoff.
+
+## Snapshot 2026-10-01T06:25Z (last 28 days, web; GSC data lags ~15 h)
+Totals: 946 clicks, 55.2K impressions, CTR 1.7%, avg position 14.8 (rising trend).
+Top queries by clicks are localized (nl "moeder dochter jurk", el "ρουχα μαμα κορη", da "matchende tøj mor og datter", he "בגדים תואמים אמא ובת", no "mor og datter kjole"): translations are the click engine.
+Top queries by impressions (all page 2, near-zero CTR):
+| query | impr | clicks | pos |
+|---|---|---|---|
+| family matching outfits | 2,613 | 6 | 13.0 |
+| matching family shirts | 712 | 0 | 16.5 |
+| matching family outfits | 668 | 4 | 21.5 |
+| matching outfits for family | 563 | 0 | 13.4 |
+| family matching shirts | 508 | 0 | 14.0 |
+| family outfits | 392 | 0 | 17.2 |
+| matching family summer outfits | 298 | 0 | 13.6 |
+| mommy and me | 284 | 5 | 8.3 |
+| family matching | 264 | 1 | 29.7 |
+| family matching beach outfits | 250 | 0 | 15.9 |
+"*family shirts" impressions (840) land almost entirely on /products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors (712, pos 16.5); /collections/family-tops is not the ranking page. Next: find which page carries "family matching outfits" (Chrome extension contention cut this session short).

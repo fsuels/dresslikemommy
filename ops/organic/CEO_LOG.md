@@ -207,3 +207,10 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - MAIN item: Sonnet worker linked matching-family-shirts-for-pictures, matching-family-christmas-shirts and family-christmas-card-photo-ideas to /collections/matching-family-sweatshirts in English + 20 locales (one sentence each; translate-apply verified; receipts links-sweatshirts-*.json). Live check: one localized link per page on en/de/ja; 200, 1 h1.
 - Incident + fix: publish_blog_articles.py --update-existing without --publish sent isPublished=false. The 3 guides were offline (404) for a few minutes and their publishedAt reset to today. Restored the original dates (receipts/2026-10-01/restore-publish-dates.json). Fixed the publisher (37e8780): updates now preserve the live published state, creates follow frontmatter; regression tests in ops/tests/test_publish_blog_articles.py. Copied the fixed file into the shared checkout the routines run from (verified identical to main).
 - Flags for owner: none new.
+
+## 2026-10-01T06:35Z CEO loop (main session)
+- Routines on schedule (engine 05:24Z, 5/5 today; translations 05:16Z; autosource 05:49Z: Sky Blue Stripe family sweatshirts live 05:47Z, all-over horizontal stripes, no brand-mark look).
+- Indexing: requested for one-family-outfit-for-thanksgiving-and-christmas (unknown to Google).
+- GSC snapshot appended to GSC_STRIKING_DISTANCE.md: head terms all on page 2 with ~0 CTR; clicks come from localized queries.
+- Store write: family-tops descriptionHtml now links "matching family sweatshirts and hoodies" (receipt family-tops-description-link.json; admin readback VERIFIED; storefront still served the 06:17Z cached copy, live render EXPECTED, recheck next tick). English only; localized descriptions unchanged.
+- Flags for owner: none new.
