@@ -296,8 +296,6 @@
                         {%- endif -%}
                       {%- endif -%}
 
-                      {% render 'cart-item-add-member', item: item %}
-
                       <ul class="discounts list-unstyled" role="list" aria-label="{{ 'customer.order.discount' | t }}">
                         {%- for discount in item.line_level_discount_allocations -%}
                           <li class="discounts__discount">
