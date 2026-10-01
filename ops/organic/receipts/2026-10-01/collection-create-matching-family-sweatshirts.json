@@ -1,0 +1,30 @@
+{
+  "action": "collectionCreate+publish Online Store",
+  "id": "gid://shopify/Collection/364189417569",
+  "input": {
+    "title": "Matching Family Sweatshirts & Hoodies",
+    "handle": "matching-family-sweatshirts",
+    "descriptionHtml": "<p>Matching family sweatshirts and hoodies in kids' and adult sizes, so the whole family can wear the same print. Styles include cozy crewnecks and pullover hoodies with cheerful graphics such as hearts, stars, suns and animals, made for weekend outings, fall photos and Christmas morning.</p><p>Sizing tip: order each person's usual size and check the size chart on each product page, which also shows the estimated delivery window.</p>",
+    "sortOrder": "CREATED_DESC",
+    "seo": {
+      "title": "Matching Family Sweatshirts & Hoodies for Mom, Dad & Kids",
+      "description": "Matching family sweatshirts and hoodies for mom, dad and kids: cozy crewnecks with hearts, stars, suns and animal prints for fall outings, photos and Christmas."
+    },
+    "ruleSet": {
+      "appliedDisjunctively": true,
+      "rules": [
+        {
+          "column": "TYPE",
+          "relation": "EQUALS",
+          "condition": "Family Matching Sweatshirts"
+        },
+        {
+          "column": "TITLE",
+          "relation": "CONTAINS",
+          "condition": "Family Matching Hoodies"
+        }
+      ]
+    }
+  },
+  "rollback": "collectionDelete(input:{id:\"gid://shopify/Collection/364189417569\"})"
+}

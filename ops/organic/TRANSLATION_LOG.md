@@ -97,3 +97,5 @@
 - 2026-09-30T08:22Z new-years-eve-matching-family-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-09-30T08:23Z mother-daughter-matching-dresses-guide: all 20 locales VERIFIED (0 left) — CEO worker
 - 2026-10-01T01:22Z matching-family-hawaiian-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-10-01T02:11Z matching-family-hawaiian-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-10-01T02:55Z collection matching-family-sweatshirts: all 20 locales (title, meta, description) VERIFIED — CEO worker
