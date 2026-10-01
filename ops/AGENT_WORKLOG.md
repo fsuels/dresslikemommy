@@ -57448,3 +57448,11 @@ Changes:
 - Siblings: only kids pajamas (1089069876976, excluded) and 1076586731252 (Spring 2026 release, fails season).
 - Couples: 12 scanned, 9 passed scan. Supplier gate failures: 1088804364739 (pickup 0%), 1086022527839 (0 yr), 1089060068413 (0 yr, svc 3.5), 宜馨雅 store 1086055671227/1086042091759/1089055424432/1089058224338 (pickup 91.8%, fulfillment 92.2%), 1072710743721 (1 yr), 1081359832547 and 1080354377520 (4 yr, fulfillment 96.4%, 277 orders/30d), 1087675493823 (0 yr), 1081047906387 (0 yr), 1069738195706 (0 yr), 1081957259302 (3 yr, pickup 90.9%), 1086379160030 (1 yr, pickup 80%). 1072654815362 passed the gate (14 yr) but carries a BROWN BREATH brand mark (rule 5).
 - Supplier near-miss: 1081047906387 store shop75908qe3h3702 (0 yr but 6469 orders/30d, 99.9% pickup and fulfillment); revisit when it reaches 3 years or with owner exception.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-autosource-maternity-blocked
+
+- task_entities: none
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- pending: 0 drafts; queue: 0 offers. First owner-priority search (maternity, "孕妇装 2026秋冬") hit a 1688 CAPTCHA/login page (exit 3). Stopped 1688 work for this run; nothing screened, nothing built. Not bypassed. Owner needs to clear the 1688 session (or BuckyDrop sourcing path) before the next run can search.
