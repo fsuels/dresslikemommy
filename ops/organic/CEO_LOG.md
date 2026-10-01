@@ -173,3 +173,10 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Theme (e3541ed, 72e54f8): own intro copy instead of the generic "dresses, swimwear" fallback, Family Matching breadcrumb parent, and a "Sweatshirts" pill in the Family Matching sub-nav (label in all locale files) so every family collection links to it. Shopify dropped the snippet + locale pushes; repaired with sync-theme --apply and sync-locales --apply (0 differ). VERIFIED live: /de/ page title/H1/breadcrumb translated, pill active, 19 products, indexable; /collections/family-sweaters pill → /collections/matching-family-sweatshirts.
 - Backlog #13 now links the new collection first.
 - Flags for owner: none.
+
+## 2026-10-01T04:10Z CEO loop (main session)
+- Watchdog: DLM routines starved, not frozen. The app scheduler skipped engine, translations, operator and autosource from ~02:06Z to 04:04Z with reason "global_limit" (recordedSkips in the app's scheduled-tasks.json): long-running Santo Ruidos runs (another project, 4 concurrent, actively working) held the global concurrent slots. Did not stop them (another project, busy). Dispatched missed runs manually: organic-traffic-engine (04:04Z) and article-translations; autosource already had a run in progress.
+- Fix: ceo-organic-operator step 0b now also re-dispatches engine/translations/autosource with run_scheduled_task when the newest run is >75 min old and none is running (tool allowlisted in .claude/settings.local.json).
+- Product: Red Runner Raglan family sweatshirts set to DRAFT at 03:01Z by the autosource owner session as a deliberate QA pull (stripes and swoosh-like print read as a brand look-alike, rule 5); offer recorded as skip. Keep DRAFT.
+- Teammate request: committed the cardigan title fixes (37f4550; burgundy-ruffle, navy-pearl-gingham; el/da/no/nl/he) after checking that only those 2 entries changed.
+- Flags for owner: decide whether Santo Ruidos or Dress Like Mommy routines get priority. Both share the app's concurrent-run limit; until then DLM runs are re-dispatched by hand/operator.
