@@ -226,4 +226,10 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Commit: see run report (ceo_worktree organic).
 - Indexing: SKIPPED. All of today's articles were already requested (04:55Z, 05:08Z, 06:35Z); none unrequested.
 - MAIN item: none doable (no OPEN MAIN row: #1 and C1 catalog gaps, S1 low value). No theme change shipped.
+- Flags for owner: none. Commit FAILED: `ceo_worktree.py organic` could not remove worktree organic-sync ("locked working tree, lock reason: initializing"), likely a concurrent session; files stay uncommitted for the next run.
+
+## 2026-10-01T07:50Z CEO loop (main session)
+- Routines on time (engine 07:22Z cap skip, translations 07:16Z: winter-sweatshirts guide 20/20, autosource 06:53Z, operator 06:54Z; its commit failed on a locked organic-sync worktree, picked up by this run).
+- family-tops link: still not rendered. Admin GraphQL, REST and translatableContent all hold it; no English adaptation; updated_at never bumps for body_html-only edits, so the storefront copy stays stale (other cache keys too). Expected to appear with the next theme publish (cache flush). Not forcing it with a title/sort change.
+- GSC (28d, query contains "matching outfits", by page): the light-blue halter product takes the head term (2,026 impr, pos 12.4) while the hub /collections/matching-outfits sits at pos 45 → cannibalization. Retargeted only the product's SEO title/description to "Light Blue Halter Dress Family Set" (product-seo receipt; VERIFIED live after ~10 s). Measurement row X1 in BACKLOG (check 2026-10-22, kill criteria included).
 - Flags for owner: none.
