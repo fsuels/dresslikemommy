@@ -159,3 +159,10 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Indexing: BLOCKED. Chrome's Search Console is signed in as a different Google account with no access to the property; stopped without switching accounts. Hawaiian article stays unrequested (new articles usually index on their own).
 - MAIN item: none doable (no OPEN MAIN row: #1 and C1 catalog gaps, S1 low value). No theme change shipped.
 - Flags for owner: Chrome's Search Console login is on the wrong Google account (property access lost); sign in with the owner account to restore indexing requests.
+
+## 2026-10-01T01:45Z CEO loop (main session)
+- Watchdog: all routines healthy (engine 01:24Z, translations 01:22Z, autosource 01:12Z, operator 00:52Z, alt-review 09-30 11:51Z). No new products since 09-30T12:57Z (1688 CAPTCHA, owner).
+- Review: engine built #12 daddy-daughter-dance-matching-outfits (live 200, 1 h1, no robots meta, lint 0 errors).
+- Correction to the 00:55Z owner flag: Search Console access is NOT lost. Three Chrome profiles have the extension; "Browser 1" holds the property, the others are another Google account. The extension also flips between browsers mid-task. Operator routine now picks the browser with list_connected_browsers + select_browser (allowlisted) and logs "extension contention" instead of flagging the owner. Indexing for hawaiian + daddy-daughter: SKIPPED (contention); new articles index on their own.
+- MAIN item: empty family-swimsuits collection script-redirected shoppers to the Family Matching hub; now goes to Swimsuits (34 live). Empty-collection fallback copy ("Collection refresh needed", "safest next stop") replaced with shopper-facing wording. Commit a2789a8; sync dropped the section file, repaired with sync-theme --apply (verified 2/2); live check: /collections/family-swimsuits and /de/... now redirect to Swimsuits (34 products) in a real browser; "Collection refresh needed" gone.
+- Flags for owner: none new (1688 CAPTCHA still pending).

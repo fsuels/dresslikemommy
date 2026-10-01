@@ -288,3 +288,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 53 collections, 80 published articles; `article-links`: 0 articles needing fix).
 - Research: none (backlog has ≥5 open ENGINE items: #12, #13, #14)
 - Flags for MAIN/OWNER: MAIN: request indexing for the new article. Next build: #12 daddy-daughter dance, then #13, #14.
+
+## 2026-10-01T01:24Z run
+- Build: backlog #12 daddy-daughter dance matching outfits → https://www.dresslikemommy.com/blogs/news/daddy-daughter-dance-matching-outfits (VERIFIED: 200, 1 h1, no robots meta; lint 0 errors, 990 words). 2 of 5 today (UTC 2026-10-01).
+- Fix: 0 items (queue empty since 15:24Z on 09-29; `article-links` not re-run to spare the rate limit).
+- Research: none (backlog has ≥5 open ENGINE items: #13, #14)
+- Flags for MAIN/OWNER: MAIN: request indexing for the new article. Hero is a Daddy and Me sweater (no dress photo in daddy-me). Next build: #13, then #14; then research.
