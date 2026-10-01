@@ -57,5 +57,5 @@
         assign cam_text = "Add another family member's size"
     endcase
   -%}
-  <a href="{{ item.product.url }}" class="link cart-item__add-member" data-cart-add-member style="display:inline-block;margin-top:0.6rem;font-size:1.3rem;line-height:1.4;">+ {{ cam_text }}</a>
+  <a href="{{ item.product.url }}" class="link cart-item__add-member" data-cart-add-member style="display:block;max-width:100%;white-space:normal;overflow-wrap:anywhere;margin-top:0.6rem;font-size:1.3rem;line-height:1.4;">+ {{ cam_text }}</a>
 {%- endif -%}
