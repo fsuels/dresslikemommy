@@ -201,11 +201,35 @@ release:g('Year and season of (?:release|launch)|上市年份/?季节'),publishe
 fabric:g('Fabric name|面料名称'),main:g('Main fabric composition|主面料成分'),
 pct:(t.match(/(?:Main fabric component content|Content of main fabric[a-z ]*|主面料成分含量|主面料成分的含量)\s*[：:(（%]*\s*(\d{1,3}(?:\.\d+)?)/i)||[])[1]||'',
 dl:(h.match(/"deliveryLimit":(\d+)/)||[])[1]||'',dlt:(h.match(/"deliveryLimitText":"([^"]+)"/)||[])[1]||'',
-moq:(t.match(/(\d+)\s*件起批/)||[])[1]||'',img:imgs[0]||''})})()"""
+moq:(t.match(/(\d+)\s*件起批/)||[])[1]||'',img:imgs[0]||'',
+created:(h.match(/"createDate"\s*:\s*"?(\d{13})/)||[])[1]||'',listedText:(t.match(/上架时间\s*(20\d\d-\d\d-\d\d)/)||[])[1]||''})})()"""
 
 
 def season_ok(r: str) -> bool:
     return "2026" in r and bool(re.search(r"Fall|Autumn|Winter|秋|冬", r))
+
+
+NO_TAG_LISTED_FROM = "2026-08-01"  # owner 2026-10-01: no release attribute at all is OK when listed on/after this date
+
+
+def listed_date(r: dict) -> str:
+    if r.get("created"):
+        return time.strftime("%Y-%m-%d", time.gmtime(int(r["created"]) / 1000))
+    return r.get("listedText", "")
+
+
+def fresh_ok(r: dict) -> tuple[bool, str]:
+    """Owner rule 4: 2026 listing date AND (release 2026 Fall/Winter, or no release attribute and listed >= 2026-08-01)."""
+    listed, rel = listed_date(r), (r.get("release") or "").strip()
+    if listed and listed < "2026-01-01":
+        return False, f"listed {listed} (needs a 2026 listing date)"
+    if season_ok(rel):
+        return True, ""
+    if not rel and listed and listed >= NO_TAG_LISTED_FROM:
+        return True, ""
+    if not rel:
+        return False, f"no release attribute and listed {listed or 'unknown'} (needs {NO_TAG_LISTED_FROM}+)"
+    return False, f"release '{rel[:24]}' (needs 2026 Fall/Winter)"
 
 
 def cmd_scan(ids: str, gap: float = 35) -> None:
@@ -219,15 +243,17 @@ def cmd_scan(ids: str, gap: float = 35) -> None:
                 stop_blocked(tab, f"scan {oid}")
             tab.scroll()
             r = json.loads(tab.js(SCAN_JS))
-            ok = r["dl"] in ("1", "2") and season_ok(r["release"])
+            fresh, fresh_why = fresh_ok(r)
+            ok = r["dl"] in ("1", "2") and fresh
             r["pass_ship_season"] = ok
+            r["listed"] = listed_date(r)
             r["why"] = "; ".join(([] if r["dl"] in ("1", "2") else [f"dispatch promise {r['dl'] or '?'} days (needs 1-2)"]) +
-                                 ([] if season_ok(r["release"]) else [f"release '{r['release'][:24] or 'missing'}' (needs 2026 Fall/Winter)"]))
+                                 ([] if fresh else [fresh_why]))
             r["scanned"] = time.strftime("%Y-%m-%d")
             r["main"] = re.split(r"\d|Main fabric|主面料", r["main"])[0].strip()
-            seen[oid] = {k: r[k] for k in ("title", "company", "host", "release", "dl", "main", "pct", "moq", "pass_ship_season", "why", "scanned")}
+            seen[oid] = {k: r[k] for k in ("title", "company", "host", "release", "listed", "dl", "main", "pct", "moq", "pass_ship_season", "why", "scanned")}
             save_seen(seen)
-            print(("PASS " if ok else f"fail ({r['why']}) ") + oid, "| dl", r["dl"], "|", r["release"][:14], "|", r["company"][:16], "|", f'{r["main"][:14]} {r["pct"]}%', "|", r["title"][:60], flush=True)
+            print(("PASS " if ok else f"fail ({r['why']}) ") + oid, "| dl", r["dl"], "| listed", r["listed"], "|", r["release"][:14] or "no tag", "|", r["company"][:16], "|", f'{r["main"][:14]} {r["pct"]}%', "|", r["title"][:60], flush=True)
             time.sleep(gap)
     finally:
         tab.close()
@@ -1013,6 +1039,26 @@ def cmd_next() -> None:
 
 
 # ---------------------------------------------------------------- lock
+RULE_FILES = ["ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md", "ops/sourcing/TRUSTED-SUPPLIERS.md",
+              "ops/organic/PRODUCT_GLOSSARY.json", "ops/organic/PRODUCT_TITLE_FIXES.json"]
+
+
+def sync_rule_files() -> None:
+    """This checkout lags main (other sessions' uncommitted work blocks a pull), and runs read rule files from it:
+    on 2026-10-01 its owner checklist was 448 commits stale. Refresh the shared rule files from origin/main each run."""
+    try:
+        sh(["git", "fetch", "-q", "origin"], timeout=120)
+        changed = []
+        for rel in RULE_FILES:
+            main = subprocess.run(["git", "show", f"origin/main:{rel}"], cwd=ROOT, capture_output=True).stdout
+            if main and (not (ROOT / rel).exists() or (ROOT / rel).read_bytes() != main):
+                (ROOT / rel).write_bytes(main)
+                changed.append(rel)
+        print("rule files synced from main:", ", ".join(changed) if changed else "already current")
+    except (SystemExit, Exception) as exc:  # never block a run on this; report it
+        print("WARNING: rule-file sync failed:", str(exc)[:200])
+
+
 def cmd_lock(action: str) -> None:
     STATE.mkdir(parents=True, exist_ok=True)
     now = time.time()
@@ -1027,6 +1073,7 @@ def cmd_lock(action: str) -> None:
                 sys.exit(4)
         LOCK.write_text(f"{now} {time.strftime('%Y-%m-%dT%H:%M:%S')}\n")
         print("lock acquired")
+        sync_rule_files()
     else:
         LOCK.unlink(missing_ok=True)
         print("lock released")

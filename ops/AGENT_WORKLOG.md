@@ -57303,3 +57303,13 @@ Recurring mistakes for the hourly job:
 Owner asked why only 2-3 products went live on 2026-09-30. Evidence given: about 12 of about 20 hourly runs stopped on 1688 CAPTCHAs; 244 offers screened → 86 passed 48h + Fall 2026 → 78 passed the supplier gate → 3 passed the design rules; CEO time also went to store-wide translation repair. Owner decisions (AskUserQuestion, 2026-10-01):
 - CAPTCHAs: "Source via BuckyDrop (Recommended)", tested on one run first. Owner added: "You must be able to check the quality of the vendors". The full supplier gate stays mandatory; the 1688 store credit page is read once per store when BuckyDrop lacks the stats.
 - Rules: "Missing season tag OK (Recommended)": no release attribute + 1688 listing date ≥ 2026-08-01 passes; wrong-season attributes still fail; 48h, supplier, design and price rules unchanged. Not chosen: year-round basics, 72h dispatch.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-scanner-listing-date-and-rule-sync
+
+- task_entities: `ops/sourcing/autosource.py` (`fresh_ok`, `listed_date`, `sync_rule_files`); BuckyDrop sourcing test
+- task_stage: IMPLEMENTED + VERIFIED (scanner); BLOCKED_OWNER_LOGIN (BuckyDrop)
+- next_action_id: OWNER_BUCKYDROP_SIGN_IN
+
+- Scanner: reads each offer's 1688 listing date (`"createDate"` epoch ms, fallback "上架时间" text) and applies owner rule 4 plus the 2026-10-01 decision. A listing date before 2026 fails (rule 4 required it, but scan never checked); release 2026 Fall/Winter passes; NO release attribute passes when listed ≥ 2026-08-01; a wrong-season attribute fails. Unit cases and a live scan (1088036424157 → "listed 2026-09-25") verified.
+- Stale rules: the run checkout's HEAD is 2026-09-27 (448 commits behind; other sessions' uncommitted work blocks a pull). Its `CONTINUOUS-EXPANSION-WORKFLOW.md` had no "Owner product rules" section, so unattended runs read a stale checklist (the runbook carried the key rules). Synced from main. `lock acquire` now refreshes CONTINUOUS-EXPANSION-WORKFLOW.md, TRUSTED-SUPPLIERS.md, PRODUCT_GLOSSARY.json and PRODUCT_TITLE_FIXES.json from origin/main every run.
+- BuckyDrop test: the helper Chrome has no BuckyDrop auth cookie (session expired; the open admin tabs are stale). New tabs land on the sign-in page, and Claude does not enter passwords. Owner action: sign in to BuckyDrop in the helper Chrome (keep me signed in), then the test proceeds: Sourcing → product search, with the full vendor gate (1688 store credit page per store) unchanged.
