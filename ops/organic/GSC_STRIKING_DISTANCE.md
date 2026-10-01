@@ -165,3 +165,6 @@ Top queries by impressions (all page 2, near-zero CTR):
 | family matching | 264 | 1 | 29.7 |
 | family matching beach outfits | 250 | 0 | 15.9 |
 "*family shirts" impressions (840) land almost entirely on /products/matching-family-minimalist-heart-t-shirt-set-simple-love-design-in-4-colors (712, pos 16.5); /collections/family-tops is not the ranking page. Next: find which page carries "family matching outfits" (Chrome extension contention cut this session short).
+
+### Product pages snapshot 2026-10-01T15:45Z (28 d, page contains /products/)
+173 clicks / 20K impressions / CTR 0.9% / avg pos 10.7. Low-CTR, pos ≤15 candidates are summer items (light-blue halter 3,265 impr pos 12.6, X1 test running; palm-tree beach set 612 / 8.9 / 0.5%; rainbow overalls 293 / 6.7 / 0.7%) plus the heart tee (1,957 / 12.8 / 0.1%, already retitled in S2, competes with family-tops for "matching family shirts"). Decision: no product retitles now (off-season); revisit in Feb/Mar for the summer set. Localized product pages earn the best CTRs (el 23%, pt 7%, es 4%).
