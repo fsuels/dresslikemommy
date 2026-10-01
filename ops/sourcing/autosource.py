@@ -65,7 +65,7 @@ WT = Path("/tmp/autosource-wt")
 PY = "/usr/bin/python3"
 CODEX = "/Applications/ChatGPT.app/Contents/Resources/codex"
 LOCALES = "ar cs da de el es fi fr he hi it ja ko nl no pl pt-BR ro ru sv".split()
-FAMILY_RE = re.compile(r"亲子|一家|母女|父子|母子|全家|家庭|情侣|兄妹|姐弟|孕妇|family|Family|parent|Parent|mother|Mother|couple|Couple|matern|Matern|sibling|Sibling")
+FAMILY_RE = re.compile(r"亲子|一家|母女|父子|母子|全家|家庭|情侣|兄妹|姐弟|兄弟|姐妹|孕妇|brother|Brother|sister|Sister|family|Family|parent|Parent|mother|Mother|couple|Couple|matern|Matern|sibling|Sibling")
 WORK.mkdir(parents=True, exist_ok=True)
 MIN_1688_GAP = 40  # seconds between any two 1688 page loads (searches, scans, gates, captures)
 
@@ -1002,6 +1002,21 @@ ROTATION = [
     ("search", "母女装 连衣裙 2026秋冬", "Mommy & Me dresses"),
     ("search", "情侣 连帽卫衣 2026秋冬", "couples hoodies"),
     ("search", "亲子装 圣诞 毛衣 2026", "Christmas family knits"),
+    # 2026-10-01 additions (CEO session suggestions; kids' pajamas/loungewear, New Year and Halloween terms left out per owner rules)
+    ("search", "情侣睡衣 圣诞 2026", "couples Christmas pajamas (adults only)"),
+    ("search", "亲子装 摇粒绒 2026秋冬", "family fleece tops"),
+    ("search", "亲子装 羊羔绒 外套 2026", "family sherpa jackets"),
+    ("search", "亲子装 格子衬衫 2026秋冬", "family plaid shirts"),
+    ("search", "父子装 格子衬衫 2026", "Daddy & Me plaid shirts"),
+    ("search", "亲子装 长袖T恤 秋季 2026", "family long-sleeve tees"),
+    ("search", "亲子装 针织套装 2026秋冬", "family knit sets"),
+    ("search", "母女装 毛衣裙 2026秋冬", "Mommy & Me sweater dresses"),
+    ("search", "母女装 公主裙 秋冬 2026", "Mommy & Me fall dresses"),
+    ("search", "亲子装 毛衣 圣诞 麋鹿 2026", "Christmas reindeer family knits (no red-nose)"),
+    ("search", "兄弟装 卫衣 2026秋冬", "brothers sweatshirts (siblings)"),
+    ("search", "姐妹装 2026秋冬", "sisters outfits (siblings)"),
+    ("search", "孕妇 连衣裙 秋冬 2026", "maternity dresses"),
+    ("search", "孕妇装 套装 秋冬 2026", "maternity sets"),
 ]
 SEARCH_PAGES = 3  # each keyword reads the next results page on its next turn (page 1 alone repeats hour after hour)
 ROT_FILE = STATE / "autosource_rotation.json"

@@ -57425,3 +57425,13 @@ Changes:
 - Screened 3 new offers, 1 passed scan, 0 built, 0 live.
 - Skipped: 1086952306678 (rule 2: release Spring 2026); 1081694295090 (rule 4: store 0 years, 122 orders; C.P brand-style title); 1088905580669 (rule 4: new store, 0 years, 20 orders, no pickup record).
 - Observation: search pages 2 and gate-passing store catalogs are saturated; new coverage needs fresh queries or new vendors.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-autosource-new-search-terms
+
+- task_entities: `ops/sourcing/autosource.py` ROTATION, FAMILY_RE
+- task_stage: IMPLEMENTED
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- 14 in-season searches appended to the rotation (from the CEO session's list): couples Christmas pajamas (adults only), family fleece and sherpa, plaid shirts (family and Daddy & Me), long-sleeve tees, knit sets, Mommy & Me sweater and fall dresses, Christmas reindeer knits (no red-nose), brothers and sisters outfits, maternity dresses and sets. Left out per owner rules: family/kids Christmas pajamas and loungewear (kids' sleepwear stays DRAFT until supplier test reports, packet #14), 新年 red (Chinese-New-Year theme, rule 5), and Halloween (orders now arrive about Oct 16-20).
+- FAMILY_RE now also keeps 兄弟/姐妹/brother/sister titles, so siblings searches are not filtered out.
+- Sweatshirt and hoodie listings keep product_type "Family Matching Sweatshirts" (engine default), so they auto-join the new matching-family-sweatshirts collection.
