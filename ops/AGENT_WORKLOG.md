@@ -57266,3 +57266,14 @@ Recurring mistakes for the hourly job:
 - Rounds run: couples hoodies p2, Christmas family knits p2, family sweatshirts p2, Mommy & Me sweatshirts p2, family sweaters p2 (all 0 new family-titled 2026 offers); catalogs of mdyz8899, senda831, shop11f7891195835, shop1446482987408, shop172d524449199, shop1d850z9919n88, shop66to0134704t8 (every family offer already seen/decided); weiting, shop859424j2546y8, tygtzd returned 0 offers (catalog read empty).
 - Nothing screened or built; no new LIVE handles. No CAPTCHA.
 - Note: search result pages 2 and the tracked store catalogs are saturated; next runs should try new query wording or new stores (and re-check the 3 empty catalogs).
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-autosource-blocked-1688-captcha
+
+- task_entities: 1085597694183
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- No pending drafts, empty queue. Searched Daddy & Me page 3 (0 new offers) and Christmas family sweatshirts page 3 (1 new offer screened, 0 built).
+- Skipped 1085597694183 (Labubu girls hoodie set, Shangqiu store): rule 5, licensed IP (Pop Mart Labubu).
+- 格莱美 (Dongguan) catalog hit a 1688 CAPTCHA/login page; stopped 1688 work for this run and did not bypass it. A human must clear the CAPTCHA in the autosource browser session before the next round.
+- New live handles: none.
