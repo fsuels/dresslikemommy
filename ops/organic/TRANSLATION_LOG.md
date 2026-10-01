@@ -106,3 +106,4 @@
 - 2026-10-01T05:40Z family-christmas-card-photo-ideas: sweatshirt-collection link added in English + 20 locales VERIFIED — CEO link worker
 - 2026-10-01T06:22Z mommy-and-me-winter-sweatshirts-and-loungewear: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-10-01T07:22Z mommy-and-me-winter-sweatshirts-and-loungewear: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-10-01T08:22Z matching-family-pajamas-sizing-newborn-to-adult: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
