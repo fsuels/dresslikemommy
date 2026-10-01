@@ -1517,6 +1517,13 @@
       # so the displayed date range is identical across all countries.
       assign standard_delivery_window = '12-16 days'
     endif
+    assign made_to_order_days = product.metafields.custom.made_to_order_days.value | default: 0
+    if made_to_order_days > 0
+      capture standard_delivery_window
+        render 'made-to-order-window', window: standard_delivery_window, extra: made_to_order_days
+      endcapture
+      assign standard_delivery_window = standard_delivery_window | strip
+    endif
     if premium_delivery_window contains 'translation missing' or premium_delivery_window contains '5-7 business days' or premium_delivery_window == blank
       assign premium_delivery_window = ''
     endif

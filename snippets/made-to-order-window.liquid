@@ -1,0 +1,29 @@
+{%- comment -%}
+  Outputs a delivery day window ("12-16 days") pushed out by a made-to-order
+  production time, e.g. 10 extra days -> "22-26 days". Used for products that
+  are sewn after the order (product.metafields.custom.made_to_order_days).
+  The window is returned unchanged when extra is 0/blank or the window does
+  not start with "<min>-<max>".
+
+  Usage:
+  {%- capture w -%}{% render 'made-to-order-window', window: w, extra: days %}{%- endcapture -%}
+{%- endcomment -%}
+{%- liquid
+  assign mto_window = window
+  assign mto_extra = extra | plus: 0
+  if mto_extra > 0
+    assign mto_head = mto_window | split: ' ' | first
+    assign mto_nums = mto_head | split: '-'
+    if mto_nums.size == 2
+      assign mto_lo = mto_nums[0] | plus: 0
+      assign mto_hi = mto_nums[1] | plus: 0
+      if mto_lo > 0 and mto_hi >= mto_lo
+        assign mto_new_lo = mto_lo | plus: mto_extra
+        assign mto_new_hi = mto_hi | plus: mto_extra
+        assign mto_new_head = mto_new_lo | append: '-' | append: mto_new_hi
+        assign mto_window = mto_window | replace_first: mto_head, mto_new_head
+      endif
+    endif
+  endif
+-%}
+{{- mto_window -}}

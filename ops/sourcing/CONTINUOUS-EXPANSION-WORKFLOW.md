@@ -49,6 +49,8 @@ These are standing owner instructions. Details are in the numbered sections belo
 10. **Honesty:** this is dropshipping. No stock, warehouse, fast-shipping, review or bestseller claims.
 11. **Compliance open item:** the US children's sleepwear rule (16 CFR 1615/1616; kids' sizes 9M–14 must be flame-resistant or tight-fitting) awaits the owner's decision (`OWNER_MORNING_PACKET.md` #14). Flag every new loose-fitting kids' pajama until it is resolved.
 12. **Stop conditions:** a 1688/Taobao CAPTCHA or login wall means stop and ask the owner. Never bypass it.
+13. **A photo for every colour** (owner 2026-10-01: "make sure when you offer different colors in the listing the images in the listing for each color show!"): every colour a listing offers needs its own reviewed photo of the garment in that colour, attached to that colour's variants, so choosing a colour shows it. Offer only colours you can show this way. Tool: `ops/sourcing/gown_listing.py` (colour photos + variant media links).
+14. **Owner-picked maternity photoshoot batch exceptions (2026-10-01, this batch only):** the 21 offers the owner pasted on 2026-10-01 (seed offer 1086097243184) may ship with a 5–10-day dispatch promise, and each page says honestly that it is made to order and when it ships (`custom.made_to_order_days` moves the PDP delivery window). The owner also allowed a Summer/Spring/year-only release tag for these photoshoot gowns and sets, because they are not seasonal clothing. Every other rule applies; the owner kept offer 1020871680362 skipped (service 3.5).
 
 ## Cadence
 
