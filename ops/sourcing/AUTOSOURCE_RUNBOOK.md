@@ -20,7 +20,7 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 1. **Category:** Mommy & Me, family matching, Daddy & Me, siblings, couples, maternity, or matching family accessories.
    - No pets.
    - No kids' pajamas/sleepwear: the kids' sleepwear flammability hold (packet #14) is still open.
-2. **Fresh and in season:** offer created in 2026, AND the release attribute says 2026 plus Autumn/Fall/Winter (秋/冬). "Spring 2026", a year only, or "Other" fails.
+2. **Fresh and in season:** offer created in 2026, AND the release attribute says 2026 plus Autumn/Fall/Winter (秋/冬). "Spring 2026", a year only, or "Other" fails. Owner 2026-10-01: an offer with NO release attribute passes when its 1688 listing date is 2026-08-01 or later (`scan` checks this; the `listed` date is shown).
 3. **Shipping (ALWAYS):** the offer promises 24h/48h dispatch (`deliveryLimit` 1 or 2 / "48-Hour Shipping" / 承诺48小时发货). 3-, 7- or 15-day promises fail.
 4. **Supplier:** `gate` prints the verdict.
    - Standard: ≥5 years on 1688, 48h pickup ≥95%, fulfillment ≥97%, service ≥4.0, MOQ 1.

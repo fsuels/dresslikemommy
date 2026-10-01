@@ -57293,3 +57293,13 @@ Recurring mistakes for the hourly job:
 - 1086601411291 (catalog, new 2026-10-01): not scanned. China-red school opening-ceremony uniform, off-market patriotic/school-activity (rules 5/7); `decide` refused it as not screened.
 - BLOCKED_1688_CAPTCHA on the maternity sweatshirts search (page 3); stopped 1688 work per runbook, no bypass.
 - No new LIVE products this run.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-owner-sourcing-decisions-buckydrop-and-season-tag
+
+- task_entities: `ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md` (owner rules 2 and 4); `ops/sourcing/AUTOSOURCE_RUNBOOK.md`
+- task_stage: IMPLEMENTED (rules); scanner change and BuckyDrop test pending
+- next_action_id: BUCKYDROP_SOURCING_TEST
+
+Owner asked why only 2-3 products went live on 2026-09-30. Evidence given: about 12 of about 20 hourly runs stopped on 1688 CAPTCHAs; 244 offers screened → 86 passed 48h + Fall 2026 → 78 passed the supplier gate → 3 passed the design rules; CEO time also went to store-wide translation repair. Owner decisions (AskUserQuestion, 2026-10-01):
+- CAPTCHAs: "Source via BuckyDrop (Recommended)", tested on one run first. Owner added: "You must be able to check the quality of the vendors". The full supplier gate stays mandatory; the 1688 store credit page is read once per store when BuckyDrop lacks the stats.
+- Rules: "Missing season tag OK (Recommended)": no release attribute + 1688 listing date ≥ 2026-08-01 passes; wrong-season attributes still fail; 48h, supplier, design and price rules unchanged. Not chosen: year-round basics, 72h dispatch.

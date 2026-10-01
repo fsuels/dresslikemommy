@@ -19,6 +19,7 @@ These are standing owner instructions. Details are in the numbered sections belo
    - test Tier B suppliers;
    - find new Guangdong factories for weak categories;
    - use Taobao/Tmall via BuckyDrop only under the same gates;
+   - **BuckyDrop sourcing (owner 2026-10-01, chose "Source via BuckyDrop" to avoid 1688 CAPTCHAs; test on one run first):** BuckyDrop may replace 1688 searching and offer browsing, but **vendor quality must still be checked** (owner 2026-10-01: "You must be able to check the quality of the vendors"). Every vendor passes the full supplier gate in rule 3 (years, 48h pickup, fulfillment, service, returns, disputes, orders) before a product is built; when BuckyDrop does not show those stats, read the store's 1688 credit page (one page per store, verdict cached and applied to all its offers);
    - record every reading in `TRUSTED-SUPPLIERS.md`;
    - new vendors stay Tier B until an on-time order proves them.
 3. **Supplier gate (§3):** ≥5 years on 1688 — or **3–4 years only with strict stats** (owner 2026-09-28: "3 years is ok with good reputation and good delivery times?" → chose the strict option): 48h pickup ≥97%, fulfillment ≥97%, quality returns ≤1%, disputes ≈0%, service ≥4.0 and 500+ orders in the last 30 days, plus the 24/48h promise; ≥97% fulfillment, **ships in 24h, 48h at most, ALWAYS** (owner 2026-09-28: "I need shipments faster 24 max 48 hours." / "ALWAYS"): the offer's dispatch promise must be 24h or 48h and the store's 48h pickup rate ≥95%; a 3-, 7- or 15-day promise fails, even under a supplier exception. Dropship MOQ 1, service ≥4.0, Guangdong preferred. **Exceptions (e.g. <5 years) only with the owner's explicit yes.**
@@ -29,6 +30,7 @@ These are standing owner instructions. Details are in the numbered sections belo
      - Fall, winter and holiday lines need 2026 Autumn/Fall/Winter (秋季/冬季/秋冬). Spring/summer lines need 2026 Spring/Summer.
      - A "Spring 2026" tag on a Christmas or winter item fails. So does a year-only attribute, unless the listing date and the design clearly place it in the season.
      - Record the exact attribute text in the spec evidence.
+     - **Missing season tag (owner 2026-10-01, chose "Missing season tag OK"):** an offer with NO release attribute at all passes the season check when its 1688 listing date is on or after 2026-08-01. An attribute that names another year or season (Spring/Summer 2026, 2025, 2027) still fails. The 24/48h dispatch, supplier gate, design and price rules are unchanged.
    - Never restore archived or old designs as "new". The owner rejected the 5 restored 2025 Christmas winners on 2026-09-27.
    - No licensed characters or look-alikes. Read the real fabric composition.
 5. **Pricing (§6):** landed cost ≤50% of price on a single-item order; net ≥35%. The BuckyDrop shortcut is (CNY cost + domestic) / 7.11 × 4.2, with compare-at = price + $10; always run the 50% test. Record the real unit cost.
