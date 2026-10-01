@@ -57146,3 +57146,14 @@ Recurring mistakes for the hourly job:
 - 1088278501013 (burgundy raglan three-heart sweatshirt): reviewed sheet; not built — hearts sweatshirts are saturated in the store (Little Heart, Scribble Heart, Eternal Bliss Hearts, Together Heart, Pure Joy Heart); rule 6/7 generic. Decided skip not recorded via decide.
 - 1082380485070 and the other 洋泰 PASS offers (rabbit, panda, running figures, snowman, SAN FRANCISCO, stripes) still need capture + review next round; the "smiley" ones (1078728587423, 1082685422845, 1085196108175 etc.) fail rule 5.
 - BLOCKED: 1688 CAPTCHA during `capture 1082380485070`. No bypass attempted. Nothing built or listed this run.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-queue-family-sweatshirts
+
+- task_entities: red-runner-raglan-family-matching-sweatshirts, offer 1077649503066, supplier 东莞市洋泰服饰有限公司
+- task_stage: LIVE_VERIFIED
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Worked the queue (22 offers, all Dongguan Yangtai). `gate` printed a verdict for only one (1077649503066: 11 yrs, pickup 99.74%, fulfillment 99.74%, service 4.5); the other 21 have no recorded decision and remain in the queue for the next run (open each own sheet before deciding; several titles say spring or smiley, which fail rules 2/5).
+- Built and live: red-runner-raglan-family-matching-sweatshirts, $31.99 child / $39.99 adult, 14 variants x 100, 4 images. Closeout PASS attempt 1; ACTIVE OK channels=8/8; readback `LIVE ... avail 14 / 14 | price 31.99 39.99`. Unlined colour only (fleece-lined excluded, per precedent); 4XL and baby rompers dropped (not on chart / not representable).
+- Photo QA: print, colours, stripes match vendor; no extra text.
+- Note: `translate` and `images` each exceeded the 600s foreground timeout and were auto-backgrounded; both completed exit 0.
