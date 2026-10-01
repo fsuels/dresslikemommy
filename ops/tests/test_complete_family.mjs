@@ -236,3 +236,23 @@ test('role lookup handles adult/child sweaters, suffix roles, hyphens and non-ro
   assert.deepEqual(missingRoles(['Baby Pink', 'Baby Blue'], ['Baby Blue']), []);
   assert.deepEqual(missingRoles(['Mother S', 'Mother M'], ['Mother S']), [], 'a mom-only product offers nothing');
 });
+
+test('single-piece notice: translated for every language and shown only for exactly 1 piece', () => {
+  // Every language block (default + each case branch) defines both strings.
+  const blocks = (snippet.match(/assign t_another_adult = /g) || []).length;
+  assert.equal((snippet.match(/assign t_single = /g) || []).length, blocks);
+  assert.equal((snippet.match(/assign t_single_hint = /g) || []).length, blocks);
+  // Pieces sum line quantities, so 2 of the same kid size (siblings) count as matching.
+  assert.match(snippet, /assign dcf_pieces = dcf_pieces \| plus: dcf_line\.quantity/);
+  assert.match(snippet, /if dcf_pieces == 1\s+assign dcf_product_html = dcf_product_html \| append: '<p class="dlm-cf__single"/);
+  // Output is escaped.
+  assert.match(snippet, /assign dcf_single_e = t_single \| escape/);
+  assert.match(snippet, /assign dcf_single_hint_e = t_single_hint \| escape/);
+});
+
+test('single-piece designs are listed first so max_products never hides the notice', () => {
+  assert.match(snippet, /for dcf_pass in \(1\.\.2\)\s+for item in dcf_items/);
+  assert.match(snippet, /if dcf_pass == 1 and dcf_qty_all != 1\s+continue/);
+  // The seen-marker is set only after the pass filter, so pass 2 still visits multi-piece designs.
+  assert.ok(snippet.indexOf('if dcf_pass == 1 and dcf_qty_all != 1') < snippet.indexOf("assign dcf_seen = dcf_seen | append: item.product_id"));
+});

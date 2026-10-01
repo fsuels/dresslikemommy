@@ -57167,3 +57167,14 @@ Recurring mistakes for the hourly job:
 - Owner (2026-09-30): the PDP family list ("+ Add another family member", "+ Mother / + Father / + Child" chips, "Add all to bag", auto-switch to the next person after an add) confused shoppers; they bought one piece instead of the matching set. Restore the original flow: pick person, pick size, Add this piece to bag, repeat.
 - Removed the `{%- render 'dlm-family-builder' -%}` include from `layout/theme.liquid` (rollback named in the lane INTEGRATION.md). Asset and snippet files left in place but inert. Do not re-add without owner approval.
 - Kept: 9c9bde2 always-ready add button, bundle offer copy (04b9329, 9656281), cart "complete the family" upsell.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-cart-single-piece-notice
+
+- task_entities: snippets/dlm-complete-family.liquid, assets/dlm-complete-family.css, ops/tests/test_complete_family.mjs, order #9576
+- task_stage: RELEASED
+- next_action_id: WATCH_SINGLE_PIECE_ORDERS
+
+- Owner (2026-09-30): order #9576 bought one Scarlet Blossom kid shirt and no adult size; the owner emailed the buyer. To prevent repeats, show a calm cart confirmation when a matching design has only one piece; no notice once the design has 2+ pieces.
+- Built into the existing "Complete the family" cart block (drawer + /cart): when a design's family pieces in the cart total exactly 1, a note under its title reads "Only 1 piece in your bag. It's for one person. To match, add family members below." Translated for all 31 language branches. Single-piece designs are listed first (two-pass loop) so max_products (drawer 2, /cart 1) never hides the notice.
+- Verified on unpublished preview theme 156252962913 in Chrome test profile: 1 piece -> notice shown first in drawer and /cart; 2 pieces (kid + Mom) -> no notice; designs with qty 2 or 4 pieces -> no notice; /es renders Spanish. Cart restored to its prior 6 lines. Mobile-width visual not captured (window would not resize); layout reuses the already mobile-tested block.
+- Tests: node --test ops/tests/test_complete_family.mjs 14/14; ceo_worktree check ok (theme check clean).

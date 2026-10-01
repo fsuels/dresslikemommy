@@ -16,6 +16,12 @@
   every add/remove/quantity change and never appears late (no layout shift).
   Renders nothing when no cart product has a family-role option.
 
+  Single-piece notice: when a design has exactly one piece in the cart (e.g.
+  one kid shirt and no adult size), a calm one-line note under its title says
+  the bag holds 1 piece for one person, so shoppers who expected the whole
+  family look from the photos notice before checkout. Two or more pieces of
+  the design count as matching and show no notice.
+
   Role detection is locale-independent: variant option values are translated
   per storefront language (e.g. "Mother S" / "Mamá S"), so a value's role is
   its first two words, first word, first hyphen segment or last word looked up
@@ -53,6 +59,8 @@
   assign t_adult = 'Adult'
   assign t_another_child = 'Another kid'
   assign t_another_adult = 'Another adult'
+  assign t_single = 'Only 1 piece in your bag.'
+  assign t_single_hint = "It's for one person. To match, add family members below."
 
   case dcf_lang
     when 'ar'
@@ -71,6 +79,8 @@
       assign t_adult = 'البالغ'
       assign t_another_child = 'طفل آخر'
       assign t_another_adult = 'بالغ آخر'
+      assign t_single = 'قطعة واحدة فقط في سلتك.'
+      assign t_single_hint = 'إنها لشخص واحد. للتنسيق، أضف أفراد العائلة أدناه.'
     when 'cs'
       assign t_heading = 'Doplňte rodinu'
       assign t_note = 'Každý kus se prodává samostatně.'
@@ -87,6 +97,8 @@
       assign t_adult = 'Dospělý'
       assign t_another_child = 'Další dítě'
       assign t_another_adult = 'Další dospělý'
+      assign t_single = 'V košíku máte jen 1 kus.'
+      assign t_single_hint = 'Je pro jednu osobu. Pro sladění přidejte další členy rodiny níže.'
     when 'da'
       assign t_heading = 'Gør familien komplet'
       assign t_note = 'Hvert stykke sælges separat.'
@@ -103,6 +115,8 @@
       assign t_adult = 'Voksen'
       assign t_another_child = 'Endnu et barn'
       assign t_another_adult = 'Endnu en voksen'
+      assign t_single = 'Kun 1 stykke i din kurv.'
+      assign t_single_hint = 'Det er til én person. Tilføj familiemedlemmer nedenfor for at matche.'
     when 'de'
       assign t_heading = 'Familie komplettieren'
       assign t_note = 'Jedes Teil wird einzeln verkauft.'
@@ -119,6 +133,8 @@
       assign t_adult = 'Erwachsene'
       assign t_another_child = 'Weiteres Kind'
       assign t_another_adult = 'Weitere erwachsene Person'
+      assign t_single = 'Nur 1 Teil in deinem Warenkorb.'
+      assign t_single_hint = 'Es ist für eine Person. Für den Familienlook unten weitere hinzufügen.'
     when 'el'
       assign t_heading = 'Ολοκληρώστε την οικογένεια'
       assign t_note = 'Κάθε κομμάτι πωλείται χωριστά.'
@@ -135,6 +151,8 @@
       assign t_adult = 'Ενήλικας'
       assign t_another_child = 'Ακόμη ένα παιδί'
       assign t_another_adult = 'Ακόμη ένας ενήλικας'
+      assign t_single = 'Μόνο 1 κομμάτι στο καλάθι σας.'
+      assign t_single_hint = 'Είναι για ένα άτομο. Για να ταιριάξετε, προσθέστε μέλη της οικογένειας παρακάτω.'
     when 'es'
       assign t_heading = 'Completa la familia'
       assign t_note = 'Cada prenda se vende por separado.'
@@ -151,6 +169,8 @@
       assign t_adult = 'Adulto'
       assign t_another_child = 'Otro infantil'
       assign t_another_adult = 'Otro adulto'
+      assign t_single = 'Solo 1 prenda en tu carrito.'
+      assign t_single_hint = 'Es para una persona. Para combinar, añade a más familiares abajo.'
     when 'fi'
       assign t_heading = 'Täydennä perhe'
       assign t_note = 'Jokainen tuote myydään erikseen.'
@@ -167,6 +187,8 @@
       assign t_adult = 'Aikuinen'
       assign t_another_child = 'Toinen lapsi'
       assign t_another_adult = 'Toinen aikuinen'
+      assign t_single = 'Ostoskorissa on vain 1 tuote.'
+      assign t_single_hint = 'Se on yhdelle henkilölle. Lisää perheenjäseniä alta, niin pukeudutte samoin.'
     when 'fr'
       assign t_heading = 'Complétez la famille'
       assign t_note = 'Chaque pièce est vendue séparément.'
@@ -183,6 +205,8 @@
       assign t_adult = 'Adulte'
       assign t_another_child = 'Un autre enfant'
       assign t_another_adult = 'Un autre adulte'
+      assign t_single = 'Une seule pièce dans votre panier.'
+      assign t_single_hint = "Elle est pour une personne. Pour être assortis, ajoutez d'autres membres de la famille ci-dessous."
     when 'he'
       assign t_heading = 'השלימו את המשפחה'
       assign t_note = 'כל פריט נמכר בנפרד.'
@@ -199,6 +223,8 @@
       assign t_adult = 'מבוגר/ת'
       assign t_another_child = 'עוד ילד/ה'
       assign t_another_adult = 'עוד מבוגר/ת'
+      assign t_single = 'רק פריט אחד בסל שלך.'
+      assign t_single_hint = 'הוא מיועד לאדם אחד. כדי להתאים, הוסיפו בני משפחה למטה.'
     when 'hi'
       assign t_heading = 'पूरे परिवार का सेट बनाएँ'
       assign t_note = 'हर पीस अलग से बिकता है।'
@@ -215,6 +241,8 @@
       assign t_adult = 'वयस्क'
       assign t_another_child = 'एक और बच्चा'
       assign t_another_adult = 'एक और वयस्क'
+      assign t_single = 'आपके कार्ट में केवल 1 पीस है।'
+      assign t_single_hint = 'यह एक व्यक्ति के लिए है। मैचिंग के लिए नीचे परिवार के सदस्य जोड़ें।'
     when 'hr'
       assign t_heading = 'Upotpunite obitelj'
       assign t_note = 'Svaki komad prodaje se zasebno.'
@@ -231,6 +259,8 @@
       assign t_adult = 'Odrasla osoba'
       assign t_another_child = 'Još jedno dijete'
       assign t_another_adult = 'Još jedna odrasla osoba'
+      assign t_single = 'U košarici je samo 1 komad.'
+      assign t_single_hint = 'Namijenjen je jednoj osobi. Za usklađeni izgled dodajte članove obitelji ispod.'
     when 'hu'
       assign t_heading = 'Tedd teljessé a családot'
       assign t_note = 'Minden darabot külön árusítunk.'
@@ -247,6 +277,8 @@
       assign t_adult = 'Felnőtt'
       assign t_another_child = 'Még egy gyerek'
       assign t_another_adult = 'Még egy felnőtt'
+      assign t_single = 'Csak 1 darab van a kosaradban.'
+      assign t_single_hint = 'Ez egy személyre szól. Az összeillő szetthez add hozzá lent a családtagokat.'
     when 'id'
       assign t_heading = 'Lengkapi keluarga'
       assign t_note = 'Setiap item dijual terpisah.'
@@ -263,6 +295,8 @@
       assign t_adult = 'Dewasa'
       assign t_another_child = 'Anak lainnya'
       assign t_another_adult = 'Dewasa lainnya'
+      assign t_single = 'Hanya 1 item di keranjang Anda.'
+      assign t_single_hint = 'Ini untuk satu orang. Agar serasi, tambahkan anggota keluarga di bawah.'
     when 'it'
       assign t_heading = 'Completa la famiglia'
       assign t_note = 'Ogni capo è venduto separatamente.'
@@ -279,6 +313,8 @@
       assign t_adult = 'Adulto'
       assign t_another_child = 'Un altro bimbo/a'
       assign t_another_adult = 'Un altro adulto'
+      assign t_single = 'Solo 1 capo nel carrello.'
+      assign t_single_hint = 'È per una persona. Per abbinarvi, aggiungi altri familiari qui sotto.'
     when 'ja'
       assign t_heading = '家族みんなでおそろいに'
       assign t_note = '各アイテムは個別販売です。'
@@ -295,6 +331,8 @@
       assign t_adult = '大人'
       assign t_another_child = 'キッズをもう1人'
       assign t_another_adult = '大人をもう1人'
+      assign t_single = 'カートには1点のみです。'
+      assign t_single_hint = '1人分のアイテムです。おそろいにするには、下からご家族の分を追加してください。'
     when 'ko'
       assign t_heading = '가족 세트 완성하기'
       assign t_note = '각 제품은 개별 판매됩니다.'
@@ -311,6 +349,8 @@
       assign t_adult = '성인'
       assign t_another_child = '아동 한 명 더'
       assign t_another_adult = '성인 한 명 더'
+      assign t_single = '장바구니에 1개만 담겨 있습니다.'
+      assign t_single_hint = '1인용입니다. 가족과 맞춰 입으려면 아래에서 추가하세요.'
     when 'lt'
       assign t_heading = 'Papildykite šeimą'
       assign t_note = 'Kiekviena prekė parduodama atskirai.'
@@ -327,6 +367,8 @@
       assign t_adult = 'Suaugęs'
       assign t_another_child = 'Dar vienas vaikas'
       assign t_another_adult = 'Dar vienas suaugęs'
+      assign t_single = 'Krepšelyje tik 1 prekė.'
+      assign t_single_hint = 'Ji skirta vienam asmeniui. Norėdami derinti, žemiau pridėkite šeimos narių.'
     when 'nb', 'nn', 'no'
       assign t_heading = 'Gjør familien komplett'
       assign t_note = 'Hvert plagg selges separat.'
@@ -343,6 +385,8 @@
       assign t_adult = 'Voksen'
       assign t_another_child = 'Ett barn til'
       assign t_another_adult = 'En voksen til'
+      assign t_single = 'Bare 1 plagg i handlekurven.'
+      assign t_single_hint = 'Det er til én person. For å matche, legg til familiemedlemmer nedenfor.'
     when 'nl'
       assign t_heading = 'Maak de familie compleet'
       assign t_note = 'Elk stuk wordt apart verkocht.'
@@ -359,6 +403,8 @@
       assign t_adult = 'Volwassene'
       assign t_another_child = 'Nog een kind'
       assign t_another_adult = 'Nog een volwassene'
+      assign t_single = 'Slechts 1 stuk in je winkelwagen.'
+      assign t_single_hint = 'Het is voor één persoon. Wil je matchen? Voeg hieronder familieleden toe.'
     when 'pl'
       assign t_heading = 'Uzupełnij rodzinę'
       assign t_note = 'Każda sztuka jest sprzedawana osobno.'
@@ -375,6 +421,8 @@
       assign t_adult = 'Dorosły'
       assign t_another_child = 'Kolejne dziecko'
       assign t_another_adult = 'Kolejny dorosły'
+      assign t_single = 'W koszyku jest tylko 1 sztuka.'
+      assign t_single_hint = 'Jest dla jednej osoby. Aby dopasować stroje, dodaj członków rodziny poniżej.'
     when 'pt'
       assign t_heading = 'Complete a família'
       assign t_note = 'Cada peça é vendida separadamente.'
@@ -391,6 +439,8 @@
       assign t_adult = 'Adulto'
       assign t_another_child = 'Outra criança'
       assign t_another_adult = 'Outro adulto'
+      assign t_single = 'Apenas 1 peça no seu carrinho.'
+      assign t_single_hint = 'É para uma pessoa. Para combinar, adicione familiares abaixo.'
       if dcf_iso == 'pt-pt'
         assign t_baby = 'Bebé'
       endif
@@ -410,6 +460,8 @@
       assign t_adult = 'Adult'
       assign t_another_child = 'Încă un copil'
       assign t_another_adult = 'Încă un adult'
+      assign t_single = 'Doar 1 piesă în coș.'
+      assign t_single_hint = 'Este pentru o singură persoană. Pentru a vă asorta, adăugați membrii familiei mai jos.'
     when 'ru'
       assign t_heading = 'Соберите всю семью'
       assign t_note = 'Каждая вещь продаётся отдельно.'
@@ -426,6 +478,8 @@
       assign t_adult = 'Взрослый'
       assign t_another_child = 'Ещё ребёнок'
       assign t_another_adult = 'Ещё взрослый'
+      assign t_single = 'В корзине только 1 вещь.'
+      assign t_single_hint = 'Она на одного человека. Чтобы одеться в одном стиле, добавьте членов семьи ниже.'
     when 'sk'
       assign t_heading = 'Doplňte rodinu'
       assign t_note = 'Každý kus sa predáva samostatne.'
@@ -442,6 +496,8 @@
       assign t_adult = 'Dospelý'
       assign t_another_child = 'Ďalšie dieťa'
       assign t_another_adult = 'Ďalší dospelý'
+      assign t_single = 'V košíku máte len 1 kus.'
+      assign t_single_hint = 'Je pre jednu osobu. Na zladenie pridajte ďalších členov rodiny nižšie.'
     when 'sl'
       assign t_heading = 'Dopolnite družino'
       assign t_note = 'Vsak kos se prodaja posebej.'
@@ -458,6 +514,8 @@
       assign t_adult = 'Odrasli'
       assign t_another_child = 'Še en otrok'
       assign t_another_adult = 'Še en odrasli'
+      assign t_single = 'V košarici je samo 1 kos.'
+      assign t_single_hint = 'Namenjen je eni osebi. Za usklajen videz spodaj dodajte družinske člane.'
     when 'sv'
       assign t_heading = 'Gör familjen komplett'
       assign t_note = 'Varje plagg säljs separat.'
@@ -474,6 +532,8 @@
       assign t_adult = 'Vuxen'
       assign t_another_child = 'Ett barn till'
       assign t_another_adult = 'En vuxen till'
+      assign t_single = 'Bara 1 plagg i varukorgen.'
+      assign t_single_hint = 'Det är till en person. Lägg till familjemedlemmar nedan för att matcha.'
     when 'th'
       assign t_heading = 'จัดชุดให้ครบทั้งครอบครัว'
       assign t_note = 'แต่ละชิ้นขายแยกกัน'
@@ -490,6 +550,8 @@
       assign t_adult = 'ผู้ใหญ่'
       assign t_another_child = 'เด็กอีกคน'
       assign t_another_adult = 'ผู้ใหญ่อีกคน'
+      assign t_single = 'มีเพียง 1 ชิ้นในตะกร้าของคุณ'
+      assign t_single_hint = 'สำหรับ 1 คน หากต้องการใส่เข้าชุดกัน เพิ่มสมาชิกครอบครัวด้านล่าง'
     when 'tr'
       assign t_heading = 'Aileyi tamamla'
       assign t_note = 'Her parça ayrı satılır.'
@@ -506,6 +568,8 @@
       assign t_adult = 'Yetişkin'
       assign t_another_child = 'Bir çocuk daha'
       assign t_another_adult = 'Bir yetişkin daha'
+      assign t_single = 'Sepetinizde yalnızca 1 parça var.'
+      assign t_single_hint = 'Tek kişiliktir. Uyumlu görünmek için aşağıdan aile üyelerini ekleyin.'
     when 'vi'
       assign t_heading = 'Hoàn thiện cả nhà'
       assign t_note = 'Mỗi món được bán riêng.'
@@ -522,6 +586,8 @@
       assign t_adult = 'Người lớn'
       assign t_another_child = 'Thêm một bé'
       assign t_another_adult = 'Thêm một người lớn'
+      assign t_single = 'Chỉ có 1 sản phẩm trong giỏ hàng.'
+      assign t_single_hint = 'Sản phẩm dành cho một người. Để mặc đồng bộ, hãy thêm thành viên gia đình bên dưới.'
     when 'zh'
       if dcf_iso == 'zh-tw' or dcf_iso == 'zh-hk' or dcf_iso == 'zh-hant'
         assign t_heading = '湊齊全家'
@@ -539,6 +605,8 @@
         assign t_adult = '成人'
         assign t_another_child = '再加一位兒童'
         assign t_another_adult = '再加一位成人'
+        assign t_single = '購物車中僅有 1 件。'
+        assign t_single_hint = '這是 1 人份。想全家同款，請在下方加入其他家人。'
       else
         assign t_heading = '凑齐全家'
         assign t_note = '每件单独出售。'
@@ -555,6 +623,8 @@
         assign t_adult = '成人'
         assign t_another_child = '再加一位儿童'
         assign t_another_adult = '再加一位成人'
+        assign t_single = '购物车中仅有 1 件。'
+        assign t_single_hint = '这是 1 人份。想全家同款，请在下方添加其他家人。'
       endif
   endcase
 
@@ -575,11 +645,17 @@
   endif
 
   assign dcf_role_keys = 'mother,father,girl,boy,child,baby,adult' | split: ','
+  assign dcf_single_e = t_single | escape
+  assign dcf_single_hint_e = t_single_hint | escape
   assign dcf_items = cart.items | sort: 'final_line_price' | reverse
   assign dcf_seen = ','
   assign dcf_shown = 0
   assign dcf_products_html = ''
 
+  # Two passes over the cart: pass 1 takes designs with exactly one piece in
+  # the cart, so their single-piece notice is never pushed out by
+  # max_products; pass 2 takes the rest. (Body kept at one indent level.)
+  for dcf_pass in (1..2)
   for item in dcf_items
     if dcf_shown >= dcf_limit
       break
@@ -587,6 +663,15 @@
     assign dcf_p = item.product
     assign dcf_pkey = ',' | append: item.product_id | append: ','
     if dcf_seen contains dcf_pkey
+      continue
+    endif
+    assign dcf_qty_all = 0
+    for dcf_line in cart.items
+      if dcf_line.product_id == item.product_id
+        assign dcf_qty_all = dcf_qty_all | plus: dcf_line.quantity
+      endif
+    endfor
+    if dcf_pass == 1 and dcf_qty_all != 1
       continue
     endif
     assign dcf_seen = dcf_seen | append: item.product_id | append: ','
@@ -685,13 +770,18 @@
     assign dcf_vroles = dcf_vroles | split: ','
 
     # 3. Roles already in the cart for this product.
+    # dcf_pieces counts every family piece of this design in the cart, so a
+    # lone piece (e.g. one kid shirt and no adult size) gets the single-piece
+    # notice; two or more pieces already match and get none.
     assign dcf_in_cart = ','
+    assign dcf_pieces = 0
     for dcf_line in cart.items
       if dcf_line.product_id == item.product_id
         assign dcf_needle = '¦' | append: dcf_line.variant.options[dcf_ri] | append: '¤'
         if dcf_map contains dcf_needle
           assign dcf_lr = dcf_map | split: dcf_needle | last | split: '¤' | first
           assign dcf_in_cart = dcf_in_cart | append: dcf_lr | append: ','
+          assign dcf_pieces = dcf_pieces | plus: dcf_line.quantity
         endif
       endif
     endfor
@@ -880,9 +970,14 @@
       assign dcf_img = dcf_p.featured_image | image_url: width: 96
       assign dcf_product_html = dcf_product_html | append: '<img src="' | append: dcf_img | append: '" alt="" width="44" height="44" loading="lazy">'
     endif
-    assign dcf_product_html = dcf_product_html | append: '</a><div class="dlm-cf__main"><a class="dlm-cf__title" href="' | append: dcf_url_e | append: '">' | append: dcf_title_e | append: '</a><div class="dlm-cf__chips">' | append: dcf_chips | append: '</div>' | append: dcf_panels | append: '</div></div>'
+    assign dcf_product_html = dcf_product_html | append: '</a><div class="dlm-cf__main"><a class="dlm-cf__title" href="' | append: dcf_url_e | append: '">' | append: dcf_title_e | append: '</a>'
+    if dcf_pieces == 1
+      assign dcf_product_html = dcf_product_html | append: '<p class="dlm-cf__single" data-dlm-cf-single><strong>' | append: dcf_single_e | append: '</strong> ' | append: dcf_single_hint_e | append: '</p>'
+    endif
+    assign dcf_product_html = dcf_product_html | append: '<div class="dlm-cf__chips">' | append: dcf_chips | append: '</div>' | append: dcf_panels | append: '</div></div>'
     assign dcf_products_html = dcf_products_html | append: dcf_product_html
     assign dcf_shown = dcf_shown | plus: 1
+  endfor
   endfor
 -%}
 {%- if dcf_shown > 0 -%}
