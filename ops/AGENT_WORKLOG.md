@@ -57133,3 +57133,16 @@ Recurring mistakes for the hourly job:
 - No pending drafts, empty queue. Categories searched (page 3): matching family accessories (0 new), couples Christmas knits (5 screened, 0 passed), maternity sweatshirts (6 screened, 0 passed), family jackets (0 new), family hoodies (0 new), Mommy & Me dresses (1 screened, 0 passed).
 - Skips: couples knits failed rule 2 (release attribute missing) and rule 3 (4-7 day dispatch); maternity failed rule 2 (missing/2027 release) and rule 3 (4-15 day dispatch); Mommy & Me dress hit was a Summer 2025 item with 7-day dispatch.
 - No new listings. Couples hoodies search (page 3) hit a 1688 CAPTCHA (exit 3): stopped, not bypassed. Retry that category next run.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-09-30-autosource-christmas-family-knits-and-store-catalogs
+
+- task_entities: 1088278501013 (hearts raglan, skipped), 1082380485070 (rabbit raglan, not reviewed), 洋泰 shop1446482987408
+- task_stage: BLOCKED_1688_CAPTCHA
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Pending drafts 0, queue 0. Categories run: Christmas family knits page 3 (0 new 2026 family offers); catalogs 明地一族 mdyz8899, 森大 senda831, 圣瑞 shop11f7891195835 (all offers already seen); 洋泰 shop1446482987408 (29 new, 25 scanned in part).
+- Scan of 洋泰 offers (before CAPTCHA): PASS dl 2 for 1088278501013, 1087198258524, 1086119574802, 1087450028551, 1086108125716, 1087140088567, 1082832687216, 1085196108175, 1084776836092, 1082685422845, 1081033971660, 1081921862529, 1078728587423, 1080439699602, 1082380485070; fail dispatch (not 24/48h): 1083122078141, 1083019357107. Rest of the scan unfinished. Fabric: cotton 80% with silver-fox-fleece composite.
+- Supplier gate 洋泰: PASS, 12 years (est. 2014), pickup 99.74%, fulfillment 99.74%, returns 0, service 4.5, 1205 orders/30d.
+- 1088278501013 (burgundy raglan three-heart sweatshirt): reviewed sheet; not built — hearts sweatshirts are saturated in the store (Little Heart, Scribble Heart, Eternal Bliss Hearts, Together Heart, Pure Joy Heart); rule 6/7 generic. Decided skip not recorded via decide.
+- 1082380485070 and the other 洋泰 PASS offers (rabbit, panda, running figures, snowman, SAN FRANCISCO, stripes) still need capture + review next round; the "smiley" ones (1078728587423, 1082685422845, 1085196108175 etc.) fail rule 5.
+- BLOCKED: 1688 CAPTCHA during `capture 1082380485070`. No bypass attempted. Nothing built or listed this run.
