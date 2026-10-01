@@ -1,0 +1,61 @@
+{%- comment -%}
+  Basket-size nudge (2026-10-01, BACKLOG C2): under each sized line item, a link
+  back to the product so shoppers add a size for another family member. Plain
+  link to the product page (the matching-set builder sits under the gallery).
+  Text is inline per language because locales/*.json are shared with another
+  lane; English is the fallback.
+  Usage: {% render 'cart-item-add-member', item: item %}
+{%- endcomment -%}
+{%- if item.product.has_only_default_variant == false -%}
+  {%- liquid
+    assign cam_lang = request.locale.iso_code | default: 'en' | downcase | split: '-' | first
+    if cam_lang == 'nb'
+      assign cam_lang = 'no'
+    endif
+    case cam_lang
+      when 'es'
+        assign cam_text = 'Añadir talla para otro familiar'
+      when 'fr'
+        assign cam_text = 'Ajouter une taille pour un autre membre de la famille'
+      when 'de'
+        assign cam_text = 'Größe für ein weiteres Familienmitglied hinzufügen'
+      when 'it'
+        assign cam_text = 'Aggiungi una taglia per un altro familiare'
+      when 'nl'
+        assign cam_text = 'Maat toevoegen voor een ander gezinslid'
+      when 'pt'
+        assign cam_text = 'Adicionar tamanho para outro familiar'
+      when 'da'
+        assign cam_text = 'Tilføj en størrelse til et andet familiemedlem'
+      when 'sv'
+        assign cam_text = 'Lägg till en storlek för en annan familjemedlem'
+      when 'no'
+        assign cam_text = 'Legg til en størrelse for et annet familiemedlem'
+      when 'fi'
+        assign cam_text = 'Lisää koko toiselle perheenjäsenelle'
+      when 'pl'
+        assign cam_text = 'Dodaj rozmiar dla innego członka rodziny'
+      when 'cs'
+        assign cam_text = 'Přidat velikost pro dalšího člena rodiny'
+      when 'ro'
+        assign cam_text = 'Adaugă o mărime pentru alt membru al familiei'
+      when 'el'
+        assign cam_text = 'Προσθέστε μέγεθος για άλλο μέλος της οικογένειας'
+      when 'ru'
+        assign cam_text = 'Добавить размер для другого члена семьи'
+      when 'he'
+        assign cam_text = 'הוסיפו מידה לבן משפחה נוסף'
+      when 'ar'
+        assign cam_text = 'أضف مقاسًا لفرد آخر من العائلة'
+      when 'hi'
+        assign cam_text = 'परिवार के किसी और सदस्य का साइज़ जोड़ें'
+      when 'ja'
+        assign cam_text = 'ほかの家族のサイズを追加'
+      when 'ko'
+        assign cam_text = '다른 가족 구성원 사이즈 추가'
+      else
+        assign cam_text = "Add another family member's size"
+    endcase
+  -%}
+  <a href="{{ item.product.url }}" class="link cart-item__add-member" data-cart-add-member style="display:inline-block;margin-top:0.6rem;font-size:1.3rem;line-height:1.4;">+ {{ cam_text }}</a>
+{%- endif -%}
