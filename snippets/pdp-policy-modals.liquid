@@ -70,9 +70,8 @@
   assign dpm_return_full_link = 'products.purchase_confidence.returns_full_link_label' | t
   assign dpm_shipping_title = 'products.purchase_confidence.shipping_details_label' | t
   assign dpm_shipping_line_1 = 'products.purchase_confidence.shipping_details_body' | t
-  assign dpm_shipping_line_2 = 'products.additional_info.premium_delivery_window' | t
-  assign dpm_shipping_line_3 = 'products.additional_info.secure_logistics_line_1' | t
-  assign dpm_shipping_line_4 = 'products.additional_info.secure_logistics_line_2' | t
+  assign dpm_shipping_line_2 = 'products.additional_info.secure_logistics_line_1' | t
+  assign dpm_shipping_line_3 = 'products.additional_info.secure_logistics_line_2' | t
   assign dpm_shipping_full_link = shop.shipping_policy.title | default: dpm_shipping_title
 -%}
 
@@ -236,7 +235,6 @@
         <li>{{ dpm_shipping_line_1 }}</li>
         <li>{{ dpm_shipping_line_2 }}</li>
         <li>{{ dpm_shipping_line_3 }}</li>
-        <li>{{ dpm_shipping_line_4 }}</li>
       </ul>
     </div>
     <div class="dlm-policy-modal__footer">

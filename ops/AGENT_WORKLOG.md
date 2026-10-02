@@ -57557,7 +57557,7 @@ Rollback: set the 8 products to DRAFT.
 - Owner request: on product pages, the "Shipping details" link opened /policies/shipping-policy as a new page. The Return policy and Payment & privacy links open an in-page pop-up instead.
 - Added a matching shipping pop-up. It uses existing translated keys only:
   - purchase_confidence.shipping_details_label and shipping_details_body;
-  - additional_info.premium_delivery_window, secure_logistics_line_1 and secure_logistics_line_2.
+  - additional_info.secure_logistics_line_1 and secure_logistics_line_2 (premium_delivery_window dropped as a repeat of the body line).
 
   The footer links to the full policy in a new tab and is labelled with Shopify's own `shop.shipping_policy.title`. No new claims and no new locale keys.
 - The link keeps its real href, so modified clicks and no-JS users still reach the policy page.
