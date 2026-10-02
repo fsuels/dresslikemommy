@@ -57578,3 +57578,9 @@ Rollback: set the 8 products to DRAFT.
 - Change: wallet containers in the drawer and on /cart carry `additional-checkout-buttons--horizontal`. The drawer row gets a 0.8rem gap under Check out. The 112px scroll cap for the 4-wallet stack is removed. Wallet block in the probe: 112px → 40px at 390×664.
 - Amazon Pay cannot be hidden from theme code (closed shadow root). It is removed only by deactivating it in Shopify admin > Settings > Payments. With 4 wallets the one-row logos clip at 320px wide, so the deactivation completes the fix.
 - Rollback: revert this commit.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-02-home-holiday-guides-block
+- task_entities: backlog H1, X1 second lever, `sections/home-guides.liquid`, `templates/index.json`
+- Change: new homepage section lists 4 live Christmas/holiday guides (news blog, titles/urls localized by Shopify) plus one collection link, anchor "family matching outfits" -> /collections/matching-outfits. Heading inline in 21 languages. Renders nothing if no article exists.
+- Checks: ceo_worktree check; live readback of home + a localized home.
+- Rollback: revert this commit.

@@ -1,0 +1,88 @@
+{%- comment -%}
+  Homepage "Christmas and holiday guides" block (2026-10-02, backlog H1).
+  Links 4 live guides in the `news` blog (article url/title localized by Shopify)
+  and one collection link with the anchor "family matching outfits".
+  Heading strings are inline (locales/*.json are shared); English is the fallback.
+  Renders nothing when none of the articles exist.
+{%- endcomment -%}
+{%- liquid
+  assign hg_handles = 'matching-family-christmas-pajamas-guide-2026,family-christmas-photo-outfits-2026,matching-family-christmas-sweaters-guide-2026,family-christmas-card-photo-ideas' | split: ','
+  assign hg_count = 0
+  for hg_handle in hg_handles
+    assign hg_key = 'news/' | append: hg_handle
+    if articles[hg_key] != blank
+      assign hg_count = hg_count | plus: 1
+    endif
+  endfor
+  assign hg_lang = request.locale.iso_code | default: 'en' | downcase | split: '-' | first
+  if hg_lang == 'nb'
+    assign hg_lang = 'no'
+  endif
+-%}
+{%- if hg_count > 0 -%}
+  {{ 'section-collection-seo.css' | asset_url | stylesheet_tag }}
+  <section class="home-guides collection-seo-rich page-width page-width--narrow" style="padding-top: 2.4rem; padding-bottom: 3.2rem;">
+    <h2 class="collection-seo-rich__eyebrow">
+      {%- case hg_lang -%}
+        {%- when 'es' -%}Guías de Navidad y fiestas
+        {%- when 'fr' -%}Guides de Noël et des fêtes
+        {%- when 'de' -%}Ratgeber für Weihnachten und Feiertage
+        {%- when 'it' -%}Guide per Natale e feste
+        {%- when 'nl' -%}Gidsen voor Kerst en feestdagen
+        {%- when 'pt' -%}Guias de Natal e festas
+        {%- when 'da' -%}Guides til jul og højtider
+        {%- when 'sv' -%}Guider för jul och högtider
+        {%- when 'no' -%}Guider for jul og høytider
+        {%- when 'pl' -%}Poradniki na Boże Narodzenie i święta
+        {%- when 'cs' -%}Průvodci vánoci a svátky
+        {%- when 'ja' -%}クリスマスとホリデーのガイド
+        {%- when 'ko' -%}크리스마스·홀리데이 가이드
+        {%- when 'ru' -%}Гиды к Рождеству и праздникам
+        {%- when 'ar' -%}أدلة عيد الميلاد والأعياد
+        {%- when 'he' -%}מדריכים לחג המולד ולחגים
+        {%- when 'hi' -%}क्रिसमस और छुट्टियों के गाइड
+        {%- when 'el' -%}Οδηγοί για Χριστούγεννα και γιορτές
+        {%- when 'ro' -%}Ghiduri pentru Crăciun și sărbători
+        {%- when 'fi' -%}Joulun ja juhlapyhien oppaat
+        {%- else -%}Christmas and holiday guides
+      {%- endcase -%}
+    </h2>
+    <div class="collection-seo-rich__links" style="margin-top: 1.2rem;">
+      {%- for hg_handle in hg_handles -%}
+        {%- assign hg_key = 'news/' | append: hg_handle -%}
+        {%- assign hg_article = articles[hg_key] -%}
+        {%- if hg_article != blank -%}
+          <a class="collection-seo-rich__link" href="{{ hg_article.url }}">{{ hg_article.title | escape }}</a>
+        {%- endif -%}
+      {%- endfor -%}
+      {%- assign hg_collection = collections['matching-outfits'] -%}
+      {%- if hg_collection != blank -%}
+        <a class="collection-seo-rich__link" href="{{ hg_collection.url }}">
+          {%- case hg_lang -%}
+            {%- when 'es' -%}Outfits familiares a juego
+            {%- when 'fr' -%}Tenues de famille assorties
+            {%- when 'de' -%}Familien-Partnerlooks
+            {%- when 'it' -%}Outfit di famiglia coordinati
+            {%- when 'nl' -%}Bijpassende familieoutfits
+            {%- when 'pt' -%}Looks de família combinando
+            {%- else -%}Family matching outfits
+          {%- endcase -%}
+        </a>
+      {%- endif -%}
+    </div>
+  </section>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Holiday guides",
+  "tag": "section",
+  "class": "section",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Holiday guides"
+    }
+  ]
+}
+{% endschema %}
