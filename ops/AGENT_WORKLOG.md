@@ -57501,3 +57501,13 @@ Changes:
 - Fix: a varying option whose whole name is a colour label (in 20+ storefront languages) no longer blocks the route. Type options and any other varying axis still fail closed. The single-chart, single-garment and explicit-units gates are unchanged.
 - Scope: every multi-colour product with pill sizes and one size chart now gets the size-details card.
 - Rollback: revert this commit.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-pdp-duplicate-trust-pills-removed
+
+- task_entities: `snippets/pdp-purchase-confidence.liquid` (Compressed trust row, CRO Step 8)
+- task_stage: IMPLEMENTED; live readback in the release step
+- next_action_id: NONE
+
+- Owner request: on product pages, the pill row ("Secure checkout / Standard shipping included / Returns on eligible items / Ships to <country>") repeated the purchase-confidence rows right below it. Remove it.
+- Removed the pill markup and its CSS. The three rows, the "Ships to <country> · currency · Change" line and the policy accordions are unchanged. Leftover `.dlm-pc-compact-row` hide rules in `component-product-desktop-ux*.css` now match nothing and are harmless.
+- Rollback: revert this commit.
