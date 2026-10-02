@@ -114,3 +114,4 @@
 - 2026-10-01T13:28Z halloween-family-matching-costume-ideas: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-10-02T01:23Z matching-family-halloween-pajamas: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-10-02T02:22Z matching-family-halloween-pajamas: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-10-02T05:12Z mommy-and-me-pajama-gift-ideas: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
