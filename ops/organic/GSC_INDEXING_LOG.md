@@ -54,3 +54,7 @@ Browser 1 loaded the property.
 ## 2026-10-01T23:00Z (CEO loop, Browser 1, property loaded)
 - https://www.dresslikemommy.com/blogs/news/one-family-outfit-for-thanksgiving-and-christmas | ON GOOGLE (indexed on its own) | no request needed
 - Pending: none. Next publishes (#15a, #16, #19, #20) are after 00:00Z 10-02.
+
+## 2026-10-02T00:58Z (CEO loop, Browser 1, property loaded)
+- https://www.dresslikemommy.com/blogs/news/matching-family-halloween-pajamas | not on Google (unknown) | Indexing requested
+- Pending: none.

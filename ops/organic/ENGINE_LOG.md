@@ -416,3 +416,15 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 277 articles, 85 published; token valid).
 - Research: none (open ENGINE rows #17, #18, #21, #22)
 - Flags for MAIN/OWNER: none new. #20 hero is a second photo of the sky-blue-stripe sweatshirt (not viewed); swap for a couple photo if one appears. One oversized products.json fetch (limit=8) wasted context; use limit=1.
+
+## 2026-10-01T23:23Z run
+- Build: SKIPPED (daily cap, 5 of 5 published today) — drafted mommy-and-me-winter-party-dresses READY (#21; lint 0 errors, 1096 words, dry run passed). 5 READY drafts waiting (#15a, #16, #19, #20, #21): publish from 00:00Z 10-02, one per run, re-run lint and dry run first.
+- Fix: 0 items (inventory refreshed: 54 collections, 277 articles; token valid).
+- Research: none (open ENGINE rows #17, #18, #22)
+- Flags for MAIN/OWNER: none new. #21 hero is a summer print (red tropical leaf); article text acknowledges this. READY cap of 5 reached, so next idle runs go to striking-distance/internal links.
+
+## 2026-10-02T00:25Z run
+- Build: published READY #15a matching-family-halloween-pajamas → https://www.dresslikemommy.com/blogs/news/matching-family-halloween-pajamas (VERIFIED: live check 200, h1=1, 1382 words incl. page chrome; lint 0 errors and dry run passed first). 1 of 5 published today (UTC 10-02).
+- Fix: 0 items (inventory refreshed: 54 collections, 277 articles).
+- Research: none. 4 READY drafts left (#16, #19, #20, #21), one per run.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new Halloween pajamas article (Halloween ends Oct 31, so time-sensitive). Note: one stray `wc -l` was run by mistake; no effect.
