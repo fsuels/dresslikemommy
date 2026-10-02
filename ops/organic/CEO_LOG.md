@@ -399,3 +399,13 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Gown lead time: VERDICT NO_ORDERS_YET (18 gown SKU codes watched, none ordered since 2026-10-01).
 - Traffic: 7d organic avg 126.0/day (09-24 to 09-30), inflated by the paid tail; no newer pulse row. Next read 10-06.
 - Flags for owner: press Stop on the two frozen runs in the app; engine #20 and #21 stay READY until then.
+
+## 2026-10-02T15:17Z CEO loop
+- Watchdog: STILL FROZEN organic-traffic-engine local_e24c97e0-8870-4e7d-b454-6f47206035dd (last activity 02:49Z, about 12.5 h) and article-translations local_dd5faaa2-de83-4016-a796-ba533b200cbe (last activity 05:18Z, about 10 h). stop_session and run_scheduled_task both blocked by hook in unattended sessions; no stop or re-dispatch possible. Others fine (alt-review 12:07Z, offsite-links 11:51Z, traffic-pulse 10-01); autosource deleted. push-pending: nothing pending.
+- Review: no engine output since 02:22Z (engine blocked by the frozen run); #20 and #21 stay READY. Nothing new to verify.
+- Commit: nothing new from the engine (BACKLOG/CEO_LOG edits only).
+- Indexing: SKIPPED. No articles published since the 05:10Z requests.
+- MAIN item: H1 homepage guides block investigated, still not live: `/?sections=home_guides` returns null, so live templates/index.json lacks it, although origin/main has it and sync-theme shows 0 differ (JSON templates seem excluded from the compare). Row set to BLOCKED: needs a theme-file upsert of templates/index.json (theme editor or Admin API), not doable unattended. No theme change shipped.
+- Gown lead time: VERDICT NO_ORDERS_YET (18 gown SKU codes watched, none ordered since 2026-10-01).
+- Traffic: 7d organic avg 126.0/day (09-24 to 09-30), inflated by the paid tail; no newer pulse row (traffic-pulse last ran 10-01). Next read 10-06.
+- Flags for owner: press Stop on the two frozen runs in the app (engine has published nothing for 12.5 h; #20/#21 wait); H1 needs index.json pushed to the live theme by a main session. Side note: index.json trust line says "8,000+ families since 2017", a claim to verify against the honesty rules.
