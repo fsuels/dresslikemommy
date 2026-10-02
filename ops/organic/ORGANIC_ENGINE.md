@@ -14,7 +14,7 @@ Allowed live writes (standing CEO authority + owner request above), each reversi
 
 | Write | Tool | Cap per run | Rollback |
 |---|---|---|---|
-| New Style Journal article (blog `news`) | `publish_blog_articles.py --execute --publish --handles <h>` | 1 (max 5 per UTC day until Nov 15, then 3; raised 2026-09-29: Christmas pages must be live by mid-Oct and every audited article passed) | unpublish the article |
+| New Style Journal article (blog `news`) | `publish_blog_articles.py --execute --publish --handles <h>` | 1 (max 3 per UTC day; owner set the cap to 3 and the schedule to every 6 hours on 2026-10-02, replacing the 2026-09-29 raise to 5) | unpublish the article |
 | Repair body of a live article: dead links + unsupported claims | `organic_engine.py article-body --execute` | 5 | `before_body` in the receipt |
 | SEO title/description of a live article | `organic_engine.py article-seo --execute` | 10 | receipt `rollback` values |
 | Body update of an article this engine created | `publish_blog_articles.py --execute --update-existing --handles <h>` | 3 | previous file version in git/receipt |

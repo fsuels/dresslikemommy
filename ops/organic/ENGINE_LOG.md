@@ -428,3 +428,15 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 277 articles).
 - Research: none. 4 READY drafts left (#16, #19, #20, #21), one per run.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new Halloween pajamas article (Halloween ends Oct 31, so time-sensitive). Note: one stray `wc -l` was run by mistake; no effect.
+
+## 2026-10-02T01:24Z run
+- Build: published READY #16 mommy-and-me-pajama-gift-ideas → https://www.dresslikemommy.com/blogs/news/mommy-and-me-pajama-gift-ideas (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors and dry run passed first). 2 of 5 published today (UTC 10-02).
+- Fix: 0 items (inventory refreshed: 54 collections, 278 articles; token valid).
+- Research: none. 3 READY drafts left (#19, #20, #21), one per run.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new pajama gift article.
+
+## 2026-10-02T02:22Z run
+- Build: published READY #19 family-photo-color-palettes-by-season → https://www.dresslikemommy.com/blogs/news/family-photo-color-palettes-by-season (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors and dry run passed first). 3 of 5 published today (UTC 10-02).
+- Fix: 0 items (inventory refreshed: 54 collections, 279 articles; token valid).
+- Research: none. 2 READY drafts left (#20, #21), one per run.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new color palettes article.
