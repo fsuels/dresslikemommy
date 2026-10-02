@@ -57511,3 +57511,28 @@ Changes:
 - Owner request: on product pages, the pill row ("Secure checkout / Standard shipping included / Returns on eligible items / Ships to <country>") repeated the purchase-confidence rows right below it. Remove it.
 - Removed the pill markup and its CSS. The three rows, the "Ships to <country> · currency · Change" line and the policy accordions are unchanged. Leftover `.dlm-pc-compact-row` hide rules in `component-product-desktop-ux*.css` now match nothing and are harmless.
 - Rollback: revert this commit.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-maternity-photoshoot-gown-batch-live
+
+- task_entities: 15 maternity listings (handles in `ops/sourcing/state/recipes/*maternity*`), owner batch seeded by 1688 offer 1086097243184; `ops/sourcing/gown_listing.py`, `ops/sourcing/gown_save_offer.py`; theme `snippets/made-to-order-window.liquid`, `snippets/delivery-estimate-copy.liquid`, `snippets/dlm-pdp-value-strip.liquid`, `snippets/pdp-purchase-confidence.liquid`, `snippets/jsonld-seo.liquid`, `snippets/product-faq-schema.liquid`, `sections/main-product.liquid`; metafield definition custom.made_to_order_days (gid://shopify/MetafieldDefinition/246614622305)
+- task_stage: LIVE_VERIFIED
+- next_action_id: SOURCE_WESTERN_MATERNITY_GOWNS_48H (blocked on a 1688 search CAPTCHA in the in-app browser; owner solves)
+
+Owner (chat, 2026-10-01): add offer 1086097243184 plus a pasted list of 20 maternity photoshoot gowns/sets, "follow the process"; then "make sure when you offer different colors in the listing the images in the listing for each color show!"; chose (AskUserQuestion) a 5–10-day dispatch exception for these 21 with an honest made-to-order line, a season-tag exception for the 9 tagged Summer/year-only, and to keep offer 1020871680362 (service 3.5) skipped. Durable rules 13 (photo for every colour) and 14 (this batch's exceptions) are in `ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md`. Later: "the dresses look too asian I need something more european and american!" for maternity photoshoots.
+
+Built and LIVE (readback 2026-10-02 ~03:55Z: storefront 200, every variant available, every variant has its colour's photo, brand "Dress Like Mommy" in all 20 translated SEO titles, localization closeout PASS for each):
+- Gowns (made to order; PDP window = 12–16 + dispatch days): dotted-tulle-off-shoulder (6 colours, $107.99, 22–26 days), strapless-ruffle-tulle-mermaid ($130.99, 19–23), feather-trim-deep-v robe (6 colours, $121.99, 22–26), ruffle-slit-off-shoulder (6 colours, $113.99, 19–23), ruffled-tulle-off-shoulder ($140.99, 19–23), tiered-ruffle-tulle-off-shoulder (6 colours, $133.99, 19–23), ruffle-tulle-v-neck-tie-waist (2 colours, $133.99, 17–21), sheer-tulle-ruffle-collar (4 colours, $150.99, 17–21), organza-puff-sleeve-off-shoulder ($124.99, 22–26), lavender-halter-mesh ($136.99, 22–26).
+- 48h studio sets (standard 12–16 days): cream-sheer-top-bustier-skirt set ($65.99 / $76.99 with hat), chocolate-bandeau-draped-skirt set ($50.99), ivory-pleated-off-shoulder-rosette dress ($48.99), white-lace-halter set ($58.99), ivory-floral-lace tiered set ($48.99).
+- Skipped: 1025264217327 (L/XL sold out), 1054685692736 + 1055277752055 (美币达: pickup 64.66%, fulfillment 83.73%), 1020871680362 (service 3.5, owner kept skipped), 1055471381000 (17 pcs, one size). Later owner offer 1083915183446 (kids' Christmas pajamas) not listed: 15-day dispatch, pickup 93.48%, kids' sleepwear hold (packet #14). Supplier readings appended to TRUSTED-SUPPLIERS.md.
+
+Theme (commits 2ab3193, 3c0774f; GitHub→Shopify sync dropped both pushes, so main's files were applied with `sync_live_theme_from_main.py --apply`, MD5-verified): products with custom.made_to_order_days add those days to every PDP delivery estimate and to JSON-LD handlingTime (verified: gown 22–26 days EN, "22-26 Tage" DE, handling 11–13 + transit 11–13; normal products unchanged at 12–16).
+
+Incidents and lessons:
+- The closeout's first step re-applied cached machine translations over the Codex ones on the first 6 gowns, including a translated brand ("Kleide dich wie Mama"). Fixed by seeding the cache from Codex output before the closeout (`gown_listing.py seed_cache`, same role as tools/seed_cache.py); repaired all affected listings, brand verified in 20 locales.
+- sheer-tulle-ruffle-collar was ACTIVE ~2 min before its closeout passed (a shell `&&` chained on grep, not the closeout exit code); set back to DRAFT, fixed, re-activated only on PASS. Repair script now gates on the closeout exit code.
+- An option named "Style"/"Type" makes the size-chart mapping audit read it as a garment type; use "Set" (documented in gown_listing.py).
+- OpenAI image moderation blocks revealing gowns intermittently; retries usually pass; the black deep-V robe needed a closed-robe-over-slip prompt.
+- 1688 reads used the owner's in-app browser pane (owner: "use the side browser"); the Claude-in-Chrome extension kept reverting to the Santo Ruidos browser, which must not be used.
+
+Risks: Lu'an Fanke's order notes say no returns once production is confirmed while the store offers 30-day returns (any gown return is a full loss); Fanke 96.06% and Fuenna 96.70% 48h fulfillment sit just under 97%. Watch real BuckyDrop lead times on the first gown orders.
+Rollback: set the 15 products to DRAFT (handles above); revert 2ab3193 and 3c0774f; delete MetafieldDefinition 246614622305.

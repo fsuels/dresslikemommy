@@ -77,18 +77,20 @@ def cmd_create(recipe_path: str) -> None:
     for c in colors:  # rule 13: a vendor photo of every colour must exist to build its own photo from
         if not (ROOT / f"ops/sourcing/vendor-images/{oid}/{c['ref']}").exists():
             raise SystemExit(f"no vendor colour reference for {c['name']}: {c['ref']}")
-    cost = 0.0
+    cost_of = {}  # per option-1 value: the highest SKU cost of that colour/style (sizes share a price per colour)
     for c in colors:
         for s in rc["sizes"]:
             key = f"{c['vendor_value']}>{s['vendor_size']}"
             if key not in sk["prices"] or (sk["stock"].get(key) or 0) < 40:
                 raise SystemExit(f"missing/low-stock SKU {key}")
-            cost = max(cost, float(sk["prices"][key]))
+            cost_of[c["token"]] = max(cost_of.get(c["token"], 0.0), float(sk["prices"][key]))
+    cost = max(cost_of.values())
     if len(colors) * len(rc["sizes"]) > 100:
         raise SystemExit("more than 100 variants")
     grams = rc["grams"]
-    landed = (cost + 3 + 45.4 + 8.2 * grams / 100) / 7.11  # same freight model as autosource standalone
-    pr = math.ceil(2.06 * landed - 0.99) + 0.99
+    land = lambda k: (k + 3 + 45.4 + 8.2 * grams / 100) / 7.11  # same freight model as autosource standalone
+    sell = lambda k: math.ceil(2.06 * land(k) - 0.99) + 0.99
+    landed, pr = land(cost), sell(cost)
     html = body(rc)
     payload = " ".join([rc["title"], rc["seo_title"], rc["seo_desc"], html, *rc["tags"]]).lower()
     bad = [w for w in BLOCKED_WORDS if re.search(rf"\b{re.escape(w)}\b", payload)]
@@ -96,13 +98,13 @@ def cmd_create(recipe_path: str) -> None:
         raise SystemExit(f"copy check failed: {bad} title {len(rc['title'])} seo {len(rc['seo_title'])} desc {len(rc['seo_desc'])}")
     if landed > pr / 2:
         raise SystemExit("margin rule failed")
-    o1 = rc.get("option1", "Color")  # "Style" when the vendor's first option is a set choice, not a colour
+    o1 = rc.get("option1", "Color")  # e.g. "Set" for a set choice; never "Style"/"Type" (the size-chart mapping audit reads those as garment type)
     opts = [{"name": o1, "values": [{"name": c["name"]} for c in colors]},
             {"name": "Size", "values": [{"name": s["label"]} for s in rc["sizes"]]}]
     variants = [{"optionValues": [{"optionName": o1, "name": c["name"]}, {"optionName": "Size", "name": s["label"]}],
-                 "price": f"{pr:.2f}", "compareAtPrice": f"{pr + 10:.2f}", "sku": f"DLM-{rc['code']}-{c['token']}-{s['suffix']}",
-                 "inventoryPolicy": "DENY", "taxable": True,
-                 "inventoryItem": {"cost": f"{landed:.2f}", "tracked": True, "requiresShipping": True}}
+                 "price": f"{sell(cost_of[c['token']]):.2f}", "compareAtPrice": f"{sell(cost_of[c['token']]) + 10:.2f}",
+                 "sku": f"DLM-{rc['code']}-{c['token']}-{s['suffix']}", "inventoryPolicy": "DENY", "taxable": True,
+                 "inventoryItem": {"cost": f"{land(cost_of[c['token']]):.2f}", "tracked": True, "requiresShipping": True}}
                 for c in colors for s in rc["sizes"]]
     text, refs = "single_line_text_field", "list.metaobject_reference"
     mfs = [("custom", "category1", text, "Maternity"), ("custom", "subcategory", text, "Dresses"),
@@ -130,7 +132,7 @@ def cmd_create(recipe_path: str) -> None:
     r = A.gql("mutation($i:ProductSetInput!){productSet(synchronous:true,input:$i){product{id handle status} userErrors{field message}}}", {"i": inp})["productSet"]
     if r["userErrors"]:
         raise SystemExit(r["userErrors"])
-    print(r["product"]["id"], h, "DRAFT", f"price ${pr:.2f} (landed ${landed:.2f}, cost ¥{cost})", len(variants), "variants")
+    print(r["product"]["id"], h, "DRAFT", "prices", sorted({v["price"] for v in variants}), f"(max landed ${landed:.2f}, cost ¥{cost})", len(variants), "variants")
     print(sh([PY, "set_inventory_100.py", h], cwd=T).strip().splitlines()[-1])
     ai = ROOT / "uploads" / h / "ai"
     ai.mkdir(parents=True, exist_ok=True)
@@ -225,6 +227,25 @@ def cmd_review(h: str) -> None:
     print("QA sheet:", out)
 
 
+def seed_cache(h: str) -> int:
+    """Copy the reviewed Codex translations into the shared translation cache before the closeout.
+    The closeout's first step re-applies cached machine translations; without this it replaced the Codex copy and
+    even translated the brand ("Kleide dich wie Mama", 2026-10-01). Same role as tools/seed_cache.py on the engine path."""
+    import glob
+    work = Path("/tmp/dlm-codex") / f"codex_{h[:40]}"
+    cache_p = ROOT / "ops/content/shopify-product-translation-live-cache.json"
+    cache = json.loads(cache_p.read_text(encoding="utf-8"))
+    src = json.loads((work / "source_en.json").read_text(encoding="utf-8"))
+    n = 0
+    for f in glob.glob(str(work / "out" / "*.json")):
+        loc, out = Path(f).stem, json.loads(Path(f).read_text(encoding="utf-8"))
+        for k in src:
+            if k in out and cache.setdefault(loc, {}).get(k) != out[k]:
+                cache[loc][k] = out[k]; n += 1
+    cache_p.write_text(json.dumps(cache, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return n
+
+
 def activate(h: str) -> str:
     sys.path.insert(0, str(T))
     import activate_listing as AL  # noqa
@@ -284,6 +305,7 @@ def cmd_finish(h: str) -> None:
     print(sh([PY, str(ts), h, "source", extra], cwd=T / "accessories").strip().splitlines()[-1])
     print(sh([PY, str(ts), h, "run"], cwd=T / "accessories", timeout=3000).strip().splitlines()[-1])
     print(sh([PY, str(ts), h, "register"], cwd=T / "accessories").strip().splitlines()[-1])
+    print("translation cache seeded:", seed_cache(h))
     ok = False
     for _ in (1, 2):
         q = subprocess.run([PY, "ops/scripts/finalize_shopify_listing_localization.py", "--handles", h], cwd=ROOT, capture_output=True, text=True, timeout=3600)
@@ -306,7 +328,8 @@ def cmd_finish(h: str) -> None:
 
 if __name__ == "__main__":
     a = sys.argv[1:]
-    cmds = {"create": cmd_create, "images": cmd_images, "review": cmd_review, "finish": cmd_finish, "colors": color_jobs}
+    cmds = {"create": cmd_create, "images": cmd_images, "review": cmd_review, "finish": cmd_finish, "colors": color_jobs,
+            "reseed": lambda h: print("seeded", seed_cache(h))}
     if len(a) != 2 or a[0] not in cmds:
         raise SystemExit(__doc__)
     cmds[a[0]](a[1])
