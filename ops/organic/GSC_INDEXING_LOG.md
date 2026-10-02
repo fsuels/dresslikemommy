@@ -58,3 +58,8 @@ Browser 1 loaded the property.
 ## 2026-10-02T00:58Z (CEO loop, Browser 1, property loaded)
 - https://www.dresslikemommy.com/blogs/news/matching-family-halloween-pajamas | not on Google (unknown) | Indexing requested
 - Pending: none.
+
+## 2026-10-02T05:10Z (CEO loop, Browser 2 = property owner profile; Browser 1 showed "no access" for a different Google account, skipped)
+- https://www.dresslikemommy.com/blogs/news/mommy-and-me-pajama-gift-ideas | not on Google (Crawled - currently not indexed) | Indexing requested
+- https://www.dresslikemommy.com/blogs/news/family-photo-color-palettes-by-season | ON GOOGLE (indexed on its own) | no request needed
+- Pending: none (#20, #21 publish later).
