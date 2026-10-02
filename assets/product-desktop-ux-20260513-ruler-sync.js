@@ -352,6 +352,11 @@ var TYPE_LABEL_TOKENS = [
   'ستايل',
   'نمط',
 ];
+var COLOR_OPTION_LABELS = [
+  'color', 'colour', 'colors', 'colours', 'couleur', 'farbe', 'colore', 'cor', 'kleur', 'färg', 'farve', 'farge',
+  'väri', 'barva', 'farba', 'kolor', 'culoare', 'szín', 'boja', 'spalva', 'renk', 'warna', 'màu', 'màu sắc', 'สี',
+  'цвет', 'χρώμα', 'צבע', 'रंग', 'カラー', '色', '颜色', '顏色', '색상', '컬러', 'اللون', 'لون',
+];
 var HEIGHT_LABEL_TOKENS = ['height', 'hauteur', 'altura', 'estatura', 'altezza', 'înălțime', 'inaltime', 'größe', 'große', 'körpergröße', 'korpergrosse', 'الارتفاع', 'الطول'];
 var ROLE_LABELS_BY_LOCALE = {
   en: { mother: 'Mother', father: 'Father', girl: 'Girl', boy: 'Boy', child: 'Child', baby: 'Baby', adult: 'Adult' },
@@ -1061,6 +1066,15 @@ function isSizeLikeLabel(value) {
 
 function isTypeLikeLabel(value) {
   return containsDictionaryToken(value, TYPE_LABEL_TOKENS);
+}
+
+// Whole-name match only: colour never changes a garment's measurements, so a
+// multi-colour product can still use its single size chart for size details.
+function isColorOptionLabel(value) {
+  var normalizedValue = normalizeText(value);
+  return !!normalizedValue && COLOR_OPTION_LABELS.some(function (label) {
+    return normalizeText(label) === normalizedValue;
+  });
 }
 
 // Detect "Type perfectly partitions roles" — i.e. each Type value
@@ -5370,8 +5384,8 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     if (sizeIndex < 0 || !variants.length || !needsNativeVariantPicker(nativeProduct)) return null;
     if (options.filter(function (option) { return isSizeLikeLabel(option.name); }).length !== 1 ||
         options.some(function (option) { return isTypeLikeLabel(option.name); })) return null;
-    if (!options.every(function (_option, index) {
-      return index === sizeIndex || variants.every(function (variant) {
+    if (!options.every(function (option, index) {
+      return index === sizeIndex || isColorOptionLabel(option.name) || variants.every(function (variant) {
         return getOptionValue(variant, index) === getOptionValue(variants[0], index);
       });
     })) return null;

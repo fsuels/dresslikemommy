@@ -57488,3 +57488,16 @@ Changes:
 - **Earlier the same day (18:12–18:40Z):** this CEO session re-scanned 25 maternity/couples offers and gated 14 stores through CDP 9333. That was before the owner ruled 9333 to be the Santo Ruidos browser. No 9333 use since.
 - **Sourcing hold:** sourcing is on hold per the owner (session "Sonnet 5.5 cost optimization strategy", about 20:00Z). The `autosource` scheduled task was removed. It is not recreated without the owner's yes, and it needs the test-profile browser configured (`dlm_browser.json`).
 - **Rollback:** revert this commit.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-01-multicolor-size-details-fix
+
+- task_entities: product `dotted-tulle-off-shoulder-maternity-gown`; `assets/product-desktop-ux-20260513-ruler-sync.js` (`getNativeRadioGuideContext`, new `isColorOptionLabel`); test `theme-buyer-truth-successor-20260915/module/native-size-guide.test.cjs`
+- task_stage: IMPLEMENTED (121/121 size-guide tests pass; new test fails on the old code); live readback in the release step
+- next_action_id: VERIFY_LIVE_SIZE_DETAILS
+
+- Owner report: the size chart on the Dotted Tulle gown did not show like on the other gowns.
+- Reproduced live: the "Your size details" card (selected-size bust/waist/hips with the cm/in toggle) was hidden. The single-colour sibling (`ruffled-tulle-off-shoulder-maternity-gown`) showed it.
+- Root cause: the native pill-size route required every non-size option to have one value. Dotted Tulle has 6 colours, so the route bailed out. The description chart was correct.
+- Fix: a varying option whose whole name is a colour label (in 20+ storefront languages) no longer blocks the route. Type options and any other varying axis still fail closed. The single-chart, single-garment and explicit-units gates are unchanged.
+- Scope: every multi-colour product with pill sizes and one size chart now gets the size-details card.
+- Rollback: revert this commit.

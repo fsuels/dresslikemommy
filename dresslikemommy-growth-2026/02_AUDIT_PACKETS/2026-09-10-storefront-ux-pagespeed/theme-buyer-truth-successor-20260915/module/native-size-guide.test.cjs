@@ -55,13 +55,27 @@ test('only case and whitespace normalize; conflicting or duplicate rows fail clo
 test('native route rejects Type, varying other axes, multiple charts, family routing and conflicting context', () => {
   const cases=[
     r=>{r.options[1].name='Type';},
-    r=>{r.variants.push({...r.variants[0],id:999,option2:'blue'});},
+    r=>{r.options[1].name='Material';r.variants.push({...r.variants[0],id:999,option2:'blue'});},
     r=>{r.tables.push(clone(r.tables[0]));},
     r=>{r.variants.forEach(v=>{v.option1='Mother S';});},
     r=>{r.tables[0].id='size-chart-cardigan';r.tables[0].heading='Size Chart - Dress';},
     r=>{r.tables[0].rows=[];},
   ];
   for(const alter of cases){const record=clone(fixture);alter(record);const env=environment(record);assert.equal(env.ctx.getNativeRadioGuideContext(),null);assert.equal(env.render().match,null);}
+});
+
+test('a varying Color option keeps the single source chart in every locale label', () => {
+  for (const name of ['Color', 'Farbe', 'Couleur', 'カラー', 'اللون', 'Cor', 'Χρώμα']) {
+    const record = clone(fixture); record.options[1].name = name;
+    const env = environment(record); const variants = env.ctx.productData.variants;
+    variants.push(...variants.map(v => ({...v, id: v.id + 1, option2: 'blue', title: v.option1 + ' / blue'})));
+    assert.ok(env.ctx.getNativeRadioGuideContext(), name);
+    env.select('90cm'); const result = env.render();
+    assert.deepEqual(Array.from(result.match.row), fixture.tables[0].rows.find(row => row[0] === '90cm'), name);
+  }
+  const record = clone(fixture); record.options[1].name = 'Colorway Length';
+  record.variants.push({...record.variants[0], id: 999, option2: 'blue'});
+  assert.equal(environment(record).ctx.getNativeRadioGuideContext(), null, 'only an exact colour option name may vary');
 });
 
 test('native rows require explicit supported units for every displayed measurement', () => {
