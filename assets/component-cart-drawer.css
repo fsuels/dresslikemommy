@@ -479,28 +479,16 @@ cart-drawer-items {
   margin-right: 0.5rem !important;
 }
 
-/* Express wallets under Check out: compact buttons in the two-up grid above,
-   so the fixed footer stays short and the item list keeps its height. */
+/* Express wallets under Check out: one compact 40px row (the markup carries
+   additional-checkout-buttons--horizontal), so the fixed footer stays short. */
 .drawer__footer .cart-drawer__dynamic-checkout-buttons {
-  margin: 0;
+  margin: 0.8rem 0 0;
 }
 
 .cart-drawer__dynamic-checkout-buttons shopify-accelerated-checkout-cart {
   --shopify-accelerated-checkout-button-block-size: 40px;
   --shopify-accelerated-checkout-button-inline-size: 40px;
   --shopify-accelerated-checkout-row-gap: 5px;
-}
-
-/* Phones where the footer stays fixed (651-760px tall): Shopify stacks four or more
-   wallets in one column below 430px wide, so show two rows plus a peek of the third
-   and let the rest scroll inside the block. The line item keeps its title, size and
-   price on screen. At 650px and below the whole drawer scrolls instead (see above). */
-@media screen and (max-width: 749px) and (min-height: 651px) and (max-height: 760px) {
-  .drawer__footer .cart-drawer__dynamic-checkout-buttons {
-    max-height: 112px;
-    overflow-y: auto;
-    overscroll-behavior: contain;
-  }
 }
 
 @media screen and (min-width: 750px) {

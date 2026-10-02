@@ -57562,3 +57562,19 @@ Rollback: set the 8 products to DRAFT.
   The footer links to the full policy in a new tab and is labelled with Shopify's own `shop.shipping_policy.title`. No new claims and no new locale keys.
 - The link keeps its real href, so modified clicks and no-JS users still reach the policy page.
 - Rollback: revert this commit.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-02-cart-wallets-one-row-amazon-pay
+
+- task_entities: `snippets/cart-drawer.liquid`, `sections/main-cart-footer.liquid`, `assets/component-cart-drawer.css`; Shopify Payments Amazon Pay setting (owner action)
+- task_stage: IMPLEMENTED; live readback in the release step
+- next_action_id: OWNER_DEACTIVATE_AMAZON_PAY
+
+- Owner request (chat): remove Amazon Pay from the cart; the stack of wallet buttons under Check out looks messy; research the best strategy first.
+- Evidence:
+  - Orders readable via the Admin token (22, last ~60 days): Shop Pay 8, Apple Pay 5, card 9, Amazon Pay 0, PayPal 0.
+  - Headless drawer probe: the Amazon Pay button reports "currently not available on this site".
+  - Shopify's portable-wallets CSS stacks exactly 4 wallets full-width when the container is ≤430px wide. Three or fewer, or the `additional-checkout-buttons--horizontal` class, give one row.
+  - Research: express wallets early in the flow help, but too many equal-weight buttons compete with the main CTA (Baymard; Shopify accelerated-checkout docs).
+- Change: wallet containers in the drawer and on /cart carry `additional-checkout-buttons--horizontal`. The drawer row gets a 0.8rem gap under Check out. The 112px scroll cap for the 4-wallet stack is removed. Wallet block in the probe: 112px → 40px at 390×664.
+- Amazon Pay cannot be hidden from theme code (closed shadow root). It is removed only by deactivating it in Shopify admin > Settings > Payments. With 4 wallets the one-row logos clip at 320px wide, so the deactivation completes the fix.
+- Rollback: revert this commit.

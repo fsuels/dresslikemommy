@@ -772,7 +772,9 @@
         </div>
 
         {%- comment -%}
-          Express wallets (Shop Pay, PayPal, Amazon Pay, ...) directly under Check out, as on /cart.
+          Express wallets (Shop Pay, Apple Pay, PayPal, ...) in one compact row directly under Check out,
+          as on /cart. The --horizontal class tells Shopify's wallet element to keep every wallet in a
+          single row; without it Shopify stacks exactly four wallets full-width on phones.
           The block sits in the drawer section, so every Section Rendering API re-render of the
           drawer returns fresh wallet markup; the <shopify-accelerated-checkout-cart> custom element
           initialises itself when it is inserted (cart-drawer.js loads the wallet script if it is
@@ -780,7 +782,7 @@
           empty cart, so the wallet scripts do not start on every page for visitors with no items.
         {%- endcomment -%}
         {%- if additional_checkout_buttons and cart != empty and request.page_type != 'cart' -%}
-          <div class="cart-drawer__dynamic-checkout-buttons cart__dynamic-checkout-buttons additional-checkout-buttons">
+          <div class="cart-drawer__dynamic-checkout-buttons cart__dynamic-checkout-buttons additional-checkout-buttons additional-checkout-buttons--horizontal">
             {{ content_for_additional_checkout_buttons }}
           </div>
         {%- endif -%}
