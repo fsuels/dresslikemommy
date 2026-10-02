@@ -357,7 +357,15 @@
       <summary>{{ pc_shipping_details_label }}</summary>
       <div class="dlm-pc-details__body">
         <p>{{ pc_shipping_details_body }}</p>
-        <p><a class="dlm-pc-link" href="{{ pc_shipping_policy_url }}">{{ pc_shipping_details_label }}</a></p>
+        <p>
+          <a
+            class="dlm-pc-link"
+            href="{{ pc_shipping_policy_url }}"
+            data-policy-modal-trigger="shipping"
+            aria-haspopup="dialog"
+            aria-controls="DlmPolicyModal-shipping"
+          >{{ pc_shipping_details_label }}</a>
+        </p>
         {%- if pc_country_count > 0 -%}
           <p>
             <button

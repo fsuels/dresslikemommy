@@ -57547,3 +57547,18 @@ Owner (chat, 2026-10-01/02): "look for more maternity dresses"; rejected the Asi
 
 Result: the 1688 Western search found only 1-year Lu'an made-to-order shops and a 95.2%-fulfillment Guangzhou store (all FAIL, see TRUSTED-SUPPLIERS.md); Fanke's catalog gave 11 maternity candidates → 8 built, 3 skipped (1082828259717 ¥1000 placeholder price, 1073247435651 Summer 2026, 1078548529091 near-duplicate of the live feather robe). All 8 LIVE (readback 2026-10-02 ~05:00Z: storefront 200, PDP window 19–23 days, every variant has its colour's photo, brand correct in 20 translated SEO titles, closeout PASS). Prices $130.99–$147.99; 8 gowns, 31 colour/style options in total. The black sheer robe photo needed the closed-over-slip prompt (image moderation).
 Rollback: set the 8 products to DRAFT.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-02-pdp-shipping-policy-modal
+
+- task_entities: `snippets/pdp-policy-modals.liquid` (new `shipping` modal), `snippets/pdp-purchase-confidence.liquid` (Shipping details link)
+- task_stage: IMPLEMENTED; live readback in the release step
+- next_action_id: NONE
+
+- Owner request: on product pages, the "Shipping details" link opened /policies/shipping-policy as a new page. The Return policy and Payment & privacy links open an in-page pop-up instead.
+- Added a matching shipping pop-up. It uses existing translated keys only:
+  - purchase_confidence.shipping_details_label and shipping_details_body;
+  - additional_info.premium_delivery_window, secure_logistics_line_1 and secure_logistics_line_2.
+
+  The footer links to the full policy in a new tab and is labelled with Shopify's own `shop.shipping_policy.title`. No new claims and no new locale keys.
+- The link keeps its real href, so modified clicks and no-JS users still reach the policy page.
+- Rollback: revert this commit.
