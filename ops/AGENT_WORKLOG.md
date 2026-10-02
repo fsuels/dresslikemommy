@@ -57584,3 +57584,29 @@ Rollback: set the 8 products to DRAFT.
 - Change: new homepage section lists 4 live Christmas/holiday guides (news blog, titles/urls localized by Shopify) plus one collection link, anchor "family matching outfits" -> /collections/matching-outfits. Heading inline in 21 languages. Renders nothing if no article exists.
 - Checks: ceo_worktree check; live readback of home + a localized home.
 - Rollback: revert this commit.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-02-autosource-audit
+
+- task_entities: 23 autosource products from `autosource.py recent 26` (18 maternity gowns: Lu'an Fanke shop676k3v9771v28 + Fuenna niuanna; 5 Cao County studio sets: 曹县弯月 wanyuefs / 曹县孕味 shop1429548707573)
+- task_stage: VERIFIED (no unpublish; 1 owner-decision flag)
+- next_action_id: OWNER_DECIDE_CAO_COUNTY_STUDIO_SETS
+
+Independent audit (fresh eyes, read-only except this record). For each product I read the QA sheet (vendor ref + colour rows vs ours) and checked recipe evidence where needed.
+
+**PASS (18 gowns).** Photos match the vendor garment in silhouette, colour and trim. There is a photo for every colour, and every colour row matches its vendor colour. No logos or text in our images. All images are 9:16. Gowns are Western style. Freshness is "Fall 2026" or "Autumn 2026", listed between 2026-07-26 and 2026-09-29. Dispatch is 7–10 days, made to order, under owner rule 14 or 15, and each PDP states it honestly. Fabric is polyester (or a poly/nylon mesh) as recorded.
+- dotted-tulle-off-shoulder-maternity-gown, strapless-ruffle-tulle-mermaid-maternity-gown, feather-trim-deep-v-maternity-robe-gown, ruffle-slit-off-shoulder-maternity-gown, ruffled-tulle-off-shoulder-maternity-gown, tiered-ruffle-tulle-off-shoulder-maternity-gown, ruffle-tulle-v-neck-tie-waist-maternity-gown, sheer-tulle-ruffle-collar-maternity-gown, organza-puff-sleeve-off-shoulder-maternity-gown, lavender-halter-mesh-maternity-gown, bloom-puff-sleeve-fishtail-maternity-gown, cloud-sleeve-ruffle-tulle-slit-maternity-gown, deep-v-tiered-ruffle-tulle-maternity-gown, floral-tulle-cape-slit-maternity-gown, off-shoulder-sheer-tiered-ruffle-maternity-robe-gown, pleated-ruffle-tulle-v-neck-maternity-gown, ruffle-trim-v-neck-tiered-train-maternity-gown, tiered-tulle-sweetheart-sheer-waist-maternity-gown
+- Minor notes, no action:
+  - Vendor photos for cloud-sleeve and floral-tulle-cape carry a "YEWEN" watermark; bloom-puff carries "Elves in the forest Store". The vendor is reusing other sellers' photos, so the design is likely a copy of a marketplace gown. Our photos are clean and gown silhouettes are not trademarks.
+  - The deep-v-tiered vendor photo shows a non-pregnant prom-gown fit with a fitted waistband. The footnote tells shoppers to size by bump. Watch returns.
+  - pleated-ruffle vendor photos show mom and daughter. We sell the mom gown only, and our photos show only the mom.
+  - Lavender and organza (Fuenna) evidence lacks quality-return and dispute figures. Rule 15 requires returns ≤1% and disputes ≈0, so the next run should record them.
+
+**FLAG, not unpublished (5 Cao County studio sets, 48h dispatch, one size):** chocolate-bandeau-draped-skirt-maternity-photoshoot-set, ivory-pleated-off-shoulder-rosette-maternity-photoshoot-dress, white-lace-halter-crop-top-flowing-skirt-maternity-photoshoot-set, ivory-floral-lace-top-tiered-ruffle-skirt-maternity-photoshoot-set, cream-sheer-top-bustier-skirt-maternity-photoshoot-set.
+- Our photos match the vendor garments: no hat or veil shown where excluded, and the hat is shown only on the "+ Hat" set.
+- Fresh gate conflict: releases are "2026" (year only, listed 2026-05-09 / 06-21) or "Summer 2026" (listed 07-12 / 09-09). That fails runbook rule 2 and owner rule 15 (Fall/Winter 2026 or untagged and listed ≥ 2026-08-01). Each recipe cites "Owner exception 2026-10-01: season tag allowed for this photoshoot batch", but no such exception appears in the canonical Owner product rules (rule 14 covers dispatch only and says "Every other rule applies").
+- Style conflict: owner, 2026-10-01, reviewing 曹县弯月 / 曹县孕味 studio catalogs: "the dresses look too asian I need something more european and american". These 5 come from exactly those two stores.
+- No size chart: the vendors publish none, and the PDPs say so.
+- Not unpublished because a recorded owner exception exists that I cannot disprove. Owner decision needed: keep or set to DRAFT. My recommendation is to DRAFT chocolate-bandeau and cream-sheer (art-photo crop styling), and keep the 3 lace/pleated looks only if the season exception was really given.
+- A separate DRAFT `cream-sheer-3-piece-maternity-photoshoot-set` exists beside the ACTIVE cream-sheer-top-bustier set. It looks like the same offer built twice. Leave it DRAFT or delete it (owner/CEO).
+
+Recurring mistake for the hourly job: do not write an "Owner exception" evidence line unless it is in the canonical Owner product rules. Stop sourcing from 曹县 影楼 studio catalogs.

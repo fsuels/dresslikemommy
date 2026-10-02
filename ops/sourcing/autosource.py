@@ -5,8 +5,10 @@ Every shell step of a sourcing round goes through this one script so the schedul
 pre-approved command shape: /usr/bin/python3 ops/sourcing/autosource.py <subcommand> ...
 Runbook and rules: ops/sourcing/AUTOSOURCE_RUNBOOK.md (read first).
 
-1688 reads use the owner's logged-in helper Chrome on CDP port 9333, in a DEDICATED tab this script opens
-and closes (never the owner's own tabs). Read-only. A CAPTCHA/login page => exit code 3, stop the round.
+1688 reads need the Dress Like Mommy browser: the owner's Chrome TEST profile ("Profile 1"). Owner 2026-10-01: never the
+CDP 9333 Chrome (~/.dlm-1688-chrome-profile), which is the Santo Ruidos browser. Until a test-profile debugging port is
+configured in ops/sourcing/state/dlm_browser.json ({"cdp_port": N}), every 1688 step stops with exit code 5 (BROWSER_NOT_CONFIGURED).
+Read-only, in a DEDICATED tab this script opens and closes. A CAPTCHA/login page => exit code 3, stop the round.
 
 Subcommands
   lock acquire|release                 run lock (stale after 100 min: a stopped or frozen run never blocks more than one hourly run)
@@ -105,10 +107,28 @@ def known_offer_ids() -> set[str]:
     return ids
 
 
-class Tab:
-    """A dedicated tab in the helper Chrome (CDP 9333); closed on exit."""
+FORBIDDEN_PORTS = {9333}  # owner 2026-10-01: CDP 9333 is the Santo Ruidos Chrome, never use it for Dress Like Mommy
 
-    def __init__(self, port: int = 9333):
+
+def dlm_browser_port() -> int:
+    cfg = STATE / "dlm_browser.json"
+    try:
+        port = int(json.loads(cfg.read_text())["cdp_port"])
+    except Exception:
+        print("BROWSER_NOT_CONFIGURED: no Dress Like Mommy browser (Chrome test profile) is configured for 1688/BuckyDrop "
+              "reads. Stop 1688 work for this run, record BROWSER_NOT_CONFIGURED in the worklog, release the lock.")
+        sys.exit(5)
+    if port in FORBIDDEN_PORTS:
+        print(f"REFUSED: port {port} is the Santo Ruidos Chrome (owner 2026-10-01). Use only the Chrome test profile.")
+        sys.exit(5)
+    return port
+
+
+class Tab:
+    """A dedicated tab in the Dress Like Mommy browser (Chrome test profile only); closed on exit."""
+
+    def __init__(self, port: int | None = None):
+        port = port or dlm_browser_port()
         import websocket  # type: ignore
         base = f"http://127.0.0.1:{port}"
         req = urllib.request.Request(f"{base}/json/new?about:blank", method="PUT")

@@ -25,7 +25,6 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 4. **Supplier:** `gate` prints the verdict.
    - Standard: ≥5 years on 1688, 48h pickup ≥95%, fulfillment ≥97%, service ≥4.0, MOQ 1.
    - 3–4 years only with strict stats: pickup ≥97%, fulfillment ≥97%, quality returns ≤1%, disputes ≈0, service ≥4.0, 500+ orders in 30 days.
-   - 0–2 years (owner 2026-10-01): pickup ≥97%, fulfillment ≥97%, 1,000+ orders in 30 days, service ≥4.0, quality returns ≤1%, disputes ≈0. `gate` prints "passes young-store rule". Record these stores as Tier B in suppliers_append.md.
 5. **No IP or logos:**
    - No licensed characters or look-alikes: Disney/Mickey, Sanrio, Snoopy, Pooh, Chiikawa, Grinch, Stitch, superheroes.
    - No Rudolph-style red-nosed reindeer.
@@ -72,7 +71,8 @@ Owner, 2026-09-29: "I need you to constantly get me new products for all categor
 
 ## Stop conditions
 
-- Exit code 3 / "BLOCKED" (CAPTCHA or login): stop 1688 work for this run. Record `BLOCKED_1688_CAPTCHA` in the worklog append and release the lock. Never bypass it.
+- Exit code 3 / "BLOCKED" (CAPTCHA or login): stop 1688 work for this run.
+- Exit code 5 / "BROWSER_NOT_CONFIGURED" or "REFUSED": owner 2026-10-01, Dress Like Mommy may only use the Chrome TEST profile ("Profile 1"), never the CDP 9333 Chrome (Santo Ruidos). Stop 1688 work, record BROWSER_NOT_CONFIGURED, commit and release the lock. Never point any tool at port 9333. Record `BLOCKED_1688_CAPTCHA` in the worklog append and release the lock. Never bypass it.
 - Stop on any money, billing, customer-messaging, login or permission prompt.
 - Never move money. Never change settings or other products.
 - If a step fails twice, skip that product. Record why.
