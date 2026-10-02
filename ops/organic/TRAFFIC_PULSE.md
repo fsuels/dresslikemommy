@@ -27,13 +27,13 @@ This file is the scoreboard for every organic lane: engine articles, SEO rewrite
   - Blog articles barely appear yet. The best is /el mommy-and-me guide with 9. The 74 articles are young and need weeks to rank, so judge them from 2026-10-22 on.
 - **Search Console (3 months to 2026-09-29):** 2.85K clicks, 139K impressions, CTR 2.1%, average position 16.9. See `GSC_STRIKING_DISTANCE.md`.
 
-## Latest verdict (2026-10-01)
+## Latest verdict (2026-10-02)
 
-- **UP** on paper: 7-day organic avg 126.0/day (09-24 → 09-30) vs 57.9 the prior 7 (+118%). That window still includes the paid-ad tail (09-25 → 09-28: 91 / 156 / 298 / 126), so it overstates. The two clean days (77, 73) average 75, against 53 for 09-15 → 09-24 (about +42%). EXPECTED, not proven, until the clean week 09-29 → 10-05 closes.
-- **Search funnel:** only 09-30 has funnel data so far: 73 sessions → 3 carts → 1 checkout (all from Google; the 1 search order was $23.99).
-- **Top landing pages (7d):** /collections/new-women-outfits 56, /collections/mommy-and-me 47, /collections/dresses 47, /collections/pajamas 42, / 34.
-- **What moved:** cause unknown beyond the paid-ad spike fading. No blog article is in the top 10 landing pages yet.
-- **Recommended action:** keep the engine publishing and re-read on 10-06 for the first full clean week. Meanwhile push internal links from the top collections (new-women-outfits, mommy-and-me) to the best products to raise the 3/73 cart rate.
+- **UP** on paper: 7-day organic avg 126.0/day (09-25 → 10-01) vs 60.1 the prior 7 (+110%). That window still includes the paid-ad tail (09-25 → 09-28: 91 / 156 / 298 / 126), so it overstates. The three clean days (77, 73, 61) average 70.3, against 55.1 for 09-16 → 09-24 (about +28%), but the clean days are drifting down (77 → 73 → 61). EXPECTED, not proven, until the clean week 09-29 → 10-05 closes.
+- **Search funnel (09-30 + 10-01, the only rows with data):** 134 sessions → 6 carts → 1 checkout. 10-01: 61 sessions → 3 carts → 0 checkouts, 0 orders of any source.
+- **Top landing pages (7d, 09-25 → 10-01):** /collections/new-women-outfits 55, /collections/mommy-and-me 47, /collections/dresses 45, /collections/pajamas 42, / 35.
+- **What moved:** cause unknown beyond the paid-ad spike fading. No blog article is in the top 10 landing pages yet (the best product page is the smocked-dress set at 24).
+- **Recommended action:** watch whether the clean-day level holds near 60-70 or keeps sliding; re-read 10-06 for the first full clean week. Meanwhile push internal links from the top collections (new-women-outfits, mommy-and-me) to the best products to lift the 3/61 cart rate.
 
 ## Daily rows (newest last)
 
@@ -43,6 +43,7 @@ Columns: date | search sessions | google | bing+ddg+yahoo | carts from search | 
 |---|---|---|---|---|---|---|---|---|---|
 | 2026-09-29 | 77 | | | | | | 124.7 | +135% | first clean day after paid ads ended; 7d window still holds the paid-ad spike (09-25 → 09-28) |
 | 2026-09-30 | 73 | 71 | 2 | 3 | 1 | 1 / 1 | 126.0 | +118% | the 1 search order was $23.99; 7d avg still inflated by the paid tail; clean days 09-29 + 09-30 avg 75 vs 53 for 09-15 → 09-24 |
+| 2026-10-01 | 61 | 59 | 2 | 3 | 0 | 0 / 0 | 126.0 | +110% | no orders from any source; 7d window (09-25 → 10-01) still holds the paid tail; clean days 09-29 → 10-01 avg 70.3 vs 55.1 for 09-16 → 09-24 |
 
 ## Weekly Search Console rows (Mondays)
 

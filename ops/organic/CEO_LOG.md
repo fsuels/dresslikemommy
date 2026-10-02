@@ -409,3 +409,13 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Gown lead time: VERDICT NO_ORDERS_YET (18 gown SKU codes watched, none ordered since 2026-10-01).
 - Traffic: 7d organic avg 126.0/day (09-24 to 09-30), inflated by the paid tail; no newer pulse row (traffic-pulse last ran 10-01). Next read 10-06.
 - Flags for owner: press Stop on the two frozen runs in the app (engine has published nothing for 12.5 h; #20/#21 wait); H1 needs index.json pushed to the live theme by a main session. Side note: index.json trust line says "8,000+ families since 2017", a claim to verify against the honesty rules.
+
+## 2026-10-02T17:06Z CEO loop
+- Watchdog: STILL FROZEN organic-traffic-engine local_e24c97e0-8870-4e7d-b454-6f47206035dd (last activity 02:49Z, about 14 h) and article-translations local_dd5faaa2-de83-4016-a796-ba533b200cbe (last activity 05:18Z, about 12 h). stop_session and run_scheduled_task are blocked by hook in unattended sessions; no stop or re-dispatch. The engine now runs every 6 h (next 22:23Z) but the stuck run likely blocks it. Others fine (alt-review 12:07Z, offsite-links 11:51Z, traffic-pulse 16:30Z); autosource deleted. push-pending: nothing pending.
+- Review: no engine output since 02:22Z; nothing new to verify. The engine's 3-per-day cap is already used for 10-02 (#15a, #16, #19), so I did not publish #20/#21 myself; they publish on the next engine run after 00:00Z.
+- Commit: nothing new from the engine (log edit only).
+- Indexing: SKIPPED. No articles published since the 05:10Z requests.
+- MAIN item: none doable. H1 re-checked: `/?sections=home_guides` still returns null (live templates/index.json lacks the block); stays BLOCKED, needs a theme-file upsert by a main session.
+- Gown lead time: VERDICT NO_ORDERS_YET (18 gown SKU codes watched, none ordered since 2026-10-01).
+- Traffic: 7d organic avg 126.0/day (09-25 to 10-01), inflated by the paid tail; clean days 77/73/61 drifting down. traffic-pulse ran 16:30Z but added no 10-02 row (check why). Next read 10-06.
+- Flags for owner: press Stop on the two frozen runs in the app (engine blocked 14 h; translations 12 h); H1 homepage block needs index.json pushed to the live theme.
