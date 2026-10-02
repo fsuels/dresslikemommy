@@ -31,12 +31,15 @@ for c in colors:
 (ROOT / f"ops/sourcing/state/skus/{oid}.json").write_text(json.dumps({"props": colors + sizes, "prices": prices, "stock": stock}, ensure_ascii=False, indent=1))
 base = ROOT / f"ops/sourcing/vendor-images/{oid}"
 def get(u, p):
+    if not u.startswith("http"):
+        u = "https://cbu01.alicdn.com/img/ibank/" + u
     u = re.sub(r"\.jpg_.*$", ".jpg", u)
     data = urllib.request.urlopen(urllib.request.Request(u, headers={"User-Agent": "Mozilla/5.0", "Referer": "https://detail.1688.com/"}), timeout=30).read()
     p.parent.mkdir(parents=True, exist_ok=True); p.write_bytes(data); return p
 files = []
 for i, u in enumerate(d.get("desc", [])): files.append(("d%02d" % i, get(u, base / "desc" / f"{i:02d}.jpg")))
 for i, u in enumerate(d.get("main", [])): files.append(("m%02d" % i, get(u, base / "main" / f"{i:02d}.jpg")))
+d.setdefault("weight_g", 1000)
 for i, (name, u) in enumerate(d["colors"]):
     if u: files.append((f"c{i}", get(u, base / "sku" / f"c{i}.jpg")))
 meta = {k: d.get(k) for k in ("oid", "company", "host", "release", "dl", "dlt", "created", "weight_g", "fabric", "attrs", "store")}

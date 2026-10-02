@@ -57536,3 +57536,14 @@ Incidents and lessons:
 
 Risks: Lu'an Fanke's order notes say no returns once production is confirmed while the store offers 30-day returns (any gown return is a full loss); Fanke 96.06% and Fuenna 96.70% 48h fulfillment sit just under 97%. Watch real BuckyDrop lead times on the first gown orders.
 Rollback: set the 15 products to DRAFT (handles above); revert 2ab3193 and 3c0774f; delete MetafieldDefinition 246614622305.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-02-western-maternity-gowns-round-2-live
+
+- task_entities: 8 Lu'an Fanke maternity gowns (deep-v-tiered-ruffle-tulle, floral-tulle-cape-slit, bloom-puff-sleeve-fishtail, tiered-tulle-sweetheart-sheer-waist, pleated-ruffle-tulle-v-neck, cloud-sleeve-ruffle-tulle-slit, ruffle-trim-v-neck-tiered-train, off-shoulder-sheer-tiered-ruffle robe; all `-maternity-gown`/`-maternity-robe-gown`); owner rule 15 in `ops/sourcing/CONTINUOUS-EXPANSION-WORKFLOW.md`
+- task_stage: LIVE_VERIFIED
+- next_action_id: NEXT_WESTERN_MATERNITY_SOURCE (Fanke catalog re-check for new Fall/Winter 2026 offers; other ≥5y Western gown stores)
+
+Owner (chat, 2026-10-01/02): "look for more maternity dresses"; rejected the Asian studio-set candidates ("the dresses look too asian I need something more european and american!" … "for a photoshoot of pregnant woman"); chose (AskUserQuestion) "Allow made-to-order, strict rest": rule 15 lets Western maternity photoshoot gowns ship in ≤10 days with the honest PDP delivery date; 48h pickup/fulfillment stats don't apply; ≥5y, service ≥4.0, returns ≤1%, disputes ≈0, Fall/Winter 2026 (or untagged ≥ 2026-08-01) still required.
+
+Result: the 1688 Western search found only 1-year Lu'an made-to-order shops and a 95.2%-fulfillment Guangzhou store (all FAIL, see TRUSTED-SUPPLIERS.md); Fanke's catalog gave 11 maternity candidates → 8 built, 3 skipped (1082828259717 ¥1000 placeholder price, 1073247435651 Summer 2026, 1078548529091 near-duplicate of the live feather robe). All 8 LIVE (readback 2026-10-02 ~05:00Z: storefront 200, PDP window 19–23 days, every variant has its colour's photo, brand correct in 20 translated SEO titles, closeout PASS). Prices $130.99–$147.99; 8 gowns, 31 colour/style options in total. The black sheer robe photo needed the closed-over-slip prompt (image moderation).
+Rollback: set the 8 products to DRAFT.
