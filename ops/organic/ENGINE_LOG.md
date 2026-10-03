@@ -458,3 +458,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 282 articles; token valid).
 - Research: none. Open ENGINE rows #17, #18 (siblings has only 3 live products); fewer than 8 open, so research is due next run. 0 READY drafts.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new cold-weather outings article. Note: two stray non-listed commands (grep -c on the log, a curl with a bare unquoted URL) were run by mistake; no effect.
+
+## 2026-10-03T22:23Z run
+- Build: SKIPPED (daily cap, 3 of 3 published today) — drafted maternity-christmas-family-photo-outfits READY (#6, unblocked: maternity now 23 live products; lint 0 errors, 1004 words, dry run passed). Publish first after 00:00Z 10-04 (re-run lint and dry run).
+- Fix: 0 items (inventory refreshed: 54 collections, 283 articles; token valid). No striking-distance rewrite done.
+- Research: none (open ENGINE rows #17, #18; fewer than 8, research due next run, WebSearch not used this run).
+- Flags for MAIN/OWNER: none new. One first curl failed on an unquoted `?` URL (zsh glob), retried quoted; no effect.
