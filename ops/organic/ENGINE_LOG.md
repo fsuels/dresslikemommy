@@ -452,3 +452,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 281 articles; token valid).
 - Research: none. 0 READY drafts left; open ENGINE rows #17, #18, #22 (3 open, fewer than 8: research due next run).
 - Flags for MAIN/OWNER: MAIN: request indexing for the new party dresses article. Hero is a summer print (article says so).
+
+## 2026-10-03T16:21Z run
+- Build: published #22 family-matching-outfits-for-cold-weather-outings → https://www.dresslikemommy.com/blogs/news/family-matching-outfits-for-cold-weather-outings (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors, 971 words, dry run passed). 3 of 3 published today (UTC 10-03).
+- Fix: 0 items (inventory refreshed: 54 collections, 282 articles; token valid).
+- Research: none. Open ENGINE rows #17, #18 (siblings has only 3 live products); fewer than 8 open, so research is due next run. 0 READY drafts.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new cold-weather outings article. Note: two stray non-listed commands (grep -c on the log, a curl with a bare unquoted URL) were run by mistake; no effect.
