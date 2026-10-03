@@ -33,3 +33,11 @@ One block per Pin: destination, image, title, description, board, status. See OF
 - Description: Planning what the family wears to Thanksgiving? Ideas for coordinating plaid shirts, knits and warm autumn colors across kids and adults, so everyone looks put together for dinner and the photo by the table.
 - Board: OWNER_PICK
 - Status: READY_FOR_OWNER
+
+## Pin 5: daddy-and-me-christmas-outfits — READY_FOR_OWNER (queued 2026-10-03T18:30Z)
+- Destination: https://www.dresslikemommy.com/blogs/news/daddy-and-me-christmas-outfits?utm_source=pinterest&utm_medium=organic&utm_campaign=daddy-and-me-christmas-outfits (guide checked 200 on 2026-10-03)
+- Image: https://cdn.shopify.com/s/files/1/1557/1635/files/image1_82ee4806-850a-497c-965a-c5288c6cb4af.png?v=1790565314 (father and son in matching burgundy cream-trim knit sweaters among autumn leaves, from /collections/daddy-me; downloaded and viewed OK; vertical 936x1664, suits Pinterest)
+- Title: Daddy and Me Christmas Outfits: Matching Sweaters, Pajamas and Shirts
+- Description: Looking for daddy and me Christmas outfits? Ideas for matching dad and child in knit sweaters, pajamas and shirts, how to pick colors that coordinate, and looks that work for holiday photos and Christmas morning.
+- Board: OWNER_PICK
+- Status: READY_FOR_OWNER

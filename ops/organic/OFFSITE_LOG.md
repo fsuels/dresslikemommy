@@ -19,3 +19,10 @@ Format: `## <UTC time> run` then Prospects added, Drafts, Pins queued, Flags.
 - Drafts: 4 (rows 5-8: Lentille, Loverly Grey, Cotton Stem, Tidy Fox Den), READY_FOR_OWNER. Rows 9-11 still NEW.
 - Pins queued: 1 (Thanksgiving outfit ideas, Pin 4); stopped there because the collection JSON files are very large when read; boards OWNER_PICK.
 - Flags: contact-page URLs are still site roots (not verified); no prospect pages were fetched this run, so the owner must read each post before sending. Row 11 (Ashlina Kaposta) post URL was inferred from a search-result title ("mom-and-son" slug seen in results); confirm it loads. Pin image fetch: `?limit=2` still returns ~58 KB per product because of size-chart HTML; use `?limit=1`. Nothing sent or posted; O5 still open.
+
+## 2026-10-03T18:25Z run
+- Assets checked 200 (1 h1, no robots): matching-family-christmas-sweaters-guide-2026, babys-first-christmas-matching-family-outfits, new-years-eve-matching-family-outfits, matching-couples-christmas-pajamas-and-sweaters, daddy-and-me-christmas-outfits, matching-family-shirts-for-pictures, family-christmas-card-photo-ideas, matching-family-christmas-shirts.
+- Prospects added: 6 (Curvy Fashionista, Sew Mama Sew, Vanessa Wyler Photography, Brandi Trotter Photography, Amanda Feltz, Laura Watts Walsh Photography), all A, NEW. 3 searches run; most results were retailers/brands/news and skipped. 17 rows total.
+- Drafts: 4 (rows 9-12: Family Moment, Focal Fun, Ashlina Kaposta, Curvy Fashionista), READY_FOR_OWNER. Rows 13-17 still NEW.
+- Pins queued: 1 (Pin 5 daddy-and-me-christmas-outfits, image viewed OK). Stopped at one: collection JSON reads are very large.
+- Flags: row 14 (Vanessa Wyler) URL slug says 2024/2025; owner must confirm the post is current. Row 11 post URL (inferred last run) still unconfirmed. Pages were not fetched, so the owner must read each post before sending. Contact URLs are site roots. Nothing sent or posted; O5 still open.

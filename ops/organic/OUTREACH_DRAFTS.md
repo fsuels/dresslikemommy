@@ -128,3 +128,66 @@ You're welcome to link to it or use any of it with credit. Thank you!
 
 Best,
 The Dress Like Mommy team
+
+## 9. Family Moment Photography — READY_FOR_OWNER (drafted 2026-10-03T18:25Z)
+Asset: https://www.dresslikemommy.com/blogs/news/matching-family-christmas-pajamas-guide-2026
+Subject: A matching-pajamas guide for your Christmas session clients
+
+Hi there,
+
+Your Christmas family session ideas are a nice resource for clients. Many ask what to wear at home on Christmas morning too. We're Dress Like Mommy, and we wrote a guide to matching family Christmas pajamas: choosing one print for everyone, sizing toddlers through adults, and which looks photograph well.
+
+https://www.dresslikemommy.com/blogs/news/matching-family-christmas-pajamas-guide-2026
+
+Feel free to link to it or credit any part. No obligation at all.
+
+Thanks,
+The Dress Like Mommy team
+
+## 10. Focal Fun — READY_FOR_OWNER (drafted 2026-10-03T18:25Z)
+Asset: https://www.dresslikemommy.com/blogs/news/family-photo-color-palettes-by-season
+Subject: A color palette guide to go with your Christmas outfit post
+
+Hello,
+
+Your Christmas family photo outfits guide is a handy read. We're Dress Like Mommy, and we wrote a guide to family photo color palettes by season: which colors sit well together, how to balance patterns and neutrals, and how to coordinate without matching exactly.
+
+It could be a useful extra for readers:
+https://www.dresslikemommy.com/blogs/news/family-photo-color-palettes-by-season
+
+You're welcome to link to it or use any idea with credit. Thank you!
+
+Best,
+The Dress Like Mommy team
+
+## 11. Ashlina Kaposta — READY_FOR_OWNER (drafted 2026-10-03T18:25Z)
+Asset: https://www.dresslikemommy.com/blogs/news/halloween-family-matching-costume-ideas
+Subject: A family matching Halloween ideas guide for your readers
+
+Hi,
+
+I enjoyed your Halloween costume ideas post. We're Dress Like Mommy, and we wrote a guide to family matching Halloween looks: choosing one theme for everyone, mixing costume and outfit pieces, and keeping kids comfortable on trick-or-treat night.
+
+If it suits your readers, here it is:
+https://www.dresslikemommy.com/blogs/news/halloween-family-matching-costume-ideas
+
+Please feel free to link to it or credit any part. Thanks for the inspiration either way.
+
+Warmly,
+The Dress Like Mommy team
+
+## 12. The Curvy Fashionista — READY_FOR_OWNER (drafted 2026-10-03T18:25Z)
+Asset: https://www.dresslikemommy.com/blogs/news/matching-family-christmas-pajamas-guide-2026
+Subject: A family Christmas pajamas guide that may complement your roundup
+
+Hi there,
+
+Your matching family pajamas roundup for the holidays is a helpful read. We're Dress Like Mommy, and we wrote a guide to matching family Christmas pajamas: picking one print for everyone, sizing across ages, and what photographs well for Christmas morning.
+
+It might be a useful extra for readers:
+https://www.dresslikemommy.com/blogs/news/matching-family-christmas-pajamas-guide-2026
+
+You're welcome to link to it or borrow any idea with credit. Thank you for your time.
+
+Kind regards,
+The Dress Like Mommy team

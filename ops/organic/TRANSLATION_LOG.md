@@ -122,3 +122,5 @@
 - 2026-10-03T09:13Z matching-couples-sweatshirts-and-hoodies-for-winter: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-10-03T11:23Z mommy-and-me-winter-party-dresses: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-10-03T12:23Z mommy-and-me-winter-party-dresses: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-10-03T17:24Z family-matching-outfits-for-cold-weather-outings: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-10-03T18:23Z family-matching-outfits-for-cold-weather-outings: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
