@@ -25,3 +25,11 @@ One block per Pin: destination, image, title, description, board, status. See OF
 - Description: What to wear for family Christmas photos in 2026: how to choose a color palette, mix patterns, and dress different ages so everyone looks coordinated without matching exactly. Ideas for cards, trees and cozy at-home shots.
 - Board: OWNER_PICK
 - Status: READY_FOR_OWNER
+
+## Pin 4: thanksgiving-family-matching-outfit-ideas — READY_FOR_OWNER (queued 2026-10-03T04:40Z)
+- Destination: https://www.dresslikemommy.com/blogs/news/thanksgiving-family-matching-outfit-ideas?utm_source=pinterest&utm_medium=organic&utm_campaign=thanksgiving-family-matching-outfit-ideas (guide checked 200 on 2026-10-03)
+- Image: https://cdn.shopify.com/s/files/1/1557/1635/files/ChatGPT_Image_Apr_26_2026_06_43_53_PM.png?v=1777243480 (red, cream and teal plaid button-up shirt flat lay, from /collections/thanksgiving-family-outfits; downloaded and viewed OK)
+- Title: Thanksgiving Family Matching Outfit Ideas: Plaid, Knits and Warm Colors
+- Description: Planning what the family wears to Thanksgiving? Ideas for coordinating plaid shirts, knits and warm autumn colors across kids and adults, so everyone looks put together for dinner and the photo by the table.
+- Board: OWNER_PICK
+- Status: READY_FOR_OWNER
