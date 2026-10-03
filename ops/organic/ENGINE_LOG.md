@@ -446,3 +446,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 280 articles; token valid).
 - Research: none. 1 READY draft left (#21 mommy-and-me-winter-party-dresses); open ENGINE rows #17, #18, #22.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new couples article. Note: ENGINE_LOG has no entries after 02:22Z 10-02 (runs between were not logged).
+
+## 2026-10-03T10:22Z run
+- Build: published READY #21 mommy-and-me-winter-party-dresses → https://www.dresslikemommy.com/blogs/news/mommy-and-me-winter-party-dresses (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors and dry run passed first). 2 of 3 published today (UTC 10-03).
+- Fix: 0 items (inventory refreshed: 54 collections, 281 articles; token valid).
+- Research: none. 0 READY drafts left; open ENGINE rows #17, #18, #22 (3 open, fewer than 8: research due next run).
+- Flags for MAIN/OWNER: MAIN: request indexing for the new party dresses article. Hero is a summer print (article says so).

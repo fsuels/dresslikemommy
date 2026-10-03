@@ -119,3 +119,4 @@
 - 2026-10-03T06:21Z family-photo-color-palettes-by-season: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-10-03T07:13Z family-photo-color-palettes-by-season: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-10-03T08:20Z matching-couples-sweatshirts-and-hoodies-for-winter: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-10-03T09:13Z matching-couples-sweatshirts-and-hoodies-for-winter: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
