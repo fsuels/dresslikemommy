@@ -57610,3 +57610,15 @@ Independent audit (fresh eyes, read-only except this record). For each product I
 - A separate DRAFT `cream-sheer-3-piece-maternity-photoshoot-set` exists beside the ACTIVE cream-sheer-top-bustier set. It looks like the same offer built twice. Leave it DRAFT or delete it (owner/CEO).
 
 Recurring mistake for the hourly job: do not write an "Owner exception" evidence line unless it is in the canonical Owner product rules. Stop sourcing from 曹县 影楼 studio catalogs.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-03-autosource-audit
+
+- task_stage: VERIFIED
+- scope: independent daily audit of products built by the hourly autosource job in the last 26h.
+- result: `autosource.py recent 26` returned 0 products. No recipe has been touched since the 2026-10-02 audit window, so the hourly job built nothing new in the window. Nothing to audit; nothing unpublished; no store changes.
+- coverage check: `recent 72` lists 26 products. All were audited earlier: 3 sweatshirts in the 2026-10-01 audit (San Francisco PASS, Sky Blue Stripe PASS, Red Runner Raglan draft, borderline two-stripe sleeve). The other 23 were in the 2026-10-02 audit: 18 gowns PASS and 5 studio photoshoot sets flagged for owner decision. Live readback today: San Francisco and Sky Blue live; Red Runner still not live; all 23 maternity items still LIVE.
+- open gates carried forward (unchanged, still need an owner/CEO decision):
+  1. 5 studio sets (chocolate-bandeau, ivory-pleated-rosette, white-lace-halter, ivory-floral-lace, cream-sheer-top-bustier) are live with a "2026"/"Summer 2026" season tag and an uncited "owner exception". They come from the Cao County studio stores. The duplicate cream-sheer draft is unresolved.
+  2. Red Runner Raglan two-stripe sleeve call before any activation.
+  3. Fabric evidence: the hourly job must cite the swatch/label when it disagrees with the vendor attributes (cotton/polyester vs 80/20 cotton/spandex).
+- note: zero builds in 26h may mean the hourly job is blocked: BROWSER_NOT_CONFIGURED, CAPTCHA, lock, or scheduler global_limit starvation. Check its recent runs.
