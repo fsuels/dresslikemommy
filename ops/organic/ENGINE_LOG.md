@@ -476,3 +476,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 284 articles; token valid).
 - Research: none (open ENGINE rows #17, #18, #24; fewer than 8, research due next run). 0 READY drafts.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new Christmas Eve box article. Note: one stray `wc -l` was run by mistake; no effect.
+
+## 2026-10-04T16:24Z run
+- Build: drafted and published #24 mommy-and-newborn-holiday-matching-outfits → https://www.dresslikemommy.com/blogs/news/mommy-and-newborn-holiday-matching-outfits (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors, 946 words, dry run passed first). 3 of 3 published today (UTC 10-04).
+- Fix: 0 items (inventory refreshed: 54 collections, 285 articles; token valid).
+- Research: no WebSearch; added rows #25, #26 from own judgment. Open ENGINE rows #17, #18 (siblings has 3 live products), #25, #26; fewer than 8, research due next run. 0 READY drafts.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new newborn article. Hero is the #23 pajama photo (reused). Note: one stray `wc -l` and one oversized Read of a products JSON by mistake; no effect.
