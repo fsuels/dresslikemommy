@@ -464,3 +464,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 283 articles; token valid). No striking-distance rewrite done.
 - Research: none (open ENGINE rows #17, #18; fewer than 8, research due next run, WebSearch not used this run).
 - Flags for MAIN/OWNER: none new. One first curl failed on an unquoted `?` URL (zsh glob), retried quoted; no effect.
+
+## 2026-10-04T04:24Z run
+- Build: published READY #6 maternity-christmas-family-photo-outfits → https://www.dresslikemommy.com/blogs/news/maternity-christmas-family-photo-outfits (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors and dry run passed first). 1 of 3 published today (UTC 10-04).
+- Fix: 0 items (inventory refreshed: 54 collections, 283 articles; token valid).
+- Research: 2 WebSearch queries; added rows #23 (christmas eve box ideas) and #24 (mommy and newborn holiday). 0 READY drafts; open ENGINE rows #17, #18, #23, #24.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new maternity article.
