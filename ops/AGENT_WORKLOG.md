@@ -57622,3 +57622,12 @@ Recurring mistake for the hourly job: do not write an "Owner exception" evidence
   2. Red Runner Raglan two-stripe sleeve call before any activation.
   3. Fabric evidence: the hourly job must cite the swatch/label when it disagrees with the vendor attributes (cotton/polyester vs 80/20 cotton/spandex).
 - note: zero builds in 26h may mean the hourly job is blocked: BROWSER_NOT_CONFIGURED, CAPTCHA, lock, or scheduler global_limit starvation. Check its recent runs.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-04-autosource-audit
+
+- task_stage: VERIFIED
+- scope: independent daily audit of autosource products from the last 26h (`autosource.py recent 26`)
+- result: `recent 26` returned no products — the hourly job published nothing new in the window. 0 audited, 0 passed, 0 unpublished.
+- context: `recent 72` lists 23 LIVE maternity gowns/photoshoot sets from earlier windows (covered by prior daily audits); not re-audited here, no changes made.
+- signal for owner/CEO loop: a 26h gap with zero new listings means the hourly job is producing nothing. Check autosource run history / scheduler global_limit starvation before assuming the pipeline is healthy.
+- external writes: none.
