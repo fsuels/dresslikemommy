@@ -126,3 +126,5 @@
 - 2026-10-03T18:23Z family-matching-outfits-for-cold-weather-outings: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-10-04T05:27Z maternity-christmas-family-photo-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-10-04T06:24Z maternity-christmas-family-photo-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-10-04T11:23Z christmas-eve-box-ideas-matching-pajamas: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-10-04T12:24Z christmas-eve-box-ideas-matching-pajamas: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
