@@ -57647,3 +57647,12 @@ Recurring mistake for the hourly job: do not write an "Owner exception" evidence
 - what changed: added the tiered smocked dress set handle to `crg_prod_handles` so the style-guides block on mommy-and-me, dresses, mother-daughter-matching-dresses, matching-outfits and new-women-outfits also links it.
 - checks: `ceo_worktree.py check`; live readback after sync-theme.
 - rollback: revert this commit; the block renders only the remaining handles.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-05-autosource-audit
+
+- task_stage: VERIFIED
+- scope: independent daily audit of autosource-built products (last 26h)
+- `autosource.py recent 26` -> 0 products (also 0 in `recent 72`); `cmd_recent` lists recipes modified in the window, so no recipe in ops/sourcing/state/recipes/ was touched since about 2026-10-02.
+- `autosource.py pending` -> 0 pending drafts.
+- Products audited: 0. Passed: 0. Unpublished: 0. No store writes.
+- Observation: the hourly job has built nothing for at least 72h. Likely causes to check from the runbook: 1688 steps stop at exit 5 (BROWSER_NOT_CONFIGURED) until a test-profile CDP port is set in ops/sourcing/state/dlm_browser.json, or scheduler global_limit starvation is skipping runs. Owner/CEO loop should check the autosource run history.
