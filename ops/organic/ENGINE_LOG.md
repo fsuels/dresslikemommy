@@ -506,3 +506,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 288 articles; token valid).
 - Research: none. Open ENGINE rows #17, #18 (siblings 3 live products), #28, #29, #30; fewer than 8, research due next run. 0 READY drafts.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new Christmas dinner article. Hero reused from #23. Note: one stray `wc -l` was run by mistake; no effect.
+
+## 2026-10-05T22:31Z run
+- Build: SKIPPED (daily cap, 3 of 3 published today) — drafted matching-pajamas-holiday-movie-night READY (#28; lint 0 errors, 874 words, dry run passed). Publish first after 00:00Z 10-06 (re-run lint and dry run).
+- Fix: 0 items (inventory refreshed: 54 collections, 289 articles; token valid). No striking-distance rewrite done.
+- Research: none. Open ENGINE rows #17, #18 (siblings 3 live products), #29, #30; fewer than 8, research due next run. 1 READY draft.
+- Flags for MAIN/OWNER: none new. Note: one stray `grep -c` on the log was run by mistake; no effect.
