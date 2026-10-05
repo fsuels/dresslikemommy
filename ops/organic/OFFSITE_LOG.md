@@ -33,3 +33,10 @@ Format: `## <UTC time> run` then Prospects added, Drafts, Pins queued, Flags.
 - Drafts: 4 (rows 13-16: Sew Mama Sew, Vanessa Wyler, Brandi Trotter, Amanda Feltz), READY_FOR_OWNER. Rows 17-19 NEW.
 - Pins queued: 0. Guessed collection handles (couples-christmas-pajamas, new-years-eve-outfits) returned empty product lists; real handles need to be found before the NYE, baby's-first-Christmas and couples packets.
 - Flags: row 14 slug still says 2024/2025, owner must confirm it is current. Pages not fetched; owner must read each post before sending. Contact URLs are site roots. Nothing sent or posted; O5 still open.
+
+## 2026-10-05T18:30Z run
+- Assets checked 200 (1 h1, no robots): mommy-and-me-fall-fashion-cozy-coordinating-outfits, family-christmas-photo-outfits-2026, holiday-family-matching-outfits-complete-guide.
+- Prospects added: 2 (Stroller in the City, The Samantha Show), both A. 4 searches run; most results were retailers, Forbes/Today, Mother's Day posts, skipped. 21 rows total.
+- Drafts: 4 (rows 17-20: Laura Watts Walsh, The Recruiter Mom, Style Your Occasion, Stroller in the City), READY_FOR_OWNER. Row 21 still NEW.
+- Pins queued: 1 (Pin 6, holiday complete guide, image viewed OK). Quote the URL in curl (unquoted `?` fails in zsh).
+- Flags: row 21 post date unknown, owner confirm it is recent. Pages not fetched; owner must read each post before sending. Contact URLs are site roots. Nothing sent or posted; O5 still open.

@@ -34,6 +34,14 @@ One block per Pin: destination, image, title, description, board, status. See OF
 - Board: OWNER_PICK
 - Status: READY_FOR_OWNER
 
+## Pin 6: holiday-family-matching-outfits-complete-guide — READY_FOR_OWNER (queued 2026-10-05T18:40Z)
+- Destination: https://www.dresslikemommy.com/blogs/news/holiday-family-matching-outfits-complete-guide?utm_source=pinterest&utm_medium=organic&utm_campaign=holiday-family-matching-outfits-complete-guide (guide checked 200 on 2026-10-05)
+- Image: https://cdn.shopify.com/s/files/1/1557/1635/files/image3_6a490559-e72c-4b58-b190-584a6c5fda0d.png?v=1790632433 (brother and sister in matching cream Fair Isle sweaters opening gifts by the tree, from /collections/matching-family-christmas-outfits; downloaded and viewed OK; vertical 936x1664)
+- Title: Holiday Family Matching Outfits: A Complete Guide to Sweaters, Pajamas and More
+- Description: Planning matching holiday outfits for the whole family? How to choose sweaters, pajamas and shirts, coordinate colors across ages, and pick looks for gatherings, Christmas morning and photos.
+- Board: OWNER_PICK
+- Status: READY_FOR_OWNER
+
 ## Pin 5: daddy-and-me-christmas-outfits — READY_FOR_OWNER (queued 2026-10-03T18:30Z)
 - Destination: https://www.dresslikemommy.com/blogs/news/daddy-and-me-christmas-outfits?utm_source=pinterest&utm_medium=organic&utm_campaign=daddy-and-me-christmas-outfits (guide checked 200 on 2026-10-03)
 - Image: https://cdn.shopify.com/s/files/1/1557/1635/files/image1_82ee4806-850a-497c-965a-c5288c6cb4af.png?v=1790565314 (father and son in matching burgundy cream-trim knit sweaters among autumn leaves, from /collections/daddy-me; downloaded and viewed OK; vertical 936x1664, suits Pinterest)

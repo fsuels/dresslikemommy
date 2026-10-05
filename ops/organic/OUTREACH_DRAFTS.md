@@ -239,6 +239,70 @@ You're welcome to link to it or use any idea with credit. Thanks!
 Best,
 The Dress Like Mommy team
 
+## 17. Laura Watts Walsh Photography — READY_FOR_OWNER (drafted 2026-10-05T18:35Z)
+Asset: https://www.dresslikemommy.com/blogs/news/family-photo-color-palettes-by-season
+Subject: A seasonal color palette guide for your studio photo clients
+
+Hi there,
+
+Your what-to-wear guide for studio family photos is clear and useful. We're Dress Like Mommy, and we wrote a guide to family photo color palettes by season: which colors sit well together, how to balance patterns and neutrals, and how to coordinate without matching exactly.
+
+It might be a handy extra for clients:
+https://www.dresslikemommy.com/blogs/news/family-photo-color-palettes-by-season
+
+Feel free to link to it or credit any part. No obligation at all.
+
+Thanks,
+The Dress Like Mommy team
+
+## 18. The Recruiter Mom — READY_FOR_OWNER (drafted 2026-10-05T18:35Z)
+Asset: https://www.dresslikemommy.com/blogs/news/fall-family-photo-session-complete-matching-outfit-guide
+Subject: A fall family photo outfit guide to go with your coordinated looks
+
+Hello,
+
+Your fall 2026 family photo outfits post is a nice read, especially the way it covers moms, dads, teens and kids. We're Dress Like Mommy, and we wrote a complete guide to matching outfits for a fall family photo session: choosing a palette, layering and keeping every age comfortable.
+
+If it suits your readers, here it is:
+https://www.dresslikemommy.com/blogs/news/fall-family-photo-session-complete-matching-outfit-guide
+
+You're welcome to link to it or use any idea with credit. Thank you!
+
+Best,
+The Dress Like Mommy team
+
+## 19. Style Your Occasion — READY_FOR_OWNER (drafted 2026-10-05T18:35Z)
+Asset: https://www.dresslikemommy.com/blogs/news/fall-family-photo-session-complete-matching-outfit-guide
+Subject: An extra fall family photo outfit guide for your roundup
+
+Hi,
+
+Your roundup of coordinated fall family photo outfits is a fun browse. We're Dress Like Mommy, and we wrote a complete guide to matching outfits for a fall family photo session, covering palettes, layering and dressing different ages so the whole group looks cohesive.
+
+It could be a useful extra for readers:
+https://www.dresslikemommy.com/blogs/news/fall-family-photo-session-complete-matching-outfit-guide
+
+Please feel free to link to it or credit any part. Thanks for your time.
+
+Kind regards,
+The Dress Like Mommy team
+
+## 20. Stroller in the City — READY_FOR_OWNER (drafted 2026-10-05T18:35Z)
+Asset: https://www.dresslikemommy.com/blogs/news/family-christmas-photo-outfits-2026
+Subject: A Christmas photo outfit guide for your holiday photo readers
+
+Hi there,
+
+Your holiday family photo outfit ideas are a helpful read. We're Dress Like Mommy, and we wrote a practical 2026 guide to Christmas photo outfits: choosing a palette, mixing patterns, and dressing different ages so everyone looks like they belong in the same picture.
+
+If it fits your readers, here it is:
+https://www.dresslikemommy.com/blogs/news/family-christmas-photo-outfits-2026
+
+You're welcome to link to it or borrow any idea with credit. Thank you!
+
+Warmly,
+The Dress Like Mommy team
+
 ## 12. The Curvy Fashionista — READY_FOR_OWNER (drafted 2026-10-03T18:25Z)
 Asset: https://www.dresslikemommy.com/blogs/news/matching-family-christmas-pajamas-guide-2026
 Subject: A family Christmas pajamas guide that may complement your roundup
