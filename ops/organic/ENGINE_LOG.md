@@ -482,3 +482,15 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 285 articles; token valid).
 - Research: no WebSearch; added rows #25, #26 from own judgment. Open ENGINE rows #17, #18 (siblings has 3 live products), #25, #26; fewer than 8, research due next run. 0 READY drafts.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new newborn article. Hero is the #23 pajama photo (reused). Note: one stray `wc -l` and one oversized Read of a products JSON by mistake; no effect.
+
+## 2026-10-04T22:24Z run
+- Build: SKIPPED (daily cap, 3 of 3 published today) — drafted matching-family-holiday-party-outfits READY (#25; lint 0 errors, 897 words, dry run passed). Publish first after 00:00Z 10-05 (re-run lint and dry run).
+- Fix: 0 items (inventory refreshed: 54 collections, 286 articles; token valid).
+- Research: none. Open ENGINE rows #17, #18, #26 (fewer than 8; research due next run). 1 READY draft.
+- Flags for MAIN/OWNER: none new. Note: one stray `grep -c` on the log and one oversized Read of a products JSON by mistake; no effect. Hero reused from #23.
+
+## 2026-10-05T04:23Z run
+- Build: published READY #25 matching-family-holiday-party-outfits → https://www.dresslikemommy.com/blogs/news/matching-family-holiday-party-outfits (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors and dry run passed first). 1 of 3 published today (UTC 10-05).
+- Fix: 0 items (inventory refreshed: 54 collections, 286 articles; token valid).
+- Research: no WebSearch; added rows #27, #28 from own judgment. Open ENGINE rows #17, #18 (siblings 3 live products), #26, #27, #28; fewer than 8, research due next run. 0 READY drafts.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new holiday party article. Note: one stray `grep -c` on the log was run by mistake; no effect.

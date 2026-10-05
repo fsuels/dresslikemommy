@@ -26,3 +26,10 @@ Format: `## <UTC time> run` then Prospects added, Drafts, Pins queued, Flags.
 - Drafts: 4 (rows 9-12: Family Moment, Focal Fun, Ashlina Kaposta, Curvy Fashionista), READY_FOR_OWNER. Rows 13-17 still NEW.
 - Pins queued: 1 (Pin 5 daddy-and-me-christmas-outfits, image viewed OK). Stopped at one: collection JSON reads are very large.
 - Flags: row 14 (Vanessa Wyler) URL slug says 2024/2025; owner must confirm the post is current. Row 11 post URL (inferred last run) still unconfirmed. Pages were not fetched, so the owner must read each post before sending. Contact URLs are site roots. Nothing sent or posted; O5 still open.
+
+## 2026-10-04T18:27Z run
+- Assets checked 200 (1 h1, no robots): matching-family-shirts-for-pictures, fall-family-photo-session-complete-matching-outfit-guide.
+- Prospects added: 2 (The Recruiter Mom, Style Your Occasion), both A, NEW. 3 searches run; gift-guide and pajama queries returned mostly retailers or Mother's Day posts, skipped. 19 rows total.
+- Drafts: 4 (rows 13-16: Sew Mama Sew, Vanessa Wyler, Brandi Trotter, Amanda Feltz), READY_FOR_OWNER. Rows 17-19 NEW.
+- Pins queued: 0. Guessed collection handles (couples-christmas-pajamas, new-years-eve-outfits) returned empty product lists; real handles need to be found before the NYE, baby's-first-Christmas and couples packets.
+- Flags: row 14 slug still says 2024/2025, owner must confirm it is current. Pages not fetched; owner must read each post before sending. Contact URLs are site roots. Nothing sent or posted; O5 still open.

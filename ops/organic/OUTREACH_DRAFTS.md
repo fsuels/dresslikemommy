@@ -176,6 +176,69 @@ Please feel free to link to it or credit any part. Thanks for the inspiration ei
 Warmly,
 The Dress Like Mommy team
 
+## 13. Sew Mama Sew — READY_FOR_OWNER (drafted 2026-10-04T18:30Z)
+Asset: https://www.dresslikemommy.com/blogs/news/matching-family-shirts-for-pictures
+Subject: A matching family shirts guide for your photo outfit readers
+
+Hi there,
+
+Your family photo outfit ideas roundup is a fun read. We're Dress Like Mommy, and we wrote a guide to matching family shirts for pictures: choosing a design everyone can wear, sizing across ages, and keeping the look cohesive on camera.
+
+If it suits your readers, here it is:
+https://www.dresslikemommy.com/blogs/news/matching-family-shirts-for-pictures
+
+Feel free to link to it or credit any part. Thanks for the inspiration either way.
+
+Warmly,
+The Dress Like Mommy team
+
+## 14. Vanessa Wyler Photography — READY_FOR_OWNER (drafted 2026-10-04T18:30Z)
+Asset: https://www.dresslikemommy.com/blogs/news/family-photo-color-palettes-by-season
+Subject: A seasonal color palette guide for your photo clients
+
+Hi Vanessa,
+
+Your fall style guide is a useful client resource. We're Dress Like Mommy, and we wrote a guide to family photo color palettes by season: which colors sit well together, how to balance patterns and neutrals, and how to coordinate without matching exactly.
+
+If clients want a second opinion on palettes, it's here:
+https://www.dresslikemommy.com/blogs/news/family-photo-color-palettes-by-season
+
+You're welcome to link to it or reference it with credit. No obligation at all.
+
+Thanks,
+The Dress Like Mommy team
+
+## 15. Brandi Trotter Photography — READY_FOR_OWNER (drafted 2026-10-04T18:30Z)
+Asset: https://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas
+Subject: An extra what-to-wear resource for your family photo clients
+
+Hello,
+
+Your complete what-to-wear guide for family photos is clear and thorough. We're Dress Like Mommy, and we wrote a guide on matching outfit ideas for family photos: coordinating colors and patterns and keeping everyone comfortable for the session.
+
+It might be a handy extra for clients:
+https://www.dresslikemommy.com/blogs/news/what-to-wear-for-family-photos-matching-outfit-ideas
+
+Please feel free to link to it or credit any part. Thank you for your time.
+
+Kind regards,
+The Dress Like Mommy team
+
+## 16. Amanda Feltz — READY_FOR_OWNER (drafted 2026-10-04T18:30Z)
+Asset: https://www.dresslikemommy.com/blogs/news/family-christmas-photo-outfits-2026
+Subject: A Christmas photo outfit guide to follow your family photo post
+
+Hi Amanda,
+
+I enjoyed your family photo outfits post. Many of your readers will be planning Christmas pictures next. We're Dress Like Mommy, and we wrote a 2026 guide to Christmas photo outfits: choosing a palette, mixing patterns, and dressing different ages so everyone looks coordinated.
+
+https://www.dresslikemommy.com/blogs/news/family-christmas-photo-outfits-2026
+
+You're welcome to link to it or use any idea with credit. Thanks!
+
+Best,
+The Dress Like Mommy team
+
 ## 12. The Curvy Fashionista — READY_FOR_OWNER (drafted 2026-10-03T18:25Z)
 Asset: https://www.dresslikemommy.com/blogs/news/matching-family-christmas-pajamas-guide-2026
 Subject: A family Christmas pajamas guide that may complement your roundup

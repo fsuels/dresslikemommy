@@ -128,3 +128,6 @@
 - 2026-10-04T06:24Z maternity-christmas-family-photo-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-10-04T11:23Z christmas-eve-box-ideas-matching-pajamas: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-10-04T12:24Z christmas-eve-box-ideas-matching-pajamas: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-10-04T17:24Z mommy-and-newborn-holiday-matching-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-10-04T18:23Z mommy-and-newborn-holiday-matching-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-10-05T05:23Z matching-family-holiday-party-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
