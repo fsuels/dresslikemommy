@@ -61,8 +61,26 @@
       endif
     endfor
   endif
+
+  assign crg_prod_handles = ''
+  case collection.handle
+    when 'mommy-and-me', 'dresses', 'mother-daughter-matching-dresses', 'matching-outfits', 'new-women-outfits'
+      assign crg_prod_handles = 'elegant-matching-family-outfits-light-blue-halter-dresses-casual-t-shirt-set-for-summer'
+  endcase
+  assign crg_prod_found = ''
+  assign crg_prod_count = 0
+  if crg_prod_handles != blank
+    assign crg_ph_list = crg_prod_handles | split: ','
+    for crg_ph in crg_ph_list
+      assign crg_prod = all_products[crg_ph]
+      if crg_prod != blank
+        assign crg_prod_count = crg_prod_count | plus: 1
+        assign crg_prod_found = crg_prod_found | append: crg_ph | append: ','
+      endif
+    endfor
+  endif
 -%}
-{%- if crg_count > 0 -%}
+{%- if crg_count > 0 or crg_prod_count > 0 -%}
   {%- liquid
     assign crg_lang = request.locale.iso_code | default: localization.language.iso_code | default: 'en' | downcase | split: '-' | first
     if crg_lang == 'nb'
@@ -106,5 +124,16 @@
         {%- endif -%}
       {%- endfor -%}
     </div>
+    {%- if crg_prod_count > 0 -%}
+      <div class="collection-seo-rich__links" style="margin-top: 1.2rem;">
+        {%- assign crg_ph_found = crg_prod_found | split: ',' -%}
+        {%- for crg_ph in crg_ph_found -%}
+          {%- if crg_ph != blank -%}
+            {%- assign crg_prod = all_products[crg_ph] -%}
+            <a class="collection-seo-rich__link" href="{{ crg_prod.url | within: collection }}">{{ crg_prod.title | escape }}</a>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
   </section>
 {%- endif -%}

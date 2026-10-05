@@ -57631,3 +57631,11 @@ Recurring mistake for the hourly job: do not write an "Owner exception" evidence
 - context: `recent 72` lists 23 LIVE maternity gowns/photoshoot sets from earlier windows (covered by prior daily audits); not re-audited here, no changes made.
 - signal for owner/CEO loop: a 26h gap with zero new listings means the hourly job is producing nothing. Check autosource run history / scheduler global_limit starvation before assuming the pipeline is healthy.
 - external writes: none.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-05-collection-guides-product-link
+
+- task_stage: IMPLEMENTED
+- task_entities: BACKLOG row T1; `snippets/collection-related-guides.liquid`; collections mommy-and-me, dresses, mother-daughter-matching-dresses, matching-outfits, new-women-outfits; product `elegant-matching-family-outfits-light-blue-halter-dresses-casual-t-shirt-set-for-summer` (live JSON 200 on 2026-10-05).
+- what changed: the style-guides block on those collections now also links the light-blue halter family set (the product landing organic traffic). Fixed a Liquid syntax error from an earlier partial draft (`for ... | split` inline) by assigning the split list first. Dropped an unverified second product handle (returned an empty body); the tiered smocked dress set's handle is still unknown, so it is not linked.
+- checks: `ceo_worktree.py check` ok (theme check clean).
+- rollback: revert this commit; the block renders only guides when no product handle is found.
