@@ -500,3 +500,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 287 articles; token valid).
 - Research: no WebSearch; added rows #29, #30 from own judgment. Open ENGINE rows #17, #18 (siblings 3 live products), #27, #28, #29, #30; fewer than 8, research due next run. 0 READY drafts.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new Christmas morning article. Hero reused from #23. Note: one stray `wc -l` was run by mistake; no effect.
+
+## 2026-10-05T16:25Z run
+- Build: drafted and published #27 matching-family-christmas-dinner-outfits → https://www.dresslikemommy.com/blogs/news/matching-family-christmas-dinner-outfits (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors, 941 words, dry run passed first). 3 of 3 published today (UTC 10-05).
+- Fix: 0 items (inventory refreshed: 54 collections, 288 articles; token valid).
+- Research: none. Open ENGINE rows #17, #18 (siblings 3 live products), #28, #29, #30; fewer than 8, research due next run. 0 READY drafts.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new Christmas dinner article. Hero reused from #23. Note: one stray `wc -l` was run by mistake; no effect.
