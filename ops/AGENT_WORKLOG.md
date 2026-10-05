@@ -57639,3 +57639,11 @@ Recurring mistake for the hourly job: do not write an "Owner exception" evidence
 - what changed: the style-guides block on those collections now also links the light-blue halter family set (the product landing organic traffic). Fixed a Liquid syntax error from an earlier partial draft (`for ... | split` inline) by assigning the split list first. Dropped an unverified second product handle (returned an empty body); the tiered smocked dress set's handle is still unknown, so it is not linked.
 - checks: `ceo_worktree.py check` ok (theme check clean).
 - rollback: revert this commit; the block renders only guides when no product handle is found.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-05-t1-smocked-set-link
+
+- task_stage: IMPLEMENTED
+- task_entities: BACKLOG row T1; `snippets/collection-related-guides.liquid`; product `tiered-smocked-mommy-and-me-dresses` (found via storefront search suggest, available, active on 2026-10-05).
+- what changed: added the tiered smocked dress set handle to `crg_prod_handles` so the style-guides block on mommy-and-me, dresses, mother-daughter-matching-dresses, matching-outfits and new-women-outfits also links it.
+- checks: `ceo_worktree.py check`; live readback after sync-theme.
+- rollback: revert this commit; the block renders only the remaining handles.
