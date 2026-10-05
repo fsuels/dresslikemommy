@@ -27,13 +27,13 @@ This file is the scoreboard for every organic lane: engine articles, SEO rewrite
   - Blog articles barely appear yet. The best is /el mommy-and-me guide with 9. The 74 articles are young and need weeks to rank, so judge them from 2026-10-22 on.
 - **Search Console (3 months to 2026-09-29):** 2.85K clicks, 139K impressions, CTR 2.1%, average position 16.9. See `GSC_STRIKING_DISTANCE.md`.
 
-## Latest verdict (2026-10-04)
+## Latest verdict (2026-10-05)
 
-- **UP** on paper: 7-day organic avg 110.6/day (09-27 → 10-03) vs 80.1 the prior 7 (+38%). The window still includes the paid-ad tail (298 / 126), so it overstates. The five clean days (77, 73, 61, 63, 76) average 70.0 vs 60.1 for 09-18 → 09-24 (about +16%); 10-03's 76 rebounded from 61-63. EXPECTED, not proven, until the clean week 09-29 → 10-05 closes.
-- **Search funnel (09-30 → 10-03, the only rows with data):** 273 sessions → 22 carts → 2 checkouts. 10-03: 76 sessions → 10 carts → 1 checkout, 1 search order ($51.98).
-- **Top landing pages (7d, 09-27 → 10-03):** /collections/new-women-outfits 37, / 36, /collections/pajamas 33, /collections/mommy-and-me 29, /collections/dresses 26.
-- **What moved:** cause unknown. No blog article is in the top 10; two product pages (light-blue halter dress set 15, tiered smocked dress set 14) and /it/collections/mommy-and-me (18 sessions, 4 carts, best cart converter) now appear. GSC not due (Sunday).
-- **Recommended action:** re-read 10-06 (Monday, with GSC) for the first full clean week. Meanwhile add internal links from the top collections to the two product pages now landing organic traffic, and expand the Italian mommy-and-me collection copy/links since it converts to carts best.
+- **DOWN on paper, FLAT-to-UP on clean days:** 7-day organic avg 79.7/day (09-28 → 10-04) vs 112.7 the prior 7 (-29%), but the prior week holds the paid-ad spike (156 / 298). The six clean days (77, 73, 61, 63, 76, 82) average 72.0 vs 61.3 for 09-19 → 09-24 (+17%); 10-04's 82 is the highest clean day. EXPECTED, not proven; the first full clean week closes with 10-05.
+- **Search funnel (last 5 rows with data, 09-30 → 10-04):** 355 sessions → 27 carts → 3 checkouts. 10-04: 82 sessions → 5 carts → 1 checkout, 1 search order ($116.57).
+- **Top landing pages (7d, 09-28 → 10-04):** / 36, /it/collections/mommy-and-me 17 (3 carts), /collections/mommy-and-me 15, /collections/swimsuits 15, /it/collections/pajamas 13.
+- **What moved:** the blog article /blogs/news/family-christmas-photo-outfits-2026 appears for the first time with 12 sessions (0 carts), and /el/blogs/news/mommy-and-me-matching-outfit-ideas has 8; a first sign the articles are starting to rank. Otherwise cause unknown. GSC skipped: Chrome is signed in as an account with no access to the property.
+- **Recommended action:** add internal links and a collection CTA from the Christmas photo-outfits article to the matching-sets collections to turn its traffic into carts; and have the owner switch Chrome to the test profile with Search Console access so the weekly GSC row can run.
 
 ## Daily rows (newest last)
 
@@ -46,6 +46,7 @@ Columns: date | search sessions | google | bing+ddg+yahoo | carts from search | 
 | 2026-10-01 | 61 | 59 | 2 | 3 | 0 | 0 / 0 | 126.0 | +110% | no orders from any source; 7d window (09-25 → 10-01) still holds the paid tail; clean days 09-29 → 10-01 avg 70.3 vs 55.1 for 09-16 → 09-24 |
 | 2026-10-02 | 63 | 56 | 7 | 6 | 0 | 0 / 0 | 122.0 | +86% | no orders from any source; 7d window (09-26 → 10-02) still holds the paid tail (156 / 298 / 126); clean days 09-29 → 10-02 avg 68.5 vs 58.3 for 09-17 → 09-24 |
 | 2026-10-03 | 76 | 73 | 3 | 10 | 1 | 1 / 1 | 110.6 | +38% | search order $51.98 (only order of the day); 7d window (09-27 → 10-03) still holds 298 / 126; clean days 09-29 → 10-03 avg 70.0 vs 60.1 for 09-18 → 09-24 |
+| 2026-10-04 | 82 | 76 | 6 | 5 | 1 | 1 / 2 | 79.7 | -29% | search order $116.57, other order $68.98 (no referrer); 7d window (09-28 → 10-04) drops the 298 spike, prev 7d (09-21 → 09-27) still holds the paid tail; clean days 09-29 → 10-04 avg 72.0 vs 61.3 for 09-19 → 09-24 (+17%); GSC skipped: Chrome signed in as the wrong account, no access to the property |
 
 ## Weekly Search Console rows (Mondays)
 
