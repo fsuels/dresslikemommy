@@ -530,3 +530,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 292 articles; token valid). No striking-distance rewrite done.
 - Research: none. Open ENGINE row #17 only; fewer than 8, research due next run (WebSearch not used). 1 READY draft.
 - Flags for MAIN/OWNER: none new. Note: one stray `wc -l` was run by mistake; no effect.
+
+## 2026-10-06T22:30Z run
+- Build: SKIPPED (daily cap, 3 of 3 published today) — expanded READY #18 sibling-matching-christmas-outfits from 765 to 1,000 words (lint 0 errors, dry run passed). Publish first after 00:00Z 10-07 (re-run lint and dry run).
+- Fix: 0 items (inventory refreshed: 54 collections, 292 articles; token valid). No striking-distance rewrite done.
+- Research: no WebSearch; added rows #31, #32, #33 from own judgment. Open ENGINE rows #17, #31, #32, #33; fewer than 8. 1 READY draft.
+- Flags for MAIN/OWNER: none new. Note: one stray `grep -c` on the log was run by mistake; no effect.
