@@ -512,3 +512,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 289 articles; token valid). No striking-distance rewrite done.
 - Research: none. Open ENGINE rows #17, #18 (siblings 3 live products), #29, #30; fewer than 8, research due next run. 1 READY draft.
 - Flags for MAIN/OWNER: none new. Note: one stray `grep -c` on the log was run by mistake; no effect.
+
+## 2026-10-06T04:21Z run
+- Build: drafted and published #29 matching-family-outfits-visiting-grandparents-christmas → https://www.dresslikemommy.com/blogs/news/matching-family-outfits-visiting-grandparents-christmas (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors, 862 words, dry run passed first). #28 was already published by the CEO loop earlier today, so this is the 2nd of 3 for UTC 10-06.
+- Fix: 0 items (inventory refreshed: 54 collections, 290 articles; token valid).
+- Research: none. Open ENGINE rows #17, #18 (siblings 3 live products), #30; fewer than 8, research due next run. 0 READY drafts.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new grandparents article. Hero reused from #23. Note: one stray `wc -l` was run by mistake; no effect.
