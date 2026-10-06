@@ -57656,3 +57656,12 @@ Recurring mistake for the hourly job: do not write an "Owner exception" evidence
 - `autosource.py pending` -> 0 pending drafts.
 - Products audited: 0. Passed: 0. Unpublished: 0. No store writes.
 - Observation: the hourly job has built nothing for at least 72h. Likely causes to check from the runbook: 1688 steps stop at exit 5 (BROWSER_NOT_CONFIGURED) until a test-profile CDP port is set in ops/sourcing/state/dlm_browser.json, or scheduler global_limit starvation is skipping runs. Owner/CEO loop should check the autosource run history.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-06-autosource-audit
+
+- task_stage: VERIFIED
+- scope: independent audit of autosource listings from the last 26h
+- `autosource.py recent 26`: no products listed (empty output). `recent 72`: also empty. `pending`: 0 drafts.
+- products audited: 0; passed: 0; unpublished: 0.
+- observation: the hourly autosource job has produced no new listings in at least 72h and has no mid-build drafts. Not a quality failure, but an output gap: the CEO session should check the autosource run history (scheduler global_limit starvation, lock stuck, 1688 CAPTCHA/BROWSER_NOT_CONFIGURED stops, or empty queues) before relying on it for catalog expansion.
+- no repo, store, or settings changes made.
