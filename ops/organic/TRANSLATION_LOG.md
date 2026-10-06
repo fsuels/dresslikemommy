@@ -135,3 +135,5 @@
 - 2026-10-05T11:23Z christmas-morning-matching-family-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-10-06T03:27Z christmas-morning-matching-family-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-10-06T04:23Z matching-family-christmas-dinner-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-10-06T05:22Z matching-family-christmas-dinner-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-10-06T06:17Z matching-family-outfits-visiting-grandparents-christmas: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
