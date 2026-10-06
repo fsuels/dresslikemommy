@@ -140,3 +140,5 @@
 - 2026-10-06T07:16Z matching-family-outfits-visiting-grandparents-christmas: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-10-06T08:16Z matching-pajamas-holiday-movie-night: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-10-06T09:19Z matching-pajamas-holiday-movie-night: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-10-06T11:18Z matching-family-holiday-lights-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-10-06T12:16Z matching-family-holiday-lights-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
