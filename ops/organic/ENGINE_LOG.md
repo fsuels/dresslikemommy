@@ -524,3 +524,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 291 articles; token valid).
 - Research: none. Open ENGINE rows #17, #18 (siblings has 3 live products); fewer than 8, research due next run. 0 READY drafts.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new holiday lights article. Hero reused from #23. Note: one stray `wc -l` was run by mistake; no effect.
+
+## 2026-10-06T19:32Z run
+- Build: SKIPPED (daily cap, 3 of 3 published today) — drafted sibling-matching-christmas-outfits READY (#18; lint 0 errors, 765 words, dry run passed; shorter than the 900-word bar, expand before publishing if possible). Publish first after 00:00Z 10-07 (re-run lint and dry run).
+- Fix: 0 items (inventory refreshed: 54 collections, 292 articles; token valid). No striking-distance rewrite done.
+- Research: none. Open ENGINE row #17 only; fewer than 8, research due next run (WebSearch not used). 1 READY draft.
+- Flags for MAIN/OWNER: none new. Note: one stray `wc -l` was run by mistake; no effect.

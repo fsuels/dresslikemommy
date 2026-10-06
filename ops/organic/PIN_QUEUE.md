@@ -42,6 +42,14 @@ One block per Pin: destination, image, title, description, board, status. See OF
 - Board: OWNER_PICK
 - Status: READY_FOR_OWNER
 
+## Pin 7: christmas-eve-box-ideas-matching-pajamas — READY_FOR_OWNER (queued 2026-10-06T19:45Z)
+- Destination: https://www.dresslikemommy.com/blogs/news/christmas-eve-box-ideas-matching-pajamas?utm_source=pinterest&utm_medium=organic&utm_campaign=christmas-eve-box-ideas-matching-pajamas (guide checked 200 on 2026-10-06)
+- Image: https://cdn.shopify.com/s/files/1/1557/1635/articles/image1_0dc30724-f340-42c9-834a-e155fdeabca0.png?v=1791109532 (family of four in cream Merry Christmas buffalo plaid tree tops and plaid pants by the tree, the guide's own article image; downloaded and viewed OK; vertical 936x1664)
+- Title: Christmas Eve Box Ideas With Matching Family Pajamas: What to Put In and How to Size It
+- Description: Planning a Christmas Eve box? Ideas for what to put in, how to size one pajama print for toddlers through adults, and how to reveal it so the whole family can wear matching pajamas that night.
+- Board: OWNER_PICK
+- Status: READY_FOR_OWNER
+
 ## Pin 5: daddy-and-me-christmas-outfits — READY_FOR_OWNER (queued 2026-10-03T18:30Z)
 - Destination: https://www.dresslikemommy.com/blogs/news/daddy-and-me-christmas-outfits?utm_source=pinterest&utm_medium=organic&utm_campaign=daddy-and-me-christmas-outfits (guide checked 200 on 2026-10-03)
 - Image: https://cdn.shopify.com/s/files/1/1557/1635/files/image1_82ee4806-850a-497c-965a-c5288c6cb4af.png?v=1790565314 (father and son in matching burgundy cream-trim knit sweaters among autumn leaves, from /collections/daddy-me; downloaded and viewed OK; vertical 936x1664, suits Pinterest)

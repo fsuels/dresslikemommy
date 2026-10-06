@@ -303,6 +303,70 @@ You're welcome to link to it or borrow any idea with credit. Thank you!
 Warmly,
 The Dress Like Mommy team
 
+## 21. The Samantha Show — READY_FOR_OWNER (drafted 2026-10-06T19:40Z)
+Asset: https://www.dresslikemommy.com/blogs/news/mommy-and-me-fall-fashion-cozy-coordinating-outfits
+Subject: A cozy mommy-and-me fall styling guide for your readers
+
+Hi there,
+
+I enjoyed your mommy and me fall outfit inspiration post. We're Dress Like Mommy, and we wrote a guide to cozy coordinating fall looks for mom and child: layering, autumn colors and ways to match without dressing identically.
+
+If it suits your readers, here it is:
+https://www.dresslikemommy.com/blogs/news/mommy-and-me-fall-fashion-cozy-coordinating-outfits
+
+You're welcome to link to it or borrow any idea with credit. Thank you!
+
+Warmly,
+The Dress Like Mommy team
+
+## 22. Marvellous Mrs P — READY_FOR_OWNER (drafted 2026-10-06T19:40Z)
+Asset: https://www.dresslikemommy.com/blogs/news/christmas-eve-box-ideas-matching-pajamas
+Subject: A matching-pajamas idea to go with your Christmas Eve box post
+
+Hello,
+
+Your Christmas Eve box ideas post is a lovely read. We're Dress Like Mommy, and we wrote a guide to Christmas Eve boxes with matching family pajamas: what to put in, how to size one print for every age, and how to plan the reveal.
+
+If it fits your readers, here it is:
+https://www.dresslikemommy.com/blogs/news/christmas-eve-box-ideas-matching-pajamas
+
+Please feel free to link to it or credit any part. Thanks for the inspiration either way.
+
+Best,
+The Dress Like Mommy team
+
+## 23. Caitlin Houston — READY_FOR_OWNER (drafted 2026-10-06T19:40Z)
+Asset: https://www.dresslikemommy.com/blogs/news/christmas-eve-box-ideas-matching-pajamas
+Subject: A Christmas Eve box pajama guide your readers might like
+
+Hi Caitlin,
+
+I enjoyed your Christmas Eve box tutorial. We're Dress Like Mommy, and we wrote a guide to Christmas Eve boxes with matching family pajamas, covering what to include, sizing across ages and ways to reveal the box.
+
+It might be a useful extra for readers:
+https://www.dresslikemommy.com/blogs/news/christmas-eve-box-ideas-matching-pajamas
+
+You're welcome to link to it or use any idea with credit. Thank you for your time.
+
+Kind regards,
+The Dress Like Mommy team
+
+## 24. Thriving in Parenting — READY_FOR_OWNER (drafted 2026-10-06T19:40Z)
+Asset: https://www.dresslikemommy.com/blogs/news/christmas-eve-box-ideas-matching-pajamas
+Subject: A matching-pajamas companion to your Christmas Eve box ideas
+
+Hello,
+
+Your Christmas Eve box ideas for the whole family are a helpful read. We're Dress Like Mommy, and we wrote a guide to Christmas Eve boxes with matching pajamas: what to put in, how to size one print for toddlers through adults, and how to reveal it.
+
+If it suits your readers, here it is:
+https://www.dresslikemommy.com/blogs/news/christmas-eve-box-ideas-matching-pajamas
+
+Feel free to link to it or credit any part. No obligation at all.
+
+Thanks,
+The Dress Like Mommy team
+
 ## 12. The Curvy Fashionista — READY_FOR_OWNER (drafted 2026-10-03T18:25Z)
 Asset: https://www.dresslikemommy.com/blogs/news/matching-family-christmas-pajamas-guide-2026
 Subject: A family Christmas pajamas guide that may complement your roundup

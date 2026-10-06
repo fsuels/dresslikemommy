@@ -40,3 +40,10 @@ Format: `## <UTC time> run` then Prospects added, Drafts, Pins queued, Flags.
 - Drafts: 4 (rows 17-20: Laura Watts Walsh, The Recruiter Mom, Style Your Occasion, Stroller in the City), READY_FOR_OWNER. Row 21 still NEW.
 - Pins queued: 1 (Pin 6, holiday complete guide, image viewed OK). Quote the URL in curl (unquoted `?` fails in zsh).
 - Flags: row 21 post date unknown, owner confirm it is recent. Pages not fetched; owner must read each post before sending. Contact URLs are site roots. Nothing sent or posted; O5 still open.
+
+## 2026-10-06T19:45Z run
+- Assets checked 200 (1 h1, no robots): christmas-eve-box-ideas-matching-pajamas, mommy-and-newborn-holiday-matching-outfits, matching-family-christmas-dinner-outfits, matching-family-holiday-lights-outfits.
+- Prospects added: 5 (Marvellous Mrs P, Caitlin Houston, Thriving in Parenting, My Fashion Life, Best Outfits Today), all A. 5 searches run; most results were retailers/brands (Primark, PatPat, Forbes, Kate Backdrop, Etsy), skipped. 26 rows total.
+- Drafts: 4 (rows 21-24: Samantha Show, Marvellous Mrs P, Caitlin Houston, Thriving in Parenting), READY_FOR_OWNER. Rows 25-26 still NEW.
+- Pins queued: 1 (Pin 7, Christmas Eve box guide; used the guide's own article image, viewed OK).
+- Flags: rows 21, 23, 24 post dates unknown, owner confirm recent. Pages not fetched; owner must read each post before sending. Contact URLs are site roots. Nothing sent or posted; O5 still open.
