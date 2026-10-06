@@ -518,3 +518,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 290 articles; token valid).
 - Research: none. Open ENGINE rows #17, #18 (siblings 3 live products), #30; fewer than 8, research due next run. 0 READY drafts.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new grandparents article. Hero reused from #23. Note: one stray `wc -l` was run by mistake; no effect.
+
+## 2026-10-06T10:24Z run
+- Build: drafted and published #30 matching-family-holiday-lights-outfits → https://www.dresslikemommy.com/blogs/news/matching-family-holiday-lights-outfits (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors, 956 words, dry run passed first). 3 of 3 published today (UTC 10-06; #28 by CEO loop, #29 earlier run).
+- Fix: 0 items (inventory refreshed: 54 collections, 291 articles; token valid).
+- Research: none. Open ENGINE rows #17, #18 (siblings has 3 live products); fewer than 8, research due next run. 0 READY drafts.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new holiday lights article. Hero reused from #23. Note: one stray `wc -l` was run by mistake; no effect.
