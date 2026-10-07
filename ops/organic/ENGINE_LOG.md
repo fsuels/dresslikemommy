@@ -542,3 +542,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 292 articles; token valid).
 - Research: no WebSearch; added rows #34, #35, #36 from own judgment. Open ENGINE rows #17, #31-#36. 0 READY drafts.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new siblings article.
+
+## 2026-10-07T23:10Z run
+- Build: drafted and published #31 matching-family-christmas-concert-outfits → https://www.dresslikemommy.com/blogs/news/matching-family-christmas-concert-outfits (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors, 1,022 words, dry run passed first). 2 of 3 published today (UTC 10-07).
+- Fix: 0 items (inventory refreshed: 54 collections, 293 articles; token valid).
+- Research: none. Open ENGINE rows #17, #32-#36; fewer than 8, research due next run. 0 READY drafts.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new concert article. Hero reused from #23. Note: one stray `grep -c` on the log was run by mistake; no effect.
