@@ -536,3 +536,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 292 articles; token valid). No striking-distance rewrite done.
 - Research: no WebSearch; added rows #31, #32, #33 from own judgment. Open ENGINE rows #17, #31, #32, #33; fewer than 8. 1 READY draft.
 - Flags for MAIN/OWNER: none new. Note: one stray `grep -c` on the log was run by mistake; no effect.
+
+## 2026-10-07T18:45Z run
+- Build: published READY #18 sibling-matching-christmas-outfits → https://www.dresslikemommy.com/blogs/news/sibling-matching-christmas-outfits (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors and dry run passed first). 1 of 3 published today (UTC 10-07).
+- Fix: 0 items (inventory refreshed: 54 collections, 292 articles; token valid).
+- Research: no WebSearch; added rows #34, #35, #36 from own judgment. Open ENGINE rows #17, #31-#36. 0 READY drafts.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new siblings article.
