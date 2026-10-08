@@ -144,3 +144,5 @@
 - 2026-10-06T12:16Z matching-family-holiday-lights-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-10-07T19:21Z sibling-matching-christmas-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-10-07T20:19Z sibling-matching-christmas-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-10-07T23:40Z matching-family-christmas-concert-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-10-08T00:16Z matching-family-christmas-concert-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)

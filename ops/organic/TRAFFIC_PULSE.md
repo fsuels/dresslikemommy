@@ -27,13 +27,13 @@ This file is the scoreboard for every organic lane: engine articles, SEO rewrite
   - Blog articles barely appear yet. The best is /el mommy-and-me guide with 9. The 74 articles are young and need weeks to rank, so judge them from 2026-10-22 on.
 - **Search Console (3 months to 2026-09-29):** 2.85K clicks, 139K impressions, CTR 2.1%, average position 16.9. See `GSC_STRIKING_DISTANCE.md`.
 
-## Latest verdict (2026-10-06)
+## Latest verdict (2026-10-07)
 
-- **DOWN on paper, UP on clean days:** 7-day organic avg 76.7/day (09-29 → 10-05) vs 122.1 the prior 7 (-37%), but the prior week holds the paid-ad spike (91 / 156 / 298 / 126). This is the first full clean week: 77, 73, 61, 63, 76, 82, 105 (537 total); 10-05's 105 is the highest clean day. Clean week avg 76.7 vs 62.8 for 09-20 → 09-24 (+22%). Still EXPECTED, not proven; next week's comparison will be clean vs clean.
-- **Search funnel (6 rows with data, 09-30 → 10-05):** 460 sessions → 31 carts → 3 checkouts. 10-05: 105 sessions → 4 carts → 0 checkouts, 0 search orders (1 order, $65.98, no referrer).
-- **Top landing pages (7d, to 10-05):** / 34, /it/collections/mommy-and-me 17 (4 carts), /collections/swimsuits 15 (1 cart), /blogs/news/family-christmas-photo-outfits-2026 12 (0 carts), /it/collections/pajamas 10.
-- **What moved:** cause unknown for 10-05's jump to 105. The Christmas photo-outfits article holds 12 sessions with 0 carts, and /el/ and /he/ blog articles show 7 and 6, so the articles keep getting search traffic. GSC not due (Tuesday).
-- **Recommended action:** add internal links and a collection CTA from the Christmas photo-outfits article to the matching-sets collections to turn its traffic into carts (it has not converted yet); and the owner should fix Chrome access to Search Console so the Monday GSC row can run.
+- **DOWN on paper, UP on clean days:** 7-day organic avg 79.3/day (09-30 → 10-06, 555 sessions) vs 124.7 the prior 7 (-36%), but the prior week holds the paid-ad spike (91 / 156 / 298 / 126). This week is fully clean and the last two days were 105 and 95, the two highest clean days. Clean avg 79.3 vs 61.0 for 09-21 → 09-24 (+30%). Still EXPECTED, not proven; the true clean-vs-clean comparison arrives on 10-12.
+- **Search funnel (last 7 rows with data, 09-30 → 10-06):** 555 sessions → 38 carts → 3 checkouts. 10-06: 95 sessions → 7 carts → 0 checkouts, 0 orders from any source.
+- **Top landing pages (7d, to 10-06):** / 33 (3 carts), /it/collections/mommy-and-me 18 (4 carts), /collections/swimsuits 14 (1 cart), /blogs/news/family-christmas-photo-outfits-2026 13 (0 carts), /products/tiered-ruffle-tulle-off-shoulder-maternity-gown 8 (1 cart).
+- **What moved:** cause unknown for the higher level. The Christmas photo-outfits article is still gaining sessions (12 → 13) with 0 carts, and the /el/ mommy-and-me article shows 7, so articles keep getting search traffic. GSC not due (Wednesday).
+- **Recommended action:** add internal links and a collection CTA from the Christmas photo-outfits article to the matching-sets collections to turn its 13 sessions into carts, and check why 38 carts have produced only 3 checkouts (checkout friction); the owner should still fix Chrome access to Search Console so the Monday GSC row can run.
 
 ## Daily rows (newest last)
 
@@ -48,6 +48,7 @@ Columns: date | search sessions | google | bing+ddg+yahoo | carts from search | 
 | 2026-10-03 | 76 | 73 | 3 | 10 | 1 | 1 / 1 | 110.6 | +38% | search order $51.98 (only order of the day); 7d window (09-27 → 10-03) still holds 298 / 126; clean days 09-29 → 10-03 avg 70.0 vs 60.1 for 09-18 → 09-24 |
 | 2026-10-04 | 82 | 76 | 6 | 5 | 1 | 1 / 2 | 79.7 | -29% | search order $116.57, other order $68.98 (no referrer); 7d window (09-28 → 10-04) drops the 298 spike, prev 7d (09-21 → 09-27) still holds the paid tail; clean days 09-29 → 10-04 avg 72.0 vs 61.3 for 09-19 → 09-24 (+17%); GSC skipped: Chrome signed in as the wrong account, no access to the property |
 | 2026-10-05 | 105 | 97 | 8 | 4 | 0 | 0 / 1 | 76.7 | -37% | other engines = duckduckgo 5 + yahoo 2 + yandex 1; only order was $65.98 with no referrer; first full clean week (09-29 → 10-05) avg 76.7 vs 62.8 for 09-20 → 09-24 (+22%); prev 7d (09-22 → 09-28) still holds the paid tail; highest clean day so far |
+| 2026-10-06 | 95 | 93 | 2 | 7 | 0 | 0 / 0 | 79.3 | -36% | other engines = yahoo 2; no orders from any source; 7d window (09-30 → 10-06) is fully clean, prev 7d (09-23 → 09-29) still holds the paid spike (91 / 156 / 298 / 126); clean window avg 79.3 vs 61.0 for 09-21 → 09-24 (+30%) |
 
 ## Weekly Search Console rows (Mondays)
 

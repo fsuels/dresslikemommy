@@ -367,6 +367,66 @@ Feel free to link to it or credit any part. No obligation at all.
 Thanks,
 The Dress Like Mommy team
 
+## 25. My Fashion Life — READY_FOR_OWNER (drafted 2026-10-08T00:50Z)
+Asset: https://www.dresslikemommy.com/blogs/news/matching-family-christmas-dinner-outfits
+Subject: A family Christmas dinner outfit guide to go with your post
+Hello,
+
+Your Christmas dinner outfits post is a fun read. We're Dress Like Mommy, and we wrote a guide to matching family Christmas dinner outfits: choosing a shared palette, dressing different ages comfortably and keeping the look cohesive at the table.
+
+If it suits your readers, here it is:
+https://www.dresslikemommy.com/blogs/news/matching-family-christmas-dinner-outfits
+
+You're welcome to link to it or credit any part. Thank you!
+
+Best,
+The Dress Like Mommy team
+
+## 26. Best Outfits Today — READY_FOR_OWNER (drafted 2026-10-08T00:50Z)
+Asset: https://www.dresslikemommy.com/blogs/news/mommy-and-newborn-holiday-matching-outfits
+Subject: A holiday guide for mom and newborn matching outfits
+Hi there,
+
+I enjoyed your post on matching outfits for newborn and mom. We're Dress Like Mommy, and we wrote a holiday guide to mommy and newborn matching outfits: soft fabrics, easy-change designs and ways to coordinate for first-holiday photos.
+
+It might be a useful extra for readers:
+https://www.dresslikemommy.com/blogs/news/mommy-and-newborn-holiday-matching-outfits
+
+Please feel free to link to it or credit any part. Thanks for the inspiration either way.
+
+Warmly,
+The Dress Like Mommy team
+
+## 27. Motherly — READY_FOR_OWNER (drafted 2026-10-08T00:50Z)
+Asset: https://www.dresslikemommy.com/blogs/news/matching-family-christmas-pajamas-guide-2026
+Subject: A matching family Christmas pajamas guide for your coordinating-outfits readers
+Hello,
+
+Your ideas for coordinating Christmas clothes with kids are a helpful read. We're Dress Like Mommy, and we wrote a guide to matching family Christmas pajamas: picking one print for everyone, sizing toddlers through adults and what photographs well.
+
+If it fits your readers, here it is:
+https://www.dresslikemommy.com/blogs/news/matching-family-christmas-pajamas-guide-2026
+
+Feel free to link to it or credit any part. No obligation at all.
+
+Thanks,
+The Dress Like Mommy team
+
+## 28. Colorado Springs Mom — READY_FOR_OWNER (drafted 2026-10-08T00:50Z)
+Asset: https://www.dresslikemommy.com/blogs/news/thanksgiving-family-matching-outfit-ideas
+Subject: Family Thanksgiving outfit ideas to go with your outfit inspiration
+Hi there,
+
+Your Thanksgiving day outfit inspiration is a nice read. We're Dress Like Mommy, and we wrote a guide to family Thanksgiving matching outfits: plaid, knits and warm autumn colors that coordinate across kids and adults.
+
+If it suits your readers, here it is:
+https://www.dresslikemommy.com/blogs/news/thanksgiving-family-matching-outfit-ideas
+
+You're welcome to link to it or borrow any idea with credit. Thank you!
+
+Warmly,
+The Dress Like Mommy team
+
 ## 12. The Curvy Fashionista — READY_FOR_OWNER (drafted 2026-10-03T18:25Z)
 Asset: https://www.dresslikemommy.com/blogs/news/matching-family-christmas-pajamas-guide-2026
 Subject: A family Christmas pajamas guide that may complement your roundup

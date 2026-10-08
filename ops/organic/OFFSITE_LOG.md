@@ -41,6 +41,13 @@ Format: `## <UTC time> run` then Prospects added, Drafts, Pins queued, Flags.
 - Pins queued: 1 (Pin 6, holiday complete guide, image viewed OK). Quote the URL in curl (unquoted `?` fails in zsh).
 - Flags: row 21 post date unknown, owner confirm it is recent. Pages not fetched; owner must read each post before sending. Contact URLs are site roots. Nothing sent or posted; O5 still open.
 
+## 2026-10-08T00:50Z run
+- Assets checked 200 (1 h1, no robots): family-christmas-photo-outfits-2026, thanksgiving-family-matching-outfit-ideas, matching-family-christmas-dinner-outfits, mommy-and-newborn-holiday-matching-outfits, matching-family-christmas-pajamas-guide-2026. The blog sitemap now lists only /blogs/news (1 URL), so assets were taken from earlier checked lists.
+- Prospects added: 2 (Motherly, Colorado Springs Mom), both A. 6 searches run; results were mostly retailers, Walmart/PatPat, Mother's Day posts, spam mirror domains, skipped. 28 rows total.
+- Drafts: 4 (rows 25-28: My Fashion Life, Best Outfits Today, Motherly, Colorado Springs Mom), READY_FOR_OWNER. No NEW rows left.
+- Pins queued: 0. The dinner-outfits collection image was already used by Pin 6, and collection JSON is too large to read safely.
+- Flags: prospect supply is thinning (2 A-quality in 6 searches); try narrower queries next run. Rows 27-28 post dates unknown, owner confirm recent. Pages not fetched; owner must read each post before sending. Contact URLs are site roots. Nothing sent or posted; O5 still open.
+
 ## 2026-10-06T19:45Z run
 - Assets checked 200 (1 h1, no robots): christmas-eve-box-ideas-matching-pajamas, mommy-and-newborn-holiday-matching-outfits, matching-family-christmas-dinner-outfits, matching-family-holiday-lights-outfits.
 - Prospects added: 5 (Marvellous Mrs P, Caitlin Houston, Thriving in Parenting, My Fashion Life, Best Outfits Today), all A. 5 searches run; most results were retailers/brands (Primark, PatPat, Forbes, Kate Backdrop, Etsy), skipped. 26 rows total.
