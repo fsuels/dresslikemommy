@@ -57674,3 +57674,12 @@ Recurring mistake for the hourly job: do not write an "Owner exception" evidence
 - `autosource.py pending`: 0 pending drafts.
 - evidence: newest recipe in `ops/sourcing/state/recipes/` is dated 2026-10-02 01:23 (maternity gown batch). `ops/sourcing/state/dlm_browser.json` does not exist, so every 1688 step stops with exit 5 (BROWSER_NOT_CONFIGURED) per the autosource script header — the hourly job cannot source until a Chrome test-profile ("Profile 1") debugging port is configured.
 - owner-facing action: configure the test-profile CDP port in `ops/sourcing/state/dlm_browser.json` (`{"cdp_port": N}`) or confirm sourcing is intentionally paused; until then the hourly autosource runs are idle.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-11-autosource-audit
+
+- task_stage: VERIFIED
+- scope: independent daily audit of autosource products created in the last 26h
+- evidence: `autosource.py recent 26` returned no products; `recent 72` also returned none. `recent 500` lists 33 older products (most recent: pure-joy-heart-family-matching-hoodies), all audited in earlier runs.
+- products audited: 0 · passed: 0 · unpublished: 0
+- finding: the hourly sourcing job has published nothing in at least 72h. Possible causes: scheduler global_limit starvation, a blocked 1688 session, or every candidate failing gates. Not diagnosed here, because this audit can only run autosource.py subcommands.
+- next action: the CEO/main session should check the autosource scheduled-task run history (list_task_runs) and re-dispatch it if runs were skipped.
