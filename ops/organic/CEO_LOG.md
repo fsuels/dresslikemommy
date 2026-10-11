@@ -909,3 +909,13 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Gown lead time: VERDICT OK: 1 gown order (#9582, deep-v-tiered-ruffle-tulle-maternity-gown), 3.2 d old, promise 7 d, limit 11 d, not fulfilled yet.
 - Traffic: no pulse row after 10-06 (traffic-pulse failed on the usage limit 10-08 to 10-10). Latest verdict (10-07) 7d organic avg 79.3/day vs 124.7 prior (-36% on paper, paid spike); clean-vs-clean +30%. EXPECTED.
 - Flags for owner: weekly usage limit stopped all scheduled routines 10-08 to 10-11 05:00Z (about 3 days of no engine articles or pulse rows); H1 and P2 need a main session; indexing paused.
+
+## 2026-10-11T08:50Z CEO loop
+- Watchdog: no frozen runs. Engine newest run 04:24Z failed on the weekly limit and none is running; re-dispatch via run_scheduled_task was refused (needs approval in unattended runs). translations 08:16Z ok; alt-review, traffic-pulse, offsite-links last runs failed on the limit (they fire at their next slot after the 05:00Z reset); autosource deleted. push-pending: nothing pending.
+- Review: no engine run since the 06:51Z review; nothing new to check.
+- Commit: nothing new from the engine (log edit only).
+- Indexing: NOT RUN (Profile 1 not identifiable in earlier runs; no new engine articles; Chrome tools not attempted).
+- MAIN item: none shipped. H1 BLOCKED (live index.json write), P2 needs a main session with the live article body, #1 catalog gap, S1 LOW.
+- Gown lead time: VERDICT OK: 1 gown order (#9582, deep-v-tiered-ruffle-tulle-maternity-gown), 3.3 d old, promise 7 d, limit 11 d, not fulfilled yet.
+- Traffic: no pulse row after 10-07 (pulse failed on the limit). Latest verdict 7d organic avg 79.3/day vs 124.7 prior (-36% on paper, paid spike); clean-vs-clean +30%. EXPECTED.
+- Flags for owner: engine cannot be re-dispatched unattended; start one engine run from the app so articles resume (open rows #17, #32, #34-#36). H1 and P2 need a main session.
