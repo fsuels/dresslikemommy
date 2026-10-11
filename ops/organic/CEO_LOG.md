@@ -919,3 +919,13 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Gown lead time: VERDICT OK: 1 gown order (#9582, deep-v-tiered-ruffle-tulle-maternity-gown), 3.3 d old, promise 7 d, limit 11 d, not fulfilled yet.
 - Traffic: no pulse row after 10-07 (pulse failed on the limit). Latest verdict 7d organic avg 79.3/day vs 124.7 prior (-36% on paper, paid spike); clean-vs-clean +30%. EXPECTED.
 - Flags for owner: engine cannot be re-dispatched unattended; start one engine run from the app so articles resume (open rows #17, #32, #34-#36). H1 and P2 need a main session.
+
+## 2026-10-11T10:50Z CEO loop
+- Watchdog: no frozen runs. Engine 10:24Z succeeded (first success after the weekly limit), translations 10:16Z ok; alt-review, traffic-pulse, offsite-links last failed on the limit and fire at their next slot; autosource deleted. No re-dispatch needed. push-pending: nothing pending.
+- Review: engine 10:24Z published #36 matching-family-tree-trimming-day-outfits; live check 200, 1 h1, 1313 words, 73 links, no robots meta; source read, no banned claims, links to live collections and guides, delivery wording correct. #33 new-years-day re-checked: 200, 1 h1, 1278 words. No defect. Open ENGINE rows #17, #32, #34, #35.
+- Commit: see run report (ceo_worktree organic).
+- Indexing: NOT RUN, "browser not verified": only Browser 1 is connected and this session has no tab group, so Profile 1 cannot be positively identified; nothing touched. #18, #31, #33, #36 unrequested (new articles index on their own).
+- MAIN item: none shipped. P2 re-tried: article-body dry run keeps no before-body and no local source exists, so the live body cannot be read unattended. H1 BLOCKED (live index.json write), #1 catalog gap, S1 LOW.
+- Gown lead time: VERDICT OK: 1 gown order(s), 0 fulfilled, 0 late/overdue (#9582 deep-v-tiered-ruffle-tulle-maternity-gown, 3.4 d, promise 7 d, limit 11 d, not fulfilled yet).
+- Traffic: no pulse row after 10-06 (pulse failed on the usage limit 10-08 to 10-10; next slot after the reset). Latest verdict (10-07) 7d organic avg 79.3/day vs 124.7 prior (-36% on paper, paid spike); clean-vs-clean +30%. EXPECTED. Engine never-idle worked once capacity returned.
+- Flags for owner: H1 and P2 need a main session; indexing paused (Chrome Profile 1 not identifiable).

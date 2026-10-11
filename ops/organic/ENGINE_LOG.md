@@ -554,3 +554,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 294 articles; token valid).
 - Research: none. Open ENGINE rows #17, #32, #34, #35, #36; fewer than 8, research due next run. 0 READY drafts.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new New Year's Day article. Hero reused from #23. Note: one stray `wc -l` was run by mistake; no effect.
+
+## 2026-10-11T10:24Z run
+- Build: drafted and published #36 matching-family-tree-trimming-day-outfits → https://www.dresslikemommy.com/blogs/news/matching-family-tree-trimming-day-outfits (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors after one reword ("on hand"), 971 words, dry run passed first). 1 of 3 published today (UTC 10-11).
+- Fix: 0 items (inventory refreshed: 54 collections, 295 articles; token valid). No striking-distance rewrite done.
+- Research: none (no WebSearch). Open ENGINE rows #17, #32, #34, #35; fewer than 8, research due next run. 0 READY drafts.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new tree-trimming article. Hero reused from #23.
