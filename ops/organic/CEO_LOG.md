@@ -899,3 +899,13 @@ One entry per run of the `ceo-organic-operator` scheduled task. Newest last.
 - Gown lead time: VERDICT OK: 1 gown order (#9582), not fulfilled yet (0.2 d, promise 7 d, limit 11 d).
 - Traffic: latest verdict (10-07) 7d organic avg 79.3/day vs 124.7 prior (-36% on paper, paid spike); clean-vs-clean +30%. EXPECTED. No newer pulse row.
 - Flags for owner: H1 and P2 need a main session; indexing paused (Chrome Profile 1 not identifiable); unattended runs cannot re-dispatch starved routines.
+
+## 2026-10-11T06:51Z CEO loop
+- Watchdog: no frozen runs. Weekly usage limit (reset 05:00Z) failed engine 10-10 17:42Z/22:24Z/10-11 04:24Z, alt-review 10-08/09/10, traffic-pulse 10-08/09/10, offsite-links 10-08/09/10, translations 04:16Z; translations succeeded 05:16Z and 06:16Z. Engine newest run 04:24Z failed and none running, so a re-dispatch was due, but run_scheduled_task was refused (needs approval in unattended runs). autosource deleted. push-pending: nothing pending.
+- Review: no engine run since 10-08T04:22Z (limit). #33 new-years-day, #31 concert, #18 sibling re-checked live: 200, 1 h1, 1283 / 1368 / 1348 words, no robots meta. No defect. Open ENGINE rows #17, #32, #34, #35, #36.
+- Commit: nothing new from the engine (log edit only).
+- Indexing: NOT RUN, "browser not verified": only Browser 1 connected, no tab group, Profile 1 not identifiable; nothing touched. #18, #31, #33 unrequested (new articles index on their own).
+- MAIN item: none shipped. H1 BLOCKED (live index.json write), P2 needs a main session with the live article body, #1 catalog gap, S1 LOW.
+- Gown lead time: VERDICT OK: 1 gown order (#9582, deep-v-tiered-ruffle-tulle-maternity-gown), 3.2 d old, promise 7 d, limit 11 d, not fulfilled yet.
+- Traffic: no pulse row after 10-06 (traffic-pulse failed on the usage limit 10-08 to 10-10). Latest verdict (10-07) 7d organic avg 79.3/day vs 124.7 prior (-36% on paper, paid spike); clean-vs-clean +30%. EXPECTED.
+- Flags for owner: weekly usage limit stopped all scheduled routines 10-08 to 10-11 05:00Z (about 3 days of no engine articles or pulse rows); H1 and P2 need a main session; indexing paused.
