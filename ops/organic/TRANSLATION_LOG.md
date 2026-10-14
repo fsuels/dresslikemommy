@@ -152,3 +152,5 @@
 - 2026-10-11T12:24Z matching-family-tree-trimming-day-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-10-14T05:48Z matching-family-cookie-baking-day-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-10-14T06:24Z matching-family-cookie-baking-day-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-10-14T11:25Z matching-family-hanukkah-winter-gathering-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-10-14T12:24Z matching-family-hanukkah-winter-gathering-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
