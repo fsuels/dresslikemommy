@@ -566,3 +566,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 296 articles; token valid). No striking-distance rewrite done.
 - Research: none (no WebSearch). Open ENGINE rows #17, #32, #34; fewer than 8, research due next run. 0 READY drafts.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new cookie-baking article. Hero reused from #23. Note: one stray `wc -l` was run by mistake; no effect.
+
+## 2026-10-14T10:24Z run
+- Build: drafted and published #32 matching-family-hanukkah-winter-gathering-outfits → https://www.dresslikemommy.com/blogs/news/matching-family-hanukkah-winter-gathering-outfits (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors after one meta shortening, 1,041 words, dry run passed first). 2 of 3 published today (UTC 10-14).
+- Fix: 0 items (inventory refreshed: 54 collections, 297 articles; token valid). No striking-distance rewrite done.
+- Research: none. Open ENGINE rows #17, #34; fewer than 8, research due next run. 0 READY drafts.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new Hanukkah/winter gathering article. Hero reused from #23.
