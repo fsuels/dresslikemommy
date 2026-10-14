@@ -55,6 +55,13 @@ Format: `## <UTC time> run` then Prospects added, Drafts, Pins queued, Flags.
 - Pins queued: 0. The article page HTML is too large to find an og:image safely; collection handles unconfirmed.
 - Flags: 34 drafts are now waiting and none are sent (O5 still open); more prospecting adds nothing until the owner sends the first batch. Rows 30-33 post dates unknown, owner confirm recent. Pages not fetched; contact URLs are site roots.
 
+## 2026-10-14T18:25Z run
+- Assets checked 200 (1 h1, no robots): matching-family-christmas-eve-evening-outfits. Blog sitemap still lists only /blogs/news.
+- Prospects added: 0. 4 searches (Christmas card outfits, mommy-and-me holiday roundups, Christmas Eve church outfits, family pajamas gift guides) returned retailers (Flannelgo, JessaKae, PatPat, Primark, Forbes, Walmart) or sites already in the table (My Fashion Life posted a new church-outfits piece, one pitch per site). 34 rows total.
+- Drafts: 0 (no NEW rows).
+- Pins queued: 1 (Pin 8, Christmas Eve evening outfits guide; image viewed OK but is an autumn daylight shot).
+- Flags: prospect supply exhausted for the third run in a row of thin returns; 34 drafts waiting and none sent (O5 open). Needs owner: say yes to O5 so sending and Pin posting can start.
+
 ## 2026-10-06T19:45Z run
 - Assets checked 200 (1 h1, no robots): christmas-eve-box-ideas-matching-pajamas, mommy-and-newborn-holiday-matching-outfits, matching-family-christmas-dinner-outfits, matching-family-holiday-lights-outfits.
 - Prospects added: 5 (Marvellous Mrs P, Caitlin Houston, Thriving in Parenting, My Fashion Life, Best Outfits Today), all A. 5 searches run; most results were retailers/brands (Primark, PatPat, Forbes, Kate Backdrop, Etsy), skipped. 26 rows total.

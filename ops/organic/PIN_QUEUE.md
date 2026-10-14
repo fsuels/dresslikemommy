@@ -50,6 +50,14 @@ One block per Pin: destination, image, title, description, board, status. See OF
 - Board: OWNER_PICK
 - Status: READY_FOR_OWNER
 
+## Pin 8: matching-family-christmas-eve-evening-outfits — READY_FOR_OWNER (queued 2026-10-14T18:25Z)
+- Destination: https://www.dresslikemommy.com/blogs/news/matching-family-christmas-eve-evening-outfits?utm_source=pinterest&utm_medium=organic&utm_campaign=matching-family-christmas-eve-evening-outfits (guide checked 200, 1 h1, no robots on 2026-10-14)
+- Image: https://cdn.shopify.com/s/files/1/1557/1635/files/image1_bf994fa0-30f6-42f5-8893-dbf667c61e6d.png?v=1790831770 (family of four in matching red San Francisco crewneck sweatshirts with jeans and khakis in an autumn park, from /collections/family-sweaters; downloaded and viewed OK; vertical 936x1664; caveat: fall daylight scene, not an evening or Christmas shot, owner may prefer another image)
+- Title: Matching Family Outfits for Christmas Eve Evening: Layers, Coats and Photo Ideas
+- Description: What should the family wear for a Christmas Eve candlelight service or late gathering? Ideas for coordinating evening layers, warm sweaters and coats so everyone still looks like a set in the coats-on photo outside.
+- Board: OWNER_PICK
+- Status: READY_FOR_OWNER
+
 ## Pin 5: daddy-and-me-christmas-outfits — READY_FOR_OWNER (queued 2026-10-03T18:30Z)
 - Destination: https://www.dresslikemommy.com/blogs/news/daddy-and-me-christmas-outfits?utm_source=pinterest&utm_medium=organic&utm_campaign=daddy-and-me-christmas-outfits (guide checked 200 on 2026-10-03)
 - Image: https://cdn.shopify.com/s/files/1/1557/1635/files/image1_82ee4806-850a-497c-965a-c5288c6cb4af.png?v=1790565314 (father and son in matching burgundy cream-trim knit sweaters among autumn leaves, from /collections/daddy-me; downloaded and viewed OK; vertical 936x1664, suits Pinterest)
