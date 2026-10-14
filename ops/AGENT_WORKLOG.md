@@ -57694,3 +57694,14 @@ Recurring mistake for the hourly job: do not write an "Owner exception" evidence
 - The scheduled-task registry shows `autosource` as deleted (taskDeleted: true, 61 runs total). Its last run was 2026-10-01T20:26Z.
 - Products audited: 0. Passed: 0. Unpublished: 0. Nothing changed in the store.
 - Open item: the `autosource-daily-audit` schedule still fires but now audits a retired job, so every run is a no-op. The owner or CEO session should either disable it or point it at whatever sourcing lane replaced autosource. This run did not change any schedule.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-14-autosource-audit
+
+- task_entities: autosource hourly job; ops/sourcing/state/recipes/; ops/sourcing/state/dlm_browser.json
+- task_stage: VERIFIED
+- next_action_id: NEXT_AUTOSOURCE_ROUND
+
+- Independent audit, 2026-10-14. `autosource.py recent 26` returned 0 products. A widened `recent 168` (7 days) also returned 0. `pending` = 0 drafts.
+- Products audited: 0. PASS: 0. Unpublished: 0. No live product was touched.
+- Cause, REPO_KNOWN: the newest recipe file is dated 2026-10-02 01:23 (maternity gown batch). `ops/sourcing/state/dlm_browser.json` does not exist. Under the owner rule of 2026-10-01 (Chrome TEST profile only, never CDP 9333), every 1688 step exits 5 BROWSER_NOT_CONFIGURED, so the hourly sourcing job has produced nothing for about 12 days.
+- Recurring issue: not a quality mistake. The hourly job is stalled on the missing test-profile CDP port config. Owner/CEO action: configure a Chrome TEST profile (Profile 1) debugging port in `ops/sourcing/state/dlm_browser.json` (`{"cdp_port": N}`), or retire the hourly scheduled task to stop empty runs.
