@@ -57683,3 +57683,14 @@ Recurring mistake for the hourly job: do not write an "Owner exception" evidence
 - products audited: 0 · passed: 0 · unpublished: 0
 - finding: the hourly sourcing job has published nothing in at least 72h. Possible causes: scheduler global_limit starvation, a blocked 1688 session, or every candidate failing gates. Not diagnosed here, because this audit can only run autosource.py subcommands.
 - next action: the CEO/main session should check the autosource scheduled-task run history (list_task_runs) and re-dispatch it if runs were skipped.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-14-autosource-audit
+
+- task_entities: none (no autosource products in the audit window)
+- task_stage: VERIFIED
+- next_action_id: OWNER_DECIDE_AUTOSOURCE_AUDIT_SCHEDULE
+
+- `autosource.py recent 26` and `recent 72` returned no products. `recent 400` lists only earlier builds, already covered by previous audits. `pending` reports 0 drafts. `elapsed` reports 17873 min since the last run started.
+- The scheduled-task registry shows `autosource` as deleted (taskDeleted: true, 61 runs total). Its last run was 2026-10-01T20:26Z.
+- Products audited: 0. Passed: 0. Unpublished: 0. Nothing changed in the store.
+- Open item: the `autosource-daily-audit` schedule still fires but now audits a retired job, so every run is a no-op. The owner or CEO session should either disable it or point it at whatever sourcing lane replaced autosource. This run did not change any schedule.
