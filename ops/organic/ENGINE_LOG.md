@@ -578,3 +578,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 298 articles; token valid). No striking-distance rewrite done.
 - Research: none. Open ENGINE row #17 only; fewer than 8, research due next run. 0 READY drafts.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new Christmas Eve evening article. Hero reused from #23. Note: one stray `grep -c` on the log was run by mistake; no effect.
+
+## 2026-10-14T22:21Z run
+- Build: SKIPPED (daily cap, 3 of 3 published today) — drafted matching-family-winter-wedding-guest-outfits READY (#37; lint 0 errors after one meta shortening, 1,158 words, dry run passed). Publish first after 00:00Z 10-15 (re-run lint and dry run).
+- Fix: 0 items (inventory refreshed: 54 collections, 299 articles; token valid). No striking-distance rewrite done.
+- Research: none. Open ENGINE rows #17, #38, #39; fewer than 8, research due next run. 1 READY draft.
+- Flags for MAIN/OWNER: none new. Hero reused from #23. Note: one stray `wc -l` was run by mistake; no effect.
