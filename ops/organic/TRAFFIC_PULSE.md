@@ -27,13 +27,13 @@ This file is the scoreboard for every organic lane: engine articles, SEO rewrite
   - Blog articles barely appear yet. The best is /el mommy-and-me guide with 9. The 74 articles are young and need weeks to rank, so judge them from 2026-10-22 on.
 - **Search Console (3 months to 2026-09-29):** 2.85K clicks, 139K impressions, CTR 2.1%, average position 16.9. See `GSC_STRIKING_DISTANCE.md`.
 
-## Latest verdict (2026-10-11)
+## Latest verdict (2026-10-14)
 
-- **FLAT on paper, UP on clean days:** 7-day organic avg 99.3/day (10-04 → 10-10, 695 sessions) vs 110.6 the prior 7 (-10%), but the prior week still holds the paid-ad spike (298 / 126). Clean vs clean: 99.3 vs 76.7 for the first clean week 09-29 → 10-05 (+29%). 10-10 = 114, the highest day since ads ended. The proper clean-vs-clean 7d comparison is now valid; treat as UP, still short of proven (one week).
-- **Search funnel (last 7 rows with cart data: 10-01 → 10-06 and 10-10):** 596 sessions → 41 carts → 2 checkouts. 10-10: 114 sessions → 6 carts → 0 checkouts, 0 orders from any source. Cart-to-checkout stays the leak.
-- **Top landing pages (7d, 10-04 → 10-10):** /it/collections/mommy-and-me 32 (2 carts), / 29 (5 carts), /collections/swimsuits 17 (0), /products/tiered-ruffle-tulle-off-shoulder-maternity-gown 13 (0), /blogs/news/family-christmas-photo-outfits-2026 10 (0).
-- **What moved:** cause unknown for the higher level. The /it/ mommy-and-me collection rose from 18 to 32 sessions, the strongest single page gain; the Christmas article holds around 10-13 sessions with 0 carts. GSC not due (Sunday).
-- **Recommended action:** investigate checkout friction (41 carts → 2 checkouts) and put a collection CTA on the Christmas article and the maternity gown page (13 sessions each, 0 carts); also strengthen the Italian mommy-and-me collection, which is now the top organic entry.
+- **UP:** 7-day organic avg 114.0/day (10-07 → 10-13, 798 sessions) vs 79.3 for the prior 7 (+44%); both windows are fully clean of paid ads. Daily: 148 / 121 / 116 on 10-11 → 10-13, the three highest days since ads ended.
+- **Search funnel (last 7 rows with cart data: 10-02 → 10-06, 10-10, 10-13):** 651 sessions → 44 carts → 2 checkouts. 10-13: 116 sessions → 6 carts → 0 checkouts, 0 orders from any source. Cart-to-checkout stays the leak.
+- **Top 5 landing pages (7d, 10-07 → 10-13):** /it/collections/mommy-and-me 45 (3 carts), / 34 (2), /products/nordic-yoke-family-matching-sweaters 14 (2), /products/tiered-ruffle-tulle-off-shoulder-maternity-gown 13 (0), /collections/swimsuits 11 (0).
+- **What moved:** cause unknown. The Italian mommy-and-me collection rose from 32 to 45 sessions and a family sweater product page entered the top 3 (14 sessions, 2 carts), consistent with the fall sweater signal. The Christmas article holds at 10 with 0 carts. GSC not due (Wednesday).
+- **Recommended action:** investigate checkout friction (44 carts → 2 checkouts), and add a collection CTA on the maternity gown page and the Christmas article (13 and 10 sessions, 0 carts); push family sweaters since the Nordic yoke page converts to cart.
 
 ## Daily rows (newest last)
 
@@ -53,6 +53,9 @@ Columns: date | search sessions | google | bing+ddg+yahoo | carts from search | 
 | 2026-10-08 | 111 | | | | | | 91.0 | -28% | backfilled from the timeseries only; prev 7d (09-25 → 10-01) still holds the paid tail (91 / 156 / 298 / 126) |
 | 2026-10-09 | 83 | | | | | | 93.9 | -23% | backfilled from the timeseries only; prev 7d (09-26 → 10-02) still holds 156 / 298 / 126 |
 | 2026-10-10 | 114 | 111 | 3 | 6 | 0 | 0 / 0 | 99.3 | -10% | other engines = yahoo 2 + duckduckgo 1; no orders from any source; highest organic day on record since ads ended; clean window 10-04 → 10-10 avg 99.3 vs 76.7 for the first clean week 09-29 → 10-05 (+29%) |
+| 2026-10-11 | 148 | | | | | | 108.7 | +36% | backfilled from the timeseries only; highest organic day since ads ended; prev 7d (09-28 → 10-04) still holds the 126 paid-tail day |
+| 2026-10-12 | 121 | | | | | | 111.0 | +45% | backfilled from the timeseries only; both 7d windows fully clean (10-06 → 10-12 vs 09-29 → 10-05) |
+| 2026-10-13 | 116 | 115 | 1 | 6 | 0 | 0 / 0 | 114.0 | +44% | other engines = duckduckgo 1 (1 cart); no orders from any source; clean vs clean 10-07 → 10-13 avg 114.0 vs 79.3 for 09-30 → 10-06; third straight day above 115 |
 
 ## Weekly Search Console rows (Mondays)
 
