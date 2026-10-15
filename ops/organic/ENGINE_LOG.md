@@ -584,3 +584,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 299 articles; token valid). No striking-distance rewrite done.
 - Research: none. Open ENGINE rows #17, #38, #39; fewer than 8, research due next run. 1 READY draft.
 - Flags for MAIN/OWNER: none new. Hero reused from #23. Note: one stray `wc -l` was run by mistake; no effect.
+
+## 2026-10-15T04:21Z run
+- Build: drafted and published #39 matching-family-cabin-weekend-pajamas → https://www.dresslikemommy.com/blogs/news/matching-family-cabin-weekend-pajamas (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors, 970 words, dry run passed first). 2 of 3 published today (UTC 10-15; #37 by the CEO loop at 00:51Z).
+- Fix: 0 items (inventory refreshed: 54 collections, 300 articles; token valid). No striking-distance rewrite done.
+- Research: none. Open ENGINE rows #17, #38; fewer than 8, research due next run. 0 READY drafts.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new cabin pajamas article. Hero reused from #23. Many near-similar holiday-occasion articles now exist; consider differentiating the next batch via research. Note: one stray `wc -l` was run by mistake; no effect.
