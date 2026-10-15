@@ -158,3 +158,5 @@
 - 2026-10-14T18:24Z matching-family-christmas-eve-evening-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
 - 2026-10-15T01:31Z matching-family-winter-wedding-guest-outfits: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
 - 2026-10-15T02:30Z matching-family-winter-wedding-guest-outfits: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
+- 2026-10-15T05:24Z matching-family-cabin-weekend-pajamas: el, da, no, nl, he, it, cs, ro, pl, de VERIFIED (10 left for this article)
+- 2026-10-15T06:24Z matching-family-cabin-weekend-pajamas: fr, es, pt-BR, sv, fi, ja, ko, ru, ar, hi VERIFIED (0 left for this article)
