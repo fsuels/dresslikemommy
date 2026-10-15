@@ -590,3 +590,9 @@ NOTE 2026-09-29T12:23Z: entries before the 06:24Z run (lines 1-29 of the old fil
 - Fix: 0 items (inventory refreshed: 54 collections, 300 articles; token valid). No striking-distance rewrite done.
 - Research: none. Open ENGINE rows #17, #38; fewer than 8, research due next run. 0 READY drafts.
 - Flags for MAIN/OWNER: MAIN: request indexing for the new cabin pajamas article. Hero reused from #23. Many near-similar holiday-occasion articles now exist; consider differentiating the next batch via research. Note: one stray `wc -l` was run by mistake; no effect.
+
+## 2026-10-15T10:24Z run
+- Build: drafted and published #38 matching-family-holiday-market-parade-outfits → https://www.dresslikemommy.com/blogs/news/matching-family-holiday-market-parade-outfits (VERIFIED: live check 200, h1=1, no robots meta; lint 0 errors after one meta shortening, 793 words, dry run passed first). 3 of 3 published today (UTC 10-15; #37 by CEO loop, #39 engine 04:21Z).
+- Fix: 0 items (inventory refreshed: 54 collections, 301 articles; token valid). No striking-distance rewrite done.
+- Research: none (no WebSearch). Open ENGINE rows #17, #40; fewer than 8, research due next run. 0 READY drafts.
+- Flags for MAIN/OWNER: MAIN: request indexing for the new holiday market/parade article. Hero reused from #23. Holiday-occasion articles near saturation; next runs should research differentiated head-term support content. Note: one stray `wc -l` was run by mistake; no effect.
