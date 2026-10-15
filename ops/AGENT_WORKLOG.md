@@ -57705,3 +57705,13 @@ Recurring mistake for the hourly job: do not write an "Owner exception" evidence
 - Products audited: 0. PASS: 0. Unpublished: 0. No live product was touched.
 - Cause, REPO_KNOWN: the newest recipe file is dated 2026-10-02 01:23 (maternity gown batch). `ops/sourcing/state/dlm_browser.json` does not exist. Under the owner rule of 2026-10-01 (Chrome TEST profile only, never CDP 9333), every 1688 step exits 5 BROWSER_NOT_CONFIGURED, so the hourly sourcing job has produced nothing for about 12 days.
 - Recurring issue: not a quality mistake. The hourly job is stalled on the missing test-profile CDP port config. Owner/CEO action: configure a Chrome TEST profile (Profile 1) debugging port in `ops/sourcing/state/dlm_browser.json` (`{"cdp_port": N}`), or retire the hourly scheduled task to stop empty runs.
+
+## AGENT_CONTINUITY_ANCHOR: 2026-10-15-autosource-audit
+
+- task_entities: none (no autosource products in the 26h window)
+- task_stage: VERIFIED
+- next_action_id: NEXT_AUTOSOURCE_AUDIT
+
+- `autosource.py recent 26` returned no products; `recent 72` also returned none, so the hourly job has listed nothing new for at least 3 days. `recent 400` confirms the command works (33 earlier products listed; red-runner-raglan-family-matching-sweatshirts still DRAFT from an earlier run).
+- Products audited: 0. Passed: 0. Unpublished: 0. No action taken.
+- Flag for CEO session: 72h+ with zero new autosource listings. Check whether the hourly `autosource` task is running (scheduler starvation, lock left held, 1688 CAPTCHA/BLOCKED, or every candidate failing the gates); the latest autosource worklog anchors should say which.
