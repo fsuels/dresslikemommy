@@ -1,4 +1,99 @@
 {%- assign dlm_cart_language = request.locale.iso_code | split: '-' | first -%}
+{%- liquid
+  comment
+    Cart wording per language (CEO unit cart-strings, 2026-11-23). English is the default;
+    languages not listed keep English. nb is Norwegian (no).
+  endcomment
+  assign dlm_cart_lang_key = dlm_cart_language
+  if dlm_cart_lang_key == 'nb'
+    assign dlm_cart_lang_key = 'no'
+  endif
+  assign dlm_cart_taxes_included = 'Taxes included.'
+  assign dlm_cart_taxes_checkout = 'Taxes calculated at checkout.'
+  assign dlm_cart_shipping_details = 'Shipping details'
+  case dlm_cart_lang_key
+    when 'fr'
+      assign dlm_cart_taxes_included = "Taxes incluses."
+      assign dlm_cart_taxes_checkout = "Taxes calculées au paiement."
+      assign dlm_cart_shipping_details = "Détails de la livraison"
+    when 'es'
+      assign dlm_cart_taxes_included = "Impuestos incluidos."
+      assign dlm_cart_taxes_checkout = "Impuestos calculados al finalizar la compra."
+      assign dlm_cart_shipping_details = "Detalles del envío"
+    when 'de'
+      assign dlm_cart_taxes_included = "Inkl. Steuern."
+      assign dlm_cart_taxes_checkout = "Steuern werden beim Bezahlen berechnet."
+      assign dlm_cart_shipping_details = "Versanddetails"
+    when 'it'
+      assign dlm_cart_taxes_included = "Tasse incluse."
+      assign dlm_cart_taxes_checkout = "Tasse calcolate al momento del pagamento."
+      assign dlm_cart_shipping_details = "Dettagli di spedizione"
+    when 'nl'
+      assign dlm_cart_taxes_included = "Belasting inbegrepen."
+      assign dlm_cart_taxes_checkout = "Belasting wordt bij het afrekenen berekend."
+      assign dlm_cart_shipping_details = "Verzendgegevens"
+    when 'pt'
+      assign dlm_cart_taxes_included = "Impostos incluídos."
+      assign dlm_cart_taxes_checkout = "Impostos calculados no checkout."
+      assign dlm_cart_shipping_details = "Detalhes de envio"
+    when 'da'
+      assign dlm_cart_taxes_included = "Skatter inkluderet."
+      assign dlm_cart_taxes_checkout = "Skatter beregnes ved betaling."
+      assign dlm_cart_shipping_details = "Leveringsoplysninger"
+    when 'sv'
+      assign dlm_cart_taxes_included = "Skatter ingår."
+      assign dlm_cart_taxes_checkout = "Skatter beräknas i kassan."
+      assign dlm_cart_shipping_details = "Fraktinformation"
+    when 'no'
+      assign dlm_cart_taxes_included = "Skatter inkludert."
+      assign dlm_cart_taxes_checkout = "Skatter beregnes ved betaling."
+      assign dlm_cart_shipping_details = "Fraktdetaljer"
+    when 'pl'
+      assign dlm_cart_taxes_included = "Podatki wliczone."
+      assign dlm_cart_taxes_checkout = "Podatki są obliczane przy kasie."
+      assign dlm_cart_shipping_details = "Szczegóły wysyłki"
+    when 'cs'
+      assign dlm_cart_taxes_included = "Daně jsou zahrnuty."
+      assign dlm_cart_taxes_checkout = "Daně se vypočítají při pokladně."
+      assign dlm_cart_shipping_details = "Podrobnosti o dopravě"
+    when 'fi'
+      assign dlm_cart_taxes_included = "Verot sisältyvät hintaan."
+      assign dlm_cart_taxes_checkout = "Verot lasketaan kassalla."
+      assign dlm_cart_shipping_details = "Toimituksen tiedot"
+    when 'el'
+      assign dlm_cart_taxes_included = "Οι φόροι περιλαμβάνονται."
+      assign dlm_cart_taxes_checkout = "Οι φόροι υπολογίζονται στο ταμείο."
+      assign dlm_cart_shipping_details = "Λεπτομέρειες αποστολής"
+    when 'ro'
+      assign dlm_cart_taxes_included = "Taxele sunt incluse."
+      assign dlm_cart_taxes_checkout = "Taxele sunt calculate la finalizarea comenzii."
+      assign dlm_cart_shipping_details = "Detalii despre livrare"
+    when 'ru'
+      assign dlm_cart_taxes_included = "Налоги включены."
+      assign dlm_cart_taxes_checkout = "Налоги рассчитываются при оформлении заказа."
+      assign dlm_cart_shipping_details = "Сведения о доставке"
+    when 'ja'
+      assign dlm_cart_taxes_included = "税込み。"
+      assign dlm_cart_taxes_checkout = "税金はお会計時に計算されます。"
+      assign dlm_cart_shipping_details = "配送の詳細"
+    when 'ko'
+      assign dlm_cart_taxes_included = "세금 포함."
+      assign dlm_cart_taxes_checkout = "세금은 결제 시 계산됩니다."
+      assign dlm_cart_shipping_details = "배송 상세 정보"
+    when 'ar'
+      assign dlm_cart_taxes_included = "الضرائب مشمولة."
+      assign dlm_cart_taxes_checkout = "تُحتسب الضرائب عند إتمام الشراء."
+      assign dlm_cart_shipping_details = "تفاصيل الشحن"
+    when 'he'
+      assign dlm_cart_taxes_included = "המסים כלולים."
+      assign dlm_cart_taxes_checkout = "המסים מחושבים בקופה."
+      assign dlm_cart_shipping_details = "פרטי המשלוח"
+    when 'hi'
+      assign dlm_cart_taxes_included = "कर शामिल हैं।"
+      assign dlm_cart_taxes_checkout = "कर चेकआउट पर गणना किए जाएंगे।"
+      assign dlm_cart_shipping_details = "शिपिंग का विवरण"
+  endcase
+-%}
 {{ 'component-cart.css' | asset_url | stylesheet_tag }}
 {{ 'component-totals.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
@@ -142,14 +237,14 @@
                 <div class="cart-page__checkout-note caption-large">
                   <span>
                     {%- if cart.taxes_included -%}
-                      {%- if dlm_cart_language == 'fr' -%}Taxes incluses.{%- else -%}Taxes included.{%- endif -%}
+                      {{ dlm_cart_taxes_included }}
                     {%- else -%}
-                      {%- if dlm_cart_language == 'fr' -%}Taxes calculées au paiement.{%- else -%}Taxes calculated at checkout.{%- endif -%}
+                      {{ dlm_cart_taxes_checkout }}
                     {%- endif -%}
                   </span>
                   {%- if shop.shipping_policy.body != blank -%}
                     <details class="cart-page__policy-details">
-                      <summary>{% if dlm_cart_language == 'fr' %}Détails de la livraison{% else %}Shipping details{% endif %}</summary>
+                      <summary>{{ dlm_cart_shipping_details }}</summary>
                       <div class="rte">
                         {{ shop.shipping_policy.body }}
                       </div>
