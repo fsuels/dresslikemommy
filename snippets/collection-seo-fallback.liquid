@@ -672,10 +672,32 @@
   endcapture
   assign generated_body_description = generated_body_description | strip
 
+  assign generated_hero_summary = generated_body_description
+  if generated_body_description contains '</p>'
+    assign generated_hero_summary = generated_body_description | split: '</p>' | first | append: '</p>'
+  endif
+  if generated_hero_summary contains '. '
+    assign generated_hero_summary = generated_hero_summary | split: '. ' | first | append: '.</p>'
+  endif
+
+  comment
+    Head-term guides supply their own one-sentence lead. The translated body
+    strings for these two handles open with search-demand wording
+    ("for shoppers searching ..."), so their hero uses the meta description.
+  endcomment
+  if head_lead != blank
+    assign generated_hero_summary = '<p>' | append: head_lead | append: '</p>'
+  elsif collection_handle == 'matching-couples-t-shirts' or collection_handle == 'daddy-me-shirts'
+    if generated_meta_description != blank
+      assign hero_meta_escaped = generated_meta_description | escape
+      assign generated_hero_summary = '<p>' | append: hero_meta_escaped | append: '</p>'
+    endif
+  endif
+
   comment
     Christmas pointer (Experto SEO, 2026-11-23, CEO-approved packet items 2 and 3).
     Organic visitors land on swimsuits, sweaters, pajamas and family-sets with no
-    Christmas path. Adds one sentence and one link, only in November and December,
+    Christmas path. Adds one sentence and one link to the hero text under the H1 (the visible intro; the lower body is not shown on these pages), only in November and December,
     only for the 21 languages below; any other language gets nothing (never English).
     Strings: frame with {link}, then link text for outfits | sweaters | pajamas.
   endcomment
@@ -695,7 +717,7 @@
   elsif xmas_month == '12'
     assign xmas_season = true
   endif
-  if xmas_season and xmas_kind != '' and generated_body_description != blank
+  if xmas_season and xmas_kind != '' and generated_hero_summary != blank
     assign xmas_lang = seo_lang
     if xmas_lang == 'nb'
       assign xmas_lang = 'no'
@@ -762,29 +784,7 @@
       assign xmas_href = routes.collections_url | append: '/' | append: xmas_target
       assign xmas_anchor = '<a href="' | append: xmas_href | append: '">' | append: xmas_parts[xmas_idx] | append: '</a>'
       assign xmas_sentence = xmas_parts[0] | replace: '{link}', xmas_anchor
-      assign generated_body_description = generated_body_description | append: '<p>' | append: xmas_sentence | append: '</p>'
-    endif
-  endif
-
-  assign generated_hero_summary = generated_body_description
-  if generated_body_description contains '</p>'
-    assign generated_hero_summary = generated_body_description | split: '</p>' | first | append: '</p>'
-  endif
-  if generated_hero_summary contains '. '
-    assign generated_hero_summary = generated_hero_summary | split: '. ' | first | append: '.</p>'
-  endif
-
-  comment
-    Head-term guides supply their own one-sentence lead. The translated body
-    strings for these two handles open with search-demand wording
-    ("for shoppers searching ..."), so their hero uses the meta description.
-  endcomment
-  if head_lead != blank
-    assign generated_hero_summary = '<p>' | append: head_lead | append: '</p>'
-  elsif collection_handle == 'matching-couples-t-shirts' or collection_handle == 'daddy-me-shirts'
-    if generated_meta_description != blank
-      assign hero_meta_escaped = generated_meta_description | escape
-      assign generated_hero_summary = '<p>' | append: hero_meta_escaped | append: '</p>'
+      assign generated_hero_summary = generated_hero_summary | append: '<p>' | append: xmas_sentence | append: '</p>'
     endif
   endif
 
