@@ -672,6 +672,100 @@
   endcapture
   assign generated_body_description = generated_body_description | strip
 
+  comment
+    Christmas pointer (Experto SEO, 2026-11-23, CEO-approved packet items 2 and 3).
+    Organic visitors land on swimsuits, sweaters, pajamas and family-sets with no
+    Christmas path. Adds one sentence and one link, only in November and December,
+    only for the 21 languages below; any other language gets nothing (never English).
+    Strings: frame with {link}, then link text for outfits | sweaters | pajamas.
+  endcomment
+  assign xmas_kind = ''
+  case collection_handle
+    when 'swimsuits', 'family-sets', 'matching-family-vacation-outfits'
+      assign xmas_kind = 'outfits'
+    when 'sweaters'
+      assign xmas_kind = 'sweaters'
+    when 'pajamas', 'family-pajamas'
+      assign xmas_kind = 'pajamas'
+  endcase
+  assign xmas_month = 'now' | date: '%m'
+  assign xmas_season = false
+  if xmas_month == '11'
+    assign xmas_season = true
+  elsif xmas_month == '12'
+    assign xmas_season = true
+  endif
+  if xmas_season and xmas_kind != '' and generated_body_description != blank
+    assign xmas_lang = seo_lang
+    if xmas_lang == 'nb'
+      assign xmas_lang = 'no'
+    endif
+    assign xmas_str = ''
+    case xmas_lang
+      when 'en'
+        assign xmas_str = "Shopping for the holidays? See {link}.|matching family Christmas outfits|matching family sweaters|matching family Christmas pajamas"
+      when 'es'
+        assign xmas_str = "¿Buscas looks para las fiestas? Mira {link}.|conjuntos navideños familiares a juego|suéteres familiares a juego|pijamas navideños familiares a juego"
+      when 'fr'
+        assign xmas_str = "Vous cherchez des tenues de fête ? Découvrez {link}.|les tenues de Noël assorties pour toute la famille|les pulls de famille assortis|les pyjamas de Noël assortis pour la famille"
+      when 'de'
+        assign xmas_str = "Suchen Sie festliche Outfits? Entdecken Sie {link}.|passende Weihnachts-Outfits für die ganze Familie|passende Familien-Pullover|passende Weihnachts-Schlafanzüge für die Familie"
+      when 'it'
+        assign xmas_str = "Cerchi look per le feste? Scopri {link}.|i coordinati natalizi per tutta la famiglia|i maglioni coordinati per tutta la famiglia|i pigiami natalizi coordinati per tutta la famiglia"
+      when 'nl'
+        assign xmas_str = "Op zoek naar feestelijke looks? Bekijk {link}.|bijpassende kerstoutfits voor het hele gezin|bijpassende familietruien|bijpassende kerstpyjama's voor het hele gezin"
+      when 'pt'
+        assign xmas_str = "Procurando looks para as festas? Veja {link}.|looks de Natal combinando para toda a família|suéteres de família combinando|pijamas de Natal combinando para a família"
+      when 'da'
+        assign xmas_str = "Leder du efter festlige outfits? Se {link}.|matchende julesæt til hele familien|matchende familietrøjer|matchende julepyjamas til hele familien"
+      when 'sv'
+        assign xmas_str = "Letar du efter festliga outfits? Se {link}.|matchande julkläder för hela familjen|matchande familjetröjor|matchande julpyjamas för hela familjen"
+      when 'no'
+        assign xmas_str = "Leter du etter festlige antrekk? Se {link}.|matchende juleantrekk for hele familien|matchende familiegensere|matchende julepysjamaser for hele familien"
+      when 'pl'
+        assign xmas_str = "Szukasz stylizacji na święta? Zobacz {link}.|pasujące świąteczne stylizacje dla całej rodziny|pasujące swetry dla całej rodziny|pasujące świąteczne piżamy dla całej rodziny"
+      when 'cs'
+        assign xmas_str = "Hledáte outfity na svátky? Podívejte se na {link}.|sladěné vánoční outfity pro celou rodinu|sladěné rodinné svetry|sladěná vánoční pyžama pro celou rodinu"
+      when 'fi'
+        assign xmas_str = "Etsitkö juhla-asuja? Katso {link}.|yhteensopivat jouluasut koko perheelle|yhteensopivat perheen neuleet|yhteensopivat joulupyjamat koko perheelle"
+      when 'el'
+        assign xmas_str = "Ψάχνετε εμφανίσεις για τις γιορτές; Δείτε {link}.|ταιριαστά χριστουγεννιάτικα σύνολα για όλη την οικογένεια|ταιριαστά οικογενειακά πουλόβερ|ταιριαστές χριστουγεννιάτικες πιτζάμες για όλη την οικογένεια"
+      when 'ro'
+        assign xmas_str = "Cauți ținute pentru sărbători? Vezi {link}.|ținute de Crăciun asortate pentru toată familia|puloare asortate pentru toată familia|pijamale de Crăciun asortate pentru toată familia"
+      when 'ru'
+        assign xmas_str = "Ищете образы к праздникам? Посмотрите {link}.|одинаковые рождественские образы для всей семьи|одинаковые семейные свитеры|одинаковые рождественские пижамы для всей семьи"
+      when 'ja'
+        assign xmas_str = "ホリデー向けのコーデをお探しですか？{link}をご覧ください。|家族おそろいのクリスマスコーデ|家族おそろいのセーター|家族おそろいのクリスマスパジャマ"
+      when 'ko'
+        assign xmas_str = "연말 홀리데이 룩을 찾고 계신가요? {link} 보기.|온 가족 크리스마스 맞춤 의상|온 가족 맞춤 스웨터|온 가족 크리스마스 맞춤 잠옷"
+      when 'ar'
+        assign xmas_str = "هل تبحث عن إطلالات للأعياد؟ اطّلع على {link}.|إطلالات عيد الميلاد المتطابقة للعائلة كلها|سترات عائلية متطابقة|بيجامات عيد الميلاد العائلية المتطابقة"
+      when 'he'
+        assign xmas_str = "מחפשים לוקים לחגים? ראו {link}.|לוקים תואמים לחג המולד לכל המשפחה|סוודרים תואמים למשפחה|פיג'מות חג מולד תואמות למשפחה"
+      when 'hi'
+        assign xmas_str = "छुट्टियों के लिए लुक खोज रहे हैं? {link} देखें।|पूरे परिवार के लिए मैचिंग क्रिसमस आउटफिट|पूरे परिवार के लिए मैचिंग स्वेटर|पूरे परिवार के लिए मैचिंग क्रिसमस पजामा"
+    endcase
+    if xmas_str != ''
+      assign xmas_parts = xmas_str | split: '|'
+      assign xmas_idx = 1
+      if xmas_kind == 'sweaters'
+        assign xmas_idx = 2
+      elsif xmas_kind == 'pajamas'
+        assign xmas_idx = 3
+      endif
+      assign xmas_target = 'matching-family-christmas-outfits'
+      if xmas_kind == 'sweaters'
+        assign xmas_target = 'family-sweaters'
+      elsif xmas_kind == 'pajamas'
+        assign xmas_target = 'christmas-pajamas'
+      endif
+      assign xmas_href = routes.collections_url | append: '/' | append: xmas_target
+      assign xmas_anchor = '<a href="' | append: xmas_href | append: '">' | append: xmas_parts[xmas_idx] | append: '</a>'
+      assign xmas_sentence = xmas_parts[0] | replace: '{link}', xmas_anchor
+      assign generated_body_description = generated_body_description | append: '<p>' | append: xmas_sentence | append: '</p>'
+    endif
+  endif
+
   assign generated_hero_summary = generated_body_description
   if generated_body_description contains '</p>'
     assign generated_hero_summary = generated_body_description | split: '</p>' | first | append: '</p>'
