@@ -530,7 +530,7 @@
           echo 'Plaid, reindeer and Fair Isle sets for mom, dad and kids.'
       endcase
 
-    when 'christmas:cta_primary'
+    when 'christmas:cta_secondary'
       case lang
         when 'es'
           echo 'Comprar pijamas de Navidad'
@@ -576,7 +576,7 @@
           echo 'Shop Christmas Pajamas'
       endcase
 
-    when 'christmas:cta_secondary'
+    when 'christmas:cta_primary'
       case lang
         when 'es'
           echo 'Suéteres navideños'
@@ -716,9 +716,9 @@
 
     # Christmas CTA links (language-independent). The hero localizes /collections/ paths.
     when 'christmas:link_primary'
-      echo '/collections/christmas-pajamas'
-    when 'christmas:link_secondary'
       echo '/collections/christmas-sweaters'
+    when 'christmas:link_secondary'
+      echo '/collections/christmas-pajamas'
     when 'christmas:link_tertiary'
       echo '/collections/matching-family-christmas-outfits'
   endcase
