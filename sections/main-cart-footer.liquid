@@ -225,6 +225,20 @@
                   <span class="cart-page__shipping-free">{{ 'sections.cart.shipping_free' | t }}</span>
                 </div>
                 <p class="cart-page__shipping-note">{% render 'delivery-estimate-copy' %}</p>
+                {%- liquid
+                  assign cob_cart = false
+                  assign cob_cart_extra = 0
+                  for cob_item in cart.items
+                    if cob_item.product.tags contains 'Christmas'
+                      assign cob_cart = true
+                      assign cob_item_extra = cob_item.product.metafields.custom.made_to_order_days.value | default: 0
+                      if cob_item_extra > cob_cart_extra
+                        assign cob_cart_extra = cob_item_extra
+                      endif
+                    endif
+                  endfor
+                -%}
+                {% render 'christmas-order-by', is_christmas: cob_cart, extra_days: cob_cart_extra %}
                 <div class="cart-page__country-checker">
                   {% render 'shipping-country-checker-trigger', context: 'cart' %}
                 </div>

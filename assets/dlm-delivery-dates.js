@@ -70,15 +70,43 @@
     });
   }
 
+
+  // Christmas order-by line: shown only while an order placed today could still
+  // arrive by 23 December under the same day window (an estimate, not a promise).
+  function renderChristmasOrderBy(root) {
+    var nodes = (root || document).querySelectorAll('[data-dlm-christmas-order-by]:not([data-dlm-cob-done])');
+    if (!nodes.length) return;
+    var now = new Date();
+    var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    var arrive = new Date(now.getFullYear(), 11, 23);
+    var locale = currentLocale();
+    var fmt;
+    try { fmt = new Intl.DateTimeFormat(locale || undefined, { weekday: 'short', month: 'short', day: 'numeric' }); }
+    catch (_error) { fmt = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric' }); }
+    Array.prototype.forEach.call(nodes, function (node) {
+      node.setAttribute('data-dlm-cob-done', '');
+      var max = Number(node.getAttribute('data-max-days'));
+      var text = node.getAttribute('data-text') || '';
+      if (!(max >= 1) || max > 60 || text.indexOf('{order}') < 0) return;
+      var last = new Date(arrive.getFullYear(), arrive.getMonth(), arrive.getDate() - max);
+      while (last >= today && addDays(last, max).getTime() > arrive.getTime()) last.setDate(last.getDate() - 1);
+      if (last < today || today > arrive) return;
+      node.textContent = text.replace('{order}', fmt.format(last)).replace('{arrive}', fmt.format(arrive));
+      node.hidden = false;
+    });
+  }
+
   window.DLMDeliveryDates = { computeWindow: computeWindow, formatWindow: formatWindow, render: render };
 
   function start() {
     render(document);
+    renderChristmasOrderBy(document);
     // The cart drawer and /cart footer are re-rendered from section HTML on
     // every cart change, so pick up fresh estimate nodes as they arrive.
     if (typeof MutationObserver === 'function' && document.body) {
       new MutationObserver(function () {
         if (document.querySelector(SELECTOR)) render(document);
+        renderChristmasOrderBy(document);
       }).observe(document.body, { childList: true, subtree: true });
     }
   }

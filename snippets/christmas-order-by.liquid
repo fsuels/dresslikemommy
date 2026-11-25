@@ -1,0 +1,29 @@
+{%- comment -%}
+  Christmas order-by estimate. Renders a hidden line; assets/dlm-delivery-dates.js
+  fills in two dates and shows it only while an order placed today could still
+  arrive by 23 December under the site's own delivery estimate (same window as
+  delivery-estimate-copy, plus made-to-order days). It is an estimate, never a promise.
+  Needs: `is_christmas` (true/false). Optional: `extra_days` (made-to-order days).
+  Removes itself after the last order date, and Liquid stops rendering it after 7 Dec.
+{%- endcomment -%}
+{%- liquid
+  assign cob_mmdd = 'now' | date: '%m%d' | plus: 0
+  if is_christmas and cob_mmdd >= 1101 and cob_mmdd <= 1207
+    assign cob_window = 'products.additional_info.standard_delivery_window' | t
+    if cob_window == blank or cob_window contains 'translation missing' or cob_window contains 'business days'
+      assign cob_window = '12-16 days'
+    endif
+    assign cob_text = 'products.additional_info.christmas_order_by' | t: order_date: '{order}', arrive_date: '{arrive}'
+    if cob_text == blank or cob_text contains 'translation missing'
+      assign cob_text = 'Estimate: order by {order} to arrive by {arrive}. Not a guarantee.'
+    endif
+    assign cob_extra = extra_days | plus: 0
+    assign cob_max = cob_window | split: ' ' | first | split: '-' | last | plus: 0
+    assign cob_max = cob_max | plus: cob_extra
+    echo '<p class="dlm-christmas-order-by" hidden data-dlm-christmas-order-by data-max-days="'
+    echo cob_max
+    echo '" data-text="'
+    echo cob_text | escape
+    echo '"></p>'
+  endif
+-%}

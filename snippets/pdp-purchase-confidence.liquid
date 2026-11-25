@@ -206,6 +206,8 @@
   }
   .dlm-pc-row__summary { color: #4a5560; }
   .dlm-pc-row__estimate-date { font-weight: 600; }
+  .dlm-christmas-order-by { margin: 4px 0 0; font-size: 0.92em; line-height: 1.45; font-weight: 600; color: #b3261e; }
+  .dlm-christmas-order-by[hidden] { display: none; }
 
   .dlm-pc-row__action-row {
     margin: 6px 0 0;
@@ -308,6 +310,10 @@
     <div class="dlm-pc-row__body">
       <p class="dlm-pc-row__title">{{ pc_shipping_headline }}</p>
       <p class="dlm-pc-row__estimate">{% render 'delivery-estimate-copy', product: product %}</p>
+      {%- if product.tags contains 'Christmas' -%}
+        {%- assign pc_cob_extra = product.metafields.custom.made_to_order_days.value | default: 0 -%}
+        {% render 'christmas-order-by', is_christmas: true, extra_days: pc_cob_extra %}
+      {%- endif -%}
       <p class="dlm-pc-row__action-row">
         <span class="dlm-pc-row__ships-to">{{ pc_ships_to }}</span>
         {%- if pc_currency_code != blank -%}
