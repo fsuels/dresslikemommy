@@ -41,25 +41,13 @@
     assign dpm_shipping_url = dpm_root_url | append: '/policies/shipping-policy'
   endif
 
-  assign dpm_close_label = 'Close'
-  assign dpm_privacy_title = 'Privacy & secure checkout'
-  assign dpm_privacy_line_1 = 'Checkout is <strong>encrypted</strong>.'
-  assign dpm_privacy_line_2 = 'Payments are processed securely by Shopify and our payment providers.'
-  assign dpm_privacy_line_3 = 'Dress Like Mommy <strong>does not store your full card number</strong>.'
-  assign dpm_privacy_line_4 = 'Personal data is used to process orders, shipping, support, fraud prevention, and consent-based marketing.'
-  assign dpm_privacy_line_5 = 'We <strong>do not sell</strong> your personal information.'
-  assign dpm_privacy_full_link = 'Open full privacy policy in a new tab'
-
-  if dpm_locale_root == 'es'
-    assign dpm_close_label = 'Cerrar'
-    assign dpm_privacy_title = 'Privacidad y pago seguro'
-    assign dpm_privacy_line_1 = 'El pago está <strong>cifrado</strong>.'
-    assign dpm_privacy_line_2 = 'Los pagos se procesan de forma segura a través de Shopify y nuestros proveedores de pago.'
-    assign dpm_privacy_line_3 = 'Dress Like Mommy <strong>no guarda el número completo de tu tarjeta</strong>.'
-    assign dpm_privacy_line_4 = 'Los datos personales se usan para procesar pedidos, envíos, soporte, prevención de fraude y marketing con consentimiento.'
-    assign dpm_privacy_line_5 = '<strong>No vendemos</strong> tu información personal.'
-    assign dpm_privacy_full_link = 'Abrir la política completa de privacidad en una nueva pestaña'
-  endif
+  assign dpm_privacy_title = 'storefront.privacy_modal.title' | t
+  assign dpm_privacy_line_1 = 'storefront.privacy_modal.line_1_html' | t
+  assign dpm_privacy_line_2 = 'storefront.privacy_modal.line_2' | t
+  assign dpm_privacy_line_3 = 'storefront.privacy_modal.line_3_html' | t
+  assign dpm_privacy_line_4 = 'storefront.privacy_modal.line_4' | t
+  assign dpm_privacy_line_5 = 'storefront.privacy_modal.line_5_html' | t
+  assign dpm_privacy_full_link = 'storefront.privacy_modal.full_link' | t
   assign dpm_close_label = 'accessibility.close' | t
   assign dpm_return_title = 'products.purchase_confidence.returns_headline' | t
   assign dpm_return_line_1 = 'products.purchase_confidence.returns_summary' | t
