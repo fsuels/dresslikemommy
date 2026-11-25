@@ -159,7 +159,7 @@
   endcase
 
   if effective_display_title_key != blank
-    assign effective_display_title = effective_display_title_key | t
+    assign effective_display_title = effective_display_title_key | t | replace: '&#39;', "'"
   endif
 
   if seo_lang == 'en'
@@ -226,7 +226,7 @@
   endif
 
   if effective_meta_title_key != blank
-    assign effective_meta_title = effective_meta_title_key | t
+    assign effective_meta_title = effective_meta_title_key | t | replace: '&#39;', "'"
   endif
 
   if seo_lang == 'en'
