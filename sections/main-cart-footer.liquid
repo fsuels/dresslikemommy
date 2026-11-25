@@ -147,7 +147,7 @@
               <div class="cart-page__discount-input-wrap">
                 <input type="text" class="cart-page__discount-input field__input" placeholder="{{ 'sections.cart.discount_placeholder' | t }}" aria-label="{{ 'sections.cart.discount_placeholder' | t }}" id="CartPage-Discount" autocomplete="off">
                 <button type="button" class="cart-page__discount-apply button button--secondary" data-label="{{ 'sections.cart.discount_apply' | t }}" data-applied="{{ 'sections.cart.discount_applied' | t }}" data-invalid="{{ 'sections.cart.discount_invalid' | t }}" onclick="
-                  var code = document.getElementById('CartPage-Discount').value;
+                  var code = document.getElementById('CartPage-Discount').value.trim();
                   if(!code) return;
                   var btn = this;
                   btn.disabled = true;
@@ -158,7 +158,9 @@
                     .then(function(cart) {
                       btn.disabled = false;
                       btn.textContent = btn.dataset.label;
-                      if(cart.total_discount > 0 || cart.cart_level_discount_applications.length > 0) {
+                      var typed = code.trim().toLowerCase();
+                      var accepted = (cart.discount_codes || []).some(function(entry) { return entry.applicable && entry.code.toLowerCase() === typed; });
+                      if(accepted) {
                         var wrap = btn.closest('.cart-page__discount');
                         wrap.innerHTML = '<div class=\'cart-page__discount-success\'><svg width=\'14\' height=\'14\' viewBox=\'0 0 24 24\' fill=\'none\' stroke=\'#2e7d32\' stroke-width=\'2\' aria-hidden=\'true\'><polyline points=\'20 6 9 17 4 12\'/></svg> <span></span></div>';
                         wrap.querySelector('span').textContent = btn.dataset.applied.replace('[code]', code);
