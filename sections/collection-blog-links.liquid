@@ -69,8 +69,8 @@
   <section class="section-{{ section.id }}-padding gradient color-{{ section.settings.color_scheme }}">
     <div class="article-template__shop-links page-width">
       <div class="article-template__shop-card">
-        <p class="article-template__shop-eyebrow">Style Journal</p>
-        <h2 class="article-template__shop-title">Styling Guide</h2>
+        <p class="article-template__shop-eyebrow">{{ 'storefront.journal.title' | t }}</p>
+        <h2 class="article-template__shop-title">{{ 'storefront.journal.styling_guide' | t }}</h2>
         <div class="article-template__shop-grid">
           {%- for block in section.blocks -%}
             {%- liquid
@@ -93,7 +93,7 @@
               endif
 
               if article_description == blank
-                assign article_description = 'Get outfit ideas and matching inspiration before you shop.'
+                assign article_description = 'storefront.journal.guide_fallback_description' | t
               endif
             -%}
             <a
@@ -104,7 +104,7 @@
               <span class="article-template__shop-link-copy">
                 <span class="article-template__shop-link-title">{{ article_title | escape }}</span>
                 <span class="article-template__shop-link-caption">{{ article_description | escape }}</span>
-                <span class="collection-blog-links__cta">Read the guide &rarr;</span>
+                <span class="collection-blog-links__cta">{{ 'storefront.journal.read_the_guide' | t }} &rarr;</span>
               </span>
             </a>
           {%- endfor -%}
