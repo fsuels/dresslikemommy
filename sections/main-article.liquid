@@ -198,50 +198,17 @@
                 {%- if recommended_product == blank or recommended_product.url == blank -%}
                   {% continue %}
                 {%- endif -%}
-                {%- capture recommended_product_alt -%}
-                  {% render 'product-image-alt', product: recommended_product, media: recommended_product.featured_media %}
-                {%- endcapture -%}
-                {%- assign recommended_product_alt = recommended_product_alt | strip -%}
-              <article class="article-template__recommended-product">
-                <a href="{{ recommended_product.url }}" class="article-template__recommended-product-image">
-                  {%- if recommended_product.featured_media -%}
-                    <img
-                      srcset="
-                        {%- if recommended_product.featured_media.width >= 320 -%}{{ recommended_product.featured_media | image_url: width: 320 }} 320w,{%- endif -%}
-                        {%- if recommended_product.featured_media.width >= 480 -%}{{ recommended_product.featured_media | image_url: width: 480 }} 480w,{%- endif -%}
-                        {%- if recommended_product.featured_media.width >= 640 -%}{{ recommended_product.featured_media | image_url: width: 640 }} 640w,{%- endif -%}
-                        {{ recommended_product.featured_media | image_url }} {{ recommended_product.featured_media.width }}w
-                      "
-                      sizes="(min-width: 990px) 22rem, (min-width: 750px) calc((100vw - 12rem) / 3), calc(100vw - 7rem)"
-                      src="{{ recommended_product.featured_media | image_url: width: 480 }}"
-                      alt="{{ recommended_product_alt | escape }}"
-                      loading="lazy"
-                      width="{{ recommended_product.featured_media.width }}"
-                      height="{{ recommended_product.featured_media.height }}"
-                    >
-                  {%- else -%}
-                    {{ 'product-apparel-2' | placeholder_svg_tag: 'article-template__recommended-product-placeholder placeholder-svg' }}
-                  {%- endif -%}
-                </a>
-                <div class="article-template__recommended-product-info">
-                  <h3 class="article-template__recommended-product-title">
-                    <a href="{{ recommended_product.url }}">{{ recommended_product.title | escape }}</a>
-                  </h3>
-                  {% render 'price', product: recommended_product, use_variant: true, price_class: 'article-template__recommended-price' %}
-                  <a
-                    href="{{ recommended_product.url }}"
-                    class="article-template__recommended-product-link"
-                    data-style-journal-link="true"
-                    data-style-journal-link-type="product"
-                    data-style-journal-link-placement="article_recommended_products"
-                    data-style-journal-source-article-handle="{{ article.handle | escape }}"
-                    data-style-journal-destination-handle="{{ recommended_product.handle | escape }}"
-                    data-style-journal-destination-title="{{ recommended_product.title | escape }}"
-                  >
-                    {{ 'storefront.menu.shop_now' | t }} <span aria-hidden="true">&rarr;</span>
-                  </a>
-                </div>
-              </article>
+              {%- render 'article-recommended-product-card', article: article, recommended_product: recommended_product -%}
+            {%- endfor -%}
+          {%- else -%}
+            {%- capture season_handles -%}{%- render 'article-season-products', article: article -%}{%- endcapture -%}
+            {%- assign season_handle_list = season_handles | strip | split: ',' -%}
+            {%- for season_handle in season_handle_list limit: 3 -%}
+              {%- assign recommended_product = all_products[season_handle] -%}
+              {%- if recommended_product == blank or recommended_product.url == blank or recommended_product.available == false -%}
+                {%- continue -%}
+              {%- endif -%}
+              {%- render 'article-recommended-product-card', article: article, recommended_product: recommended_product -%}
             {%- endfor -%}
           {%- endif -%}
         {%- endcapture -%}

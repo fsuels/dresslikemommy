@@ -1,0 +1,21 @@
+{% comment %}
+  Products shown with photo and price under a seasonal Style Journal article when it has no
+  custom.recommended_products metafield. Param: article. Output: comma-separated product handles.
+{% endcomment %}
+{%- assign season_article_handle = article.handle | split: '/' | last -%}
+{%- case season_article_handle -%}
+  {%- when 'sibling-matching-christmas-outfits' -%}
+    nordic-hearts-siblings-christmas-sweaters,red-truck-siblings-christmas-sweaters,teddy-bear-siblings-christmas-sweaters
+  {%- when 'matching-family-christmas-sweaters-guide-2026' -%}
+    christmas-reindeer-family-matching-sweaters,nordic-yoke-family-matching-sweaters,reindeer-row-family-matching-sweaters
+  {%- when 'matching-family-christmas-pajamas-guide-2026' -%}
+    plaid-reindeer-family-matching-pajamas,jolly-crew-family-matching-pajamas,buffalo-plaid-tree-family-matching-pajamas
+  {%- when 'family-christmas-photo-outfits-2026' -%}
+    christmas-reindeer-family-matching-sweaters,nordic-yoke-family-matching-sweaters,plaid-reindeer-family-matching-pajamas
+  {%- when 'family-christmas-card-photo-ideas' -%}
+    nordic-yoke-family-matching-sweaters,christmas-reindeer-family-matching-sweaters,santa-and-friends-family-matching-sweatshirts
+  {%- when 'christmas-morning-matching-family-outfits' -%}
+    plaid-reindeer-family-matching-pajamas,jolly-crew-family-matching-pajamas,plaid-tree-trio-family-matching-pajamas
+  {%- when 'matching-family-valentines-day-photo-outfits' -%}
+    cream-heart-mommy-and-me-cardigans,little-heart-family-matching-sweatshirts,smiley-heart-family-matching-sweatshirts
+{%- endcase -%}
