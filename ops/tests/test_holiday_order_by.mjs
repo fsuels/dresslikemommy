@@ -286,7 +286,10 @@ test('PDP card, cart and drawer line (liquid snippet) use the same policy buffer
   const liquid = readFileSync(new URL('../../snippets/christmas-order-by.liquid', import.meta.url), 'utf8');
   const api = load();
   assert.equal(api.policyHandlingBufferDays, 5);
-  assert.match(liquid, /assign cob_max = cob_max \| plus: cob_extra \| plus: 5/);
+  // 7 calendar days of handling + US transit max (14, from the map) = 21 = window max 16 + the script's 5-day buffer.
+  assert.match(liquid, /split: '-' \| last \| plus: 7 \| plus: cob_extra/);
+  const map = readFileSync(new URL('../../snippets/dlm-transit-map.liquid', import.meta.url), 'utf8');
+  assert.match(map, /US:7-14\|/);
 });
 
 // Independent worst-case check against the shipping policy: the parcel leaves within 5 business

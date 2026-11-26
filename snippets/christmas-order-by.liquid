@@ -28,17 +28,18 @@
     echo cob_other | escape_once
     echo '</p>'
   elsif is_christmas and cob_mmdd >= 1101 and cob_mmdd <= 1207
-    assign cob_window = 'products.additional_info.standard_delivery_window' | t
-    if cob_window == blank or cob_window contains 'translation missing' or cob_window contains 'business days'
-      assign cob_window = '12-16 days'
-    endif
     assign cob_text = 'products.additional_info.christmas_order_by' | t: order_date: '{order}', arrive_date: '{arrive}'
     if cob_text == blank or cob_text contains 'translation missing'
       assign cob_text = 'Estimate: order by {order} to arrive by {arrive}. Not a guarantee.'
     endif
     assign cob_extra = extra_days | plus: 0
-    assign cob_max = cob_window | split: ' ' | first | split: '-' | last | plus: 0
-    assign cob_max = cob_max | plus: cob_extra | plus: 5
+    comment
+      Worst case in calendar days: 7 (5 business days of handling) + the US transit maximum from the map.
+    endcomment
+    capture cob_transit
+      render 'dlm-transit-map', country: 'US'
+    endcapture
+    assign cob_max = cob_transit | strip | split: '-' | last | plus: 7 | plus: cob_extra
     echo '<p class="dlm-christmas-order-by" hidden data-dlm-christmas-order-by data-max-days="'
     echo cob_max
     echo '" data-text="'
