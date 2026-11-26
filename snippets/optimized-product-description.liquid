@@ -47,6 +47,27 @@
     assign optimized_description = optimized_description | replace: 'Every Shopify variant maps back to a visible YC8970 or YC8971 size row.', 'Each option uses the visible size guide so you can compare before adding to cart.'
     assign optimized_description = optimized_description | replace: '<img ', '<img loading="lazy" decoding="async" fetchpriority="low" '
   endif
+
+  # Older descriptions hotlink third-party image URLs. Serve the store's own
+  # copy instead: Shopify Files "dlm-pd-<image id>.jpg". New listings must use
+  # Shopify-hosted images; upload the copy first if one of these URLs reappears.
+  if optimized_description contains 'cbu01.alicdn.com/img/ibank/'
+    assign normalized_description = optimized_description | replace: 'http://cbu01.alicdn.com', 'https://cbu01.alicdn.com'
+    assign description_parts = normalized_description | split: 'https://cbu01.alicdn.com/img/ibank/'
+    assign optimized_description = ''
+    for description_part in description_parts
+      if forloop.first
+        assign optimized_description = description_part
+        continue
+      endif
+      assign source_name = description_part | split: '.jpg' | first
+      assign source_tail = source_name | append: '.jpg'
+      assign image_id = source_name | split: '_!!' | first
+      assign hosted_url = 'dlm-pd-' | append: image_id | append: '.jpg' | file_url
+      assign rest = description_part | remove_first: source_tail
+      assign optimized_description = optimized_description | append: hosted_url | append: rest
+    endfor
+  endif
 -%}
 
 {{ optimized_description }}
