@@ -7,7 +7,11 @@ throwaway worktree at the current origin/main tip under ~/dlm-ceo-worktrees/
 (outside /tmp, because .theme-check.yml ignores tmp/**), checked, committed and
 pushed from there.
 
-  start --name N               create worktree N at origin/main; prints its path
+  start --name N [--sparse [--also DIR ...] [--with-continuity]]
+                               create worktree N at origin/main; prints its path. --sparse checks out only the
+                               theme dirs, docs/, ops/ (minus the big evidence folders) and root files (about
+                               0.5 GB instead of 9.5 GB); see SPARSE below
+  sparse-add --name N [--with-continuity] [DIR ...]   widen a sparse work copy
   status --name N              list changed files in worktree N
   check --name N               git diff --check, JSON validity, theme check (if theme files changed), engine tests
   commit --name N --message-file F   check, commit everything in N, rebase onto a moved origin/main, push to main
@@ -17,6 +21,15 @@ pushed from there.
   push-pending                 push commits parked on ceo-pending/* branches after an SSH failure
   sync-locales [--apply]       compare live theme locales/*.json with origin/main key by key; --apply upserts files
                                whose drift is small (<= 20 keys), because Shopify's GitHub sync can drop JSON pushes
+
+SPARSE (opt-in, git cone-mode sparse-checkout, per work copy): kept = THEME_DIRS + docs + ops/* except SPARSE_SKIP_OPS +
+every file in the repo root and in ops/ itself. Not present: dresslikemommy-growth-2026/, uploads/, GPT/, ops/reports,
+ops/content, ops/feed-engineering, ops/hero-concepts and other root folders. start/status/commit/push/finish/sync-theme
+read git objects (origin/main), not those folders; sync-locales runs in the shared checkout. `check` in a sparse copy
+prints `sparse_note`, and REFUSES (a problem, never a silent skip) the strict-continuity run when it is needed but the
+packet folder it reads is absent: use `start --sparse --with-continuity` or `sparse-add --name N --with-continuity`
+(adds dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix), or a full copy.
+A file you need outside the set: `sparse-add --name N path/to/dir`.
 
 GitHub access: fetch uses SSH and falls back to HTTPS via the gh CLI (read-only account); push needs the
 SSH key and is retried with backoff. If push still fails, the commit is parked on a ceo-pending/* branch.
@@ -38,6 +51,10 @@ ROOT = Path.home() / "dlm-ceo-worktrees"
 THEME_DIRS = ("layout/", "sections/", "snippets/", "assets/", "blocks/", "templates/", "config/", "locales/")
 TRAILER = "Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>"
 ORGANIC_SKIP = {"RUN_LOCK", "CEO_LOCK"}
+SPARSE_ROOT_DIRS = tuple(d.rstrip("/") for d in THEME_DIRS) + ("docs",)
+SPARSE_SKIP_OPS = {"reports", "content", "feed-engineering", "hero-concepts", "theme-asset-backups"}
+CONTINUITY_DIRS = ("dresslikemommy-growth-2026/02_AUDIT_PACKETS/2026-05-15-pinterest-feed-grouping-all-markets-fix",)
+CONTINUITY_TRIGGERS = ("ops/AGENT_WORKLOG.md", "ops/AGENT_COORDINATION.md", "AGENTS.md", "CLAUDE.md")
 
 
 def run(cmd, cwd, check=True, timeout=600):
@@ -77,14 +94,42 @@ def push_main(cwd: Path) -> bool:
     return False
 
 
+def sparse_dirs(extra=(), with_continuity=False) -> list:
+    ops_dirs = [d for d in run(["git", "ls-tree", "-d", "--name-only", "origin/main", "ops/"], REPO).stdout.split()
+                if d.split("/", 1)[1] not in SPARSE_SKIP_OPS]
+    top = [d for d in SPARSE_ROOT_DIRS if run(["git", "ls-tree", "--name-only", "origin/main", d + "/"], REPO).stdout.strip()]
+    return top + ops_dirs + [d.strip("/") for d in extra] + (list(CONTINUITY_DIRS) if with_continuity else [])
+
+
+def is_sparse(path: Path) -> bool:
+    return run(["git", "config", "--get", "core.sparseCheckout"], path, check=False).stdout.strip() == "true"
+
+
 def cmd_start(args) -> int:
     path = tree(args.name)
     if path.exists():
         raise SystemExit(f"{path} already exists; run finish --name {args.name} first")
     ROOT.mkdir(parents=True, exist_ok=True)
     fetch_main(REPO)
-    run(["git", "worktree", "add", "-q", "--detach", str(path), "origin/main"], REPO)
-    print(json.dumps({"path": str(path), "base": run(["git", "rev-parse", "HEAD"], path).stdout.strip()}))
+    sparse = getattr(args, "sparse", False)
+    started = time.time()
+    run(["git", "worktree", "add", "-q", "--detach", *(["--no-checkout"] if sparse else []), str(path), "origin/main"], REPO)
+    if sparse:
+        run(["git", "sparse-checkout", "set", "--cone", *sparse_dirs(args.also or (), args.with_continuity)], path)
+        run(["git", "checkout", "-q", "--detach", "origin/main"], path)
+    print(json.dumps({"path": str(path), "base": run(["git", "rev-parse", "HEAD"], path).stdout.strip(),
+                      "sparse": sparse, "seconds": round(time.time() - started, 1)}))
+    return 0
+
+
+def cmd_sparse_add(args) -> int:
+    path = tree(args.name)
+    if not is_sparse(path):
+        raise SystemExit(f"{path} is not a sparse work copy")
+    current = run(["git", "sparse-checkout", "list"], path).stdout.split()
+    wanted = [d.strip("/") for d in args.dirs] + (list(CONTINUITY_DIRS) if args.with_continuity else [])
+    run(["git", "sparse-checkout", "set", "--cone", *sorted(set(current + wanted))], path)
+    print(json.dumps({"sparse_dirs": run(["git", "sparse-checkout", "list"], path).stdout.split()}))
     return 0
 
 
@@ -122,7 +167,10 @@ def do_check(path: Path) -> list:
             offenses = [result.stdout[-500:] or result.stderr[-500:]]
         if offenses:
             problems.append(f"theme check errors: {offenses[:5]}")
-    if any(rel in ("ops/AGENT_WORKLOG.md", "ops/AGENT_COORDINATION.md", "AGENTS.md", "CLAUDE.md") for rel in files):
+    if any(rel in CONTINUITY_TRIGGERS for rel in files) and is_sparse(path) and any(not (path / d).is_dir() for d in CONTINUITY_DIRS):
+        problems.append("strict continuity NOT RUN: this sparse work copy lacks the packet folder it reads; "
+                        f"run `ceo_worktree.py sparse-add --name {path.name} --with-continuity` and check again, or use a full copy")
+    elif any(rel in CONTINUITY_TRIGGERS for rel in files):
         # A fresh checkout gives files arbitrary mtimes; the cockpit freshness check compares mtimes only.
         cockpit = path / "ops/marketing/operator_cockpit.html"
         if cockpit.exists():
@@ -138,8 +186,14 @@ def do_check(path: Path) -> list:
 
 
 def cmd_check(args) -> int:
-    problems = do_check(tree(args.name))
-    print(json.dumps({"problems": problems, "ok": not problems}, indent=2))
+    path = tree(args.name)
+    problems = do_check(path)
+    result = {"problems": problems, "ok": not problems}
+    if is_sparse(path):
+        result["sparse_note"] = ("sparse work copy: checks ran only on the folders present "
+                                 f"({', '.join(run(['git', 'sparse-checkout', 'list'], path).stdout.split()[:40])}); "
+                                 "a check that reads a missing folder fails or is reported in problems, never silently skipped")
+    print(json.dumps(result, indent=2))
     return 0 if not problems else 1
 
 
@@ -309,7 +363,16 @@ def main() -> int:
     for command, func in (("start", cmd_start), ("status", cmd_status), ("check", cmd_check), ("finish", cmd_finish)):
         p = sub.add_parser(command)
         p.add_argument("--name", required=True)
+        if command == "start":
+            p.add_argument("--sparse", action="store_true", help="cone-mode sparse checkout: theme dirs, docs, ops (minus big evidence folders), root files")
+            p.add_argument("--also", action="append", metavar="DIR", help="extra folder to include with --sparse (repeatable)")
+            p.add_argument("--with-continuity", action="store_true", help="with --sparse: include the packet folder strict continuity reads")
         p.set_defaults(func=func)
+    p = sub.add_parser("sparse-add")
+    p.add_argument("--name", required=True)
+    p.add_argument("--with-continuity", action="store_true")
+    p.add_argument("dirs", nargs="*")
+    p.set_defaults(func=cmd_sparse_add)
     p = sub.add_parser("commit")
     p.add_argument("--name", required=True)
     p.add_argument("--message-file", required=True)
