@@ -1,0 +1,21 @@
+{%- comment -%}
+  Which seasonal hero copy edition applies on a date (MMDD, shop time). Echoes
+  nothing outside the windows, so the caller keeps the Christmas copy.
+  The windows are plain `if mmdd ...` lines: ops/tests/test_hero_season_windows.mjs
+  reads this file and asserts every boundary.
+
+  Usage:
+  {%- capture hero_window_edition -%}{%- render 'hero-season-window', mmdd: hero_today_mmdd -%}{%- endcapture -%}
+{%- endcomment -%}
+{%- liquid
+  assign mmdd = mmdd | plus: 0
+  if mmdd >= 1203 and mmdd <= 1225
+    echo 'winter_photos'
+  elsif mmdd >= 1226 and mmdd <= 1231
+    echo 'new_year'
+  elsif mmdd >= 101 and mmdd <= 110
+    echo 'new_year'
+  elsif mmdd >= 111 and mmdd <= 214
+    echo 'valentines'
+  endif
+-%}

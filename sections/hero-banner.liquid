@@ -6,11 +6,29 @@
   # snippets/christmas-season-collection.liquid) the halloween_winter edition shows the
   # christmas edition: its copy, CTA links and product slides. Selecting "Christmas
   # edition" in the theme editor shows it on any date (QA preview / manual override).
+  #
+  # The Christmas art (sky, product slides, styling) stays through Feb 14; only the copy and
+  # links change on the dates in snippets/hero-season-window.liquid (Dec 3 winter family
+  # photos, Dec 26 New Year, Jan 11 Valentine's Day). Christmas copy runs until the end of
+  # Dec 2. In the theme editor only, "Preview date" shows another day.
   assign hero_seasonal_copy = section.settings.seasonal_copy | default: 'none'
+  assign hero_copy_edition = hero_seasonal_copy
   if hero_seasonal_copy == 'halloween_winter'
     assign hero_today_mmdd = 'now' | date: '%m%d' | plus: 0
-    if hero_today_mmdd >= 1016 and hero_today_mmdd <= 1231
+    assign hero_preview_date = section.settings.preview_date | strip
+    if request.design_mode and hero_preview_date.size == 10
+      assign hero_today_mmdd = hero_preview_date | date: '%m%d' | plus: 0
+    endif
+    if hero_today_mmdd >= 1016 or hero_today_mmdd >= 101 and hero_today_mmdd <= 214
       assign hero_seasonal_copy = 'christmas'
+      assign hero_copy_edition = 'christmas'
+      capture hero_window_edition
+        render 'hero-season-window', mmdd: hero_today_mmdd
+      endcapture
+      assign hero_window_edition = hero_window_edition | strip
+      if hero_window_edition != blank
+        assign hero_copy_edition = hero_window_edition
+      endif
     endif
   endif
 
@@ -22,7 +40,7 @@
   assign hero_christmas_mobile_sky = 'hero-winter-sky-mobile.jpg'
   assign hero_christmas_slide_max = 3
   assign hero_christmas_product_count = 0
-  if hero_seasonal_copy == 'christmas'
+  if hero_seasonal_copy == 'christmas' and hero_copy_edition != 'valentines'
     for christmas_product in collections['christmas-pajamas'].products
       if christmas_product.available and christmas_product.featured_image != blank
         assign hero_christmas_product_count = hero_christmas_product_count | plus: 1
@@ -1015,13 +1033,13 @@
   if hero_seasonal_copy == 'christmas'
     # The section's button links point at the Halloween edition's collections.
     capture hero_button_link
-      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'link_primary', lang: 'en'
+      render 'hero-seasonal-copy', edition: hero_copy_edition, key: 'link_primary', lang: 'en'
     endcapture
     capture hero_secondary_button_link
-      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'link_secondary', lang: 'en'
+      render 'hero-seasonal-copy', edition: hero_copy_edition, key: 'link_secondary', lang: 'en'
     endcapture
     capture hero_tertiary_button_link
-      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'link_tertiary', lang: 'en'
+      render 'hero-seasonal-copy', edition: hero_copy_edition, key: 'link_tertiary', lang: 'en'
     endcapture
     assign hero_button_link = hero_button_link | strip
     assign hero_button_link_first_char = hero_button_link | slice: 0, 1
@@ -1069,27 +1087,27 @@
   assign hero_heading = section.settings.heading
   assign hero_heading_html = section.settings.heading
   assign hero_subheading_html = section.settings.subheading
-  # hero_seasonal_copy (with the Oct 16 – Dec 31 Christmas swap) is set at the top of this file.
+  # hero_seasonal_copy / hero_copy_edition (Oct 16 – Feb 14 Christmas art swap and dated copy windows) are set at the top of this file.
   if hero_seasonal_copy != 'none'
     # Pre-translated copy: Translate & Adapt would keep serving the previous
     # season's translations of the text settings on non-English routes.
     capture hero_eyebrow
-      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'eyebrow', lang: hero_language_code
+      render 'hero-seasonal-copy', edition: hero_copy_edition, key: 'eyebrow', lang: hero_language_code
     endcapture
     capture hero_heading
-      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'heading', lang: hero_language_code
+      render 'hero-seasonal-copy', edition: hero_copy_edition, key: 'heading', lang: hero_language_code
     endcapture
     capture hero_subheading
-      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'subheading', lang: hero_language_code
+      render 'hero-seasonal-copy', edition: hero_copy_edition, key: 'subheading', lang: hero_language_code
     endcapture
     capture hero_button_label
-      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'cta_primary', lang: hero_language_code
+      render 'hero-seasonal-copy', edition: hero_copy_edition, key: 'cta_primary', lang: hero_language_code
     endcapture
     capture hero_secondary_button_label
-      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'cta_secondary', lang: hero_language_code
+      render 'hero-seasonal-copy', edition: hero_copy_edition, key: 'cta_secondary', lang: hero_language_code
     endcapture
     capture hero_tertiary_button_label
-      render 'hero-seasonal-copy', edition: hero_seasonal_copy, key: 'cta_tertiary', lang: hero_language_code
+      render 'hero-seasonal-copy', edition: hero_copy_edition, key: 'cta_tertiary', lang: hero_language_code
     endcapture
     assign hero_eyebrow = hero_eyebrow | strip
     assign hero_heading = hero_heading | strip
@@ -1991,7 +2009,13 @@
         }
       ],
       "default": "none",
-      "info": "Replaces the eyebrow, heading, subheading and button labels with pre-translated copy in every store language. Halloween & winter: button links and slides come from the settings above; from Oct 16 to Dec 31 (shop time) it shows the Christmas edition. Christmas edition: links go to the Christmas collections and the slides show the first 3 available Christmas pajama products. Select it here to preview the Christmas hero."
+      "info": "Replaces the eyebrow, heading, subheading and button labels with pre-translated copy in every store language. Halloween & winter: button links and slides come from the settings above; from Oct 16 to Feb 14 (shop time) it shows the Christmas art, with copy and links that change on Dec 3, Dec 26 and Jan 11. Christmas edition: links go to the Christmas collections and the slides show the first 3 available Christmas pajama products. Select it here to preview the Christmas hero."
+    },
+    {
+      "type": "text",
+      "id": "preview_date",
+      "label": "Preview date (theme editor only)",
+      "info": "YYYY-MM-DD. Shows the seasonal hero for that day while editing; ignored on the live store."
     },
     {
       "type": "select",
