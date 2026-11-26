@@ -82,7 +82,17 @@
           endif
         endif
 
-        if option_name_downcased contains 'color' or option_name_downcased contains 'colour' or option_name_downcased contains 'couleur' or option_name_downcased contains 'لون'
+        # Translated option names: the storefront shows the option name in the visitor's language
+        # ("Farbe", "Barva", "色"), so the English words alone miss it and the native colour
+        # dropdown would stay visible above the builder's colour pills. Whole-name match, same
+        # list as COLOR_OPTION_LABELS in assets/product-desktop-ux-20260513-ruler-sync.js.
+        assign dlm_color_names = ',colors,colours,farbe,colore,cor,kleur,färg,farve,farge,väri,barva,farba,kolor,culoare,szín,boja,spalva,renk,warna,màu,màu sắc,สี,цвет,χρώμα,צבע,रंग,カラー,色,颜色,顏色,색상,컬러,اللون,لون,' | strip
+        assign dlm_color_name_token = ',' | append: option_name_downcased | strip | append: ','
+        assign is_translated_color_name = false
+        if dlm_color_names contains dlm_color_name_token
+          assign is_translated_color_name = true
+        endif
+        if is_translated_color_name or option_name_downcased contains 'color' or option_name_downcased contains 'colour' or option_name_downcased contains 'couleur' or option_name_downcased contains 'لون'
           assign is_color_option = true
         endif
 
