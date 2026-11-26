@@ -7537,6 +7537,7 @@ function initDesktopStickyAtc(wrapper, sectionId) {
   var priceContainer = document.getElementById('price-' + sectionId);
   var desktopMedia = window.matchMedia('(min-width: 990px)');
   var buttonInView = true;
+  var builderInView = false;
   var highlightedGroup = null;
 
   if (!stickyBar || !stickyButton) return;
@@ -7549,9 +7550,12 @@ function initDesktopStickyAtc(wrapper, sectionId) {
     if (!stickyPrice) return;
     if (isMatchingSet) {
       var hasSelectedPieces = !!(matchingSetStickyState && matchingSetStickyState.isReady);
+      // Before pieces are chosen the bar shows the price line (never the builder's
+      // instruction sentence, which belongs in the builder itself).
+      var matchingPriceState = hasSelectedPieces ? null : getRenderedPriceState(priceContainer);
       stickyPrice.textContent = hasSelectedPieces
         ? matchingSetStickyState.pieceCountLabel || wrapper.getAttribute('data-matching-set-add') || 'Matching pieces'
-        : wrapper.getAttribute('data-matching-set-copy') || wrapper.getAttribute('data-matching-set-add') || 'Matching pieces';
+        : (matchingPriceState && matchingPriceState.currentPrice) || wrapper.getAttribute('data-matching-set-add') || 'Matching pieces';
       stickyPrice.removeAttribute('aria-label');
       stickyPrice.removeAttribute('title');
       return;
@@ -7645,7 +7649,8 @@ function initDesktopStickyAtc(wrapper, sectionId) {
   }
 
   function syncVisibility() {
-    var shouldShow = desktopMedia.matches && !buttonInView;
+    // Nothing floats over the buy box: hide the bar while the real button or the builder is on screen.
+    var shouldShow = desktopMedia.matches && !buttonInView && !(isMatchingSet && builderInView);
     stickyBar.classList.toggle('is-visible', shouldShow);
     stickyBar.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
   }
@@ -7714,6 +7719,18 @@ function initDesktopStickyAtc(wrapper, sectionId) {
     { threshold: 0 }
   );
   buttonObserver.observe(mainButton);
+
+  if (isMatchingSet && matchingSetBuilder) {
+    new IntersectionObserver(
+      function (entries) {
+        entries.forEach(function (entry) {
+          builderInView = entry.isIntersecting;
+          syncVisibility();
+        });
+      },
+      { threshold: 0 }
+    ).observe(matchingSetBuilder);
+  }
 
   if (variantSelects) {
     variantSelects.addEventListener('change', function () {
