@@ -54,9 +54,18 @@
     assign back_collection = family_sets_collection
   endif
 
+  assign product_collection_tokens = '|' | append: product_collection_handles | append: '|'
+  assign maternity_collection = blank
+  if product_collection_tokens contains '|maternity|'
+    assign maternity_collection = collections['maternity']
+  endif
+
   assign similar_collection = collection
   if similar_collection == blank or similar_collection.all_products_count < 5
-    if has_family_sets_context and family_sets_collection != blank
+    # Maternity gowns also carry the generic "Dresses" subcategory; keep shoppers among maternity styles.
+    if maternity_collection != blank and maternity_collection.all_products_count > 1
+      assign similar_collection = maternity_collection
+    elsif has_family_sets_context and family_sets_collection != blank
       assign similar_collection = family_sets_collection
     elsif subcategory_collection != blank and subcategory_collection.all_products_count > 0
       assign similar_collection = subcategory_collection
