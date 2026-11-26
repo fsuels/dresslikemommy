@@ -42,6 +42,8 @@ class EnglishRuleTests(unittest.TestCase):
             ("performance", "waterproof"): "Fully waterproof shell.",
             ("performance", "wicking"): "Moisture-wicking jersey.",
             ("performance", "perfect-fit"): "Adjustable straps ensure a perfect fit.",
+            ("performance", "ensures"): "The soft knit ensures all-day comfort.",
+            ("performance", "body-type-claim"): "A pattern that flatters all body types, creating a visual slimming effect; this set promises a fit.",
             ("performance", "long-lasting"): "Long-lasting and built to last.",
             ("performance", "certification"): "OEKO-TEX certified fabric.",
             ("performance", "fabric-behavior"): "Gets softer wash after wash.",
@@ -64,7 +66,6 @@ class EnglishRuleTests(unittest.TestCase):
             "Delivery estimates are not guarantees.",
             "Sizing is not guaranteed to match every body.",
             "We cannot guarantee exact colour on every screen.",
-            "Use the size chart to find your perfect fit.",
             "A bold organic shape print.",
             "Colour: UV print placement may vary.",
             "The gown is sewn after you order and is ready to ship in about 7 days, so please allow time.",
@@ -74,6 +75,11 @@ class EnglishRuleTests(unittest.TestCase):
         ):
             with self.subTest(text=text):
                 self.assertEqual([], en(text))
+
+    def test_find_perfect_fit_and_czech_variants_caught(self):
+        self.assertIn(("performance", "perfect-fit"), rules(en("Find the perfect fit that flatters every curve.")))
+        found = m.scan_translation_field("cs", "body_html", "<p>Zajišťuje perfektní střih.</p>")
+        self.assertEqual({"translated_claim"}, {f["category"] for f in found})
 
     def test_allowlist_does_not_hide_other_claim_in_same_sentence(self):
         found = en("Not guaranteed, but a best seller.")
@@ -197,10 +203,147 @@ class TranslationTests(unittest.TestCase):
         self.assertTrue(any(r["locale"] == "de" and r["category"] == "translated_claim" for r in rows))
         self.assertEqual(m.summarize(rows)["products_with_findings"], 1)
 
+    def test_translated_size_chart_id_flagged(self):
+        en_body = '<table id="size-chart" class="size-chart"><tr><td>S</td></tr></table>'
+        bad = en_body.replace('id="size-chart"', 'id="tabella-taglie"')
+        found = m.scan_translation_field("it", "body_html", bad, en_body)
+        self.assertIn(("translation_defect", "table-id"), rules(found))
+        self.assertEqual([], m.scan_table_ids(en_body, en_body.replace('"', "'")))
+        self.assertEqual([], m.scan_table_ids("<table><tr></tr></table>", "<p>x</p>"))
+
     def test_clean_product_has_no_findings(self):
         product = {"handle": "ok", "title": "Blue floral dress", "descriptionHtml": "<p>Soft cotton blend dress.</p>",
                    "seo": {"title": "Blue dress", "description": "Matching dress for mom and daughter."}}
         self.assertEqual([], m.scan_product(product, []))
+
+
+INDEX = {
+    "products": {"live-dress": "ACTIVE", "old-dress": "ARCHIVED", "wip-dress": "DRAFT", "moved": "ARCHIVED", "dead-end": "ARCHIVED"},
+    "collections": {"dresses": True, "hidden": False},
+    "pages": {"faqs": True, "secret": False},
+    "articles": {"news/good-guide": True, "news/draft-guide": False},
+    "redirects": {"/products/moved": "/products/live-dress", "/products/dead-end": "/collections/gone",
+                  "/collections/old": "https://www.dresslikemommy.com/collections/dresses?x=1"},
+}
+
+
+class ContentRuleTests(unittest.TestCase):
+    def test_trend_claims_flagged_and_plain_trend_word_not(self):
+        found = m.scan_content_rules(["This season's hottest looks for mom.", "One of the biggest family fashion trends.",
+                                      "Burgundy sets are a nice change."])
+        self.assertEqual(2, len([f for f in found if f["rule"] == "trend-claim"]))
+        self.assertEqual([], m.scan_content_rules(["Trend notes: floral prints return each spring."]))
+
+    def test_size_up_needs_a_child_in_the_sentence_and_respects_negation(self):
+        self.assertTrue(m.scan_content_rules(["For kids, sizing up one size leaves growing room."]))
+        self.assertEqual([], m.scan_content_rules(["Adults who like a relaxed fit can size up."]))
+        f = m.scan_content_text("<p>Do not automatically size up children's sleepwear to allow for growth.</p>", True, 2026)
+        self.assertNotIn("size-up-kids", {x["rule"] for x in f})
+        f = m.scan_content_text("<p>If your child is between sizes, size up.</p>", True, 2026)
+        self.assertIn("size-up-kids", {x["rule"] for x in f})
+
+    def test_true_to_size_advice_is_not_a_fit_claim_in_articles(self):
+        f = m.scan_content_text("<p>Choose a size up for a relaxed fit or stay true to size for a neater look.</p>", True, 2026)
+        self.assertNotIn("perfect-fit", {x["rule"] for x in f})
+
+    def test_stale_year_narrow(self):
+        self.assertTrue(m.find_stale_years("Best Mommy and Me Outfits 2025", 2026))
+        self.assertTrue(m.find_stale_years("2025 Family Matching Trends", 2026))
+        self.assertTrue(m.find_stale_years("Updated for 2025", 2026))
+        self.assertEqual([], m.find_stale_years("Best outfits 2026", 2026))
+        self.assertEqual([], m.find_stale_years("Our shop opened in 2019 and has grown since.", 2026))
+        self.assertEqual([], m.find_stale_years("The best look since 2024.", 2026))
+        self.assertEqual([], m.find_stale_years("2025-2026 guide", 2026))
+        self.assertEqual([], m.find_stale_years("2025 and 2026 trends", 2026))
+        self.assertEqual(1, len(m.find_stale_years("Photo taken in 2024", 2026, loose=True)))
+        self.assertEqual("stale_year", m.scan_stale_years("Best of 2025", 2026)[0]["category"])
+
+    def test_alt_text_extracted_and_scanned(self):
+        raw = '<img src="a.jpg" alt="2025 trends matching outfit"><img alt=\'Plain photo\'><img src="b.jpg">'
+        self.assertEqual(["2025 trends matching outfit", "Plain photo"], m.extract_alt_texts(raw))
+        f = m.scan_content_text(raw, True, 2026)
+        self.assertTrue(any(x["rule"] == "stale-year" and x["snippet"].startswith("alt: ") for x in f))
+
+    def test_unanswered_questions(self):
+        html = "<h2>Do they run small?</h2><h2>Shipping</h2><p>Text.</p><h3>Can I return it?</h3><p>Yes within 30 days.</p>"
+        self.assertEqual(["Do they run small?"], m.find_unanswered_questions(html))
+        parent = "<h2>Pajamas, Sweaters or Outfits?</h2><h3>Pajamas</h3><p>Soft.</p>"
+        self.assertEqual([], m.find_unanswered_questions(parent))
+        det = "<details><summary>How long is delivery?</summary></details><details><summary>Returns?</summary><p>30 days.</p></details>"
+        self.assertEqual(["How long is delivery?"], m.find_unanswered_questions(det))
+        dl = "<dl><dt>Is it soft?</dt><dd></dd><dt>Sizes?</dt><dd>S to XL</dd></dl>"
+        self.assertEqual(["Is it soft?"], m.find_unanswered_questions(dl))
+        self.assertEqual(["Is the last one empty?"], m.find_unanswered_questions("<h2>Is the last one empty?</h2><img src='x'>"))
+
+    def test_duplicate_sentences(self):
+        s = "Check the size chart on each product page and measure rather than guess."
+        self.assertEqual([s], m.find_duplicate_sentences([s, "Other text here.", s]))
+        self.assertEqual([], m.find_duplicate_sentences(["Short repeat.", "Short repeat."]))
+        self.assertEqual([], m.find_duplicate_sentences(["Navy Orange Floral Mommy and Me Dresses Tiered Tie Strap Dress"] * 2))
+        self.assertEqual([], m.find_duplicate_sentences([s, s], boilerplate={m._norm_sentence(s)}))
+        self.assertEqual({m._norm_sentence(s)}, m.build_boilerplate(["<p>%s</p>" % s] * 3, min_resources=3))
+
+    def test_normalize_and_extract_links(self):
+        self.assertEqual("/products/live-dress", m.normalize_link("https://www.dresslikemommy.com/de/products/live-dress/?variant=1#x"))
+        self.assertEqual("/collections/dresses", m.normalize_link("/en-gb/collections/dresses"))
+        self.assertEqual("/pages/faqs", m.normalize_link("/pages/faqs"))
+        self.assertIsNone(m.normalize_link("https://www.pinterest.com/x"))
+        self.assertIsNone(m.normalize_link("mailto:a@b.com"))
+        self.assertIsNone(m.normalize_link("#top"))
+        raw = '<a href="/products/a">x</a><a href="/products/a">y</a><a href=\'/pages/faqs\'>z</a>'
+        self.assertEqual(["/products/a", "/pages/faqs"], m.extract_internal_links(raw))
+
+    def test_classify_path(self):
+        self.assertEqual(("product", "p"), m.classify_path("/collections/c/products/p"))
+        self.assertEqual(("collection", "c"), m.classify_path("/collections/c"))
+        self.assertEqual(("page", "faqs"), m.classify_path("/pages/faqs"))
+        self.assertIsNone(m.classify_path("/pages/search-results/some term"))
+        self.assertEqual(("article", "news/g"), m.classify_path("/blogs/news/g"))
+        self.assertIsNone(m.classify_path("/collections/all"))
+        self.assertIsNone(m.classify_path("/cart"))
+
+    def test_check_link(self):
+        self.assertIsNone(m.check_link("/products/live-dress", INDEX))
+        self.assertIsNone(m.check_link("/collections/dresses/products/live-dress", INDEX))
+        self.assertIsNone(m.check_link("/blogs/news/good-guide", INDEX))
+        self.assertEqual("link-inactive-product", m.check_link("/products/old-dress", INDEX)["rule"])
+        self.assertEqual("link-inactive-product", m.check_link("/products/wip-dress", INDEX)["rule"])
+        self.assertEqual("link-missing", m.check_link("/products/nope", INDEX)["rule"])
+        self.assertEqual("link-unpublished", m.check_link("/collections/hidden", INDEX)["rule"])
+        self.assertEqual("link-missing", m.check_link("/pages/nope", INDEX)["rule"])
+        self.assertEqual("link-unpublished", m.check_link("/pages/secret", INDEX)["rule"])
+        self.assertEqual("link-unpublished", m.check_link("/blogs/news/draft-guide", INDEX)["rule"])
+        red = m.check_link("/products/moved", INDEX)
+        self.assertEqual("link-redirected", red["rule"])
+        self.assertEqual("/products/moved -> /products/live-dress", red["snippet"])
+        self.assertEqual("/collections/old -> /collections/dresses", m.check_link("/collections/old", INDEX)["snippet"])
+        self.assertEqual("link-redirect-dead", m.check_link("/products/dead-end", INDEX)["rule"])
+
+    def test_scan_links_skips_known_paths(self):
+        raw = '<a href="/products/old-dress">a</a><a href="/products/live-dress">b</a>'
+        self.assertEqual(1, len(m.scan_links(raw, INDEX)))
+        self.assertEqual([], m.scan_links(raw, INDEX, skip=["/products/old-dress"]))
+
+    def test_content_resource_scan_and_noise_filters(self):
+        art = {"handle": "g", "title": "Best Matching Looks 2025", "body": "<h2>Any tips?</h2><h2>More</h2><p>Order a size up for kids.</p>",
+               "summary": "", "seo": {"title": "", "description": ""}, "translations": {
+                   "ja": {"body_html": "<p>Dress Like Mommyでは家族の装いを提案します。</p>"},
+                   "es": {"body_html": "<p>Pide una talla más para los niños.</p>"}}}
+        rows = m.scan_content_resource("article", art, ["ja", "es"], 2026, None, INDEX)
+        got = {(r["locale"], r["rule"]) for r in rows}
+        self.assertIn(("en", "stale-year"), got)
+        self.assertIn(("en", "unanswered-faq"), got)
+        self.assertIn(("en", "size-up-kids"), got)
+        self.assertIn(("es", "size-advice"), got)
+        self.assertFalse([r for r in rows if r["rule"] == "brand-altered"])
+        self.assertTrue(all(r["resource"] == "article" for r in rows))
+
+    def test_group_rows_collapses_locale_copies(self):
+        base = {"resource": "article", "handle": "g", "field": "body", "category": "translated_claim", "rule": "size-advice",
+                "snippet": "x", "match": "una talla más"}
+        groups = m.group_rows([dict(base, locale="es"), dict(base, locale="it", match="una taglia in più")])
+        self.assertEqual(1, len(groups))
+        self.assertEqual(["es", "it"], groups[0]["locales"])
 
 
 if __name__ == "__main__":

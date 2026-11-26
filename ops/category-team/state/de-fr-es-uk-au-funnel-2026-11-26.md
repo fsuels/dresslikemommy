@@ -1,19 +1,23 @@
-# DE / FR / ES / UK / AU funnel, 2026-11-26 — BLOCKED (read-only)
+# DE / FR / ES / UK / AU funnel, 2026-11-26 (read-only, curl cookie jars, mobile UA)
 
-Status: BLOCKED. The live shopper walk could not run. At 19:26-19:28 UTC every request to www.dresslikemommy.com (home, /de, /robots.txt, product .js, and the myshopify domain which redirects there) returned HTTP 429 with `cf-mitigated: challenge` (Cloudflare managed challenge) for both a mobile and a desktop UA, with and without cookie jars. The earlier Italy and CZ/CA audits ran from the same method earlier today; this IP was challenged afterwards (probably request volume). Clearing the challenge is bot-detection bypass and the brief forbids a browser, so nothing was bypassed. No finding below is invented.
+Method: as `italy-funnel-2026-11-26.md`, www host, 5 s between requests, 44 requests total, no 429 on the second run (the first attempt at 19:26 UTC was blocked by a Cloudflare challenge and was not bypassed). Per country: home, PDP `christmas-reindeer-family-matching-sweaters`, `cart/add.js` (variant 47169609138273, adult S), `/cart`, `cart.js`, `shipping_rates.json` (10115 / 75001 / 28001 / SW1A 1AA / 2000). Collections `matching-family-christmas-outfits` for DE and GB. Not done (budget / no scope): Nordic Yoke PDP, FR/ES/AU collections, first checkout load, Markets price settings. Rendered-only strings (JS) were not seen.
 
-Also not possible: Admin GraphQL `@inContext` is not defined for this token/endpoint, so per-market prices (DE/FR/ES/GB/AU) cannot be read through Admin either (same limit as the earlier audits: no read_markets).
+## Ranked findings
+1. **DE page says the Christmas delivery window is 12-16 days; the same site says 19-26.** FIX_THEME. Evidence: `/de` home and `/de/collections/matching-family-christmas-outfits` carry `data-dlm-christmas-window="12-16 Tage"`; DE PDP/home carry `data-dlm-delivery-window="19-26 Tage"` (FR "19-26 jours", ES "19-26 días"). GB collection `12-16 days` vs PDP `12-19 days` (GB window is 12-19). AU home/collection `data-dlm-christmas-window="12-16 days"` while the AU PDP correctly has no window ("Delivery times vary by country."). The Christmas-window value is a global constant; promise is 3 to 10 days shorter than the estimate in DE/FR/ES and AU. Make it per-country or drop the number outside the US.
+2. **AU is a summer market but is pushed winter product with US wording.** FIX_THEME (+ OWNER). Evidence: AU home menu "Fall & winter" (4 occurrences), "Sweaters & jackets", "Coats & sweaters", hero cards Vintage Argyle and Nordic Yoke sweaters; no summer/swimwear entry on the AU home text. "Fall" is US-only; UK also shows "Fall & winter". Use "Autumn & winter" for GB/AU/(en) and show swimwear/summer first for AU. Christmas sweaters are still on-theme for AU gifting but are not what an AU shopper expects in December heat.
+3. **Shipping rate name is raw English in all five markets.** FIX_ADMIN (delivery profile rate name; verify the checkout label). Evidence: `shipping_rates.json` DE/FR/UK/AU/ES(Madrid) `"name":"Free Standard Shipping","presentment_name":"Free Standard Shipping"` (EUR/GBP/AUD, price 0.00). The cart page and PDP are localized ("Kostenloser Standardversand"); the CZ audit found the checkout localizes it, DE/FR/ES checkout not loaded here.
+4. **DE/FR/ES/GB/AU prices are consistent across card/PDP/cart/ld+json.** (no fix) DE `Kinder ab €34,95 · Erwachsene ab €37,95` -> cart.js `EUR 3495` -> cart `€34,95`; ld+json priceCurrency EUR 34.95. GB `£29.00 GBP` -> `GBP 2900`; ld+json GBP 29.0. AU `$59.00 AUD` -> `AUD 5900`; ld+json AUD 59.0. EUR pages show `€34,95` (no trailing "EUR", unlike Italy's "€53,95 EUR"); GB/AU still print symbol+code ("£29.00 GBP", "$59.00 AUD"). Low: drop the code in GB/AU, keep for AU only if "$" ambiguity matters (AUD, not USD): leave.
+5. **Shipping lookup needs a state for AU and ES (422 without province).** FIX_THEME (low). `shipping_rates.json` returned `{"province":["Select a province"]}` / `["Select a state/territory"]` for ES 28001 and AU 2000 until a province was sent; with province both return the free rate. Only matters for the cart shipping estimator if it does not pass a province.
+6. **UK and AU still show "Taxes calculated at checkout." with no tax disclosure.** Known theme (VAT/duties) but UK-specific: GB imports are subject to UK VAT and the new-since-2021 rules; AU 10 % GST on low-value goods is sellers' duty. OWNER decision; wording FIX_THEME.
+7. **Cart `Complete the family` tile is present for DE/FR/ES/GB/AU** (unlike the Italy report). DE/FR/ES strings fully translated ("Familie komplettieren", "Complétez la famille", "Completa la familia"). No finding.
 
-## Findings
-None verified for these five markets. Zero live evidence collected.
+## Validated from the coordinator's list
+- Delivery estimate: DE `19-26 Tage`, FR `19-26 jours`, ES `19-26 días`, GB `12-19 days` via `data-dlm-delivery-window`; AU has no window and prints "Delivery times vary by country." (PDP, cart). Matches the stated rules. `shipping_rates.json` carries no delivery date/range in any market (`delivery_date:null`).
+- Neutral Christmas line present and translated, no date: DE "Bestellung für Weihnachten? Die Lieferzeiten unterscheiden sich je nach Land, bestellen Sie daher so früh wie möglich.", FR "Vous commandez pour Noël ? Les délais de livraison varient selon le pays...", GB/AU "Ordering for Christmas? Delivery times vary by country, so order as early as you can." No December date found in DE/UK collections or PDPs (only the 12-16 window, see 1).
+- Canonical self-referencing per locale (`/de/products/...`, `/fr/...`, `/es/...`; GB and AU canonical = root `/products/...`); `<html lang>` de/fr/es/en. hreflang present (22 languages + x-default). No hreflang for en-GB / en-AU / country variants: both use plain `en` (expected for one English URL).
 
-## Already known (from Italy and CZ/CA audits, expected to repeat in DE/FR/ES; UK/AU unchecked)
-- No compare-at / sale badge in EUR markets; ~15% price uplift over FX.
-- Unclear VAT/duties ("taxes calculated at checkout", no tax line).
-- Phone number required at checkout.
-- Christmas order-by date is global (US-only is the fix).
-- Mixed symbol+code price format ("€53,95 EUR"), dot decimals in size chart, all-dash columns for sweaters.
+## Not found
+No broken add-to-cart, no sold-out, no `$` leak on EUR pages, no US-only strings in DE/FR/ES cart, no mixed currency between steps.
 
-## OWNER / next step
-- Re-run this walk after the Cloudflare challenge on www.dresslikemommy.com clears for the agent IP (or from an IP that is not challenged); script method = `italy-funnel-2026-11-26.md`. Check Cloudflare Security > Events for the rule that fired (may also be hurting real shoppers or Googlebot: worth one look).
-- UK/AU specific checks still to do: GBP/AUD formatting, "fall"/"ZIP" wording, AU summer seasonality on home, hreflang/canonical, JSON-LD currency.
+## Already known (Italy / CZ-CA audits, not re-reported)
+No compare-at/sale badge and ~15 % uplift in EUR markets, unclear VAT/duties, phone required at checkout, Christmas date US-only, dot decimals in size chart (not rechecked here).
