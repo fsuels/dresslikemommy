@@ -81,3 +81,19 @@ test('full chart cells convert em dash, "to" and decimal commas', () => {
   assert.equal(ctx.convertMetricChartCell('7,5 kg', 'kg'), '16.5 lbs');
   assert.equal(ctx.convertMetricChartCell('9–12,5 kg', 'kg'), '19.8–27.6 lbs');
 });
+
+test('age cells such as "6-12 mo" use the storefront language word for months', () => {
+  const labels = src.slice(src.indexOf('var SIZE_UNIT_LABELS_BY_LOCALE = {'), src.indexOf('var UI_LABELS_BY_LOCALE'));
+  const run = (lang) => {
+    const c = { document: { documentElement: { lang, getAttribute: () => lang } }, normalizeText: (v) => String(v || '').trim().toLowerCase() };
+    vm.runInNewContext([labels, extractFn('getLocaleRoot'), extractFn('getLocaleMap'), extractFn('localizeMonthAbbreviation')].join('\n'), c);
+    return c.localizeMonthAbbreviation;
+  };
+  assert.equal(run('es')('6-12 mo'), '6-12 meses');
+  assert.equal(run('de')('6-12 mo'), '6-12 Monate');
+  assert.equal(run('fr')('6-12 mo'), '6-12 mois');
+  assert.equal(run('ja')('6-12 mo'), '6-12か月');
+  assert.equal(run('en')('6-12 mo'), '6-12 mo');
+  assert.equal(run('es')('2-3'), '2-3');
+  assert.equal(run('es')('9-12.5 kg'), '9-12.5 kg');
+});

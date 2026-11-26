@@ -150,6 +150,9 @@ function initFullSizeChartDisclosure(productSection) {
     copy.removeAttribute('data-size-chart-source-only');
     copy.removeAttribute('data-size-guide-table-source-only');
     copy.className = 'matching-size-guide__table';
+    Array.from(copy.querySelectorAll('td')).forEach(function (cell) {
+      if (!cell.children.length) cell.textContent = localizeMonthAbbreviation(cell.textContent);
+    });
     scroll.appendChild(copy);
     card.appendChild(scroll);
     addInchesViewToChart(copy, card, scroll);
@@ -1124,6 +1127,16 @@ function getLocaleRoot() {
 function getLocaleMap(source, fallbackLocale) {
   var locale = getLocaleRoot();
   return source[locale] || source[fallbackLocale || 'en'] || {};
+}
+
+// Age cells copied from the English description ("6-12 mo") show the storefront
+// language's word for months, from the same table as the size button labels.
+function localizeMonthAbbreviation(text) {
+  var units = getLocaleMap(SIZE_UNIT_LABELS_BY_LOCALE, 'en');
+  if (!units.months || getLocaleRoot() === 'en') return text;
+  return String(text).replace(/(\d)\s*(?:mos?|months?)\b\.?/gi, function (_match, digit) {
+    return digit + (typeof units.joiner === 'string' ? units.joiner : ' ') + units.months;
+  });
 }
 
 function interpolateLabel(template, values) {
@@ -3167,7 +3180,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   // range, or already contain a unit suffix) and trim trailing decimals
   // beyond 1 on each numeric piece. Non-numeric text is passed through.
   function tidyMeasurementValue(text) {
-    var raw = String(text || '').trim();
+    var raw = localizeMonthAbbreviation(String(text || '').trim());
     if (!raw) return raw;
     // Replace any number with more than one decimal with a 1-decimal version.
     return raw.replace(/(\d+)\.(\d{2,})/g, function (_, intPart, decimals) {
@@ -5441,6 +5454,10 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
   }
 
   function formatGuideCellValue(value, header, unitSystem) {
+    return localizeMonthAbbreviation(formatGuideCellValueRaw(value, header, unitSystem));
+  }
+
+  function formatGuideCellValueRaw(value, header, unitSystem) {
     var text = String(value || '').replace(/\s+/g, ' ').trim();
     if (!text || text === '—') return '—';
     var parts = splitGuideMeasurementParts(text);
