@@ -67,5 +67,5 @@
     .dlm-pdp-piece-note { margin: 0.2rem 0 0.8rem; color: #1f2937; font-size: 1.3rem; line-height: 1.45; }
     @media screen and (min-width: 750px) { .dlm-pdp-piece-note { font-size: 1.4rem; } }
   </style>
-  <p class="dlm-pdp-piece-note" data-dlm-piece-note>{{ pn_text | escape }}</p>
+  <p class="dlm-pdp-piece-note" data-dlm-piece-note>{{ pn_text | escape_once }}</p>
 {%- endif -%}

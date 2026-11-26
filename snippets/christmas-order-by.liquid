@@ -26,7 +26,7 @@
     echo '<p class="dlm-christmas-order-by" hidden data-dlm-christmas-order-by data-max-days="'
     echo cob_max
     echo '" data-text="'
-    echo cob_text | escape
+    echo cob_text | escape_once
     echo '"></p>'
   endif
 -%}
