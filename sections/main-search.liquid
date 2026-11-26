@@ -175,8 +175,8 @@
         {%- endunless -%}
         {%- if search.results_count == 0 and search.filters == empty -%}
           <p role="status">{{ 'templates.search.no_results' | t: terms: search.terms }}</p>
-          <div class="template-search__recovery" aria-label="Popular shopping paths">
-            <p class="template-search__recovery-title">Try a popular starting point</p>
+          <div class="template-search__recovery" aria-label="Shopping paths">
+            <p class="template-search__recovery-title">Try a starting point</p>
             <div class="template-search__recovery-links">
               <a href="{{ collections['pajamas'].url | default: '/collections/pajamas' }}" class="button button--secondary">Pajamas</a>
               <a href="{{ collections['mommy-and-me'].url | default: '/collections/mommy-and-me' }}" class="button button--secondary">Mommy & Me</a>
