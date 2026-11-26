@@ -179,7 +179,7 @@
       endcomment
       assign home_title_lang = request.locale.iso_code | default: 'en' | downcase | split: '-' | first
       if home_title_lang == 'en'
-        assign resolved_page_title = 'Mommy and Me Outfits & Matching Family Clothes | Dress Like Mommy'
+        assign resolved_page_title = 'Matching Family Outfits & Mommy and Me Clothes | Dress Like Mommy'
       endif
       assign resolved_page_description = 'storefront.home_description' | t
       assign append_shop_name_to_title = false

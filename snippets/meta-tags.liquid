@@ -69,7 +69,7 @@
   if request.page_type == 'index'
     assign og_lang = request.locale.iso_code | default: 'en' | downcase | split: '-' | first
     if og_lang == 'en'
-      assign og_title = 'Mommy and Me Outfits & Matching Family Clothes | Dress Like Mommy'
+      assign og_title = 'Matching Family Outfits & Mommy and Me Clothes | Dress Like Mommy'
       assign og_description = 'Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.'
     else
       assign og_title = 'storefront.home_title' | t
