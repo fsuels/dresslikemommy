@@ -76,8 +76,8 @@
   endif
   # Size-chart polish, applied to each size-chart table in the description (product data is unchanged):
   # - Czech: decimal comma (7,5 kg) and Czech plural for ages (1 rok, 2-4 roky, 5+ let).
-  # - Every language: columns whose cells are all a dash (for example Pants or Hips on a sweater) are
-  #   hidden with CSS only, so the table markup the size guide reads is not changed.
+  # Empty (all-dash) columns are removed by the size-guide copy in product-desktop-ux-20260513-ruler-sync.js,
+  # not here: index-based hiding in this table hid columns with data in the copy (2026-11-26).
   if chart_html contains '<table' and chart_html contains 'size-chart'
     assign sc_tables = chart_html | split: '<table'
     assign sc_out = sc_tables[0]
@@ -91,66 +91,9 @@
         if locale == 'cs'
           assign sc_body = sc_body | replace: '.5', ',5' | replace: ' 1 let', ' 1 rok' | replace: ' 2 let', ' 2 roky' | replace: ' 3 let', ' 3 roky' | replace: ' 4 let', ' 4 roky' | replace: '-2 let', '-2 roky' | replace: '-3 let', '-3 roky' | replace: '-4 let', '-4 roky' | replace: '–2 let', '–2 roky' | replace: '–3 let', '–3 roky' | replace: '–4 let', '–4 roky'
         endif
-        assign sc_safe = true
-        if sc_body contains 'colspan' or sc_body contains 'rowspan'
-          assign sc_safe = false
-        endif
-        assign sc_filled = ','
-        assign sc_cols = 0
-        assign sc_data_rows = 0
-        if sc_safe
-          assign sc_rows = sc_body | split: '<tr'
-          for sc_row in sc_rows offset: 1
-            if sc_row contains '<td'
-              if sc_row contains '<th'
-                assign sc_safe = false
-                break
-              endif
-              assign sc_data_rows = sc_data_rows | plus: 1
-              assign sc_cells = sc_row | split: '<td'
-              assign sc_n = sc_cells.size | minus: 1
-              if sc_n > sc_cols
-                assign sc_cols = sc_n
-              endif
-              for sc_cell in sc_cells offset: 1
-                assign sc_text = sc_cell | split: '</td>' | first | strip_html | split: '>' | last | strip
-                if sc_text == blank
-                  assign sc_text = '-'
-                endif
-                if sc_text != '-' and sc_text != '–' and sc_text != '—' and sc_text != '--'
-                  assign sc_mark = ',' | append: forloop.index | append: ','
-                  unless sc_filled contains sc_mark
-                    assign sc_filled = sc_filled | append: forloop.index | append: ','
-                  endunless
-                endif
-              endfor
-            endif
-          endfor
-        endif
-        if sc_safe and sc_data_rows >= 2 and sc_cols >= 3
-          assign sc_hide = ''
-          for sc_i in (2..sc_cols)
-            assign sc_mark = ',' | append: sc_i | append: ','
-            unless sc_filled contains sc_mark
-              assign sc_hide = sc_hide | append: sc_i | append: ','
-            endunless
-          endfor
-          if sc_hide != ''
-            assign sc_key = 'dlmsc' | append: sc_idx
-            assign sc_hide_list = sc_hide | split: ','
-            for sc_h in sc_hide_list
-              assign sc_css = sc_css | append: 'table[data-dlm-sc="' | append: sc_key | append: '"] tr > :nth-child(' | append: sc_h | append: '){display:none}'
-            endfor
-            assign sc_open_new = ' data-dlm-sc="' | append: sc_key | append: '"'
-            assign sc_body = sc_open_new | append: sc_body
-          endif
-        endif
       endif
       assign sc_out = sc_out | append: '<table' | append: sc_body | append: sc_rest
     endfor
-    if sc_css != ''
-      assign sc_out = sc_out | append: '<style>' | append: sc_css | append: '</style>'
-    endif
     assign chart_html = sc_out
   endif
   if locale == 'ja'
