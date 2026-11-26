@@ -162,6 +162,10 @@
     assign effective_display_title = effective_display_title_key | t | replace: '&#39;', "'"
   endif
 
+  if seo_lang != 'en' and collection_handle == 'pajamas'
+    assign effective_display_title_key = 'sections.collection_seo.display_titles.pajamas_mom'
+  endif
+
   if seo_lang == 'en'
     case collection_handle
       when 'swimsuits'
@@ -465,6 +469,27 @@
     when 'christmas-tops'
       assign body_description_key = 'sections.collection_seo.body.christmas_tops_html'
   endcase
+
+  comment
+    SEO 2026-11-26: real one-line intros instead of the generic "browse X and compare
+    styles" fallback on high-impression localized collections. English is unchanged.
+  endcomment
+  if seo_lang != 'en'
+    case collection_handle
+      when 'pajamas'
+        assign body_description_key = 'sections.collection_seo.body.pajamas_mom_html'
+      when 'family-sweaters'
+        assign body_description_key = 'sections.collection_seo.body.family_sweaters_html'
+      when 'christmas-sweaters'
+        assign body_description_key = 'sections.collection_seo.body.christmas_sweaters_html'
+      when 'matching-family-christmas-outfits'
+        assign body_description_key = 'sections.collection_seo.body.christmas_outfits_html'
+      when 'family-tops'
+        assign body_description_key = 'sections.collection_seo.body.family_tops_html'
+      when 'matching-family-sweatshirts'
+        assign body_description_key = 'sections.collection_seo.body.family_sweatshirts_html'
+    endcase
+  endif
 
   comment
     The translated sections.collection_seo.meta_descriptions.all strings promise
