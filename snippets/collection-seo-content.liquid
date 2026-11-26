@@ -2,7 +2,7 @@
   assign collection_handle = collection.handle | default: ''
 
   assign dresses_url = routes.collections_url | append: '/dresses'
-  assign family_swimsuits_url = routes.collections_url | append: '/family-swimsuits'
+  assign family_swimsuits_url = routes.collections_url | append: '/swimsuits'
   assign family_sets_url = routes.collections_url | append: '/family-sets'
   assign daddy_me_url = routes.collections_url | append: '/daddy-me'
   assign daddy_me_tshirts_url = routes.collections_url | append: '/daddy-me-t-shirts'
@@ -18,9 +18,6 @@
 
   if collections['dresses'] != blank
     assign dresses_url = collections['dresses'].url
-  endif
-  if collections['family-swimsuits'] != blank
-    assign family_swimsuits_url = collections['family-swimsuits'].url
   endif
   if collections['family-sets'] != blank
     assign family_sets_url = collections['family-sets'].url

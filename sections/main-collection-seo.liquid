@@ -16,7 +16,7 @@
     {{ 'section-collection-seo.css' | asset_url | stylesheet_tag }}
 
     {%- liquid
-      assign related_family_swim_url = routes.collections_url | append: '/family-swimsuits'
+      assign related_family_swim_url = routes.collections_url | append: '/swimsuits'
       assign related_trunks_url = routes.collections_url | append: '/trunks'
       assign related_mommy_me_url = routes.collections_url | append: '/mommy-and-me'
 
@@ -72,10 +72,6 @@
 
         <aside class="collection-seo__aside" aria-label="{{ 'sections.collection_seo.swimsuits.related_aria' | t }}">
           <p class="collection-seo__aside-label">{{ 'sections.collection_seo.swimsuits.related_label' | t }}</p>
-          <a href="{{ related_family_swim_url }}" class="collection-seo__link-card">
-            <span class="collection-seo__link-title">{{ 'sections.collection_seo.swimsuits.family_swimwear_title' | t }}</span>
-            <span class="collection-seo__link-caption">{{ 'sections.collection_seo.swimsuits.family_swimwear_caption' | t }}</span>
-          </a>
           <a href="{{ related_trunks_url }}" class="collection-seo__link-card">
             <span class="collection-seo__link-title">{{ 'sections.collection_seo.swimsuits.trunks_title' | t }}</span>
             <span class="collection-seo__link-caption">{{ 'sections.collection_seo.swimsuits.trunks_caption' | t }}</span>

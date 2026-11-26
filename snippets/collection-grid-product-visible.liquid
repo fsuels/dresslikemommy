@@ -196,8 +196,8 @@
     assign product_visible = true
   endif
 
-  # Vacation and Hawaiian pages gather every kind of matching look (mother-daughter dresses and swimsuits, dad-son trunks): show all.
-  if current_collection_handle == 'matching-family-vacation-outfits' or current_collection_handle == 'matching-hawaiian-outfits'
+  # Matching-outfits, vacation and Hawaiian pages gather every kind of matching look (mother-daughter dresses and swimsuits, dad-son shirts and trunks): show all.
+  if current_collection_handle == 'matching-outfits' or current_collection_handle == 'matching-family-vacation-outfits' or current_collection_handle == 'matching-hawaiian-outfits'
     assign product_visible = true
   endif
 
