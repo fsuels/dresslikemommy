@@ -3242,6 +3242,19 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     );
   }
 
+  // Clicks the product form's own radio for an option value (outside the
+  // builder) so variant-selects switches the gallery to that variant's media.
+  function activatePageOptionRadio(axisName, axisValue) {
+    var scope = wrapper.closest('[id^="MainProduct-"]') || document;
+    var wanted = normalizeText(axisName);
+    var radio = Array.from(scope.querySelectorAll('input[type="radio"]')).find(function (input) {
+      if (input.closest('.product-matching-set') || input.disabled || input.checked) return false;
+      var name = normalizeText(String(input.name || '').replace(/^options\[(.*)\]$/, '$1'));
+      return name === wanted && input.value === axisValue;
+    });
+    if (radio) radio.click();
+  }
+
   var selectSizeLabel = wrapper.getAttribute('data-select-size-label') || 'Select size';
 
   function newInstanceId() {
@@ -4259,6 +4272,9 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
         refreshInstanceVariantId(inst);
         delete closedPanels[instanceId];
         renderBuilder();
+        // Keep the gallery in step: activate the page's own option control
+        // for this value so the main photo switches like the colour tiles do.
+        if (inst.axisSelections[axisName] === axisValue) activatePageOptionRadio(axisName, axisValue);
       });
     });
 
