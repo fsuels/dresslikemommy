@@ -5,6 +5,9 @@
   ("Estimated delivery: Thu, Oct 8 – Mon, Oct 12"); the day window is the no-JS fallback.
   Optional `product`: a made-to-order product (custom.made_to_order_days) gets its
   production days added to the window (snippets/made-to-order-window.liquid).
+  Country-aware (snippets/dlm-transit-map.liquid): United States keeps the localized 12-16 day window;
+  a country with carrier evidence shows its own window (transit + the same +5/+2 days the US window adds
+  to 7-14); every other country shows one neutral line with no dates and no numbers.
 {%- endcomment -%}
 {%- liquid
   assign dec_intro = 'products.additional_info.estimated_delivery' | t
@@ -15,6 +18,24 @@
   if dec_window == blank or dec_window contains 'translation missing' or dec_window contains 'business days'
     assign dec_window = '12-16 days'
   endif
+  assign dec_show = true
+  if localization.country.iso_code != 'US'
+    capture dec_transit
+      render 'dlm-transit-map', country: localization.country.iso_code
+    endcapture
+    assign dec_transit = dec_transit | strip
+    assign dec_show = false
+    if dec_transit != blank
+      assign dec_parts = dec_transit | split: '-'
+      assign dec_hi = dec_parts[1] | plus: 2
+      assign dec_new = dec_parts[0] | plus: 5 | append: '-' | append: dec_hi
+      assign dec_replaced = dec_window | replace_first: '12-16', dec_new
+      if dec_replaced != dec_window
+        assign dec_window = dec_replaced
+        assign dec_show = true
+      endif
+    endif
+  endif
   assign dec_mto_days = product.metafields.custom.made_to_order_days.value | default: 0
   if dec_mto_days > 0
     capture dec_window
@@ -23,4 +44,8 @@
     assign dec_window = dec_window | strip
   endif
 -%}
+{%- if dec_show == false -%}
+  <span class="dlm-delivery-vary">{% render 'dlm-delivery-vary-copy' %}</span>
+{%- else -%}
 {{- dec_intro }} <strong class="dlm-delivery-window" data-dlm-delivery-window="{{ dec_window | escape }}">{{ dec_window }}</strong>
+{%- endif -%}

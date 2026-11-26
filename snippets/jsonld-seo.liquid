@@ -307,10 +307,17 @@
     (YunExpress registered air mail). The visible "Estimated delivery" line is the typical case.
   {%- endcomment -%}
   {%- assign schema_handling_max = schema_handling_max | plus: 2 -%}
-  {%- assign schema_transit_min = 7 -%}
-  {%- assign schema_transit_max = 14 -%}
+  {%- comment -%}
+    Transit comes from snippets/dlm-transit-map.liquid (carrier evidence per destination; the US value
+    is 7-14). A destination without evidence gets no deliveryTime at all: nothing is asserted for it.
+  {%- endcomment -%}
+  {%- capture schema_transit_range -%}{%- render 'dlm-transit-map', country: shipping_country_code -%}{%- endcapture -%}
+  {%- assign schema_transit_range = schema_transit_range | strip -%}
+  {%- assign schema_transit_parts = schema_transit_range | split: '-' -%}
+  {%- assign schema_transit_min = schema_transit_parts[0] | default: -1 | plus: 0 -%}
+  {%- assign schema_transit_max = schema_transit_parts[1] | default: -1 | plus: 0 -%}
   {%- assign schema_delivery_valid = false -%}
-  {%- if schema_delivery_min >= 1 and schema_delivery_max >= schema_delivery_min and schema_delivery_max <= 90 and schema_transit_min >= 0 and schema_transit_max >= schema_transit_min -%}
+  {%- if schema_transit_range != blank and schema_delivery_min >= 1 and schema_delivery_max >= schema_delivery_min and schema_delivery_max <= 90 and schema_transit_min >= 0 and schema_transit_max >= schema_transit_min -%}
     {%- assign schema_delivery_valid = true -%}
   {%- endif -%}
 

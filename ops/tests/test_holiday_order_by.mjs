@@ -328,10 +328,14 @@ test('worst case by weekday: dispatch takes at most 7 calendar days', () => {
   }
 });
 
-test('structured data publishes handling 1-5 and the carrier transit 7-14', () => {
+test('structured data publishes handling 1-5 and transit from the per-country carrier map (US 7-14)', () => {
   const liquid = readFileSync(new URL('../../snippets/jsonld-seo.liquid', import.meta.url), 'utf8');
+  const map = readFileSync(new URL('../../snippets/dlm-transit-map.liquid', import.meta.url), 'utf8');
   assert.match(liquid, /assign schema_handling_max = schema_handling_max \| plus: 2/);
-  assert.match(liquid, /assign schema_transit_min = 7 -%\}\s*\{%- assign schema_transit_max = 14/);
+  assert.match(liquid, /render 'dlm-transit-map', country: shipping_country_code/);
+  assert.match(liquid, /schema_transit_range != blank and schema_delivery_min >= 1/);
+  assert.match(map, /US:7-14\|/);
+  assert.doesNotMatch(map, /AU:/);
 });
 
 function fakeBanner(windowValue = '12-16 days') {

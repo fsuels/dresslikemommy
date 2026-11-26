@@ -78,8 +78,8 @@ test('guide table cells convert ranges with em dash, "to" and decimal commas', (
 test('full chart cells convert em dash, "to" and decimal commas', () => {
   assert.equal(ctx.convertMetricChartCell('80—90 cm', 'cm'), '31.5—35.4 in');
   assert.equal(ctx.convertMetricChartCell('80 to 90', 'cm'), '31.5 to 35.4');
-  assert.equal(ctx.convertMetricChartCell('7,5 kg', 'kg'), '16.5 lbs');
-  assert.equal(ctx.convertMetricChartCell('9–12,5 kg', 'kg'), '19.8–27.6 lbs');
+  assert.equal(ctx.convertMetricChartCell('7,5 kg', 'kg'), '16,5 lbs');
+  assert.equal(ctx.convertMetricChartCell('9–12,5 kg', 'kg'), '19,8–27,6 lbs');
 });
 
 test('age cells such as "6-12 mo" use the storefront language word for months', () => {

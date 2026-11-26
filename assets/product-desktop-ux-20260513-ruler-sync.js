@@ -1833,6 +1833,11 @@ function getLocalizedAgeUnitLabel(value, unit, units) {
   if (unit === 'year') {
     if (root === 'ar' && normalizedValue === '2') return 'سنتين';
     if (root === 'cs' && !isRange) return number === 1 ? 'rok' : number >= 2 && number <= 4 ? 'roky' : 'let';
+    if (root === 'cs' && isRange) {
+      // Same rule as the size table (snippets/description-duplicate-size-chart-fix.liquid): the upper bound decides (1-2 roky, 4-5 let).
+      var csUpper = Number((normalizedValue.match(/\d+$/) || [0])[0]);
+      return csUpper >= 2 && csUpper <= 4 ? 'roky' : 'let';
+    }
     if (root === 'pl' && !isRange) {
       var plLast = number % 10;
       var plLastTwo = number % 100;
