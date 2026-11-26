@@ -253,7 +253,7 @@
           2026-09-28: the hub Google ranks for "family matching outfits" (see layout/theme.liquid).
         endcomment
         assign effective_meta_title = 'Family Matching Outfits for Mom, Dad & Kids | Dress Like Mommy'
-        assign head_meta_description = 'Family matching outfits for mom, dad, kids and baby: coordinating sets, sweaters, pajamas, dresses and swimwear, sized per person. Shipping included.'
+        assign head_meta_description = 'Family matching outfits for mom, dad, kids and baby: coordinating sets, sweaters, sweatshirts, pajamas, dresses and shirts, sized per person. Shipping included.'
       when 'daddy-me-shirts'
         comment
           2026-09-28: Search Console ranks this page 12-17 for "father son matching hawaiian shirts";
@@ -330,7 +330,7 @@
     assign product_examples_short = 'family matching outfits, dresses, swimwear, mommy and me looks, and travel-ready sets'
     assign occasion_label = 'family photos, trips, holidays, seasonal updates, and everyday coordination'
   elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
-    assign product_examples_short = 'coordinated dresses, tops, swimwear, sets, and seasonal matching looks'
+    assign product_examples_short = 'coordinated dresses, tops, sweaters, sets, and seasonal matching looks'
   elsif collection_handle == 'daddy-me' or collection_handle == 'daddy-and-me'
     assign product_examples_short = 'graphic tees, button-down shirts, Hawaiian shirts, swim trunks, and easy matching sets'
   elsif collection_handle == 'daddy-me-t-shirts'
@@ -533,7 +533,7 @@
     elsif collection_handle == 'new-women-outfits'
       echo 'Shop family matching outfits: coordinated dress-and-shirt sets, matching tops and sweaters in adult and kids sizes for family photos, trips and holidays.'
     elsif collection_handle == 'matching-outfits' or collection_handle == 'family-matching' or collection_handle == 'family-matching-outfits'
-      echo 'Shop matching outfits for mom, dad and kids: mommy and me dresses, daddy and me shirts, pajamas and swimwear for photos, vacations and holidays.'
+      echo 'Shop matching outfits for mom, dad and kids: mommy and me dresses, daddy and me shirts, sweaters and pajamas for photos, vacations and holidays.'
     elsif collection_handle == 'daddy-me' or collection_handle == 'daddy-and-me'
       echo "Shop daddy and me shirts, t-shirts, tees, and matching outfits for family photos, Father's Day, vacations, and easy everyday coordination."
     elsif collection_handle == 'daddy-me-t-shirts'
@@ -622,7 +622,7 @@
       echo '</p>'
       echo head_guide_html
     elsif seo_lang == 'en' and collection_handle == 'matching-outfits'
-      echo '<p>Family matching outfits put mom, dad and the kids in one print or color story, from coordinating sets and sweaters to matching pajamas, dresses and swimwear. Each person is sized separately, and many styles run from baby to adult sizes, so the whole family can match for photos, trips and holidays.</p>'
+      echo '<p>Family matching outfits put mom, dad and the kids in one print or color story, from coordinating sets and sweaters to matching pajamas, dresses and shirts. Each person is sized separately, and many styles run from baby to adult sizes, so the whole family can match for photos, trips and holidays.</p>'
     elsif seo_lang == 'en' and collection_handle == 'new-women-outfits'
       echo '<p>Matching family outfits put the whole family in one print or color story, so your photos look planned without anyone wearing an identical piece. Most sets pair a dress for mom and daughter with a coordinating shirt for dad and son, and each person is sized separately, with many styles running from baby to adult sizes.</p>'
     elsif body_description_key != blank
