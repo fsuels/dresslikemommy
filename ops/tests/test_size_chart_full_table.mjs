@@ -42,3 +42,42 @@ test('removes columns that are empty in every body row but keeps real ones', () 
   ctx.removeEmptyChartColumns({ querySelectorAll: () => rows });
   assert.deepEqual(rows.map((r) => r.children.map((c) => c.textContent)), [['Size', 'Bust (cm)'], ['S', '90 cm'], ['M', '94 cm']]);
 });
+
+// Ranges in every converter: "-", en dash, em dash, "to", unit suffixes, decimal commas.
+function extractFn(name) {
+  const m = src.match(new RegExp('^( *)function ' + name + '\\(', 'm'));
+  assert.ok(m, name + ' exists');
+  const from = m.index;
+  const close = src.indexOf('\n' + m[1] + '}\n', from);
+  return src.slice(from, close + m[1].length + 3);
+}
+const rctx = { normalizeText: (v) => String(v || '').trim().toLowerCase() };
+vm.runInNewContext(
+  ['roundMeasurement', 'convertRangeValue', 'normalizeGuideUnit', 'formatGuideNumericValue', 'convertGuideValueBetweenUnits', 'stripGuideTrailingUnit', 'convertGuideCellText'].map(extractFn).join('\n'),
+  rctx
+);
+
+test('convertRangeValue converts both ends of every range style', () => {
+  assert.equal(rctx.convertRangeValue('80–90', 'cm', 'in'), '31.5–35.4');
+  assert.equal(rctx.convertRangeValue('80—90', 'cm', 'in'), '31.5—35.4');
+  assert.equal(rctx.convertRangeValue('80-90', 'cm', 'in'), '31.5-35.4');
+  assert.equal(rctx.convertRangeValue('80 to 90', 'cm', 'in'), '31.5 to 35.4');
+  assert.equal(rctx.convertRangeValue('9–12.5 kg', 'kg', 'lbs'), '19.8–27.6');
+  assert.equal(rctx.convertRangeValue('7,5', 'kg', 'lbs'), '16.5');
+  assert.equal(rctx.convertRangeValue('7,5–9,5 kg', 'kg', 'lbs'), '16.5–20.9');
+  assert.equal(rctx.convertRangeValue('Adult', 'cm', 'in'), null);
+});
+
+test('guide table cells convert ranges with em dash, "to" and decimal commas', () => {
+  assert.equal(rctx.convertGuideCellText('80–90', 'cm', 'in'), '31.5–35.4');
+  assert.equal(rctx.convertGuideCellText('80—90 cm', 'cm', 'in'), '31.5—35.4');
+  assert.equal(rctx.convertGuideCellText('40 to 50', 'kg', 'lbs'), '88.2 to 110.2');
+  assert.equal(rctx.convertGuideCellText('7,5 kg', 'kg', 'lbs'), '16.5');
+});
+
+test('full chart cells convert em dash, "to" and decimal commas', () => {
+  assert.equal(ctx.convertMetricChartCell('80—90 cm', 'cm'), '31.5—35.4 in');
+  assert.equal(ctx.convertMetricChartCell('80 to 90', 'cm'), '31.5 to 35.4');
+  assert.equal(ctx.convertMetricChartCell('7,5 kg', 'kg'), '16.5 lbs');
+  assert.equal(ctx.convertMetricChartCell('9–12,5 kg', 'kg'), '19.8–27.6 lbs');
+});

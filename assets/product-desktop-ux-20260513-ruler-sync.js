@@ -22,14 +22,15 @@ document.addEventListener('DOMContentLoaded', function () {
 // keeping a unit suffix; non-numeric text returns null.
 // Converts a metric chart cell to imperial. unit is 'cm' or 'kg' (from the header).
 function convertMetricChartCell(text, unit) {
-  var match = String(text || '').trim().match(/^(\d+(?:\.\d+)?)(?:\s*([-\u2013])\s*(\d+(?:\.\d+)?))?(?:\s*(cm|kg))?$/i);
+  var match = String(text || '').trim().match(/^(\d+(?:[.,]\d+)?)(?:\s*(-|\u2013|\u2014|\bto\b)\s*(\d+(?:[.,]\d+)?))?(?:\s*(cm|kg))?$/i);
   if (!match) return null;
   if (match[4] && match[4].toLowerCase() !== unit) return null;
   var factor = unit === 'kg' ? 2.2046226218 : 1 / 2.54;
   var target = unit === 'kg' ? ' lbs' : ' in';
   var suffix = match[4] ? target : '';
-  var convert = function (value) { return String(Math.round(parseFloat(value) * factor * 10) / 10); };
-  return (match[3] ? convert(match[1]) + match[2] + convert(match[3]) : convert(match[1])) + suffix;
+  var convert = function (value) { return String(Math.round(parseFloat(value.replace(',', '.')) * factor * 10) / 10); };
+  var joiner = match[2] && /^to$/i.test(match[2]) ? ' to ' : match[2];
+  return (match[3] ? convert(match[1]) + joiner + convert(match[3]) : convert(match[1])) + suffix;
 }
 
 function isEmptyChartCell(text) {
@@ -3142,14 +3143,14 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     else if (from === 'lbs' && to === 'kg') factor = 1 / 2.2046226218;
     if (factor === null) return null;
 
-    var pieces = String(text).split('-').map(function (p) { return p.trim(); });
-    var converted = [];
-    for (var i = 0; i < pieces.length; i += 1) {
-      var n = parseFloat(pieces[i]);
-      if (!isFinite(n)) return null;
-      converted.push(roundMeasurement(n * factor));
-    }
-    return converted.join('-');
+    // One number or a range written with "-", en dash, em dash or "to";
+    // optional unit suffix; decimal commas allowed. Both ends are converted.
+    var match = String(text).trim().match(/^(\d+(?:[.,]\d+)?)(?:\s*(-|\u2013|\u2014|\bto\b)\s*(\d+(?:[.,]\d+)?))?(?:\s*[A-Za-z]+)?$/i);
+    if (!match) return null;
+    var convertEnd = function (value) { return roundMeasurement(parseFloat(value.replace(',', '.')) * factor); };
+    if (!match[3]) return convertEnd(match[1]);
+    var joiner = /^to$/i.test(match[2]) ? ' to ' : match[2];
+    return convertEnd(match[1]) + joiner + convertEnd(match[3]);
   }
 
   // Round any numeric measurement to a single decimal place — and drop
@@ -5394,18 +5395,19 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
     if (!cleaned) return '';
     if (!normalizedFrom || !normalizedTo || normalizedFrom === normalizedTo) return cleaned;
 
+    cleaned = cleaned.replace(/(\d),(\d)/g, '$1.$2');
     var singleMatch = cleaned.match(/^(-?\d+(?:\.\d+)?)$/);
     if (singleMatch) {
       var convertedSingle = convertGuideValueBetweenUnits(parseFloat(singleMatch[1]), normalizedFrom, normalizedTo);
       return convertedSingle === null ? null : formatGuideNumericValue(convertedSingle);
     }
 
-    var rangeMatch = cleaned.match(/^(-?\d+(?:\.\d+)?)\s*([\-–])\s*(-?\d+(?:\.\d+)?)$/);
+    var rangeMatch = cleaned.match(/^(-?\d+(?:\.\d+)?)\s*(-|\u2013|\u2014|\bto\b)\s*(-?\d+(?:\.\d+)?)$/i);
     if (rangeMatch) {
       var convertedMin = convertGuideValueBetweenUnits(parseFloat(rangeMatch[1]), normalizedFrom, normalizedTo);
       var convertedMax = convertGuideValueBetweenUnits(parseFloat(rangeMatch[3]), normalizedFrom, normalizedTo);
       if (convertedMin === null || convertedMax === null) return null;
-      return formatGuideNumericValue(convertedMin) + rangeMatch[2] + formatGuideNumericValue(convertedMax);
+      return formatGuideNumericValue(convertedMin) + (/^to$/i.test(rangeMatch[2]) ? ' to ' : rangeMatch[2]) + formatGuideNumericValue(convertedMax);
     }
 
     return null;
