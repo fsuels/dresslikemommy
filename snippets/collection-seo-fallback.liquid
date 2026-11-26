@@ -156,6 +156,9 @@
     when 'valentines-day-matching-outfits-1'
       assign effective_display_title = "Valentine's Day Matching Outfits"
       assign effective_display_title_key = 'sections.collection_seo.display_titles.valentines'
+    when 'thanksgiving-family-outfits'
+      assign effective_display_title = 'Matching Family Fall Outfits'
+      assign effective_display_title_key = 'sections.collection_seo.display_titles.fall_family'
   endcase
 
   if seo_lang != 'en' and collection_handle == 'pajamas'
@@ -227,6 +230,9 @@
   elsif collection_handle == 'mommy-and-me-easter-dresses' or collection_handle == 'easter-matching-outfits' or collection_handle == 'spring-matching-outfits'
     assign effective_meta_title = 'Mommy and Me Easter Dresses | Spring Matching Outfits'
     assign effective_meta_title_key = 'sections.collection_seo.meta_titles.spring_matching'
+  elsif collection_handle == 'thanksgiving-family-outfits'
+    assign effective_meta_title = 'Matching Family Fall Outfits – Sweaters & Plaid'
+    assign effective_meta_title_key = 'sections.collection_seo.meta_titles.fall_family'
   endif
 
   if effective_meta_title_key != blank
@@ -468,6 +474,9 @@
       assign body_description_key = 'sections.collection_seo.body.couples_tshirts_html'
     when 'christmas-tops'
       assign body_description_key = 'sections.collection_seo.body.christmas_tops_html'
+    when 'thanksgiving-family-outfits'
+      assign meta_description_key = 'sections.collection_seo.meta_descriptions.fall_family'
+      assign body_description_key = 'sections.collection_seo.body.fall_family_html'
   endcase
 
   comment
