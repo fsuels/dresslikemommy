@@ -1,0 +1,71 @@
+{%- comment -%}
+  One short line under the PDP price so a shopper does not read a family or Mommy & Me
+  listing as one price for the whole set.
+
+  Accepts:
+  - product: {Object} product
+  - matching_context: {Boolean} the page uses the matching-set builder
+
+  - Listings sold as a multi-piece SET per size (product type or title contains "set"):
+    the line is the listing's own first description bullet when its label says what is
+    included ("What you get:" and its translations). If the description does not say it,
+    nothing is shown (no guessing).
+  - Other listings: only with the builder AND both a child and an adult size group, the
+    existing locale key products.product.matching_set.copy ("Pick a size for each person.
+    Priced per piece."). Single-person items (for example maternity gowns) show nothing.
+  No totals, chips or lists.
+{%- endcomment -%}
+{%- liquid
+  assign pn_text = ''
+  assign pn_probe = product.title | append: ' ' | append: product.type | downcase | append: ' '
+  assign pn_is_set = false
+  if pn_probe contains ' set ' or pn_probe contains ' sets ' or pn_probe contains ' set—' or pn_probe contains ' set -'
+    assign pn_is_set = true
+  endif
+
+  if pn_is_set
+    assign pn_labels = ',what you get:,das ist enthalten:,qué incluye:,cosa include:,contenu de l’ensemble :,wat je krijgt:,セット内容：,'
+    assign pn_li = product.description | split: '<li>' | slice: 1
+    assign pn_li = pn_li | first | split: '</li>' | first
+    assign pn_label = pn_li | split: '</strong>' | first | strip_html | strip | downcase
+    assign pn_label_token = ',' | append: pn_label | append: ','
+    if pn_label != blank and pn_labels contains pn_label_token
+      assign pn_text = pn_li | strip_html | strip_newlines | replace: '  ', ' ' | strip
+      assign pn_first = pn_text | split: '. ' | first
+      if pn_first != pn_text
+        assign pn_text = pn_first | append: '.'
+      endif
+    endif
+  elsif matching_context
+    assign pn_child = false
+    assign pn_adult = false
+    for pn_variant in product.variants
+      for pn_option in pn_variant.options
+        capture pn_key
+          render 'dlm-facet-size-group', label: pn_option
+        endcapture
+        case pn_key
+          when 'girl', 'boy', 'child', 'baby'
+            assign pn_child = true
+            break
+          when 'mother', 'father', 'adult'
+            assign pn_adult = true
+            break
+        endcase
+      endfor
+    endfor
+    if pn_child and pn_adult
+      assign pn_text = 'products.product.matching_set.copy' | t
+      if pn_text contains 'translation missing'
+        assign pn_text = ''
+      endif
+    endif
+  endif
+-%}
+{%- if pn_text != blank -%}
+  <style>
+    .dlm-pdp-piece-note { margin: 0.2rem 0 0.8rem; color: #1f2937; font-size: 1.3rem; line-height: 1.45; }
+    @media screen and (min-width: 750px) { .dlm-pdp-piece-note { font-size: 1.4rem; } }
+  </style>
+  <p class="dlm-pdp-piece-note" data-dlm-piece-note>{{ pn_text | escape }}</p>
+{%- endif -%}

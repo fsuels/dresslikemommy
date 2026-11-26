@@ -1106,6 +1106,7 @@
                   under the price (conversion lane fix #4). Kept outside
                   the #price-<section id> div so variant re-renders do not replace it.
                 {%- endcomment -%}
+                {%- render 'dlm-pdp-piece-note', product: product, matching_context: has_matching_set_context -%}
                 {%- render 'dlm-pdp-value-strip', product: product -%}
                 {%- if product.quantity_price_breaks_configured? -%}
                   <div class="volume-pricing-note" id="Volume-Note-{{ section.id }}">
