@@ -170,7 +170,7 @@
       },
       "view_full_details": "Ver informações completas",
       "include_taxes": "Tributo incluído.",
-      "shipping_policy_html": "O envio padrão está incluído nos preços dos produtos para países atendidos. Métodos exatos, estimativas de entrega e qualquer upgrade expresso aparecem no checkout após inserir o endereço. <a href=\"{{ link }}\">Política de envio</a>",
+      "shipping_policy_html": "O frete padrão está incluído nos preços dos produtos para os países atendidos. A entrega estimada aparece em cada página de produto; estimativas não são garantias. <a href=\"{{ link }}\">Política de envio</a>",
       "choose_options": "Escolher opções",
       "choose_product_options": "Escolha opções para {{ product_name }}",
       "value_unavailable": "{{ option_value }} – indisponível",
@@ -323,7 +323,7 @@
       "ssl_encrypted": "SSL criptografado",
       "returns": "Janela de devolução de 30 dias",
       "free_shipping": "Envio padrão grátis incluído",
-      "trusted_since": "Mais de 8.000 famílias desde 2017",
+      "trusted_since": "Looks combinando para momentos em família",
       "assistance_note": "Precisar de ajuda? Normalmente respondemos dentro de um dia útil."
     },
     "purchase_confidence": {
@@ -335,7 +335,7 @@
       "ships_to_country": "País de envio: {{ country }}",
       "ships_to_default": "Envios para o seu país",
       "change_short": "Mudar",
-      "shipping_details_body": "O envio padrão é grátis para este item onde disponível. Os upgrades para envio expresso e as opções da transportadora aparecem antes do pagamento.",
+      "shipping_details_body": "O frete padrão está incluído nos preços dos produtos onde houver um método padrão disponível. A entrega estimada aparece em cada página de produto; estimativas não são garantias.",
       "security_details_body": "Os pagamentos são criptografados e processados com segurança pelos nossos provedores de pagamento. Não armazenamos o número completo do seu cartão.",
       "privacy_link_label": "Ver política de privacidade",
       "returns_headline": "Devolução de itens elegíveis",
@@ -347,14 +347,14 @@
       "returns_shipping": "O frete de devolução é pago pelo cliente, exceto se o item chegou danificado ou com defeito.",
       "returns_full_link_label": "Ver política de devolução completa",
       "security_headline": "Checkout seguro",
-      "security_summary": "Pagamento criptografado. Aceitamos os principais cartões e opções de checkout expresso.",
+      "security_summary": "Pagamento criptografado. Os métodos de pagamento disponíveis aparecem no checkout.",
       "security_details_label": "Pagamento e privacidade"
     },
     "shipping_card": {
       "delivery_to": "País de entrega: {{ country }}",
       "change_country": "Mudar país",
       "details_label": "Detalhes de envio",
-      "details_body": "O envio padrão está incluído para itens elegíveis. Os upgrades para envio expresso e as opções exatas da transportadora aparecem antes do pagamento.",
+      "details_body": "O frete padrão está incluído nos itens elegíveis. A entrega estimada aparece em cada página de produto; estimativas não são garantias.",
       "see_countries": "Ver países de envio"
     },
     "additional_info": {
@@ -364,9 +364,9 @@
       "standard_delivery_window": "12-16 dias",
       "christmas_order_by": "Estimativa: peça até {{ order_date }} para receber até {{ arrive_date }}. Não é uma garantia.",
       "flat_chest_note": "As medidas de busto/tórax desta tabela foram tiradas com a peça estendida, de um lado ao outro. Multiplique por 2 para obter a circunferência completa.",
-      "premium_delivery_window": "As opções expressas são mostradas na finalização da compra, quando disponíveis.",
-      "faster_shipping_prefix": "Opções expressas podem estar disponíveis no checkout onde houver suporte.",
-      "free_premium_shipping": "Envio expresso",
+      "premium_delivery_window": "A entrega estimada aparece em cada página de produto; estimativas não são garantias.",
+      "faster_shipping_prefix": "Entrega estimada:",
+      "free_premium_shipping": "Envio padrão grátis incluído",
       "return_policy_title": "Política de devolução",
       "return_policy_line_1": "Você tem 30 dias a partir da entrega para solicitar devolução ou troca.",
       "return_policy_line_2": "Os itens devem estar sem uso, sem lavagem, em condições originais e em sua embalagem original com etiquetas anexadas.",
@@ -387,11 +387,11 @@
       "product_country_confirmed": "País de envio confirmado no checkout",
       "trust_ships_to": "País de envio: {{ country }}",
       "trust_arrives": "Chega",
-      "product_note_html": "O envio padrão grátis está incluído nos preços quando um método padrão está disponível. O checkout mostra o método exato, a estimativa de entrega e qualquer upgrade expresso antes do pagamento. <a href=\"{{ link }}\">Ver todos os países de envio atuais</a>.",
+      "product_note_html": "O frete padrão está incluído nos preços dos produtos onde houver um método padrão disponível. A entrega estimada aparece em cada página de produto; estimativas não são garantias. <a href=\"{{ link }}\">Ver todos os países de envio atuais</a>.",
       "eyebrow": "Verificação do país de envio",
       "page_title_country": "Sim, atualmente enviamos para este país: {{ country }}",
       "page_title_default": "Países de envio atuais",
-      "page_summary": "O envio padrão está incluído nos preços para países e regiões disponíveis no seletor de país do checkout. Insira seu endereço completo para confirmar o método exato, a estimativa de entrega e qualquer upgrade expresso antes do pagamento.",
+      "page_summary": "O frete padrão está incluído nos preços dos produtos para os países e regiões disponíveis no nosso seletor de país do checkout. A entrega estimada aparece em cada página de produto; estimativas não são garantias.",
       "page_note_html": "Se seu país não estiver listado aqui, ou se o checkout não mostrar um método de envio para seu endereço exato, envie um e-mail para <a href=\"mailto:{{ email }}\">{{ email }}</a> antes de pedir.",
       "schema_standard_shipping": "Envio padrão incluído",
       "country_list_heading": "Países para os quais enviamos atualmente ({{ count }})",
@@ -410,7 +410,7 @@
       "checker_selected_badge": "Selecionado",
       "checker_available_badge": "Enviamos para cá",
       "checker_no_results": "Nenhum país correspondente foi encontrado na lista atual do checkout. Tente outra grafia ou escreva para nós antes de comprar.",
-      "checker_note_html": "O envio padrão está incluído nos preços dos produtos quando houver um método padrão disponível. O checkout confirma o método exato, estimativa de entrega e qualquer opção expressa antes do pagamento. <a href=\"{{ link }}\">Detalhes de envio</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_note_html": "O frete padrão está incluído nos preços dos produtos onde houver um método padrão disponível. A entrega estimada aparece em cada página de produto; estimativas não são garantias. <a href=\"{{ link }}\">Detalhes de envio</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
       "checker_close": "Fechar verificador de países",
       "checker_result_single_label": "país exibido"
     }
@@ -489,10 +489,10 @@
       "empty": "O carrinho está vazio",
       "cart_error": "Ocorreu um erro ao atualizar o carrinho. Tente de novo.",
       "cart_quantity_error_html": "É possível adicionar apenas {{ quantity }} unidade(s) desse item ao carrinho.",
-      "taxes_and_shipping_policy_at_checkout_html": "Impostos e descontos são calculados no checkout. O envio padrão está incluído quando um método padrão está disponível; upgrades expressos aparecem no checkout. <a href=\"{{ link }}\">Política de envio</a>",
-      "taxes_included_but_shipping_at_checkout": "Imposto incluído. Descontos são calculados no checkout. O envio padrão está incluído quando um método padrão está disponível; upgrades expressos aparecem no checkout.",
-      "taxes_included_and_shipping_policy_html": "Imposto incluído. Descontos são calculados no checkout. O envio padrão está incluído quando um método padrão está disponível; upgrades expressos aparecem no checkout. <a href=\"{{ link }}\">Política de envio</a>",
-      "taxes_and_shipping_at_checkout": "Impostos e descontos são calculados no checkout. O envio padrão está incluído quando um método padrão está disponível; upgrades expressos aparecem no checkout.",
+      "taxes_and_shipping_policy_at_checkout_html": "Impostos e descontos são calculados no checkout. O frete padrão está incluído nos preços dos produtos onde houver um método padrão disponível. <a href=\"{{ link }}\">Política de envio</a>",
+      "taxes_included_but_shipping_at_checkout": "Impostos incluídos. Os descontos são calculados no checkout. O frete padrão está incluído nos preços dos produtos onde houver um método padrão disponível.",
+      "taxes_included_and_shipping_policy_html": "Impostos incluídos. Os descontos são calculados no checkout. O frete padrão está incluído nos preços dos produtos onde houver um método padrão disponível. <a href=\"{{ link }}\">Política de envio</a>",
+      "taxes_and_shipping_at_checkout": "Impostos e descontos são calculados no checkout. O frete padrão está incluído nos preços dos produtos onde houver um método padrão disponível.",
       "headings": {
         "product": "Produto",
         "price": "Preço",
@@ -533,7 +533,7 @@
       "popular_with_families": "Popular entre famílias",
       "recently_viewed": "Vistos recentemente",
       "savings_html": "Você está salvando <strong>{{ amount }}</strong>",
-      "shipping_country_reassurance": "País de envio: {{ country }}. O envio padrão está incluído; a estimativa exata e qualquer upgrade expresso aparecem antes do pagamento."
+      "shipping_country_reassurance": "Envio para {{ country }}. O frete padrão está incluído nos preços dos produtos onde houver um método padrão disponível."
     },
     "footer": {
       "cookie_preferences": "Preferências de cookies",
@@ -953,7 +953,7 @@
       "link_family_vacation": "Comprar looks combinando para férias em família",
       "link_spring_dresses": "Ver vestidos combinando para eventos de primavera",
       "link_new_pajamas": "Ver os novos pijamas",
-      "trust_families_since": "Mais de 8.000 famílias desde 2017"
+      "trust_families_since": "Looks combinando para momentos em família"
     }
   },
   "localization": {

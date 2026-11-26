@@ -170,7 +170,7 @@
       },
       "view_full_details": "Ver todos los detalles",
       "include_taxes": "Impuesto incluido.",
-      "shipping_policy_html": "El envío estándar está incluido en los precios de los productos para los países admitidos. Los métodos exactos, las estimaciones de entrega y cualquier mejora exprés se muestran al finalizar la compra después de ingresar la dirección. <a href=\"{{ link }}\">Política de envío</a>",
+      "shipping_policy_html": "El envío estándar está incluido en los precios de los productos para los países admitidos. La entrega estimada se muestra en cada página de producto; las estimaciones no son una garantía. <a href=\"{{ link }}\">Política de envío</a>",
       "choose_options": "Elegir opciones",
       "choose_product_options": "Elegir opciones para {{ product_name }}",
       "value_unavailable": "{{ option_value }}: no disponible",
@@ -323,7 +323,7 @@
       "ssl_encrypted": "SSL cifrado",
       "returns": "Ventana de devolución de 30 días",
       "free_shipping": "Envío estándar gratuito incluido",
-      "trusted_since": "Más de 8000 familias desde 2017",
+      "trusted_since": "Looks a juego para momentos familiares",
       "assistance_note": "¿Necesitas ayuda? Normalmente respondemos dentro de un día hábil."
     },
     "purchase_confidence": {
@@ -335,7 +335,7 @@
       "ships_to_country": "Envíos a {{ country }}",
       "ships_to_default": "Envíos a tu país",
       "change_short": "Cambiar",
-      "shipping_details_body": "El envío estándar es gratis para este artículo donde esté disponible. Las opciones de envío exprés y el transportista exacto aparecen antes del pago.",
+      "shipping_details_body": "El envío estándar está incluido en los precios de los productos donde haya un método estándar disponible. La entrega estimada se muestra en cada página de producto; las estimaciones no son una garantía.",
       "security_details_body": "Los pagos están cifrados y son procesados de forma segura por nuestros proveedores de pago. No almacenamos el número completo de tu tarjeta.",
       "privacy_link_label": "Ver política de privacidad",
       "returns_headline": "Devoluciones de artículos elegibles",
@@ -347,14 +347,14 @@
       "returns_shipping": "El envío de devolución corre por cuenta del cliente, excepto si el artículo llegó dañado o defectuoso.",
       "returns_full_link_label": "Ver política de devolución completa",
       "security_headline": "Pago seguro",
-      "security_summary": "Pago cifrado. Aceptamos tarjetas principales y opciones de pago exprés.",
+      "security_summary": "Pago cifrado. Los métodos de pago disponibles se muestran al finalizar la compra.",
       "security_details_label": "Pago y privacidad"
     },
     "shipping_card": {
       "delivery_to": "Envío a {{ country }}",
       "change_country": "Cambiar país",
       "details_label": "Detalles de envío",
-      "details_body": "El envío estándar está incluido para los artículos elegibles. Las mejoras a envío exprés y las opciones exactas del transportista aparecen antes del pago.",
+      "details_body": "El envío estándar está incluido en los artículos elegibles. La entrega estimada se muestra en cada página de producto; las estimaciones no son una garantía.",
       "see_countries": "Ver países de envío"
     },
     "additional_info": {
@@ -364,9 +364,9 @@
       "standard_delivery_window": "12-16 días",
       "christmas_order_by": "Estimación: pide antes del {{ order_date }} para recibirlo antes del {{ arrive_date }}. No es una garantía.",
       "flat_chest_note": "Las medidas de pecho/busto de esta tabla se toman con la prenda extendida, de lado a lado. Multiplícalas por 2 para obtener el contorno completo.",
-      "premium_delivery_window": "Las opciones exprés se muestran al finalizar la compra cuando estén disponibles.",
-      "faster_shipping_prefix": "Las opciones exprés pueden aparecer al finalizar la compra donde estén disponibles.",
-      "free_premium_shipping": "Envío expreso",
+      "premium_delivery_window": "La entrega estimada se muestra en cada página de producto; las estimaciones no son una garantía.",
+      "faster_shipping_prefix": "Entrega estimada:",
+      "free_premium_shipping": "Envío estándar gratuito incluido",
       "return_policy_title": "Política de devoluciones",
       "return_policy_line_1": "Tienes 30 días desde la entrega para solicitar una devolución o cambio.",
       "return_policy_line_2": "Los artículos deben estar sin usar, sin lavar, en su estado original y en su embalaje original con las etiquetas adjuntas.",
@@ -387,11 +387,11 @@
       "product_country_confirmed": "País de envío confirmado al finalizar la compra",
       "trust_ships_to": "Envío a {{ country }}",
       "trust_arrives": "Llega",
-      "product_note_html": "El envío estándar gratuito está incluido en los precios cuando hay un método estándar disponible. El checkout muestra el método exacto, la estimación de entrega y cualquier mejora exprés antes del pago. <a href=\"{{ link }}\">Ver todos los países de envío actuales</a>.",
+      "product_note_html": "El envío estándar está incluido en los precios de los productos donde haya un método estándar disponible. La entrega estimada se muestra en cada página de producto; las estimaciones no son una garantía. <a href=\"{{ link }}\">Ver todos los países de envío actuales</a>.",
       "eyebrow": "Comprobar país de envío",
       "page_title_country": "Sí, actualmente enviamos a {{ country }}",
       "page_title_default": "Países de envío actuales",
-      "page_summary": "El envío estándar está incluido en los precios para los países y regiones disponibles en nuestro selector de país del checkout. Ingresa tu dirección completa para confirmar el método exacto, la estimación de entrega y cualquier mejora exprés antes del pago.",
+      "page_summary": "El envío estándar está incluido en los precios de los productos para los países y regiones disponibles en nuestro selector de país del checkout. La entrega estimada se muestra en cada página de producto; las estimaciones no son una garantía.",
       "page_note_html": "Si tu país no aparece aquí, o el checkout no muestra un método de envío para tu dirección exacta, escribe a <a href=\"mailto:{{ email }}\">{{ email }}</a> antes de ordenar.",
       "schema_standard_shipping": "Envío estándar incluido",
       "country_list_heading": "Países a los que enviamos actualmente ({{ count }})",
@@ -410,7 +410,7 @@
       "checker_selected_badge": "Seleccionado",
       "checker_available_badge": "Enviamos aquí",
       "checker_no_results": "No encontramos ese país en la lista actual del checkout. Prueba otra forma de escribirlo o escríbenos antes de comprar.",
-      "checker_note_html": "El envío estándar está incluido en los precios de los productos cuando hay un método estándar disponible. El checkout confirma el método exacto, la estimación de entrega y cualquier mejora exprés antes del pago. <a href=\"{{ link }}\">Detalles de envío</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_note_html": "El envío estándar está incluido en los precios de los productos donde haya un método estándar disponible. La entrega estimada se muestra en cada página de producto; las estimaciones no son una garantía. <a href=\"{{ link }}\">Detalles de envío</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
       "checker_close": "Cerrar comprobador de países",
       "checker_result_single_label": "país mostrado"
     }
@@ -489,10 +489,10 @@
       "empty": "Tu carrito esta vacío",
       "cart_error": "Hubo un error al actualizar tu carrito de compra. Inténtalo de nuevo.",
       "cart_quantity_error_html": "Solo puedes agregar {{ quantity }} de este artículo a tu carrito.",
-      "taxes_and_shipping_policy_at_checkout_html": "Los impuestos y descuentos se calculan al finalizar la compra. El envío estándar está incluido cuando hay un método estándar disponible; las mejoras exprés se muestran al finalizar la compra. <a href=\"{{ link }}\">Política de envío</a>",
-      "taxes_included_but_shipping_at_checkout": "Impuesto incluido. Los descuentos se calculan al finalizar la compra. El envío estándar está incluido cuando hay un método estándar disponible; las mejoras exprés se muestran al finalizar la compra.",
-      "taxes_included_and_shipping_policy_html": "Impuesto incluido. Los descuentos se calculan al finalizar la compra. El envío estándar está incluido cuando hay un método estándar disponible; las mejoras exprés se muestran al finalizar la compra. <a href=\"{{ link }}\">Política de envío</a>",
-      "taxes_and_shipping_at_checkout": "Los impuestos y descuentos se calculan al finalizar la compra. El envío estándar está incluido cuando hay un método estándar disponible; las mejoras exprés se muestran al finalizar la compra.",
+      "taxes_and_shipping_policy_at_checkout_html": "Los impuestos y descuentos se calculan al finalizar la compra. El envío estándar está incluido en los precios de los productos donde haya un método estándar disponible. <a href=\"{{ link }}\">Política de envío</a>",
+      "taxes_included_but_shipping_at_checkout": "Impuestos incluidos. Los descuentos se calculan al finalizar la compra. El envío estándar está incluido en los precios de los productos donde haya un método estándar disponible.",
+      "taxes_included_and_shipping_policy_html": "Impuestos incluidos. Los descuentos se calculan al finalizar la compra. El envío estándar está incluido en los precios de los productos donde haya un método estándar disponible. <a href=\"{{ link }}\">Política de envío</a>",
+      "taxes_and_shipping_at_checkout": "Los impuestos y descuentos se calculan al finalizar la compra. El envío estándar está incluido en los precios de los productos donde haya un método estándar disponible.",
       "headings": {
         "product": "Producto",
         "price": "Precio",
@@ -533,7 +533,7 @@
       "popular_with_families": "Popular entre las familias",
       "recently_viewed": "Visto recientemente",
       "savings_html": "Estas guardando <strong>{{ amount }}</strong>",
-      "shipping_country_reassurance": "Envío a {{ country }}. El envío estándar está incluido; la estimación exacta de entrega y cualquier mejora exprés aparecen antes del pago."
+      "shipping_country_reassurance": "Envío a {{ country }}. El envío estándar está incluido en los precios de los productos donde haya un método estándar disponible."
     },
     "footer": {
       "cookie_preferences": "Preferencias de cookies",
@@ -953,7 +953,7 @@
       "link_family_vacation": "Comprar outfits familiares para vacaciones",
       "link_spring_dresses": "Ver vestidos a juego para primavera",
       "link_new_pajamas": "Ver los nuevos pijamas",
-      "trust_families_since": "Más de 8000 familias desde 2017"
+      "trust_families_since": "Looks a juego para momentos familiares"
     }
   },
   "localization": {

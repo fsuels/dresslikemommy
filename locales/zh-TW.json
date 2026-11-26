@@ -170,7 +170,7 @@
       },
       "view_full_details": "查看完整資訊",
       "include_taxes": "內含稅金。",
-      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
+      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Estimated delivery is shown on each product page; estimates are not guarantees. <a href=\"{{ link }}\">Shipping policy</a>",
       "choose_options": "選擇選項",
       "choose_product_options": "選擇 {{ product_name }} 的選項",
       "value_unavailable": "{{ option_value }} (無法供貨)",
@@ -319,7 +319,7 @@
       "ssl_encrypted": "SSL 加密",
       "returns": "30 天退貨期限",
       "free_shipping": "免費標準配送已包含",
-      "trusted_since": "自2017年以來服務8,000+個家庭",
+      "trusted_since": "Matching looks for family moments",
       "assistance_note": "需要幫助嗎？我們通常會在一個工作天內回覆。"
     },
     "purchase_confidence": {
@@ -331,7 +331,7 @@
       "ships_to_country": "配送國家/地區：{{ country }}",
       "ships_to_default": "運送至您所在的國家/地區",
       "change_short": "更換",
-      "shipping_details_body": "本商品的標準配送在可用地區免費。快遞升級和具體貨運業者將在付款前顯示。",
+      "shipping_details_body": "Standard shipping is included in product prices where a standard method is available. Estimated delivery is shown on each product page; estimates are not guarantees.",
       "security_details_body": "付款經過加密,由我們的付款服務商安全處理。我們不會儲存您完整的卡號。",
       "privacy_link_label": "查看隱私政策",
       "returns_headline": "30 天退換貨",
@@ -343,14 +343,14 @@
       "returns_shipping": "退貨運費由客戶承擔，商品送達時已破損或有瑕疵的情況除外。",
       "returns_full_link_label": "查看完整退貨政策",
       "security_headline": "安全結帳",
-      "security_summary": "加密支付。支援主流卡片和快捷結帳方式。",
+      "security_summary": "Encrypted payment. Available payment methods are shown at checkout.",
       "security_details_label": "支付與隱私"
     },
     "shipping_card": {
       "delivery_to": "配送國家/地區：{{ country }}",
       "change_country": "更換國家",
       "details_label": "配送詳情",
-      "details_body": "符合條件的商品已包含標準配送。快遞升級選項和具體貨運業者將在付款前顯示。",
+      "details_body": "Standard shipping is included for eligible items. Estimated delivery is shown on each product page; estimates are not guarantees.",
       "see_countries": "查看可配送國家"
     },
     "additional_info": {
@@ -360,9 +360,9 @@
       "standard_delivery_window": "12-16 天",
       "christmas_order_by": "預估：請在 {{ order_date }} 前下單，預計 {{ arrive_date }} 前送達。並非保證。",
       "flat_chest_note": "本尺寸表的胸圍為衣服平放量測的單面寬度，乘以2即為整圈胸圍。",
-      "premium_delivery_window": "如果有的話，結帳時會顯示快速選項。",
-      "faster_shipping_prefix": "Express options may be available at checkout where supported.",
-      "free_premium_shipping": "快遞運輸",
+      "premium_delivery_window": "Estimated delivery is shown on each product page; estimates are not guarantees.",
+      "faster_shipping_prefix": "預計送達：",
+      "free_premium_shipping": "免費標準配送已包含",
       "return_policy_title": "退貨政策",
       "return_policy_line_1": "您可以在交貨後 30 天內申請退貨或換貨。",
       "return_policy_line_2": "物品必須未穿過、未清洗、處於原始狀態且採用原始包裝且附有標籤。",
@@ -383,11 +383,11 @@
       "product_country_confirmed": "配送國家/地區將在結帳時確認",
       "trust_ships_to": "配送國家/地區：{{ country }}",
       "trust_arrives": "送達",
-      "product_note_html": "Free standard shipping is included in product prices where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">See all current shipping countries</a>.",
+      "product_note_html": "Standard shipping is included in product prices where a standard method is available. Estimated delivery is shown on each product page; estimates are not guarantees. <a href=\"{{ link }}\">See all current shipping countries</a>.",
       "eyebrow": "配送國家/地區檢查",
       "page_title_country": "是的，我們目前配送至 {{ country }}",
       "page_title_default": "目前配送國家/地區",
-      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
+      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Estimated delivery is shown on each product page; estimates are not guarantees.",
       "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
       "schema_standard_shipping": "標準配送已包含",
       "country_list_heading": "我們目前配送的國家/地區（{{ count }}）",
@@ -406,7 +406,7 @@
       "checker_selected_badge": "Selected",
       "checker_available_badge": "Ships here",
       "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
-      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Estimated delivery is shown on each product page; estimates are not guarantees. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
       "checker_close": "Close country checker",
       "checker_result_single_label": "country shown"
     }
@@ -479,10 +479,10 @@
       "empty": "您的購物車是空的",
       "cart_error": "更新購物車時發生錯誤。請再試一次。",
       "cart_quantity_error_html": "您只能將 {{ quantity }} 項商品加入您的購物車。",
-      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
-      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
-      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
-      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included in product prices where a standard method is available. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included in product prices where a standard method is available.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included in product prices where a standard method is available. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included in product prices where a standard method is available.",
       "headings": {
         "product": "產品",
         "price": "價格",
@@ -523,7 +523,7 @@
       "popular_with_families": "深受家庭歡迎",
       "recently_viewed": "最近瀏覽過",
       "savings_html": "您正在儲存 <strong>{{ amount }}</strong>",
-      "shipping_country_reassurance": "配送國家/地區：{{ country }}。已含標準運費；準確的預計送達時間與加急選項將在付款前顯示。"
+      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included in product prices where a standard method is available."
     },
     "footer": {
       "cookie_preferences": "Cookie偏好設定",
@@ -941,7 +941,7 @@
       "link_family_vacation": "Shop matching family vacation outfits",
       "link_spring_dresses": "Browse matching dresses for spring events",
       "link_new_pajamas": "Browse the New Pajama Drop",
-      "trust_families_since": "自2017年以來服務8,000+個家庭"
+      "trust_families_since": "Matching looks for family moments"
     }
   },
   "localization": {

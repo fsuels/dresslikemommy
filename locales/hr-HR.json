@@ -171,7 +171,7 @@
       },
       "view_full_details": "Prikaži sve pojedinosti",
       "include_taxes": "Porez je uključen.",
-      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Exact methods, delivery estimates, and any express upgrade are shown at checkout after address entry. <a href=\"{{ link }}\">Shipping policy</a>",
+      "shipping_policy_html": "Standard shipping is included in product prices for supported countries. Estimated delivery is shown on each product page; estimates are not guarantees. <a href=\"{{ link }}\">Shipping policy</a>",
       "choose_options": "Odaberite opcije",
       "choose_product_options": "Odaberite željene opcije za {{ product_name }}",
       "value_unavailable": "{{ option_value }} – nedostupno",
@@ -323,7 +323,7 @@
       "ssl_encrypted": "SSL šifrirano",
       "returns": "30-dnevni rok povrata",
       "free_shipping": "Besplatna standardna dostava uključena",
-      "trusted_since": "8.000+ obitelji od 2017.",
+      "trusted_since": "Matching looks for family moments",
       "assistance_note": "Trebate pomoć? Obično odgovaramo u roku od jednog radnog dana."
     },
     "purchase_confidence": {
@@ -335,7 +335,7 @@
       "ships_to_country": "Zemlja dostave: {{ country }}",
       "ships_to_default": "Ships to your country",
       "change_short": "Change",
-      "shipping_details_body": "Standard shipping is free for this item where available. Express upgrades and exact carrier options are shown before payment.",
+      "shipping_details_body": "Standard shipping is included in product prices where a standard method is available. Estimated delivery is shown on each product page; estimates are not guarantees.",
       "security_details_body": "Payments are encrypted and processed securely by our payment providers. We do not store your full card number.",
       "privacy_link_label": "View privacy policy",
       "returns_headline": "30-day returns & exchanges",
@@ -347,14 +347,14 @@
       "returns_shipping": "Troškove povratne dostave snosi kupac, osim ako je artikl stigao oštećen ili neispravan.",
       "returns_full_link_label": "View full return policy",
       "security_headline": "Secure checkout",
-      "security_summary": "Encrypted payment. Major cards and express checkout options accepted.",
+      "security_summary": "Encrypted payment. Available payment methods are shown at checkout.",
       "security_details_label": "Payment & privacy"
     },
     "shipping_card": {
       "delivery_to": "Zemlja dostave: {{ country }}",
       "change_country": "Change country",
       "details_label": "Shipping details",
-      "details_body": "Standard shipping is included for eligible items. Express upgrades and exact carrier options are shown before payment.",
+      "details_body": "Standard shipping is included for eligible items. Estimated delivery is shown on each product page; estimates are not guarantees.",
       "see_countries": "See shipping countries"
     },
     "additional_info": {
@@ -364,9 +364,9 @@
       "standard_delivery_window": "12-16 dana",
       "christmas_order_by": "Procjena: naručite do {{ order_date }} da stigne do {{ arrive_date }}. To nije jamstvo.",
       "flat_chest_note": "Mjere prsa u ovoj tablici uzete su na položenoj odjeći, od ruba do ruba. Pomnožite ih s 2 za puni opseg.",
-      "premium_delivery_window": "Ekspresne opcije prikazane su na blagajni ako su dostupne.",
-      "faster_shipping_prefix": "Express options may be available at checkout where supported.",
-      "free_premium_shipping": "Ekspresna dostava",
+      "premium_delivery_window": "Estimated delivery is shown on each product page; estimates are not guarantees.",
+      "faster_shipping_prefix": "Procijenjena dostava:",
+      "free_premium_shipping": "Besplatna standardna dostava uključena",
       "return_policy_title": "Politika povrata",
       "return_policy_line_1": "Imate 30 dana od isporuke da zatražite povrat ili zamjenu.",
       "return_policy_line_2": "Predmeti moraju biti nenošeni, neoprani, u izvornom stanju i u originalnom pakiranju s pričvršćenim oznakama.",
@@ -387,11 +387,11 @@
       "product_country_confirmed": "Zemlja dostave potvrđuje se na blagajni",
       "trust_ships_to": "Zemlja dostave: {{ country }}",
       "trust_arrives": "Dolazi",
-      "product_note_html": "Free standard shipping is included in product prices where a standard method is available. Checkout shows the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">See all current shipping countries</a>.",
+      "product_note_html": "Standard shipping is included in product prices where a standard method is available. Estimated delivery is shown on each product page; estimates are not guarantees. <a href=\"{{ link }}\">See all current shipping countries</a>.",
       "eyebrow": "Provjera zemlje dostave",
       "page_title_country": "Da, trenutačno dostavljamo u {{ country }}",
       "page_title_default": "Trenutačne zemlje dostave",
-      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Enter your full address at checkout to confirm the exact method, delivery estimate, and any express upgrade before payment.",
+      "page_summary": "Standard shipping is included in product prices for countries and regions available in our checkout country selector. Estimated delivery is shown on each product page; estimates are not guarantees.",
       "page_note_html": "If your country is not listed here, or checkout does not show a shipping method for your exact address, email <a href=\"mailto:{{ email }}\">{{ email }}</a> before ordering.",
       "schema_standard_shipping": "Standardna dostava uključena",
       "country_list_heading": "Zemlje u koje trenutno šaljemo ({{ count }})",
@@ -410,7 +410,7 @@
       "checker_selected_badge": "Selected",
       "checker_available_badge": "Ships here",
       "checker_no_results": "No matching country found in the current checkout list. Try another spelling or email us before ordering.",
-      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Checkout confirms the exact method, delivery estimate, and any express upgrade before payment. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
+      "checker_note_html": "Standard shipping is included in product prices where a standard method is available. Estimated delivery is shown on each product page; estimates are not guarantees. <a href=\"{{ link }}\">Shipping details</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
       "checker_close": "Close country checker",
       "checker_result_single_label": "country shown"
     }
@@ -489,10 +489,10 @@
       "empty": "Vaša je košarica prazna",
       "cart_error": "Došlo je do pogreške prilikom ažuriranja košarice. Pokušajte ponovno.",
       "cart_quantity_error_html": "U svoju košaricu možete dodati {{ quantity }} kom ovog artikla.",
-      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
-      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
-      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout. <a href=\"{{ link }}\">Shipping policy</a>",
-      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included where a standard method is available; express upgrades are shown at checkout.",
+      "taxes_and_shipping_policy_at_checkout_html": "Taxes and discounts are calculated at checkout. Standard shipping is included in product prices where a standard method is available. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_included_but_shipping_at_checkout": "Tax included. Discounts are calculated at checkout. Standard shipping is included in product prices where a standard method is available.",
+      "taxes_included_and_shipping_policy_html": "Tax included. Discounts are calculated at checkout. Standard shipping is included in product prices where a standard method is available. <a href=\"{{ link }}\">Shipping policy</a>",
+      "taxes_and_shipping_at_checkout": "Taxes and discounts are calculated at checkout. Standard shipping is included in product prices where a standard method is available.",
       "update": "Ažuriraj",
       "headings": {
         "product": "Proizvod",
@@ -533,7 +533,7 @@
       "shipping_free": "Standard uključeno",
       "shipping_label": "Shipping",
       "savings_html": "Štedite <strong>{{ amount }}</strong>",
-      "shipping_country_reassurance": "Zemlja dostave: {{ country }}. Standardna dostava je uključena; točna procjena dostave i moguća ekspresna nadogradnja prikazuju se prije plaćanja."
+      "shipping_country_reassurance": "Shipping to {{ country }}. Standard shipping is included in product prices where a standard method is available."
     },
     "footer": {
       "cookie_preferences": "Postavke kolačića",
@@ -953,7 +953,7 @@
       "link_family_vacation": "Shop matching family vacation outfits",
       "link_spring_dresses": "Browse matching dresses for spring events",
       "link_new_pajamas": "Browse the New Pajama Drop",
-      "trust_families_since": "8.000+ obitelji od 2017."
+      "trust_families_since": "Matching looks for family moments"
     }
   },
   "localization": {
