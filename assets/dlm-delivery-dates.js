@@ -104,9 +104,16 @@
     // The cart drawer and /cart footer are re-rendered from section HTML on
     // every cart change, so pick up fresh estimate nodes as they arrive.
     if (typeof MutationObserver === 'function' && document.body) {
+      // Page scripts add many nodes in bursts; one pass per burst is enough.
+      var scheduled = false;
       new MutationObserver(function () {
-        if (document.querySelector(SELECTOR)) render(document);
-        renderChristmasOrderBy(document);
+        if (scheduled) return;
+        scheduled = true;
+        setTimeout(function () {
+          scheduled = false;
+          if (document.querySelector(SELECTOR)) render(document);
+          renderChristmasOrderBy(document);
+        }, 80);
       }).observe(document.body, { childList: true, subtree: true });
     }
   }

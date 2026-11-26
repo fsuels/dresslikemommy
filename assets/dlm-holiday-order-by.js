@@ -400,9 +400,15 @@
         releaseSlots(document);
         // Re-apply if the purchase-confidence card is re-rendered.
         if (typeof MutationObserver === 'function' && document.body) {
+          var scheduled = false;
           new MutationObserver(function () {
-            var pending = document.querySelector(TARGET);
-            if (pending && pending.parentNode && !pending.parentNode.hasAttribute(MARK)) render(product.tags, document);
+            if (scheduled) return;
+            scheduled = true;
+            setTimeout(function () {
+              scheduled = false;
+              var pending = document.querySelector(TARGET);
+              if (pending && pending.parentNode && !pending.parentNode.hasAttribute(MARK)) render(product.tags, document);
+            }, 80);
           }).observe(document.body, { childList: true, subtree: true });
         }
       })
