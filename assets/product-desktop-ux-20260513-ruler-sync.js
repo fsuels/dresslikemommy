@@ -18,6 +18,64 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[id^="MainProduct-"][data-section]').forEach(initFullSizeChartDisclosure);
 });
 
+// "86" or "65-68" in centimetres to inches (1 decimal); null if not numeric.
+function convertCmTextToInches(text) {
+  var match = String(text || '').trim().match(/^(\d+(?:\.\d+)?)(?:\s*([-\u2013])\s*(\d+(?:\.\d+)?))?$/);
+  if (!match) return null;
+  var inches = function (value) { return String(Math.round(parseFloat(value) / 2.54 * 10) / 10); };
+  return match[3] ? inches(match[1]) + match[2] + inches(match[3]) : inches(match[1]);
+}
+
+// Adds a cm/in switch to a copied chart whose columns are only in centimetres.
+// A column with any non-numeric value stays in centimetres.
+function addInchesViewToChart(table, card, scroll) {
+  var rows = Array.from(table.querySelectorAll('tr'));
+  if (rows.length < 2) return;
+  var columns = [];
+  Array.from(rows[0].children).forEach(function (headerCell, index) {
+    var header = headerCell.textContent.trim();
+    if (!/\(\s*cm\s*\)$/i.test(header)) return;
+    var cells = rows.slice(1).map(function (row) { return row.children[index]; }).filter(Boolean).map(function (cell) {
+      var metric = cell.textContent.trim();
+      return { node: cell, metric: metric, imperial: /^[-\u2013\u2014]?$/.test(metric) ? metric : convertCmTextToInches(metric) };
+    });
+    if (!cells.length || cells.some(function (cell) { return cell.imperial === null; })) return;
+    cells.push({ node: headerCell, metric: header, imperial: header.replace(/\(\s*cm\s*\)$/i, '(in)') });
+    columns.push(cells);
+  });
+  if (!columns.length) return;
+
+  var toggle = document.createElement('div');
+  toggle.className = 'matching-size-guide__unit-toggle';
+  toggle.setAttribute('role', 'group');
+  var apply = function (system) {
+    columns.forEach(function (cells) {
+      cells.forEach(function (cell) { cell.node.textContent = system === 'imperial' ? cell.imperial : cell.metric; });
+    });
+    Array.from(toggle.children).forEach(function (button) {
+      var active = button.getAttribute('data-full-chart-unit') === system;
+      button.classList.toggle('is-active', active);
+      button.setAttribute('aria-pressed', String(active));
+    });
+  };
+  [['metric', 'cm'], ['imperial', 'in']].forEach(function (option) {
+    var button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'matching-size-guide__unit-button';
+    button.setAttribute('data-full-chart-unit', option[0]);
+    button.textContent = option[1];
+    button.addEventListener('click', function () {
+      try { window.localStorage.setItem('dlm_size_chart_unit_system', option[0]); } catch (_error) { /* ignore */ }
+      apply(option[0]);
+    });
+    toggle.appendChild(button);
+  });
+  card.insertBefore(toggle, scroll);
+  var stored = null;
+  try { stored = window.localStorage.getItem('dlm_size_chart_unit_system'); } catch (_error) { /* ignore */ }
+  apply(stored === 'imperial' || stored === 'metric' ? stored : window.__dlmDefaultUnitSystem === 'imperial' ? 'imperial' : 'metric');
+}
+
 function initFullSizeChartDisclosure(productSection) {
   var description = productSection.querySelector('[data-product-description]');
   if (!description || productSection.querySelector('[data-full-size-chart]')) return;
@@ -66,6 +124,7 @@ function initFullSizeChartDisclosure(productSection) {
     copy.className = 'matching-size-guide__table';
     scroll.appendChild(copy);
     card.appendChild(scroll);
+    addInchesViewToChart(copy, card, scroll);
     disclosure.appendChild(card);
   });
   // Keep copies outside the description so source parsers and table-hiding
@@ -5256,7 +5315,7 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
 
   function formatGuideNumericValue(num) {
     if (num === null || typeof num === 'undefined' || Number.isNaN(num)) return '';
-    return Number(num).toFixed(2).replace(/\.00$/, '').replace(/(\.\d)0$/, '$1');
+    return Number(num).toFixed(1).replace(/\.0$/, '');
   }
 
   function convertGuideValueBetweenUnits(num, fromUnit, toUnit) {
@@ -5330,7 +5389,9 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
 
     var units = header.units.map(normalizeGuideUnit);
     var unitIndex = unitSystem === 'imperial' ? Math.min(1, units.length - 1) : 0;
-    var activeUnit = units[unitIndex] || units[0];
+    var activeUnit = units.length === 1
+      ? getGuideTargetUnit(units[0], unitSystem) || units[0]
+      : units[unitIndex] || units[0];
     return header.label + ' (' + activeUnit + ')';
   }
 
@@ -5970,7 +6031,9 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
 
   function hasUnitToggle(headers) {
     return headers.some(function (header) {
-      return header && header.units && header.units.length > 1;
+      if (!header || !header.units || !header.units.length) return false;
+      if (header.units.length > 1) return true;
+      return ['cm', 'in', 'kg', 'lbs'].indexOf(normalizeGuideUnit(header.units[0])) !== -1;
     });
   }
 
