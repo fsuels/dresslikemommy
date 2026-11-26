@@ -50,13 +50,13 @@ test('Halloween 2026: 12-16 days gives Thu Oct 15, arriving by Sat Oct 31', () =
   assert.equal(api.message('halloween', result.cutoff, 'en'), 'Order by Thu, Oct 15 for estimated Halloween arrival');
 });
 
-test('Christmas 2026 targets Dec 24: cutoff Tue Dec 8', () => {
+test('Christmas 2026 targets Dec 23 like the card line: cutoff Mon Dec 7', () => {
   const api = load();
-  const result = api.orderByFor('christmas', '12-16 days', new Date(2026, 9, 20));
-  assert.deepEqual(ymd(result.cutoff), [2026, 12, 8, 2]);
-  assert.ok(latestArrival(result.cutoff, 16) <= new Date(2026, 11, 24));
-  // The next day would miss Christmas Eve.
-  assert.ok(latestArrival(new Date(2026, 11, 9), 16) > new Date(2026, 11, 24));
+  const result = api.orderByFor('christmas', '12-16 days', new Date(2026, 10, 25));
+  assert.deepEqual(ymd(result.cutoff), [2026, 12, 7, 1]);
+  assert.ok(latestArrival(result.cutoff, 16) <= new Date(2026, 11, 23));
+  // The next day would miss Dec 23.
+  assert.ok(latestArrival(new Date(2026, 11, 8), 16) > new Date(2026, 11, 23));
 });
 
 test('Sunday roll: Halloween 2027 is a Sunday, so the cutoff moves back a day', () => {
@@ -80,16 +80,16 @@ test('cutoff day still shows; the day after hides', () => {
   assert.ok(api.orderByFor('halloween', '12-16 days', new Date(2026, 9, 15, 23, 59)));
   assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 9, 16, 0, 1)), null);
   assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 9, 31)), null);
-  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 9)), null);
+  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 8)), null);
   assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 26)), null);
 });
 
-test('per-holiday lead: Christmas opens 90 days before its cutoff, Halloween 60', () => {
+test('per-holiday lead: Christmas opens 14 days before its cutoff, Halloween 60', () => {
   const api = load();
-  // Christmas cutoff Tue Dec 8 2026: opens Wed Sep 9 (90 days), hidden Sep 8.
-  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 8, 27)));
-  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 8, 9)));
-  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 8, 8)), null);
+  // Christmas cutoff Mon Dec 7 2026: opens Mon Nov 23 (14 days), hidden Nov 22.
+  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 7)));
+  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 10, 23)));
+  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 10, 22)), null);
   assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 5, 1)), null);
   // Halloween cutoff Thu Oct 15 2026: opens Sun Aug 16 (60 days), hidden Aug 15.
   assert.ok(api.orderByFor('halloween', '12-16 days', new Date(2026, 7, 16)));
@@ -122,9 +122,9 @@ test('pickOrderBy returns the earliest open holiday for the product', () => {
   const api = load();
   const both = ['Halloween', 'Christmas'];
   assert.equal(api.pickOrderBy(both, '12-16 days', new Date(2026, 9, 10)).holiday, 'halloween');
-  assert.equal(api.pickOrderBy(both, '12-16 days', new Date(2026, 9, 20)).holiday, 'christmas');
+  assert.equal(api.pickOrderBy(both, '12-16 days', new Date(2026, 10, 25)).holiday, 'christmas');
   assert.equal(api.pickOrderBy(['Summer'], '12-16 days', new Date(2026, 9, 10)), null);
-  assert.equal(api.pickOrderBy(CHRISTMAS_TAGS, '12-16 days', new Date(2026, 8, 26)).holiday, 'christmas');
+  assert.equal(api.pickOrderBy(CHRISTMAS_TAGS, '12-16 days', new Date(2026, 10, 25)).holiday, 'christmas');
   assert.equal(api.pickOrderBy(CHRISTMAS_TAGS, '12-16 days', new Date(2026, 7, 1)), null);
 });
 
@@ -207,6 +207,12 @@ test('render inserts one line after the estimate paragraph and skips non-holiday
   assert.equal(api.render(['Summer'], other.root, today), 0);
   assert.equal(other.container.children.length, 1);
 
+  // A card that already prints the Christmas estimate gets no second line.
+  const card = makeTree();
+  card.container.querySelector = (sel) => (sel === '[data-dlm-christmas-order-by]' ? {} : null);
+  assert.equal(api.render(CHRISTMAS_TAGS, card.root, new Date(2026, 10, 25)), 0);
+  assert.equal(card.container.children.length, 1);
+
   const late = makeTree();
   assert.equal(api.render(HALLOWEEN_TAGS, late.root, new Date(2026, 9, 16)), 0);
   assert.equal(late.container.children.length, 1);
@@ -254,16 +260,16 @@ test('value-strip slot is filled in place, or hidden when no line applies', () =
   const api = sandbox.DLMHolidayOrderBy;
 
   const open = makeStrip();
-  assert.equal(api.render(CHRISTMAS_TAGS, open.root, new Date(2026, 8, 27)), 1);
+  assert.equal(api.render(CHRISTMAS_TAGS, open.root, new Date(2026, 10, 25)), 1);
   assert.equal(open.container.children.length, 0, 'no extra line is inserted next to the strip');
   assert.equal(open.slot.attrs.get('data-dlm-holiday-order-by'), 'christmas');
   assert.equal(open.slot.hidden, false);
   assert.equal(open.text.textContent, '');
   const [before, date, after] = open.text.children;
-  assert.equal(before.text + date.textContent + after.text, 'Order by Tue, Dec 8 for estimated Christmas arrival');
+  assert.equal(before.text + date.textContent + after.text, 'Order by Mon, Dec 7 for estimated Christmas arrival');
 
   const closed = makeStrip();
-  assert.equal(api.render(CHRISTMAS_TAGS, closed.root, new Date(2026, 11, 9)), 0);
+  assert.equal(api.render(CHRISTMAS_TAGS, closed.root, new Date(2026, 11, 8)), 0);
   assert.equal(closed.slot.hidden, true);
   assert.equal(closed.container.children.length, 0);
 

@@ -65,7 +65,7 @@
     assign vs_now = 'now' | date: '%s' | plus: 0
     assign vs_year = 'now' | date: '%Y'
     if vs_christmas
-      assign vs_target = vs_year | append: '-12-24' | date: '%s' | plus: 0
+      assign vs_target = vs_year | append: '-12-23' | date: '%s' | plus: 0
       assign vs_days = vs_target | minus: vs_now | divided_by: 86400
       assign vs_open_until = vs_window_max | plus: 14
       if vs_days >= vs_window_max and vs_days <= vs_open_until

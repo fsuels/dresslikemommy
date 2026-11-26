@@ -25,15 +25,17 @@
   var SLOT_SELECTOR = '[data-dlm-holiday-slot]';
   var DAY_MS = 86400000;
 
-  // month is 0-based. Christmas targets Dec 24 because many storefront
-  // markets celebrate on Christmas Eve. `lead` is how many days before the
-  // cutoff the line starts to show. Christmas uses 14 so a US cutoff of about
-  // Dec 8 first shows around Nov 24 (owner, 2026-09-28: a December date read
-  // in September confuses shoppers).
-  // snippets/dlm-pdp-value-strip.liquid mirrors these leads to reserve space.
+  // month is 0-based. Christmas targets Dec 23, the same arrival day as
+  // snippets/christmas-order-by.liquid and renderChristmasOrderBy in
+  // dlm-delivery-dates.js, so a page never shows two different order-by dates
+  // (2026-11-26). `lead` is how many days before the cutoff the line starts to
+  // show. Christmas uses 14 so a US cutoff of about Dec 7 first shows around
+  // Nov 23 (owner, 2026-09-28: a December date read in September confuses
+  // shoppers).
+  // snippets/dlm-pdp-value-strip.liquid mirrors these dates to reserve space.
   var HOLIDAYS = {
     halloween: { month: 9, day: 31, lead: 60, tag: /^(family )?halloween\b/ },
-    christmas: { month: 11, day: 24, lead: 14, tag: /^(family )?christmas\b/ }
+    christmas: { month: 11, day: 23, lead: 14, tag: /^(family )?christmas\b/ }
   };
   var ORDER = ['halloween', 'christmas'];
 
@@ -342,6 +344,9 @@
         if (fillSlot(slot, result, locale)) inserted += 1;
         return;
       }
+      // The purchase card already prints its own Christmas estimate line.
+      var card = host.parentNode;
+      if (result.holiday === 'christmas' && card.querySelector && card.querySelector('[data-dlm-christmas-order-by]')) return;
       var line = buildLine(result, locale);
       if (!line) return;
       host.parentNode.insertBefore(line, host.nextSibling);
