@@ -11,6 +11,17 @@
 {%- endcomment -%}
 {%- liquid
   assign cg_base = routes.collections_url
+  comment
+    Thanksgiving links are visible Oct 1 - Nov 26 only (numeric month*100+day, as in
+    hero-season-window.liquid); the rest of the year shoppers are pointed to Christmas.
+  endcomment
+  assign cg_month = 'now' | date: '%m' | plus: 0
+  assign cg_day = 'now' | date: '%d' | plus: 0
+  assign cg_mmdd = cg_month | times: 100 | plus: cg_day
+  assign cg_thanksgiving_season = false
+  if cg_mmdd >= 1001 and cg_mmdd <= 1126
+    assign cg_thanksgiving_season = true
+  endif
   assign cg_delivery = 'Standard shipping is included, and each product page shows its estimated delivery window.'
 -%}
 {%- case handle -%}
@@ -54,7 +65,7 @@
         <ul>
           <li><strong>T-shirts:</strong> heart, stripe and graphic tees for birthdays, trips, theme-park days and casual photos.</li>
           <li><strong>Button-up shirts:</strong> tropical, palm and plaid prints for vacations, cruises and dressier pictures.</li>
-          <li><strong>Sweatshirts and sweaters:</strong> crewnecks and knits for fall photos, <a href="{{ cg_base }}/thanksgiving-family-outfits">Thanksgiving</a> and the holidays; see all <a href="{{ cg_base }}/matching-family-sweatshirts">matching family sweatshirts and hoodies</a>.</li>
+          <li><strong>Sweatshirts and sweaters:</strong> crewnecks and knits for fall photos, {% if cg_thanksgiving_season %}<a href="{{ cg_base }}/thanksgiving-family-outfits">Thanksgiving</a> and the holidays{% else %}<a href="{{ cg_base }}/matching-family-christmas-outfits">Christmas</a> and winter{% endif %}; see all <a href="{{ cg_base }}/matching-family-sweatshirts">matching family sweatshirts and hoodies</a>.</li>
         </ul>
         <p><strong>Sizing:</strong> each shirt lists separate adult and kids' sizes, and the size chart on every product page shows chest and length. Pair a shirt with jeans or shorts everyone already owns, or see <a href="{{ cg_base }}/matching-outfits">family matching outfits</a> for full sets and dresses. {{ cg_delivery }}</p>
     {%- endcase -%}
@@ -62,28 +73,32 @@
     {%- case field -%}
       {%- when 'display_title' -%}Matching Family Sweaters
       {%- when 'meta_title' -%}Matching Family Sweaters, Cardigans & Sweatshirts
-      {%- when 'meta_description' -%}Matching family sweaters for mom, dad and kids: cable knits, Fair Isle, cardigans and crewneck sweatshirts for fall photos, Thanksgiving and Christmas.
+      {%- when 'meta_description' -%}Matching family sweaters for mom, dad and kids: cable knits, Fair Isle, cardigans and crewneck sweatshirts for fall photos and Christmas.
       {%- when 'lead' -%}Matching family sweaters make fall and winter photos look planned while keeping everyone warm, with knits, cardigans and crewneck sweatshirts sized per person.
       {%- when 'heading' -%}How to choose matching family sweaters
       {%- when 'guide' -%}
-        <p><strong>For fall and Thanksgiving:</strong> cable knits, heart graphics and neutral crewnecks in burgundy, navy, cream and gray; see our <a href="{{ cg_base }}/thanksgiving-family-outfits">Thanksgiving family outfits</a>.</p>
+        {%- if cg_thanksgiving_season -%}
+          <p><strong>For fall and Thanksgiving:</strong> cable knits, heart graphics and neutral crewnecks in burgundy, navy, cream and gray; see our <a href="{{ cg_base }}/thanksgiving-family-outfits">Thanksgiving family outfits</a>.</p>
+        {%- else -%}
+          <p><strong>For winter:</strong> cable knits, heart graphics and neutral crewnecks in burgundy, navy, cream and gray; see our <a href="{{ cg_base }}/matching-family-christmas-outfits">matching family Christmas outfits</a>.</p>
+        {%- endif -%}
         <p><strong>For Christmas:</strong> reindeer, Santa and Fair Isle designs; see <a href="{{ cg_base }}/christmas-sweaters">Christmas sweaters</a>. <strong>For everyday:</strong> sweatshirts wash easily and layer over tees.</p>
         <p><strong>Sizing:</strong> knits vary by style, so check the size chart on each product page for chest and length, and go up a size for a relaxed fit. Shopping for just mom and daughter? See <a href="{{ cg_base }}/sweaters">mommy and me sweaters</a>. {{ cg_delivery }}</p>
     {%- endcase -%}
   {%- when 'thanksgiving-family-outfits' -%}
     {%- case field -%}
-      {%- when 'display_title' -%}Matching Family Thanksgiving Outfits
-      {%- when 'meta_title' -%}Matching Family Thanksgiving Outfits – Sweaters & Plaid
-      {%- when 'meta_description' -%}Matching family Thanksgiving outfits: plaid button-ups, cable-knit sweaters, cardigans and fall sweatshirts for mom, dad and kids, sized per person.
-      {%- when 'lead' -%}Matching family Thanksgiving outfits for the dinner table and the group photo: plaid button-ups, cable knits, cardigans and cozy sweatshirts, with a size for every family member.
-      {%- when 'heading' -%}Thanksgiving outfit ideas for the whole family
+      {%- when 'display_title' -%}Matching Family Fall Outfits
+      {%- when 'meta_title' -%}Matching Family Fall Outfits – Sweaters & Plaid
+      {%- when 'meta_description' -%}Matching family fall outfits: plaid button-ups, cable-knit sweaters, cardigans and cozy sweatshirts for mom, dad and kids, sized per person.
+      {%- when 'lead' -%}Matching family fall outfits for the dinner table, the pumpkin patch and the group photo: plaid button-ups, cable knits, cardigans and cozy sweatshirts, with a size for every family member.
+      {%- when 'heading' -%}Fall outfit ideas for the whole family
       {%- when 'guide' -%}
         <ul>
           <li><strong>Classic plaid:</strong> matching plaid button-ups for the whole family, easy to pair with jeans.</li>
           <li><strong>Cozy knits:</strong> burgundy, navy, red and charcoal sweaters and cardigans, including mommy and me and daddy and me pairs.</li>
-          <li><strong>Relaxed and comfy:</strong> heart and graphic sweatshirts for a long day of cooking, football and leftovers.</li>
+          <li><strong>Relaxed and comfy:</strong> heart and graphic sweatshirts for long days of cooking, football and leftovers.</li>
         </ul>
         <p><strong>Photo tip:</strong> pick one color family, such as burgundy and cream or navy and gray, and give everyone a piece in it; it looks coordinated without being identical. Size each person with the chart on the product page.</p>
-        <p><strong>Timing:</strong> Thanksgiving is Thursday, November 26, 2026. Check the estimated delivery window on each product page and order early so everything arrives before dinner. Looking ahead to December? See <a href="{{ cg_base }}/christmas-pajamas">matching family Christmas pajamas</a> and <a href="{{ cg_base }}/family-sweaters">matching family sweaters</a>. Standard shipping is included.</p>
+        <p>Looking ahead to winter? See <a href="{{ cg_base }}/christmas-pajamas">matching family Christmas pajamas</a>, <a href="{{ cg_base }}/matching-family-christmas-outfits">matching family Christmas outfits</a> and <a href="{{ cg_base }}/family-sweaters">matching family sweaters</a>. {{ cg_delivery }}</p>
     {%- endcase -%}
 {%- endcase -%}

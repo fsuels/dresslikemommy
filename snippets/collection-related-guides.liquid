@@ -8,6 +8,14 @@
   Usage: {% render 'collection-related-guides', collection: collection %}
 {%- endcomment -%}
 {%- liquid
+  # Thanksgiving articles only Oct 1 - Nov 26 (numeric month*100+day, as hero-season-window).
+  assign crg_mmdd = 'now' | date: '%m' | plus: 0 | times: 100
+  assign crg_day = 'now' | date: '%d' | plus: 0
+  assign crg_mmdd = crg_mmdd | plus: crg_day
+  assign crg_tg_season = false
+  if crg_mmdd >= 1001 and crg_mmdd <= 1126
+    assign crg_tg_season = true
+  endif
   assign crg_handles = ''
   case collection.handle
     when 'valentines-day-matching-outfits-1'
@@ -17,7 +25,11 @@
     when 'christmas-sweaters'
       assign crg_handles = 'matching-family-christmas-sweaters-guide-2026,sibling-christmas-sweaters-guide,family-christmas-card-photo-ideas'
     when 'family-sweaters'
-      assign crg_handles = 'matching-family-christmas-sweaters-guide-2026,one-family-outfit-for-thanksgiving-and-christmas,family-christmas-card-photo-ideas'
+      if crg_tg_season
+        assign crg_handles = 'matching-family-christmas-sweaters-guide-2026,one-family-outfit-for-thanksgiving-and-christmas,family-christmas-card-photo-ideas'
+      else
+        assign crg_handles = 'matching-family-christmas-sweaters-guide-2026,fall-family-matching-outfits,family-christmas-card-photo-ideas'
+      endif
     when 'sweaters'
       assign crg_handles = 'mommy-and-me-sweaters-guide,mommy-and-me-christmas-outfits-guide,mommy-and-me-winter-sweatshirts-and-loungewear'
     when 'siblings-matching-outfits'
@@ -49,7 +61,11 @@
     when 'halloween-family-pajamas'
       assign crg_handles = 'halloween-family-matching-costume-ideas,matching-family-outfits-for-pumpkin-patch-photos'
     when 'thanksgiving-family-outfits'
-      assign crg_handles = 'thanksgiving-family-matching-outfit-ideas,one-family-outfit-for-thanksgiving-and-christmas,best-matching-outfits-for-thanksgiving-dinner'
+      if crg_tg_season
+        assign crg_handles = 'thanksgiving-family-matching-outfit-ideas,one-family-outfit-for-thanksgiving-and-christmas,best-matching-outfits-for-thanksgiving-dinner'
+      else
+        assign crg_handles = 'fall-family-matching-outfits,matching-family-christmas-sweaters-guide-2026,family-christmas-card-photo-ideas'
+      endif
     when 'family-photo-outfits'
       assign crg_handles = 'what-to-wear-for-family-photos-matching-outfit-ideas,matching-family-shirts-for-pictures,fall-family-photo-outfits-for-november'
     when 'fall-winter'
