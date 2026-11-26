@@ -46,7 +46,7 @@
   assign dlm_active_count = 0
   for filter in results.filters
     if hide_product_type_active_filters
-      if filter.label == 'Type' or filter.label == 'Product type' or filter.param_name == 'filter.p.product_type'
+      if filter.label == 'Type' or filter.label == 'Product type' or filter.param_name == 'filter.p.product_type' or filter.param_name == 'filter.p.m.custom.subcategory'
         continue
       endif
     endif
@@ -139,7 +139,7 @@
                   assign is_color_filter = true
                 endif
                 assign is_product_type_filter = false
-                if filter.label == 'Type' or filter.label == 'Product type' or filter.param_name == 'filter.p.product_type'
+                if filter.label == 'Type' or filter.label == 'Product type' or filter.param_name == 'filter.p.product_type' or filter.param_name == 'filter.p.m.custom.subcategory'
                   assign is_product_type_filter = true
                 endif
                 if hide_product_type_active_filters and is_product_type_filter
@@ -627,7 +627,7 @@
                       assign is_color_filter = true
                     endif
                     assign is_product_type_filter = false
-                    if filter.label == 'Type' or filter.label == 'Product type' or filter.param_name == 'filter.p.product_type'
+                    if filter.label == 'Type' or filter.label == 'Product type' or filter.param_name == 'filter.p.product_type' or filter.param_name == 'filter.p.m.custom.subcategory'
                       assign is_product_type_filter = true
                     endif
 

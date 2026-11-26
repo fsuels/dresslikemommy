@@ -12,7 +12,7 @@
 {%- for filter in filters -%}
   {%- liquid
     if hide_product_type
-      if filter.label == 'Type' or filter.label == 'Product type' or filter.param_name == 'filter.p.product_type'
+      if filter.label == 'Type' or filter.label == 'Product type' or filter.param_name == 'filter.p.product_type' or filter.param_name == 'filter.p.m.custom.subcategory'
         continue
       endif
     endif
