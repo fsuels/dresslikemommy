@@ -1,0 +1,24 @@
+# Regression sweep, 2026-11-26 (read-only; cart agent)
+
+Method: own browser tab, live site, US/English first. Widths 375, 768, 1024, 1440 (800 is the pane default). Automatic check on each page: horizontal overflow, broken images, layout shift (CLS), overlapping text/controls, duplicate headings, console errors; plus screenshots of buy box, cart, drawer, filters, menus, checkout start. Languages: fetched HTML of 12 pages in es/it/de/cs scanned for untranslated English; PDP walked in cs/de/it at 375. Cart cleared; country US, language en restored. Nothing edited.
+
+Covered: home; mommy-and-me, christmas-sweaters, swimsuits (filter drawer 375, size filter apply/clear, sort price low-high at 768); PDPs nordic-yoke, christmas-reindeer, double-heart (colour switch, size guide, cm/in), pink-wrap bikini set, dotted-tulle maternity gown, heart-button cardigan dress sets (audits at 375/768/1440, add to cart on nordic-yoke at 1024); cart drawer 1 piece (1024) and 3 pieces (375 /cart, IT/EUR drawer); discount code (fake: "Invalid or expired code", translated); country US -> Italy (it) and back (Canada/Czechia done earlier in cart units); checkout start (nothing typed); mega menu (1440), mobile menu (375); search 'sweater' (121 results); blog guide; shipping policy.
+Not covered: 768 and 1440 for /cart and the drawer; 1440 for collections other than christmas-sweaters; add to cart on the bikini and maternity pages; es/it/de/cs visual walk of collections.
+
+Result: no overflow, no broken images, CLS 0 to 0.007, zero JavaScript errors in the console (read with pattern Uncaught/Error). The 1024 sticky buy card overlap the CEO saw is already fixed live (f3d5d28): buy box clean at 1024.
+
+## Defects
+
+1. LOOKS BROKEN. Product pages in cs, da, de, el, fi, he, hi, ja, ko, nl, no, pl, ro, ru, sv (not en/es/fr/it/ar): a native colour dropdown ("Farbe: Creme", "Barva: Krémová") shows above the builder, which has its own colour pills; two controls for one choice. Seen at 375 on nordic-yoke in de and cs (screenshot taken in tab-25, de and cs PDP at scroll 900). Cause: CSS hides only swatch/color-image groups (assets/component-product-desktop-ux-ruler-sync.css lines ~984-989); in these languages the translated option name is not treated as colour, so it renders as a dropdown (class product-form__input--dropdown). nl also renders the size option as a dropdown. Likely commit: pre-existing rule, made visible/inconsistent by 8e07c9f (builder colour pill switches the photo); the earlier audit saw the same in Czech.
+2. COSMETIC. Cart drawer on short desktop windows (800x600 and 1024x768 with one item): the item list shows about one row because the footer (message, shipping, total, buttons, payment icons, trust line) takes the height; footer grew with the payment icons row. Likely commit: 0bc9d91 (mine; the phone rules cover max-width 749 only). Fix idea: same tightening for max-height 800 on desktop.
+3. COSMETIC. /policies/shipping-policy at 375: in the country list the currency code of the left country touches the next country name ("EUR €Anguilla", "AUD $Austria"); two columns with no gap. Likely commit: not today's (shipping-country confirmation block); not identified.
+4. COSMETIC. Size filter on mommy-and-me lists "Mother S ... Mother 4XL" under a "Mom" group, "Father 3XL" under "Dad", and "L (Adult Extended Version)" under "Adults": repeated role word and supplier wording in option names (catalog data, not theme).
+5. COSMETIC. Italian header at 800 px wide: the last menu item ("LOOK COORDINATI PER LA FAMIGLIA") wraps to a second row, pushing the page down. Likely commit: 88c7519 (family matching hub in the desktop menu) with the long Italian label.
+6. UNKNOWN. One "Failed to load resource: 401" in the console on every page (home, collections, PDP). Not from our scripts that I could find; probably a third-party/wallet endpoint. Not identified.
+
+No defect found that blocks buying.
+
+## Follow-up (same day, cart agent)
+- Defect 2 FIXED: commits 28c3754 and cce917a. Short-window rules (min-width 750, max-height 900) tighten the drawer. Live readback: 1024x768 two rows y54-386 inside the list (ends 412), total 573, Check out 616; 1440x900 rows end 445 (list ends 544), total 705, button 748. Before: second row cut at 1440x900 and about one row at 1024x768.
+- Defect 3 FIXED: 28c3754 (column gap and wrapping in assets/component-shipping-countries-v2.css). Live readback at 375: 20 px between a currency code and the next country name, no overflow.
+- Previously uncovered, now covered: /cart at 768 and 1440 (clean, no overlap, two-piece message "Add 1 more piece and get 20% off the lowest-priced piece"); drawer at 768x1024 and 1440x900 (two rows, total and Check out visible); add to cart on two-piece swimsuit pink-wrap-bikini-set (Mother M / Pink, $23.99, drawer opens, page says "Pick a size for each person") and on the dotted-tulle maternity gown (Dusty Blue / US 2, $107.99). Cart cleared, US/English.
