@@ -41,22 +41,24 @@ function latestArrival(cutoff, maxDays) {
   return date;
 }
 
-test('Halloween 2026: 12-16 days gives Thu Oct 15, arriving by Sat Oct 31', () => {
+test('Halloween 2026: 12-16 days plus the 4-day policy buffer gives Sun Oct 11, arriving by Sat Oct 31', () => {
   const api = load();
   const result = api.orderByFor('halloween', '12-16 days', new Date(2026, 8, 26, 21, 30));
   assert.equal(result.holiday, 'halloween');
-  assert.deepEqual(ymd(result.cutoff), [2026, 10, 15, 4]);
-  assert.ok(latestArrival(result.cutoff, 16) <= new Date(2026, 9, 31));
-  assert.equal(api.message('halloween', result.cutoff, 'en'), 'Order by Thu, Oct 15 for estimated Halloween arrival');
+  assert.deepEqual(ymd(result.cutoff), [2026, 10, 11, 0]);
+  assert.ok(latestArrival(result.cutoff, 20) <= new Date(2026, 9, 31));
+  assert.equal(api.message('halloween', result.cutoff, 'en'), 'Order by Sun, Oct 11 for estimated Halloween arrival');
 });
 
-test('Christmas 2026 targets Dec 23 like the card line: cutoff Mon Dec 7', () => {
+test('Christmas 2026 targets Dec 23 like the card line: cutoff Thu Dec 3 (policy handling: up to 5 business days)', () => {
   const api = load();
   const result = api.orderByFor('christmas', '12-16 days', new Date(2026, 10, 25));
-  assert.deepEqual(ymd(result.cutoff), [2026, 12, 7, 1]);
-  assert.ok(latestArrival(result.cutoff, 16) <= new Date(2026, 11, 23));
+  assert.deepEqual(ymd(result.cutoff), [2026, 12, 3, 4]);
+  assert.ok(latestArrival(result.cutoff, 20) <= new Date(2026, 11, 23));
   // The next day would miss Dec 23.
-  assert.ok(latestArrival(new Date(2026, 11, 8), 16) > new Date(2026, 11, 23));
+  assert.ok(latestArrival(new Date(2026, 11, 4), 20) > new Date(2026, 11, 23));
+  // Worst case in the shipping policy: ships after 5 business days (7 calendar days), then 13 days in transit.
+  assert.ok(new Date(2026, 11, 3 + 7 + 13) <= new Date(2026, 11, 23));
 });
 
 test('Sunday roll: Halloween 2027 is a Sunday, so the cutoff moves back a day', () => {
@@ -70,30 +72,30 @@ test('Sunday roll: Halloween 2027 is a Sunday, so the cutoff moves back a day', 
 test('the cutoff follows the window upper bound, not a hardcoded 16', () => {
   const api = load();
   const today = new Date(2026, 8, 26);
-  assert.deepEqual(ymd(api.orderByFor('halloween', '10-20 days', today).cutoff), [2026, 10, 11, 0]);
-  assert.deepEqual(ymd(api.orderByFor('halloween', '12-16 天', today).cutoff), [2026, 10, 15, 4]);
-  assert.deepEqual(ymd(api.orderByFor('halloween', '12–16 jours', today).cutoff), [2026, 10, 15, 4]);
+  assert.deepEqual(ymd(api.orderByFor('halloween', '10-20 days', today).cutoff), [2026, 10, 7, 3]);
+  assert.deepEqual(ymd(api.orderByFor('halloween', '12-16 天', today).cutoff), [2026, 10, 11, 0]);
+  assert.deepEqual(ymd(api.orderByFor('halloween', '12–16 jours', today).cutoff), [2026, 10, 11, 0]);
 });
 
 test('cutoff day still shows; the day after hides', () => {
   const api = load();
-  assert.ok(api.orderByFor('halloween', '12-16 days', new Date(2026, 9, 15, 23, 59)));
-  assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 9, 16, 0, 1)), null);
+  assert.ok(api.orderByFor('halloween', '12-16 days', new Date(2026, 9, 11, 23, 59)));
+  assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 9, 12, 0, 1)), null);
   assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 9, 31)), null);
-  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 8)), null);
+  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 4)), null);
   assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 26)), null);
 });
 
 test('per-holiday lead: Christmas opens 14 days before its cutoff, Halloween 60', () => {
   const api = load();
-  // Christmas cutoff Mon Dec 7 2026: opens Mon Nov 23 (14 days), hidden Nov 22.
-  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 7)));
-  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 10, 23)));
-  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 10, 22)), null);
+  // Christmas cutoff Thu Dec 3 2026: opens Thu Nov 19 (14 days), hidden Nov 18.
+  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 3)));
+  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 10, 19)));
+  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 10, 18)), null);
   assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 5, 1)), null);
-  // Halloween cutoff Thu Oct 15 2026: opens Sun Aug 16 (60 days), hidden Aug 15.
-  assert.ok(api.orderByFor('halloween', '12-16 days', new Date(2026, 7, 16)));
-  assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 7, 15)), null);
+  // Halloween cutoff Sun Oct 11 2026: opens Wed Aug 12 (60 days), hidden Aug 11.
+  assert.ok(api.orderByFor('halloween', '12-16 days', new Date(2026, 7, 12)));
+  assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 7, 11)), null);
   assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 5, 1)), null);
 });
 
@@ -198,7 +200,7 @@ test('render inserts one line after the estimate paragraph and skips non-holiday
   assert.equal(tree.container.children.length, 2);
   const line = tree.container.children[1];
   assert.equal(line.attrs['data-dlm-holiday-order-by'], 'halloween');
-  assert.equal(line.children[0].text + line.children[1].textContent + line.children[2].text, 'Order by Thu, Oct 15 for estimated Halloween arrival');
+  assert.equal(line.children[0].text + line.children[1].textContent + line.children[2].text, 'Order by Sun, Oct 11 for estimated Halloween arrival');
   // A second pass is a no-op because the estimate paragraph is marked.
   assert.equal(api.render(HALLOWEEN_TAGS, tree.root, today), 0);
   assert.equal(tree.container.children.length, 2);
@@ -266,7 +268,7 @@ test('value-strip slot is filled in place, or hidden when no line applies', () =
   assert.equal(open.slot.hidden, false);
   assert.equal(open.text.textContent, '');
   const [before, date, after] = open.text.children;
-  assert.equal(before.text + date.textContent + after.text, 'Order by Mon, Dec 7 for estimated Christmas arrival');
+  assert.equal(before.text + date.textContent + after.text, 'Order by Thu, Dec 3 for estimated Christmas arrival');
 
   const closed = makeStrip();
   assert.equal(api.render(CHRISTMAS_TAGS, closed.root, new Date(2026, 11, 8)), 0);
@@ -277,4 +279,12 @@ test('value-strip slot is filled in place, or hidden when no line applies', () =
   api.releaseSlots({ querySelectorAll: () => [released.slot, open.slot] });
   assert.equal(released.slot.hidden, true);
   assert.equal(open.slot.hidden, false, 'a filled slot stays visible');
+});
+
+test('PDP card, cart and drawer line (liquid snippet) use the same policy buffer as the value-strip line', async () => {
+  const { readFileSync } = await import('node:fs');
+  const liquid = readFileSync(new URL('../../snippets/christmas-order-by.liquid', import.meta.url), 'utf8');
+  const api = load();
+  assert.equal(api.policyHandlingBufferDays, 4);
+  assert.match(liquid, /assign cob_max = cob_max \| plus: cob_extra \| plus: 4/);
 });

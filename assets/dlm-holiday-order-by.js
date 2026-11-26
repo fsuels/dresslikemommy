@@ -5,7 +5,7 @@
  * On a Halloween or Christmas product (detected from the product's own tags
  * via one same-origin /products/<handle>.js request) this adds one line under
  * the delivery estimate, e.g. "Order by Thu, Oct 15 for estimated Halloween
- * arrival". The cutoff comes from the upper bound of the same localized window
+ * arrival" The cutoff comes from the upper bound of the same localized window
  * that assets/dlm-delivery-dates.js reads ([data-dlm-delivery-window], e.g.
  * "12-16 days"), with the same Sunday-to-Monday roll, so cutoff + max days
  * never lands after the holiday. The line is hidden after the cutoff, before
@@ -24,6 +24,12 @@
   var LINE_ATTR = 'data-dlm-holiday-order-by';
   var SLOT_SELECTOR = '[data-dlm-holiday-slot]';
   var DAY_MS = 86400000;
+  // The estimate window (e.g. 12-16 days) assumes about 3 days of handling.
+  // The shipping policy allows up to 5 business days (up to 7 calendar days)
+  // before a parcel ships, so a promise tied to a holiday adds the 4-day
+  // difference: the cutoff is earlier, the estimate itself is unchanged. Keep in
+  // step with the +4 in snippets/christmas-order-by.liquid (same single date).
+  var POLICY_HANDLING_BUFFER_DAYS = 4;
 
   // month is 0-based. Christmas targets Dec 23, the same arrival day as
   // snippets/christmas-order-by.liquid and renderChristmasOrderBy in
@@ -191,7 +197,7 @@
     var years = [now.getFullYear(), now.getFullYear() + 1];
     for (var i = 0; i < years.length; i += 1) {
       var target = holidayDate(key, years[i]);
-      var cutoff = computeCutoff(target, days.max);
+      var cutoff = computeCutoff(target, days.max + POLICY_HANDLING_BUFFER_DAYS);
       var remaining = daysBetween(now, cutoff);
       if (remaining < 0) continue;
       if (remaining > HOLIDAYS[key].lead) return null;
@@ -366,6 +372,7 @@
   window.DLMHolidayOrderBy = {
     parseWindow: parseWindow,
     computeCutoff: computeCutoff,
+    policyHandlingBufferDays: POLICY_HANDLING_BUFFER_DAYS,
     orderByFor: orderByFor,
     detectHolidays: detectHolidays,
     pickOrderBy: pickOrderBy,
