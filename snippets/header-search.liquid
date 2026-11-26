@@ -89,7 +89,13 @@
           </div>
 
           <div class="mobile-search-empty-state" data-mobile-search-empty-state hidden>
-            <p class="mobile-search-empty-state__title">Collections</p>
+            <p class="mobile-search-empty-state__title">
+              {%- if request.locale.iso_code == 'en' -%}
+                Collections
+              {%- else -%}
+                {{- 'sections.collection_navigation.main_collections' | t -}}
+              {%- endif -%}
+            </p>
             <ul class="mobile-search-empty-state__list list-unstyled" role="list">
               {%- assign mobile_search_collection_targets = 'Pajamas::pajamas,family-pajamas::pajama,pajamas,pjs,matching pjs,matching pajamas,family pajamas,mommy and me pajamas,mother daughter pajamas|Mommy and Me::mommy-and-me,dresses::mommy,mother,mommy and me,mommy & me,mother and me|Daddy and Me::daddy-me,daddy-me-t-shirts,daddy-me-shirts::daddy,father,daddy and me,daddy & me,father and me,daddy and me shirts,daddy and me outfits|Dad and Son Shirts::daddy-me-shirts,daddy-me::dad and son matching shirts,dad and son matching button up shirts,dad and son matching dress shirts,father son matching hawaiian shirts|Family Matching::matching-outfits,family-matching,new-women-outfits,family-sets::family matching,matching family,family,matching outfits,family sets|Couples Matching::couples,matching-couples-t-shirts,couple-matching::couples matching outfits,couple matching outfits,couples,couple outfits,his and hers,matching couple|Couple T-Shirts::matching-couples-t-shirts,couples::couple shirts,couple t shirts,couples t shirts,couple t shirt|Maternity::maternity::maternity,pregnancy,pregnant,mama' | split: '|' -%}
               {%- for target in mobile_search_collection_targets -%}
@@ -163,10 +169,11 @@
                     data-collection-keywords="{{ collection_keywords | escape }}"
                     data-collection-handle="{{ collection_handle | escape }}"
                   >
-                    {%- if collection_title == 'Family Matching' and request.locale.iso_code == 'cs' -%}
-                      {{- 'sections.breadcrumbs.cat_family_matching' | t -}}
-                    {%- else -%}
+                    {%- assign localized_title = collections[collection_handle].title -%}
+                    {%- if request.locale.iso_code == 'en' or localized_title == blank -%}
                       {{- collection_title -}}
+                    {%- else -%}
+                      {{- localized_title | escape -}}
                     {%- endif -%}
                   </a>
                 </li>
