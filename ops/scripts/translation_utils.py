@@ -161,6 +161,7 @@ def markup_heavy_text(text):
     )
 
 
+BRAND_TERMS = ("Dress Like Mommy",)
 TOKEN_AFTER_RE = re.compile(r"(QZXTOKEN\d{5}QXZ)(?=[^\W_])(?!QZXTOKEN)")
 TOKEN_BEFORE_RE = re.compile(r"(?<=[^\W_])(?<!QXZ)(QZXTOKEN\d{5}QXZ)")
 
@@ -267,6 +268,11 @@ class TranslationBackend:
             if not target or source not in protected:
                 continue
             protected = protected.replace(source, token_for(target))
+
+        # The store name is never translated ("Viste como mamá" reached Google titles).
+        for brand in BRAND_TERMS:
+            if brand in protected:
+                protected = protected.replace(brand, token_for(brand))
 
         # A token glued to a word ("QZXTOKEN00001QXZHeight") is read by the
         # translator as one unknown word and its first letter stays untranslated
