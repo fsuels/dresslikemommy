@@ -49,6 +49,9 @@
     assign optimized_description = optimized_description | replace: '<strong>Chart-backed variants:</strong>', '<strong>Fit details:</strong>'
     assign optimized_description = optimized_description | replace: 'Every Shopify variant maps back to a visible YC8970 or YC8971 size row.', 'Each option uses the visible size guide so you can compare before adding to cart.'
     unless request.locale.iso_code == 'en'
+      capture optimized_description
+        render 'description-duplicate-size-chart-fix', html: optimized_description, locale: request.locale.iso_code
+      endcapture
       comment
         Translated size charts often keep the English age unit in the size cell. Show the number only
         (the Age column already says what it is) and repair leftover English words under the chart.

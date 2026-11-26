@@ -1,0 +1,52 @@
+{%- comment -%}
+  Many translated descriptions carry two size charts: the translated one (correct size names) and an
+  appended "fallback from source" copy with the same rows and numbers, which the size guide reads and
+  which often names the sizes wrong ("Kid 2 years" on the 6-month row). When both have the same number
+  of rows, show one chart: the fallback table (the format the size guide parses) with the translated
+  chart's size names. Charts with different row counts are left alone. Product data is unchanged.
+  - html: translated product description HTML
+  - locale: request locale ISO code
+{%- endcomment -%}
+{%- liquid
+  assign chart_html = html
+  assign marker = '<!-- DLM localized size-chart fallback from source -->'
+  if chart_html contains marker
+    assign halves = chart_html | split: marker
+    if halves.size == 2
+      assign head = halves[0]
+      assign tail = halves[1]
+      assign head_tables = head | split: '<table'
+      assign tail_tables = tail | split: '<table'
+      if head_tables.size == 2 and tail_tables.size == 2
+        assign named_table = head_tables[1] | split: '</table>' | first
+        assign source_table = tail_tables[1] | split: '</table>' | first
+        assign named_rows = named_table | split: '<tr'
+        assign source_rows = source_table | split: '<tr'
+        if named_rows.size == source_rows.size and source_rows.size > 2
+          assign merged_table = source_rows[0]
+          for source_row in source_rows offset: 1
+            assign named_row = named_rows[forloop.index]
+            assign merged_row = source_row
+            if source_row contains '<td' and named_row contains '<td'
+              assign source_cells = source_row | split: '<td'
+              assign named_cells = named_row | split: '<td'
+              assign source_label = source_cells[1] | split: '</td>' | first
+              assign named_label = named_cells[1] | split: '</td>' | first
+              assign old_cell = '<td' | append: source_label | append: '</td>'
+              assign new_cell = '<td' | append: named_label | append: '</td>'
+              assign merged_row = source_row | replace_first: old_cell, new_cell
+            endif
+            assign merged_table = merged_table | append: '<tr' | append: merged_row
+          endfor
+          assign head_after = head_tables[1] | remove_first: named_table | remove_first: '</table>'
+          assign tail_after = tail_tables[1] | remove_first: source_table
+          assign chart_html = head_tables[0] | append: head_after | append: marker | append: tail_tables[0] | append: '<table' | append: merged_table | append: tail_after
+        endif
+      endif
+    endif
+  endif
+  if locale == 'ja'
+    assign chart_html = chart_html | replace: 'M神父', 'パパ M' | replace: 'L神父', 'パパ L'
+  endif
+  echo chart_html
+-%}
