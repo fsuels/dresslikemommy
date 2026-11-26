@@ -3,7 +3,10 @@
   appended "fallback from source" copy with the same rows and numbers, which the size guide reads and
   which often names the sizes wrong ("Kid 2 years" on the 6-month row). When both have the same number
   of rows, show one chart: the fallback table (the format the size guide parses) with the translated
-  chart's size names. Charts with different row counts are left alone. Product data is unchanged.
+  chart's size names. When the two sides do not match: if the translated side has fewer or older
+  tables (a stale single chart with other rows) it is hidden and the fallback shows; if the translated
+  side has more tables than the fallback (the fallback is partial) the fallback is hidden. Product data
+  is unchanged.
   - html: translated product description HTML
   - locale: request locale ISO code
 {%- endcomment -%}
@@ -17,6 +20,7 @@
       assign tail = halves[1]
       assign head_tables = head | split: '<table'
       assign tail_tables = tail | split: '<table'
+      assign drop_side = ''
       if head_tables.size == 2 and tail_tables.size == 2
         assign named_table = head_tables[1] | split: '</table>' | first
         assign source_table = tail_tables[1] | split: '</table>' | first
@@ -41,12 +45,37 @@
           assign head_after = head_tables[1] | remove_first: named_table | remove_first: '</table>'
           assign tail_after = tail_tables[1] | remove_first: source_table
           assign chart_html = head_tables[0] | append: head_after | append: marker | append: tail_tables[0] | append: '<table' | append: merged_table | append: tail_after
+        else
+          assign drop_side = 'head'
+        endif
+      elsif head_tables.size >= 2 and tail_tables.size >= 2
+        if head_tables.size > tail_tables.size
+          assign drop_side = 'tail'
+        elsif head_tables.size == 2
+          assign drop_side = 'head'
+        endif
+      endif
+      if drop_side != ''
+        assign drop_parts = head_tables
+        if drop_side == 'tail'
+          assign drop_parts = tail_tables
+        endif
+        assign kept = drop_parts[0]
+        for part in drop_parts offset: 1
+          assign dropped_table = part | split: '</table>' | first
+          assign after_table = part | remove_first: dropped_table | remove_first: '</table>'
+          assign kept = kept | append: after_table
+        endfor
+        if drop_side == 'head'
+          assign chart_html = kept | append: marker | append: tail
+        else
+          assign chart_html = head | append: marker | append: kept
         endif
       endif
     endif
   endif
   if locale == 'ja'
-    assign chart_html = chart_html | replace: 'M神父', 'パパ M' | replace: 'L神父', 'パパ L'
+    assign chart_html = chart_html | replace: 'M神父', 'パパ M' | replace: 'L神父', 'パパ L' | replace: '<td>S 父</td>', '<td>パパ S</td>' | replace: '<td>ファーザー XL</td>', '<td>パパ XL</td>' | replace: '<td>ファーザー 2XL</td>', '<td>パパ 2XL</td>' | replace: '<td>マザー XS</td>', '<td>ママ XS</td>' | replace: '<td>母さん</td>', '<td>ママ S</td>' | replace: '<td>母M</td>', '<td>ママ M</td>' | replace: '<td>マザー L</td>', '<td>ママ L</td>'
   endif
   echo chart_html
 -%}
