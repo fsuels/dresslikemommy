@@ -200,6 +200,20 @@
         endif
       endif
 
+      comment
+        SEO 2026-11-26: short FAQ under the existing guides (question headings feed
+        faq-schema-from-html).
+      endcomment
+      if collection_handle == 'christmas-pajamas' or collection_handle == 'family-sweaters'
+        capture seo_faq_html
+          render 'collection-guide-christmas-hubs', handle: collection_handle
+        endcapture
+        assign seo_faq_html = seo_faq_html | strip
+        if seo_faq_html != blank
+          assign seo_rich_output = seo_rich_output | strip | append: seo_faq_html
+        endif
+      endif
+
       if seo_rich_output contains 'collection-seo-rich__eyebrow'
         assign seo_eyebrow_open = '<p class="collection-seo-rich__eyebrow">'
         assign seo_rich_segments = seo_rich_output | split: seo_eyebrow_open
