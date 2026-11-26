@@ -351,9 +351,12 @@
         if (fillSlot(slot, result, locale)) inserted += 1;
         return;
       }
-      // The purchase card already prints its own Christmas estimate line.
+      // One date block: the value strip prints the full Christmas estimate line
+      // (data-dlm-christmas-order-by) under the delivery estimate, and the purchase card
+      // may carry its own, so no short line is added next to either estimate.
       var card = host.parentNode;
       if (result.holiday === 'christmas' && card.querySelector && card.querySelector('[data-dlm-christmas-order-by]')) return;
+      if (result.holiday === 'christmas' && document.querySelector('[data-dlm-value-strip] [data-dlm-christmas-order-by]')) return;
       var line = buildLine(result, locale);
       if (!line) return;
       host.parentNode.insertBefore(line, host.nextSibling);

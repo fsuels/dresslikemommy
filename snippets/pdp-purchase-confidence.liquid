@@ -313,8 +313,7 @@
       <p class="dlm-pc-row__title">{{ pc_shipping_headline }}</p>
       <p class="dlm-pc-row__estimate">{% render 'delivery-estimate-copy', product: product %}</p>
       {%- if product.tags contains 'Christmas' -%}
-        {%- assign pc_cob_extra = product.metafields.custom.made_to_order_days.value | default: 0 -%}
-        {% render 'christmas-order-by', is_christmas: true, extra_days: pc_cob_extra %}
+        {%- comment -%} The full Christmas estimate line now sits in the value strip under the delivery estimate (one date block); not repeated here. {%- endcomment -%}
         {%- comment -%} Seasonal cross-links (1 Nov - 24 Dec): translated collection titles, no new copy. {%- endcomment -%}
         {%- assign pc_xmas_mmdd = 'now' | date: '%m%d' | plus: 0 -%}
         {%- if pc_xmas_mmdd >= 1101 and pc_xmas_mmdd <= 1224 -%}

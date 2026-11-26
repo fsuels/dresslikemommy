@@ -87,13 +87,23 @@
       node.setAttribute('data-dlm-cob-done', '');
       var max = Number(node.getAttribute('data-max-days'));
       var text = node.getAttribute('data-text') || '';
-      if (!(max >= 1) || max > 60 || text.indexOf('{order}') < 0) return;
+      if (!(max >= 1) || max > 60 || text.indexOf('{order}') < 0) return revealCobSlot(node, false);
       var last = new Date(arrive.getFullYear(), arrive.getMonth(), arrive.getDate() - max);
       while (last >= today && addDays(last, max).getTime() > arrive.getTime()) last.setDate(last.getDate() - 1);
-      if (last < today || today > arrive) return;
+      if (last < today || today > arrive) return revealCobSlot(node, false);
       node.textContent = text.replace('{order}', fmt.format(last)).replace('{arrive}', fmt.format(arrive));
       node.hidden = false;
+      revealCobSlot(node, true);
     });
+  }
+
+  // The PDP value strip reserves a slot for the line (snippets/dlm-pdp-value-strip.liquid)
+  // so it does not shift the buy box: show it when the line is filled, collapse it when not.
+  function revealCobSlot(node, filled) {
+    var slot = typeof node.closest === 'function' ? node.closest('[data-dlm-cob-slot]') : null;
+    if (!slot) return;
+    if (filled) slot.setAttribute('data-dlm-cob-ready', '');
+    else slot.hidden = true;
   }
 
   window.DLMDeliveryDates = { computeWindow: computeWindow, formatWindow: formatWindow, render: render };

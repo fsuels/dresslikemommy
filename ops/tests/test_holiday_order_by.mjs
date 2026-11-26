@@ -400,3 +400,38 @@ test('home/collection banner hides after the cutoff, before the lead window, and
   assert.deepEqual(run(new Date(2026, 10, 18), '12-16 days'), { count: 1, hidden: false });
   assert.deepEqual(run(new Date(2026, 10, 26), 'soon'), { count: 0, hidden: true });
 });
+
+test('one date block: no short Christmas line is added when the value strip carries the full estimate line', () => {
+  const makeTree = () => {
+    const attrs = new Map();
+    const container = { children: [], insertBefore(node) { this.children.push(node); }, querySelector: () => null };
+    const host = { parentNode: container, nextSibling: null, hasAttribute: (n) => attrs.has(n), setAttribute: (n, v) => attrs.set(n, v) };
+    const strip = { querySelector: () => null };
+    const element = {
+      parentNode: host,
+      getAttribute: () => '12-16 days',
+      closest: (sel) => (sel === '[data-dlm-value-strip]' ? strip : null),
+    };
+    return { container, root: { querySelectorAll: () => [element] } };
+  };
+  const run = (stripHasFullLine) => {
+    const document = {
+      readyState: 'complete',
+      documentElement: { lang: 'en' },
+      body: {},
+      querySelector: (sel) => (stripHasFullLine && sel === '[data-dlm-value-strip] [data-dlm-christmas-order-by]' ? {} : null),
+      querySelectorAll: () => [],
+      addEventListener() {},
+      createElement: () => ({ textContent: '', style: {}, setAttribute() {}, appendChild() {} }),
+      createTextNode: (text) => ({ text }),
+    };
+    const sandbox = { document, Intl, Date, Math, Array, Number, String, Shopify: { locale: 'en' }, location: { pathname: '/' } };
+    sandbox.window = sandbox;
+    vm.runInNewContext(source, sandbox);
+    const tree = makeTree();
+    sandbox.DLMHolidayOrderBy.render(CHRISTMAS_TAGS, tree.root, new Date(2026, 10, 25));
+    return tree.container.children.length;
+  };
+  assert.equal(run(true), 0, 'the full line in the strip replaces the short line');
+  assert.equal(run(false), 1, 'without the full line the short line is still added');
+});

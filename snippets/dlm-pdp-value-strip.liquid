@@ -61,6 +61,7 @@
   endfor
 
   assign vs_holiday_slot = false
+  assign vs_cob_slot = false
   if vs_window_max > 0
     assign vs_now = 'now' | date: '%s' | plus: 0
     assign vs_year = 'now' | date: '%Y'
@@ -69,7 +70,10 @@
       assign vs_days = vs_target | minus: vs_now | divided_by: 86400
       assign vs_open_until = vs_window_max | plus: 14
       if vs_days >= vs_window_max and vs_days <= vs_open_until
-        assign vs_holiday_slot = true
+        # One date block: the full Christmas estimate line (snippets/christmas-order-by,
+        # filled by assets/dlm-delivery-dates.js) sits right under the delivery estimate
+        # instead of the short order-by line, so the page never prints two Christmas lines.
+        assign vs_cob_slot = true
       endif
     endif
     if vs_halloween
@@ -125,9 +129,23 @@
   }
   .dlm-value-strip__holiday:not([data-dlm-holiday-order-by]) { visibility: hidden; }
   .dlm-value-strip__holiday[hidden] { display: none; }
+  .dlm-value-strip__cob {
+    min-height: 4.35em;
+    color: #146642;
+  }
+  .dlm-value-strip__cob:not([data-dlm-cob-ready]) { visibility: hidden; }
+  .dlm-value-strip__cob[hidden] { display: none; }
+  .dlm-value-strip .dlm-christmas-order-by {
+    margin: 0;
+    font-size: inherit;
+    font-weight: 600;
+    line-height: inherit;
+    color: inherit;
+  }
   @media screen and (min-width: 750px) {
     .dlm-value-strip { font-size: 1.4rem; }
     .dlm-value-strip__holiday { min-height: 1.45em; }
+    .dlm-value-strip__cob { min-height: 2.9em; }
   }
 </style>
 <div class="dlm-value-strip" data-dlm-value-strip>
@@ -145,6 +163,15 @@
       <span class="dlm-value-strip__text">{{ vs_returns }}</span>
     </p>
   </div>
+  {%- if vs_cob_slot -%}
+    <div class="dlm-value-strip__item dlm-value-strip__cob" data-dlm-cob-slot>
+      <svg class="dlm-value-strip__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>
+      <span class="dlm-value-strip__text">
+        {%- assign vs_cob_extra = product.metafields.custom.made_to_order_days.value | default: 0 -%}
+        {%- render 'christmas-order-by', is_christmas: true, extra_days: vs_cob_extra -%}
+      </span>
+    </div>
+  {%- endif -%}
   {%- if vs_holiday_slot -%}
     <p class="dlm-value-strip__item dlm-value-strip__holiday" data-dlm-holiday-slot>
       <svg class="dlm-value-strip__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>
