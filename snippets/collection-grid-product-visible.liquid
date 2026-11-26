@@ -191,5 +191,10 @@
     assign product_visible = true
   endif
 
+  # The sweaters page is titled "Mommy and Me and Family Matching Sweaters": show every sweater chosen for it.
+  if current_collection_handle == 'sweaters'
+    assign product_visible = true
+  endif
+
   echo product_visible
 -%}
