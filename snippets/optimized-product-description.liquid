@@ -45,6 +45,18 @@
     assign optimized_description = optimized_description | remove: '<li><strong>Chart-backed variants:</strong> Every Shopify variant maps back to a visible YC8970 or YC8971 size row.</li>'
     assign optimized_description = optimized_description | replace: '<strong>Chart-backed variants:</strong>', '<strong>Fit details:</strong>'
     assign optimized_description = optimized_description | replace: 'Every Shopify variant maps back to a visible YC8970 or YC8971 size row.', 'Each option uses the visible size guide so you can compare before adding to cart.'
+    unless request.locale.iso_code == 'en'
+      comment
+        Translated size charts often keep the English age unit in the size cell. Show the number only
+        (the Age column already says what it is) and repair leftover English words under the chart.
+      endcomment
+      assign optimized_description = optimized_description | replace: ' Years</td>', '</td>'
+      assign optimized_description = optimized_description | replace: '<p>Height ist die ', '<p>Die Körpergröße ist die '
+      assign optimized_description = optimized_description | replace: '<p>Height es la ', '<p>La altura es la '
+      assign optimized_description = optimized_description | replace: '<p>Height は', '<p>身長は'
+      assign optimized_description = optimized_description | replace: '<p>Height — ', '<p>Рост — '
+      assign optimized_description = optimized_description | replace: '<th>Halto (cm)</th>', '<th>Altura (cm)</th>'
+    endunless
     assign optimized_description = optimized_description | replace: '<img ', '<img loading="lazy" decoding="async" fetchpriority="low" '
   endif
 
