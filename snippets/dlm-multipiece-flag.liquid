@@ -1,13 +1,18 @@
 {%- comment -%}
   Prints "true" when one size of the product is a multi-piece garment or a set (two-piece
-  swimsuits, bikinis, pajama sets, "sets"), where the words "per piece" could be read as each
-  piece being charged separately. Reads title, type and the untranslated tags.
+  swimsuits, bikinis, swimsuits, pajama sets, "sets"), where the words "per piece" could be read as
+  each piece being charged separately.
+
+  Language independent: reads only the product handle and the tags, which are the same in every
+  storefront language. Never read product.title or product.type here: they are translated, so a
+  Spanish or German title would not match the English words.
   Needs: product.
 {%- endcomment -%}
 {%- liquid
-  assign mpf_tags = product.tags | join: ' '
-  assign mpf_probe = ' ' | append: product.title | append: ' ' | append: product.type | append: ' ' | append: mpf_tags | downcase | append: ' '
-  assign mpf_words = 'two-piece,two piece,2-piece,2 piece,bikini,tankini,pajama,pyjama, set , sets , set—, set -' | split: ','
+  assign mpf_handle = product.handle | replace: '-', ' '
+  assign mpf_tags = product.tags | join: ' ' | replace: '-', ' '
+  assign mpf_probe = ' ' | append: mpf_handle | append: ' ' | append: mpf_tags | downcase | append: ' '
+  assign mpf_words = 'two piece,2 piece,bikini,tankini,swimsuit,pajama,pyjama, set , sets ' | split: ','
   assign mpf_hit = false
   for mpf_word in mpf_words
     if mpf_probe contains mpf_word

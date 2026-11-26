@@ -1,5 +1,5 @@
 {%- comment -%}
-  (Set detection also reads the untranslated tags, because titles and types are translated.)
+  (Set detection reads only the handle and untranslated tags; titles and types are translated.)
   One short line under the PDP price so a shopper does not read a family or Mommy & Me
   listing as one price for the whole set.
 
@@ -7,7 +7,7 @@
   - product: {Object} product
   - matching_context: {Boolean} the page uses the matching-set builder
 
-  - Listings sold as a multi-piece SET per size (product type or title contains "set"):
+  - Listings sold as a multi-piece SET per size (handle or tags say set):
     the line is the listing's own first description bullet when its label says what is
     included ("What you get:" and its translations). If the description does not say it,
     nothing is shown (no guessing).
@@ -18,10 +18,11 @@
 {%- endcomment -%}
 {%- liquid
   assign pn_text = ''
-  assign pn_tags = product.tags | join: ' '
-  assign pn_probe = product.title | append: ' ' | append: product.type | append: ' ' | append: pn_tags | downcase | append: ' '
+  assign pn_handle = product.handle | replace: '-', ' '
+  assign pn_tags = product.tags | join: ' ' | replace: '-', ' '
+  assign pn_probe = ' ' | append: pn_handle | append: ' ' | append: pn_tags | downcase | append: ' '
   assign pn_is_set = false
-  if pn_probe contains ' set ' or pn_probe contains ' sets ' or pn_probe contains ' set—' or pn_probe contains ' set -'
+  if pn_probe contains ' set ' or pn_probe contains ' sets '
     assign pn_is_set = true
   endif
 
