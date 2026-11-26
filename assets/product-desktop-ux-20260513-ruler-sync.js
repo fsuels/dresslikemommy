@@ -18,29 +18,56 @@ document.addEventListener('DOMContentLoaded', function () {
   document.querySelectorAll('[id^="MainProduct-"][data-section]').forEach(initFullSizeChartDisclosure);
 });
 
-// "86" or "65-68" in centimetres to inches (1 decimal); null if not numeric.
-function convertCmTextToInches(text) {
-  var match = String(text || '').trim().match(/^(\d+(?:\.\d+)?)(?:\s*([-\u2013])\s*(\d+(?:\.\d+)?))?$/);
+// "86", "65-68", "68 cm" or "9-12.5 kg" is converted to inches / lbs (1 decimal),
+// keeping a unit suffix; non-numeric text returns null.
+// Converts a metric chart cell to imperial. unit is 'cm' or 'kg' (from the header).
+function convertMetricChartCell(text, unit) {
+  var match = String(text || '').trim().match(/^(\d+(?:\.\d+)?)(?:\s*([-\u2013])\s*(\d+(?:\.\d+)?))?(?:\s*(cm|kg))?$/i);
   if (!match) return null;
-  var inches = function (value) { return String(Math.round(parseFloat(value) / 2.54 * 10) / 10); };
-  return match[3] ? inches(match[1]) + match[2] + inches(match[3]) : inches(match[1]);
+  if (match[4] && match[4].toLowerCase() !== unit) return null;
+  var factor = unit === 'kg' ? 2.2046226218 : 1 / 2.54;
+  var target = unit === 'kg' ? ' lbs' : ' in';
+  var suffix = match[4] ? target : '';
+  var convert = function (value) { return String(Math.round(parseFloat(value) * factor * 10) / 10); };
+  return (match[3] ? convert(match[1]) + match[2] + convert(match[3]) : convert(match[1])) + suffix;
 }
 
-// Adds a cm/in switch to a copied chart whose columns are only in centimetres.
-// A column with any non-numeric value stays in centimetres.
+function isEmptyChartCell(text) {
+  return /^[-\u2013\u2014]?$/.test(String(text || '').trim());
+}
+
+// Removes body columns whose cells are all "-" or empty (header cell too).
+function removeEmptyChartColumns(table) {
+  var rows = Array.from(table.querySelectorAll('tr'));
+  if (rows.length < 2) return;
+  var width = Math.max.apply(null, rows.map(function (row) { return row.children.length; }));
+  for (var index = width - 1; index >= 1; index -= 1) {
+    var bodyCells = rows.slice(1).map(function (row) { return row.children[index]; }).filter(Boolean);
+    if (!bodyCells.length || !bodyCells.every(function (cell) { return isEmptyChartCell(cell.textContent); })) continue;
+    rows.forEach(function (row) { if (row.children[index]) row.removeChild(row.children[index]); });
+  }
+}
+
+// Adds a cm/in switch to a copied chart whose columns are in cm or kg.
+// Columns with no data are dropped first. A column with any value that is not a
+// plain number/range keeps its metric header and values, so a header never
+// names a unit its cells do not use.
 function addInchesViewToChart(table, card, scroll) {
+  removeEmptyChartColumns(table);
   var rows = Array.from(table.querySelectorAll('tr'));
   if (rows.length < 2) return;
   var columns = [];
   Array.from(rows[0].children).forEach(function (headerCell, index) {
     var header = headerCell.textContent.trim();
-    if (!/\(\s*cm\s*\)$/i.test(header)) return;
+    var unitMatch = header.match(/\(\s*(cm|kg)\s*\)$/i);
+    if (!unitMatch) return;
+    var unit = unitMatch[1].toLowerCase();
     var cells = rows.slice(1).map(function (row) { return row.children[index]; }).filter(Boolean).map(function (cell) {
       var metric = cell.textContent.trim();
-      return { node: cell, metric: metric, imperial: /^[-\u2013\u2014]?$/.test(metric) ? metric : convertCmTextToInches(metric) };
+      return { node: cell, metric: metric, imperial: isEmptyChartCell(metric) ? metric : convertMetricChartCell(metric, unit) };
     });
     if (!cells.length || cells.some(function (cell) { return cell.imperial === null; })) return;
-    cells.push({ node: headerCell, metric: header, imperial: header.replace(/\(\s*cm\s*\)$/i, '(in)') });
+    cells.push({ node: headerCell, metric: header, imperial: header.replace(/\(\s*(?:cm|kg)\s*\)$/i, unit === 'kg' ? '(lbs)' : '(in)') });
     columns.push(cells);
   });
   if (!columns.length) return;
