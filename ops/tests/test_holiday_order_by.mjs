@@ -41,24 +41,24 @@ function latestArrival(cutoff, maxDays) {
   return date;
 }
 
-test('Halloween 2026: 12-16 days plus the 4-day policy buffer gives Sun Oct 11, arriving by Sat Oct 31', () => {
+test('Halloween 2026: 12-16 days plus the 5-day worst-case buffer gives Sat Oct 10, arriving by Sat Oct 31', () => {
   const api = load();
   const result = api.orderByFor('halloween', '12-16 days', new Date(2026, 8, 26, 21, 30));
   assert.equal(result.holiday, 'halloween');
-  assert.deepEqual(ymd(result.cutoff), [2026, 10, 11, 0]);
-  assert.ok(latestArrival(result.cutoff, 20) <= new Date(2026, 9, 31));
-  assert.equal(api.message('halloween', result.cutoff, 'en'), 'Order by Sun, Oct 11 for estimated Halloween arrival');
+  assert.deepEqual(ymd(result.cutoff), [2026, 10, 10, 6]);
+  assert.ok(latestArrival(result.cutoff, 21) <= new Date(2026, 9, 31));
+  assert.equal(api.message('halloween', result.cutoff, 'en'), 'Order by Sat, Oct 10 for estimated Halloween arrival');
 });
 
-test('Christmas 2026 targets Dec 23 like the card line: cutoff Thu Dec 3 (policy handling: up to 5 business days)', () => {
+test('Christmas 2026 targets Dec 23 like the card line: cutoff Wed Dec 2 (policy handling up to 5 business days, carrier transit up to 14 days)', () => {
   const api = load();
   const result = api.orderByFor('christmas', '12-16 days', new Date(2026, 10, 25));
-  assert.deepEqual(ymd(result.cutoff), [2026, 12, 3, 4]);
-  assert.ok(latestArrival(result.cutoff, 20) <= new Date(2026, 11, 23));
+  assert.deepEqual(ymd(result.cutoff), [2026, 12, 2, 3]);
+  assert.ok(latestArrival(result.cutoff, 21) <= new Date(2026, 11, 23));
   // The next day would miss Dec 23.
-  assert.ok(latestArrival(new Date(2026, 11, 4), 20) > new Date(2026, 11, 23));
-  // Worst case in the shipping policy: ships after 5 business days (7 calendar days), then 13 days in transit.
-  assert.ok(new Date(2026, 11, 3 + 7 + 13) <= new Date(2026, 11, 23));
+  assert.ok(latestArrival(new Date(2026, 11, 3), 21) > new Date(2026, 11, 23));
+  // Worst case: ships after 5 business days (7 calendar days), then 14 days in transit.
+  assert.ok(new Date(2026, 11, 2 + 7 + 14) <= new Date(2026, 11, 23));
 });
 
 test('Sunday roll: Halloween 2027 is a Sunday, so the cutoff moves back a day', () => {
@@ -72,30 +72,30 @@ test('Sunday roll: Halloween 2027 is a Sunday, so the cutoff moves back a day', 
 test('the cutoff follows the window upper bound, not a hardcoded 16', () => {
   const api = load();
   const today = new Date(2026, 8, 26);
-  assert.deepEqual(ymd(api.orderByFor('halloween', '10-20 days', today).cutoff), [2026, 10, 7, 3]);
-  assert.deepEqual(ymd(api.orderByFor('halloween', '12-16 天', today).cutoff), [2026, 10, 11, 0]);
-  assert.deepEqual(ymd(api.orderByFor('halloween', '12–16 jours', today).cutoff), [2026, 10, 11, 0]);
+  assert.deepEqual(ymd(api.orderByFor('halloween', '10-20 days', today).cutoff), [2026, 10, 6, 2]);
+  assert.deepEqual(ymd(api.orderByFor('halloween', '12-16 天', today).cutoff), [2026, 10, 10, 6]);
+  assert.deepEqual(ymd(api.orderByFor('halloween', '12–16 jours', today).cutoff), [2026, 10, 10, 6]);
 });
 
 test('cutoff day still shows; the day after hides', () => {
   const api = load();
-  assert.ok(api.orderByFor('halloween', '12-16 days', new Date(2026, 9, 11, 23, 59)));
-  assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 9, 12, 0, 1)), null);
+  assert.ok(api.orderByFor('halloween', '12-16 days', new Date(2026, 9, 10, 23, 59)));
+  assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 9, 11, 0, 1)), null);
   assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 9, 31)), null);
-  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 4)), null);
+  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 3)), null);
   assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 26)), null);
 });
 
 test('per-holiday lead: Christmas opens 14 days before its cutoff, Halloween 60', () => {
   const api = load();
-  // Christmas cutoff Thu Dec 3 2026: opens Thu Nov 19 (14 days), hidden Nov 18.
-  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 3)));
-  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 10, 19)));
-  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 10, 18)), null);
+  // Christmas cutoff Wed Dec 2 2026: opens Wed Nov 18 (14 days), hidden Nov 17.
+  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 11, 2)));
+  assert.ok(api.orderByFor('christmas', '12-16 days', new Date(2026, 10, 18)));
+  assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 10, 17)), null);
   assert.equal(api.orderByFor('christmas', '12-16 days', new Date(2026, 5, 1)), null);
-  // Halloween cutoff Sun Oct 11 2026: opens Wed Aug 12 (60 days), hidden Aug 11.
-  assert.ok(api.orderByFor('halloween', '12-16 days', new Date(2026, 7, 12)));
-  assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 7, 11)), null);
+  // Halloween cutoff Sat Oct 10 2026: opens Tue Aug 11 (60 days), hidden Aug 10.
+  assert.ok(api.orderByFor('halloween', '12-16 days', new Date(2026, 7, 11)));
+  assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 7, 10)), null);
   assert.equal(api.orderByFor('halloween', '12-16 days', new Date(2026, 5, 1)), null);
 });
 
@@ -200,7 +200,7 @@ test('render inserts one line after the estimate paragraph and skips non-holiday
   assert.equal(tree.container.children.length, 2);
   const line = tree.container.children[1];
   assert.equal(line.attrs['data-dlm-holiday-order-by'], 'halloween');
-  assert.equal(line.children[0].text + line.children[1].textContent + line.children[2].text, 'Order by Sun, Oct 11 for estimated Halloween arrival');
+  assert.equal(line.children[0].text + line.children[1].textContent + line.children[2].text, 'Order by Sat, Oct 10 for estimated Halloween arrival');
   // A second pass is a no-op because the estimate paragraph is marked.
   assert.equal(api.render(HALLOWEEN_TAGS, tree.root, today), 0);
   assert.equal(tree.container.children.length, 2);
@@ -268,7 +268,7 @@ test('value-strip slot is filled in place, or hidden when no line applies', () =
   assert.equal(open.slot.hidden, false);
   assert.equal(open.text.textContent, '');
   const [before, date, after] = open.text.children;
-  assert.equal(before.text + date.textContent + after.text, 'Order by Thu, Dec 3 for estimated Christmas arrival');
+  assert.equal(before.text + date.textContent + after.text, 'Order by Wed, Dec 2 for estimated Christmas arrival');
 
   const closed = makeStrip();
   assert.equal(api.render(CHRISTMAS_TAGS, closed.root, new Date(2026, 11, 8)), 0);
@@ -285,15 +285,15 @@ test('PDP card, cart and drawer line (liquid snippet) use the same policy buffer
   const { readFileSync } = await import('node:fs');
   const liquid = readFileSync(new URL('../../snippets/christmas-order-by.liquid', import.meta.url), 'utf8');
   const api = load();
-  assert.equal(api.policyHandlingBufferDays, 4);
-  assert.match(liquid, /assign cob_max = cob_max \| plus: cob_extra \| plus: 4/);
+  assert.equal(api.policyHandlingBufferDays, 5);
+  assert.match(liquid, /assign cob_max = cob_max \| plus: cob_extra \| plus: 5/);
 });
 
 // Independent worst-case check against the shipping policy: the parcel leaves within 5 business
-// days after payment, then carrier transit is at most 13 days (estimate window 12-16 minus the
-// 1-3 handling days it assumes, as published in the Product structured data). Arrival on a
+// days after payment, then carrier transit is at most 14 days (YunExpress registered air mail
+// quotes 7-14; published in the Product structured data). Arrival on a
 // Sunday rolls to Monday like the estimate does.
-function policyWorstArrival(order, transitMax = 13) {
+function policyWorstArrival(order, transitMax = 14) {
   const d = new Date(order.getFullYear(), order.getMonth(), order.getDate());
   let business = 0;
   while (business < 5) {
@@ -313,10 +313,10 @@ test('Christmas cutoff is the latest order day whose policy worst case still arr
   for (let d = new Date(2026, 10, 1); d <= cutoff; d.setDate(d.getDate() + 1)) {
     assert.ok(policyWorstArrival(d) <= target, `order ${d.toDateString()} arrives ${policyWorstArrival(d).toDateString()}`);
   }
-  // ...and the next weekday does not (Thu Dec 3 -> Dec 23, Fri Dec 4 -> Dec 24).
-  assert.deepEqual(ymd(cutoff), [2026, 12, 3, 4]);
-  assert.deepEqual(ymd(policyWorstArrival(new Date(2026, 11, 3))), [2026, 12, 23, 3]);
-  assert.deepEqual(ymd(policyWorstArrival(new Date(2026, 11, 4))), [2026, 12, 24, 4]);
+  // ...and the next day does not (Wed Dec 2 -> Dec 23, Thu Dec 3 -> Dec 24).
+  assert.deepEqual(ymd(cutoff), [2026, 12, 2, 3]);
+  assert.deepEqual(ymd(policyWorstArrival(new Date(2026, 11, 2))), [2026, 12, 23, 3]);
+  assert.deepEqual(ymd(policyWorstArrival(new Date(2026, 11, 3))), [2026, 12, 24, 4]);
 });
 
 test('worst case by weekday: dispatch takes at most 7 calendar days', () => {
@@ -328,8 +328,8 @@ test('worst case by weekday: dispatch takes at most 7 calendar days', () => {
   }
 });
 
-test('structured data publishes the policy handling time (1-5) and keeps transit 11-13', () => {
+test('structured data publishes handling 1-5 and the carrier transit 7-14', () => {
   const liquid = readFileSync(new URL('../../snippets/jsonld-seo.liquid', import.meta.url), 'utf8');
   assert.match(liquid, /assign schema_handling_max = schema_handling_max \| plus: 2/);
-  assert.ok(liquid.indexOf('schema_transit_max = schema_delivery_max | minus: schema_handling_max') < liquid.indexOf('schema_handling_max | plus: 2'));
+  assert.match(liquid, /assign schema_transit_min = 7 -%\}\s*\{%- assign schema_transit_max = 14/);
 });

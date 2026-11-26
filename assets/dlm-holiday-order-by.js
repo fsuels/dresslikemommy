@@ -24,12 +24,13 @@
   var LINE_ATTR = 'data-dlm-holiday-order-by';
   var SLOT_SELECTOR = '[data-dlm-holiday-slot]';
   var DAY_MS = 86400000;
-  // The estimate window (e.g. 12-16 days) assumes about 3 days of handling.
-  // The shipping policy allows up to 5 business days (up to 7 calendar days)
-  // before a parcel ships, so a promise tied to a holiday adds the 4-day
-  // difference: the cutoff is earlier, the estimate itself is unchanged. Keep in
-  // step with the +4 in snippets/christmas-order-by.liquid (same single date).
-  var POLICY_HANDLING_BUFFER_DAYS = 4;
+  // Worst case for a promise tied to a holiday: the shipping policy allows up to
+  // 5 business days (7 calendar days) before dispatch, then the carrier quotes up
+  // to 14 days in transit (YunExpress registered air mail 7-14). The estimate
+  // window (e.g. 12-16 days) is the typical case, so the worst case is 7 + 14 = 21
+  // days: the buffer is 21 minus the window maximum of 16. The estimate itself is
+  // unchanged. Keep in step with the +5 in snippets/christmas-order-by.liquid.
+  var POLICY_HANDLING_BUFFER_DAYS = 5;
 
   // month is 0-based. Christmas targets Dec 23, the same arrival day as
   // snippets/christmas-order-by.liquid and renderChristmasOrderBy in

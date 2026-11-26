@@ -2,8 +2,8 @@
   Christmas order-by estimate. Renders a hidden line; assets/dlm-delivery-dates.js
   fills in two dates and shows it only while an order placed today could still
   arrive by 23 December under the site's own delivery estimate (same window as
-  delivery-estimate-copy, plus made-to-order days, plus 4 days because the shipping
-  policy allows up to 5 business days before shipping while the window assumes about 3;
+  delivery-estimate-copy, plus made-to-order days, plus 5 days: worst case is 7 calendar days
+  (policy: up to 5 business days before shipping) + 14 days carrier transit = 21, against the window maximum of 16;
   keep in step with POLICY_HANDLING_BUFFER_DAYS in assets/dlm-holiday-order-by.js).
   It is an estimate, never a promise.
   Needs: `is_christmas` (true/false). Optional: `extra_days` (made-to-order days).
@@ -22,7 +22,7 @@
     endif
     assign cob_extra = extra_days | plus: 0
     assign cob_max = cob_window | split: ' ' | first | split: '-' | last | plus: 0
-    assign cob_max = cob_max | plus: cob_extra | plus: 4
+    assign cob_max = cob_max | plus: cob_extra | plus: 5
     echo '<p class="dlm-christmas-order-by" hidden data-dlm-christmas-order-by data-max-days="'
     echo cob_max
     echo '" data-text="'

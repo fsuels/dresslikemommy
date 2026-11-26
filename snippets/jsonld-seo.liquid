@@ -302,11 +302,13 @@
   {%- assign schema_transit_min = schema_delivery_min | minus: schema_handling_min -%}
   {%- assign schema_transit_max = schema_delivery_max | minus: schema_handling_max -%}
   {%- comment -%}
-    Transit above is the carrier time inside the estimate window (window minus 1-3 handling days).
-    The shipping policy lets a parcel leave within 5 business days, so the handling time published
-    to Google is 1-5 (plus made-to-order days); transit stays as computed.
+    Published delivery time, from the shipping policy and the US carrier quote: handling 1-5 business
+    days (policy: ships within 5 business days; plus made-to-order days) and transit 7-14 days
+    (YunExpress registered air mail). The visible "Estimated delivery" line is the typical case.
   {%- endcomment -%}
   {%- assign schema_handling_max = schema_handling_max | plus: 2 -%}
+  {%- assign schema_transit_min = 7 -%}
+  {%- assign schema_transit_max = 14 -%}
   {%- assign schema_delivery_valid = false -%}
   {%- if schema_delivery_min >= 1 and schema_delivery_max >= schema_delivery_min and schema_delivery_max <= 90 and schema_transit_min >= 0 and schema_transit_max >= schema_transit_min -%}
     {%- assign schema_delivery_valid = true -%}
