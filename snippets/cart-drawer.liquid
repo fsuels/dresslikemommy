@@ -317,7 +317,7 @@
                       -%}
                       <tr
                         id="CartDrawer-Item-{{ item.index | plus: 1 }}"
-                        class="cart-item"
+                        class="cart-item{% if cart.items.size > 1 %} cart-item--multi{% endif %}"
                         role="row"
                         data-cart-item="true"
                         data-line-key="{{ item.key | escape }}"
@@ -893,6 +893,21 @@
         {%- if additional_checkout_buttons and cart != empty and request.page_type != 'cart' -%}
           <div class="cart-drawer__dynamic-checkout-buttons cart__dynamic-checkout-buttons additional-checkout-buttons additional-checkout-buttons--horizontal">
             {{ content_for_additional_checkout_buttons }}
+          </div>
+        {%- endif -%}
+
+        {%- comment -%}
+          Accepted payment methods, the same list the cart page shows under "We accept"
+          (shop.enabled_payment_types: nothing added by hand, no extra requests; inline SVG).
+        {%- endcomment -%}
+        {%- if shop.enabled_payment_types.size > 0 and cart != empty -%}
+          <div class="cart-drawer__payment-icons">
+            <span class="visually-hidden">{{ 'sections.cart.we_accept' | t }}</span>
+            <div class="payment-icons__list" aria-hidden="true">
+              {%- for type in shop.enabled_payment_types -%}
+                {{ type | payment_type_svg_tag: class: 'payment-icon' }}
+              {%- endfor -%}
+            </div>
           </div>
         {%- endif -%}
 
