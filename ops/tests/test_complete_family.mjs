@@ -256,39 +256,3 @@ test('single-piece designs are listed first so max_products never hides the noti
   // The seen-marker is set only after the pass filter, so pass 2 still visits multi-piece designs.
   assert.ok(snippet.indexOf('if dcf_pass == 1 and dcf_qty_all != 1') < snippet.indexOf("assign dcf_seen = dcf_seen | append: item.product_id"));
 });
-
-// SKU fallback: when no translated alias matches, the untranslated variant SKU
-// gives the role. The test mirrors the snippet's `case dcf_st` token lists.
-function skuRoleFromSnippet(sku) {
-  const block = snippet.slice(snippet.indexOf('case dcf_st'), snippet.indexOf('endcase', snippet.indexOf('case dcf_st')));
-  const rules = [...block.matchAll(/when ([^\n]+)\n\s+assign dcf_srole = '(\w+)'/g)].map((m) => [
-    [...m[1].matchAll(/'([^']+)'/g)].map((x) => x[1]),
-    m[2],
-  ]);
-  for (const token of String(sku).toLowerCase().split(/[-_ :;]/)) {
-    const hit = rules.find(([words]) => words.includes(token));
-    if (hit) return hit[1];
-  }
-  return '';
-}
-
-test('SKU fallback reads the role from real family SKUs and never from translated words', () => {
-  assert.ok(snippet.includes('dcf_skumap'), 'snippet keeps the SKU fallback map');
-  assert.equal(skuRoleFromSnippet('DLM-NDYK-KID-KID612M-CRM'), 'child');
-  assert.equal(skuRoleFromSnippet('DLM-NDYK-ADT-S-CRM'), 'adult');
-  assert.equal(skuRoleFromSnippet('DLM-SNFR-ADT-2XL-RED'), 'adult');
-  assert.equal(skuRoleFromSnippet('mother-s'), 'mother');
-  assert.equal(skuRoleFromSnippet('child-2T'), 'child');
-  assert.equal(skuRoleFromSnippet('558794-girl-dress-10t-heart'), 'girl');
-  assert.equal(skuRoleFromSnippet('Baby-18M'), 'baby');
-  assert.equal(skuRoleFromSnippet('5173849917893-Size:Mother S;Color:Blue;'), 'mother');
-  assert.equal(skuRoleFromSnippet('5457699851669-01'), '');
-  assert.equal(skuRoleFromSnippet(''), '');
-});
-
-test('SKU fallback only runs after the alias lookups and ignores values whose variants disagree', () => {
-  const alias = snippet.indexOf('dcf_words.last | append');
-  const fallback = snippet.lastIndexOf('unless dcf_skumap contains dcf_sbad');
-  assert.ok(alias > 0 && fallback > alias, 'alias lookups come first');
-  assert.ok(snippet.includes("'¤!¦'"), 'conflicting or role-less values are marked unusable');
-});

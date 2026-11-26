@@ -22,14 +22,12 @@
   family look from the photos notice before checkout. Two or more pieces of
   the design count as matching and show no notice.
 
-  Role detection: variant option values are translated per storefront language
-  (e.g. "Mother S" / "Mamá S"), so a value's role is first looked up from its
-  first two words, first word, first hyphen segment or last word in `dcf_alias` (kept in sync with ROLE_DEFINITIONS in
+  Role detection is locale-independent: variant option values are translated
+  per storefront language (e.g. "Mother S" / "Mamá S"), so a value's role is
+  its first two words, first word, first hyphen segment or last word looked up
+  in `dcf_alias` (kept in sync with ROLE_DEFINITIONS in
   assets/product-desktop-ux-20260513-ruler-sync.js; see
-  ops/tests/test_complete_family.mjs).
-  When no alias matches (new wording or a new locale), the untranslated variant
-  SKU supplies the role (see dcf_skumap), so the tile no longer depends on
-  translated words. The role option is the first option
+  ops/tests/test_complete_family.mjs). The role option is the first option
   whose values carry at least two different roles.
 
   Accepts:
@@ -690,60 +688,6 @@
       assign dcf_opt_map = '¦'
       assign dcf_opt_roles = ','
       assign dcf_opt_distinct = 0
-
-      # Language-independent fallback: the SKU is never translated. Per option
-      # value of this option, the first role token found in the SKU of a
-      # variant carrying that value (mother/mom, father/dad, girl, boy,
-      # kid/child, baby, adt/adult; split on - _ : ; and space).
-      assign dcf_skumap = '¦'
-      assign dcf_opt_ix = dcf_opt.position | minus: 1
-      for dcf_sv in dcf_p.variants
-        assign dcf_sval = dcf_sv.options[dcf_opt_ix]
-        assign dcf_sneedle = '¦' | append: dcf_sval | append: '¤'
-        if dcf_sval == blank or dcf_sv.sku == blank
-          continue
-        endif
-        assign dcf_stoks = dcf_sv.sku | downcase | replace: '_', '-' | replace: ' ', '-' | replace: ':', '-' | replace: ';', '-' | split: '-'
-        assign dcf_srole = ''
-        for dcf_st in dcf_stoks
-          case dcf_st
-            when 'mother', 'mom'
-              assign dcf_srole = 'mother'
-            when 'father', 'dad'
-              assign dcf_srole = 'father'
-            when 'girl'
-              assign dcf_srole = 'girl'
-            when 'boy'
-              assign dcf_srole = 'boy'
-            when 'kid', 'child'
-              assign dcf_srole = 'child'
-            when 'baby'
-              assign dcf_srole = 'baby'
-            when 'adt', 'adult'
-              assign dcf_srole = 'adult'
-          endcase
-          if dcf_srole != ''
-            break
-          endif
-        endfor
-        # A value whose variants lack a role token or disagree on it (e.g. a
-        # Color value) is marked '!' and never used.
-        assign dcf_sbad = '¦' | append: dcf_sval | append: '¤!¦'
-        assign dcf_sentry = '¦' | append: dcf_sval | append: '¤' | append: dcf_srole | append: '¦'
-        if dcf_skumap contains dcf_sbad
-          continue
-        endif
-        if dcf_srole == ''
-          assign dcf_skumap = dcf_skumap | append: dcf_sval | append: '¤!¦'
-        elsif dcf_skumap contains dcf_sneedle
-          unless dcf_skumap contains dcf_sentry
-            assign dcf_skumap = dcf_skumap | append: dcf_sval | append: '¤!¦'
-          endunless
-        else
-          assign dcf_skumap = dcf_skumap | append: dcf_sval | append: '¤' | append: dcf_srole | append: '¦'
-        endif
-      endfor
-
       for dcf_value in dcf_opt.values
         assign dcf_val = dcf_value.name | default: dcf_value | append: ''
         assign dcf_norm = dcf_val | replace: '(', ' ' | replace: ')', ' ' | replace: ':', ' ' | replace: ',', ' ' | replace: '/', ' ' | strip
@@ -784,16 +728,6 @@
             assign dcf_last_len = dcf_owords.last | size
             assign dcf_keep = dcf_norm | size | minus: dcf_last_len
             assign dcf_rem = dcf_norm | slice: 0, dcf_keep
-          endif
-        endif
-        if dcf_r == '' and dcf_words.size > 1
-          assign dcf_sneedle = '¦' | append: dcf_val | append: '¤'
-          assign dcf_sbad = '¦' | append: dcf_val | append: '¤!¦'
-          if dcf_skumap contains dcf_sneedle
-            unless dcf_skumap contains dcf_sbad
-              assign dcf_r = dcf_skumap | split: dcf_sneedle | last | split: '¦' | first
-              assign dcf_rem = dcf_norm | remove_first: dcf_owords[0]
-            endunless
           endif
         endif
         if dcf_r != ''
