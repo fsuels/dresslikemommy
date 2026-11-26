@@ -978,6 +978,8 @@ body.dlm-fit-modal-open {
    Per-card axis pickers cover both. Type (Shirt/Dress) stays visible
    above the bundle because it's a role-discriminator that re-seeds
    the default-visible family members (handled by JS reactivity). */
+.product__info-container--matching-set variant-selects > .product-form__input[data-option-role="size"],
+.product__info-container--matching-set variant-selects > .product-form__input[data-option-role="color"],
 .product__info-container--matching-set variant-selects > fieldset[aria-describedby="size-conversion-message"],
 .product__info-container--matching-set variant-selects > .product-form__input:has([aria-describedby="size-conversion-message"]),
 .product__info-container--matching-set variant-selects > fieldset.product-form__input--swatch,

@@ -104,6 +104,20 @@
           assign is_size_option = true
         endif
 
+        # Values name the family member in every language ("Kind 6-12 maanden", "Volwassene S"):
+        # use them too, so a size option whose NAME is not in the word list is still found.
+        unless is_size_option
+          for dlm_ov in option.values
+            capture dlm_ov_group
+              render 'dlm-facet-size-group', label: dlm_ov
+            endcapture
+            if dlm_ov_group != 'other'
+              assign is_size_option = true
+              break
+            endif
+          endfor
+        endunless
+
         if is_size_option and has_type_or_style_option
           assign hide_unavailable_dropdown_options = true
         endif
