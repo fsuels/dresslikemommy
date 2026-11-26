@@ -1284,8 +1284,13 @@
                     </quantity-input>
 
                     {%- if has_matching_set_context and product.has_only_default_variant == false -%}
+                      {%- capture pdp_hint_multipiece -%}{%- render 'dlm-multipiece-flag', product: product -%}{%- endcapture -%}
                       <p class="product-form__matching-set-hint">
-                        {{ 'products.product.matching_set.copy' | t }}
+                        {%- if pdp_hint_multipiece contains 'true' -%}
+                          {{ 'products.product.matching_set.copy_person' | t }}
+                        {%- else -%}
+                          {{ 'products.product.matching_set.copy' | t }}
+                        {%- endif -%}
                       </p>
                     {%- endif -%}
 

@@ -57,7 +57,14 @@
       endfor
     endfor
     if pn_child and pn_adult
-      assign pn_text = 'products.product.matching_set.copy' | t
+      capture pn_multi
+        render 'dlm-multipiece-flag', product: product
+      endcapture
+      if pn_multi contains 'true'
+        assign pn_text = 'products.product.matching_set.copy_person' | t
+      else
+        assign pn_text = 'products.product.matching_set.copy' | t
+      endif
       if pn_text contains 'translation missing'
         assign pn_text = ''
       endif

@@ -91,7 +91,11 @@
       var last = new Date(arrive.getFullYear(), arrive.getMonth(), arrive.getDate() - max);
       while (last >= today && addDays(last, max).getTime() > arrive.getTime()) last.setDate(last.getDate() - 1);
       if (last < today || today > arrive) return revealCobSlot(node, false);
-      node.textContent = text.replace('{order}', fmt.format(last)).replace('{arrive}', fmt.format(arrive));
+      // Abbreviated months ("déc.", "dic.") already end with a period: do not print two.
+      node.textContent = text
+        .replace('{order}', fmt.format(last))
+        .replace('{arrive}', fmt.format(arrive))
+        .replace(/([^.])\.\.(?!\.)/g, '$1.');
       node.hidden = false;
       revealCobSlot(node, true);
     });

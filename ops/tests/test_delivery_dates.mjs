@@ -74,3 +74,10 @@ test('dates follow the storefront locale', () => {
   assert.match(api.formatWindow(range, 'da'), /okt/);
   assert.match(api.formatWindow(range, 'not a locale!!'), /Oct/);
 });
+
+test('Christmas estimate line never prints two periods after an abbreviated month', () => {
+  const source = readFileSync(new URL('../../assets/dlm-delivery-dates.js', import.meta.url), 'utf8');
+  assert.match(source, /replace\(\/\(\[\^\.\]\)\\\.\\\.\(\?!\\\.\)\/g, '\$1\.'\)/);
+  const fixed = 'Estimation : commandez avant le mer. 2 déc. pour recevoir avant le mer. 23 déc.. Ce n\'est pas.'.replace(/([^.])\.\.(?!\.)/g, '$1.');
+  assert.equal(fixed.includes('..'), false);
+});

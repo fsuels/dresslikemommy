@@ -83,6 +83,12 @@
   endif
 
   assign matching_set_builder_copy = matching_set_copy
+  capture matching_set_multipiece
+    render 'dlm-multipiece-flag', product: product
+  endcapture
+  if matching_set_multipiece contains 'true'
+    assign matching_set_builder_copy = 'products.product.matching_set.copy_person' | t
+  endif
   assign matching_set_guide_enabled = false
   assign matching_set_guide_label_1 = 'Top and pants are separate pieces'
   assign matching_set_guide_label_2 = 'Add mom and child sizes together'
