@@ -1,4 +1,5 @@
 {%- comment -%}
+  (Set detection also reads the untranslated tags, because titles and types are translated.)
   One short line under the PDP price so a shopper does not read a family or Mommy & Me
   listing as one price for the whole set.
 
@@ -17,7 +18,8 @@
 {%- endcomment -%}
 {%- liquid
   assign pn_text = ''
-  assign pn_probe = product.title | append: ' ' | append: product.type | downcase | append: ' '
+  assign pn_tags = product.tags | join: ' '
+  assign pn_probe = product.title | append: ' ' | append: product.type | append: ' ' | append: pn_tags | downcase | append: ' '
   assign pn_is_set = false
   if pn_probe contains ' set ' or pn_probe contains ' sets ' or pn_probe contains ' set—' or pn_probe contains ' set -'
     assign pn_is_set = true
