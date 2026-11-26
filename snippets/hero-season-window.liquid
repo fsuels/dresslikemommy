@@ -1,6 +1,7 @@
 {%- comment -%}
   Which seasonal hero copy edition applies on a date (MMDD, shop time). Echoes
-  nothing outside the windows, so the caller keeps the Christmas copy.
+  nothing outside the windows (Sep 1 - Dec 2), so the caller keeps its own copy:
+  Halloween & winter Sep 1 - Oct 15, Christmas Oct 16 - Dec 2.
   The windows are plain `if mmdd ...` lines: ops/tests/test_hero_season_windows.mjs
   reads this file and asserts every boundary.
 
@@ -17,5 +18,7 @@
     echo 'new_year'
   elsif mmdd >= 111 and mmdd <= 214
     echo 'valentines'
+  elsif mmdd >= 215 and mmdd <= 831
+    echo 'everyday'
   endif
 -%}

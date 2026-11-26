@@ -45,8 +45,12 @@ test('window selection at every boundary', () => {
     '2027-01-10': 'new_year',
     '2027-01-11': 'valentines',
     '2027-02-14': 'valentines',
-    '2027-02-15': '',
-    '2027-06-01': '',
+    '2027-02-15': 'everyday', // season-free hero until Aug 31
+    '2027-03-01': 'everyday',
+    '2027-06-01': 'everyday',
+    '2027-08-31': 'everyday',
+    '2027-09-01': '', // Halloween & winter edit (own copy and art)
+    '2027-10-15': '',
     '2026-10-20': '',
   };
   for (const [date, expected] of Object.entries(cases)) {
@@ -90,7 +94,7 @@ function parseCopy() {
 }
 
 const copy = parseCopy();
-const NEW = ['winter_photos', 'new_year', 'valentines'];
+const NEW = ['winter_photos', 'new_year', 'valentines', 'everyday'];
 const TEXT_KEYS = ['eyebrow', 'heading', 'subheading', 'cta_primary', 'cta_secondary'];
 
 test('every new edition has copy in English and every snippet language', () => {
@@ -98,6 +102,10 @@ test('every new edition has copy in English and every snippet language', () => {
     for (const key of TEXT_KEYS) {
       const entry = copy[`${edition}:${key}`];
       assert.ok(entry, `${edition}:${key} missing`);
+      if (edition === 'everyday' && key === 'eyebrow') {
+        assert.equal(entry.else, 'Dress Like Mommy');
+        continue;
+      }
       assert.ok(entry.else, `${edition}:${key} English missing`);
       for (const lang of LANGS) {
         const text = entry[lang] || entry[lang === 'no' ? 'nb' : lang];
@@ -128,6 +136,8 @@ test('links point at the intended collections and no third link', () => {
   assert.equal(links['new_year:link_secondary'], '/collections/matching-family-sweatshirts');
   assert.equal(links['valentines:link_primary'], '/collections/valentines-day-matching-outfits-1');
   assert.equal(links['valentines:link_secondary'], '/collections/mommy-and-me');
+  assert.equal(links['everyday:link_primary'], '/collections/matching-outfits');
+  assert.equal(links['everyday:link_secondary'], '/collections/mommy-and-me');
   for (const edition of NEW) assert.equal(links[`${edition}:link_tertiary`], undefined);
   assert.equal(links['christmas:link_primary'], '/collections/christmas-sweaters');
 });
@@ -144,9 +154,28 @@ test('the Christmas copy is untouched and the banner wires the windows safely', 
 test('the date value is numeric month * 100 + day and the art is neutral after Dec 25', () => {
   assert.match(bannerSource, /assign hero_today_month = 'now' \| date: '%m' \| plus: 0\n\s+assign hero_today_day = 'now' \| date: '%d' \| plus: 0\n\s+assign hero_today_mmdd = hero_today_month \| times: 100 \| plus: hero_today_day/);
   assert.doesNotMatch(bannerSource, /date: '%m%d'/);
-  assert.match(bannerSource, /hero_seasonal_copy == 'christmas' and hero_copy_edition != 'new_year' and hero_copy_edition != 'valentines'/);
+  assert.match(bannerSource, /hero_copy_edition == 'christmas' or hero_copy_edition == 'winter_photos'/);
   // Month * 100 + day for the dates that matter (the same arithmetic the Liquid does).
   const value = (iso) => Number(iso.slice(5, 7)) * 100 + Number(iso.slice(8, 10));
   assert.deepEqual(['2027-01-01', '2027-01-10', '2027-01-11', '2027-02-01'].map(value), [101, 110, 111, 201]);
   assert.deepEqual(['2027-01-01', '2027-01-10', '2027-01-11', '2027-02-01'].map((d) => windowEdition(value(d))), ['new_year', 'new_year', 'valentines', 'valentines']);
+});
+
+test('Portuguese uses the February 14 name, Romanian copy fixes hold', () => {
+  assert.doesNotMatch(copySource, /Namorados/);
+  assert.equal(copy['valentines:eyebrow'].pt, 'Dia de São Valentim');
+  assert.doesNotMatch(copy['winter_photos:subheading'].ro, /călduroase/);
+  const holiday = read('assets/dlm-holiday-order-by.js');
+  assert.match(holiday, /christmas: 'Comandă până pe \{date\} pentru livrarea estimată înainte de Crăciun'/);
+  assert.doesNotMatch(holiday, /Comandă până \{date\}/);
+});
+
+test('the hero by month: Christmas art only to Dec 25, season-free Feb 15 to Aug 31, Halloween edit Sep 1 to Oct 15', () => {
+  const art = (m) => m >= 1016 || (m >= 101 && m <= 831);
+  assert.match(bannerSource, /hero_today_mmdd >= 1016 or hero_today_mmdd >= 101 and hero_today_mmdd <= 831/);
+  const month = (m, d) => m * 100 + d;
+  assert.equal(art(month(9, 1)), false);
+  assert.equal(art(month(10, 15)), false);
+  assert.equal(art(month(10, 16)), true);
+  assert.equal(art(month(8, 31)), true);
 });

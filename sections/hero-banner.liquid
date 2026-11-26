@@ -2,12 +2,12 @@
   assign hero_text_scrim = section.settings.text_scrim_opacity | default: 64 | at_least: section.settings.overlay_opacity
 
   # Seasonal edition. Halloween's last estimated order date is Oct 15 (12–16 day
-  # delivery), so from Oct 16 through Dec 31 (shop time, same MMDD approach as
+  # delivery), so from Oct 16 through Aug 31 of the next year (shop time, same MMDD approach as
   # snippets/christmas-season-collection.liquid) the halloween_winter edition shows the
   # christmas edition: its copy, CTA links and product slides. Selecting "Christmas
   # edition" in the theme editor shows it on any date (QA preview / manual override).
   #
-  # The Christmas product photos show through Dec 25; from Dec 26 to Feb 14 the sky-only slide
+  # The Christmas product photos show through Dec 25; from Dec 26 to Aug 31 the sky-only slide
   # replaces them. Copy and links change on the dates in snippets/hero-season-window.liquid (Dec 3 winter family
   # photos, Dec 26 New Year, Jan 11 Valentine's Day). Christmas copy runs until the end of
   # Dec 2. In the theme editor only, "Preview date" shows another day.
@@ -24,7 +24,7 @@
       assign hero_today_day = hero_preview_date | date: '%d' | plus: 0
       assign hero_today_mmdd = hero_today_month | times: 100 | plus: hero_today_day
     endif
-    if hero_today_mmdd >= 1016 or hero_today_mmdd >= 101 and hero_today_mmdd <= 214
+    if hero_today_mmdd >= 1016 or hero_today_mmdd >= 101 and hero_today_mmdd <= 831
       assign hero_seasonal_copy = 'christmas'
       assign hero_copy_edition = 'christmas'
       capture hero_window_edition
@@ -46,7 +46,11 @@
   assign hero_christmas_slide_max = 3
   assign hero_christmas_product_count = 0
   # Christmas product photos only through Dec 25 (and on the manual Christmas edition); later windows get the sky-only slide.
-  if hero_seasonal_copy == 'christmas' and hero_copy_edition != 'new_year' and hero_copy_edition != 'valentines'
+  assign hero_show_christmas_photos = false
+  if hero_copy_edition == 'christmas' or hero_copy_edition == 'winter_photos'
+    assign hero_show_christmas_photos = true
+  endif
+  if hero_seasonal_copy == 'christmas' and hero_show_christmas_photos
     for christmas_product in collections['christmas-pajamas'].products
       if christmas_product.available and christmas_product.featured_image != blank
         assign hero_christmas_product_count = hero_christmas_product_count | plus: 1
@@ -1093,7 +1097,7 @@
   assign hero_heading = section.settings.heading
   assign hero_heading_html = section.settings.heading
   assign hero_subheading_html = section.settings.subheading
-  # hero_seasonal_copy / hero_copy_edition (Oct 16 – Feb 14 sky/art swap and dated copy windows) are set at the top of this file.
+  # hero_seasonal_copy / hero_copy_edition (Jan 1 – Aug 31 and Oct 16 – Dec 31 sky/art swap and dated copy windows) are set at the top of this file.
   if hero_seasonal_copy != 'none'
     # Pre-translated copy: Translate & Adapt would keep serving the previous
     # season's translations of the text settings on non-English routes.
@@ -2015,7 +2019,7 @@
         }
       ],
       "default": "none",
-      "info": "Pre-translated hero copy in every store language. Halloween & winter: from Oct 16 to Feb 14 (shop time) it shows the winter sky, with copy and links that change on Dec 3, Dec 26 and Jan 11. Christmas edition: Christmas links and the first 3 available Christmas pajama photos. Select it to preview."
+      "info": "Pre-translated hero copy in every store language. Halloween & winter: Sep 1 to Oct 15 the Halloween edit; Oct 16 to Dec 2 Christmas; then winter, New Year, Valentine's Day and, to Aug 31, season-free copy (shop time). Christmas edition: Christmas links and the first 3 Christmas pajama photos. Select it to preview."
     },
     {
       "type": "text",
