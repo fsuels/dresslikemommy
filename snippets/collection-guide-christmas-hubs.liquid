@@ -58,7 +58,10 @@
   assign c = cg | split: '|'
   assign faq_only = ''
   if handle == 'christmas-pajamas'
-    assign faq_only = '12,4,16' | split: ','
+    comment
+      No sizing advice on pajamas (CEO 2026-11-26): never suggest a looser fit for children's sleepwear.
+    endcomment
+    assign faq_only = '12,16' | split: ','
   elsif handle == 'family-sweaters'
     assign faq_only = '2,4,12,16' | split: ','
   endif
