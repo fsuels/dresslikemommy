@@ -288,3 +288,48 @@ test('PDP card, cart and drawer line (liquid snippet) use the same policy buffer
   assert.equal(api.policyHandlingBufferDays, 4);
   assert.match(liquid, /assign cob_max = cob_max \| plus: cob_extra \| plus: 4/);
 });
+
+// Independent worst-case check against the shipping policy: the parcel leaves within 5 business
+// days after payment, then carrier transit is at most 13 days (estimate window 12-16 minus the
+// 1-3 handling days it assumes, as published in the Product structured data). Arrival on a
+// Sunday rolls to Monday like the estimate does.
+function policyWorstArrival(order, transitMax = 13) {
+  const d = new Date(order.getFullYear(), order.getMonth(), order.getDate());
+  let business = 0;
+  while (business < 5) {
+    d.setDate(d.getDate() + 1);
+    if (d.getDay() !== 0 && d.getDay() !== 6) business += 1;
+  }
+  d.setDate(d.getDate() + transitMax);
+  if (d.getDay() === 0) d.setDate(d.getDate() + 1);
+  return d;
+}
+
+test('Christmas cutoff is the latest order day whose policy worst case still arrives by Dec 23', () => {
+  const api = load();
+  const cutoff = api.orderByFor('christmas', '12-16 days', new Date(2026, 10, 25)).cutoff;
+  const target = new Date(2026, 11, 23);
+  // Every order day from Nov 1 up to the cutoff arrives by Dec 23 in the worst case...
+  for (let d = new Date(2026, 10, 1); d <= cutoff; d.setDate(d.getDate() + 1)) {
+    assert.ok(policyWorstArrival(d) <= target, `order ${d.toDateString()} arrives ${policyWorstArrival(d).toDateString()}`);
+  }
+  // ...and the next weekday does not (Thu Dec 3 -> Dec 23, Fri Dec 4 -> Dec 24).
+  assert.deepEqual(ymd(cutoff), [2026, 12, 3, 4]);
+  assert.deepEqual(ymd(policyWorstArrival(new Date(2026, 11, 3))), [2026, 12, 23, 3]);
+  assert.deepEqual(ymd(policyWorstArrival(new Date(2026, 11, 4))), [2026, 12, 24, 4]);
+});
+
+test('worst case by weekday: dispatch takes at most 7 calendar days', () => {
+  for (let i = 0; i < 7; i += 1) {
+    const order = new Date(2026, 11, 1 + i);
+    const dispatchOnly = policyWorstArrival(order, 0);
+    const days = Math.round((dispatchOnly - order) / 86400000);
+    assert.ok(days <= 7 && days >= 5, `${order.toDateString()} dispatch in ${days} days`);
+  }
+});
+
+test('structured data publishes the policy handling time (1-5) and keeps transit 11-13', () => {
+  const liquid = readFileSync(new URL('../../snippets/jsonld-seo.liquid', import.meta.url), 'utf8');
+  assert.match(liquid, /assign schema_handling_max = schema_handling_max \| plus: 2/);
+  assert.ok(liquid.indexOf('schema_transit_max = schema_delivery_max | minus: schema_handling_max') < liquid.indexOf('schema_handling_max | plus: 2'));
+});
