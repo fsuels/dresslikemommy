@@ -1,0 +1,66 @@
+{%- comment -%}
+  Price line for listings that sell child and adult sizes at different prices:
+  "Kids from $37.99 · Adults from $49.99". Prints nothing (so callers keep today's
+  display) unless every variant belongs to a child group or an adult group, both
+  groups exist and their lowest prices differ.
+
+  Accepts:
+  - product: {Object} product
+
+  Group words reuse the size-filter group labels (snippets/dlm-facet-size-group.liquid,
+  locale keys products.facets.size_groups.child / .adult). The size group of each variant is read from
+  the first option whose value names a family member; option values are translated per
+  language and the snippet covers those words. Money uses the same money / money_with_currency
+  switch as snippets/price.liquid. Returns plain text (already escaped for HTML).
+{%- endcomment -%}
+{%- capture dlm_currency_code_flag -%}{%- render 'dlm-show-currency-code' -%}{%- endcapture -%}
+{%- liquid
+  assign pg_child_min = 0
+  assign pg_adult_min = 0
+  assign pg_ok = true
+  for pg_variant in product.variants
+    assign pg_key = 'other'
+    for pg_label in pg_variant.options
+      capture pg_found
+        render 'dlm-facet-size-group', label: pg_label
+      endcapture
+      if pg_found != 'other'
+        assign pg_key = pg_found
+        break
+      endif
+    endfor
+    case pg_key
+      when 'girl', 'boy', 'child', 'baby'
+        if pg_child_min == 0 or pg_variant.price < pg_child_min
+          assign pg_child_min = pg_variant.price
+        endif
+      when 'mother', 'father', 'adult'
+        if pg_adult_min == 0 or pg_variant.price < pg_adult_min
+          assign pg_adult_min = pg_variant.price
+        endif
+      else
+        assign pg_ok = false
+        break
+    endcase
+  endfor
+
+  if pg_ok and pg_child_min > 0 and pg_adult_min > 0 and pg_child_min != pg_adult_min
+    if dlm_currency_code_flag == 'true'
+      assign pg_child_money = pg_child_min | money_with_currency
+      assign pg_adult_money = pg_adult_min | money_with_currency
+    else
+      assign pg_child_money = pg_child_min | money
+      assign pg_adult_money = pg_adult_min | money
+    endif
+    assign pg_child_word = 'products.facets.size_groups.child' | t
+    assign pg_adult_word = 'products.facets.size_groups.adult' | t
+    assign pg_child_line = 'products.product.price.group_from' | t: group: pg_child_word, price: pg_child_money | strip_html
+    assign pg_adult_line = 'products.product.price.group_from' | t: group: pg_adult_word, price: pg_adult_money | strip_html
+    assign pg_sep = ' · '
+    if pg_child_min < pg_adult_min
+      echo pg_child_line | append: pg_sep | append: pg_adult_line
+    else
+      echo pg_adult_line | append: pg_sep | append: pg_child_line
+    endif
+  endif
+-%}

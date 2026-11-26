@@ -175,7 +175,7 @@
 
 {%- capture dlm_currency_code_flag -%}{%- render 'dlm-show-currency-code' -%}{%- endcapture -%}
 {%- capture matching_default_price_html -%}
-  {%- render 'price', product: product, use_variant: false, show_price_range: true, show_badges: false, show_sold_out_badge: false, price_class: 'price--large' -%}
+  {%- render 'price', product: product, use_variant: false, show_price_range: true, show_price_groups: true, show_badges: false, show_sold_out_badge: false, price_class: 'price--large' -%}
 {%- endcapture -%}
 <script type="application/json" id="ProductMatchingSetData-{{ section.id }}">
   {

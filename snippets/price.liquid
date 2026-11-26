@@ -8,6 +8,7 @@
   - price_class: {String} Adds a price class to the price element (optional)
   - show_compare_at_price: {Boolean} Renders the compare at price if the product matches the condition (optional)
   - show_price_range: {Boolean} Renders product min-max price instead of a selected variant price (optional)
+  - show_price_groups: {Boolean} With show_price_range, PDP only: 'Kids from X · Adults from Y' when child and adult sizes differ in price (optional)
 
   Usage:
   {% render 'price', product: product %}
@@ -70,6 +71,18 @@
     assign compare_at_price_money = blank
   elsif target == product and product.price_varies
     assign money_price = 'products.product.price.from_price_html' | t: price: money_price
+  endif
+
+  # PDP only (show_price_groups): "Kids from $X · Adults from $Y" when child and adult sizes
+  # are priced differently and no size is chosen yet. Empty = today's "From $X" stays.
+  if display_price_range and show_price_groups
+    capture dlm_price_group_line
+      render 'dlm-price-groups', product: product
+    endcapture
+    assign dlm_price_group_line = dlm_price_group_line | strip
+    if dlm_price_group_line != blank
+      assign money_price = dlm_price_group_line
+    endif
   endif
 -%}
 
