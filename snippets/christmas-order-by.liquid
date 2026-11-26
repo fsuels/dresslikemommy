@@ -6,6 +6,8 @@
   (policy: up to 5 business days before shipping) + 14 days carrier transit = 21, against the window maximum of 16;
   keep in step with POLICY_HANDLING_BUFFER_DAYS in assets/dlm-holiday-order-by.js).
   It is an estimate, never a promise.
+  The visible estimate (delivery-estimate-copy) is now transit + 5 days (US 12-19); this line deliberately still
+  uses the locale window's maximum (16) + 5 = 21 days, which is not earlier than the visible 19-day maximum.
   Needs: `is_christmas` (true/false). Optional: `extra_days` (made-to-order days).
   Removes itself after the last order date, and Liquid stops rendering it after 7 Dec.
   The dated estimate renders for United States shoppers only (carrier transit evidence is US-only);

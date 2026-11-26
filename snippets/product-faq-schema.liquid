@@ -44,23 +44,18 @@
       Country-aware like snippets/delivery-estimate-copy.liquid: US keeps the standard window, a country
       with carrier evidence gets its own, any other country gets no numbers.
     endcomment
-    assign shipping_has_window = true
-    if localization.country.iso_code != 'US'
-      capture shipping_transit
-        render 'dlm-transit-map', country: localization.country.iso_code
-      endcapture
-      assign shipping_transit = shipping_transit | strip
-      assign shipping_has_window = false
-      if shipping_transit != blank
-        assign shipping_parts = shipping_transit | split: '-'
-        assign shipping_hi = shipping_parts[1] | plus: 2
-        assign shipping_new = shipping_parts[0] | plus: 5 | append: '-' | append: shipping_hi
-        assign shipping_replaced = shipping_window | replace_first: '12-16', shipping_new
-        if shipping_replaced != shipping_window
-          assign shipping_window = shipping_replaced
-          assign shipping_has_window = true
-        endif
-      endif
+    assign shipping_has_window = false
+    capture shipping_transit
+      render 'dlm-transit-map', country: localization.country.iso_code
+    endcapture
+    assign shipping_transit = shipping_transit | strip
+    if shipping_transit != blank and shipping_window contains '12-16'
+      assign shipping_parts = shipping_transit | split: '-'
+      assign shipping_lo = shipping_parts[0] | plus: 5
+      assign shipping_hi = shipping_parts[1] | plus: 5
+      assign shipping_new = shipping_lo | append: '-' | append: shipping_hi
+      assign shipping_window = shipping_window | replace_first: '12-16', shipping_new
+      assign shipping_has_window = true
     endif
 
     assign made_to_order_days = product.metafields.custom.made_to_order_days.value | default: 0
