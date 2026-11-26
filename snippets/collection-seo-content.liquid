@@ -204,7 +204,19 @@
         SEO 2026-11-26: short FAQ under the existing guides (question headings feed
         faq-schema-from-html).
       endcomment
-      if collection_handle == 'christmas-pajamas' or collection_handle == 'family-sweaters'
+      assign seo_faq_handles = ',christmas-pajamas,family-sweaters,sweaters,matching-family-sweatshirts,valentines-day-matching-outfits-1,'
+      assign seo_faq_key = ',' | append: collection_handle | append: ','
+      assign seo_machine_handles = ',dresses,mother-daughter-matching-dresses,matching-outfits,'
+      assign seo_copy_lang = request.locale.iso_code | default: 'en' | downcase | split: '-' | first
+      if seo_copy_lang != 'en' and seo_machine_handles contains seo_faq_key
+        comment
+          Quality 2026-11-26: the translated rich_parts for these hubs are unreadable
+          machine copy; show the short natural FAQ instead.
+        endcomment
+        assign seo_rich_output = ''
+        assign seo_faq_handles = seo_faq_handles | append: collection_handle | append: ','
+      endif
+      if seo_faq_handles contains seo_faq_key
         capture seo_faq_html
           render 'collection-guide-christmas-hubs', handle: collection_handle
         endcapture

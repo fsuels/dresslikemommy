@@ -65,6 +65,14 @@
   elsif handle == 'family-sweaters'
     assign faq_only = '2,4,12,16' | split: ','
   endif
+  case handle
+    when 'sweaters', 'matching-family-sweatshirts'
+      assign faq_only = '4,12,14' | split: ','
+    when 'valentines-day-matching-outfits-1', 'dresses', 'mother-daughter-matching-dresses'
+      assign faq_only = '4,12' | split: ','
+    when 'matching-outfits'
+      assign faq_only = '4,12,14' | split: ','
+  endcase
   if handle == 'christmas-sweaters'
     assign cg_links = 'matching-family-christmas-outfits,christmas-pajamas,matching-family-sweatshirts' | split: ','
     assign start = 0

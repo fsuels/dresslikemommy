@@ -79,7 +79,7 @@
       assign effective_display_title = 'Matching Family Pajamas'
       assign effective_display_title_key = 'sections.collection_seo.display_titles.pajamas'
     when 'sweaters'
-      assign effective_display_title = 'Mommy and Me Matching Sweaters'
+      assign effective_display_title = 'Mommy and Me and Family Matching Sweaters'
       assign effective_display_title_key = 'sections.collection_seo.display_titles.sweaters'
     when 'maxi-dresses'
       assign effective_display_title = 'Mommy and Me Maxi Dresses'
@@ -158,12 +158,12 @@
       assign effective_display_title_key = 'sections.collection_seo.display_titles.valentines'
   endcase
 
-  if effective_display_title_key != blank
-    assign effective_display_title = effective_display_title_key | t | replace: '&#39;', "'"
-  endif
-
   if seo_lang != 'en' and collection_handle == 'pajamas'
     assign effective_display_title_key = 'sections.collection_seo.display_titles.pajamas_mom'
+  endif
+
+  if effective_display_title_key != blank
+    assign effective_display_title = effective_display_title_key | t | replace: '&#39;', "'"
   endif
 
   if seo_lang == 'en'
@@ -201,7 +201,7 @@
     assign effective_meta_title = 'Family Matching Outfits for Mom, Dad and Kids | Dress Like Mommy'
     assign effective_meta_title_key = 'sections.collection_seo.meta_titles.new_women_outfits'
   elsif collection_handle == 'dresses' or collection_handle == 'mother-daughter-matching-dresses'
-    assign effective_meta_title = 'Mommy and Me Dresses | Mother Daughter'
+    assign effective_meta_title = 'Mommy and Me Dresses – Mother Daughter Matching Dresses'
     assign effective_meta_title_key = 'sections.collection_seo.meta_titles.dresses'
   elsif collection_handle == 'maxi-dresses'
     assign effective_meta_title = 'Matching Maxi Dresses | Mom and Daughter'
@@ -489,6 +489,14 @@
       when 'matching-family-sweatshirts'
         assign body_description_key = 'sections.collection_seo.body.family_sweatshirts_html'
     endcase
+  endif
+
+  if collection_handle == 'sweaters'
+    assign body_description_key = 'sections.collection_seo.body.sweaters_mom_html'
+  endif
+
+  if collection_handle == 'valentines-day-matching-outfits-1'
+    assign body_description_key = 'sections.collection_seo.body.valentines_html'
   endif
 
   comment
