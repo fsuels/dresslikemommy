@@ -7,6 +7,10 @@
   assign matching_set_error = 'products.product.matching_set.error' | t
   assign grouped_size_guide_label = 'products.product.size_guide.compare_family_sizes' | t
   assign compare_size_guide_label = 'products.product.size_guide.compare_all_sizes' | t
+  assign size_chart_icon_label = 'products.product.description_sections.size_chart_heading' | t
+  if size_chart_icon_label == blank or size_chart_icon_label contains 'translation missing'
+    assign size_chart_icon_label = 'Size chart'
+  endif
   assign single_size_guide_label = 'products.product.size_guide.guide_and_fit' | t
   assign selected_size_guide_label = 'products.product.size_guide.your_size_details' | t
   assign size_guide_compare_hint = 'products.product.size_guide.compare_hint' | t
@@ -113,6 +117,7 @@
   data-matching-set-success="{{ matching_set_success | escape }}"
   data-matching-set-error="{{ matching_set_error | escape }}"
   data-size-guide-single-label="{{ single_size_guide_label | escape }}"
+  data-size-chart-icon-label="{{ size_chart_icon_label | escape }}"
   data-size-guide-grouped-label="{{ grouped_size_guide_label | escape }}"
   data-size-guide-compare-label="{{ compare_size_guide_label | escape }}"
   data-size-guide-selected-label="{{ selected_size_guide_label | escape }}"

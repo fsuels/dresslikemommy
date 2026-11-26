@@ -17,6 +17,8 @@
   var ICON = '[data-pdp-fit-inline-trigger]';
   var LINK_ATTR = 'data-dlm-size-chart-link';
   var FALLBACK_LABEL = 'Size guide & fit';
+  var ICON_LABEL_ATTR = 'data-dlm-icon-labelled';
+  var HELPER_ATTR = 'data-dlm-size-helper';
 
   function labelFor(card) {
     var wrapper = card.closest('[data-size-guide-single-label]') || document.querySelector('[data-size-guide-single-label]');
@@ -30,7 +32,51 @@
     return label;
   }
 
+  function decode(label) {
+    label = String(label || '').trim();
+    if (label.indexOf('&') !== -1 && typeof DOMParser === 'function') {
+      label = new DOMParser().parseFromString(label, 'text/html').documentElement.textContent.trim();
+    }
+    return /translation missing/i.test(label) ? '' : label;
+  }
+
+  function wrapperAttr(card, name) {
+    var wrapper = card.closest('[' + name + ']') || document.querySelector('[' + name + ']');
+    return wrapper ? decode(wrapper.getAttribute(name)) : '';
+  }
+
+  // The ruler button gets a visible, translated "Size chart" label and a matching accessible name.
+  function labelIcon(card) {
+    var icon = card.querySelector(ICON);
+    if (!icon || icon.hasAttribute(ICON_LABEL_ATTR)) return;
+    var label = wrapperAttr(card, 'data-size-chart-icon-label');
+    if (!label) return;
+    icon.setAttribute(ICON_LABEL_ATTR, '');
+    icon.classList.add('product-matching-set__fit-icon--labelled');
+    var span = document.createElement('span');
+    span.className = 'dlm-fit-icon-label';
+    span.textContent = label;
+    icon.appendChild(span);
+    var name = icon.getAttribute('aria-label');
+    icon.setAttribute('aria-label', name && name.indexOf(label) === -1 ? label + ': ' + name : label);
+  }
+
+  // One helper line under the first size row: the existing "open the full chart" sentence.
+  function addHelper(card) {
+    var row = card.querySelector('.product-matching-set__size-row');
+    if (!row || (row.nextElementSibling && row.nextElementSibling.hasAttribute(HELPER_ATTR))) return;
+    if (document.querySelector('[' + HELPER_ATTR + ']')) return;
+    var text = wrapperAttr(card, 'data-size-guide-compare-hint');
+    if (!text) return;
+    var line = document.createElement('p');
+    line.className = 'dlm-size-helper';
+    line.setAttribute(HELPER_ATTR, '');
+    line.textContent = text;
+    row.parentNode.insertBefore(line, row.nextSibling);
+  }
+
   function addLink(card) {
+    labelIcon(card);
     var header = card.querySelector(HEADER);
     var icon = card.querySelector(ICON);
     if (!header || !icon || header.querySelector('[' + LINK_ATTR + ']')) return;
@@ -45,7 +91,9 @@
   }
 
   function scan(root) {
-    Array.prototype.forEach.call((root || document).querySelectorAll(CARD), addLink);
+    var cards = (root || document).querySelectorAll(CARD);
+    Array.prototype.forEach.call(cards, addLink);
+    if (cards.length) addHelper(cards[0]);
   }
 
   document.addEventListener('click', function (event) {
