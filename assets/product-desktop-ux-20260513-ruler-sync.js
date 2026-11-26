@@ -28,7 +28,11 @@ function convertMetricChartCell(text, unit) {
   var factor = unit === 'kg' ? 2.2046226218 : 1 / 2.54;
   var target = unit === 'kg' ? ' lbs' : ' in';
   var suffix = match[4] ? target : '';
-  var convert = function (value) { return String(Math.round(parseFloat(value.replace(',', '.')) * factor * 10) / 10); };
+  var comma = /,/.test(match[1]) || /,/.test(match[3] || '');
+  var convert = function (value) {
+    var out = String(Math.round(parseFloat(value.replace(',', '.')) * factor * 10) / 10);
+    return comma ? out.replace('.', ',') : out;
+  };
   var joiner = match[2] && /^to$/i.test(match[2]) ? ' to ' : match[2];
   return (match[3] ? convert(match[1]) + joiner + convert(match[3]) : convert(match[1])) + suffix;
 }

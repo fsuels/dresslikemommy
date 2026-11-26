@@ -513,6 +513,15 @@
       transition: background 0.2s, color 0.2s, box-shadow 0.2s !important;
     }
 
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-unit-toggle__btn {
+      position: relative !important;
+    }
+    #MainProduct-{{ section.id }} .dlm-reference-ui .sc-unit-toggle__btn::after {
+      content: "";
+      position: absolute;
+      inset: -1.4rem -0.2rem;
+    }
+
     #MainProduct-{{ section.id }} .dlm-reference-ui .sc-unit-toggle__btn:hover:not(.is-active) {
       background: #dde3ec !important;
       color: #3a4150 !important;
