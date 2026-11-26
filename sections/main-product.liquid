@@ -1851,7 +1851,7 @@
 {%- comment -%} Sticky mobile Add to Cart bar {%- endcomment -%}
 {%- if product.available -%}
   {%- liquid
-      assign sticky_free_shipping_label = 'products.product.free_shipping_short' | t
+      assign sticky_free_shipping_label = 'products.product.free_shipping_all_orders' | t
       if sticky_free_shipping_label == blank or sticky_free_shipping_label contains 'translation missing'
       assign sticky_free_shipping_label = 'Standard shipping included'
       endif
@@ -2039,7 +2039,7 @@
           var rect = controls[i].getBoundingClientRect();
           if (!rect.width || !rect.height) continue;
           if (rect.right <= 0 || rect.left >= viewportWidth) continue;
-          if (rect.bottom > barTop - 4 && rect.top < viewportHeight) return true;
+          if (rect.bottom > barTop - 2 && rect.top < viewportHeight) return true;
         }
         return false;
       }
