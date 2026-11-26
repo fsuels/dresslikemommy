@@ -168,6 +168,8 @@
           echo '</h2></div><div class="collection-seo-rich__copy">'
           render 'collection-guide-christmas-pajamas', field: 'guide', show_styles: seo_show_styles
           echo '</div>'
+        when 'christmas-sweaters', 'matching-family-christmas-outfits'
+          render 'collection-guide-christmas-hubs', handle: collection_handle
         when 'family-pajamas'
           echo '<div class="collection-seo-rich__intro"><h2>'
           render 'collection-guide-family-pajamas', field: 'heading'
