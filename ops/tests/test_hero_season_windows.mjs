@@ -140,3 +140,13 @@ test('the Christmas copy is untouched and the banner wires the windows safely', 
   assert.match(bannerSource, /key: 'heading', lang: hero_language_code/);
   assert.doesNotMatch(bannerSource, /edition: hero_seasonal_copy, key: '(?:eyebrow|heading|subheading|cta_[a-z]+|link_[a-z]+)'/);
 });
+
+test('the date value is numeric month * 100 + day and the art is neutral after Dec 25', () => {
+  assert.match(bannerSource, /assign hero_today_month = 'now' \| date: '%m' \| plus: 0\n\s+assign hero_today_day = 'now' \| date: '%d' \| plus: 0\n\s+assign hero_today_mmdd = hero_today_month \| times: 100 \| plus: hero_today_day/);
+  assert.doesNotMatch(bannerSource, /date: '%m%d'/);
+  assert.match(bannerSource, /hero_seasonal_copy == 'christmas' and hero_copy_edition != 'new_year' and hero_copy_edition != 'valentines'/);
+  // Month * 100 + day for the dates that matter (the same arithmetic the Liquid does).
+  const value = (iso) => Number(iso.slice(5, 7)) * 100 + Number(iso.slice(8, 10));
+  assert.deepEqual(['2027-01-01', '2027-01-10', '2027-01-11', '2027-02-01'].map(value), [101, 110, 111, 201]);
+  assert.deepEqual(['2027-01-01', '2027-01-10', '2027-01-11', '2027-02-01'].map((d) => windowEdition(value(d))), ['new_year', 'new_year', 'valentines', 'valentines']);
+});
