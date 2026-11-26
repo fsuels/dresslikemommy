@@ -223,44 +223,10 @@ document.addEventListener("DOMContentLoaded", function () {
       : lowerCased;
     return deAccented.replace(/[^a-z0-9]+/g, " ").trim();
   };
-  const FRONTEND_SIZE_DISPLAY_MAP = {
-    "90cm": "1\u20132Y",
-    "100cm": "2\u20133Y",
-    "110cm": "3\u20134Y",
-    "120cm": "5\u20136Y",
-    "130cm": "6\u20137Y",
-    "140cm": "8\u20139Y",
-    "150cm": "10\u201311Y",
-    "160cm": "12\u201313Y",
-  };
-  const FRONTEND_EXACT_SIZE_DISPLAY_MAP = {
-    "90": FRONTEND_SIZE_DISPLAY_MAP["90cm"],
-    "100": FRONTEND_SIZE_DISPLAY_MAP["100cm"],
-    "110": FRONTEND_SIZE_DISPLAY_MAP["110cm"],
-    "120": FRONTEND_SIZE_DISPLAY_MAP["120cm"],
-    "130": FRONTEND_SIZE_DISPLAY_MAP["130cm"],
-    "140": FRONTEND_SIZE_DISPLAY_MAP["140cm"],
-    "150": FRONTEND_SIZE_DISPLAY_MAP["150cm"],
-    "160": FRONTEND_SIZE_DISPLAY_MAP["160cm"],
-    ...FRONTEND_SIZE_DISPLAY_MAP,
-  };
-  const getFrontendSizeDisplayLabel = (value) => {
-    const raw = String(value || "").trim();
-    if (!raw) return "";
-    const compact = raw.toLowerCase().replace(/\s+/g, "");
-    return FRONTEND_EXACT_SIZE_DISPLAY_MAP[compact] || raw;
-  };
-  const replaceSizeTokensInText = (value) => {
-    const raw = String(value || "");
-    if (!raw) return "";
-
-    let output = raw;
-    Object.keys(FRONTEND_SIZE_DISPLAY_MAP).forEach((token) => {
-      const escapedToken = token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-      output = output.replace(new RegExp(escapedToken, "gi"), FRONTEND_SIZE_DISPLAY_MAP[token]);
-    });
-    return output;
-  };
+  // A height label such as "100cm" is not an age recommendation. Show the
+  // chart exactly as the size picker names it.
+  const getFrontendSizeDisplayLabel = (value) => String(value || "").trim();
+  const replaceSizeTokensInText = (value) => String(value || "");
   window.DLMSizeLabelFormatter = window.DLMSizeLabelFormatter || {};
   window.DLMSizeLabelFormatter.formatSizeLabel = getFrontendSizeDisplayLabel;
   window.DLMSizeLabelFormatter.replaceSizeTokensInText = replaceSizeTokensInText;
@@ -286,64 +252,8 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   };
-  const isSizeChartTable = (tableElement) => {
-    if (!tableElement || tableElement.tagName !== "TABLE") return false;
-
-    const tableId = String(tableElement.id || "").toLowerCase();
-    const tableClass = String(tableElement.className || "").toLowerCase();
-    if (tableId.indexOf("size-chart") !== -1 || tableClass.indexOf("size-chart") !== -1) return true;
-
-    const firstHeader = tableElement.querySelector("th");
-    return normalizeLabelText(firstHeader && firstHeader.textContent) === "size";
-  };
-  const applySizeChartDisplayLabels = (root) => {
-    if (!root || !(root instanceof Element || root instanceof Document || root instanceof DocumentFragment)) return;
-
-    const tables = [];
-    if (root instanceof Element && root.tagName === "TABLE") {
-      tables.push(root);
-    }
-    if (typeof root.querySelectorAll === "function") {
-      root.querySelectorAll("table").forEach((tableElement) => tables.push(tableElement));
-    }
-
-    tables.forEach((tableElement) => {
-      if (!isSizeChartTable(tableElement)) return;
-
-      const headerCells = tableElement.querySelectorAll("tr:first-child th");
-      let sizeIndex = -1;
-
-      Array.from(headerCells).forEach((headerCell, index) => {
-        if (sizeIndex !== -1) return;
-        if (isSizeLikeLabel(headerCell.textContent)) sizeIndex = index;
-      });
-
-      if (sizeIndex === -1) return;
-
-      Array.from(tableElement.querySelectorAll("tr")).slice(1).forEach((row) => {
-        const cells = row.querySelectorAll("td");
-        const sizeCell = cells[sizeIndex];
-        if (!sizeCell) return;
-
-        const rawValue = sizeCell.getAttribute("data-size-display-raw") || String(sizeCell.textContent || "").trim();
-        if (tableElement.closest('[data-matching-set-fallback="true"]')) {
-          if (sizeCell.textContent !== rawValue) sizeCell.textContent = rawValue;
-          return;
-        }
-        const exactDisplayLabel = getFrontendSizeDisplayLabel(rawValue);
-        const displayLabel = exactDisplayLabel !== rawValue
-          ? exactDisplayLabel
-          : replaceSizeTokensInText(rawValue);
-        if (!displayLabel || displayLabel === rawValue) return;
-
-        sizeCell.setAttribute("data-size-display-raw", rawValue);
-        sizeCell.textContent = displayLabel;
-      });
-    });
-  };
   const initGlobalSizeDisplayFormatting = () => {
     applyFormattedSizeLabels(document);
-    applySizeChartDisplayLabels(document);
 
     if (document.body && !document.body.hasAttribute("data-size-display-observer-bound")) {
       const observer = new MutationObserver((mutations) => {
@@ -351,7 +261,6 @@ document.addEventListener("DOMContentLoaded", function () {
           mutation.addedNodes.forEach((node) => {
             if (node instanceof Element || node instanceof DocumentFragment) {
               applyFormattedSizeLabels(node);
-              applySizeChartDisplayLabels(node);
             }
           });
         });
@@ -363,7 +272,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.addEventListener("cart:updated", function () {
       applyFormattedSizeLabels(document);
-      applySizeChartDisplayLabels(document);
     });
   };
   const isSizeLikeLabel = (value) => SIZE_LABEL_REGEX.test(normalizeLabelText(value));

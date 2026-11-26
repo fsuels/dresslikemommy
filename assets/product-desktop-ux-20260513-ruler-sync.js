@@ -6006,27 +6006,7 @@ function initMatchingSizeGuide(wrapper, sectionId, productData) {
       return window.DLMSizeLabelFormatter.formatSizeLabel(raw);
     }
 
-    var compact = raw.toLowerCase().replace(/\s+/g, '');
-    var sizeMap = {
-      '90': '1–2Y',
-      '90cm': '1–2Y',
-      '100': '2–3Y',
-      '100cm': '2–3Y',
-      '110': '3–4Y',
-      '110cm': '3–4Y',
-      '120': '5–6Y',
-      '120cm': '5–6Y',
-      '130': '6–7Y',
-      '130cm': '6–7Y',
-      '140': '8–9Y',
-      '140cm': '8–9Y',
-      '150': '10–11Y',
-      '150cm': '10–11Y',
-      '160': '12–13Y',
-      '160cm': '12–13Y',
-    };
-
-    return sizeMap[compact] || raw;
+    return raw;
   }
 
   function hasUnitToggle(headers) {
