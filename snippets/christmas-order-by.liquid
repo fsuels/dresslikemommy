@@ -8,10 +8,24 @@
   It is an estimate, never a promise.
   Needs: `is_christmas` (true/false). Optional: `extra_days` (made-to-order days).
   Removes itself after the last order date, and Liquid stops rendering it after 7 Dec.
+  The dated estimate renders for United States shoppers only (carrier transit evidence is US-only);
+  every other country sees one neutral line with no date and no arrival promise.
 {%- endcomment -%}
 {%- liquid
   assign cob_mmdd = 'now' | date: '%m%d' | plus: 0
-  if is_christmas and cob_mmdd >= 1101 and cob_mmdd <= 1207
+  if is_christmas and cob_mmdd >= 1101 and cob_mmdd <= 1207 and localization.country.iso_code != 'US'
+    comment
+      The dated estimate is backed by carrier transit evidence for the United States only.
+      Every other country gets one neutral line: no date and no arrival promise.
+    endcomment
+    assign cob_other = 'products.additional_info.christmas_order_by_other' | t
+    if cob_other == blank or cob_other contains 'translation missing'
+      assign cob_other = 'Ordering for Christmas? Delivery times vary by country, so order as early as you can.'
+    endif
+    echo '<p class="dlm-christmas-order-by" data-dlm-christmas-neutral>'
+    echo cob_other | escape_once
+    echo '</p>'
+  elsif is_christmas and cob_mmdd >= 1101 and cob_mmdd <= 1207
     assign cob_window = 'products.additional_info.standard_delivery_window' | t
     if cob_window == blank or cob_window contains 'translation missing' or cob_window contains 'business days'
       assign cob_window = '12-16 days'

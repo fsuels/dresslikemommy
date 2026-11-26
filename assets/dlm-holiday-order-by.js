@@ -194,6 +194,10 @@
   function orderByFor(key, windowValue, today) {
     var days = parseWindow(windowValue);
     if (!days || !HOLIDAYS[key]) return null;
+    // The Christmas arrival estimate is backed by carrier evidence for the United States
+    // only; other countries get the neutral line rendered by the snippets.
+    var country = window.Shopify && window.Shopify.country;
+    if (key === 'christmas' && country && country !== 'US') return null;
     var now = dateOnly(today || new Date());
     var years = [now.getFullYear(), now.getFullYear() + 1];
     for (var i = 0; i < years.length; i += 1) {
@@ -393,7 +397,7 @@
   // (snippets/christmas-cutoff-banner.liquid) filled with the same Christmas line
   // and cutoff as the PDP value strip, hidden once the cutoff has passed.
   function renderBanners(root, today) {
-    var banners = (root || document).querySelectorAll('[data-dlm-xmas-banner]');
+    var banners = (root || document).querySelectorAll('[data-dlm-xmas-banner]:not([data-dlm-neutral])');
     var locale = currentLocale();
     var filled = 0;
     Array.prototype.forEach.call(banners, function (banner) {

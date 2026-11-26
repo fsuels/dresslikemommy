@@ -163,7 +163,11 @@
                     data-collection-keywords="{{ collection_keywords | escape }}"
                     data-collection-handle="{{ collection_handle | escape }}"
                   >
-                    {{- collection_title -}}
+                    {%- if collection_title == 'Family Matching' and request.locale.iso_code == 'cs' -%}
+                      {{- 'sections.breadcrumbs.cat_family_matching' | t -}}
+                    {%- else -%}
+                      {{- collection_title -}}
+                    {%- endif -%}
                   </a>
                 </li>
               {%- endfor -%}

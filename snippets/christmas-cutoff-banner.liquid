@@ -3,7 +3,9 @@
   collection pages (handle contains "christmas"). It is the same sentence and the
   same date as the PDP value strip: assets/dlm-holiday-order-by.js fills the slot
   from its own COPY table (every language) and its own cutoff maths, and hides the
-  slot once the cutoff has passed or the window cannot be parsed. No date and no
+  slot once the cutoff has passed or the window cannot be parsed. The dated line is for United States shoppers only;
+  every other country gets one neutral line from the locale key products.additional_info.christmas_order_by_other
+  (no date, no arrival promise), marked data-dlm-neutral so the script leaves it alone. No date and no
   wording lives here. Liquid only decides whether to reserve the space (1 Nov to
   3 Dec) so there is no layout shift; the script is the source of truth for the date.
   Window: same key and fallback as snippets/delivery-estimate-copy.liquid.
@@ -25,16 +27,36 @@
         assign xcb_href = xcb_collection.url
       endif
     endif
-    echo '<div class="dlm-xmas-banner" data-dlm-xmas-banner data-dlm-christmas-window="'
+    assign xcb_neutral = false
+    if localization.country.iso_code != 'US'
+      assign xcb_neutral = true
+      assign xcb_other = 'products.additional_info.christmas_order_by_other' | t
+      if xcb_other == blank or xcb_other contains 'translation missing'
+        assign xcb_other = 'Ordering for Christmas? Delivery times vary by country, so order as early as you can.'
+      endif
+    endif
+    echo '<div class="dlm-xmas-banner" data-dlm-xmas-banner'
+    if xcb_neutral
+      echo ' data-dlm-neutral data-dlm-holiday-order-by="neutral"'
+    endif
+    echo ' data-dlm-christmas-window="'
     echo xcb_window | escape
     echo '"><div class="page-width"><p class="dlm-xmas-banner__row">'
     echo '<svg class="dlm-xmas-banner__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>'
     if xcb_tag == 'a'
       echo '<a class="dlm-xmas-banner__text" data-dlm-holiday-text href="'
       echo xcb_href
-      echo '"></a>'
+      echo '">'
+      if xcb_neutral
+        echo xcb_other | escape_once
+      endif
+      echo '</a>'
     else
-      echo '<span class="dlm-xmas-banner__text" data-dlm-holiday-text></span>'
+      echo '<span class="dlm-xmas-banner__text" data-dlm-holiday-text>'
+      if xcb_neutral
+        echo xcb_other | escape_once
+      endif
+      echo '</span>'
     endif
     echo '</p></div></div>'
   endif
