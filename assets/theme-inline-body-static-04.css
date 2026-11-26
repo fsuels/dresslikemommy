@@ -261,7 +261,7 @@ button.product-form__submit.button--full-width:active {
     background: rgba(255,255,255,0.95);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
+    padding: 10px 16px calc(10px + env(safe-area-inset-bottom));
     box-shadow: 0 -4px 20px rgba(0,0,0,0.08);
     align-items: center; gap: 12px;
     transform: translateY(100%);
@@ -274,12 +274,16 @@ button.product-form__submit.button--full-width:active {
     flex-direction: column;
     gap: 2px;
     min-width: 0;
+    max-width: 62%;
     pointer-events: none;
   }
   .sticky-mobile-atc.visible { transform: translateY(0); }
   .sticky-mobile-atc__price {
     font-weight: 600; font-size: 18px; color: #1a1a1a; white-space: nowrap;
   }
+  /* Two prices (child and adult) are stacked so the bar stays slim: "Kids from $37.99" / "Adults from $49.99". */
+  .sticky-mobile-atc__price--lines { font-size: 14px; line-height: 1.25; }
+  .sticky-mobile-atc__price-line { display: block; white-space: nowrap; }
   .sticky-mobile-atc__size {
     color: #5a5a5a;
     font-size: 10px;
@@ -300,7 +304,8 @@ button.product-form__submit.button--full-width:active {
     font-weight: 700;
     letter-spacing: 0.4px;
     text-transform: uppercase;
-    white-space: nowrap;
+    white-space: normal;
+    line-height: 1.25;
     display: inline-flex;
     align-items: center;
   }

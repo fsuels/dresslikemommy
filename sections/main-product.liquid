@@ -2024,8 +2024,31 @@
         document.body.style.removeProperty('--sticky-mobile-atc-offset');
       }
 
+      // The bar may sit over the photo, but never over its controls: the slide counter,
+      // the arrows and the share button. When one of them would be under the bar, the bar
+      // waits (it comes back as soon as the page is scrolled and they are clear of it).
+      function stickyCoversGalleryControls() {
+        if (!mediaContainer || !mediaContainer.querySelectorAll) return false;
+        var viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+        var viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+        var barTop = viewportHeight - (sticky.offsetHeight || 72);
+        var controls = mediaContainer.querySelectorAll(
+          '.product-media-progress, .product-gallery__arrow, .product__media-share'
+        );
+        for (var i = 0; i < controls.length; i += 1) {
+          var rect = controls[i].getBoundingClientRect();
+          if (!rect.width || !rect.height) continue;
+          if (rect.right <= 0 || rect.left >= viewportWidth) continue;
+          if (rect.bottom > barTop - 4 && rect.top < viewportHeight) return true;
+        }
+        return false;
+      }
+
       function toggleStickyVisibility() {
-        var shouldShow = mobileMedia.matches && !atcIsInViewport && !mediaIsInViewport && canShowSticky;
+        // Shown from the first screen (price, shipping and a button to the size picker);
+        // hidden while the real buy button is on screen or the bar would cover a gallery control.
+        var shouldShow =
+          mobileMedia.matches && !atcIsInViewport && canShowSticky && !stickyCoversGalleryControls();
         sticky.classList.toggle('visible', shouldShow);
         sticky.setAttribute('aria-hidden', shouldShow ? 'false' : 'true');
         syncBodyOffset(shouldShow);
@@ -2315,13 +2338,37 @@
         setButtonText(atcBtn, chooseSizeLabel);
       }
 
+      // "Kids from $37.99 · Adults from $49.99" is stacked on two lines in the slim bar.
+      function setStickyPriceText(text) {
+        if (!stickyPrice) return;
+        var value = String(text || '');
+        var parts = value.split(' \u00b7 ');
+        stickyPrice.textContent = '';
+        stickyPrice.classList.toggle('sticky-mobile-atc__price--lines', parts.length === 2);
+        if (parts.length !== 2) {
+          stickyPrice.textContent = value;
+          return;
+        }
+        parts.forEach(function (part) {
+          var line = document.createElement('span');
+          line.className = 'sticky-mobile-atc__price-line';
+          line.textContent = part;
+          stickyPrice.appendChild(line);
+        });
+      }
+
       function syncStickyPrice() {
         if (!stickyPrice) return;
+        // A selected matching-set piece count owns the price slot (see setMatchingStickyDetails).
+        if (isMatchingSet && matchingSetStickyState && matchingSetStickyState.isReady) return;
 
         var priceState = getRenderedPriceState();
         if (!priceState || !priceState.currentPrice) return;
 
-        stickyPrice.textContent = priceState.currentPrice;
+        if (stickyPrice.getAttribute('data-sticky-price-text') !== priceState.currentPrice) {
+          stickyPrice.setAttribute('data-sticky-price-text', priceState.currentPrice);
+          setStickyPriceText(priceState.currentPrice);
+        }
         if (priceState.isOnSale && priceState.compareAtPrice && priceState.compareAtPrice !== priceState.currentPrice) {
           stickyPrice.setAttribute(
             'aria-label',
@@ -2352,11 +2399,22 @@
 
         var hasSelectedPieces = !!(matchingSetStickyState && matchingSetStickyState.isReady);
         if (stickyPrice) {
-          stickyPrice.textContent = hasSelectedPieces
-            ? matchingSetStickyState.pieceCountLabel || getButtonLabel()
-            : getProductPageCopyValue('matching_set_heading') || 'Matching pieces';
-          stickyPrice.removeAttribute('aria-label');
-          stickyPrice.removeAttribute('title');
+          if (hasSelectedPieces) {
+            stickyPrice.removeAttribute('data-sticky-price-text');
+            setStickyPriceText(matchingSetStickyState.pieceCountLabel || getButtonLabel());
+            stickyPrice.removeAttribute('aria-label');
+            stickyPrice.removeAttribute('title');
+          } else {
+            // Before pieces are chosen the bar shows the page price line (or the chosen
+            // variant's price) and the shipping line, like the price above the builder.
+            var matchingPriceState = getRenderedPriceState();
+            if (matchingPriceState && matchingPriceState.currentPrice) {
+              syncStickyPrice();
+            } else {
+              stickyPrice.removeAttribute('data-sticky-price-text');
+              setStickyPriceText(getProductPageCopyValue('matching_set_heading') || 'Matching pieces');
+            }
+          }
         }
         if (stickySize) {
           if (hasSelectedPieces && matchingSetStickyState.totalText) {
@@ -2376,7 +2434,10 @@
             stickySize.setAttribute('hidden', 'hidden');
           }
         }
-        if (stickyShipping) stickyShipping.setAttribute('hidden', 'hidden');
+        if (stickyShipping) {
+          if (hasSelectedPieces) stickyShipping.setAttribute('hidden', 'hidden');
+          else stickyShipping.removeAttribute('hidden');
+        }
         return hasSelectedPieces;
       }
 
@@ -2411,7 +2472,7 @@
           var matchingSetReady = setMatchingStickyDetails();
           canShowSticky = true;
           sticky.classList.toggle('requires-options', !matchingSetReady);
-          stickyBtn.textContent = matchingSetReady ? getButtonLabel() : chooseOptionsLabel;
+          stickyBtn.textContent = matchingSetReady ? getButtonLabel() : chooseSizeLabel;
           stickyBtn.removeAttribute('disabled');
           toggleStickyVisibility();
           return;
@@ -2610,6 +2671,17 @@
           syncStickyState();
         });
       }
+
+      var stickyScrollFrame = null;
+      function scheduleStickyVisibility() {
+        if (stickyScrollFrame || !mobileMedia.matches) return;
+        stickyScrollFrame = window.requestAnimationFrame(function () {
+          stickyScrollFrame = null;
+          toggleStickyVisibility();
+        });
+      }
+      window.addEventListener('scroll', scheduleStickyVisibility, { passive: true });
+      window.addEventListener('resize', scheduleStickyVisibility, { passive: true });
 
       function handleViewportChange() {
         if (!mobileMedia.matches) sticky.classList.remove('visible');
