@@ -692,6 +692,10 @@ cart-items {
     min-height: 4.8rem;
   }
 
+  body:has(.cart-sticky-checkout.is-ready) .cart-undo-toast {
+    bottom: calc(9rem + env(safe-area-inset-bottom, 0px));
+  }
+
   body:has(#main-cart-footer:not(.is-empty) .cart-sticky-checkout.is-ready) {
     padding-bottom: calc(8rem + env(safe-area-inset-bottom, 0px));
   }

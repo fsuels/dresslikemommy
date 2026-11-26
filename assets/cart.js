@@ -317,7 +317,7 @@ class CartItems extends HTMLElement {
     [...cartItemElements, ...cartDrawerItemElements].forEach((overlay) => overlay.classList.remove('hidden'));
 
     // Disable checkout buttons during cart update to prevent stale-total submissions
-    document.querySelectorAll('.cart__checkout-button').forEach((btn) => {
+    document.querySelectorAll('.cart__checkout-button, #checkout-sticky').forEach((btn) => {
       btn.setAttribute('disabled', 'disabled');
     });
 
@@ -336,7 +336,7 @@ class CartItems extends HTMLElement {
     cartDrawerItemElements.forEach((overlay) => overlay.classList.add('hidden'));
 
     // Re-enable checkout buttons after cart update completes
-    document.querySelectorAll('.cart__checkout-button').forEach((btn) => {
+    document.querySelectorAll('.cart__checkout-button, #checkout-sticky').forEach((btn) => {
       btn.removeAttribute('disabled');
     });
   }
