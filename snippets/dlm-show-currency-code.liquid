@@ -3,7 +3,8 @@
   code ("$32.99 USD" vs "$32.99"). Outputs the literal text "true" or "false".
 
   The theme setting `currency_code_enabled` stays on. The code is suppressed
-  only for US shoppers paying in USD, where "$" is unambiguous. Every other
+  for US shoppers paying in USD, where "$" is unambiguous, and for shoppers paying
+  in EUR, where the euro sign is unambiguous (Italian norm is "53,95 €", not "€53,95 EUR"). Every other
   market keeps it: CAD/AUD/NZD share the "$" symbol, and some non-US markets
   (e.g. Norway, Mexico) are also priced in USD.
 
@@ -19,6 +20,9 @@
   if settings.currency_code_enabled
     assign dlm_show_code = true
     if localization.country.iso_code == 'US' and cart.currency.iso_code == 'USD'
+      assign dlm_show_code = false
+    endif
+    if cart.currency.iso_code == 'EUR'
       assign dlm_show_code = false
     endif
   endif

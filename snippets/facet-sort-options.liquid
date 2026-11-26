@@ -30,7 +30,11 @@
         selected="selected"
       {% endif %}
     >
-      {{ option.name | escape }}
+      {%- if option.value == 'best-selling' and request.locale.iso_code == 'it' -%}
+        {{- 'Più venduti' -}}
+      {%- else -%}
+        {{- option.name | escape -}}
+      {%- endif -%}
     </option>
   {%- endunless -%}
 {%- endfor -%}
