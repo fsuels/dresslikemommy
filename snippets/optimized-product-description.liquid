@@ -48,6 +48,14 @@
     assign optimized_description = optimized_description | remove: '<li><strong>Chart-backed variants:</strong> Every Shopify variant maps back to a visible YC8970 or YC8971 size row.</li>'
     assign optimized_description = optimized_description | replace: '<strong>Chart-backed variants:</strong>', '<strong>Fit details:</strong>'
     assign optimized_description = optimized_description | replace: 'Every Shopify variant maps back to a visible YC8970 or YC8971 size row.', 'Each option uses the visible size guide so you can compare before adding to cart.'
+    # The machine translator also translated the size chart's id, so the size guide, chart styles
+    # and unit toggle did not recognise the table (52 products; ar, hi, it, ja, ko, pt-BR, ru).
+    assign translated_chart_ids = 'tabella-dimensioni|حجم الرسم البياني|サイズチャート|आकार-चार्ट|크기-차트|tamanho-gráfico|размер-диаграмма' | split: '|'
+    for translated_chart_id in translated_chart_ids
+      assign translated_chart_attr = 'id="' | append: translated_chart_id | append: '"'
+      assign optimized_description = optimized_description | replace: translated_chart_attr, 'id="size-chart"'
+    endfor
+    assign optimized_description = optimized_description | replace: '<td>M per adulti</td>', '<td>Adulto M</td>' | replace: '<td>L. adulto</td>', '<td>Adulto L</td>'
     unless request.locale.iso_code == 'en'
       capture optimized_description
         render 'description-duplicate-size-chart-fix', html: optimized_description, locale: request.locale.iso_code
