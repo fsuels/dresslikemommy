@@ -381,11 +381,31 @@
     formatDate: formatDate,
     message: message,
     render: render,
+    renderBanners: renderBanners,
     releaseSlots: releaseSlots,
     copy: COPY
   };
 
+  // Home page and Christmas collections: one reserved banner slot per page
+  // (snippets/christmas-cutoff-banner.liquid) filled with the same Christmas line
+  // and cutoff as the PDP value strip, hidden once the cutoff has passed.
+  function renderBanners(root, today) {
+    var banners = (root || document).querySelectorAll('[data-dlm-xmas-banner]');
+    var locale = currentLocale();
+    var filled = 0;
+    Array.prototype.forEach.call(banners, function (banner) {
+      var result = orderByFor('christmas', banner.getAttribute('data-dlm-christmas-window'), today || new Date());
+      if (result && fillSlot(banner, result, locale)) {
+        filled += 1;
+      } else {
+        banner.hidden = true;
+      }
+    });
+    return filled;
+  }
+
   function start() {
+    if (document.querySelector('[data-dlm-xmas-banner]')) renderBanners(document);
     var first = document.querySelector(TARGET);
     var handle = productHandle();
     if (!first || !handle || typeof window.fetch !== 'function') return releaseSlots(document);

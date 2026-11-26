@@ -349,6 +349,9 @@
   <script defer src="{{ 'pubsub.js' | asset_url }}"></script>
   <script defer src="{{ 'global.js' | asset_url }}"></script>
   <script defer src="{{ 'dlm-delivery-dates.js' | asset_url }}"></script>
+  {%- if request.page_type == 'index' or request.page_type == 'collection' -%}
+    <script defer src="{{ 'dlm-holiday-order-by.js' | asset_url }}"></script>
+  {%- endif -%}
   {%- if request.page_type == 'product' -%}
     <script defer src="{{ 'dlm-holiday-order-by.js' | asset_url }}"></script>
     {%- comment -%}dlm-family-builder (family list, + Mother/Father/Child chips, Add all to bag) removed 2026-09-30 by owner request: shoppers found it confusing and bought single pieces. Do not re-add without owner approval.{%- endcomment -%}
@@ -1189,6 +1192,11 @@
       {%- endif -%}
       {%- if request.page_type == 'policy' -%}
         {% render 'dlm-policy-hub' %}
+      {%- endif -%}
+      {%- if request.page_type == 'index' -%}
+        {% render 'christmas-cutoff-banner', link_to_collection: true %}
+      {%- elsif request.page_type == 'collection' and collection.handle contains 'christmas' -%}
+        {% render 'christmas-cutoff-banner' %}
       {%- endif -%}
       {{ content_for_layout }}
     </main>

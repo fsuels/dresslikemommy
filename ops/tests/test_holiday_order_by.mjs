@@ -333,3 +333,70 @@ test('structured data publishes handling 1-5 and the carrier transit 7-14', () =
   assert.match(liquid, /assign schema_handling_max = schema_handling_max \| plus: 2/);
   assert.match(liquid, /assign schema_transit_min = 7 -%\}\s*\{%- assign schema_transit_max = 14/);
 });
+
+function fakeBanner(windowValue = '12-16 days') {
+  const attrs = { 'data-dlm-christmas-window': windowValue };
+  const text = {
+    textContent: '',
+    children: [],
+    appendChild(child) { this.children.push(child); },
+  };
+  const banner = {
+    hidden: false,
+    attrs,
+    getAttribute: (n) => attrs[n] ?? null,
+    setAttribute: (n, v) => { attrs[n] = v; },
+    hasAttribute: (n) => n in attrs,
+    querySelector: (sel) => (sel === '[data-dlm-holiday-text]' ? text : null),
+  };
+  const textOf = () => text.children.map((c) => c.text ?? c.textContent).join('');
+  return { banner, textOf };
+}
+
+function loadWithBanners(banners, locale = 'en') {
+  const document = {
+    readyState: 'complete',
+    documentElement: { lang: locale },
+    body: {},
+    querySelector: () => null,
+    querySelectorAll: (sel) => (sel === '[data-dlm-xmas-banner]' ? banners : []),
+    addEventListener() {},
+    createElement: () => ({ textContent: '' }),
+    createTextNode: (text) => ({ text }),
+  };
+  const sandbox = { document, Intl, Date, Math, Array, Number, String, Shopify: { locale }, location: { pathname: '/' } };
+  sandbox.window = sandbox;
+  vm.runInNewContext(source, sandbox);
+  return sandbox.DLMHolidayOrderBy;
+}
+
+test('home/collection banner shows the same Wed Dec 2 line as the PDP card and is translated', () => {
+  const api = loadWithBanners([]);
+  const today = new Date(2026, 10, 26);
+  const pdp = api.message('christmas', api.orderByFor('christmas', '12-16 days', today).cutoff, 'en');
+  assert.equal(pdp, 'Order by Wed, Dec 2 for estimated Christmas arrival');
+  for (const locale of ['en', 'es', 'it', 'de']) {
+    const { banner, textOf } = fakeBanner();
+    const bannerApi = loadWithBanners([banner], locale);
+    assert.equal(bannerApi.renderBanners({ querySelectorAll: () => [banner] }, today), 1);
+    const expected = bannerApi.message('christmas', bannerApi.orderByFor('christmas', '12-16 days', today).cutoff, locale);
+    assert.equal(textOf(), expected);
+    assert.equal(banner.hidden, false);
+    assert.equal(banner.attrs['data-dlm-holiday-order-by'], 'christmas');
+    assert.match(textOf(), locale === 'en' ? /Wed, Dec 2/ : /2/);
+  }
+});
+
+test('home/collection banner hides after the cutoff, before the lead window, and on unparseable windows', () => {
+  const api = loadWithBanners([]);
+  const run = (today, windowValue) => {
+    const { banner } = fakeBanner(windowValue);
+    const count = api.renderBanners({ querySelectorAll: () => [banner] }, today);
+    return { count, hidden: banner.hidden };
+  };
+  assert.deepEqual(run(new Date(2026, 11, 2), '12-16 days'), { count: 1, hidden: false });
+  assert.deepEqual(run(new Date(2026, 11, 3), '12-16 days'), { count: 0, hidden: true });
+  assert.deepEqual(run(new Date(2026, 10, 17), '12-16 days'), { count: 0, hidden: true });
+  assert.deepEqual(run(new Date(2026, 10, 18), '12-16 days'), { count: 1, hidden: false });
+  assert.deepEqual(run(new Date(2026, 10, 26), 'soon'), { count: 0, hidden: true });
+});
