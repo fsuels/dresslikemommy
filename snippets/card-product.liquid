@@ -122,7 +122,7 @@
     assign card_image_fetchpriority = 'low'
     if lazy_load == false
       assign card_image_loading = blank
-      assign card_image_fetchpriority = blank
+      assign card_image_fetchpriority = 'high'
     endif
 
     capture card_product_featured_alt
