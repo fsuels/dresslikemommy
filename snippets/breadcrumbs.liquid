@@ -9,6 +9,25 @@
   {% assign subcategory_handle = subcategory_label | handleize %}
   {% assign subcategory_collection = collections[subcategory_handle] %}
   {% assign subcategory_display_label = subcategory_label %}
+  {% comment %} --- Translated metafield values do not match collection handles --- {% endcomment %}
+  {% if request.locale.primary == false %}
+    {% if category1_collection == blank %}
+      {% capture fallback_category_handle %}{% render 'dlm-category-handle', product: product, level: 'category' %}{% endcapture %}
+      {% assign fallback_category_handle = fallback_category_handle | strip %}
+      {% if fallback_category_handle != blank %}
+        {% assign category1_handle = fallback_category_handle %}
+        {% assign category1_collection = collections[category1_handle] %}
+      {% endif %}
+    {% endif %}
+    {% if subcategory_collection == blank %}
+      {% capture fallback_subcategory_handle %}{% render 'dlm-category-handle', product: product, level: 'subcategory' %}{% endcapture %}
+      {% assign fallback_subcategory_handle = fallback_subcategory_handle | strip %}
+      {% if fallback_subcategory_handle != blank %}
+        {% assign subcategory_handle = fallback_subcategory_handle %}
+        {% assign subcategory_collection = collections[subcategory_handle] %}
+      {% endif %}
+    {% endif %}
+  {% endif %}
   {% assign product_collection_handles = product.collections | map: 'handle' | join: '|' %}
   {% assign product_collection_handle_tokens = '|' | append: product_collection_handles | append: '|' %}
   {% assign has_family_matching_context = false %}

@@ -1,0 +1,29 @@
+{%- comment -%}
+  Outputs a stable collection handle for a product's category on translated storefronts.
+
+  The custom.category1 / custom.subcategory metafields are translated per language, so
+  `value | handleize` only finds a collection in the primary language. Collection handles
+  are the same in every language, so fall back to the product's collection membership.
+
+  Accepts:
+  - product: Product object
+  - level: 'category' or 'subcategory'
+{%- endcomment -%}
+{%- liquid
+  if level == 'category'
+    assign priority_handles = 'maternity,siblings-matching-outfits,mommy-and-me,matching-outfits,daddy-and-me,couples' | split: ','
+  else
+    assign priority_handles = 'christmas-sweaters,christmas-pajamas,sweaters,pajamas,swimsuits,trunks,mother-daughter-matching-dresses,dresses,family-sets,family-tops' | split: ','
+  endif
+
+  assign member_handles = product.collections | map: 'handle' | join: '|'
+  assign member_tokens = '|' | append: member_handles | append: '|'
+
+  for priority_handle in priority_handles
+    assign priority_token = '|' | append: priority_handle | append: '|'
+    if member_tokens contains priority_token
+      echo priority_handle
+      break
+    endif
+  endfor
+-%}

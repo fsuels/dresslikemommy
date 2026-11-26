@@ -18,6 +18,30 @@
   assign product_category1 = product.metafields.custom.category1 | default: blank
   assign product_category1_handle = product_category1 | handleize
   assign category1_collection = collections[product_category1_handle]
+
+  # Translated metafield values do not match collection handles on non-primary languages.
+  if request.locale.primary == false
+    if subcategory_collection == blank
+      capture fallback_subcategory_handle
+        render 'dlm-category-handle', product: product, level: 'subcategory'
+      endcapture
+      assign fallback_subcategory_handle = fallback_subcategory_handle | strip
+      if fallback_subcategory_handle != blank
+        assign product_subcategory_handle = fallback_subcategory_handle
+        assign subcategory_collection = collections[product_subcategory_handle]
+      endif
+    endif
+    if category1_collection == blank
+      capture fallback_category_handle
+        render 'dlm-category-handle', product: product, level: 'category'
+      endcapture
+      assign fallback_category_handle = fallback_category_handle | strip
+      if fallback_category_handle != blank
+        assign category1_collection = collections[fallback_category_handle]
+      endif
+    endif
+  endif
+
   assign has_family_sets_context = false
   if product_collection_handles contains 'family-sets' or product_subcategory_handle == 'family-sets'
     assign has_family_sets_context = true
