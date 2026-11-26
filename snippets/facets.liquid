@@ -305,13 +305,14 @@
                               (component-facets.css "facets-layout-list--text ... > svg { display: none }") and
                               draws the checkbox on the real <input> instead.
                             {%- endcomment -%}
+                            {%- capture dlm_value_text -%}{%- render 'dlm-facet-label', label: value.label -%}{%- endcapture -%}
                             {%- capture text_value -%}
                               <span class="facet-checkbox__text" aria-hidden="true">
                                 {%- if dlm_value_layout == 'colors' -%}
                                   {%- render 'dlm-facet-color-dot', label: value.label, swatch: value.swatch -%}
                                 {%- endif -%}
-                                <span class="facet-checkbox__text-label">{{- value.label | escape }}</span><span class="dlm-facets__value-count">{{- value.count -}}</span></span><span class="visually-hidden">
-                                {{- value.label | escape }} (
+                                <span class="facet-checkbox__text-label">{{- dlm_value_text | escape }}</span><span class="dlm-facets__value-count">{{- value.count -}}</span></span><span class="visually-hidden">
+                                {{- dlm_value_text | escape }} (
                                 {%- if value.count == 1 -%}
                                   {{- 'products.facets.product_count_simple.one' | t: count: value.count -}}
                                 {%- else -%}
@@ -650,7 +651,14 @@
                       continue
                     endif
 
-                    assign dlm_summary_meta = filter.active_values | map: 'label' | join: ', '
+                    assign dlm_summary_labels = ''
+                    for active_value in filter.active_values
+                      capture active_text
+                        render 'dlm-facet-label', label: active_value.label
+                      endcapture
+                      assign dlm_summary_labels = dlm_summary_labels | append: active_text | append: '|'
+                    endfor
+                    assign dlm_summary_meta = dlm_summary_labels | split: '|' | join: ', '
                     if filter.type == 'price_range'
                       assign dlm_summary_meta = blank
                       if filter.min_value.value != null or filter.max_value.value != null
@@ -753,13 +761,14 @@
                               facets__label mobile-facets__label{% if is_disabled %} disabled{% endif %}{% if value.active %} active{% endif %}
                               {%- endcapture -%}
 
+                              {%- capture dlm_value_text -%}{%- render 'dlm-facet-label', label: value.label -%}{%- endcapture -%}
                               {%- capture text_value -%}
                                 <span class="facet-checkbox__text" aria-hidden="true">
                                   {%- if dlm_value_layout == 'colors' -%}
                                     {%- render 'dlm-facet-color-dot', label: value.label, swatch: value.swatch -%}
                                   {%- endif -%}
-                                  <span class="facet-checkbox__text-label">{{- value.label | escape }}</span><span class="dlm-facets__value-count">{{- value.count -}}</span></span><span class="visually-hidden">
-                                  {{- value.label | escape }} (
+                                  <span class="facet-checkbox__text-label">{{- dlm_value_text | escape }}</span><span class="dlm-facets__value-count">{{- value.count -}}</span></span><span class="visually-hidden">
+                                  {{- dlm_value_text | escape }} (
                                   {%- if value.count == 1 -%}
                                     {{- 'products.facets.product_count_simple.one' | t: count: value.count -}}
                                   {%- else -%}

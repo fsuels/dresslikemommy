@@ -44,7 +44,8 @@
             {%- render 'dlm-facet-color-dot', label: value.label, swatch: value.swatch -%}
           {%- endif -%}
           <span class="visually-hidden">{{ filter.label | escape }}:</span>
-          <span class="dlm-facets__chip-text">{{ value.label | escape }}</span>
+          {%- capture chip_text -%}{%- render 'dlm-facet-label', label: value.label -%}{%- endcapture -%}
+          <span class="dlm-facets__chip-text">{{ chip_text | escape }}</span>
           {% render 'icon-close-small' %}
           <span class="visually-hidden">{{ 'products.facets.clear_filter' | t }}</span>
         </span>

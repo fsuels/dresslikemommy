@@ -1,0 +1,43 @@
+{%- comment -%}
+  Returns the storefront text for one filter value label.
+
+  Search & Discovery filter groups ("Mother S", "Father M", "Black", "2-3 years")
+  have no Shopify translation, so they showed in English in every language. Only
+  those exact English patterns are translated; every other label is returned as is.
+  Output is not escaped: callers capture it and apply | escape.
+
+  Accepts:
+  - label: {String} filter value label
+
+  Usage:
+  {%- capture text -%}{%- render 'dlm-facet-label', label: value.label -%}{%- endcapture -%}
+{%- endcomment -%}
+{%- liquid
+  assign dlm_fl_text = label
+  unless request.locale.iso_code == 'en'
+    assign dlm_fl_clean = label | strip
+    assign dlm_fl_words = dlm_fl_clean | split: ' '
+    assign dlm_fl_first = dlm_fl_words[0]
+    assign dlm_fl_second = dlm_fl_words[1]
+    assign dlm_fl_colors = ',black,blue,green,grey,pink,red,white,yellow,'
+    assign dlm_fl_color = dlm_fl_clean | downcase
+    assign dlm_fl_token = ',' | append: dlm_fl_color | append: ','
+    if dlm_fl_words.size == 1 and dlm_fl_colors contains dlm_fl_token
+      assign dlm_fl_key = 'products.facets.color_names.' | append: dlm_fl_color
+      assign dlm_fl_text = dlm_fl_key | t
+    elsif dlm_fl_words.size == 2 and dlm_fl_first == 'Mother'
+      assign dlm_fl_member = 'products.facets.size_groups.mother' | t
+      assign dlm_fl_text = dlm_fl_member | append: ' ' | append: dlm_fl_second
+    elsif dlm_fl_words.size == 2 and dlm_fl_first == 'Father'
+      assign dlm_fl_member = 'products.facets.size_groups.father' | t
+      assign dlm_fl_text = dlm_fl_member | append: ' ' | append: dlm_fl_second
+    elsif dlm_fl_words.size == 2 and dlm_fl_second == 'years'
+      assign dlm_fl_text = 'products.facets.age_years' | t: range: dlm_fl_first
+    elsif dlm_fl_words.size == 3 and dlm_fl_first == 'Baby' and dlm_fl_words[2] == 'Months'
+      assign dlm_fl_member = 'products.facets.size_groups.baby' | t
+      assign dlm_fl_age = 'products.facets.age_months' | t: range: dlm_fl_second
+      assign dlm_fl_text = dlm_fl_member | append: ' ' | append: dlm_fl_age
+    endif
+  endunless
+-%}
+{{- dlm_fl_text -}}
