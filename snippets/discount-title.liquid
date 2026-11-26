@@ -1,0 +1,57 @@
+{%- comment -%}
+  Shopify automatic discount titles are not translatable, so the cart showed
+  "Family bundle: 3rd piece 20% off" in English in every language.
+  Usage: render 'discount-title', title: discount.discount_application.title
+  Other discounts keep their own title. Checkout still shows the Shopify title.
+{%- endcomment -%}
+{%- liquid
+  assign dt_label = title
+  assign dt_locale_root = request.locale.iso_code | default: 'en' | split: '-' | first | downcase
+  if title contains 'Family bundle' and dt_locale_root != 'en'
+    case dt_locale_root
+      when 'ar'
+        assign dt_label = 'خصم 20% على القطعة الثالثة'
+      when 'cs'
+        assign dt_label = 'Sleva 20 % na 3. kus'
+      when 'da'
+        assign dt_label = '20 % rabat på 3. del'
+      when 'de'
+        assign dt_label = '20 % auf das 3. Teil'
+      when 'el'
+        assign dt_label = 'Έκπτωση 20% στο 3ο κομμάτι'
+      when 'es'
+        assign dt_label = '20 % de descuento en la 3.ª prenda'
+      when 'fi'
+        assign dt_label = '3. tuotteen 20 % alennus'
+      when 'fr'
+        assign dt_label = '-20 % sur la 3e pièce'
+      when 'he'
+        assign dt_label = '20% הנחה על הפריט השלישי'
+      when 'hi'
+        assign dt_label = 'तीसरे पीस पर 20% छूट'
+      when 'it'
+        assign dt_label = 'Sconto del 20% sul 3° capo'
+      when 'ja'
+        assign dt_label = '3点目20%オフ'
+      when 'ko'
+        assign dt_label = '3번째 상품 20% 할인'
+      when 'nl'
+        assign dt_label = '20% korting op het 3e stuk'
+      when 'no', 'nb'
+        assign dt_label = '20 % rabatt på 3. plagg'
+      when 'pl'
+        assign dt_label = '20% rabatu na 3. sztukę'
+      when 'pt'
+        assign dt_label = '20% off na 3ª peça'
+      when 'ro'
+        assign dt_label = 'Reducere 20% la a 3-a piesă'
+      when 'ru'
+        assign dt_label = 'Скидка 20% на 3-ю вещь'
+      when 'sv'
+        assign dt_label = '20 % rabatt på 3:e plagget'
+      else
+        assign dt_label = '−20%'
+    endcase
+  endif
+-%}
+{{- dt_label -}}
