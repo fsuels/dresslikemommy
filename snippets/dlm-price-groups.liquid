@@ -46,16 +46,16 @@
 
   if pg_ok and pg_child_min > 0 and pg_adult_min > 0 and pg_child_min != pg_adult_min
     if dlm_currency_code_flag == 'true'
-      assign pg_child_money = pg_child_min | money_with_currency
-      assign pg_adult_money = pg_adult_min | money_with_currency
+      assign pg_child_money = pg_child_min | money_with_currency | strip_html
+      assign pg_adult_money = pg_adult_min | money_with_currency | strip_html
     else
-      assign pg_child_money = pg_child_min | money
-      assign pg_adult_money = pg_adult_min | money
+      assign pg_child_money = pg_child_min | money | strip_html
+      assign pg_adult_money = pg_adult_min | money | strip_html
     endif
     assign pg_child_word = 'products.facets.size_groups.child' | t
     assign pg_adult_word = 'products.facets.size_groups.adult' | t
-    assign pg_child_line = 'products.product.price.group_from' | t: group: pg_child_word, price: pg_child_money | strip_html
-    assign pg_adult_line = 'products.product.price.group_from' | t: group: pg_adult_word, price: pg_adult_money | strip_html
+    assign pg_child_line = 'products.product.price.group_from' | t: group: pg_child_word, price: pg_child_money
+    assign pg_adult_line = 'products.product.price.group_from' | t: group: pg_adult_word, price: pg_adult_money
     assign pg_sep = ' · '
     if pg_child_min < pg_adult_min
       echo pg_child_line | append: pg_sep | append: pg_adult_line
