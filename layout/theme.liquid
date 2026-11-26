@@ -281,25 +281,7 @@
   {{ 'customer.css' | asset_url | stylesheet_tag }}
 {%- endif -%}
 
-<!-- Remove Critical CSS Files -->
-<!--
-{{ 'component-rating.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-payment.css' | asset_url | stylesheet_tag }}
-{{ 'component-volume-pricing.css' | asset_url | stylesheet_tag }}
-{{ 'component-newsletter.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-social.css' | asset_url | stylesheet_tag }}
-{{ 'section-footer.css' | asset_url | stylesheet_tag }}
-{{ 'component-list-menu.css' | asset_url | stylesheet_tag }}
-{{ 'mask-blobs.css' | asset_url | stylesheet_tag }}
-{{ 'quick-order-list.css' | asset_url | stylesheet_tag }}
-{{ 'quantity-popover.css' | asset_url | stylesheet_tag }}
-{{ 'template-collection.css' | asset_url | stylesheet_tag }}
-{{ 'component-price.css' | asset_url | stylesheet_tag }}
-{{ 'component-slider.css' | asset_url | stylesheet_tag }}
-{{ 'component-slideshow.css' | asset_url | stylesheet_tag }}
-{{ 'section-collection-list.css' | asset_url | stylesheet_tag }}
-{{ 'component-card.css' | asset_url | stylesheet_tag }}
--->
+
 
 
 
@@ -320,10 +302,6 @@
     <link rel="icon" type="image/png" href="{{ resolved_favicon_url }}">
     {% comment %}theme-check-enable RemoteAsset{% endcomment %}
   {%- endif -%}
-
-  {%- unless settings.type_header_font.system? and settings.type_body_font.system? -%}
-    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
-  {%- endunless -%}
 
   {%- liquid
     assign emit_organization_schema = false
