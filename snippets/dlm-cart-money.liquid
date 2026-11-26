@@ -1,0 +1,13 @@
+{%- comment -%}
+  One money format for the cart drawer and the cart page: the same rule as price.liquid
+  and dlm-card-price.liquid. Where dlm-show-currency-code says the ISO code belongs on
+  prices (every market except US shoppers paying in USD), lines, discounts and the total
+  all use money_with_currency ("$73.00 CAD", "1.301,00 CZK"); otherwise plain money.
+  Usage: {% render 'dlm-cart-money', amount: item.final_line_price, show_code: dlm_currency_code_flag %}
+  where dlm_currency_code_flag is the captured output of the dlm-show-currency-code snippet.
+{%- endcomment -%}
+{%- if show_code == 'true' -%}
+  {{- amount | money_with_currency -}}
+{%- else -%}
+  {{- amount | money -}}
+{%- endif -%}

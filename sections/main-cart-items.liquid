@@ -1,3 +1,4 @@
+{%- capture dlm_currency_code_flag -%}{%- render 'dlm-show-currency-code' -%}{%- endcapture -%}
 {{ 'component-cart.css' | asset_url | stylesheet_tag }}
 {{ 'component-cart-items.css' | asset_url | stylesheet_tag }}
 {{ 'component-totals.css' | asset_url | stylesheet_tag }}
@@ -80,7 +81,7 @@
               {%- endif -%}
               <div class="cart-page__cross-sell-info">
                 <span class="cart-page__cross-sell-name">{{ product.title | escape | split: ' | ' | first }}</span>
-                <span class="cart-page__cross-sell-price">{{ product.price | money }}</span>
+                <span class="cart-page__cross-sell-price">{% render 'dlm-cart-money', amount: product.price, show_code: dlm_currency_code_flag %}</span>
               </div>
             </a>
           {%- endfor -%}
@@ -221,18 +222,18 @@
                             {{ 'products.product.price.regular_price' | t }}
                           </span>
                           <s class="cart-item__old-price product-option">
-                            {{- item.original_price | money -}}
+                            {%- render 'dlm-cart-money', amount: item.original_price, show_code: dlm_currency_code_flag -%}
                           </s>
                           <span class="visually-hidden">
                             {{ 'products.product.price.sale_price' | t }}
                           </span>
                           <strong class="cart-item__final-price product-option">
-                            {{ item.final_price | money }}
+                            {% render 'dlm-cart-money', amount: item.final_price, show_code: dlm_currency_code_flag %}
                           </strong>
                         </div>
                       {%- else -%}
                         <div class="product-option">
-                          {{ item.original_price | money }}
+                          {% render 'dlm-cart-money', amount: item.original_price, show_code: dlm_currency_code_flag %}
                         </div>
                       {%- endif -%}
 
@@ -318,26 +319,26 @@
                             </dt>
                             <dd>
                               <s class="cart-item__old-price price price--end">
-                                {{ item.original_line_price | money }}
+                                {% render 'dlm-cart-money', amount: item.original_line_price, show_code: dlm_currency_code_flag %}
                               </s>
                             </dd>
                             <dt class="visually-hidden">
                               {{ 'products.product.price.sale_price' | t }}
                             </dt>
                             <dd class="price price--end">
-                              {{ item.final_line_price | money }}
+                              {% render 'dlm-cart-money', amount: item.final_line_price, show_code: dlm_currency_code_flag %}
                             </dd>
                           </dl>
                         {%- else -%}
                           <span class="price price--end">
-                            {{ item.original_line_price | money }}
+                            {% render 'dlm-cart-money', amount: item.original_line_price, show_code: dlm_currency_code_flag %}
                           </span>
                         {%- endif -%}
 
                         {%- if item.variant.available and item.unit_price_measurement -%}
                           <div class="unit-price caption">
                             <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
-                            {{ item.unit_price | money }}
+                            {% render 'dlm-cart-money', amount: item.unit_price, show_code: dlm_currency_code_flag %}
                             <span aria-hidden="true">/</span>
                             <span class="visually-hidden"
                               >&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span
@@ -534,26 +535,26 @@
                             </dt>
                             <dd>
                               <s class="cart-item__old-price price price--end">
-                                {{ item.original_line_price | money }}
+                                {% render 'dlm-cart-money', amount: item.original_line_price, show_code: dlm_currency_code_flag %}
                               </s>
                             </dd>
                             <dt class="visually-hidden">
                               {{ 'products.product.price.sale_price' | t }}
                             </dt>
                             <dd class="price price--end">
-                              {{ item.final_line_price | money }}
+                              {% render 'dlm-cart-money', amount: item.final_line_price, show_code: dlm_currency_code_flag %}
                             </dd>
                           </dl>
                         {%- else -%}
                           <span class="price price--end">
-                            {{ item.original_line_price | money }}
+                            {% render 'dlm-cart-money', amount: item.original_line_price, show_code: dlm_currency_code_flag %}
                           </span>
                         {%- endif -%}
 
                         {%- if item.variant.available and item.unit_price_measurement -%}
                           <div class="unit-price caption">
                             <span class="visually-hidden">{{ 'products.product.price.unit_price' | t }}</span>
-                            {{ item.unit_price | money }}
+                            {% render 'dlm-cart-money', amount: item.unit_price, show_code: dlm_currency_code_flag %}
                             <span aria-hidden="true">/</span>
                             <span class="visually-hidden"
                               >&nbsp;{{ 'accessibility.unit_price_separator' | t }}&nbsp;</span

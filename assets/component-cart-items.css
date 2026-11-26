@@ -97,7 +97,12 @@ cart-items .title-wrapper-with-link {
 }
 
 .cart-item__name {
-  text-decoration: none;
+  /* The title links to the product page (with the variant) so a shopper can go back
+     and change a size; the underline makes that visible before hovering. */
+  text-decoration: underline;
+  text-decoration-color: rgba(var(--color-foreground), 0.35);
+  text-decoration-thickness: 0.1rem;
+  text-underline-offset: 0.3rem;
   display: block;
 }
 
@@ -105,6 +110,7 @@ cart-items .title-wrapper-with-link {
   text-decoration: underline;
   text-underline-offset: 0.3rem;
   text-decoration-thickness: 0.2rem;
+  text-decoration-color: currentColor;
 }
 
 .cart-item__price-wrapper > * {
