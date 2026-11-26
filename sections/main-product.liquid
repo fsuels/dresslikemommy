@@ -1097,7 +1097,7 @@
                     price_class: 'price--large'
                   -%}
                   {%- if pdp_sale_pct > 0 -%}
-                    <span class="pdp-save-pill" aria-hidden="true">Save {{ pdp_sale_pct }}%</span>
+                    <span class="pdp-save-pill" aria-hidden="true">{% if request.locale.iso_code == 'en' %}Save {% else %}&minus;{% endif %}{{ pdp_sale_pct }}%</span>
                   {%- endif -%}
                 </div>
                 {%- comment -%}
