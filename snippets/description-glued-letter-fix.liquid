@@ -1,0 +1,55 @@
+{%- comment -%}
+  Older machine translations kept the first English letter glued to the translated word
+  ("EJedes", "Aהוסף"). Repairs those exact words at render time; product data is unchanged.
+  - html: translated product description HTML
+  - locale: request locale ISO code
+{%- endcomment -%}
+{%- liquid
+  assign fixed_html = html
+  assign lang = locale | slice: 0, 2
+  assign pairs = ''
+  case lang
+    when 'cs'
+      assign pairs = 'ADvoudílná:Dvoudílná,APřidejte:Přidejte,AVzdušný:Vzdušný,EJednoduch:Jednoduch,EKaždý:Každý,ESilueta:Silueta,ESnadný:Snadný,EStyl:Styl,ETvar:Tvar,EŠortky:Šortky,OJedna:Jedna,Ojeden:Jeden,PDetaily:Detaily,PNatahovací:Natahovací,PPerfektní:Perfektní,PPohodlí:Pohodlí,PPrint:Print,PPruh:Pruh,PPříběh:Příběh,PSilueta:Silueta,PStahovací:Stahovací,PTisk:Tisk,PVyberte:Vyberte,SDlouhé:Dlouhé,SDélka:Délka,SLesk:Lesk,SLetní:Letní,SRozsah:Rozsah,STvar:Tvar,SVklouzněte:Vklouzněte,SVroubkovaný:Vroubkovaný,SČtvercový:Čtvercový'
+    when 'da'
+      assign pairs = 'ATilføj:Tilføj,AVævet:Vævet,EHvert:Hvert,ENem:Nem,Eshorts:Shorts'
+    when 'de'
+      assign pairs = 'AVerstellbare:Verstellbare,BAtmungsaktive:Atmungsaktive,BDieses:Dieses,BLuftige:Luftige,EJede:Jede,EShorts:Shorts,HAusschnitt:Ausschnitt,RRed:Red,Rempfohlene:Empfohlene'
+    when 'el'
+      assign pairs = 'AΕ:Ε,AΙ:Ι,AΠ:Π,AΡ:Ρ,AΣ:Σ,Aσυνημμένο:Συνημμένο'
+    when 'es'
+      assign pairs = 'AComodidad:Comodidad,ASilueta:Silueta,Eshorts:Shorts,Haltura:Altura,Halto:Alto,HCadera:Cadera,ODetalles:Detalles,RComodidad:Comodidad,REscote:Escote,ECada:Cada,EJede:Jede'
+    when 'fi'
+      assign pairs = 'AIlman:Ilman,ALisää:Lisää,ASäädettävä:Säädettävä,EArjen:Arjen,EHelppo:Helppo,EJokainen:Jokainen'
+    when 'fr'
+      assign pairs = 'ABas :Bas ,Aconfort:Confort,Acoupe:Coupe,EDétails:Détails,EPantalon:Pantalon,EShort:Short,OCol:Col,ODétail:Détail,ONotre:Notre,OUne:Une,RCorsage:Corsage,RCoupe:Coupe,RDétail:Détail,REncolure:Encolure,RManches:Manches'
+    when 'he'
+      assign pairs = 'Aהוס:הוס,Eטיפול:טיפול,Eכל:כל'
+    when 'it'
+      assign pairs = 'EPantaloni:Pantaloni,Edettagli:Dettagli,Estampa :Stampa '
+    when 'ja'
+      assign pairs = 'Eエ:エ,Rゆ:ゆ,Rフ:フ,Rリ:リ,Rル:ル,Rレ:レ,Rロ:ロ'
+    when 'ko'
+      assign pairs = 'E가:가,E간:간,E따:따,E라스틱:엘라스틱,E상:상,E쉬:쉬,E이지:이지,E탄:탄,E편:편'
+    when 'nl'
+      assign pairs = 'Aleeftijd:Leeftijd,Ebroek:Broek,Eshort:Short,OEen:Een,OEén:Eén'
+    when 'no', 'nb'
+      assign pairs = 'AHelt:Helt,ALegg:Legg,EBukse:Bukse,EHvert:Hvert,Elett:Lett,Eshorts:Shorts'
+    when 'pl'
+      assign pairs = 'ADodaj:Dodaj,APrzewiewna:Przewiewna,ARegulowany:Regulowany,EKażdy:Każdy,EProst:Prost,ESpodnie:Spodnie,EWygodna:Wygodna,EWyrazisty:Wyrazisty,Eszorty:Szorty,EŁatw:Łatw'
+    when 'pt'
+      assign pairs = 'AAjuste:Ajuste,Aconforto:Conforto,Asilhueta:Silhueta,Atabela:A tabela,EAjuste:Ajuste,ECada:Cada,ECalça:Calça,ECamada:Camada,ECintura:Cintura,ECuidado:Cuidado,EDetalhes:Detalhes,EEstilo:Estilo,EForma:Forma,EPaleta:Paleta,ESaia:Saia,EShorts:Shorts,ESilhueta:Silhueta'
+    when 'ro'
+      assign pairs = 'AAspect:Aspect,AConfort:Confort,ASenzație:Senzație,ASiluetă:Siluetă,EDetalii:Detalii,EFusta:Fusta,EImprimare:Imprimare,EPaletă:Paletă,EPotrivire:Potrivire,EStil:Stil,EUșor:Ușor,Efiecare:Fiecare,Esiluetă:Siluetă,Estil :Stil ,Etalie:Talie,EÎngrijire:Îngrijire,Eîngrijire:Îngrijire,IDimensiuni:Dimensiuni,IMărimea:Mărimea,OAccente:Accente,ODetaliu:Detaliu,OGuler:Guler,OPrint:Print,OSiluetă:Siluetă'
+    when 'sv'
+      assign pairs = 'ALägg:Lägg,ELätt:Lätt,EVarje:Varje,Elätt:Lätt,Eshorts:Shorts'
+  endcase
+  if pairs != ''
+    assign pair_list = pairs | split: ','
+    for pair in pair_list
+      assign parts = pair | split: ':'
+      assign fixed_html = fixed_html | replace: parts[0], parts[1]
+    endfor
+  endif
+  echo fixed_html
+-%}
