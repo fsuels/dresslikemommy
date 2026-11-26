@@ -43,6 +43,16 @@ def main() -> None:
         assert restored == '<table id="size-chart"><tr><td>Maman et moi</td></tr></table>'
         assert backend._contains_placeholder_tokens("__DLMTOK0___") is True  # noqa: SLF001
 
+        # Regression: a token glued to a word made the translator keep that word's
+        # first letter ("Halto", "Eda talla"). Tokens must be space-separated.
+        source = "<th>Height (cm)</th><p>Each size</p> text<strong>Print:</strong>x"
+        protected, replacements = backend._protect(source, "es")  # noqa: SLF001
+        import re as _re
+
+        assert not _re.search(r"QZXTOKEN\d{5}QXZ(?!QZXTOKEN)[A-Za-z0-9]", protected)
+        assert not _re.search(r"[A-Za-z0-9]QZXTOKEN", protected.replace("QXZQZXTOKEN", "QXZ QZXTOKEN"))
+        assert backend._restore(protected, replacements) == source  # noqa: SLF001
+
     print("ok")
 
 

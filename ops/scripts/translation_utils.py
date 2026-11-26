@@ -161,6 +161,31 @@ def markup_heavy_text(text):
     )
 
 
+TOKEN_AFTER_RE = re.compile(r"(QZXTOKEN\d{5}QXZ)(?=[^\W_])(?!QZXTOKEN)")
+TOKEN_BEFORE_RE = re.compile(r"(?<=[^\W_])(?<!QXZ)(QZXTOKEN\d{5}QXZ)")
+
+
+class _Replacements(list):
+    """Token/value pairs plus which tokens were padded with a space on a side."""
+
+    def __init__(self, *args):
+        super().__init__(*args)
+        self.pad_before = set()
+        self.pad_after = set()
+
+
+def _pad_tokens(protected, replacements):
+    def after(match):
+        replacements.pad_after.add(match.group(1))
+        return match.group(1) + " "
+
+    def before(match):
+        replacements.pad_before.add(match.group(1))
+        return " " + match.group(1)
+
+    return TOKEN_BEFORE_RE.sub(before, TOKEN_AFTER_RE.sub(after, protected))
+
+
 class TranslationBackend:
     def __init__(
         self,
@@ -226,7 +251,7 @@ class TranslationBackend:
         return cleaned
 
     def _protect(self, text, locale):
-        replacements = []
+        replacements = _Replacements()
         protected = text
 
         def token_for(value):
@@ -243,13 +268,21 @@ class TranslationBackend:
                 continue
             protected = protected.replace(source, token_for(target))
 
+        # A token glued to a word ("QZXTOKEN00001QXZHeight") is read by the
+        # translator as one unknown word and its first letter stays untranslated
+        # ("Halto", "Eda talla"). Separate it with a space; _restore removes it.
+        protected = _pad_tokens(protected, replacements)
+
         return protected, replacements
 
     @staticmethod
     def _restore(text, replacements):
         restored = text
+        pad_before = getattr(replacements, "pad_before", set())
+        pad_after = getattr(replacements, "pad_after", set())
         for token, value in reversed(replacements):
-            restored = restored.replace(token, value)
+            pattern = ("(?: )?" if token in pad_before else "") + re.escape(token) + ("(?: )?" if token in pad_after else "")
+            restored = re.sub(pattern, lambda _m, v=value: v, restored)
         return restored
 
     def _restore_checked(self, protected, translated, replacements):
