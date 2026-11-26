@@ -197,23 +197,42 @@
 {% assign branch_row_label = '' %}
 {% assign branch_pill_list = '' | split: '|||' %}
 
+{% comment %}
+  One seasonal occasion pill right after "All" (same numeric month*100+day pattern as the hero:
+  Jan 1 = 101, Dec 3 = 1203). Christmas Oct 16 - Dec 25, Valentine's Day Jan 11 - Feb 14, else none.
+  It shows only when its collection has products (the pill loop skips empty targets).
+{% endcomment %}
+{% assign season_month = 'now' | date: '%m' | plus: 0 %}
+{% assign season_day = 'now' | date: '%d' | plus: 0 %}
+{% assign season_mmdd = season_month | times: 100 | plus: season_day %}
+{% assign season_pill_handle = '' %}
+{% assign season_pill = '' %}
+{% if season_mmdd >= 1016 and season_mmdd <= 1225 %}
+  {% assign season_pill_handle = 'matching-family-christmas-outfits' %}
+  {% capture season_pill %}{{ season_pill_handle }}::{{ 'storefront.mega_menu.christmas_short' | t }}|||{% endcapture %}
+{% elsif season_mmdd >= 111 and season_mmdd <= 214 %}
+  {% assign season_pill_handle = 'valentines-day-matching-outfits-1' %}
+  {% capture season_pill %}{{ season_pill_handle }}::{{ 'storefront.mega_menu.valentines_short' | t }}|||{% endcapture %}
+{% endif %}
+{% assign season_pill = season_pill | strip %}
+
 {% case current_main_branch_key %}
   {% when 'mommy' %}
     {% assign branch_row_label = 'sections.collection_navigation.within_mommy_me' | t %}
     {% capture mommy_priority_pills %}
-      mommy-and-me::{{ 'sections.breadcrumbs.label_all' | t }}::|||mommy-and-me::{{ 'sections.breadcrumbs.label_sets' | t }}::sets|||pajamas::{{ 'sections.breadcrumbs.label_pajamas' | t }}|||dresses::{{ 'sections.breadcrumbs.label_dresses' | t }}|||swimsuits::{{ 'sections.breadcrumbs.label_swimsuits' | t }}|||tops::{{ 'sections.breadcrumbs.label_tops' | t }}|||sweaters::{{ 'sections.breadcrumbs.label_sweaters_short' | t }}
+      mommy-and-me::{{ 'sections.breadcrumbs.label_all' | t }}::|||{{ season_pill }}mommy-and-me::{{ 'sections.breadcrumbs.label_sets' | t }}::sets|||pajamas::{{ 'sections.breadcrumbs.label_pajamas' | t }}|||dresses::{{ 'sections.breadcrumbs.label_dresses' | t }}|||swimsuits::{{ 'sections.breadcrumbs.label_swimsuits' | t }}|||tops::{{ 'sections.breadcrumbs.label_tops' | t }}|||sweaters::{{ 'sections.breadcrumbs.label_sweaters_short' | t }}
     {% endcapture %}
     {% assign branch_pill_list = mommy_priority_pills | split: '|||' %}
   {% when 'family' %}
     {% assign branch_row_label = 'sections.collection_navigation.within_family_matching' | t %}
     {% capture family_priority_pills %}
-      {{ family_matching_hub_handle }}::{{ 'sections.breadcrumbs.label_all' | t }}::|||family-swimsuits::{{ 'sections.breadcrumbs.label_swimsuits' | t }}::swimsuits|||family-sets::{{ 'sections.breadcrumbs.label_sets' | t }}::sets|||family-tops::{{ 'sections.breadcrumbs.label_tops' | t }}::tops|||family-sweaters::{{ 'sections.breadcrumbs.label_sweaters_short' | t }}::sweaters|||matching-family-sweatshirts::{{ 'sections.breadcrumbs.label_sweatshirts' | t }}|||family-pajamas::{{ 'sections.breadcrumbs.label_pajamas' | t }}::pajamas
+      {{ family_matching_hub_handle }}::{{ 'sections.breadcrumbs.label_all' | t }}::|||{{ season_pill }}family-swimsuits::{{ 'sections.breadcrumbs.label_swimsuits' | t }}::swimsuits|||family-sets::{{ 'sections.breadcrumbs.label_sets' | t }}::sets|||family-tops::{{ 'sections.breadcrumbs.label_tops' | t }}::tops|||family-sweaters::{{ 'sections.breadcrumbs.label_sweaters_short' | t }}::sweaters|||matching-family-sweatshirts::{{ 'sections.breadcrumbs.label_sweatshirts' | t }}|||family-pajamas::{{ 'sections.breadcrumbs.label_pajamas' | t }}::pajamas
     {% endcapture %}
     {% assign branch_pill_list = family_priority_pills | split: '|||' %}
   {% when 'daddy' %}
     {% assign branch_row_label = 'sections.collection_navigation.within_daddy_me' | t %}
     {% capture daddy_priority_pills %}
-      daddy-me::{{ 'sections.breadcrumbs.label_all' | t }}|||daddy-me-t-shirts::{{ 'sections.breadcrumbs.label_tees' | t }}|||daddy-me-shirts::{{ 'sections.breadcrumbs.label_button_downs' | t }}|||trunks::{{ 'sections.breadcrumbs.label_trunks' | t }}
+      daddy-me::{{ 'sections.breadcrumbs.label_all' | t }}|||{{ season_pill }}daddy-me-t-shirts::{{ 'sections.breadcrumbs.label_tees' | t }}|||daddy-me-shirts::{{ 'sections.breadcrumbs.label_button_downs' | t }}|||trunks::{{ 'sections.breadcrumbs.label_trunks' | t }}
     {% endcapture %}
     {% assign branch_pill_list = daddy_priority_pills | split: '|||' %}
   {% when 'couples' %}
@@ -366,7 +385,9 @@
                 {% assign item_filter_key = '' %}
                 {% assign pill_url = collections_base_url | append: item_handle %}
 
-                {% if item_handle == family_matching_hub_handle %}
+                {% if season_pill_handle != blank and item_handle == season_pill_handle %}
+                  {% assign pill_url = target_collection.url | default: pill_url %}
+                {% elsif item_handle == family_matching_hub_handle %}
                   {% assign target_collection = family_matching_hub_collection %}
                   {% if family_matching_hub_url != blank %}
                     {% assign pill_url = family_matching_hub_url %}
