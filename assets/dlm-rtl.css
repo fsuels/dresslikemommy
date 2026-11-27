@@ -8,7 +8,10 @@
    and breaks the counter and arrows. Keep the scroll track left-to-right; slide content stays RTL. */
 [dir='rtl'] .slider,
 [dir='rtl'] .slider-buttons,
-[dir='rtl'] .slider-counter {
+[dir='rtl'] .slider-counter,
+[dir='rtl'] .product-gallery__nav-arrows,
+[dir='rtl'] .product-media-progress,
+[dir='rtl'] .hero-banner__controls {
   direction: ltr;
 }
 
@@ -16,8 +19,12 @@
   direction: rtl;
 }
 
-/* Size charts and measurement tables keep their column order and numbers left-to-right. */
-[dir='rtl'] table {
+/* Size charts and measurement tables keep their column order and numbers left-to-right.
+   Cart and order tables stay right-to-left. */
+[dir='rtl'] .matching-size-guide__table,
+[dir='rtl'] .size-chart,
+[dir='rtl'] #size-chart,
+[dir='rtl'] .rte table {
   direction: ltr;
 }
 
