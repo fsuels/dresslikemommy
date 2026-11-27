@@ -766,6 +766,10 @@
   elsif xmas_month == '12'
     assign xmas_season = true
   endif
+  # The English sweaters intro already links family sweaters (collection-guide-english-terms).
+  if seo_lang == 'en' and collection_handle == 'sweaters'
+    assign xmas_kind = ''
+  endif
   if xmas_season and xmas_kind != '' and generated_hero_summary != blank
     assign xmas_lang = seo_lang
     if xmas_lang == 'nb'
