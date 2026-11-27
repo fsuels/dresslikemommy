@@ -1,7 +1,8 @@
 {%- comment -%}
   First-screen link from the dresses collections to the winter sweaters, 1 October to
   14 February (shop date). Hidden for the southern summer storefront (AU, NZ). The label
-  is the already translated sweaters collection title.
+  is the already translated sweaters collection title. With target 'daddy' (dad shirts
+  collection) it links to the daddy-me collection, which leads with the dad sweaters.
 {%- endcomment -%}
 {%- liquid
   assign cwsl_mmdd = 'now' | date: '%m%d' | plus: 0
@@ -13,7 +14,11 @@
     {%- assign cwsl_root = routes.root_url -%}
     {%- if cwsl_root == '/' -%}{%- assign cwsl_root = '' -%}{%- endif -%}
     <p class="collection-hero__season-link">
-      <a class="link" href="{{ cwsl_root }}/collections/sweaters">{{ 'sections.collection_seo.display_titles.sweaters' | t }} &rarr;</a>
+      {%- if target == 'daddy' -%}
+        <a class="link" href="{{ cwsl_root }}/collections/daddy-me">{{ 'sections.collection_seo.display_titles.daddy_me' | t }}: {{ 'sections.breadcrumbs.label_sweaters_short' | t }} &rarr;</a>
+      {%- else -%}
+        <a class="link" href="{{ cwsl_root }}/collections/sweaters">{{ 'sections.collection_seo.display_titles.sweaters' | t }} &rarr;</a>
+      {%- endif -%}
     </p>
   {%- endif -%}
 {%- endif -%}

@@ -70,6 +70,8 @@
 
       {%- if collection_handle == 'dresses' or collection_handle == 'mother-daughter-matching-dresses' -%}
         {% render 'collection-winter-sweaters-link' %}
+      {%- elsif collection_handle == 'daddy-me-shirts' -%}
+        {% render 'collection-winter-sweaters-link', target: 'daddy' %}
       {%- endif -%}
 
       {%- unless collection_handle == 'mommy-and-me'
