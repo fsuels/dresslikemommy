@@ -5,6 +5,8 @@
   shoppers can move through the whole Christmas range. Link text is the
   collection title, which Shopify already translates; only the eyebrow is
   translated inline here (locales/*.json are owned by another lane).
+  From 1 November to 24 December the fall collection (thanksgiving-family-outfits)
+  also shows these links, without the pajamas collection.
   Usage: {% render 'collection-christmas-cluster', collection: collection %}
 {%- endcomment -%}
 {%- liquid
@@ -18,6 +20,15 @@
     endif
   endfor
 
+  assign cc_fall = false
+  if cc_current == 'thanksgiving-family-outfits'
+    assign cc_mmdd = 'now' | date: '%m%d' | plus: 0
+    if cc_mmdd >= 1101 and cc_mmdd <= 1224
+      assign cc_active = true
+      assign cc_fall = true
+    endif
+  endif
+
   assign cc_lang = request.locale.iso_code | default: 'en' | downcase | split: '-' | first
   if cc_lang == 'nb'
     assign cc_lang = 'no'
@@ -27,6 +38,7 @@
   {%- capture cc_links -%}
     {%- for cc_handle in cc_handles -%}
       {%- if cc_handle == cc_current -%}{%- continue -%}{%- endif -%}
+      {%- if cc_fall and cc_handle == 'christmas-pajamas' -%}{%- continue -%}{%- endif -%}
       {%- assign cc_collection = collections[cc_handle] -%}
       {%- if cc_collection == blank or cc_collection.products_count < cc_min -%}{%- continue -%}{%- endif -%}
       <li><a class="collection-christmas-cluster__link" href="{{ cc_collection.url }}">{{ cc_collection.title | escape }}</a></li>
