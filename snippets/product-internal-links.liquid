@@ -51,9 +51,41 @@
     endif
   endif
 
+  comment
+    GSC 2026-11-27: Google lands "matching family shirts / sweaters / sweatshirts" on single products,
+    so those product pages link to the category hub with that wording (English only, most specific first).
+  endcomment
+  assign hub_handle = blank
+  assign hub_label = blank
+  assign hub_holiday_sweaters = false
+  assign product_collection_handles = product.collections | map: 'handle'
+  if in_pajamas == false
+    if product_collection_handles contains 'family-sweaters' and product.title contains 'Family'
+      if product.title contains 'Sweatshirt' or product.title contains 'Hoodie'
+        assign hub_handle = 'matching-family-sweatshirts'
+        assign hub_label = 'matching family sweatshirts and hoodies'
+      elsif product.title contains 'Sweater'
+        assign hub_handle = 'family-sweaters'
+        assign hub_label = 'matching family sweaters'
+        if product_collection_handles contains 'christmas-sweaters'
+          assign hub_holiday_sweaters = true
+        endif
+      endif
+    endif
+    if hub_handle == blank and product_collection_handles contains 'family-tops' and product.title contains 'Family'
+      if product.title contains 'Sweatshirt' or product.title contains 'Hoodie'
+        assign hub_handle = 'matching-family-sweatshirts'
+        assign hub_label = 'matching family sweatshirts and hoodies'
+      elsif product.title contains 'Shirt'
+        assign hub_handle = 'family-tops'
+        assign hub_label = 'matching family shirts'
+      endif
+    endif
+  endif
+
   assign should_render_internal_links = false
   if internal_link_locale == 'en'
-    if in_matching_hawaiian_outfits or in_matching_family_vacation_outfits or in_mother_daughter_matching_dresses or in_pajamas
+    if in_matching_hawaiian_outfits or in_matching_family_vacation_outfits or in_mother_daughter_matching_dresses or in_pajamas or hub_handle != blank
       assign should_render_internal_links = true
     endif
   endif
@@ -70,6 +102,12 @@
       {%- endif -%}
       {%- if new_pajama_drop_collection != blank -%}
         <p>Looking for more prints? <a href="{{ new_pajama_drop_collection.url }}">Shop the Mommy and Me Pajama Sets</a> for more matching pajama styles in one place.</p>
+      {%- endif -%}
+    {%- endif -%}
+    {%- if hub_handle != blank and collections[hub_handle] != blank -%}
+      <p>Browse all <a href="{{ collections[hub_handle].url }}">{{ hub_label }}</a> to compare designs and choose a size for each person.</p>
+      {%- if hub_holiday_sweaters and collections['christmas-sweaters'] != blank -%}
+        <p>Shopping for December photos? See our <a href="{{ collections['christmas-sweaters'].url }}">family holiday sweaters for Christmas</a>.</p>
       {%- endif -%}
     {%- endif -%}
     {%- if in_matching_hawaiian_outfits and collections['matching-hawaiian-outfits'] != blank -%}
