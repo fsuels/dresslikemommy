@@ -75,6 +75,8 @@
       {% assign subcategory_display_label = 'sections.breadcrumbs.label_pajamas' | t %}
     {% elsif product_collection_handle_tokens contains '|family-swimsuits|' or subcategory_handle == 'swimsuits' %}
       {% assign subcategory_handle = 'family-swimsuits' %}
+      {% comment %}Empty collection: link shoppers to the full swimsuits collection instead.{% endcomment %}
+      {% if collections[subcategory_handle].all_products_count == 0 %}{% assign subcategory_handle = 'swimsuits' %}{% endif %}
       {% assign subcategory_collection = collections[subcategory_handle] %}
       {% assign subcategory_display_label = 'sections.breadcrumbs.label_swimsuits' | t %}
     {% elsif product_collection_handle_tokens contains '|matching-hawaiian-outfits|' or subcategory_handle == 'matching-hawaiian-outfits' %}
