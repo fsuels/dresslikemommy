@@ -4,6 +4,7 @@
   ops/category-team/state/transit-evidence-2026-11-26.md). Line used: YunExpress clothing registered
   air mail (US, CA, GB, DE, FR, IT, ES, NL, SE); YunExpress Air Cargo (General) where no clothing line
   was listed (CZ, PL). Values are carrier transit days, "min-max".
+  RO, NO, DK, FI, GR, BE read 2026-11-27: ops/category-team/state/transit-evidence-2026-11-27.md.
   A country NOT in this map has no evidence: pages show no dated estimate and the structured data
   carries no delivery time for it. Add a country only with a dated evidence line.
 
@@ -11,7 +12,7 @@
   Prints e.g. "14-21", or nothing for a country without evidence.
 {%- endcomment -%}
 {%- liquid
-  assign dtm_map = 'US:7-14|CA:14-24|GB:7-14|DE:14-21|FR:14-21|IT:14-21|ES:14-21|CZ:14-21|NL:12-17|PL:14-21|SE:12-17'
+  assign dtm_map = 'US:7-14|CA:14-24|GB:7-14|DE:14-21|FR:14-21|IT:14-21|ES:14-21|CZ:14-21|NL:12-17|PL:14-21|SE:12-17|RO:14-21|NO:14-21|DK:12-17|FI:14-21|GR:14-21|BE:12-17'
   assign dtm_iso = country | append: '' | strip | upcase
   assign dtm_entries = dtm_map | split: '|'
   for dtm_entry in dtm_entries
