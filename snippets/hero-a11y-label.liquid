@@ -1,0 +1,81 @@
+{%- comment -%}
+  Screen reader labels for the hero banner and the trust strip, per language.
+  Usage: {% render 'hero-a11y-label', key: 'slide', index: 1, total: 3 %}
+  English is the else-branch. Tokens {n} and {total} are replaced below.
+{%- endcomment -%}
+{%- liquid
+  assign hl_lang = request.locale.iso_code | default: localization.language.iso_code | default: 'en' | downcase | split: '-' | first
+  assign hl_text = ''
+  case hl_lang
+    when 'es'
+      case key
+        when 'slide'
+          assign hl_text = 'Imagen {n} de {total}'
+        when 'controls'
+          assign hl_text = 'Controles del banner'
+        when 'previous'
+          assign hl_text = 'Imagen anterior del banner'
+        when 'choose'
+          assign hl_text = 'Elegir imagen del banner'
+        when 'dot'
+          assign hl_text = 'Mostrar imagen {n} de {total}'
+        when 'next'
+          assign hl_text = 'Imagen siguiente del banner'
+        when 'trust_highlights'
+          assign hl_text = 'Ventajas de la tienda'
+      endcase
+    when 'fr'
+      case key
+        when 'slide'
+          assign hl_text = 'Image {n} sur {total}'
+        when 'controls'
+          assign hl_text = 'Commandes de la bannière'
+        when 'previous'
+          assign hl_text = 'Image précédente de la bannière'
+        when 'choose'
+          assign hl_text = 'Choisir l’image de la bannière'
+        when 'dot'
+          assign hl_text = 'Afficher l’image {n} sur {total}'
+        when 'next'
+          assign hl_text = 'Image suivante de la bannière'
+        when 'trust_highlights'
+          assign hl_text = 'Atouts de la boutique'
+      endcase
+    when 'cs'
+      case key
+        when 'slide'
+          assign hl_text = 'Obrázek {n} z {total}'
+        when 'controls'
+          assign hl_text = 'Ovládání banneru'
+        when 'previous'
+          assign hl_text = 'Předchozí obrázek banneru'
+        when 'choose'
+          assign hl_text = 'Vybrat obrázek banneru'
+        when 'dot'
+          assign hl_text = 'Zobrazit obrázek {n} z {total}'
+        when 'next'
+          assign hl_text = 'Další obrázek banneru'
+        when 'trust_highlights'
+          assign hl_text = 'Výhody obchodu'
+      endcase
+  endcase
+  if hl_text == ''
+    case key
+      when 'slide'
+        assign hl_text = 'Hero image {n} of {total}'
+      when 'controls'
+        assign hl_text = 'Hero image controls'
+      when 'previous'
+        assign hl_text = 'Previous hero image'
+      when 'choose'
+        assign hl_text = 'Choose hero image'
+      when 'dot'
+        assign hl_text = 'Show hero image {n} of {total}'
+      when 'next'
+        assign hl_text = 'Next hero image'
+      when 'trust_highlights'
+        assign hl_text = 'Store trust highlights'
+    endcase
+  endif
+  echo hl_text | replace: '{n}', index | replace: '{total}', total
+-%}

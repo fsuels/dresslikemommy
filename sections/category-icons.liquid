@@ -224,7 +224,7 @@
     {%- endif -%}
 
     {%- if section.settings.show_trust_strip and trust_item_count > 0 -%}
-      <ul class="category-tile-trust" role="list" aria-label="Store trust highlights" tabindex="0">
+      <ul class="category-tile-trust" role="list" aria-label="{% render 'hero-a11y-label', key: 'trust_highlights' %}" tabindex="0">
         {%- if section.settings.trust_item_1 != blank -%}
           <li class="category-tile-trust__item">
             <span class="category-tile-trust__icon" aria-hidden="true">{% render 'icon-checkmark' %}</span>

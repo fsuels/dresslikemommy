@@ -1237,7 +1237,7 @@
           id="HeroBannerSlide-{{ section.id }}-{{ hero_rendered_slide_index }}"
           role="group"
           aria-roledescription="slide"
-          aria-label="Hero image {{ hero_rendered_slide_index }} of {{ christmas_slide_total }}"
+          aria-label="{% render 'hero-a11y-label', key: 'slide', index: hero_rendered_slide_index, total: christmas_slide_total %}"
           aria-hidden="{% if hero_rendered_slide_index == 1 %}false{% else %}true{% endif %}"
           data-hero-slide
           style="--hero-slide-desktop-position: right center; --hero-slide-mobile-position: center center;"
@@ -1292,7 +1292,7 @@
           id="HeroBannerSlide-{{ section.id }}-1"
           role="group"
           aria-roledescription="slide"
-          aria-label="Hero image 1 of 1"
+          aria-label="{% render 'hero-a11y-label', key: 'slide', index: 1, total: 1 %}"
           aria-hidden="false"
           data-hero-slide
           style="--hero-slide-desktop-position: right center; --hero-slide-mobile-position: center center;"
@@ -1421,7 +1421,7 @@
         id="HeroBannerSlide-{{ section.id }}-{{ hero_rendered_slide_index }}"
         role="group"
         aria-roledescription="slide"
-        aria-label="Hero image {{ hero_rendered_slide_index }} of {{ hero_slide_count }}"
+        aria-label="{% render 'hero-a11y-label', key: 'slide', index: hero_rendered_slide_index, total: hero_slide_count %}"
         aria-hidden="{% if hero_rendered_slide_index == 1 %}false{% else %}true{% endif %}"
         data-hero-slide
         style="--hero-slide-desktop-position: {{ slide_desktop_position | escape }}; --hero-slide-mobile-position: {{ slide_mobile_position | escape }};"
@@ -1517,7 +1517,7 @@
         id="HeroBannerSlide-{{ section.id }}-1"
         role="group"
         aria-roledescription="slide"
-        aria-label="Hero image 1 of 1"
+        aria-label="{% render 'hero-a11y-label', key: 'slide', index: 1, total: 1 %}"
         aria-hidden="false"
         data-hero-slide
         style="--hero-slide-desktop-position: center center; --hero-slide-mobile-position: 60% 30%;"
@@ -1625,17 +1625,17 @@
   </div>
 
   {%- if hero_slide_count > 1 -%}
-    <div class="hero-banner__controls" aria-label="Hero image controls">
+    <div class="hero-banner__controls" aria-label="{% render 'hero-a11y-label', key: 'controls' %}">
       <button
         type="button"
         class="hero-banner__control hero-banner__control--prev"
         data-hero-prev
         aria-controls="HeroBannerSlides-{{ section.id }}"
-        aria-label="Previous hero image"
+        aria-label="{% render 'hero-a11y-label', key: 'previous' %}"
       >
         {% render 'icon-caret' %}
       </button>
-      <div class="hero-banner__dots" role="group" aria-label="Choose hero image">
+      <div class="hero-banner__dots" role="group" aria-label="{% render 'hero-a11y-label', key: 'choose' %}">
         {%- comment -%} One dot per rendered slide (slide blocks with an image, or the Christmas product slides). {%- endcomment -%}
         {%- for hero_dot_index in (1..hero_slide_count) -%}
           <button
@@ -1643,7 +1643,7 @@
             class="hero-banner__dot"
             data-hero-dot="{{ hero_dot_index | minus: 1 }}"
             aria-controls="HeroBannerSlide-{{ section.id }}-{{ hero_dot_index }}"
-            aria-label="Show hero image {{ hero_dot_index }} of {{ hero_slide_count }}"
+            aria-label="{% render 'hero-a11y-label', key: 'dot', index: hero_dot_index, total: hero_slide_count %}"
             aria-current="{% if hero_dot_index == 1 %}true{% else %}false{% endif %}"
           ></button>
         {%- endfor -%}
@@ -1653,7 +1653,7 @@
         class="hero-banner__control hero-banner__control--next"
         data-hero-next
         aria-controls="HeroBannerSlides-{{ section.id }}"
-        aria-label="Next hero image"
+        aria-label="{% render 'hero-a11y-label', key: 'next' %}"
       >
         {% render 'icon-caret' %}
       </button>
