@@ -25,6 +25,13 @@
   assign cg_delivery = 'Standard shipping is included, and each product page shows its estimated delivery window.'
 -%}
 {%- case handle -%}
+  {%- when 'sweaters' -%}
+    {%- case field -%}
+      {%- when 'display_title' -%}Mommy and Me Sweaters & Cardigans
+      {%- when 'meta_title' -%}Mommy and Me Sweaters – Mom and Daughter Matching Knits
+      {%- when 'meta_description' -%}Mommy and me sweaters and cardigans: mom and daughter matching knits, with a size chosen for each person.
+      {%- when 'lead' -%}Mom and daughter matching sweaters and cardigans, shown first, with a size chosen for each of you. Dressing dad and the whole family too? See <a href="{{ cg_base }}/family-sweaters">matching family sweaters</a>.
+    {%- endcase -%}
   {%- when 'valentines-day-matching-outfits-1' -%}
     {%- case field -%}
       {%- when 'display_title' -%}Matching Valentine's Day Outfits for the Family
