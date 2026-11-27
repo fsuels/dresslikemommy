@@ -67,12 +67,12 @@
     },
     de: {
       addAnother: '+ Weiteres Familienmitglied hinzufügen',
-      listTitle: 'Deine Familienliste',
+      listTitle: 'Ihre Familienliste',
       addAll: 'Alle in den Warenkorb ({count}) · {total}',
       remove: 'Entfernen',
-      added: 'Zu deiner Familienliste hinzugefügt',
-      error: 'Konnte nicht in den Warenkorb gelegt werden. Bitte versuche es erneut.',
-      soldOut: '{item} ist nicht mehr verfügbar. Bitte entferne es.'
+      added: 'Zu Ihrer Familienliste hinzugefügt',
+      error: 'Konnte nicht in den Warenkorb gelegt werden. Bitte versuchen Sie es erneut.',
+      soldOut: '{item} ist nicht mehr verfügbar. Bitte entfernen Sie es.'
     },
     it: {
       addAnother: '+ Aggiungi un altro familiare',
