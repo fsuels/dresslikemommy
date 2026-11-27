@@ -66,3 +66,31 @@
 [dir='rtl'] .footer-block__newsletter {
   text-align: right;
 }
+
+/* Mobile menu section titles ("Shop by category") start at the right edge. */
+[dir='rtl'] #menu-drawer .dlm-drawer__heading {
+  text-align: right;
+  margin-left: 0;
+  margin-right: 0.4rem;
+}
+
+/* Link arrows point toward the reading direction. */
+[dir='rtl'] .product-breadcrumb__back-link::before {
+  content: '→';
+}
+
+[dir='rtl'] .product-breadcrumb__browse-link::after {
+  content: '←';
+}
+
+[dir='rtl'] .product-breadcrumb__separator {
+  display: inline-block;
+  scale: -1 1;
+}
+
+[dir='rtl'] .dlm-mega__all svg,
+[dir='rtl'] .dlm-policy-modal__full-link svg,
+[dir='rtl'] .product__view-details .icon-arrow,
+[dir='rtl'] .newsletter-form__button .icon-arrow {
+  scale: -1 1;
+}
