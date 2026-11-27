@@ -6,6 +6,7 @@
 
   Accepts:
   - product: {Object} product
+  - output: {String} optional; 'amounts' prints "<child cents>|<adult cents>" instead of the line
 
   Group words reuse the size-filter group labels (snippets/dlm-facet-size-group.liquid,
   locale keys products.facets.size_groups.child / .adult). The size group of each variant is read from
@@ -52,6 +53,10 @@
       assign pg_child_money = pg_child_min | money | strip_html
       assign pg_adult_money = pg_adult_min | money | strip_html
     endif
+    if output == 'amounts'
+      # For product cards: "<child cents>|<adult cents>"; the caller formats and words them.
+      echo pg_child_min | append: '|' | append: pg_adult_min
+    else
     assign pg_child_word = 'products.facets.size_groups.child' | t
     assign pg_adult_word = 'products.facets.size_groups.adult' | t
     assign pg_child_line = 'products.product.price.group_from' | t: group: pg_child_word, price: pg_child_money
@@ -61,6 +66,7 @@
       echo pg_child_line | append: pg_sep | append: pg_adult_line
     else
       echo pg_adult_line | append: pg_sep | append: pg_child_line
+    endif
     endif
   endif
 -%}

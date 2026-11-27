@@ -37,7 +37,38 @@
   endif
 
   assign card_price_amount_html = '<span class="dlm-card-price__amount">' | append: card_price_money | append: '</span>'
-  if product.price_varies
+  # Products sold in kids and adult sizes at different prices say who each starting price
+  # is for: "Kids from $37.99" (struck price beside it, as before) and "Adults from $49.99"
+  # on the next line. Same keys as the product page (products.product.price.group_from,
+  # products.facets.size_groups.*). Only when the shown price is the lowest kids price.
+  assign card_price_adult_html = ''
+  assign card_price_groups_on = false
+  if card_price_target != blank
+    capture card_price_groups
+      render 'dlm-price-groups', product: product, output: 'amounts'
+    endcapture
+    assign card_price_groups = card_price_groups | strip | split: '|'
+    if card_price_groups.size == 2
+      assign card_price_child_min = card_price_groups[0] | plus: 0
+      assign card_price_adult_min = card_price_groups[1] | plus: 0
+      if card_price_child_min == card_price_value and card_price_child_min < card_price_adult_min
+        assign card_price_groups_on = true
+        if dlm_currency_code_flag == 'true'
+          assign card_price_adult_money = card_price_adult_min | money_with_currency
+        else
+          assign card_price_adult_money = card_price_adult_min | money
+        endif
+        assign card_price_child_word = 'products.facets.size_groups.child' | t
+        assign card_price_adult_word = 'products.facets.size_groups.adult' | t
+        assign card_price_adult_amount = '<span class="dlm-card-price__amount">' | append: card_price_adult_money | append: '</span>'
+        # group_from is not an _html key, so the price goes in after translation (keeps the bold amount).
+        assign card_price_adult_html = 'products.product.price.group_from' | t: group: card_price_adult_word, price: 'DLMPRICE' | replace: 'DLMPRICE', card_price_adult_amount
+      endif
+    endif
+  endif
+  if card_price_groups_on
+    assign card_price_display = 'products.product.price.group_from' | t: group: card_price_child_word, price: 'DLMPRICE' | replace: 'DLMPRICE', card_price_amount_html
+  elsif product.price_varies
     assign card_price_display = 'products.product.price.from_price_html' | t: price: card_price_amount_html
   else
     assign card_price_display = card_price_amount_html
@@ -55,5 +86,8 @@
   {%- if card_price_on_sale -%}
     <span class="visually-hidden">{{ 'products.product.price.regular_price' | t }}</span>
     <s class="dlm-card-price__compare">{{ card_price_compare_money }}</s>
+  {%- endif -%}
+  {%- if card_price_adult_html != blank -%}
+    <span class="dlm-card-price__adult">{{ card_price_adult_html }}</span>
   {%- endif -%}
 </div>

@@ -808,6 +808,15 @@
   white-space: nowrap;
 }
 
+/* Second line on kids + adults cards: "Adults from $49.99" under "Kids from $37.99". */
+.card-wrapper.product-card-wrapper .dlm-card-price__adult {
+  display: flex;
+  flex-basis: 100%;
+  justify-content: var(--text-alignment, center);
+  gap: 0.3rem;
+  font-weight: 400;
+}
+
 .card-wrapper.product-card-wrapper .card--horizontal .dlm-card-price {
   justify-content: flex-start;
   padding-top: 0.3rem;

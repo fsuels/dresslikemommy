@@ -68,6 +68,24 @@
         <div class="collection-hero__description rte">{{ collection_description_content }}</div>
       {%- endif -%}
 
+      {%- comment -%}
+        Christmas order-by line for gift collections without "christmas" in the handle (those
+        already get the banner above the page from layout/theme.liquid). United States only,
+        same component, date and cutoff as the home page; nothing for swimwear, maternity, dresses.
+      {%- endcomment -%}
+      {%- unless collection_handle contains 'christmas' -%}
+        {%- if collection_handle == 'sweaters'
+          or collection_handle == 'family-sweaters'
+          or collection_handle == 'matching-outfits'
+          or collection_handle == 'family-matching-outfits'
+          or collection_handle == 'mommy-and-me'
+          or collection_handle == 'pajamas'
+          or collection_handle == 'family-pajamas'
+        -%}
+          {% render 'christmas-cutoff-banner', us_only: true, inline: true %}
+        {%- endif -%}
+      {%- endunless -%}
+
       {%- if collection_handle == 'dresses' or collection_handle == 'mother-daughter-matching-dresses' -%}
         {% render 'collection-winter-sweaters-link' %}
       {%- elsif collection_handle == 'daddy-me-shirts' -%}
