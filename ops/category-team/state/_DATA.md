@@ -1,0 +1,7 @@
+# _DATA (2026-11-26T22:59Z, Shopify analytics, read-only)
+CORREGIDO 2026-11-26T22:59Z: /it/collections/mommy-and-me y /it/collections/matching-outfits (y /it/collections/pajamas) eran tráfico de anuncios.
+Método: orgánico = referrer_source 'search' MENOS sesiones cuya landing_page_url trae gad_, gclid, gbraid, wbraid o msclkid, o utm_medium con 'cpc'. «search» solo NO significa orgánico: restar siempre y contrastar con Search Console. Clics de anuncio sin parámetros no se detectan.
+Totals search 14d (sessions/carts/checkouts/done): all 3152/249/31/13; paid 207/14/1/0; ORGANIC 2945/235/30/13.
+ORGANIC landing pages 14d: / 80/5/0/0 (biggest by sessions); nordic-yoke PDP 46/7/3/1 (biggest buyer); /collections/swimsuits 40/0/0/0; cs Christmas collection 35/6/1/0; /collections/sweaters 30/0/0/0; ro Christmas collection 28/10/0/0; /it Christmas collection 22/2/0/0; /sv/collections/dresses 22/0/0/0; /sv 21/1/0/0; /nl/collections/dresses 20/2/0/0; el sweaters guide 19/2/0/0; /it/collections/matching-outfits 18/1/0/0; /no/collections/dresses 18/0/0/0; jolly-crew pajamas PDP 18/3/1/0.
+Paid (not organic): /it/collections/mommy-and-me 130/7/0/0; /it/collections/pajamas 35/0/0/0 (1 organic); /it/collections/matching-outfits 23/4/0/0; / 17/2/1/0.
+Orders 60d (units): Christmas Reindeer 29, Nordic Yoke 27, Burgundy Trim Daddy&Me 9, Santa and Friends sweatshirts 9, Tropical Palm set 9, Little Heart sweatshirts 7, Cream Heart cardigans 6, Plaid Reindeer pajamas 6, Vintage Cottage pajamas 6.

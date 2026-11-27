@@ -30,6 +30,9 @@ Three best opportunities this season:
 - To Calidad (2026-11-26): remove Red Runner Raglan "READY*" in quality-drafts-review.md (brand look-alike, see log 19:30Z).
 
 ## Log
+- 2026-11-26T22:25Z (CEO autopilot 184): matching-outfits order: 6 winter knits moved from positions 92-283 to 84-89, ahead of Halloween pajamas; live page 2 read; rollback in receipts/2026-11-26/matching-outfits-winter-order/.
+- 2026-11-26T21:58Z (CEO autopilot, 175/177): Hawaiian page showed 1 of 10 products and vacation hid more than half of page 1; both now show all (301ae8c; live en/it). Rollback: revert and sync-theme.
+- 2026-11-26T21:14Z (CEO autopilot, 168): flat-chest note switched on for 33 more flat-width size charts (tag flat-chest-chart); live en/it read; rollback tagsRemove, receipts/2026-11-26/flat-chest-168/.
 - 2026-11-26T20:54Z (CEO autopilot, 165): removed a description photo with a luxury-monogram handbag from B&W stripe sweaters 7228773466209, EN + 20; Admin readback (public check not run, 429). Seen, not changed: its gallery ends with an Easter-backdrop photo; heart T-shirt 7230327128161 shows small unreadable neck labels (not proven foreign); heart-patch sweater photo has small sneakers with a logo. Rollback: ops/organic/receipts/2026-11-26/bag-logo-165/before.json.
 - 2026-11-26T20:33Z (autopilot 163): striped hoodies 7227620982881: removed the description photo with a foreign neck label, EN + 20; live checked. Rollback receipts/2026-11-26/stripe-label-163/before.json.
 - 2026-11-26T19:30Z (CEO autopilot): family-sets collection now manual with 8 sellers first (was newest first); rollback sortOrder CREATED_DESC, ops/organic/receipts/2026-11-26/family-sets-order/.
@@ -87,3 +90,4 @@ Three best opportunities this season:
 - 2026-11-26T19:41Z (CEO autopilot, 154): sellers moved up in sweaters and family-sweaters; public feeds read. Rollback: ops/organic/receipts/2026-11-26/sweater-order-154/before.json.
 - 2026-11-26T20:22Z (CEO autopilot, 161): striped fleece hoodies colour words navy/cream/grey in EN + 20; live en/es read. Rollback: receipts/2026-11-26/stripe-colour-161/before.json.
 - 2026-11-26T20:46Z (CEO autopilot, 164): tighter hero crop first on red-heart and double-heart sweaters (media 41620741652577 / 41620741685345); red-heart 16 variants relinked; live read. Rollback: old hero (41595442659425 / 41600038633569) back to position 0 and relink.
+- 2026-11-26T23:32Z (CEO autopilot, 196/195): duplicate first photo removed on red-heart and double-heart (old png 41595442659425 / 41600038633569 detached, files kept); alt of 41620741652577 in 20 languages; live read en, cs, sv, ja. Rollback: referencesToAdd the same ids.

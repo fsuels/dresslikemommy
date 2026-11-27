@@ -1,7 +1,7 @@
 # Experto Google Merchant (role `merchant`)
 
 ## State
-claude: 2026-11-26T19:03Z
+claude: 2026-11-26T23:01Z
 
 LIVE_VERIFIED 2026-11-23 (test profile testhqfinds verified; Merchant 513542500; read-only): Overview: 252K products = 204K approved, 46.5K limited, 621 not approved, 1 under review (7 days ago 205K/47.6K/639). Organic clicks 28d: 827 (+60.9%); total clicks 4.59K; ad clicks 0. Store quality Great in US/AU/UK. Data sources: 33 Shopify App API (Merchant API) sources, ~7,570 products each, no Worker/custom source (CONFIRMED); plus Google-found crawl source dresslikemommy.com 1,687 (103 archived), 24h auto; 2 App sources show 'Needs update' (CZK_544800865 Czechia; USD_544866401 El Salvador/Mexico). Needs-attention (47,115 rows; the 'limited' mass is Shopping-ads capacity, not free listings): over capacity Shopping ads/CSS 39.3K; missing shipping some countries 8,032 (6 countries); missing price 103; shipping currency mismatch 43; product page unavailable 11; live animals policy 7; image too small 5 (new 500x500 min from 2027-01-31); Korean business reg no. 29; unsupported currency 29; missing availability 1. Per-market split not read.
 
@@ -50,3 +50,4 @@ Then classify each issue: fixable in Shopify product data vs feed/Worker vs Merc
 - 2026-11-26T12:13Z Pinterest hosted feed stale (no Christmas products); Microsoft not checked.
 - 2026-11-26T18:31Z Merchant read of the 5 fichas activated today: 2,970 offers (variants x 33) present; US approved; free listings not approved only for BG/HR/MT missing shipping (90 en/EUR offers); no Shopify fix applies, no writes. Detail in merchant-2026-11-26.md.
 - 2026-11-26T19:03Z Pinterest read-only: Shopify app sources current (the 5 new products are in; corrects 12:13Z 'no Christmas products'); stale file is the Cloudflare Worker source, still ingested daily (US rows: 2,812/4,687 priced below store, 278 not active). Recommend pausing the 4 Worker sources after grouping check; nothing applied. Packet pinterest-feed-fix-packet-2026-11-26.md.
+- 2026-11-26T23:01Z URGENTE Ads solo lectura: cuenta antigua 399-097-6848 sigue gastando (GA4): IT 23866684201 $129.33 del 29-09 al 26-11 ($2.35 hoy) + brand US $8.92; 650 en $0 desde 29-09. Estado/presupuesto/facturación 399 no accesibles. Nada cambiado. Detalle merchant-2026-11-26.md.
