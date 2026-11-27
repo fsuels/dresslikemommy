@@ -1,7 +1,7 @@
 {%- liquid
   assign collection_handle = collection.handle | default: ''
 
-  assign dresses_url = routes.collections_url | append: '/dresses'
+  assign dresses_url = routes.collections_url | append: '/mother-daughter-matching-dresses'
   assign family_swimsuits_url = routes.collections_url | append: '/swimsuits'
   assign family_sets_url = routes.collections_url | append: '/family-sets'
   assign daddy_me_url = routes.collections_url | append: '/daddy-me'
@@ -16,8 +16,8 @@
   assign family_sweaters_url = routes.collections_url | append: '/family-sweaters'
   assign family_pajamas_url = routes.collections_url | append: '/family-pajamas'
 
-  if collections['dresses'] != blank
-    assign dresses_url = collections['dresses'].url
+  if collections['mother-daughter-matching-dresses'] != blank
+    assign dresses_url = collections['mother-daughter-matching-dresses'].url
   endif
   if collections['family-sets'] != blank
     assign family_sets_url = collections['family-sets'].url

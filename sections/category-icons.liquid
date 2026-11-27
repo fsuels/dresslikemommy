@@ -419,7 +419,7 @@
                 {%- endcapture -%}
                 {%- assign icon_caption = icon_caption | strip -%}
                 <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
-                  <a href="{{ block.settings.collection.url }}" class="category-icons__link">
+                  <a href="{% if block.settings.collection.handle == 'dresses' and collections['mother-daughter-matching-dresses'] != blank %}{{ collections['mother-daughter-matching-dresses'].url }}{% else %}{{ block.settings.collection.url }}{% endif %}" class="category-icons__link">
                     <div class="category-icons__image-wrap">
                       {%- if curated_tile_slug != blank -%}
                         {%- assign curated_tile_asset = 'category-tile-' | append: curated_tile_slug -%}
@@ -629,7 +629,7 @@
                 {%- endcapture -%}
                 {%- assign icon_caption = icon_caption | strip -%}
                 <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
-                  <a href="{{ block.settings.collection.url }}" class="category-icons__link">
+                  <a href="{% if block.settings.collection.handle == 'dresses' and collections['mother-daughter-matching-dresses'] != blank %}{{ collections['mother-daughter-matching-dresses'].url }}{% else %}{{ block.settings.collection.url }}{% endif %}" class="category-icons__link">
                     <div class="category-icons__image-wrap">
                       {%- if curated_tile_slug != blank -%}
                         {%- assign curated_tile_asset = 'category-tile-' | append: curated_tile_slug -%}
@@ -818,7 +818,7 @@
             {%- endcapture -%}
             {%- assign icon_caption = icon_caption | strip -%}
             <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
-              <a href="{{ block.settings.collection.url }}" class="category-icons__link">
+              <a href="{% if block.settings.collection.handle == 'dresses' and collections['mother-daughter-matching-dresses'] != blank %}{{ collections['mother-daughter-matching-dresses'].url }}{% else %}{{ block.settings.collection.url }}{% endif %}" class="category-icons__link">
                 <div class="category-icons__image-wrap">
                   {%- if curated_tile_slug != blank -%}
                     {%- assign curated_tile_asset = 'category-tile-' | append: curated_tile_slug -%}

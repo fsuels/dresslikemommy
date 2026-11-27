@@ -77,8 +77,8 @@
 
   if hub_handle == blank and in_pajamas == false
     unless hub_product_handle contains 'family' or hub_product_handle contains 'nightgown' or hub_product_handle contains 'sleep' or hub_product_handle contains 'robe'
-      if product_collection_handles contains 'dresses'
-        assign hub_handle = 'dresses'
+      if product_collection_handles contains 'dresses' or product_collection_handles contains 'mother-daughter-matching-dresses'
+        assign hub_handle = 'mother-daughter-matching-dresses'
       elsif product_collection_handles contains 'mommy-and-me'
         assign hub_handle = 'mommy-and-me'
       endif
@@ -184,7 +184,7 @@
       assign hub_label = hub_sweaters
     when 'family-tops'
       assign hub_label = hub_shirts
-    when 'dresses'
+    when 'mother-daughter-matching-dresses'
       assign hub_label = hub_dresses
     when 'mommy-and-me'
       assign hub_label = hub_mom
@@ -230,7 +230,7 @@
     {%- if internal_link_locale == 'en' and in_matching_family_vacation_outfits and collections['matching-family-vacation-outfits'] != blank -%}
       <p>See more <a href="{{ collections['matching-family-vacation-outfits'].url }}">{{ collections['matching-family-vacation-outfits'].title | escape }}</a> for coordinated travel looks, resort dinners, and family photo days.</p>
     {%- endif -%}
-    {%- if internal_link_locale == 'en' and hub_handle != 'dresses' and in_mother_daughter_matching_dresses and collections['mother-daughter-matching-dresses'] != blank -%}
+    {%- if internal_link_locale == 'en' and hub_handle != 'mother-daughter-matching-dresses' and in_mother_daughter_matching_dresses and collections['mother-daughter-matching-dresses'] != blank -%}
       <p>Browse the full <a href="{{ collections['mother-daughter-matching-dresses'].url }}">{{ collections['mother-daughter-matching-dresses'].title | escape }}</a> collection for photo-ready outfits, holidays, and special occasions.</p>
     {%- endif -%}
   </div>

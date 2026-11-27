@@ -58,6 +58,13 @@
       assign resolved_canonical_url = request.origin | append: collections['mommy-and-me'].url
     endif
     comment
+      2026-11-27: Google picks mother-daughter-matching-dresses over its duplicate
+      dresses (a strict subset), so declare it in every language.
+    endcomment
+    if request.page_type == 'collection' and collection.handle == 'dresses' and collections['mother-daughter-matching-dresses'] != blank
+      assign resolved_canonical_url = request.origin | append: collections['mother-daughter-matching-dresses'].url
+    endif
+    comment
       SEO lane fix #9 (2026-09-27): parameterized product URLs (e.g. ?variant=)
       are no longer noindexed; the query-stripped canonical above is enough.
     endcomment

@@ -220,7 +220,7 @@
   {% when 'mommy' %}
     {% assign branch_row_label = 'sections.collection_navigation.within_mommy_me' | t %}
     {% capture mommy_priority_pills %}
-      mommy-and-me::{{ 'sections.breadcrumbs.label_all' | t }}::|||{{ season_pill }}mommy-and-me::{{ 'sections.breadcrumbs.label_sets' | t }}::sets|||pajamas::{{ 'sections.breadcrumbs.label_pajamas' | t }}|||dresses::{{ 'sections.breadcrumbs.label_dresses' | t }}|||swimsuits::{{ 'sections.breadcrumbs.label_swimsuits' | t }}|||tops::{{ 'sections.breadcrumbs.label_tops' | t }}|||sweaters::{{ 'sections.breadcrumbs.label_sweaters_short' | t }}
+      mommy-and-me::{{ 'sections.breadcrumbs.label_all' | t }}::|||{{ season_pill }}mommy-and-me::{{ 'sections.breadcrumbs.label_sets' | t }}::sets|||pajamas::{{ 'sections.breadcrumbs.label_pajamas' | t }}|||mother-daughter-matching-dresses::{{ 'sections.breadcrumbs.label_dresses' | t }}|||swimsuits::{{ 'sections.breadcrumbs.label_swimsuits' | t }}|||tops::{{ 'sections.breadcrumbs.label_tops' | t }}|||sweaters::{{ 'sections.breadcrumbs.label_sweaters_short' | t }}
     {% endcapture %}
     {% assign branch_pill_list = mommy_priority_pills | split: '|||' %}
   {% when 'family' %}
@@ -446,7 +446,7 @@
                         {% if current_handle_token contains ',pajamas,' %}
                           {% assign item_is_current = true %}
                         {% endif %}
-                      {% when 'dresses' %}
+                      {% when 'dresses', 'mother-daughter-matching-dresses' %}
                         {% if mommy_dresses_alias_handles contains current_handle_token %}
                           {% assign item_is_current = true %}
                         {% endif %}
