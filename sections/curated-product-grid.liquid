@@ -18,6 +18,12 @@
   endif
   assign curated_collection_href = 'href="' | append: routes.collections_url | append: '/'
   assign curated_footer_body = section.settings.footer_body | replace: 'href="/collections/', curated_collection_href
+  # The family swimsuit collection is empty: send that link to the swimsuits that are listed.
+  if collections['family-swimsuits'].all_products_count == 0
+    assign curated_footer_body = curated_footer_body | replace: 'collections/family-swimsuits', 'collections/swimsuits'
+  endif
+  # "Mother daughter matching dresses" leads to the full dresses collection, not to formal dresses.
+  assign curated_footer_body = curated_footer_body | replace: 'collections/formal-dresses', 'collections/mother-daughter-matching-dresses'
   comment
     Count only cards that will actually render: a product that was deleted, unpublished,
     or sold out resolves to blank/unavailable and is skipped below, so the grid layout

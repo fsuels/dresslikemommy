@@ -46,7 +46,8 @@
   assign hero_christmas_slide_max = 3
   assign hero_christmas_product_count = 0
   # Australia and New Zealand in their summer (snippets/dlm-southern-summer.liquid): the
-  # season-free "everyday" copy over one summer family photo, with no winter product slides.
+  # season-free "everyday" copy with arched photos of listed family sets (their own product
+  # images) on a warm background instead of the winter sky.
   capture hero_southern
     render 'dlm-southern-summer'
   endcapture
@@ -57,16 +58,26 @@
   if hero_southern == 'true'
     assign hero_seasonal_copy = 'christmas'
     assign hero_copy_edition = 'everyday'
-    assign hero_christmas_sky = 'hero-family-boardwalk-premium.jpg'
-    assign hero_christmas_mobile_sky = 'hero-family-boardwalk-premium-mobile.jpg'
+  endif
+  assign hero_slide_collection = 'christmas-pajamas'
+  assign hero_slide_picks = blank
+  if hero_southern == 'true'
+    assign hero_slide_collection = 'family-sets'
+    assign hero_slide_picks = ',sunshine-daisy-family-matching-set,skyfade-family-matching-set,tropical-meadow-family-matching-set,'
   endif
   # Christmas product photos only through Dec 25 (and on the manual Christmas edition); later windows get the sky-only slide.
   assign hero_show_christmas_photos = false
-  if hero_copy_edition == 'christmas' or hero_copy_edition == 'winter_photos'
+  if hero_copy_edition == 'christmas' or hero_copy_edition == 'winter_photos' or hero_southern == 'true'
     assign hero_show_christmas_photos = true
   endif
   if hero_seasonal_copy == 'christmas' and hero_show_christmas_photos
-    for christmas_product in collections['christmas-pajamas'].products
+    for christmas_product in collections[hero_slide_collection].products
+      assign hero_pick_token = ',' | append: christmas_product.handle | append: ','
+      if hero_slide_picks != blank
+        unless hero_slide_picks contains hero_pick_token
+          continue
+        endunless
+      endif
       if christmas_product.available and christmas_product.featured_image != blank
         assign hero_christmas_product_count = hero_christmas_product_count | plus: 1
         if hero_christmas_product_count == 1
@@ -89,6 +100,10 @@
     assign hero_preload_sky = hero_christmas_sky
     assign hero_preload_mobile_sky = hero_christmas_mobile_sky
     assign hero_preload_art = ''
+    if hero_southern == 'true'
+      assign hero_preload_sky = blank
+      assign hero_preload_mobile_sky = blank
+    endif
   elsif section.index == 1
     for block in section.blocks
       if block.type != 'slide'
@@ -1048,21 +1063,10 @@
     }
   {%- endif -%}
   {%- if hero_southern == 'true' -%}
-    /* The summer photo has a bright sky: darken only the side that carries the text. */
-    @media screen and (max-width: 749px) {
-      #shopify-section-{{ section.id }} .hero-banner--summer .hero-banner__image {
-        object-position: center top;
-      }
-      #shopify-section-{{ section.id }} .hero-banner--summer .hero-banner__overlay {
-        display: block;
-        background: linear-gradient(180deg, rgba(24, 14, 20, 0.68) 0%, rgba(24, 14, 20, 0.45) 24%, rgba(24, 14, 20, 0) 42%);
-      }
-    }
-    @media screen and (min-width: 750px) {
-      #shopify-section-{{ section.id }} .hero-banner--summer .hero-banner__overlay {
-        display: block;
-        background: linear-gradient(90deg, rgba(24, 14, 20, 0.66) 0%, rgba(24, 14, 20, 0.5) 34%, rgba(24, 14, 20, 0) 58%);
-      }
+    /* Warm background behind the arched summer photos (no winter sky image). */
+    #shopify-section-{{ section.id }} .hero-banner--summer,
+    #shopify-section-{{ section.id }} .hero-banner--summer .hero-banner__slides {
+      background: linear-gradient(135deg, #2e1a24 0%, #6d3438 58%, #a65a45 100%);
     }
   {%- endif -%}
 {%- endstyle -%}
@@ -1246,9 +1250,15 @@
         featured image is the arched foreground photo.
       {%- endcomment -%}
       {%- assign christmas_slide_total = hero_christmas_product_count | at_least: 1 -%}
-      {%- for christmas_product in collections['christmas-pajamas'].products -%}
+      {%- for christmas_product in collections[hero_slide_collection].products -%}
         {%- if hero_rendered_slide_index >= hero_christmas_product_count -%}
           {%- break -%}
+        {%- endif -%}
+        {%- if hero_slide_picks != blank -%}
+          {%- assign hero_pick_token = ',' | append: christmas_product.handle | append: ',' -%}
+          {%- unless hero_slide_picks contains hero_pick_token -%}
+            {%- continue -%}
+          {%- endunless -%}
         {%- endif -%}
         {%- unless christmas_product.available and christmas_product.featured_image != blank -%}
           {%- continue -%}
@@ -1263,7 +1273,10 @@
           endif
           assign christmas_image = christmas_product.featured_image
           assign slide_alt = christmas_image.alt | strip
-          if hero_language_code != 'en' or slide_alt == blank
+          if hero_southern == 'true'
+            # The Christmas alt texts do not describe these photos.
+            assign slide_alt = slide_alt | default: christmas_product.title
+          elsif hero_language_code != 'en' or slide_alt == blank
             # Product image alt text is usually English; use the edition's translated alt.
             assign slide_alt_key = 'alt_' | append: hero_rendered_slide_index
             capture slide_seasonal_alt
@@ -1287,6 +1300,7 @@
           {%- if hero_rendered_slide_index > 1 -%}
             <template data-hero-slide-picture>
           {%- endif -%}
+          {%- unless hero_southern == 'true' -%}
           <picture>
             <source
               media="(min-width: 750px)"
@@ -1305,6 +1319,7 @@
               height="1100"
             >
           </picture>
+          {%- endunless -%}
           <img
             class="hero-banner__art hero-banner__art--product"
             src="{{ christmas_image | image_url: width: 720 }}"
@@ -1339,6 +1354,7 @@
           data-hero-slide
           style="--hero-slide-desktop-position: right center; --hero-slide-mobile-position: center center;"
         >
+          {%- unless hero_southern == 'true' -%}
           <picture>
             <source media="(min-width: 750px)" srcset="{{ hero_christmas_sky | asset_url }}" width="2400" height="1000">
             <img
@@ -1352,6 +1368,7 @@
               height="1100"
             >
           </picture>
+          {%- endunless -%}
           {%- if hero_button_link != blank -%}
             <a
               href="{{ hero_button_link | escape }}"

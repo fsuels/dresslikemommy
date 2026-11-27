@@ -179,6 +179,12 @@
           assign curated_tile_handle = 'mom-child-matching-two-piece-swimsuit'
           assign curated_tile_focal = '50% 20%'
       endcase
+      if southern == 'true'
+        case block.settings.collection.handle
+          when 'dresses', 'matching-outfits', 'mommy-and-me', 'family-photo-outfits'
+            assign curated_tile_slug = ''
+        endcase
+      endif
       if curated_tile_slug == blank
         continue
       endif
@@ -427,6 +433,34 @@
                       endunless
                     endfor
                   endif
+                  assign southern_tile_handle = blank
+                  assign southern_tile_url = blank
+                  if southern == 'true'
+                    case block.settings.collection.handle
+                      when 'dresses'
+                        assign southern_tile_handle = 'coral-blossom-mommy-and-me-dresses'
+                      when 'matching-outfits'
+                        assign southern_tile_handle = 'sunset-ombre-family-matching-set'
+                      when 'mommy-and-me'
+                        assign southern_tile_handle = 'powder-blue-mommy-and-me-set'
+                      when 'family-photo-outfits'
+                        # That collection holds only knitwear, so the tile leads to the summer sets.
+                        assign southern_tile_handle = 'sunlit-floral-family-matching-set'
+                        assign southern_tile_url = collections['family-sets'].url
+                    endcase
+                  endif
+                  if southern_tile_handle != blank
+                    # No winter fallback: summer product photo, or a neutral placeholder.
+                    assign curated_tile_slug = ''
+                    assign icon_image = blank
+                    assign homepage_collection_image_candidate_count = 0
+                    assign southern_tile_product = all_products[southern_tile_handle]
+                    if southern_tile_product.available and southern_tile_product.featured_image != blank
+                      assign icon_image = southern_tile_product.featured_image
+                      assign icon_image_key = 'image-' | append: icon_image.id
+                      assign icon_image_alt = icon_image.alt | default: southern_tile_product.title
+                    endif
+                  endif
                 -%}
                 {%- assign icon_label_source = icon_label -%}
                 {%- assign icon_label_key = icon_label_source | handleize -%}
@@ -439,7 +473,7 @@
                 {%- endcapture -%}
                 {%- assign icon_caption = icon_caption | strip -%}
                 <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
-                  <a href="{% if block.settings.collection.handle == 'dresses' and collections['mother-daughter-matching-dresses'] != blank %}{{ collections['mother-daughter-matching-dresses'].url }}{% else %}{{ block.settings.collection.url }}{% endif %}" class="category-icons__link">
+                  <a href="{% if southern_tile_url != blank %}{{ southern_tile_url }}{% elsif block.settings.collection.handle == 'dresses' and collections['mother-daughter-matching-dresses'] != blank %}{{ collections['mother-daughter-matching-dresses'].url }}{% else %}{{ block.settings.collection.url }}{% endif %}" class="category-icons__link">
                     <div class="category-icons__image-wrap">
                       {%- if curated_tile_slug != blank -%}
                         {%- assign curated_tile_asset = 'category-tile-' | append: curated_tile_slug -%}
@@ -650,6 +684,34 @@
                       endunless
                     endfor
                   endif
+                  assign southern_tile_handle = blank
+                  assign southern_tile_url = blank
+                  if southern == 'true'
+                    case block.settings.collection.handle
+                      when 'dresses'
+                        assign southern_tile_handle = 'coral-blossom-mommy-and-me-dresses'
+                      when 'matching-outfits'
+                        assign southern_tile_handle = 'sunset-ombre-family-matching-set'
+                      when 'mommy-and-me'
+                        assign southern_tile_handle = 'powder-blue-mommy-and-me-set'
+                      when 'family-photo-outfits'
+                        # That collection holds only knitwear, so the tile leads to the summer sets.
+                        assign southern_tile_handle = 'sunlit-floral-family-matching-set'
+                        assign southern_tile_url = collections['family-sets'].url
+                    endcase
+                  endif
+                  if southern_tile_handle != blank
+                    # No winter fallback: summer product photo, or a neutral placeholder.
+                    assign curated_tile_slug = ''
+                    assign icon_image = blank
+                    assign homepage_collection_image_candidate_count = 0
+                    assign southern_tile_product = all_products[southern_tile_handle]
+                    if southern_tile_product.available and southern_tile_product.featured_image != blank
+                      assign icon_image = southern_tile_product.featured_image
+                      assign icon_image_key = 'image-' | append: icon_image.id
+                      assign icon_image_alt = icon_image.alt | default: southern_tile_product.title
+                    endif
+                  endif
                 -%}
                 {%- assign icon_label_source = icon_label -%}
                 {%- assign icon_label_key = icon_label_source | handleize -%}
@@ -662,7 +724,7 @@
                 {%- endcapture -%}
                 {%- assign icon_caption = icon_caption | strip -%}
                 <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
-                  <a href="{% if block.settings.collection.handle == 'dresses' and collections['mother-daughter-matching-dresses'] != blank %}{{ collections['mother-daughter-matching-dresses'].url }}{% else %}{{ block.settings.collection.url }}{% endif %}" class="category-icons__link">
+                  <a href="{% if southern_tile_url != blank %}{{ southern_tile_url }}{% elsif block.settings.collection.handle == 'dresses' and collections['mother-daughter-matching-dresses'] != blank %}{{ collections['mother-daughter-matching-dresses'].url }}{% else %}{{ block.settings.collection.url }}{% endif %}" class="category-icons__link">
                     <div class="category-icons__image-wrap">
                       {%- if curated_tile_slug != blank -%}
                         {%- assign curated_tile_asset = 'category-tile-' | append: curated_tile_slug -%}
