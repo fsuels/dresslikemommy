@@ -52,40 +52,99 @@
   endif
 
   comment
-    GSC 2026-11-27: Google lands "matching family shirts / sweaters / sweatshirts" on single products,
-    so those product pages link to the category hub with that wording (English only, most specific first).
+    GSC 2026-11-27: Google lands "matching family shirts / sweaters / sweatshirts" (and the local equivalents)
+    on single products, so those product pages link to the category hub with that wording (most specific first).
+    The rule uses the handle and collection membership so it works when product titles are translated.
   endcomment
   assign hub_handle = blank
-  assign hub_label = blank
   assign hub_holiday_sweaters = false
   assign product_collection_handles = product.collections | map: 'handle'
-  if in_pajamas == false
-    if product_collection_handles contains 'family-sweaters' and product.title contains 'Family'
-      if product.title contains 'Sweatshirt' or product.title contains 'Hoodie'
-        assign hub_handle = 'matching-family-sweatshirts'
-        assign hub_label = 'matching family sweatshirts and hoodies'
-      elsif product.title contains 'Sweater'
-        assign hub_handle = 'family-sweaters'
-        assign hub_label = 'matching family sweaters'
-        if product_collection_handles contains 'christmas-sweaters'
-          assign hub_holiday_sweaters = true
-        endif
+  assign hub_product_handle = product.handle | default: '' | downcase
+  if in_pajamas == false and hub_product_handle contains 'family'
+    if product_collection_handles contains 'matching-family-sweatshirts'
+      assign hub_handle = 'matching-family-sweatshirts'
+    elsif product_collection_handles contains 'family-sweaters'
+      assign hub_handle = 'family-sweaters'
+      if product_collection_handles contains 'christmas-sweaters'
+        assign hub_holiday_sweaters = true
       endif
-    endif
-    if hub_handle == blank and product_collection_handles contains 'family-tops' and product.title contains 'Family'
-      if product.title contains 'Sweatshirt' or product.title contains 'Hoodie'
-        assign hub_handle = 'matching-family-sweatshirts'
-        assign hub_label = 'matching family sweatshirts and hoodies'
-      elsif product.title contains 'Shirt'
-        assign hub_handle = 'family-tops'
-        assign hub_label = 'matching family shirts'
-      endif
+    elsif product_collection_handles contains 'family-tops'
+      assign hub_handle = 'family-tops'
     endif
   endif
 
+  assign hub_prefix = blank
+  assign hub_suffix = '.'
+  case internal_link_locale
+    when 'en'
+      assign hub_prefix = 'Browse all '
+      assign hub_suffix = ' to compare designs and choose a size for each person.'
+      assign hub_sweatshirts = 'matching family sweatshirts and hoodies'
+      assign hub_sweaters = 'matching family sweaters'
+      assign hub_shirts = 'matching family shirts'
+      assign hub_holiday_prefix = 'Shopping for December photos? See our '
+      assign hub_holiday = 'family holiday sweaters for Christmas'
+    when 'es'
+      assign hub_prefix = 'Compara modelos y elige la talla de cada persona: '
+      assign hub_sweatshirts = 'sudaderas familiares a juego'
+      assign hub_sweaters = 'suéteres familiares'
+      assign hub_shirts = 'camisetas familiares a juego'
+      assign hub_holiday_prefix = 'Para las fotos de diciembre: '
+      assign hub_holiday = 'suéteres navideños para la familia'
+    when 'de'
+      assign hub_prefix = 'Modelle vergleichen und für jede Person die Größe wählen: '
+      assign hub_sweatshirts = 'Familien-Sweatshirts im Partnerlook'
+      assign hub_sweaters = 'Familienpullover'
+      assign hub_shirts = 'Familien-Shirts im Partnerlook'
+      assign hub_holiday_prefix = 'Für Fotos im Dezember: '
+      assign hub_holiday = 'Weihnachtspullover für Familie und Geschwister'
+    when 'fr'
+      assign hub_prefix = 'Comparez les modèles et choisissez une taille pour chaque personne : '
+      assign hub_sweatshirts = 'sweats famille assortis'
+      assign hub_sweaters = 'pulls assortis pour la famille'
+      assign hub_shirts = 't-shirts et chemises assortis pour la famille'
+      assign hub_holiday_prefix = 'Pour les photos de décembre : '
+      assign hub_holiday = 'pulls de Noël assortis pour la famille'
+    when 'it'
+      assign hub_prefix = 'Confronta i modelli e scegli la taglia di ogni persona: '
+      assign hub_sweatshirts = 'felpe coordinate famiglia'
+      assign hub_sweaters = 'maglioni coordinati per la famiglia'
+      assign hub_shirts = 'magliette famiglia coordinate'
+      assign hub_holiday_prefix = 'Per le foto di dicembre: '
+      assign hub_holiday = 'maglioni natalizi per la famiglia'
+    when 'cs'
+      assign hub_prefix = 'Porovnejte vzory a vyberte velikost pro každého: '
+      assign hub_sweatshirts = 'rodinné mikiny'
+      assign hub_sweaters = 'rodinné svetry'
+      assign hub_shirts = 'rodinná trička'
+      assign hub_holiday_prefix = 'Na prosincové fotky: '
+      assign hub_holiday = 'vánoční svetry pro celou rodinu'
+    when 'ro'
+      assign hub_prefix = 'Comparați modelele și alegeți mărimea pentru fiecare: '
+      assign hub_sweatshirts = 'hanorace pentru familie'
+      assign hub_sweaters = 'pulovere asortate pentru familie'
+      assign hub_shirts = 'tricouri asortate pentru familie'
+      assign hub_holiday_prefix = 'Pentru fotografiile din decembrie: '
+      assign hub_holiday = 'pulovere de Crăciun pentru familie'
+    else
+      assign hub_handle = blank
+  endcase
+
+  case hub_handle
+    when 'matching-family-sweatshirts'
+      assign hub_label = hub_sweatshirts
+    when 'family-sweaters'
+      assign hub_label = hub_sweaters
+    when 'family-tops'
+      assign hub_label = hub_shirts
+  endcase
+
   assign should_render_internal_links = false
+  if hub_handle != blank
+    assign should_render_internal_links = true
+  endif
   if internal_link_locale == 'en'
-    if in_matching_hawaiian_outfits or in_matching_family_vacation_outfits or in_mother_daughter_matching_dresses or in_pajamas or hub_handle != blank
+    if in_matching_hawaiian_outfits or in_matching_family_vacation_outfits or in_mother_daughter_matching_dresses or in_pajamas
       assign should_render_internal_links = true
     endif
   endif
@@ -93,7 +152,7 @@
 
 {%- if should_render_internal_links -%}
   <div class="product__description rte quick-add-hidden product-copy" data-product-internal-links>
-    {%- if in_pajamas -%}
+    {%- if in_pajamas and internal_link_locale == 'en' -%}
       {%- if collections['pajamas'] != blank -%}
         <p>Keep browsing with <a href="{{ collections['pajamas'].url }}">{{ pajama_label | escape }}</a> for the full pajama lineup in one place.</p>
       {%- endif -%}
@@ -105,18 +164,18 @@
       {%- endif -%}
     {%- endif -%}
     {%- if hub_handle != blank and collections[hub_handle] != blank -%}
-      <p>Browse all <a href="{{ collections[hub_handle].url }}">{{ hub_label }}</a> to compare designs and choose a size for each person.</p>
+      <p>{{ hub_prefix }}<a href="{{ collections[hub_handle].url }}">{{ hub_label }}</a>{{ hub_suffix }}</p>
       {%- if hub_holiday_sweaters and collections['christmas-sweaters'] != blank -%}
-        <p>Shopping for December photos? See our <a href="{{ collections['christmas-sweaters'].url }}">family holiday sweaters for Christmas</a>.</p>
+        <p>{{ hub_holiday_prefix }}<a href="{{ collections['christmas-sweaters'].url }}">{{ hub_holiday }}</a>.</p>
       {%- endif -%}
     {%- endif -%}
-    {%- if in_matching_hawaiian_outfits and collections['matching-hawaiian-outfits'] != blank -%}
+    {%- if internal_link_locale == 'en' and in_matching_hawaiian_outfits and collections['matching-hawaiian-outfits'] != blank -%}
       <p>Part of our <a href="{{ collections['matching-hawaiian-outfits'].url }}">{{ collections['matching-hawaiian-outfits'].title | escape }}</a> collection for luaus, beach photos, and tropical vacations.</p>
     {%- endif -%}
-    {%- if in_matching_family_vacation_outfits and collections['matching-family-vacation-outfits'] != blank -%}
+    {%- if internal_link_locale == 'en' and in_matching_family_vacation_outfits and collections['matching-family-vacation-outfits'] != blank -%}
       <p>See more <a href="{{ collections['matching-family-vacation-outfits'].url }}">{{ collections['matching-family-vacation-outfits'].title | escape }}</a> for coordinated travel looks, resort dinners, and family photo days.</p>
     {%- endif -%}
-    {%- if in_mother_daughter_matching_dresses and collections['mother-daughter-matching-dresses'] != blank -%}
+    {%- if internal_link_locale == 'en' and in_mother_daughter_matching_dresses and collections['mother-daughter-matching-dresses'] != blank -%}
       <p>Browse the full <a href="{{ collections['mother-daughter-matching-dresses'].url }}">{{ collections['mother-daughter-matching-dresses'].title | escape }}</a> collection for photo-ready outfits, holidays, and special occasions.</p>
     {%- endif -%}
   </div>
