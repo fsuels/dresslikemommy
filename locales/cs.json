@@ -98,7 +98,9 @@
       "read_more_title": "Číst více: {{ title }}",
       "comments": {
         "one": "{{ count }} komentář",
-        "other": "{{ count }} komentářů"
+        "other": "{{ count }} komentářů",
+        "few": "{{ count }} komentáře",
+        "many": "{{ count }} komentáře"
       },
       "moderated": "Vezměte prosím na vědomí, že komentáře musí být schváleny před jejich zveřejněním.",
       "comment_form_title": "Zanechte komentář",
@@ -394,7 +396,7 @@
       "page_note_html": "Pokud zde vaše země není uvedena nebo pokladna nezobrazí metodu pro vaši přesnou adresu, napište před objednávkou na <a href=\"mailto:{{ email }}\">{{ email }}</a>.",
       "schema_standard_shipping": "Standardní doprava v ceně",
       "country_list_heading": "Země, do kterých aktuálně doručujeme ({{ count }})",
-      "country_list_highlight": "Každá země v tomto seznamu je povolena u pokladny. Vybraná země se zvýrazní, když ji Shopify dokáže rozpoznat.",
+      "country_list_highlight": "Každá země v tomto seznamu je dostupná v pokladně. Vybraná země je zvýrazněná, pokud ji Shopify dokáže rozpoznat.",
       "checker_trigger": "Posíláme do mé země?",
       "checker_trigger_meta": "{{ count }} zemí aktivních",
       "checker_trigger_meta_country": "{{ country }} vybráno / {{ count }} zemí",
@@ -624,7 +626,7 @@
     "announcements": {
       "previous_announcement": "Předchozí oznámení",
       "next_announcement": "Další oznámení",
-      "carousel": "Kolotoč",
+      "carousel": "Karusel",
       "announcement": "Oznámení",
       "announcement_bar": "Oznamovací lišta",
       "default_promo": "KUPTE 2 A 3. KUS MÁTE O 20 % LEVNĚJI | STANDARDNÍ DOPRAVA V CENĚ | BEZPEČNÁ PLATBA",
@@ -1214,12 +1216,12 @@
         "callout_title": "Porovnejte zde trička pro páry a pak objevte další sladěné outfity",
         "callout_body": "Porovnejte zde motivy sladěných triček pro páry a poté si prohlédněte rodinné oblečení pro další možnosti.",
         "primary_label": "Nakupovat trička níže",
-        "secondary_label": "Procházet rodinné párování"
+        "secondary_label": "Procházet sladěné rodinné oblečení"
       },
       "mommy_and_me": {
         "callout_eyebrow": "Nakupujte rychleji",
-        "callout_title": "Prohlédněte si celou kolekci maminka a dítě a poté přejděte na nejnovější pyžamo",
-        "callout_body": "Začněte širokým výběrem vhodných outfitů zde. Pokud sháníte oblečení na spaní, pokračujte na novou pyžamovou kolekci.",
+        "callout_title": "Prohlédněte si celou kolekci Maminka a já a poté přejděte na pyžama",
+        "callout_body": "Začněte zde sladěnými outfity. Pokud hledáte oblečení na spaní, podívejte se na sladěná pyžama.",
         "primary_label": "Procházet tuto kolekci",
         "secondary_label": "Kupte si nové pyžamo",
         "tertiary_label": "Prohlédněte si všechna pyžama"
@@ -1227,7 +1229,7 @@
       "matching_outfits": {
         "callout_eyebrow": "Nakupujte rychleji",
         "callout_title": "Začněte s rodinným oblečením a poté prozkoumejte nejnovější pyžama",
-        "callout_body": "Porovnejte široký výběr vhodných rodinných outfitů zde. Pokud hledáte nejnovější oblečení na spaní, pokračujte na novou pyžamovou kolekci.",
+        "callout_body": "Porovnejte zde sladěné rodinné outfity a pak se podívejte na sladěná pyžama.",
         "primary_label": "Procházet tuto kolekci",
         "secondary_label": "Kupte si nové pyžamo",
         "tertiary_label": "Prohlédněte si všechna pyžama"
@@ -1235,10 +1237,10 @@
       "pajamas": {
         "callout_eyebrow": "Nakupujte rychleji",
         "callout_title": "Nejprve si prohlédněte všechna pyžama a potom novinky",
-        "callout_body": "Porovnejte všechny pyžamové styly zde. Prozkoumejte novinky, pokud chcete nejprve vidět nejnovější výtisky.",
+        "callout_body": "Porovnejte zde všechny styly a vzory pyžam.",
         "primary_label": "Nakupujte pyžama níže",
-        "secondary_label": "Nejnovější přírůstky",
-        "tertiary_label": "Procházet Máma a já"
+        "secondary_label": "Novinky",
+        "tertiary_label": "Procházet Maminka a já"
       },
       "new_pajama_drop": {
         "callout_eyebrow": "Výběr pyžam",
@@ -1248,11 +1250,11 @@
         "secondary_label": "Prohlédněte si všechna pyžama"
       },
       "new_matching_outfits": {
-        "callout_eyebrow": "Čerstvé příjezdy",
-        "callout_title": "Podívejte se na nejnovější odpovídající vzhledy společně zde",
-        "callout_body": "Začněte s novinkami zde a poté prozkoumejte širší kolekci maminka a dítě, pokud chcete více možností.",
+        "callout_eyebrow": "Novinky",
+        "callout_title": "Podívejte se na nejnovější sladěné outfity, aniž byste opustili hlavní přehled",
+        "callout_body": "Začněte novinkami zde a pak prozkoumejte celou kolekci Maminka a já, pokud chcete víc možností.",
         "primary_label": "Nakupujte novinky",
-        "secondary_label": "Procházet Máma a já"
+        "secondary_label": "Procházet Maminka a já"
       },
       "style_count": "Počet modelů: {{ count }}",
       "shipping": "Standardní doprava v ceně",
@@ -1261,8 +1263,8 @@
     "collection_filter_hint": "Začněte velikostí, barvou a cenou. Typ produktu je již uspořádán prostřednictvím karet kolekce.",
     "home_title": "Šaty pro maminku a dceru | Sladěné rodinné oblečení",
     "home_description": "Sladěné rodinné oblečení: svetry, pyžama, šaty a plavky pro mámu, tátu i děti, s velikostí vybranou pro každého zvlášť.",
-    "collection_fallback_description": "Procházet {{ title }} na Dress Like Mommy. Porovnejte styly a zkontrolujte velikosti a podrobnosti o produktu na každé stránce produktu.",
-    "collection_fallback_body_html": "<p>Prohlédněte si {{ title }} a porovnejte styly v kolekci.</p><p>Před výběrem otevřete jednotlivé stránky produktů a ověřte dostupné varianty, průvodce velikostmi a podrobnosti o produktu.</p>",
+    "collection_fallback_description": "Prohlédněte si {{ title }} na Dress Like Mommy. Porovnejte styly a zkontrolujte velikosti a podrobnosti na stránce každého produktu.",
+    "collection_fallback_body_html": "<p>Prohlédněte si {{ title }} a porovnejte styly v kolekci.</p><p>Před výběrem otevřete jednotlivé stránky produktů a zkontrolujte dostupné varianty, tabulku velikostí a podrobnosti.</p>",
     "article": {
       "breadcrumbs_label": "Drobečková navigace",
       "author_credential": "Redakce rodinné módy",
