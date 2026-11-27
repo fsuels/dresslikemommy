@@ -158,3 +158,4 @@ STATE 2026-11-27T00:50Z: 100 top products now hand-written in it/cs/de/es/fr AND
 LIVE 2026-11-27 register-1: de/ro Sie/dvs. cleanup round 1 (de 20 keys+3 inline, ro 20 keys+18 inline) released c227e72, main restored 790e6de; live locales read back with new text.
 LIVE 2026-11-27 register-2: de 20 keys+4 inline, ro 20 keys released 3bb0c82; sync-locales in sync, main kept new de/ro values after 60 s.
 LIVE 2026-11-27 register-3: de 7 keys (German complete), ro 20 keys released ed7c9ca; locales in sync, main kept new values after 60 s.
+LIVE 2026-11-27 register-4: ro 20 keys + 9 inline (family list, holiday order-by, copy map) released 8d6f609; locales in sync, main kept new values after 60 s.
