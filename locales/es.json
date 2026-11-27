@@ -50,7 +50,7 @@
     },
     "cart": {
       "view": "Ver carrito ({{ count }})",
-      "item_added": "Artículo agregado a tu carrito",
+      "item_added": "Artículo añadido a tu carrito",
       "view_empty_cart": "Ver carrito"
     },
     "share": {
@@ -119,7 +119,7 @@
   },
   "products": {
     "product": {
-      "add_to_cart": "Agregar al carrito",
+      "add_to_cart": "Añadir al carrito",
       "description": "Descripción",
       "on_sale": "Oferta",
       "quantity": {
@@ -170,7 +170,7 @@
         "image_available": "La imagen {{ index }} ya está disponible en la vista de la galería"
       },
       "view_full_details": "Ver todos los detalles",
-      "include_taxes": "Impuesto incluido.",
+      "include_taxes": "Impuestos incluidos.",
       "shipping_policy_html": "El envío estándar está incluido en los precios de los productos para los países admitidos. La entrega estimada se muestra en cada página de producto; las estimaciones no son una garantía. <a href=\"{{ link }}\">Política de envío</a>",
       "choose_options": "Elegir opciones",
       "choose_product_options": "Elegir opciones para {{ product_name }}",
@@ -178,8 +178,8 @@
       "variant_sold_out_or_unavailable": "Variante agotada o no disponible",
       "inventory_in_stock": "En existencias",
       "inventory_in_stock_show_count": "{{ quantity }} en existencias",
-      "inventory_low_stock": "Bajas existencias",
-      "inventory_low_stock_show_count": "Bajas existencias: quedan {{ quantity }}",
+      "inventory_low_stock": "Quedan pocas unidades",
+      "inventory_low_stock_show_count": "Pocas unidades disponibles: {{ quantity }}",
       "inventory_out_of_stock": "Agotado",
       "inventory_out_of_stock_continue_selling": "En existencias",
       "sku": "SKU",
@@ -193,12 +193,12 @@
       "product_variants": "Variantes de producto",
       "select_size": "Seleccionar talla",
       "select_color": "Seleccionar color",
-      "size_required_message": "Por favor selecciona una talla antes de añadir al carrito.",
+      "size_required_message": "Selecciona una talla antes de añadir al carrito.",
       "matching_set": {
         "heading": "Arma tu conjunto a juego",
         "copy": "Elige una talla para cada persona. Precio por prenda.",
         "copy_person": "Elige una talla para cada persona.",
-        "empty": "Seleccione una talla para cada miembro de la familia que desee agregar.",
+        "empty": "Elige al menos una talla para añadir tu conjunto.",
         "add": "Añadir piezas a juego",
         "success": "Conjunto a juego agregado al carrito.",
         "error": "No se pueden agregar las piezas seleccionadas. Por favor inténtalo de nuevo."
@@ -320,13 +320,13 @@
       "secure_checkout": "Pago seguro",
       "ssl_encrypted": "SSL cifrado",
       "returns": "Plazo de devolución de 30 días",
-      "free_shipping": "Envío estándar gratuito incluido",
+      "free_shipping": "Envío estándar incluido",
       "trusted_since": "Looks a juego para momentos familiares",
       "assistance_note": "¿Necesitas ayuda? Normalmente respondemos dentro de un día hábil."
     },
     "purchase_confidence": {
       "shipping_checkout": "Consulta las opciones de envío al finalizar la compra.",
-      "shipping_headline": "Envío estándar gratis",
+      "shipping_headline": "Envío estándar incluido",
       "estimate_to_country": "Entrega estimada a {{ country }}: ",
       "estimate_default": "Entrega estimada: ",
       "shipping_details_label": "Detalles de envío",
@@ -357,7 +357,7 @@
     },
     "additional_info": {
       "shipping_title": "Envío y entrega",
-      "free_shipping_label": "Envío estándar gratuito incluido",
+      "free_shipping_label": "Envío estándar incluido",
       "estimated_delivery": "Entrega estimada:",
       "standard_delivery_window": "12-16 días",
       "christmas_order_by": "Estimación: pide antes del {{ order_date }} para recibirlo antes del {{ arrive_date }}. No es una garantía.",
@@ -375,8 +375,8 @@
       "safe_payment_options_title": "Opciones de pago seguras",
       "safe_payment_description": "Aceptamos las principales tarjetas de crédito y débito. Los datos de tu tarjeta están protegidos y nunca se comparten con nuestros socios. Puedes administrar tus tarjetas guardadas en cualquier momento. Para cualquier consulta sobre transacciones, contacta al emisor de tu tarjeta.",
       "secure_logistics_title": "Logística segura",
-      "secure_logistics_line_1": "Si un paquete se daña o se pierde durante el transporte, contáctenos para que podamos ayudarlo a revisar el envío.",
-      "secure_logistics_line_2": "Utilice el enlace de seguimiento de su pedido para obtener las últimas actualizaciones del operador. Los pedidos internacionales pueden estar sujetos a impuestos, aranceles o tasas aduaneras locales cobrados por el transportista o la autoridad local.",
+      "secure_logistics_line_1": "Si un paquete se daña o se pierde durante el transporte, contáctanos para que podamos ayudarte a revisar el envío.",
+      "secure_logistics_line_2": "Usa el enlace de seguimiento de tu pedido para ver las últimas novedades del transportista. Los pedidos internacionales pueden estar sujetos a impuestos, aranceles o tasas aduaneras locales cobrados por el transportista o la autoridad local.",
       "secure_privacy_title": "Privacidad segura",
       "secure_privacy_description": "Proteger tu privacidad es importante para nosotros. Ten la seguridad de que tu información se mantendrá protegida e intacta. No vendemos tu información personal y solo la usamos de acuerdo con nuestra política de privacidad y cookies para brindarte y mejorar nuestros servicios."
     },
@@ -484,8 +484,8 @@
       "caption": "Artículos en el carrito",
       "remove_title": "Eliminar {{ title }}",
       "note": "Instrucciones especiales del pedido",
-      "checkout": "Pagar pedido",
-      "empty": "Tu carrito esta vacío",
+      "checkout": "Finalizar compra",
+      "empty": "Tu carrito está vacío",
       "cart_error": "Hubo un error al actualizar tu carrito de compra. Inténtalo de nuevo.",
       "cart_quantity_error_html": "Solo puedes agregar {{ quantity }} de este artículo a tu carrito.",
       "taxes_and_shipping_policy_at_checkout_html": "Los impuestos y descuentos se calculan al finalizar la compra. El envío estándar está incluido en los precios de los productos donde haya un método estándar disponible. <a href=\"{{ link }}\">Política de envío</a>",
@@ -515,10 +515,10 @@
       "you_may_also_like": "También te puede gustar",
       "trust": {
         "secure_checkout": "Pago seguro",
-        "ssl_encrypted": "SSL cifrado",
+        "ssl_encrypted": "Cifrado SSL",
         "free_shipping": "Envío incluido",
         "returns": "Devoluciones de 30 días",
-        "secure": "Seguro",
+        "secure": "Pago seguro",
         "encrypted": "cifrado",
         "free_ship": "Envío incluido"
       },
@@ -531,7 +531,7 @@
       "shipping_free": "Estándar incluido",
       "popular_with_families": "Más prendas a juego",
       "recently_viewed": "Visto recientemente",
-      "savings_html": "Estas guardando <strong>{{ amount }}</strong>",
+      "savings_html": "Ahorras <strong>{{ amount }}</strong>",
       "shipping_country_reassurance": "Envío a {{ country }}. El envío estándar está incluido en los precios de los productos donde haya un método estándar disponible."
     },
     "footer": {
