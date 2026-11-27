@@ -12,6 +12,16 @@ class CartRemoveButton extends HTMLElement {
 
 customElements.define('cart-remove-button', CartRemoveButton);
 
+// Translated cart text from window.cartStrings (layout/theme.liquid); falls back to
+// English when a key is absent or Shopify reports it as missing.
+const cartString = (key, fallback) => {
+  const value = window.cartStrings && window.cartStrings[key];
+  return typeof value === 'string' && value.trim() && !/translation missing/i.test(value) ? value : fallback;
+};
+// Non-English storefronts get the existing translated cart messages instead of
+// the English-only detailed ones below.
+const cartIsEnglish = () => /^en\b/i.test(document.documentElement.lang || 'en');
+
 // Keep cart AJAX endpoints locale-aware so translated sections render in the active language.
 const getLocaleAwareRoute = (path) => {
   if (typeof path !== 'string' || path.length === 0) return path;
@@ -184,7 +194,8 @@ class CartItems extends HTMLElement {
           quantityElement.value = quantityElement.getAttribute('value');
           // Map common Shopify error patterns to user-friendly messages
           let errorMessage = parsedState.errors;
-          if (typeof parsedState.errors === 'string') {
+          // Non-English: keep Shopify's own (localized) message, as Dawn does.
+          if (typeof parsedState.errors === 'string' && cartIsEnglish()) {
             errorMessage = parsedState.errors;
             // Provide specific, actionable error messages
             if (errorMessage.toLowerCase().includes('sold out') || errorMessage.toLowerCase().includes('out of stock')) {
@@ -238,7 +249,7 @@ class CartItems extends HTMLElement {
           } else {
             // Provide a clearer message about why the quantity was adjusted
             const requestedQty = parseInt(quantityElement.value);
-            if (updatedValue < requestedQty) {
+            if (updatedValue < requestedQty && cartIsEnglish()) {
               message = `Only ${updatedValue} available — we've updated your quantity.`;
             } else {
               message = window.cartStrings.quantityError.replace('[quantity]', updatedValue);
@@ -270,7 +281,9 @@ class CartItems extends HTMLElement {
         this.querySelectorAll('.loading__spinner').forEach((overlay) => overlay.classList.add('hidden'));
         const errors = document.getElementById('cart-errors') || document.getElementById('CartDrawer-CartErrors');
         // Differentiate error types with specific, actionable messaging
-        if (error instanceof TypeError) {
+        if (!cartIsEnglish()) {
+          errors.textContent = cartString('error', 'Unable to update cart. Please try again.');
+        } else if (error instanceof TypeError) {
           if (error.message === 'Failed to fetch' || error.message.includes('fetch')) {
             errors.textContent = 'Unable to update cart — please check your internet connection and try again.';
           } else {
@@ -350,9 +363,11 @@ class CartItems extends HTMLElement {
     toast.className = 'cart-undo-toast';
     toast.setAttribute('role', 'alert');
     toast.innerHTML = `
-      <span>Item removed</span>
-      <button type="button" class="cart-undo-toast__btn">Undo</button>
+      <span></span>
+      <button type="button" class="cart-undo-toast__btn"></button>
     `;
+    toast.querySelector('span').textContent = cartString('itemRemoved', 'Item removed');
+    toast.querySelector('button').textContent = cartString('undo', 'Undo');
     document.body.appendChild(toast);
 
     // Trigger animation
