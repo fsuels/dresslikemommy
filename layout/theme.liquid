@@ -148,7 +148,7 @@
     assign resolved_page_title = page_title
     if request.page_type == 'cart'
       assign dlm_cart_title_lang = request.locale.iso_code | split: '-' | first
-      if dlm_cart_title_lang == 'de' or dlm_cart_title_lang == 'es' or dlm_cart_title_lang == 'fr' or dlm_cart_title_lang == 'cs' or dlm_cart_title_lang == 'ro'
+      if dlm_cart_title_lang != 'en'
         assign resolved_page_title = 'sections.cart.title' | t
       endif
     endif
