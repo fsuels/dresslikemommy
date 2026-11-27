@@ -1,3 +1,27 @@
+{%- comment -%}
+  The homepage "mom_daughter_row" instance: translated "Mommy and Me" heading when the title
+  setting is blank, and hidden in the southern summer (snippets/dlm-southern-summer.liquid),
+  where the products in it are out of season. Other instances are unchanged.
+{%- endcomment -%}
+{%- assign mom_daughter_row = false -%}
+{%- assign row_hidden = false -%}
+{%- if section.id contains 'mom_daughter_row' -%}
+  {%- assign mom_daughter_row = true -%}
+  {%- capture southern -%}{%- render 'dlm-southern-summer' -%}{%- endcapture -%}
+  {%- assign southern = southern | strip -%}
+  {%- if southern == 'true' -%}{%- assign row_hidden = true -%}{%- endif -%}
+{%- endif -%}
+{%- unless row_hidden -%}
+{%- if mom_daughter_row -%}
+  {%- style -%}
+    {% comment %} Same heading alignment and weight as the other homepage rows. {% endcomment %}
+    /* !important: theme-inline-body-static-05.css forces centred 500 on ".collection .title". */
+    #collection-{{ section.id }} .collection__title .title {
+      text-align: start !important;
+      font-weight: var(--font-heading-weight) !important;
+    }
+  {%- endstyle -%}
+{%- endif -%}
 {{ 'component-card.css' | asset_url | stylesheet_tag }}
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'component-rating.css' | asset_url | stylesheet_tag }}
@@ -68,6 +92,10 @@
       {%- if section.settings.title != blank -%}
         <h2 class="title inline-richtext {{ section.settings.heading_size }}{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
           {{ section.settings.title }}
+        </h2>
+      {%- elsif mom_daughter_row -%}
+        <h2 class="title {{ section.settings.heading_size }}">
+          {{ 'sections.home_category_copy.mommy_me' | t }}
         </h2>
       {%- endif -%}
       {%- if section.settings.description != blank or section.settings.show_description and section.settings.collection.description != empty -%}
@@ -153,6 +181,7 @@
     {%- endif -%}
   </div>
 </div>
+{%- endunless -%}
 
 {% schema %}
 {
