@@ -9,7 +9,7 @@
   endif
 -%}
 
-<article class="article-template" itemscope itemtype="https://schema.org/BlogPosting">
+<article class="article-template">
   <nav class="article-template__breadcrumb page-width page-width--narrow" aria-label="{{ 'storefront.article.breadcrumbs_label' | t }}">
     <a href="{{ routes.root_url }}">{{ 'sections.breadcrumbs.home' | t }}</a>
     <span aria-hidden="true">&rsaquo;</span>
@@ -34,7 +34,7 @@
               {%- capture article_fallback_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
               {%- capture article_fallback_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
               {%- capture article_fallback_image_alt -%}{% render 'article-featured-image-fallback', article: article, field: 'alt' %}{%- endcapture -%}
-              <div class="article-template__hero-{{ block.settings.image_height }} media article-template__hero-fallback" itemprop="image">
+              <div class="article-template__hero-{{ block.settings.image_height }} media article-template__hero-fallback">
                 {% comment %}theme-check-disable RemoteAsset{% endcomment %}
                 <img
                   src="{{ article_fallback_image_url | strip }}"
@@ -49,7 +49,6 @@
             {%- elsif article.image -%}
               <div
                 class="article-template__hero-{{ block.settings.image_height }} media"
-                itemprop="image"
                 {% if block.settings.image_height == 'adapt' and article.image %}
                   style="padding-bottom: {{ 1 | divided_by: article.image.aspect_ratio | times: 100 }}%;"
                 {% endif %}
@@ -78,7 +77,7 @@
               {%- capture article_fallback_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
               {%- capture article_fallback_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
               {%- capture article_fallback_image_alt -%}{% render 'article-featured-image-fallback', article: article, field: 'alt' %}{%- endcapture -%}
-              <div class="article-template__hero-{{ block.settings.image_height }} media article-template__hero-fallback" itemprop="image">
+              <div class="article-template__hero-{{ block.settings.image_height }} media article-template__hero-fallback">
                 {% comment %}theme-check-disable RemoteAsset{% endcomment %}
                 <img
                   src="{{ article_fallback_image_url | strip }}"
@@ -102,7 +101,6 @@
           <p class="article-template__eyebrow">{{ journal_label }}</p>
           <h1
             class="article-template__title"
-            itemprop="headline"
           >
             {{ article.title | escape }}
           </h1>
@@ -111,14 +109,13 @@
               {%- if block.settings.blog_show_date -%}
                 <span
                   class="{% if block.settings.blog_show_author %}circle-divider{% endif %}"
-                  itemprop="dateCreated pubdate datePublished"
                 >
                   {{- article.published_at | time_tag: format: 'date' -}}
                 </span>
               {%- endif -%}
               {%- if block.settings.blog_show_author -%}
-                <span class="caption-with-letter-spacing" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                  <span itemprop="name">{{ article.author }}</span>
+                <span class="caption-with-letter-spacing">
+                  <span>{{ article.author }}</span>
                 </span>
                 <span class="article-template__author-credential">{{ 'storefront.article.author_credential' | t }}</span>
               {%- endif -%}
@@ -132,7 +129,6 @@
       {%- when 'content' -%}
         <div
           class="article-template__content page-width page-width--narrow rte{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}"
-          itemprop="articleBody"
           {{ block.shopify_attributes }}
         >
           <nav class="article-toc" aria-label="{{ 'storefront.article.contents_aria_label' | t }}">
@@ -246,8 +242,8 @@
       </div>
       <div class="article-template__author-info">
         <p class="article-template__author-label">{{ 'storefront.article.written_by' | t }}</p>
-        <h3 class="article-template__author-name" itemprop="author" itemscope itemtype="https://schema.org/Person">
-          <span itemprop="name">{{ article.author }}</span>
+        <h3 class="article-template__author-name">
+          <span>{{ article.author }}</span>
         </h3>
         <p class="article-template__author-bio">{{ 'storefront.article.author_bio' | t }}</p>
       </div>
