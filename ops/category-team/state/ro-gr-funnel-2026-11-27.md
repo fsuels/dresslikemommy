@@ -79,3 +79,10 @@ Console: no errors. Matches the RO checkout ("285,00 lei"). The SE, DE, CA, AU a
 
 Release order: lock 10:15Z; commit 300f13d; wait 90 s; read-only list (3 differ); apply (3); re-check 0. Shopify export 726b65b keeps all 3 files. Lock released 10:19Z. Live CA and SE: every surface shows "$55.00 CAD / $73.00 CAD" and "453,00 SEK / 596,00 SEK". Cart emptied, country back to ES.
 Rollback: `git revert 300f13d` via ceo_worktree, then sync-theme.
+
+# Follow-up 3: struck card price in the same format, 8b42c61 (2026-11-27 ~10:36Z)
+
+Cause (Quality V130): `snippets/dlm-card-price.liquid:36` printed the compare-at with plain `money` on purpose ("keep both prices on one line"), so CA, GB and AU cards read "$81.00" beside "$67.00 CAD". The search found no other mismatch: `price.liquid` (product page) and the cart/drawer (`dlm-cart-money`) already format the compare-at like the price. Recommendations and search results use the same card snippet.
+Fix: the compare-at takes `money_with_currency` / `money` under the same `dlm-show-currency-code` flag as the shown price. Amounts and the show/hide rule are untouched.
+Copy test (made equal to the published theme first, then only this snippet differed), collection "christmas-sweaters" at 375 px: CA "From $47.00 CAD / $54.00 CAD", GB "From £29.00 GBP / £33.00 GBP", AU "From $59.00 AUD / $68.00 AUD", US "From $31.99 / $36.99" (unchanged), DE "Ab €34,95" (no compare-at, unchanged). No card overflow; scrollWidth 375.
+Release: lock 10:35Z, commit 8b42c61, wait 90 s, list (1 differ), apply (1), re-check 0. Shopify export 508a6c7 keeps the file. Lock released after 10:39:50Z. Live CA: "$54.00 CAD" struck beside "From $47.00 CAD". Country back to ES.

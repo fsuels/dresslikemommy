@@ -157,3 +157,23 @@ Success = the expected page appears for the query and its clicks or position imp
 
 ## Quality V103 fix (Admin only)
 cs matching-family-sweatshirts title and search title "Rodinné mikiny a hoodie pro maminku, tatínka a děti"; de complete guide body and description changed from "du" to "Sie" (links unchanged). 4/4, 0 outdated, live read. The a646bf4-round theme texts were not touched. Rollback: ops/organic/receipts/2026-11-27/v103-fix/before.json. Left as is (optional): fr and it wording in the guide link sentences.
+
+## No-cart mismatches, points 4, 6, 7 (Experto SEO, 2026-11-27)
+### A. Localized homepage titles (theme key storefront.home_title; descriptions already matched English)
+sv, no, nb (was English), da, fi, nl now lead with family outfits, then mom-and-child clothes (sense of the live English title). Risk: dress wording leaves the home title; re-check those home pages about 12-11.
+### B. /collections/sweaters
+Search Console 28 d: sweaters 1,470 impr / 43 clicks / pos 10.1, queries all mom-and-daughter ("mom and daughter matching sweaters", "mommy and me sweaters"); family-sweaters 870 / 23 / 13.2, family queries. So sweaters = mom-and-daughter page: English title/H1/meta/intro (links family-sweaters), 10 mommy-and-me knits first (Admin, manual order). Collection rules unchanged; breadcrumbs already Mommy and Me. Other languages keep the old text. Order rollback: ops/organic/receipts/2026-11-27/hub-intent/sweaters-order-before.json.
+A and B live (b8c9c1a, export 2a3e94f, 11:50Z). Read live: US sweaters title, H1, intro, first 6; titles on /sv /no /da /fi /nl.
+### C. Proposal, NOT published: mom-and-daughter row on the homepage
+- templates/index.json: add section "mom_daughter_row": {"type": "featured-collection", "settings": {"title": "", "collection": "mommy-and-me", "products_to_show": 4, "columns_desktop": 4, "columns_mobile": "2", "show_view_all": true, "color_scheme": "scheme-1", "padding_top": 24, "padding_bottom": 24}}; in "order" place it right after "hero_banner_main" (second screen).
+- Shows today (mommy-and-me manual order): cream heart cardigans, heart-button cardigan and dress set, burgundy ruffle cardigans, navy sprig dress and cardigan.
+- sections/featured-collection.liquid: when the title is blank use the collection title (translated), and skip this row for AU/NZ summer (dlm-southern-summer).
+- Publish: lock; compare live templates/index.json with origin/main (stop if the theme editor changed it); commit section file + index.json to main; code via sync-theme; index.json through the GitHub theme sync, then read the live file back; if not applied, upload that one file by Admin theme upsert; 3 min hold; check US, es, AU.
+- Rollback: revert the commit and repeat.
+
+## Homepage mom-and-daughter row published (833b49b, 12:12Z)
+- Tested first on the unpublished theme 158206558305 (role checked before every write; heading style needed !important). US, es, AU on mobile and desktop: row after the hero, translated heading, other sections unchanged, no overflow, layout shift 0; AU empty section adds 4 px on desktop.
+- Release: live index.json equal to main before commit; GitHub sync had not applied it after 200 s, so that one file was upserted by Admin and read back equal; export 6ea502a/6b98619.
+- Live (role main): US desktop, es mobile, AU mobile, NZ desktop. Products: cream heart cardigans, heart-button set, burgundy ruffle cardigans, navy sprig dresses (active, no pajamas).
+- Rollback: git revert 833b49b, sync-theme --apply and upsert the previous index.json (receipts/2026-11-27/home-row/index-live-before.json).
+- Notes (Quality V138): /de and /es sweaters still say family (Admin translations, blocked today). Spanish home title still leads with dresses.

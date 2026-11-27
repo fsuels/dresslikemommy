@@ -90,3 +90,16 @@ Two outside-scope things showed up in the HTML. They are unused data, not shown 
 2. The Finnish product titles use "Yhteensopivat" (product content, not interface).
 3. These English defects carry over from review 4: "In stock" and "Low stock" are stock claims; the gift card text says "QR code in-store"; `review_thanks_note` makes a 10% promise; `safe_payment_description` makes payment claims; and "New arrivals" / "Fresh arrivals" are newness claims.
 4. The `breadcrumbs.prefix_*` keys are unused (dead keys). Their da/no/fi values are wrong but never shown.
+
+## Nordic cart title and capitals (collection-copy-4, 2026-11-27 11:39-11:45Z)
+
+Source: `nordics-funnel-2026-11-27.md`.
+
+1. English cart title on /no: not a locale key. `layout/theme.liquid` set the cart page title from the theme translation (`sections.cart.title`) only for de, es, fr, cs, ro; every other language got Shopify's own page title, which is English for `no` ("Your Shopping Cart"). Fix: the theme title is now used for every non-English language (`dlm_cart_title_lang != 'en'`). `sections.cart.title` is translated in all 35 locale files (checked: only en.default is "Your cart"). sv, da and fi now show "Din varukorg", "Din indkøbskurv", "Ostoskorisi" (before: Shopify's own translated title).
+2. "STANDARD INGÅR / INKLUDERT / INKLUDERET": the strings are written normally ("Standard ingår"); the capitals came from CSS `text-transform: uppercase` on `.cart-page__shipping-free` and `.cart-drawer__shipping-free` (all languages, also English "STANDARD INCLUDED" and RO "STANDARD INCLUS"). Removed the uppercase in both files; bold green kept.
+   English-style title case in no/sv/da visible keys fixed (21 keys): no 6 (back_to_family_sets, meta titles maxi, daddy_me_shirts, couples, couples_tshirts, family_swimsuits), sv 8 (display title leggings; meta titles maxi, daddy_me_shirts, couples, couples_tshirts, family_sets, spring, dresses), da 7 (label_sweaters, back_to_family_sets, meta titles maxi, daddy_me_shirts, couples, couples_tshirts, family_swimsuits). Also fixed two mistranslations of "looks" in the couples page title ("søk/søgninger" = searches, sv "blickar" = glances). Unused breadcrumb prefixes and proper nouns left as they are.
+3. No order-by date added for Sweden or Denmark.
+
+Release: commit 8e279a8; lock re-read after 5 s; 90 s later the read-only listings showed only my keys (no 6, sv 8, da 7) and my 3 code files; applied in separate calls; export ae39338 kept everything; after 3 min `sync-locales` in sync and `sync-theme` 0 differ. Lock released, work copy finished.
+
+Live (built-in browser, own tab, one load + two fetches 10 s apart, test item added and removed, cart 0): /no/cart title "Handlekurven din – Dress Like Mommy", shipping "Standard inkludert"; /sv/cart "Din varukorg – Dress Like Mommy", "Standard ingår"; computed text-transform none.

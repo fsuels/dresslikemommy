@@ -22,3 +22,4 @@ One line each: what to do, and the dated evidence. Written only by the self-impr
 - When a relay is due, keep working on small units until the successor exists; never end with nothing running (owner, 2026-11-26).
 - A "checked, all fine" run is not work: pick an item that changes what a shopper or Google sees (owner, 2026-11-25).
 - 2026-11-27 Theme/locale release order that never reverted (Greek, 7 rounds): commit → wait 90 s → read-only listing → apply only if it still differs → hold the lock 3 min → confirm the export. Applying within seconds of the commit made Shopify export the pre-change theme and reload it into the live theme.
+- 2026-11-27 Live checks: record Shopify.theme.role (must be "main") at the start; the shared browser stayed in the preview of the unpublished test theme and reviews may have looked at the copy. Test on a copy in your own tab and leave the preview (/?preview_theme_id=) when done.
