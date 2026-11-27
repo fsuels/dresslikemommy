@@ -278,7 +278,7 @@
         assign head_meta_description = 'Matching family pajamas for mom, dad, kids and baby: soft sets and onesies in holiday and everyday prints, sized per person. Standard shipping included.'
       when 'all'
         comment
-          Honesty fix: the locale string promised "fast shipping"; delivery is 12-16 days.
+          Honesty fix: the old locale string made a speed claim; the shipping line says standard shipping included.
         endcomment
         assign head_meta_description = 'Shop all matching outfits in one place, including mommy and me, daddy and me, couples, and family sets. Standard shipping included.'
     endcase
@@ -509,8 +509,7 @@
   endif
 
   comment
-    The translated sections.collection_seo.meta_descriptions.all strings promise
-    fast shipping; non-English /collections/all uses the neutral fallback instead.
+    The sections.collection_seo.meta_descriptions.all strings make no speed claim; non-English /collections/all uses the neutral fallback instead.
   endcomment
   if collection_handle == 'all' and seo_lang != 'en'
     assign meta_description_key = ''
