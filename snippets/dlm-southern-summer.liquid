@@ -1,0 +1,17 @@
+{%- comment -%}
+  The one place that decides the southern summer storefront: Australia and New Zealand
+  shoppers, 1 October to 31 March (shop date). Echoes "true", otherwise nothing.
+  Used by the hero, the homepage blocks, the mega menu and the mobile drawer.
+
+  Usage:
+  {%- capture southern -%}{%- render 'dlm-southern-summer' -%}{%- endcapture -%}
+{%- endcomment -%}
+{%- liquid
+  assign dss_iso = localization.country.iso_code
+  if dss_iso == 'AU' or dss_iso == 'NZ'
+    assign dss_mmdd = 'now' | date: '%m%d' | plus: 0
+    if dss_mmdd >= 1001 or dss_mmdd <= 331
+      echo 'true'
+    endif
+  endif
+-%}

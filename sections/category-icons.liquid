@@ -1,6 +1,8 @@
 {{ 'section-category-icons.css' | asset_url | stylesheet_tag }}
 {{ 'category-tile-layout.css' | asset_url | stylesheet_tag }}
 
+{%- capture southern -%}{%- render 'dlm-southern-summer' -%}{%- endcapture -%}
+{%- assign southern = southern | strip -%}
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -418,7 +420,7 @@
                   {%- render 'home-category-card-caption', icon_label: icon_label_source, collection_handle: block.settings.collection.handle -%}
                 {%- endcapture -%}
                 {%- assign icon_caption = icon_caption | strip -%}
-                <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
+                <li class="category-icons__item" data-homepage-collection-card {% if southern == 'true' %}{% case block.settings.collection.handle %}{% when 'swimsuits', 'matching-family-vacation-outfits' %}style="order: 1"{% when 'dresses', 'family-photo-outfits' %}style="order: 2"{% when 'matching-outfits', 'matching-family-christmas-outfits' %}style="order: 3"{% when 'mommy-and-me' %}style="order: 4"{% when 'daddy-me' %}style="order: 5"{% else %}style="order: 6"{% endcase %}{% endif %} {{ block.shopify_attributes }}>
                   <a href="{% if block.settings.collection.handle == 'dresses' and collections['mother-daughter-matching-dresses'] != blank %}{{ collections['mother-daughter-matching-dresses'].url }}{% else %}{{ block.settings.collection.url }}{% endif %}" class="category-icons__link">
                     <div class="category-icons__image-wrap">
                       {%- if curated_tile_slug != blank -%}
@@ -628,7 +630,7 @@
                   {%- render 'home-category-card-caption', icon_label: icon_label_source, collection_handle: block.settings.collection.handle -%}
                 {%- endcapture -%}
                 {%- assign icon_caption = icon_caption | strip -%}
-                <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
+                <li class="category-icons__item" data-homepage-collection-card {% if southern == 'true' %}{% case block.settings.collection.handle %}{% when 'swimsuits', 'matching-family-vacation-outfits' %}style="order: 1"{% when 'dresses', 'family-photo-outfits' %}style="order: 2"{% when 'matching-outfits', 'matching-family-christmas-outfits' %}style="order: 3"{% when 'mommy-and-me' %}style="order: 4"{% when 'daddy-me' %}style="order: 5"{% else %}style="order: 6"{% endcase %}{% endif %} {{ block.shopify_attributes }}>
                   <a href="{% if block.settings.collection.handle == 'dresses' and collections['mother-daughter-matching-dresses'] != blank %}{{ collections['mother-daughter-matching-dresses'].url }}{% else %}{{ block.settings.collection.url }}{% endif %}" class="category-icons__link">
                     <div class="category-icons__image-wrap">
                       {%- if curated_tile_slug != blank -%}
@@ -817,7 +819,7 @@
               {%- render 'home-category-card-caption', icon_label: icon_label_source, collection_handle: block.settings.collection.handle -%}
             {%- endcapture -%}
             {%- assign icon_caption = icon_caption | strip -%}
-            <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
+            <li class="category-icons__item" data-homepage-collection-card {% if southern == 'true' %}{% case block.settings.collection.handle %}{% when 'swimsuits', 'matching-family-vacation-outfits' %}style="order: 1"{% when 'dresses', 'family-photo-outfits' %}style="order: 2"{% when 'matching-outfits', 'matching-family-christmas-outfits' %}style="order: 3"{% when 'mommy-and-me' %}style="order: 4"{% when 'daddy-me' %}style="order: 5"{% else %}style="order: 6"{% endcase %}{% endif %} {{ block.shopify_attributes }}>
               <a href="{% if block.settings.collection.handle == 'dresses' and collections['mother-daughter-matching-dresses'] != blank %}{{ collections['mother-daughter-matching-dresses'].url }}{% else %}{{ block.settings.collection.url }}{% endif %}" class="category-icons__link">
                 <div class="category-icons__image-wrap">
                   {%- if curated_tile_slug != blank -%}

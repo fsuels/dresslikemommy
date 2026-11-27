@@ -82,6 +82,54 @@
       assign card_2_caption = 'sections.home_category_copy.caption_christmas' | t
   endcase
 
+  # Australia and New Zealand summer (snippets/dlm-southern-summer.liquid): summer styles
+  # lead each column and the winter cards give way to summer ones.
+  capture southern
+    render 'dlm-southern-summer'
+  endcapture
+  assign southern = southern | strip
+  if southern == 'true'
+    case key
+      when 'shop'
+        assign column_1 = 'swimsuits:swimsuits,mother-daughter-matching-dresses:dresses,family-sets:sets,family-tops:tops,rompers:rompers,pajamas:pajamas,family-sweaters:sweaters'
+        assign column_2 = 'matching-family-vacation-outfits:vacation,family-photo-outfits:family_photos,matching-family-christmas-outfits:christmas_short,valentines-day-matching-outfits-1:valentines_short'
+        assign card_1_handle = 'swimsuits'
+        assign card_1_title = 'storefront.mega_menu.swimsuits' | t
+        assign card_1_eyebrow = blank
+        assign card_1_image = blank
+        assign card_1_caption = blank
+        assign card_2_handle = 'family-sets'
+        assign card_2_title = 'storefront.mega_menu.sets' | t
+        assign card_2_eyebrow = blank
+        assign card_2_caption = blank
+      when 'mommy'
+        assign column_2 = 'swimsuits:swimsuits,rompers:rompers,tops:tops,pajamas:pajamas,sweaters:coats,valentines-day-matching-outfits-1:valentines_short,new-matching-outfits:new_arrivals'
+        assign card_2_handle = 'swimsuits'
+        assign card_2_title = 'storefront.mega_menu.swimsuits' | t
+        assign card_2_eyebrow = blank
+        assign card_2_image = blank
+        assign card_2_caption = blank
+      when 'daddy'
+        assign column_1 = 'trunks:swim_trunks,daddy-me-shirts:shirts,daddy-me-t-shirts:tshirts,pajamas:pajamas,family-sweaters:sweaters'
+        assign column_2 = 'matching-outfits:family_matching,family-sets:sets,matching-family-vacation-outfits:vacation,matching-family-christmas-outfits:christmas_short,valentines-day-matching-outfits-1:valentines_short'
+        assign card_2_handle = 'trunks'
+        assign card_2_title = 'storefront.mega_menu.swim_trunks' | t
+        assign card_2_eyebrow = blank
+        assign card_2_caption = blank
+      when 'family'
+        assign column_1 = 'family-sets:sets,swimsuits:swimsuits,family-tops:tops,siblings-matching-outfits:siblings,pajamas:pajamas,christmas-pajamas:christmas_pajamas,family-sweaters:sweaters'
+        assign column_2 = 'matching-family-vacation-outfits:vacation,matching-hawaiian-outfits:hawaiian,family-photo-outfits:family_photos,matching-family-christmas-outfits:christmas_short,valentines-day-matching-outfits-1:valentines_short'
+        assign card_1_handle = 'family-sets'
+        assign card_1_title = 'storefront.mega_menu.sets' | t
+        assign card_1_eyebrow = blank
+        assign card_1_caption = blank
+        assign card_2_handle = 'swimsuits'
+        assign card_2_title = 'storefront.mega_menu.swimsuits' | t
+        assign card_2_eyebrow = blank
+        assign card_2_caption = blank
+    endcase
+  endif
+
   assign columns = column_1 | append: '#' | append: column_2
   # Headings are translated and HTML-escaped (Who's -> Who&#39;s), so they must not use '#' as the separator.
   assign headings = heading_1 | append: '|~|' | append: heading_2

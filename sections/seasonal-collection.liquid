@@ -3,8 +3,14 @@
   collection (in-season window and storefront products present); outputs nothing otherwise.
 {%- endcomment -%}
 {%- capture seasonal_handle -%}{%- render 'christmas-season-collection' -%}{%- endcapture -%}
+{%- capture southern -%}{%- render 'dlm-southern-summer' -%}{%- endcapture -%}
+{%- assign southern = southern | strip -%}
 {%- liquid
   assign seasonal_handle = seasonal_handle | strip
+  # Australia and New Zealand summer: swimsuits take the place of the winter spotlight.
+  if southern == 'true' and collections['swimsuits'] != blank
+    assign seasonal_handle = 'swimsuits'
+  endif
   assign seasonal_min_products = 2
 
   if seasonal_handle != blank

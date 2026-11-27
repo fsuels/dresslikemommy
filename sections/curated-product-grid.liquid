@@ -1,7 +1,14 @@
 {{ 'component-price.css' | asset_url | stylesheet_tag }}
 {{ 'section-home-curation.css' | asset_url | stylesheet_tag }}
 
+{%- capture southern -%}{%- render 'dlm-southern-summer' -%}{%- endcapture -%}
+{%- assign southern = southern | strip -%}
+
 {%- liquid
+  # Australia and New Zealand summer: the same four cards show summer sets instead of the
+  # theme-editor knitwear picks (order matches the four blocks).
+  assign southern_products = 'sky-blue-family-matching-set,red-resort-mommy-and-me-set,tropical-matching-family-beach-outfits-colorful-leaf-print-summer-dresses-shorts-set,willow-mist-mommy-and-me-dresses' | split: ','
+  assign southern_collections = 'family-sets,mommy-and-me,matching-family-vacation-outfits,mother-daughter-matching-dresses' | split: ','
   assign visible_block_count = 0
   assign section_anchor_id = section.settings.anchor_id | strip | handleize
   assign curated_button_url = section.settings.button_link
@@ -18,6 +25,12 @@
   endcomment
   for block in section.blocks
     assign curated_block_product = block.settings.product
+    if southern == 'true'
+      assign southern_handle = southern_products[forloop.index0]
+      if southern_handle != blank
+        assign curated_block_product = all_products[southern_handle]
+      endif
+    endif
     if curated_block_product != blank and curated_block_product.available and curated_block_product.selected_or_first_available_variant != blank
       assign visible_block_count = visible_block_count | plus: 1
     endif
@@ -177,6 +190,15 @@
         {%- for block in section.blocks -%}
           {%- liquid
             assign curated_block_product = block.settings.product
+            assign curated_block_collection = block.settings.secondary_collection
+            if southern == 'true'
+              assign southern_handle = southern_products[forloop.index0]
+              if southern_handle != blank
+                assign curated_block_product = all_products[southern_handle]
+                assign southern_handle = southern_collections[forloop.index0]
+                assign curated_block_collection = collections[southern_handle]
+              endif
+            endif
             if curated_block_product == blank or curated_block_product.available == false or curated_block_product.selected_or_first_available_variant == blank
               continue
             endif
@@ -189,8 +211,11 @@
               Use the collection title instead: it is store data and follows collection translations.
             endcomment
             assign curated_collection_link_label = block.settings.collection_link_label | strip
-            if curated_collection_link_label == blank and block.settings.secondary_collection != blank
-              assign curated_collection_link_label = block.settings.secondary_collection.title
+            if southern == 'true'
+              assign curated_collection_link_label = blank
+            endif
+            if curated_collection_link_label == blank and curated_block_collection != blank
+              assign curated_collection_link_label = curated_block_collection.title
             endif
 
             assign curated_disable_rotation = false
@@ -203,14 +228,14 @@
           -%}
           <div {{ block.shopify_attributes }}>
             {% render 'home-spotlight-card',
-              spotlight_product: block.settings.product,
+              spotlight_product: curated_block_product,
               spotlight_badge: block.settings.badge,
               spotlight_caption: block.settings.caption,
               spotlight_button_label: block.settings.button_label,
               spotlight_theme_asset: spotlight_static_theme_asset,
               spotlight_theme_asset_alt: spotlight_static_theme_asset_alt,
-              spotlight_collection: block.settings.secondary_collection,
-              spotlight_rotation_collection: block.settings.secondary_collection,
+              spotlight_collection: curated_block_collection,
+              spotlight_rotation_collection: curated_block_collection,
               spotlight_disable_rotation: curated_disable_rotation,
               spotlight_collection_link_label: curated_collection_link_label,
               lazy_load: true,

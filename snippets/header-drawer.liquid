@@ -20,7 +20,22 @@
       <div class="menu-drawer__inner-container">
         <div class="menu-drawer__navigation-container">
           <nav class="menu-drawer__navigation">
+            {%- capture southern -%}{%- render 'dlm-southern-summer' -%}{%- endcapture -%}
+            {%- assign southern = southern | strip -%}
             {%- capture dlm_rail -%}
+              {%- if southern == 'true' -%}
+                {%- liquid
+                  assign rail_sizes = '72px'
+                  assign rail_label = 'storefront.mega_menu.swimsuits' | t
+                  render 'dlm-mega-card', handle: 'swimsuits', title: rail_label, modifier: 'rail', sizes: rail_sizes, defer_image: true
+                  assign rail_label = 'storefront.mega_menu.dresses' | t
+                  render 'dlm-mega-card', handle: 'mother-daughter-matching-dresses', title: rail_label, modifier: 'rail', sizes: rail_sizes, defer_image: true
+                  assign rail_label = 'storefront.mega_menu.sets' | t
+                  render 'dlm-mega-card', handle: 'family-sets', title: rail_label, modifier: 'rail', sizes: rail_sizes, defer_image: true
+                  assign rail_label = 'storefront.mega_menu.pajamas' | t
+                  render 'dlm-mega-card', handle: 'pajamas', image_handle: 'new-pajama-drop', title: rail_label, modifier: 'rail', sizes: rail_sizes, defer_image: true
+                -%}
+              {%- else -%}
               {%- liquid
                 assign rail_sizes = '72px'
                 assign rail_label = 'storefront.mega_menu.pajamas' | t
@@ -36,6 +51,7 @@
                 assign rail_label = 'storefront.mega_menu.swimsuits' | t
                 render 'dlm-mega-card', handle: 'swimsuits', title: rail_label, modifier: 'rail', sizes: rail_sizes, defer_image: true
               -%}
+              {%- endif -%}
             {%- endcapture -%}
             {%- assign dlm_rail = dlm_rail | strip -%}
             {%- if dlm_rail != blank -%}

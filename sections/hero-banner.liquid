@@ -45,6 +45,21 @@
   assign hero_christmas_mobile_sky = 'hero-winter-sky-mobile.jpg'
   assign hero_christmas_slide_max = 3
   assign hero_christmas_product_count = 0
+  # Australia and New Zealand in their summer (snippets/dlm-southern-summer.liquid): the
+  # season-free "everyday" copy over one summer family photo, with no winter product slides.
+  capture hero_southern
+    render 'dlm-southern-summer'
+  endcapture
+  assign hero_southern = hero_southern | strip
+  if section.settings.seasonal_copy != 'halloween_winter'
+    assign hero_southern = ''
+  endif
+  if hero_southern == 'true'
+    assign hero_seasonal_copy = 'christmas'
+    assign hero_copy_edition = 'everyday'
+    assign hero_christmas_sky = 'hero-family-boardwalk-premium.jpg'
+    assign hero_christmas_mobile_sky = 'hero-family-boardwalk-premium-mobile.jpg'
+  endif
   # Christmas product photos only through Dec 25 (and on the manual Christmas edition); later windows get the sky-only slide.
   assign hero_show_christmas_photos = false
   if hero_copy_edition == 'christmas' or hero_copy_edition == 'winter_photos'
@@ -1032,6 +1047,24 @@
       }
     }
   {%- endif -%}
+  {%- if hero_southern == 'true' -%}
+    /* The summer photo has a bright sky: darken only the side that carries the text. */
+    @media screen and (max-width: 749px) {
+      #shopify-section-{{ section.id }} .hero-banner--summer .hero-banner__image {
+        object-position: center top;
+      }
+      #shopify-section-{{ section.id }} .hero-banner--summer .hero-banner__overlay {
+        display: block;
+        background: linear-gradient(180deg, rgba(24, 14, 20, 0.68) 0%, rgba(24, 14, 20, 0.45) 24%, rgba(24, 14, 20, 0) 42%);
+      }
+    }
+    @media screen and (min-width: 750px) {
+      #shopify-section-{{ section.id }} .hero-banner--summer .hero-banner__overlay {
+        display: block;
+        background: linear-gradient(90deg, rgba(24, 14, 20, 0.66) 0%, rgba(24, 14, 20, 0.5) 34%, rgba(24, 14, 20, 0) 58%);
+      }
+    }
+  {%- endif -%}
 {%- endstyle -%}
 
 {%- liquid
@@ -1055,6 +1088,12 @@
     assign hero_button_link_first_char = hero_button_link | slice: 0, 1
     assign hero_secondary_button_link = hero_secondary_button_link | strip
     assign hero_tertiary_button_link = hero_tertiary_button_link | strip
+  endif
+  if hero_southern == 'true'
+    assign hero_button_link = '/collections/family-sets'
+    assign hero_button_link_first_char = '/'
+    assign hero_secondary_button_link = '/collections/mother-daughter-matching-dresses'
+    assign hero_tertiary_button_link = '/collections/swimsuits'
   endif
   assign hero_button_path_prefix = hero_button_link | slice: 0, 13
   assign hero_secondary_button_path_prefix = hero_secondary_button_link | slice: 0, 13
@@ -1128,6 +1167,9 @@
     assign hero_secondary_button_label = hero_secondary_button_label | strip
     assign hero_tertiary_button_label = hero_tertiary_button_label | strip
   endif
+  if hero_southern == 'true'
+    assign hero_tertiary_button_label = 'storefront.mega_menu.swimsuits' | t
+  endif
 
   assign hero_heading_tag = 'h2'
   assign hero_image_loading = 'lazy'
@@ -1188,7 +1230,7 @@
 -%}
 
 <div
-  class="hero-banner hero-banner--buttons-{{ section.settings.button_style | default: 'dark' }}{% if hero_has_art %} hero-banner--art{% endif %}"
+  class="hero-banner hero-banner--buttons-{{ section.settings.button_style | default: 'dark' }}{% if hero_has_art %} hero-banner--art{% endif %}{% if hero_southern == 'true' %} hero-banner--summer{% endif %}"
   id="HeroBanner-{{ section.id }}"
   role="region"
   aria-roledescription="carousel"
