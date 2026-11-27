@@ -26,3 +26,17 @@ Found by batches 251-300 (2026-11-27):
 - promotional copy: "must-have", "sure to be a hit" (father and son tropical floral swim trunks); odd wording "bias-friendly", "elastic-friendly", "layer dresses".
 - Terracotta Tile: "flatters every skin tone" (unsupported claim) and "runs small, size up one" (check against the size chart before keeping).
 - vibrant-rainbow: the text lacks sizes 10-12 and up.
+
+## 2026-11-27T06:03:24Z — de la tanda ro últimos 26 (EN, edición bloqueada: dueño)
+- rainbow / red-tropical / tropical-zip (bañadores): meta dice nylon-spandex, cuerpo nylon-polyester.
+- blue-baroque: meta dice «nylon»; título SEO repite «One-Piece».
+- rainbow: «whole family» en un set madre-hija.
+- ring-accent: tallas «2T-12T».
+- varias: «every skin tone», «breathable», «quality» sin respaldo.
+- 5 tablas de bañadores: 20 celdas «Mother S/M/L/XL» sin traducir en ro (entra en el arreglo de tablas pendiente del dueño).
+
+## 2026-11-27T06:14:32Z — de la tanda últimos 26, cinco idiomas (EN, edición bloqueada: dueño)
+- lavender (vestido): la talla «Hollow to Floor» se mide desde el hombro.
+- geometric: «central embellishment» en una línea, «knot» en otra.
+- tropical-zip: dice apto para «competitive swimming» y «breathable».
+- los 8 bañadores: texto muy promocional.

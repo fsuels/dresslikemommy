@@ -29,3 +29,37 @@ Pipeline = hand-top20/build.py (copy: build_ro.py, LOCS=['ro']). General rules o
 - "resort-ready by design" -> "Gândit pentru vacanțele la resort". "styling only" -> "sunt doar pentru styling" (not "au rol doar de stilizare").
 - Option value as grammatical subject ("Șorturi sunt…") -> write "— pantaloni scurți fără închidere…" after the option word. "Alegeți Rochie pentru o rochie…" -> "pentru modelul de rochie…".
 - "Partea cu rochii / cu cămașă" -> "Rochiile… iar cămășile…". "layer" (vest) -> "piesă de purtat deasupra", not "strat". "rainbow joy" -> "ținută vie ca un curcubeu".
+## Calidad V82 additions (2026-11-27, hand-ro-last26)
+- Garment "tie" (tie waist, waist tie, tie at the bust/neck, tie-shoulder straps) is never "legătură" (= bond/link): "cordon" for waist ties ("talie cu cordon", "cordonul albastru"), "șnur de legat" for small ties ("șnur de legat la bust"), or a verb ("se leagă la ceafă", "bretele care se leagă pe umeri"). "legătura" stays correct for the family bond.
+- "Fit" is never "așezare" (calque): use "croială" ("Croială sigură", "o croială mulată"), "purtare comodă" ("pentru o purtare comodă"), or a verb ("să stea sigur pe corp", "se așază", "vine pe corp"), according to the sentence.
+## Repair top-50 additions (2026-11-27, repair-ro-top50)
+- "Made for" (colours, sets) is not "create pentru": use "potrivite / gândite pentru". "Same look for the whole family" = "același model pentru toată familia" (not "aceeași ținută").
+- "Plus" joining garments or size groups is "și" ("bluză … și pantaloni", "în mărimi pentru copii și în croieli pentru femei"), never "plus".
+- Cozy days, nights, bedtimes = "tihnite"; a cozy photo = "caldă"; "confortabil" only for garments.
+- Holiday-card mornings = "diminețile în care faceți fotografia pentru felicitările de sărbători". "Moves easily from X to Y" = "urmează fiecare mișcare, de la X la Y". "Every snapshot in between" = "fiecare fotografie" (drop "dintre ele").
+- Keep/keeps the look/silhouette X = "dă … un aer X / face … X", never "păstrează / menține". Clean look/style = "simplu"; "pairs cleanly" = "se asortează simplu". "Lock in" = "asigurați-vă".
+- Layering: "ușor de purtat peste alte haine / ușor de combinat cu alte piese / de purtat deasupra"; never "în straturi" for garments (a layered hem "tiv în straturi" is fine).
+- Crew = "toată familia" (never "echipa"). Four-role / four-person = "pentru toată familia". "Say hello to / Meet" = "Descoperiți". "Welcome to" ≠ "Bun venit"; "Welcome bunny season" = "Întâmpinați". "A testament to" = "o dovadă de / celebrează".
+- English design names are not left in prose unless in „…” and identical to the live title: Tropical Meadow = "pajiște tropicală", Red Stripe = "dungi roșii", Polka Dot = "modelul cu buline", Grapevine = "cu viță-de-vie".
+- Mixed mother-and-child groups take masculine "fiecăruia"; "fiecăreia" only for mother-daughter. Avoid "cu guler rotund, cu guler…": write "decolteu rotund" when the trim is listed separately.
+## Calidad V86 addition (2026-11-27)
+- A cut cannot be adjusted: "adjust the fit" (tie, straps) is never "reglați croiala / ajustați potrivirea"; write "vă permite să îl potriviți pe corp" or name what is adjusted ("reglați bretelele / șnurul"). "Breathe easy in cotton" = "se simt comod în bumbacul … respirabil" (not "respiră ușor"); off-white = "alb-crem" (not "alb-murdar"); bedtime = "ora de culcare".
+## Repair 51-100 additions (2026-11-27)
+- A design name is not the subject of "prezintă / înfățișează / împrăștie / scrie": put the garment first ("Pe un tricot roșu aprins apar…", "Pe bluzele pentru adulți scrie HOORAY").
+- "Plans" (everyday, holiday, cold-weather plans) is not "planuri": "zilele obișnuite / zilele reci petrecute împreună", "sărbători".
+- "Accent" (heart accent, charming accents) = "inimioară / detaliu / notă", never "accent".
+## Repair 101-150 additions (2026-11-27)
+- Tiered skirt/hem/silhouette = "etajată / volane etajate" (not "în straturi"; layers of tulle or fabric may stay "straturi"). Empire waist = "talie empire" (never "talie imperiu").
+- Woven bags = "genți împletite". "Is all about X" is not "este despre": "are tot farmecul…". "Pair them with" (other products) = "Combinați-le cu" (not "Asortați-le cu … asortate").
+- Mommy-and-me dress listings with Girls sizes are "mamă și fiică" in prose (not "mamă și copil").
+## Repair 151-200 additions (2026-11-27)
+- Size-range prose never uses option labels as words ("De la Copil 2 ani până la Copil 10-11 ani"): write "Copii de la 2 la 10-11 ani; mame de la S la 2XL; tați de la M la 3XL".
+- "Styling / display pieces" = "sunt folosite doar pentru styling sau prezentare" (not "piese de stilizare"). "Color story" = "paletă" (not "poveste de culoare"); "outfit story" = "ținută coordonată".
+- When a hand-written node follows a closing tag, check its first character: no leading comma or space before punctuation.
+## Repair 201-250 additions (2026-11-27)
+- Before node-by-node repair, compare the ro tag sequence with English: if list items are missing, rebuild the whole body on the English structure (keep ro tables and care text verbatim) instead of patching.
+- "Make a statement" = "transmite un mesaj / atrage privirile" (never "face o declarație"); "Elevate your style" = "dați un plus de stil" (not "ridicați").
+## Repair 251-300 additions (2026-11-27)
+- Coastal = "marinăresc / de litoral" (never "costier"); skirt slit = "șliț" (not "despicătură"); "accents" of buttons/flowers = "mici nasturi / detalii" (never "accente").
+- "Embrace summer / the trend" = "Bucurați-vă de vară / Adoptați tendința" (never "Îmbrățișați"); "your go-to" = "alegerea ideală" (not "alegerea dumneavoastră").
+- A "linen-look" product name is never rendered as "in" ("Setul fildeș cu aspect de in", not "Setul din in fildeș").
