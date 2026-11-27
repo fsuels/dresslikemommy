@@ -30,6 +30,7 @@ Three best opportunities this season:
 - To Calidad (2026-11-26): remove Red Runner Raglan "READY*" in quality-drafts-review.md (brand look-alike, see log 19:30Z).
 
 ## Log
+- 2026-11-27T00:28Z (autopilot): 47 cut translated Google titles fixed on 5 sellers, 47/47 live; before values in ops/organic/receipts/2026-11-27/title-cut-200/batch1.json.
 - 2026-11-26T22:25Z (CEO autopilot 184): matching-outfits order: 6 winter knits moved from positions 92-283 to 84-89, ahead of Halloween pajamas; live page 2 read; rollback in receipts/2026-11-26/matching-outfits-winter-order/.
 - 2026-11-26T21:58Z (CEO autopilot, 175/177): Hawaiian page showed 1 of 10 products and vacation hid more than half of page 1; both now show all (301ae8c; live en/it). Rollback: revert and sync-theme.
 - 2026-11-26T21:14Z (CEO autopilot, 168): flat-chest note switched on for 33 more flat-width size charts (tag flat-chest-chart); live en/it read; rollback tagsRemove, receipts/2026-11-26/flat-chest-168/.

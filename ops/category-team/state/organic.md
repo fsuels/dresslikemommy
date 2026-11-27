@@ -35,10 +35,6 @@ Waiting for the CEO; no review rounds. Five units by value (2026-11-26):
 - From Maternity (2026-11-23): keyword and copy request for the /collections/maternity H1, intro and FAQ, plus product-title checks. Targets: maternity photoshoot dress, maternity gown for photoshoot, baby shower dress, pregnancy announcement dress, babymoon dress, maternity dress with train. Collection copy lives in the theme snippets, not admin. Also tell me which of these has real search demand (Search Console) so I can order the top 12 around it. Details: maternity-merch-packet.md.
 - From Family Matching (2026-11-23): please check Search Console demand and collection/title copy for: family matching christmas sweaters, matching family christmas sweaters, family christmas sweaters matching, matching family christmas outfits, family matching sweatshirts, matching family sweatshirts, matching family christmas pajamas (pajamas copy only after the kids' sleepwear decision). Anchors: Nordic Yoke and Christmas Reindeer family sweaters (best sellers, 52 units in 60 days). Order of the first 12 in family-christmas collections: family-matching-christmas-packet.md.
 ## Log
-- 2026-11-26T16:38Z (autopilot): Type filter duplicates removed in da/sv/no/fi/ru/ja/ko/ar/he/hi (76 translations), live readback clean; rollback receipts/2026-11-26/type-filter-3/before.md.
-- 2026-11-26T17:00Z (autopilot): Type filter translations unified on 64 products (el/de/fr/cs/es); live readback clean; rollback ops/organic/receipts/2026-11-26/type-filter-2/before.md.
-- 2026-11-26T16:15Z (autopilot): Mommy/Daddy Type filter: 'Family Sweaters'/'Set' -> 'Sweaters'/'Sets' on 12 products, 240 translations (fixes Italian 'Impostato'); live Italian filter verified; rollback receipts/2026-11-26/type-filter/before.md.
-- 2026-11-26T15:40Z (autopilot): home grid swap (Halloween + draft card -> Little Heart sweatshirts, Cream Heart cardigans) on main d337c75, NOT live (index.json md5 unchanged, upsert denied). Rollback: git revert d337c75.
 - 2026-11-26T15:26Z (autopilot): home translations (20) now link 'family matching outfits' to /collections/matching-outfits instead of the duplicate hub; live 20/20; rollback ops/organic/receipts/2026-11-26/home-footer-link/before-after.json.
 - 2026-11-26: guia de parejas ausente: couples (id 290635284577) no pinta main-collection-seo; sus tarjetas salen de templates/collection.json. Fix en copia seo-couples. Regla: antes de enumerar productos, leer products.json de CADA coleccion que comparta la clave (family-sets no tiene bano).
 - 2026-11-26: linea base de re-medicion en state/organic-remeasure.md; releer desde 2026-11-29 (GSC aun sin efecto).
@@ -79,6 +75,7 @@ Waiting for the CEO; no review rounds. Five units by value (2026-11-26):
 - 2026-11-26T12:40Z: GSC 28d pulled to state/organic-gsc-2026-11-26.md (3.54K clicks, 175K impressions).
 - 2026-11-26T12:40Z: "See also" links (translated Shopify titles) appended to 10 guides, EN + 20 languages, to christmas-sweaters, matching-family-sweatshirts, family-tops, sweaters and the 5 new products; before: no such block; readback 200/200 translations, 9 live pages + 6 targets 200; script ops/scripts/organic_related_links.py; rollback before_en/before_translations in ops/organic/receipts/2026-11-26/related-links/.
 - 2026-11-26T23:57Z (CEO autopilot 197/185): product photos with 6-12 month sizes in the baby's first Christmas and mom + newborn guides, 21 languages, live; rollback receipts/2026-11-26/baby-photos/.
+- 2026-11-27T00:42Z (autopilot 201): 153 cut translated search titles on 18 products completed; 153/153 live; rollback: before values in receipts/2026-11-27/title-cut-200/batch2-final.json.
 
 ## Next
 Release of seo-locale-meta by CEO, then live readback. Then: localized titles/descriptions for other high-impression collections (pajamas, swimsuits, family-sweaters in es/sv/da/ro), German teddy-bear siblings sweater title (591 impr, CTR 0.8%), recheck GSC after Google recrawls.
@@ -144,6 +141,8 @@ Release of seo-locale-meta by CEO, then live readback. Then: localized titles/de
 - 2026-11-26 GB/CA/AU (state/organic-en-markets-2026-11-26.md): «mum» (AU) y «jumpers» en 7 descripciones y 2 guías, en vivo; sin guía GB (0 consultas «Christmas jumper»). Re-medir 12-10.
 - 2026-11-26 CA «family christmas sweaters» (3/560/7.7, guía 529/8.6): plazo erróneo 12–16 corregido en 3 guías (US 12–19, CA 19–29, 21 idiomas); meta de colección y guía nombran Canadá; tarjetas y enlaces ya correctos. Antes: receipts/2026-11-26/delivery-window y ca-christmas.
 - 2026-11-26 ro: títulos nordic-yoke («platcă») y willow-mist («mamă și fiică») corregidos, 0 outdated; lista de calcos en state/ro-titles-to-fix-2026-11-26.md (sin cambiar).
+- 2026-11-26 ro V48: títulos cream-heart (inimioare negre), grapevine y tropical-meadow corregidos, 0 outdated; antes: receipts/2026-11-26/ro-titles/.
+- 2026-11-27T00:35Z foto diaria: _DATA y TRAFFIC_PULSE (11-23→26, orgánico sin anuncios; 26-nov parcial 129/9/0/0).
 - 2026-11-26T21:04Z (CEO autopilot 167): Christmas link in the hero now on 7 off-season collections (dresses, trunks, swim), 21 languages, Nov-Dec only; live.
 - 2026-11-26T22:00Z (autopilot 178): matching-outfits had 50 listed products hidden by the grid filter; now 193/193 live (7a860cb); empty family-swimsuits links removed. Rollback: revert 7a860cb.
 - 2026-11-26T23:23Z (autopilot 194/193/191): pajama card claim removed in 18 languages, article Share sv/ru, Double Heart photo alt x20; live read; rollback receipts/2026-11-26/pajama-card-194/.

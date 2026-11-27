@@ -12,3 +12,5 @@ Pipeline = hand-top20/build.py (copy: build_ro.py, LOCS=['ro']). General rules o
 - Prohibited calques: "Fiecare selecție" (use "Fiecare opțiune selectată înseamnă"), "formă de vară", "făcut pentru învârtit" (use "se rotește frumos"), "strat călduros", "se simte aerian", "portrete" for photos (use "ședințe foto").
 - Chest: always "circumferința completă". Mamă și fiică mandatory when the English is mother-daughter only.
 - Care: phrasebook ro corrected by V46 (nominal style, "cusută pe"); MW_ABLE+L_TEMP joined with "; " (comp2 ro branch).
+## Calidad V48 additions
+- Option names as translated in the store: happy-faces "mami & fetiță" / "tati & băiat". No "moment asortat" calque: use "vă asortați", "Asortate în orice ocazie", "îmbrăcați-vă asortat". Gauze = "tifon" (not "gaza"). Fabric lines "Tricot moale din amestec de…"; decimal comma in percentages (42,9%). No English design names as subject ("Heart Button est…"), no "Potrivire/Construcție/Asortare pentru patru roluri" calques.
