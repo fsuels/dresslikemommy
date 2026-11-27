@@ -351,6 +351,48 @@
     endif
   endif
 
+  comment
+    Never send guide readers to an empty swim collection. While family-swimsuits has no
+    products, its slot points to swimsuits (or the next unused collection). Self-restores.
+  endcomment
+  if collections['family-swimsuits'].all_products_count == 0
+    if collection_link_1_handle == 'family-swimsuits' and collection_link_2_handle == 'swimsuits'
+      assign collection_link_1_handle = 'swimsuits'
+      assign collection_link_1_title = collection_link_2_title
+      assign collection_link_1_caption = collection_link_2_caption
+      assign collection_link_2_handle = 'family-swimsuits'
+    endif
+
+    assign used_link_handles = ',' | append: collection_link_1_handle | append: ',' | append: collection_link_2_handle | append: ',' | append: collection_link_3_handle | append: ','
+    assign swim_fallback_handle = 'swimsuits'
+    assign swim_fallback_title = 'Matching Swimsuits'
+    assign swim_fallback_caption = 'See matching swimsuits for the beach and pool.'
+    if used_link_handles contains ',swimsuits,'
+      assign swim_fallback_handle = 'trunks'
+      assign swim_fallback_title = 'Matching Swim Trunks'
+      assign swim_fallback_caption = 'Add trunks for dads and boys to the swim look.'
+      if used_link_handles contains ',trunks,'
+        assign swim_fallback_handle = 'matching-family-vacation-outfits'
+        assign swim_fallback_title = 'Matching Family Vacation Outfits'
+        assign swim_fallback_caption = 'Plan the rest of the trip wardrobe in coordinated looks.'
+      endif
+    endif
+
+    if collection_link_1_handle == 'family-swimsuits'
+      assign collection_link_1_handle = swim_fallback_handle
+      assign collection_link_1_title = swim_fallback_title
+      assign collection_link_1_caption = swim_fallback_caption
+    elsif collection_link_2_handle == 'family-swimsuits'
+      assign collection_link_2_handle = swim_fallback_handle
+      assign collection_link_2_title = swim_fallback_title
+      assign collection_link_2_caption = swim_fallback_caption
+    elsif collection_link_3_handle == 'family-swimsuits'
+      assign collection_link_3_handle = swim_fallback_handle
+      assign collection_link_3_title = swim_fallback_title
+      assign collection_link_3_caption = swim_fallback_caption
+    endif
+  endif
+
   assign collection_link_1_object = blank
   assign collection_link_2_object = blank
   assign collection_link_3_object = blank
