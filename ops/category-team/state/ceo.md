@@ -159,3 +159,4 @@ LIVE 2026-11-27 register-1: de/ro Sie/dvs. cleanup round 1 (de 20 keys+3 inline,
 LIVE 2026-11-27 register-2: de 20 keys+4 inline, ro 20 keys released 3bb0c82; sync-locales in sync, main kept new de/ro values after 60 s.
 LIVE 2026-11-27 register-3: de 7 keys (German complete), ro 20 keys released ed7c9ca; locales in sync, main kept new values after 60 s.
 LIVE 2026-11-27 register-4: ro 20 keys + 9 inline (family list, holiday order-by, copy map) released 8d6f609; locales in sync, main kept new values after 60 s.
+LIVE 2026-11-27 register-6: ro 6 more keys (login/newsletter/contact buttons, search_for, callout, menu toggle) released; menu link "Caută" and hero text live in Shopify Admin translations, not theme.
