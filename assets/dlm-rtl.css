@@ -28,6 +28,15 @@
   direction: ltr;
 }
 
+/* Each cell still reads in its own direction, so "36 ס״מ / 14.2 אינץ׳" and "61 سم"
+   keep the number with its unit instead of pairing it with the next unit. */
+[dir='rtl'] .matching-size-guide__table :is(th, td),
+[dir='rtl'] .size-chart :is(th, td),
+[dir='rtl'] #size-chart :is(th, td),
+[dir='rtl'] .rte table :is(th, td) {
+  unicode-bidi: plaintext;
+}
+
 /* Cart drawer: the close button sits at the start edge so it does not cover the title. */
 [dir='rtl'] cart-drawer .drawer__close {
   right: auto;
