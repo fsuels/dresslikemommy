@@ -3,6 +3,12 @@
 
 {%- capture southern -%}{%- render 'dlm-southern-summer' -%}{%- endcapture -%}
 {%- assign southern = southern | strip -%}
+{%- comment -%}
+  Southern summer: the tiles render in ranked passes so swim and vacation styles come first
+  (the desktop mosaic places tiles by DOM position). Otherwise one pass in editor order.
+{%- endcomment -%}
+{%- assign tile_passes = 1 -%}
+{%- if southern == 'true' -%}{%- assign tile_passes = 6 -%}{%- endif -%}
 {%- style -%}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -280,7 +286,19 @@
           {%- endif -%}
           <ul class="category-icons__scroll" role="list" aria-label="{{ category_heading_text | default: 'Shop by category' | escape }}">
             {%- assign rendered_category_count = 0 -%}
+            {%- for tile_pass in (1..tile_passes) -%}
             {%- for block in section.blocks -%}
+              {%- if southern == 'true' -%}
+                {%- case block.settings.collection.handle -%}
+                  {%- when 'swimsuits', 'matching-family-vacation-outfits' -%}{%- assign tile_rank = 1 -%}
+                  {%- when 'dresses', 'family-photo-outfits' -%}{%- assign tile_rank = 2 -%}
+                  {%- when 'matching-outfits', 'matching-family-christmas-outfits' -%}{%- assign tile_rank = 3 -%}
+                  {%- when 'mommy-and-me' -%}{%- assign tile_rank = 4 -%}
+                  {%- when 'daddy-me' -%}{%- assign tile_rank = 5 -%}
+                  {%- else -%}{%- assign tile_rank = 6 -%}
+                {%- endcase -%}
+                {%- if tile_rank != tile_pass -%}{%- continue -%}{%- endif -%}
+              {%- endif -%}
               {%- if block.settings.collection != blank and block.settings.browse_path != 'occasion' -%}
                 {%- liquid
                   assign icon_label = block.settings.custom_label | default: block.settings.collection.title
@@ -420,7 +438,7 @@
                   {%- render 'home-category-card-caption', icon_label: icon_label_source, collection_handle: block.settings.collection.handle -%}
                 {%- endcapture -%}
                 {%- assign icon_caption = icon_caption | strip -%}
-                <li class="category-icons__item" data-homepage-collection-card {% if southern == 'true' %}{% case block.settings.collection.handle %}{% when 'swimsuits', 'matching-family-vacation-outfits' %}style="order: 1"{% when 'dresses', 'family-photo-outfits' %}style="order: 2"{% when 'matching-outfits', 'matching-family-christmas-outfits' %}style="order: 3"{% when 'mommy-and-me' %}style="order: 4"{% when 'daddy-me' %}style="order: 5"{% else %}style="order: 6"{% endcase %}{% endif %} {{ block.shopify_attributes }}>
+                <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
                   <a href="{% if block.settings.collection.handle == 'dresses' and collections['mother-daughter-matching-dresses'] != blank %}{{ collections['mother-daughter-matching-dresses'].url }}{% else %}{{ block.settings.collection.url }}{% endif %}" class="category-icons__link">
                     <div class="category-icons__image-wrap">
                       {%- if curated_tile_slug != blank -%}
@@ -472,6 +490,7 @@
                 </li>
               {%- endif -%}
             {%- endfor -%}
+            {%- endfor -%}
           </ul>
         </div>
       {%- endif -%}
@@ -495,7 +514,19 @@
             aria-label="{{ occasion_heading_text | default: 'Shop by occasion' | escape }}"
             style="--category-tile-columns: {{ occasion_grid_columns }}; --category-tile-columns-tablet: {% if occasion_block_count == 1 or occasion_block_count == 3 %}{{ occasion_block_count }}{% else %}2{% endif %};"
           >
+            {%- for tile_pass in (1..tile_passes) -%}
             {%- for block in section.blocks -%}
+              {%- if southern == 'true' -%}
+                {%- case block.settings.collection.handle -%}
+                  {%- when 'swimsuits', 'matching-family-vacation-outfits' -%}{%- assign tile_rank = 1 -%}
+                  {%- when 'dresses', 'family-photo-outfits' -%}{%- assign tile_rank = 2 -%}
+                  {%- when 'matching-outfits', 'matching-family-christmas-outfits' -%}{%- assign tile_rank = 3 -%}
+                  {%- when 'mommy-and-me' -%}{%- assign tile_rank = 4 -%}
+                  {%- when 'daddy-me' -%}{%- assign tile_rank = 5 -%}
+                  {%- else -%}{%- assign tile_rank = 6 -%}
+                {%- endcase -%}
+                {%- if tile_rank != tile_pass -%}{%- continue -%}{%- endif -%}
+              {%- endif -%}
               {%- if block.settings.collection != blank and block.settings.browse_path == 'occasion' -%}
                 {%- liquid
                   assign icon_label = block.settings.custom_label | default: block.settings.collection.title
@@ -630,7 +661,7 @@
                   {%- render 'home-category-card-caption', icon_label: icon_label_source, collection_handle: block.settings.collection.handle -%}
                 {%- endcapture -%}
                 {%- assign icon_caption = icon_caption | strip -%}
-                <li class="category-icons__item" data-homepage-collection-card {% if southern == 'true' %}{% case block.settings.collection.handle %}{% when 'swimsuits', 'matching-family-vacation-outfits' %}style="order: 1"{% when 'dresses', 'family-photo-outfits' %}style="order: 2"{% when 'matching-outfits', 'matching-family-christmas-outfits' %}style="order: 3"{% when 'mommy-and-me' %}style="order: 4"{% when 'daddy-me' %}style="order: 5"{% else %}style="order: 6"{% endcase %}{% endif %} {{ block.shopify_attributes }}>
+                <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
                   <a href="{% if block.settings.collection.handle == 'dresses' and collections['mother-daughter-matching-dresses'] != blank %}{{ collections['mother-daughter-matching-dresses'].url }}{% else %}{{ block.settings.collection.url }}{% endif %}" class="category-icons__link">
                     <div class="category-icons__image-wrap">
                       {%- if curated_tile_slug != blank -%}
@@ -681,6 +712,7 @@
                   {%- endif -%}
                 </li>
               {%- endif -%}
+            {%- endfor -%}
             {%- endfor -%}
           </ul>
         </div>
@@ -819,7 +851,7 @@
               {%- render 'home-category-card-caption', icon_label: icon_label_source, collection_handle: block.settings.collection.handle -%}
             {%- endcapture -%}
             {%- assign icon_caption = icon_caption | strip -%}
-            <li class="category-icons__item" data-homepage-collection-card {% if southern == 'true' %}{% case block.settings.collection.handle %}{% when 'swimsuits', 'matching-family-vacation-outfits' %}style="order: 1"{% when 'dresses', 'family-photo-outfits' %}style="order: 2"{% when 'matching-outfits', 'matching-family-christmas-outfits' %}style="order: 3"{% when 'mommy-and-me' %}style="order: 4"{% when 'daddy-me' %}style="order: 5"{% else %}style="order: 6"{% endcase %}{% endif %} {{ block.shopify_attributes }}>
+            <li class="category-icons__item" data-homepage-collection-card {{ block.shopify_attributes }}>
               <a href="{% if block.settings.collection.handle == 'dresses' and collections['mother-daughter-matching-dresses'] != blank %}{{ collections['mother-daughter-matching-dresses'].url }}{% else %}{{ block.settings.collection.url }}{% endif %}" class="category-icons__link">
                 <div class="category-icons__image-wrap">
                   {%- if curated_tile_slug != blank -%}
