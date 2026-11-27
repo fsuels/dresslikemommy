@@ -101,4 +101,18 @@
         <p><strong>Photo tip:</strong> pick one color family, such as burgundy and cream or navy and gray, and give everyone a piece in it; it looks coordinated without being identical. Size each person with the chart on the product page.</p>
         <p>Looking ahead to winter? See <a href="{{ cg_base }}/christmas-pajamas">matching family Christmas pajamas</a>, <a href="{{ cg_base }}/matching-family-christmas-outfits">matching family Christmas outfits</a> and <a href="{{ cg_base }}/family-sweaters">matching family sweaters</a>. {{ cg_delivery }}</p>
     {%- endcase -%}
+  {%- when 'maternity' -%}
+    {%- case field -%}
+      {%- when 'display_title' -%}Maternity Photoshoot Dresses & Gowns
+      {%- when 'meta_title' -%}Maternity Photoshoot Dresses & Gowns | Dress Like Mommy
+      {%- when 'meta_description' -%}Maternity photoshoot dresses and gowns in tulle, ruffle and off-shoulder styles, plus two-piece photo sets. Check sizes on each product page.
+      {%- when 'lead' -%}Maternity photoshoot dresses and gowns for your bump photos: tulle, ruffle, off-shoulder and slit styles, plus two-piece photo sets. Check sizes and the estimated delivery window on each product page.
+    {%- endcase -%}
+  {%- when 'dresses' -%}
+    {%- case field -%}
+      {%- when 'display_title' -%}Mommy and Me Dresses
+      {%- when 'meta_title' -%}Mommy and Me Dresses – Mother Daughter Matching Dresses
+      {%- when 'meta_description' -%}Mommy and me dresses: matching maxi dresses, sundresses and ruffle styles for mom and daughter, for photos, birthdays and holidays, sized per person.
+      {%- when 'lead' -%}Mommy and me dresses let mom and daughter match for photos, birthdays and holiday parties: maxi dresses, sundresses and ruffle styles, with a size chosen for each of you.
+    {%- endcase -%}
 {%- endcase -%}
