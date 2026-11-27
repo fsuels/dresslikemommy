@@ -40,3 +40,7 @@ Found by batches 251-300 (2026-11-27):
 - geometric: «central embellishment» en una línea, «knot» en otra.
 - tropical-zip: dice apto para «competitive swimming» y «breathable».
 - los 8 bañadores: texto muy promocional.
+
+## 2026-11-27T08:19:41Z — blog (EN, edición de inglés: dueño)
+- Varios artículos dicen «satisfaction guarantee» (en alemán «Zufriedenheitsgarantie»): no hay garantía de satisfacción publicada en la política. Quitar o respaldar.
+- Artículos con precios en USD, rebajas post-Navidad, promesas de durabilidad y lavado genérico: lista en ops/organic/receipts/2026-11-27/de-blog-sie/claims.md (el inglés dice lo mismo).

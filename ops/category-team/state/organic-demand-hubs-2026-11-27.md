@@ -98,3 +98,62 @@ Pending: translated maternity H1/title/intro (theme locales) still mention nursi
 - Admin: maternity collection SEO title, SEO description and body in EN + 20 languages (60/60, 0 outdated). The long body, which also carried free-shipping and returns lines, was replaced by one truthful sentence. Rollback: ops/organic/receipts/2026-11-27/maternity-nursing/before.json.
 - Live read: es, de, fr, it, ja, en: new title/heading, no nursing wording. Main kept the change after Shopify sync; lock removed.
 - Maternity product pages (23 active, EN + 20): 0 nursing/breastfeeding hits (strict terms).
+
+## Local-language demand, four markets (Search Console 28 d by country; commit eef254a + Admin)
+
+| Query (country) | Impr / pos | Landing today | Change |
+| --- | --- | --- | --- |
+| vestir familia igual (+ ropa familia a juego) (ES) | 72 / 22 | summer and complete guides | es matching-outfits title "Vestir toda la familia igual: ropa a juego", H1, description, intro; link added to the es complete guide |
+| kleding voor gezin (NL) | 93 / 10 | complete guide; collection ~25 | nl matching-outfits title "Matching kleding voor het hele gezin: mama, papa en kind", H1; link added to the nl complete guide |
+| pulovere craciun familie (RO) | ~150 / 13-19 | matching-family-christmas-outfits (title also began "Pulovere") | christmas-outfits title now "Ținute de Crăciun asortate pentru familie"; christmas-sweaters title "Pulovere de Crăciun pentru familie, asortate" |
+| matchande julkläder familj (SE) | 178 / 9 | christmas-outfits + newborn guide | sv description now opens with "Matchande julkläder för hela familjen" |
+
+Not chosen: SE "matchande klänning mamma dotter" (dresses already answers), CZ Christmas sweaters (already answered), DE/FR/IT lower or already covered; swim queries out of season.
+Theme: only collection_seo family_matching keys (es 4, nl 2); locales in sync; main kept them; lock removed. Rollback: revert eef254a; Admin ops/organic/receipts/2026-11-27/locale-demand-4/before.json.
+Re-measure ~12-11.
+
+## DE, FR, IT, CZ (Search Console 28 d; commit a646bf4 + Admin)
+
+| Query | Impr / pos | Landing today | Change |
+| --- | --- | --- | --- |
+| familienoutfits (DE) | 27 / 8.6 | /de home | de matching-outfits title "Familienoutfits im Partnerlook: Mama, Papa & Kinder", H1; link added to the de complete guide |
+| tenue famille assortie / assortie famille (FR) | 32 / 12-18 | guides; collection ~78 | fr matching-outfits title "Tenue famille assortie : maman, papa et enfants", H1, description, intro; link in the fr complete guide |
+| rodinné mikiny (CZ) | 39 / 8.8 | single sweatshirts | cs matching-family-sweatshirts title, H1 and description start with "Rodinné mikiny" (Admin; product pages already link it) |
+| vestiti coordinati famiglia eleganti (IT) | 34 / 9.2 | it matching-outfits (right page) | Admin link with "vestiti coordinati per tutta la famiglia" in the it complete guide. Pending, not done: adding "vestiti" to the it collection title (it.json, left for the owner's release) |
+
+Live read: de, fr, cs collections and the three guides. locales in sync, main kept the keys, lock removed. The immediate recheck after sync-locales --apply shows drift for a short while; a second check a minute later is clean.
+Rollback: revert a646bf4; Admin ops/organic/receipts/2026-11-27/locale-demand-de-fr-it-cs/before.json. Re-measure ~12-11.
+
+## Quality V101 fix (commit ebe0205 + Admin)
+es title "Vestir a toda la familia igual: ropa a juego" and H1 back to "Ropa a juego para toda la familia"; nl title, H1, description and guide link unified on "Bijpassende kleding voor het hele gezin"; ro christmas-outfits description now starts "Ținute de Crăciun". Live read; locales in sync. Rollback: revert ebe0205; ops/organic/receipts/2026-11-27/v101-fix/before.json.
+
+## Baseline to re-measure about 2026-12-11
+Search Console, last 28 days, read 2026-11-27 ~07:10Z (data to about 11-24/25, so it is before today's changes). Landing = the top pages shown, with impressions.
+
+| Query | Impr | Clicks | Pos | Landing today (impr) | Page that should win |
+| --- | --- | --- | --- | --- | --- |
+| matching family shirts | 772 | 0 | 11.8 | heart T-shirt product 731; cartoon T-shirt product 89 | /collections/family-tops |
+| family matching shirts | 463 | 0 | 10.0 | heart T-shirt product 455; family-tops 8 | /collections/family-tops |
+| matching family sweaters | 407 | 4 | 12.3 | single sweater products (top by clicks: nordic yoke) | /collections/family-sweaters |
+| family matching sweaters | 446 | 5 | 10.7 | Jingle Bells product 215; family-sweaters 35 | /collections/family-sweaters |
+| family holiday sweaters | 138 | 1 | 7.9 | Jingle Bells product 125 | /collections/christmas-sweaters |
+| matching family sweatshirts | 110 | 1 | 11.6 | home 80 | /collections/matching-family-sweatshirts |
+| mommy and me outfits | 1,040 | 2 | 14.6 | home 919 | /collections/mommy-and-me |
+| mommy and me dresses | 190 | 2 | 13.9 | home 165 | /collections/dresses |
+| maternity photoshoot dress | 29 | 3 | 2.0 | one gown product 25 | /collections/maternity (product already ranks 2; watch only) |
+| maternity shoot dresses | 22 | 3 | 2.0 | one gown product 16 | /collections/maternity (same) |
+| vestir familia igual (es) | 73 | 0 | 23.1 | es summer guide 58; es complete guide 56 | /es/collections/matching-outfits |
+| ropa familia a juego (es) | 46 | 0 | 18.1 | es complete guide 27; summer guide 19 | /es/collections/matching-outfits |
+| kleding voor gezin (nl) | 89 | 0 | 10.4 | nl complete guide 64; new-women-outfits 17 | /nl/collections/matching-outfits |
+| pulovere craciun familie (ro) | 119 | 1 | 11.7 | ro christmas-outfits 116 | /ro/collections/christmas-sweaters |
+| matchande julkläder familj (sv) | 199 | 1 | 8.8 | sv christmas-outfits (two rows 96 and 52) | /sv/collections/matching-family-christmas-outfits |
+| familienoutfits (de) | 28 | 0 | 8.7 | /de home 25 | /de/collections/matching-outfits |
+| tenue famille assortie (fr) | 18 | 1 | 11.7 | fr complete guide 8; style guide 8 | /fr/collections/matching-outfits |
+| tenue assortie famille (fr) | 15 | 0 | 27.4 | fr style guide 7; complete guide 4 | /fr/collections/matching-outfits |
+| rodinné mikiny (cs) | 47 | 0 | 8.6 | single sweatshirt products 22 and 22 | /cs/collections/matching-family-sweatshirts |
+| vestiti coordinati famiglia eleganti (it) | 34 | 1 | 9.1 | it matching-outfits 31 | /it/collections/matching-outfits (already) |
+
+Success = the expected page appears for the query and its clicks or position improve; compare the same 28-day view.
+
+## Quality V103 fix (Admin only)
+cs matching-family-sweatshirts title and search title "Rodinné mikiny a hoodie pro maminku, tatínka a děti"; de complete guide body and description changed from "du" to "Sie" (links unchanged). 4/4, 0 outdated, live read. The a646bf4-round theme texts were not touched. Rollback: ops/organic/receipts/2026-11-27/v103-fix/before.json. Left as is (optional): fr and it wording in the guide link sentences.

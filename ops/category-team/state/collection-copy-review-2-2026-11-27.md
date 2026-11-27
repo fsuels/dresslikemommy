@@ -94,3 +94,65 @@ Source: theme key `sections.collection_seo.meta_titles.swimsuits` (picked in `sn
 2. Other `meta_titles.*` in nl, pl, sv, pt-PT are still word-by-word (e.g. pl `meta_titles.pajamas` "Pasująca rodzina Piżamy", pt-PT ones with "combinando"); not changed (browser tab only; pajamas under owner hold).
 3. `meta_descriptions.mommy_and_me` in nl/pl/sv (like es/fr/cs) mentions pajamas although the English does not; kept as in the first review, flag for the owner's pajama hold.
 4. Not done: native-speaker read.
+
+## Addendum: pt-BR (the Portuguese actually served) and Calidad V95 fixes
+
+**Locales (Admin API `shopLocales`, read-only, 06:3xZ):** Portuguese published = `pt-BR` only. `pt-PT` is not added as a shop locale at all, so the reviewed pt-PT text above is not visible to anyone; `/pt` serves `lang="pt-BR"`. Adding/publishing pt-PT is the owner's decision; nothing changed.
+
+**pt-BR:** 93 keys rewritten by hand from the reviewed pt-PT, adapted to real Brazilian Portuguese (você, combinando, moda praia, maiô, shorts de banho, camiseta, suéter, moletom, bebê, Dia dos Pais, encontros a dois). Kept the pt-BR short lines that were already reviewed (body sweaters/christmas/pajamas lines, metas for mommy_and_me, dresses, family_matching, daddy_me, family_pajamas, titles mommy_and_me, daddy_me, dresses, swimsuits, sweaters, pajamas). Includes `meta_titles.swimsuits` ("Moda praia combinando para a família | Mãe e filha"), `meta_titles.family_swimsuits`, and broken H1s (trunks "Natação correspondente Shorts de banho" -> "Shorts de banho combinando", tops, maxi/midi/mini/sundresses, spring, rompers, new_matching_outfits, family_matching, pants). No stock, fast shipping, reviews, bestseller or dates; no shipping wording added. Validation as above plus pt-PT term scan (fato de banho, a condizer, camisola, bebé, t-shirt, calções, amament/lactação): pass.
+
+**Maternity:** I had nursing wording in maternity titles (nl/pl/sv/pt-PT, from the English "Maternity and Nursing Styles"). Experto SEO commit f1ca110 replaced all maternity headings in every locale before my round; I dropped my own maternity change, so f1ca110 stands.
+
+**sv (Calidad V95):** `body.daddy_me_shirts_html` "…som ändå ser välklädda ut" -> "…som ändå känns eleganta"; `rich_parts.daddy_me_shirts.part_4_html` "…skjortor med krage ser mer välklädda ut" -> "…ser finare ut". Only these two sv keys touched (round 2).
+
+| round | commit | pt-BR | other |
+|---|---|---|---|
+| 1 | 5279228 | 20 | - |
+| 2 | e4b65be | 20 | sv 2 |
+| 3 | 9109f9e | 20 | - |
+| 4 | ee94323 | 20 | - |
+| 5 | b564b4a | 13 | - |
+
+Lock written, re-read after 5 s, 60 s after each round; waited for Experto SEO lock (seo-maternity-i18n) to clear before round 1. After each round: sync-locales apply, read-only "in sync"; final `sync-theme` 392 files, 0 differ. Origin/main after last write-back fb63a29 holds all values: pt-BR 93/93, nl 80, pl 89, pt-PT 138, sv 91. Work copy colcopy5 finished.
+
+**Live /pt readback (2 pages, 7 s apart, 200 each):** `/pt/collections/swimsuits` tab "Moda praia combinando para a família | Mãe e filha", guide title and FAQ question 3 in new text; `/pt/collections/new-women-outfits` shows "Como escolher looks combinando para a família" and "Veja os looks Mãe e filha"; no "mamãe e eu", "Troncos" or "Natação correspondente" left on either page.
+
+**Still open:** pt-BR `meta_titles.new_women_outfits` (tab) is "Roupas combinando para a família | Vestidos, Trajes de Banho e Família Conjuntos" and other pt-BR/nl/pl/sv meta titles are word-by-word; the inline `collection-guide-*` `pt` branch was not reviewed in this unit.
+
+## Addendum 2: pt-BR pending, da / no / fi (STOPPED after round 1)
+
+- Published check (Admin `shopLocales`, read-only): da, fi and `no` published; `nb` is not a shop locale (worked `locales/no.json` only); pt-BR published, pt-PT not added.
+- Prepared (scratch, validated: placeholders, tags, links, banned terms): da 77 keys, no 87, fi 99 (fi used "yhteensopiva" = technically compatible throughout; rewritten with samikset / samanlaiset; old new_women_outfits structure replaced). pt-BR: `meta_titles.new_women_outfits` -> "Looks combinando para mãe, pai e filhos | Dress Like Mommy"; `body.family_swimsuits_html` calque from Calidad V100 rewritten.
+- `pt` guide snippets read in full against English: already natural Brazilian Portuguese. Changed 3 lines: family-pajamas and christmas-pajamas no longer say "so they arrive in time" (now: order early and check the estimated delivery on each product page / with the photo day in mind); daddy-me "camisas de gola" -> "camisas com colarinho".
+- Round 1 = commit 53fb766 (da/no/fi 20 keys each, pt-BR 2, 3 snippets). Push first failed over SSH, parked, then `push-pending` pushed it. `sync-theme --apply`: 3 snippets applied and verified; `sync-locales --apply` upserted the 4 locale files, but the read-only re-run still showed the same 20/20/20/2 keys differing.
+- 60 s later Shopify's "Update from Shopify" commit 81184c7 REVERTED all locale values of round 1 on main (da, fi, no, pt-BR back to the old text). Snippets were kept (sync-theme 0 differ). Following the rule, I did not re-apply and stopped all further rounds.
+- One live check of /fi/collections/new-women-outfits returned 403, so live requests stopped there.
+- State now: main = old locale text for da/no/fi and those 2 pt-BR keys; the `sync-locales` read-only check reports 20/20/20/2 keys differing between live and main (live may hold my new values). It needs a look at why the upsert did not hold before any retry. Work copy colcopy6 finished; lock released.
+
+## Addendum 3: restore of round 1 on main (07:16-07:24Z)
+
+- Coordinator diagnosis: 81184c7 was a delayed export; live kept 53fb766. Restored the same values on main with commit 49fe1ff (commit only, no apply; SSH push failed once, `push-pending` pushed it). Values checked identical to 53fb766 before commit.
+- `sync-locales` read-only after commit: da, fi, no differ only in `meta_titles.daddy_me` (autopilot commit 7cbda6c, not mine, not yet live). pt-BR differs in my 2 keys (`body.family_swimsuits_html`, `meta_titles.new_women_outfits`): live does not hold them. Not applied; question sent to coordinator.
+- Lock held 3 minutes after the commit; fetch at 07:23Z: no new export, main keeps pt-BR 94/94 and da/no/fi 20 each. Lock released.
+- Remaining da (57), no (67), fi (79) keys are prepared and validated but not released: a `sync-locales --apply` now would also push pt-BR and the autopilot's `meta_titles.daddy_me`, so it waits for the coordinator's decision. Work copy colcopy7 left open for that.
+
+## Addendum 4: da / no / fi completed (07:33-07:49Z)
+
+- 07:33Z read-only `sync-locales`: in sync (other publishers had already carried main to live, including my 2 pt-BR keys and the autopilot's `meta_titles.daddy_me`); nothing for me to apply.
+- Rounds, each with lock written + re-read at 5 s, read-only drift list checked (only my keys), apply, lock held 3 min, fetch, export confirmed before release:
+  | round | commit | da | no | fi |
+  |---|---|---|---|---|
+  | 2 | ab504b0 | 20 | 20 | 20 |
+  | 3 | 96ba5ee | 20 | 20 | 20 |
+  | 4 | 543f4d9 | 17 | 20 | 20 |
+  | 5 | bfa4f01 | - | 7 | 19 |
+- After each apply the immediate re-check sometimes still listed the keys (live lag); 3 min later it was in sync every time. No export reverted anything. Final (write-back d7162af): main holds da 77/77, no 87/87, fi 99/99, pt-BR 94/94; `sync-locales` in sync. Work copy colcopy7 finished; lock released.
+- Live readback: the first request after 07:32Z (/da/collections/swimsuits) still returned 403 "Verifying your connection" (bot check), so I stopped; no, fi and /pt not read live. Live state is evidenced by `sync-locales` in sync only.
+
+## Addendum 5: Finnish fixes (Calidad V109) and "yhteensopiva" sweep (08:01-08:15Z)
+
+- Calidad V109 fixes: `meta_descriptions.new_women_outfits` "koissa" -> "kokoina"; `swimsuits.faq_question_1` -> "Mitä kokoja samanlaisista uima-asuista on saatavilla?"; `body.family_swimsuits_html` second paragraph rewritten, cover-up = "rantamekko"; `rich_parts.family_swimsuits.part_8_html` "rantamekko". Also `body.daddy_me_tshirts_html` reordered so "jotka sopivat lahjaksi" refers to the shirts.
+- "matching" in fi: "yhteensopiva" (technical "compatible") replaced by "samanlaiset" / "samikset" (category name "Perheen samikset") in 38 rendered collection keys (H1 titles, tab titles, descriptions, short intros); "omissa koissa" -> "jokaiselle oma koko". Dead keys (swimsuits.copy_1/2, body.mommy_and_me/daddy_me/swimsuits, unreferenced rich parts, spring group, withheld family_matching.part_3) left as they are. Finnish branches of 8 snippets: guides (christmas-hubs, christmas-pajamas, daddy-me, family-pajamas, mommy-and-me, swimsuits), collection-christmas-cluster and the fi string in collection-seo-fallback; "koissa" there -> "kokoina".
+- Commits cb2c99f (20 keys + 8 snippets), 36a22f3 (20), 1bc849b (2). Each: lock written + re-read at 5 s, listing, apply, 3 min held, export confirmed. Final: fi 136/136 on main after write-back 422ecf1; sync-theme 0 differ.
+- Incident: in round 36a22f3 the apply ran in the same batch as the listing and also published 66b585f (SEO routine: en/cs/sv mommy_and_me meta title and description; main's own values). Reported to the coordinator; listing and apply now in separate calls. In round 1bc849b the listing showed it.json 4 keys from 3760ced (Experto SEO); applied only after the coordinator authorized it; export kept them.
+- Work copy colcopy8 finished; lock released. No live reads (coordinator: browser check only).

@@ -60,6 +60,8 @@ Pipeline = hand-top20/build.py (copy: build_ro.py, LOCS=['ro']). General rules o
 - Before node-by-node repair, compare the ro tag sequence with English: if list items are missing, rebuild the whole body on the English structure (keep ro tables and care text verbatim) instead of patching.
 - "Make a statement" = "transmite un mesaj / atrage privirile" (never "face o declarație"); "Elevate your style" = "dați un plus de stil" (not "ridicați").
 ## Repair 251-300 additions (2026-11-27)
-- Coastal = "marinăresc / de litoral" (never "costier"); skirt slit = "șliț" (not "despicătură"); "accents" of buttons/flowers = "mici nasturi / detalii" (never "accente").
+- Coastal = "de litoral" (never "costier"; "marinăresc" only when the English says nautical/sailor/navy-stripe); skirt slit = "șliț" (not "despicătură"); "accents" of buttons/flowers = "mici nasturi / detalii" (never "accente").
 - "Embrace summer / the trend" = "Bucurați-vă de vară / Adoptați tendința" (never "Îmbrățișați"); "your go-to" = "alegerea ideală" (not "alegerea dumneavoastră").
 - A "linen-look" product name is never rendered as "in" ("Setul fildeș cu aspect de in", not "Setul din in fildeș").
+## Calidad V98 addition (2026-11-27)
+- "Coastal" palette, stripe, look = "de litoral" ("dungi albastre de litoral", "paletă de litoral"); "marinăresc" only for an English nautical/sailor reference. "Fierce" vibe = "îndrăzneț" (never "fioros"); "cabana" at the beach = "foișor de plajă" (not "cabană"); "roomy flap pockets" = "buzunare încăpătoare cu clapă". Keep a design name in „…” rather than inventing a misleading descriptive (Trail Plaid ≠ "pentru drumeții").
