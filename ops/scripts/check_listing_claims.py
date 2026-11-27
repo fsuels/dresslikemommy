@@ -416,7 +416,9 @@ BRAND_VARIANT_RE = re.compile(r"\bdress[\s-]*like[\s-]*(?:a[\s-]*)?(?:mom\w*|mum
 _LATIN_RE = re.compile(r"[A-Za-z]")
 
 
-def scan_brand(en_text: str, tr_text: str, locale: str) -> List[Dict[str, str]]:
+def scan_brand(en_text: str, tr_text: str, locale: str, key: str = "") -> List[Dict[str, str]]:
+    """Altered brand spellings are flagged everywhere; a MISSING brand is not flagged in a translated meta_title
+    (translated SEO titles legitimately drop the brand to fit the length)."""
     out = []
     for m in BRAND_VARIANT_RE.finditer(tr_text):
         found = m.group(0)
@@ -426,7 +428,7 @@ def scan_brand(en_text: str, tr_text: str, locale: str) -> List[Dict[str, str]]:
         out.append(_finding("translation_defect", "brand-altered", 'brand "' + BRAND + '" altered', found,
                             snippet(tr_text, m.start(), m.end())))
     if (BRAND.lower() in (en_text or "").lower() and BRAND not in tr_text and not out
-            and locale not in NO_SPACE_SCRIPT_LOCALES and _LATIN_RE.search(tr_text)):
+            and key != "meta_title" and locale not in NO_SPACE_SCRIPT_LOCALES and _LATIN_RE.search(tr_text)):
         out.append(_finding("translation_defect", "brand-altered", 'brand "' + BRAND + '" missing in translation',
                             "(missing)", snippet(tr_text, 0, 0)))
     return _dedupe(out)
@@ -476,7 +478,7 @@ def scan_translation_field(locale: str, key: str, value: str, en_value: str = ""
         findings.extend(scan_truncated_items(en_value, value, locale, vocab))
         findings.extend(scan_table_ids(en_value, value))
     en_plain = " ".join(html_to_elements(en_value)) if is_html else (en_value or "")
-    findings.extend(scan_brand(en_plain, joined, locale))
+    findings.extend(scan_brand(en_plain, joined, locale, key))
     return _dedupe(findings)
 
 

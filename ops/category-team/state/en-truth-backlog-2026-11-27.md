@@ -21,3 +21,8 @@ Found by batches 151-200 and 201-250 (2026-11-27):
 - mom-and-girls pajamas say "whole family can twin".
 - denim shirt set: text says "jean jackets" (Calidad: the English does say jackets; check the photos).
 - black-rose shirt set: text says adult and toddler, title says father and son.
+
+Found by batches 251-300 (2026-11-27):
+- promotional copy: "must-have", "sure to be a hit" (father and son tropical floral swim trunks); odd wording "bias-friendly", "elastic-friendly", "layer dresses".
+- Terracotta Tile: "flatters every skin tone" (unsupported claim) and "runs small, size up one" (check against the size chart before keeping).
+- vibrant-rainbow: the text lacks sizes 10-12 and up.

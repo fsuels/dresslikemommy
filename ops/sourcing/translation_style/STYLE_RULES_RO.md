@@ -22,3 +22,10 @@ Pipeline = hand-top20/build.py (copy: build_ro.py, LOCS=['ro']). General rules o
 - Adjective agreement with the labelled item ("Ușor și aerisit" for tricot).
 ## Calidad V64 additions (2026-11-27)
 - Design names taken from option values: lowercase after the first word, natural preposition ("Frunză de banan de pe coastă", "Stropi de vopsea vie"); no anglicisms; "pantaloni veseli" (agreement); "Modelul în carouri vichy…" for separate pieces.
+## Calidad V74 additions (2026-11-27) — calcos to avoid
+- "role" (roles of family members) -> never "rol/roluri". "set pentru patru roluri" -> "set pentru toată familia"; "Alegeți rolul…" -> "Alegeți piesa potrivită pentru fiecare membru al familiei"; "rol cu rol" -> "piesă cu piesă"; "între roluri" -> "după dorință"; "Ambele roluri" -> "Mama și fiica"; "Mărimi separate pe roluri" -> "pentru fiecare membru al familiei".
+- "step into X" -> not "intrați în"; use "îmbrăcați-vă în X" (print), "începeți sezonul…" (season), "apăreți în fotografii" (photos). "Dive into" -> "Bucurați-vă din plin", not "Scufundați-vă în distracție".
+- "next sunny memory" -> "următoarea zi însorită", never "amintire însorită".
+- "resort-ready by design" -> "Gândit pentru vacanțele la resort". "styling only" -> "sunt doar pentru styling" (not "au rol doar de stilizare").
+- Option value as grammatical subject ("Șorturi sunt…") -> write "— pantaloni scurți fără închidere…" after the option word. "Alegeți Rochie pentru o rochie…" -> "pentru modelul de rochie…".
+- "Partea cu rochii / cu cămașă" -> "Rochiile… iar cămășile…". "layer" (vest) -> "piesă de purtat deasupra", not "strat". "rainbow joy" -> "ținută vie ca un curcubeu".

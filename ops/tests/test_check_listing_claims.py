@@ -162,6 +162,18 @@ class TranslationTests(unittest.TestCase):
         self.assertEqual(["(missing)"], [f["match"] for f in missing])
         self.assertEqual([], m.scan_brand("Dress Like Mommy picks", "我们的精选", "zh-CN"))
 
+    def test_translated_meta_title_without_brand_not_flagged(self):
+        en = "Dress Like Mommy matching family pajamas"
+        found = m.scan_translation_field("de", "meta_title", "Passende Familien-Pyjamas", en)
+        self.assertEqual([], [f for f in found if f["rule"] == "brand-altered"])
+        # other meta_title rules still fire: altered brand, claim wording
+        altered = m.scan_translation_field("de", "meta_title", "Passende Pyjamas | Dress Like Mama", en)
+        self.assertIn("brand-altered", {f["rule"] for f in altered})
+        self.assertTrue(m.scan_translation_field("de", "meta_title", "Unser Bestseller Pyjamas", en))
+        # body still flags a missing brand
+        body = m.scan_translation_field("de", "body_html", "<p>Unsere Auswahl</p>", "<p>Dress Like Mommy picks</p>")
+        self.assertIn("brand-altered", {f["rule"] for f in body})
+
     def test_language_terms(self):
         cases = {
             "es": "Tejido de secado rápido, alta calidad.",
