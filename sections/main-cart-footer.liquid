@@ -289,14 +289,14 @@
                 </button>
               </div>
 
-              {%- comment -%} Mobile sticky checkout bar (cart-sticky, 2026-11-26). Hidden unless assets/cart-sticky-checkout.js runs; submits the same #cart form. {%- endcomment -%}
+              {%- comment -%} Mobile sticky checkout bar (cart-sticky, 2026-11-26). Visible on first paint via CSS on mobile; assets/cart-sticky-checkout.js only hides it while the main button is in view (cart-bar, 2026-11-27). Submits the same #cart form. {%- endcomment -%}
               {%- if cart != empty -%}
                 <div class="cart-sticky-checkout" data-cart-sticky-checkout>
                   <div class="cart-sticky-checkout__total">
                     <span class="cart-sticky-checkout__label">{{ 'sections.cart.estimated_total' | t }}</span>
                     <span class="cart-sticky-checkout__amount" data-cart-sticky-amount>{% render 'dlm-cart-money', amount: cart.total_price, show_code: dlm_currency_code_flag %}</span>
                   </div>
-                  <button type="submit" id="checkout-sticky" class="cart-sticky-checkout__button button" name="checkout" form="cart" tabindex="-1">
+                  <button type="submit" id="checkout-sticky" class="cart-sticky-checkout__button button" name="checkout" form="cart">
                     {{ 'sections.cart.checkout' | t }}
                   </button>
                 </div>

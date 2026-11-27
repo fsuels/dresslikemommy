@@ -566,3 +566,16 @@ cart-remove-button .icon-remove {
   flex-shrink: 0;
 }
 
+
+/* Mobile: a global `table { white-space: nowrap }` rule (theme-inline-head-static-03.css,
+   meant for size charts) also hits the cart table, so long translated titles and
+   option values (e.g. Spanish colour names) were cut off. Let the details cell wrap. */
+@media screen and (max-width: 749px) {
+  .cart-items .cart-item__details {
+    white-space: normal;
+  }
+
+  .cart-items .cart-item__details .product-option dd {
+    overflow-wrap: anywhere;
+  }
+}

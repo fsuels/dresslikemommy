@@ -1,5 +1,7 @@
-// Mobile cart page: sticky "Check out" bar. Shown only while the main
-// #checkout button is out of view. The bar's button submits the same #cart form.
+// Mobile cart page: sticky "Check out" bar. The bar is rendered visible by CSS
+// on first paint; this script only hides it (.is-hidden) while the main
+// #checkout button is in view or the cart is empty. The bar's button submits
+// the same #cart form.
 (function () {
   var bar = document.querySelector('[data-cart-sticky-checkout]');
   var main = document.getElementById('checkout');
@@ -12,7 +14,7 @@
 
   function render() {
     var show = !mainInView && !footer.classList.contains('is-empty');
-    bar.classList.toggle('is-visible', show);
+    bar.classList.toggle('is-hidden', !show);
     if (button) button.tabIndex = show ? 0 : -1;
   }
 
@@ -32,6 +34,4 @@
     new MutationObserver(syncAmount).observe(subtotal, { childList: true, subtree: true, characterData: true });
   }
   new MutationObserver(render).observe(footer, { attributes: true, attributeFilter: ['class'] });
-
-  bar.classList.add('is-ready');
 })();
