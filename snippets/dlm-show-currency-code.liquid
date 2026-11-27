@@ -4,7 +4,8 @@
 
   The theme setting `currency_code_enabled` stays on. The code is suppressed
   for US shoppers paying in USD, where "$" is unambiguous, and for shoppers paying
-  in EUR, where the euro sign is unambiguous (Italian norm is "53,95 €", not "€53,95 EUR"). Every other
+  in EUR, where the euro sign is unambiguous (Italian norm is "53,95 €", not "€53,95 EUR"),
+  and for RON, whose "lei" format is unambiguous and matches the checkout. Every other
   market keeps it: CAD/AUD/NZD share the "$" symbol, and some non-US markets
   (e.g. Norway, Mexico) are also priced in USD.
 
@@ -23,6 +24,11 @@
       assign dlm_show_code = false
     endif
     if cart.currency.iso_code == 'EUR'
+      assign dlm_show_code = false
+    endif
+    # RON: Shopify's plain money format already reads "285,00 lei", the form the
+    # Romanian checkout shows; with the code it became "285,00 RON" beside "lei".
+    if cart.currency.iso_code == 'RON'
       assign dlm_show_code = false
     endif
   endif
