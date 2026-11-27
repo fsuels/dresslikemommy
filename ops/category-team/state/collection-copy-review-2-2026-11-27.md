@@ -156,3 +156,11 @@ Lock written, re-read after 5 s, 60 s after each round; waited for Experto SEO l
 - Commits cb2c99f (20 keys + 8 snippets), 36a22f3 (20), 1bc849b (2). Each: lock written + re-read at 5 s, listing, apply, 3 min held, export confirmed. Final: fi 136/136 on main after write-back 422ecf1; sync-theme 0 differ.
 - Incident: in round 36a22f3 the apply ran in the same batch as the listing and also published 66b585f (SEO routine: en/cs/sv mommy_and_me meta title and description; main's own values). Reported to the coordinator; listing and apply now in separate calls. In round 1bc849b the listing showed it.json 4 keys from 3760ced (Experto SEO); applied only after the coordinator authorized it; export kept them.
 - Work copy colcopy8 finished; lock released. No live reads (coordinator: browser check only).
+
+## Addendum 6: "yhteensopiva" removed from all Finnish storefront text (08:32-09:01Z)
+
+- Scope (Calidad V116): every "yhteensopiv*" in locales/fi.json (collection, menu, home, journal, callouts, article, cart, breadcrumb) and Finnish strings in snippets. Hand-rewritten to "samanlaiset" / "samikset", case checked per sentence; dead/withheld collection keys rewritten too (wedding-guest link text dropped in family_matching.part_3 and mommy_and_me.part_3).
+- The UI agent (ui-da-no-pt-fi, rounds 171f562..16e9459 and 7dc716f) changed 27 of the same keys first; I kept their values and did not touch those keys. Two commits hit rebase conflicts with their rounds; each time I discarded the work copy, rebuilt it on main and re-applied only the keys still containing the word.
+- Commits: fbe9ccb (20 keys + hero-seasonal-copy 14 strings + home-seo-heading), 8572381 (4 keys). Listing and apply in separate calls; only my keys/files in the listing; lock held 3 min; exports a3afa1e and 7f18bf9 kept everything.
+- Keys outside collection_seo that I changed (for the UI agent): sections.breadcrumbs.prefix_family_matching, storefront.journal.spotlight_body, storefront.home_title, storefront.home_description. All other non-collection keys were changed by the UI agent first.
+- Final on main (7f18bf9): fi.json 0 occurrences, theme files 0. Work copy colcopy9 finished; lock released.
