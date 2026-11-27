@@ -726,9 +726,18 @@
   letter-spacing: 0.06em;
   line-height: 1.3;
   text-align: var(--text-alignment, center);
-  text-overflow: ellipsis;
   text-transform: uppercase;
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  max-height: 2.6em;
+}
+
+/* Long reviewed category names (for example Romanian) wrap to two lines instead of
+   being cut; phones reserve both lines so titles still align across a row. */
+@media screen and (max-width: 749px) {
+  .card-wrapper.product-card-wrapper .card__information .dlm-card-eyebrow {
+    min-height: 2.6em;
+    letter-spacing: 0.04em;
+  }
 }
 
 /* Title: exactly two lines reserved and clamped, so every card in a row aligns. */
