@@ -116,7 +116,14 @@
   {%- if taxonomy_pattern != blank -%}
   <meta name="custom-pattern" content="{{ taxonomy_pattern | escape }}">
   {%- endif -%}
+  {%- comment -%}
+    Same first photo as snippets/product-media-gallery.liquid: a colour link (?variant=)
+    opens on that variant's photo, so preload that one instead of the product's first.
+  {%- endcomment -%}
   {%- assign product_lcp_media = product.featured_media -%}
+  {%- if product.selected_variant and product.selected_variant.featured_media -%}
+    {%- assign product_lcp_media = product.selected_variant.featured_media -%}
+  {%- endif -%}
   {%- if product_lcp_media == blank -%}
     {%- assign product_lcp_media = product.selected_or_first_available_variant.featured_media -%}
   {%- endif -%}

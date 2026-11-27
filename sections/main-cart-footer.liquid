@@ -301,6 +301,19 @@
                   </button>
                 </div>
                 <script src="{{ 'cart-sticky-checkout.js' | asset_url }}" defer="defer"></script>
+                {%- comment -%}
+                  iOS 15.0-15.3 has no :has(), so the body:has(...) page padding in component-cart.css
+                  never applies there and the bar covers the bottom of the page. Same padding (with the
+                  safe-area inset and its 0px fallback) for browsers without :has() only.
+                {%- endcomment -%}
+                <style>
+                  @supports not selector(:has(*)) {
+                    @media screen and (max-width: 749px) {
+                      body { padding-bottom: calc(8rem + env(safe-area-inset-bottom, 0px)); }
+                      .cart-undo-toast { bottom: calc(9rem + env(safe-area-inset-bottom, 0px)); }
+                    }
+                  }
+                </style>
               {%- endif -%}
 
               {%- if additional_checkout_buttons -%}
