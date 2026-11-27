@@ -45,7 +45,7 @@
       "previous": "Vorige pagina"
     },
     "search": {
-      "search": "Zoeken",
+      "search": "Zoeken naar producten",
       "reset": "Zoekterm wissen"
     },
     "cart": {
@@ -159,14 +159,14 @@
         "refresh": "Vernieuwen"
       },
       "media": {
-        "open_media": "Media {{ index }} openen in modaal",
+        "open_media": "Media {{ index }} openen in pop-upvenster",
         "play_model": "3D-viewer afspelen",
         "play_video": "Video afspelen",
-        "gallery_viewer": "Gallery-weergave",
-        "load_image": "Afbeelding {{ index }} laden in gallery-weergave",
-        "load_model": "3D-model {{ index }} laden in gallery-weergave",
-        "load_video": "Video {{ index }} afspelen in gallery-weergave",
-        "image_available": "Afbeelding {{ index }} is nu beschikbaar in gallery-weergave"
+        "gallery_viewer": "Galerijweergave",
+        "load_image": "Afbeelding {{ index }} laden in galerijweergave",
+        "load_model": "3D-model {{ index }} laden in galerijweergave",
+        "load_video": "Video {{ index }} afspelen in galerijweergave",
+        "image_available": "Afbeelding {{ index }} is nu beschikbaar in galerijweergave"
       },
       "view_full_details": "Alle details bekijken",
       "include_taxes": "Inclusief btw.",
@@ -295,8 +295,8 @@
       },
       "max_price": "De hoogste prijs is {{ price }}",
       "product_count": {
-        "one": "{{ product_count }} korting op {{ count }} producten",
-        "other": "{{ product_count }} korting op {{ count }} producten"
+        "one": "{{ product_count }} van {{ count }} product",
+        "other": "{{ product_count }} van {{ count }} producten"
       },
       "product_count_simple": {
         "one": "{{ count }} product",
@@ -345,7 +345,7 @@
       "security_details_label": "Betaling en privacy"
     },
     "shipping_card": {
-      "delivery_to": "Bezorgland: {{ country }}",
+      "delivery_to": "Bezorging naar {{ country }}",
       "change_country": "Land wijzigen",
       "details_label": "Verzendgegevens",
       "details_body": "Standaardverzending is inbegrepen voor in aanmerking komende artikelen. De geschatte levering staat op elke productpagina; schattingen zijn geen garantie.",
@@ -388,14 +388,14 @@
       "page_title_default": "Huidige verzendlanden",
       "page_summary": "Standaardverzending is inbegrepen in de productprijzen voor de landen en regio's die beschikbaar zijn in onze landenkeuze bij het afrekenen. De geschatte levering staat op elke productpagina; schattingen zijn geen garantie.",
       "page_note_html": "Als je land hier niet staat, of als het afrekenen geen verzendmethode toont voor je exacte adres, mail dan vóór het bestellen naar <a href=\"mailto:{{ email }}\">{{ email }}</a>.",
-      "schema_standard_shipping": "Standaard verzending inbegrepen",
+      "schema_standard_shipping": "Standaardverzending inbegrepen",
       "country_list_heading": "Landen waarnaar we momenteel verzenden ({{ count }})",
       "country_list_highlight": "Elk land in deze lijst is ingeschakeld bij het afrekenen. Je geselecteerde land wordt gemarkeerd wanneer Shopify het kan detecteren.",
       "checker_trigger": "Verzenden we naar mijn land?",
       "checker_trigger_meta": "{{ count }} landen actief",
       "checker_trigger_meta_country": "{{ country }} geselecteerd / {{ count }} landen",
       "checker_footer_heading": "Controleer verzending voordat je bestelt",
-      "checker_footer_text": "Zoek in de actuele checkout-landenlijst en bevestig je bestemming in enkele seconden.",
+      "checker_footer_text": "Doorzoek de actuele lijst met landen bij het afrekenen en bevestig je bestemming in enkele seconden.",
       "checker_title": "Verzenden we naar mijn land?",
       "checker_summary": "Ja, als je land hieronder staat. Deze {{ count }} landen en regio’s zijn nu beschikbaar bij het afrekenen.",
       "checker_current_country": "Je huidige landselectie is {{ country }}.",
@@ -403,7 +403,7 @@
       "checker_search_placeholder": "Typ land, code of valuta",
       "checker_result_label": "landen weergegeven",
       "checker_selected_badge": "Geselecteerd",
-      "checker_available_badge": "We verzenden hier",
+      "checker_available_badge": "We verzenden hierheen",
       "checker_no_results": "Geen overeenkomend land gevonden in de huidige lijst. Probeer een andere spelling of mail ons voordat je bestelt.",
       "checker_note_html": "Standaardverzending is inbegrepen in de productprijzen waar een standaardmethode beschikbaar is. De geschatte levering staat op elke productpagina; schattingen zijn geen garantie. <a href=\"{{ link }}\">Verzenddetails</a> · <a href=\"mailto:{{ email }}\">{{ email }}</a>",
       "checker_close": "Landenzoeker sluiten",
@@ -424,7 +424,7 @@
       "title": "Zoekresultaten",
       "page": "Pagina",
       "products": "Producten",
-      "search_for": "Zoeken naar '{{ terms }}'",
+      "search_for": "Zoeken naar “{{ terms }}”",
       "results_with_count_and_term": {
         "one": "{{ count }} resultaat gevonden voor “{{ terms }}”",
         "other": "{{ count }} resultaten gevonden voor “{{ terms }}”"
@@ -509,7 +509,7 @@
         "free_shipping": "Verzending inbegrepen",
         "returns": "30 dagen retour",
         "secure": "Veilig betalen",
-        "encrypted": "Gecodeerd",
+        "encrypted": "Versleuteld",
         "free_ship": "Verzending inbegrepen"
       },
       "discount_code_toggle": "Heb je een kortingscode?",
@@ -544,7 +544,7 @@
     "collection_template": {
       "title": "Collectie",
       "empty": "Geen producten gevonden",
-      "use_fewer_filters_html": "Minder filters gebruiken of <a class=\"{{ class }}\" href=\"{{ link }}\">alles verwijderen</a>"
+      "use_fewer_filters_html": "Gebruik minder filters of <a class=\"{{ class }}\" href=\"{{ link }}\">alles verwijderen</a>"
     },
     "video": {
       "load_video": "Video laden: {{ description }}"
@@ -567,7 +567,7 @@
       "carousel": "Carrousel",
       "announcement": "Aankondiging",
       "announcement_bar": "Aankondigingsbalk",
-      "default_promo": "KOOP 2, KRIJG 20% KORTING OP HET 3E STUK | STANDAARD VERZENDING INBEGREPEN | VEILIG AFREKENEN",
+      "default_promo": "KOOP 2, KRIJG 20% KORTING OP HET 3E STUK | STANDAARDVERZENDING INBEGREPEN | VEILIG AFREKENEN",
       "shipping_country_promo": "KOOP 2, KRIJG 20% KORTING OP HET 3E STUK | STANDAARDVERZENDING INBEGREPEN NAAR {{ country }} | VEILIG AFREKENEN"
     },
     "quick_order_list": {
@@ -640,14 +640,14 @@
     "product_navigation": {
       "back_to_results": "Terug naar resultaten",
       "back_to_context": "Terug naar {{ context }}",
-      "back_to_family_sets": "Terug naar familie Sets",
+      "back_to_family_sets": "Terug naar gezinssets",
       "back_to_search_results": "Terug naar zoekresultaten",
       "view_similar_styles": "Bekijk vergelijkbare stijlen",
       "view_similar_styles_in": "Bekijk vergelijkbare stijlen in {{ collection }}",
       "similar_styles": "Soortgelijke stijlen",
-      "browse_more_from": "Blader door meer van {{ collection }}",
+      "browse_more_from": "Meer uit {{ collection }} bekijken",
       "browse_similar_styles": "Blader door vergelijkbare stijlen",
-      "compare_collection_copy": "Gebruik deze verzameling om enkele goede overeenkomsten te vergelijken voordat u weer gaat winkelen."
+      "compare_collection_copy": "Bekijk in deze collectie een paar vergelijkbare modellen naast elkaar voordat je verder winkelt."
     },
     "collection_navigation": {
       "collection_categories": "Collectiecategorieën",

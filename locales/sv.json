@@ -45,7 +45,7 @@
       "previous": "Föregående sida"
     },
     "search": {
-      "search": "Sök",
+      "search": "Sök efter produkter",
       "reset": "Rensa sökord"
     },
     "cart": {
@@ -290,8 +290,8 @@
       "filter_by_label": "Filter:",
       "filter_button": "Filter",
       "filters_selected": {
-        "one": "{{ count }} har valts",
-        "other": "{{ count }} har valts"
+        "one": "{{ count }} vald",
+        "other": "{{ count }} valda"
       },
       "max_price": "Det högsta priset är {{ price }}",
       "product_count": {
@@ -307,7 +307,7 @@
       "sort_by_label": "Sortera efter:",
       "to": "Till",
       "clear_filter": "Ta bort filter",
-      "filter_selected_accessibility": "{{ type }} ({{ count }}) filter valda",
+      "filter_selected_accessibility": "{{ type }} ({{ count }} filter valda)",
       "show_more": "Visa mer",
       "show_less": "Visa mindre",
       "filter_and_operator_subtitle": "Matcha alla"
@@ -336,7 +336,7 @@
       "returns_summary": "Begär retur eller byte av varor som kan returneras inom 30 dagar efter leverans.",
       "returns_details_label": "Returpolicy",
       "returns_eligible": "Varor som kan returneras måste vara oanvända, otvättade och skickas tillbaka med etiketterna kvar.",
-      "returns_exclusions": "Badkläder, underkläder, varor sålda som slutgiltiga köp och presentkort är undantagna. Se den fullständiga returpolicyn för villkor och undantag.",
+      "returns_exclusions": "Badkläder, underkläder, varor som sålts utan returrätt och presentkort är undantagna. Se den fullständiga returpolicyn för villkor och undantag.",
       "returns_damaged": "Skadad eller defekt vara? Kontakta kundsupport inom 7 dagar och bifoga bilder.",
       "returns_shipping": "Kunden betalar returfrakten, om inte varan anlände skadad eller defekt.",
       "returns_full_link_label": "Se hela returpolicyn",
@@ -369,11 +369,11 @@
       "return_policy_line_4": "Läs återbetalningspolicyn om villkor, returfrakt och när återbetalningen sker innan du skickar tillbaka något.",
       "shopping_security_title": "Trygg handel",
       "safe_payment_options_title": "Säkra betalningsalternativ",
-      "safe_payment_description": "Vi accepterar alla vanliga kredit- och betalkort. Dina kortuppgifter är säkra och delas aldrig med våra partners. Du kan enkelt hantera dina sparade kort när som helst. För eventuella transaktionsförfrågningar, kontakta din kortutgivare.",
-      "secure_logistics_title": "Säker logistik",
+      "safe_payment_description": "Vi accepterar alla vanliga kredit- och betalkort. Dina kortuppgifter är säkra och delas aldrig med våra partner. Du kan enkelt hantera dina sparade kort när som helst. Kontakta din kortutgivare om du har frågor om en transaktion.",
+      "secure_logistics_title": "Hjälp med frakt",
       "secure_logistics_line_1": "Om ett paket är skadat eller försvunnet under transporten, kontakta oss så att vi kan hjälpa till att granska försändelsen.",
       "secure_logistics_line_2": "Använd länken för orderspårning för de senaste uppdateringarna från transportören. Internationella beställningar kan omfattas av lokala skatter, tullar eller tullavgifter som tas ut av transportören eller den lokala myndigheten.",
-      "secure_privacy_title": "Säker integritet",
+      "secure_privacy_title": "Integritetsskydd",
       "secure_privacy_description": "Att skydda din integritet är viktigt för oss! Din information förvaras säkert och skyddas. Vi säljer inte dina personuppgifter för pengar och använder dem endast i enlighet med vår integritets- och cookiepolicy för att tillhandahålla och förbättra våra tjänster."
     },
     "shipping_country": {
@@ -416,7 +416,7 @@
       "subtext": "404"
     },
     "search": {
-      "no_results": "Inga resultat hittades för \"{{ terms }}\". Kontrollera stavningen eller använd ett annat ord eller fras.",
+      "no_results": "Inga resultat hittades för ”{{ terms }}”. Kontrollera stavningen eller prova ett annat ord eller en annan fras.",
       "results_with_count": {
         "one": "{{ count }} resultat",
         "other": "{{ count }} resultat"
@@ -424,13 +424,13 @@
       "title": "Sökresultat",
       "page": "Sida",
       "products": "Produkter",
-      "search_for": "Sök efter \"{{ terms }}\"",
+      "search_for": "Sök efter ”{{ terms }}”",
       "results_with_count_and_term": {
-        "one": "hittat {{ count }} resultat för \"{{ terms }}\"",
-        "other": "hittat {{ count }} resultat för \"{{ terms }}\""
+        "one": "{{ count }} resultat hittades för ”{{ terms }}”",
+        "other": "{{ count }} resultat hittades för ”{{ terms }}”"
       },
       "results_pages_with_count": {
-        "one": "{{ count }}-sida",
+        "one": "{{ count }} sida",
         "other": "{{ count }} sidor"
       },
       "results_products_with_count": {
@@ -476,7 +476,7 @@
       "note": "Särskilda instruktioner för beställningen",
       "checkout": "Gå till kassan",
       "empty": "Din varukorg är tom",
-      "cart_error": "Ett fel uppstod när du uppdaterade din varukorg. Försök igen.",
+      "cart_error": "Det gick inte att uppdatera varukorgen. Försök igen.",
       "cart_quantity_error_html": "Du kan bara lägga till {{ quantity }} av den här varan i din varukorg.",
       "taxes_and_shipping_policy_at_checkout_html": "Skatter och rabatter beräknas i kassan. Standardfrakt ingår i produktpriserna där en standardmetod finns. <a href=\"{{ link }}\">Fraktpolicy</a>",
       "taxes_included_but_shipping_at_checkout": "Skatt ingår. Rabatter beräknas i kassan. Standardfrakt ingår i produktpriserna där en standardmetod finns.",
@@ -496,8 +496,8 @@
       },
       "estimated_total": "Beräknad totalsumma",
       "new_estimated_total": "Ny beräknad totalsumma",
-      "order_today_delivery": "Beräknad leverans visas på produktsidan och i varukorgen. Beräkningar är inga garantier.",
-      "est_delivery": "Beräknad leverans visas på produktsidan och i varukorgen. Beräkningar är inga garantier.",
+      "order_today_delivery": "Beräknad leverans visas på produktsidan och i varukorgen. Uppskattningar är inga garantier.",
+      "est_delivery": "Beräknad leverans visas på produktsidan och i varukorgen. Uppskattningar är inga garantier.",
       "store_rating_prefix": "",
       "store_rating_suffix": "",
       "we_accept": "Vi accepterar",
@@ -562,7 +562,7 @@
       "title": "Sidrubrik"
     },
     "announcements": {
-      "previous_announcement": "Tidigare meddelande",
+      "previous_announcement": "Föregående meddelande",
       "next_announcement": "Kommande meddelande",
       "carousel": "Karusell",
       "announcement": "Meddelande",
@@ -640,14 +640,14 @@
     "product_navigation": {
       "back_to_results": "Tillbaka till resultat",
       "back_to_context": "Tillbaka till {{ context }}",
-      "back_to_family_sets": "Tillbaka till familjen Set",
+      "back_to_family_sets": "Tillbaka till familjeset",
       "back_to_search_results": "Tillbaka till sökresultat",
       "view_similar_styles": "Se liknande stilar",
       "view_similar_styles_in": "Visa liknande stilar i {{ collection }}",
       "similar_styles": "Liknande stilar",
-      "browse_more_from": "Bläddra mer från {{ collection }}",
+      "browse_more_from": "Se mer från {{ collection }}",
       "browse_similar_styles": "Bläddra i liknande stilar",
-      "compare_collection_copy": "Använd den här samlingen för att jämföra några nära matcher innan du går tillbaka till shopping."
+      "compare_collection_copy": "Använd den här kollektionen för att jämföra några liknande modeller innan du fortsätter handla."
     },
     "collection_navigation": {
       "collection_categories": "Samlingskategorier",

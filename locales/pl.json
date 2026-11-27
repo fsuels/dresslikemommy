@@ -45,7 +45,7 @@
       "previous": "Poprzednia strona"
     },
     "search": {
-      "search": "Szukaj",
+      "search": "Szukaj produktów",
       "reset": "Wyczyść szukany termin"
     },
     "cart": {
@@ -310,12 +310,12 @@
       },
       "product_count_simple": {
         "one": "{{ count }} produkt",
-        "other": "{{ count }} produkty(-ów)",
-        "few": "{{ count }} produkty(-ów)",
-        "many": "{{ count }} produkty(-ów)"
+        "other": "{{ count }} produktu",
+        "few": "{{ count }} produkty",
+        "many": "{{ count }} produktów"
       },
       "clear_filter": "Usuń filtr",
-      "filter_selected_accessibility": "{{ type }} (wybrano {{ count }} fitry(-ów))",
+      "filter_selected_accessibility": "{{ type }} (wybrane filtry: {{ count }})",
       "show_more": "Pokaż więcej",
       "show_less": "Pokaż mniej",
       "filter_and_operator_subtitle": "Dopasuj wszystko"
@@ -353,7 +353,7 @@
       "security_details_label": "Płatność i prywatność"
     },
     "shipping_card": {
-      "delivery_to": "Kraj dostawy: {{ country }}",
+      "delivery_to": "Dostawa do: {{ country }}",
       "change_country": "Zmień kraj",
       "details_label": "Szczegóły wysyłki",
       "details_body": "Standardowa wysyłka jest wliczona w cenę kwalifikujących się produktów. Szacowany czas dostawy jest podany na każdej stronie produktu; szacunki nie są gwarancją.",
@@ -377,17 +377,17 @@
       "return_policy_line_4": "Zanim cokolwiek odeślesz, zapoznaj się z zasadami zwrotu pieniędzy: warunkami, wysyłką zwrotną i terminem zwrotu.",
       "shopping_security_title": "Bezpieczeństwo zakupów",
       "safe_payment_options_title": "Opcje bezpiecznych płatności",
-      "safe_payment_description": "Akceptujemy wszystkie główne karty kredytowe i debetowe. Dane Twojej karty są bezpieczne i nigdy nie są udostępniane naszym partnerom. Możesz łatwo zarządzać zapisanymi kartami w dowolnym momencie. W przypadku pytań dotyczących transakcji prosimy o kontakt z wydawcą karty.",
-      "secure_logistics_title": "Bezpieczna logistyka",
+      "safe_payment_description": "Akceptujemy wszystkie główne karty kredytowe i debetowe. Dane Twojej karty są bezpieczne i nigdy nie są udostępniane naszym partnerom. Możesz łatwo zarządzać zapisanymi kartami w dowolnym momencie. W przypadku pytań dotyczących transakcji skontaktuj się z wydawcą karty.",
+      "secure_logistics_title": "Pomoc w sprawie wysyłki",
       "secure_logistics_line_1": "Jeśli paczka zostanie uszkodzona lub zagubiona w transporcie, skontaktuj się z nami, abyśmy mogli pomóc w sprawdzeniu przesyłki.",
-      "secure_logistics_line_2": "Skorzystaj z linku do śledzenia zamówień, aby uzyskać najnowsze aktualizacje przewoźnika. Zamówienia międzynarodowe mogą podlegać lokalnym podatkom, cłom lub opłatom celnym pobieranym przez przewoźnika lub władze lokalne.",
-      "secure_privacy_title": "Bezpieczna prywatność",
+      "secure_logistics_line_2": "Najnowsze informacje od przewoźnika znajdziesz pod linkiem do śledzenia przesyłki. Zamówienia międzynarodowe mogą podlegać lokalnym podatkom, cłom lub opłatom celnym pobieranym przez przewoźnika lub władze lokalne.",
+      "secure_privacy_title": "Ochrona prywatności",
       "secure_privacy_description": "Ochrona Twojej prywatności jest dla nas ważna! Możesz mieć pewność, że Twoje dane będą bezpieczne i nienaruszone. Nie sprzedajemy Twoich danych osobowych za pieniądze i będziemy je wykorzystywać wyłącznie zgodnie z naszą polityką prywatności i plików cookie, aby świadczyć i ulepszać nasze usługi."
     },
     "shipping_country": {
       "product_country": "Wysyłka do: {{ country }}",
       "product_country_with_currency": "Wysyłka do: {{ country }} / {{ currency }} {{ symbol }}",
-      "product_country_confirmed": "Kraj wysyłki potwierdzany przy kasie",
+      "product_country_confirmed": "Kraj wysyłki zostanie potwierdzony w kasie",
       "trust_ships_to": "Wysyłka do: {{ country }}",
       "trust_arrives": "Dostawa",
       "product_note_html": "Standardowa wysyłka jest wliczona w cenę produktów tam, gdzie dostępna jest standardowa metoda dostawy. Szacowany czas dostawy jest podany na każdej stronie produktu; szacunki nie są gwarancją. <a href=\"{{ link }}\">Zobacz wszystkie aktualne kraje wysyłki</a>.",
@@ -395,15 +395,15 @@
       "page_title_country": "Tak, obecnie wysyłamy do tego kraju: {{ country }}",
       "page_title_default": "Aktualne kraje wysyłki",
       "page_summary": "Standardowa wysyłka jest wliczona w cenę produktów w krajach i regionach dostępnych w naszym selektorze kraju przy finalizacji zamówienia. Szacowany czas dostawy jest podany na każdej stronie produktu; szacunki nie są gwarancją.",
-      "page_note_html": "Jeśli Twojego kraju nie ma na liście albo kasa nie pokazuje metody dla dokładnego adresu, napisz do <a href=\"mailto:{{ email }}\">{{ email }}</a> przed zamówieniem.",
+      "page_note_html": "Jeśli Twojego kraju nie ma na liście albo kasa nie pokazuje metody wysyłki dla Twojego dokładnego adresu, napisz do <a href=\"mailto:{{ email }}\">{{ email }}</a> przed zamówieniem.",
       "schema_standard_shipping": "Standardowa wysyłka w cenie",
       "country_list_heading": "Kraje, do których obecnie wysyłamy ({{ count }})",
-      "country_list_highlight": "Każdy kraj na tej liście jest włączony przy kasie. Wybrany kraj jest wyróżniony, gdy Shopify może go wykryć.",
+      "country_list_highlight": "Każdy kraj na tej liście jest dostępny w kasie. Wybrany kraj jest wyróżniony, gdy Shopify może go wykryć.",
       "checker_trigger": "Czy wysyłamy do mojego kraju?",
-      "checker_trigger_meta": "{{ count }} krajów aktywnych",
-      "checker_trigger_meta_country": "{{ country }} wybrano / {{ count }} krajów",
+      "checker_trigger_meta": "Aktywne kraje: {{ count }}",
+      "checker_trigger_meta_country": "Wybrany kraj: {{ country }} / liczba krajów: {{ count }}",
       "checker_footer_heading": "Sprawdź wysyłkę przed zamówieniem",
-      "checker_footer_text": "Przeszukaj aktualną listę krajów w checkout i potwierdź swój kraj w kilka sekund.",
+      "checker_footer_text": "Przeszukaj aktualną listę krajów dostępnych w kasie i potwierdź swój kraj w kilka sekund.",
       "checker_title": "Czy wysyłamy do mojego kraju?",
       "checker_summary": "Liczba krajów i regionów dostępnych teraz w kasie: {{ count }}. Jeśli Twój kraj jest poniżej, wysyłamy tam.",
       "checker_current_country": "Obecnie wybrany kraj to {{ country }}.",
@@ -527,7 +527,7 @@
         "secure_checkout": "Bezpieczna płatność",
         "ssl_encrypted": "Szyfrowane SSL",
         "free_shipping": "Wysyłka w cenie",
-        "returns": "30-dniowy zwrot",
+        "returns": "30 dni na zwrot",
         "secure": "Bezpieczne zakupy",
         "encrypted": "Zaszyfrowane",
         "free_ship": "Wysyłka w cenie"
@@ -539,7 +539,7 @@
       "discount_invalid": "Nieprawidłowy lub wygasły kod",
       "shipping_label": "Wysyłka",
       "shipping_free": "Standard w cenie",
-      "popular_with_families": "Więcej pasujących sztuk",
+      "popular_with_families": "Więcej pasujących elementów",
       "recently_viewed": "Ostatnio oglądane",
       "savings_html": "Oszczędzasz <strong>{{ amount }}</strong>",
       "shipping_country_reassurance": "Wysyłka do: {{ country }}. Standardowa wysyłka jest wliczona w cenę produktów tam, gdzie dostępna jest standardowa metoda dostawy."
@@ -664,14 +664,14 @@
     "product_navigation": {
       "back_to_results": "Powrót do wyników",
       "back_to_context": "Powrót do {{ context }}",
-      "back_to_family_sets": "Powrót do rodziny Zestawy",
+      "back_to_family_sets": "Powrót do zestawów rodzinnych",
       "back_to_search_results": "Powrót do wyników wyszukiwania",
       "view_similar_styles": "Zobacz podobne style",
       "view_similar_styles_in": "Zobacz podobne style w {{ collection }}",
       "similar_styles": "Podobne style",
       "browse_more_from": "Przeglądaj więcej z {{ collection }}",
       "browse_similar_styles": "Przeglądaj podobne style",
-      "compare_collection_copy": "Skorzystaj z tej kolekcji, aby porównać kilka bliskich dopasowań, zanim wrócisz do zakupów."
+      "compare_collection_copy": "Porównaj w tej kolekcji kilka podobnych modeli, zanim wrócisz do zakupów."
     },
     "collection_navigation": {
       "collection_categories": "Kategorie kolekcji",
