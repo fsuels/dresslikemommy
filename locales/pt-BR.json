@@ -37,7 +37,7 @@
         "tiktok": "TikTok"
       }
     },
-    "continue_shopping": "Voltar à loja",
+    "continue_shopping": "Continuar comprando",
     "pagination": {
       "label": "Paginação",
       "page": "Página {{ number }}",
@@ -170,7 +170,7 @@
         "image_available": "A imagem {{ index }} está disponível no visualizador da galeria"
       },
       "view_full_details": "Ver informações completas",
-      "include_taxes": "Tributo incluído.",
+      "include_taxes": "Impostos incluídos.",
       "shipping_policy_html": "O frete padrão está incluído nos preços dos produtos para os países atendidos. A entrega estimada aparece em cada página de produto; estimativas não são garantias. <a href=\"{{ link }}\">Política de envio</a>",
       "choose_options": "Escolher opções",
       "choose_product_options": "Escolha opções para {{ product_name }}",
@@ -179,7 +179,7 @@
       "inventory_in_stock": "Em estoque",
       "inventory_in_stock_show_count": "{{ quantity }} em estoque",
       "inventory_low_stock": "Estoque baixo",
-      "inventory_low_stock_show_count": "Estoque baixo: {{ quantity }} restante(s)",
+      "inventory_low_stock_show_count": "Estoque baixo: restam {{ quantity }}",
       "inventory_out_of_stock": "Esgotado",
       "inventory_out_of_stock_continue_selling": "Em estoque",
       "sku": "SKU",
@@ -195,12 +195,12 @@
       "select_color": "Selecione a cor",
       "size_required_message": "Selecione um tamanho antes de adicionar ao carrinho.",
       "matching_set": {
-        "heading": "Construa seu conjunto correspondente",
+        "heading": "Monte seu conjunto combinando",
         "copy": "Escolha um tamanho para cada pessoa. Preço por peça.",
         "copy_person": "Escolha um tamanho para cada pessoa.",
-        "empty": "Selecione um tamanho para cada membro da família que deseja adicionar.",
-        "add": "Adicionar peças combinando",
-        "success": "Conjunto correspondente adicionado ao carrinho.",
+        "empty": "Escolha pelo menos um tamanho para adicionar seu conjunto.",
+        "add": "Adicionar peças que combinam",
+        "success": "Conjunto combinando adicionado ao carrinho.",
         "error": "Não foi possível adicionar as peças selecionadas. Por favor, tente novamente."
       },
       "occasions": {
@@ -216,11 +216,11 @@
       },
       "free_shipping_short": "Frete grátis",
       "size_guide": {
-        "compare_family_sizes": "Compare tamanhos de família",
+        "compare_family_sizes": "Compare os tamanhos da família",
         "compare_all_sizes": "Compare todos os tamanhos",
         "guide_and_fit": "Guia de tamanhos e ajuste",
         "your_size_details": "Detalhes do seu tamanho",
-        "compare_hint": "Abra o gráfico completo abaixo para comparar tamanhos próximos.",
+        "compare_hint": "Abra a tabela completa abaixo para comparar tamanhos próximos.",
         "chart_units": "Unidades da tabela de tamanhos",
         "columns": {
           "size": "Tamanho",
@@ -326,13 +326,13 @@
     },
     "purchase_confidence": {
       "shipping_checkout": "Veja as opções de frete ao finalizar a compra.",
-      "shipping_headline": "Envio padrão grátis",
+      "shipping_headline": "Envio padrão incluído",
       "estimate_to_country": "Entrega estimada ({{ country }}): ",
       "estimate_default": "Entrega estimada: ",
       "shipping_details_label": "Detalhes de envio",
-      "ships_to_country": "País de envio: {{ country }}",
-      "ships_to_default": "Envios para o seu país",
-      "change_short": "Mudar",
+      "ships_to_country": "Enviamos para {{ country }}",
+      "ships_to_default": "Envio para o seu país",
+      "change_short": "Alterar",
       "shipping_details_body": "O frete padrão está incluído nos preços dos produtos onde houver um método padrão disponível. A entrega estimada aparece em cada página de produto; estimativas não são garantias.",
       "security_details_body": "Os pagamentos são criptografados e processados com segurança pelos nossos provedores de pagamento. Não armazenamos o número completo do seu cartão.",
       "privacy_link_label": "Ver política de privacidade",
@@ -344,7 +344,7 @@
       "returns_damaged": "Item danificado ou com defeito? Entre em contato com o suporte em até 7 dias e envie fotos.",
       "returns_shipping": "O frete de devolução é pago pelo cliente, exceto se o item chegou danificado ou com defeito.",
       "returns_full_link_label": "Ver política de devolução completa",
-      "security_headline": "Checkout seguro",
+      "security_headline": "Pagamento seguro",
       "security_summary": "Pagamento criptografado. Os métodos de pagamento disponíveis aparecem no checkout.",
       "security_details_label": "Pagamento e privacidade"
     },
@@ -480,14 +480,14 @@
       }
     },
     "cart": {
-      "title": "Carrinho",
+      "title": "Seu carrinho",
       "caption": "Itens do carrinho",
       "remove_title": "Remover {{ title }}",
       "note": "Instruções especiais do pedido",
       "checkout": "Finalizar a compra",
       "empty": "O carrinho está vazio",
       "cart_error": "Ocorreu um erro ao atualizar o carrinho. Tente de novo.",
-      "cart_quantity_error_html": "É possível adicionar apenas {{ quantity }} unidade(s) desse item ao carrinho.",
+      "cart_quantity_error_html": "É possível adicionar apenas {{ quantity }} deste item ao carrinho.",
       "taxes_and_shipping_policy_at_checkout_html": "Impostos e descontos são calculados no checkout. O frete padrão está incluído nos preços dos produtos onde houver um método padrão disponível. <a href=\"{{ link }}\">Política de envio</a>",
       "taxes_included_but_shipping_at_checkout": "Impostos incluídos. Os descontos são calculados no checkout. O frete padrão está incluído nos preços dos produtos onde houver um método padrão disponível.",
       "taxes_included_and_shipping_policy_html": "Impostos incluídos. Os descontos são calculados no checkout. O frete padrão está incluído nos preços dos produtos onde houver um método padrão disponível. <a href=\"{{ link }}\">Política de envio</a>",
@@ -514,11 +514,11 @@
       "complete_the_look": "Complete o visual",
       "you_may_also_like": "Você também pode gostar",
       "trust": {
-        "secure_checkout": "Check-out seguro",
-        "ssl_encrypted": "SSL criptografado",
+        "secure_checkout": "Pagamento seguro",
+        "ssl_encrypted": "Criptografia SSL",
         "free_shipping": "Envio incluído",
         "returns": "Devoluções de 30 dias",
-        "secure": "Seguro",
+        "secure": "Pagamento seguro",
         "encrypted": "Criptografado",
         "free_ship": "Envio incluído"
       },
@@ -531,7 +531,7 @@
       "shipping_free": "Padrão incluído",
       "popular_with_families": "Mais peças combinando",
       "recently_viewed": "Vistos recentemente",
-      "savings_html": "Você está salvando <strong>{{ amount }}</strong>",
+      "savings_html": "Você está economizando <strong>{{ amount }}</strong>",
       "shipping_country_reassurance": "Envio para {{ country }}. O frete padrão está incluído nos preços dos produtos onde houver um método padrão disponível."
     },
     "footer": {
@@ -805,7 +805,7 @@
         "daddy_me_shirts_html": "<p>Procure {{ title }} para compradores que procuram especificamente camisas de botão, camisa social e roupas de pai e filho em estilo havaiano. Esta coleção concentra-se em looks com colarinho que funcionam para retratos, jantares, passeios na praia, casamentos e outras ocasiões sofisticadas.</p><p>Em comparação com as camisetas casuais, esses estilos são mais estruturados e prontos para fotos, tornando-os um ajuste mais forte quando você deseja combinar roupas que ainda pareçam elevadas.</p>",
         "couples_html": "<p>Explore {{ title }} para encontros noturnos, férias, presentes de feriado, fotos de noivado e coordenação diária. Esta página foi projetada para compradores que desejam mais de um top correspondente e precisam de um ponto de partida mais amplo para looks coordenados.</p><p>Comece com camisetas fáceis ou conjuntos lounge e, em seguida, crie uma roupa mais completa de acordo com a viagem, ocasião ou momento fotográfico que você está comprando.</p>",
         "couples_tshirts_html": "<p>Procure {{ title }} para compradores que pesquisam camisetas combinando para casais, camisetas para casais e tops coordenados para o dia a dia. Esses estilos funcionam melhor quando você deseja um visual casual e presenteável para viagens, feriados, shows, encontros noturnos e fotos.</p><p>Use esta página para combinar facilmente no dia a dia e, em seguida, avance para a coleção mais ampla para casais se quiser uma roupa mais completa construída em torno de mais do que apenas camisetas.</p>",
-        "christmas_tops_html": "<p>Suéteres e moletons de Natal combinando para pais, filhos e irmãos com renas, Papai Noel e estampas nórdicas, com o tamanho escolhido para cada pessoa.<\/p>"
+        "christmas_tops_html": "<p>Suéteres e moletons de Natal combinando para pais, filhos e irmãos com renas, Papai Noel e estampas nórdicas, com o tamanho escolhido para cada pessoa.</p>"
       },
       "rich_parts": {
         "new_women_outfits": {

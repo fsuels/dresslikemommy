@@ -177,9 +177,9 @@
       "value_unavailable": "{{ option_value }}は利用できません",
       "variant_sold_out_or_unavailable": "バリエーションは売り切れているか販売できません",
       "inventory_in_stock": "在庫あり",
-      "inventory_in_stock_show_count": "{{ quantity }}個の在庫",
-      "inventory_low_stock": "低在庫",
-      "inventory_low_stock_show_count": "低在庫：残り{{ quantity }}個",
+      "inventory_in_stock_show_count": "在庫あり：{{ quantity }}点",
+      "inventory_low_stock": "残りわずか",
+      "inventory_low_stock_show_count": "残りわずか：あと{{ quantity }}点",
       "inventory_out_of_stock": "在庫切れ",
       "inventory_out_of_stock_continue_selling": "在庫あり",
       "sku": "SKU",
@@ -197,10 +197,10 @@
         "heading": "おそろいセットを作る",
         "copy": "一人ずつサイズを選んでください。価格は1点ごとです。",
         "copy_person": "一人ずつサイズを選んでください。",
-        "empty": "追加する家族メンバーごとに 1 つのサイズを選択します。",
-        "add": "選択した商品をカートに追加します",
-        "success": "マッチングセットがカートに追加されました。",
-        "error": "選択した作品を追加できません。もう一度試してください。"
+        "empty": "セットを追加するには、サイズを1つ以上選んでください。",
+        "add": "おそろいアイテムをカートに追加する",
+        "success": "おそろいセットをカートに追加しました。",
+        "error": "選択したアイテムを追加できませんでした。もう一度お試しください。"
       },
       "occasions": {
         "title": "おすすめのシーン"
@@ -215,11 +215,11 @@
       },
       "free_shipping_short": "送料無料",
       "size_guide": {
-        "compare_family_sizes": "家族の人数を比較する",
-        "compare_all_sizes": "すべてのサイズを比較してください",
+        "compare_family_sizes": "ご家族のサイズを比較",
+        "compare_all_sizes": "すべてのサイズを比較",
         "guide_and_fit": "サイズガイドとフィット感",
         "your_size_details": "サイズの詳細",
-        "compare_hint": "以下の完全なチャートを開いて、近くのサイズを比較してください。",
+        "compare_hint": "下のサイズ表を開くと、近いサイズを比較できます。",
         "chart_units": "サイズ表の単位",
         "columns": {
           "size": "サイズ",
@@ -470,13 +470,13 @@
       }
     },
     "cart": {
-      "title": "あなたのカート",
+      "title": "カート",
       "caption": "カートアイテム",
       "remove_title": "{{ title }}を削除する",
-      "note": "注文に関する特別な指示・備考",
+      "note": "ご注文に関するご要望",
       "checkout": "ご購入手続きへ",
       "empty": "カートは空です",
-      "cart_error": "カートをアップデートするときにエラーが発生しました。もう一度お試しください。",
+      "cart_error": "カートの更新中にエラーが発生しました。もう一度お試しください。",
       "cart_quantity_error_html": "このアイテムは{{ quantity }}個しかカートに追加することができません。",
       "taxes_and_shipping_policy_at_checkout_html": "税金と割引はチェックアウト時に計算されます。標準配送方法が利用できる地域では、標準送料は商品価格に含まれています。 <a href=\"{{ link }}\">配送ポリシー</a>",
       "taxes_included_but_shipping_at_checkout": "税込み。割引はチェックアウト時に計算されます。標準配送方法が利用できる地域では、標準送料は商品価格に含まれています。",
@@ -489,26 +489,26 @@
         "quantity": "数量",
         "image": "商品画像"
       },
-      "update": "アップデート",
+      "update": "更新",
       "login": {
         "title": "アカウントをお持ちですか?",
-        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">ログイン</a>することで、チェックアウトがスピーディーに行えます。"
+        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">ログイン</a>すると、ご注文手続きがスムーズです。"
       },
-      "estimated_total": "見積もり合計",
-      "new_estimated_total": "新たな推定総額",
+      "estimated_total": "合計（概算）",
+      "new_estimated_total": "新しい合計（概算）",
       "order_today_delivery": "お届け予定日は商品ページとカートに表示されます。予定日は保証ではありません。",
       "est_delivery": "お届け予定日は商品ページとカートに表示されます。予定日は保証ではありません。",
       "store_rating_prefix": "",
       "store_rating_suffix": "",
       "we_accept": "ご利用可能なお支払い方法",
-      "complete_the_look": "見た目を完成させる",
+      "complete_the_look": "コーデを完成させる",
       "you_may_also_like": "こちらもおすすめ",
       "trust": {
-        "secure_checkout": "安全なチェックアウト",
+        "secure_checkout": "安全なお支払い",
         "ssl_encrypted": "SSL暗号化",
         "free_shipping": "配送込み",
         "returns": "30日間返品可能",
-        "secure": "安全な",
+        "secure": "安全なお支払い",
         "encrypted": "暗号化された",
         "free_ship": "配送込み"
       },
@@ -793,7 +793,7 @@
         "daddy_me_shirts_html": "<p>特にボタンアップ、ドレスシャツ、ハワイアンスタイルの父と子の衣装を探している買い物客は、{{ title }} を参照してください。このコレクションは、ポートレート、ディナー、ビーチ旅行、結婚式、その他の洗練された機会に適した襟付きのルックに焦点を当てています。</p><p>カジュアルな T シャツと比較して、これらのスタイルはより構造的で写真映えするため、洗練された印象のコーディネートをしたい場合に強力にフィットします。</p>",
         "couples_html": "<p>{{ title }} を探索して、デート、休暇、ホリデーギフト、婚約写真、日常のコーディネートを探しましょう。このページは、複数の一致するトップスが必要で、コーディネートの幅広い出発点が必要な買い物客向けに設計されています。</p><p>簡単な T シャツやラウンジ セットから始めて、旅行、行事、またはショッピングの写真撮影に合わせて、より完全な服装を構築します。</p>",
         "couples_tshirts_html": "<p>カップルでお揃いのシャツ、カップル T シャツ、普段着にコーディネートできるトップスを探している買い物客は、{{ title }} を参照してください。これらのスタイルは、旅行、休暇、コンサート、デート、写真撮影などにカジュアルでギフトに適した外観が必要な場合に最適です。</p><p>毎日の簡単なマッチングにこのページを使用し、T シャツだけでなくより充実した衣装を構築したい場合は、より広範なカップル コレクションにステップアップしてください。</p>",
-        "christmas_tops_html": "<p>トナカイ、サンタ、ノルディック柄のおそろいクリスマスセーターとスウェットを、親子やきょうだい向けに一人ひとりのサイズで選べます。<\/p>"
+        "christmas_tops_html": "<p>トナカイ、サンタ、ノルディック柄のおそろいクリスマスセーターとスウェットを、親子やきょうだい向けに一人ひとりのサイズで選べます。</p>"
       },
       "rich_parts": {
         "new_women_outfits": {

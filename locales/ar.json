@@ -51,7 +51,7 @@
     "cart": {
       "view": "عرض سلة التسوق ({{ count }})",
       "view_empty_cart": "عرض السلة",
-      "item_added": "تمت إضافة العنصر إلى سلة التسوق الخاصة بك"
+      "item_added": "تمت إضافة المنتج إلى سلة التسوق"
     },
     "share": {
       "close": "إغلاق المشاركة",
@@ -125,7 +125,7 @@
       "inventory_in_stock": "متوفر",
       "inventory_in_stock_show_count": "{{ quantity }} متوفر في المخزون",
       "inventory_low_stock": "مخزون منخفض",
-      "inventory_low_stock_show_count": "المخزون المنخفض: {{ quantity }} اليسار",
+      "inventory_low_stock_show_count": "المخزون منخفض: متبقي {{ quantity }}",
       "inventory_out_of_stock": "غير متوفر",
       "inventory_out_of_stock_continue_selling": "متوفر",
       "sku": "رمز التخزين التعريفي",
@@ -192,12 +192,12 @@
       "shipping_policy_html": "الشحن القياسي مشمول في أسعار المنتجات للدول المدعومة. يظهر موعد التسليم المتوقع في صفحة كل منتج؛ والتقديرات ليست ضمانًا. <a href=\"{{ link }}\">سياسة الشحن</a>",
       "select_size": "اختر الحجم",
       "select_color": "اختر اللون",
-      "size_required_message": "يرجى اختيار المقاس قبل إضافته إلى عربة التسوق.",
+      "size_required_message": "يرجى اختيار المقاس قبل الإضافة إلى سلة التسوق.",
       "matching_set": {
         "heading": "قم ببناء مجموعتك المطابقة",
         "copy": "اختر مقاسًا لكل شخص. السعر لكل قطعة.",
         "copy_person": "اختر مقاسًا لكل شخص.",
-        "empty": "حدد حجمًا واحدًا لكل فرد من أفراد العائلة تريد إضافته.",
+        "empty": "اختر مقاسًا واحدًا على الأقل لإضافة مجموعتك.",
         "add": "أضف القطع المختارة إلى سلة التسوق",
         "success": "تمت إضافة المجموعة المطابقة إلى سلة التسوق.",
         "error": "غير قادر على إضافة القطع المحددة. يرجى المحاولة مرة أخرى."
@@ -474,18 +474,22 @@
       "announcement": "إعلان",
       "menu": "القائمة",
       "cart_count": {
-        "one": "{{ count }} العنصر",
-        "other": "{{ count }} العناصر"
+        "one": "منتج واحد",
+        "other": "{{ count }} منتج",
+        "few": "{{ count }} منتجات",
+        "many": "{{ count }} منتجًا",
+        "two": "منتجان",
+        "zero": "السلة فارغة"
       }
     },
     "cart": {
-      "title": "عربة التسوق الخاصة بك",
+      "title": "سلة التسوق الخاصة بك",
       "caption": "عناصر السلة",
       "remove_title": "إزالة {{ title }}",
       "estimated_total": "الإجمالي المقدر",
       "new_estimated_total": "المجموع التقديري الجديد",
-      "note": "طلب تعليمات خاصة",
-      "checkout": "الدفع",
+      "note": "تعليمات خاصة بالطلب",
+      "checkout": "إتمام الدفع",
       "empty": "سلة التسوق الخاصة بك فارغة",
       "cart_error": "حدث خطأ أثناء تحديث سلة التسوق الخاصة بك. يرجى المحاولة مرة أخرى.",
       "cart_quantity_error_html": "يمكنك فقط إضافة {{ quantity }} من هذا العنصر إلى سلة التسوق الخاصة بك.",
@@ -503,17 +507,17 @@
       "update": "تحديث",
       "login": {
         "title": "هل لديك حساب؟",
-        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">قم بتسجيل الدخول</a> للتحقق بشكل أسرع."
+        "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">سجّل الدخول</a> لإتمام الشراء بشكل أسرع."
       },
       "order_today_delivery": "يظهر موعد التسليم المقدّر في صفحة المنتج وفي سلة التسوق. التقديرات ليست ضمانًا.",
       "est_delivery": "يظهر موعد التسليم المقدّر في صفحة المنتج وفي سلة التسوق. التقديرات ليست ضمانًا.",
       "store_rating_prefix": "",
       "store_rating_suffix": "",
       "we_accept": "نحن نقبل",
-      "complete_the_look": "أكمل المظهر",
-      "you_may_also_like": "قد ترغب أيضا",
+      "complete_the_look": "أكمل الإطلالة",
+      "you_may_also_like": "قد يعجبك أيضًا",
       "trust": {
-        "secure_checkout": "الخروج الآمن",
+        "secure_checkout": "دفع آمن",
         "ssl_encrypted": "مشفرة بتقنية SSL",
         "free_shipping": "الشحن مشمول",
         "returns": "إرجاع خلال 30 يومًا",
@@ -521,7 +525,7 @@
         "encrypted": "مشفرة",
         "free_ship": "الشحن مشمول"
       },
-      "discount_code_toggle": "هل لديك رمز الخصم؟",
+      "discount_code_toggle": "هل لديك رمز خصم؟",
       "discount_placeholder": "رمز الخصم",
       "discount_apply": "تطبيق",
       "discount_applied": "تم تطبيق الرمز [code]!",
@@ -529,8 +533,8 @@
       "shipping_label": "شحن",
       "shipping_free": "القياسي مشمول",
       "popular_with_families": "المزيد من القطع المتناسقة",
-      "recently_viewed": "تم عرضها مؤخرًا",
-      "savings_html": "أنت تقوم بحفظ <strong>{{ amount }}</strong>",
+      "recently_viewed": "شاهدتها مؤخرًا",
+      "savings_html": "أنت توفّر <strong>{{ amount }}</strong>",
       "shipping_country_reassurance": "الشحن إلى {{ country }}. الشحن القياسي مشمول في أسعار المنتجات حيثما تتوفر طريقة شحن قياسية."
     },
     "footer": {

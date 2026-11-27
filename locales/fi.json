@@ -194,13 +194,13 @@
       "select_color": "Valitse väri",
       "size_required_message": "Valitse koko ennen kuin lisäät ostoskoriin.",
       "matching_set": {
-        "heading": "Rakenna itsellesi sopiva sarja",
+        "heading": "Kokoa yhteensopiva setti",
         "copy": "Valitse koko jokaiselle. Hinta per tuote.",
         "copy_person": "Valitse koko jokaiselle.",
-        "empty": "Valitse yksi koko jokaiselle perheenjäsenelle, jonka haluat lisätä.",
-        "add": "Lisää valitut osat ostoskoriin",
-        "success": "Vastaava sarja lisätty ostoskoriin.",
-        "error": "Valittuja osia ei voi lisätä. Yritä uudelleen."
+        "empty": "Valitse vähintään yksi koko lisätäksesi setin.",
+        "add": "Lisää sopivat tuotteet ostoskoriin",
+        "success": "Yhteensopiva setti lisätty ostoskoriin.",
+        "error": "Valittuja tuotteita ei voitu lisätä. Yritä uudelleen."
       },
       "occasions": {
         "title": "Täydellinen tilaisuuteen"
@@ -215,7 +215,7 @@
       },
       "free_shipping_short": "Ilmainen toimitus",
       "size_guide": {
-        "compare_family_sizes": "Vertaa perheiden kokoja",
+        "compare_family_sizes": "Vertaa koko perheen kokoja",
         "compare_all_sizes": "Vertaa kaikkia kokoja",
         "guide_and_fit": "Koko- ja istuvuusopas",
         "your_size_details": "Kokosi tiedot",
@@ -315,24 +315,24 @@
     "trust": {
       "secure_checkout": "Turvallinen kassa",
       "ssl_encrypted": "SSL-salattu",
-      "returns": "30 päivän palautusikkuna",
-      "free_shipping": "Ilmainen vakiotoimitus sisältyy hintaan",
+      "returns": "30 päivän palautusaika",
+      "free_shipping": "Vakiotoimitus sisältyy hintaan",
       "trusted_since": "Yhteensopivia asuja perheen yhteisiin hetkiin",
       "assistance_note": "Tarvitsetko apua? Vastaamme yleensä yhden arkipäivän kuluessa."
     },
     "purchase_confidence": {
       "shipping_checkout": "Katso toimitusvaihtoehdot kassalla.",
-      "shipping_headline": "Ilmainen vakiotoimitus",
+      "shipping_headline": "Vakiotoimitus sisältyy hintaan",
       "estimate_to_country": "Arvioitu toimitus maahan {{ country }}: ",
       "estimate_default": "Arvioitu toimitus: ",
       "shipping_details_label": "Toimitustiedot",
-      "ships_to_country": "Toimitukset maahan {{ country }}",
-      "ships_to_default": "Toimitukset maahasi",
+      "ships_to_country": "Toimitus maahan {{ country }}",
+      "ships_to_default": "Toimitus maahasi",
       "change_short": "Vaihda",
       "shipping_details_body": "Normaali toimitus sisältyy tuotteiden hintoihin, kun normaali toimitustapa on saatavilla. Arvioitu toimitusaika näkyy jokaisella tuotesivulla; arviot eivät ole takuita.",
       "security_details_body": "Maksut on salattu ja maksupalveluntarjoajat käsittelevät ne turvallisesti. Emme tallenna täydellistä korttinumeroasi.",
       "privacy_link_label": "Katso tietosuojakäytäntö",
-      "returns_headline": "Palautuskelpoisten tuotteiden palautukset",
+      "returns_headline": "Palautusoikeus ehdot täyttäville tuotteille",
       "returns_summary": "Pyydä palautuskelpoisen tuotteen palautusta tai vaihtoa 30 päivän kuluessa toimituksesta.",
       "returns_details_label": "Palautuskäytäntö",
       "returns_eligible": "Palautuskelpoisten tuotteiden on oltava käyttämättömiä ja pesemättömiä, ja tuotelappujen on oltava kiinni.",
@@ -348,12 +348,12 @@
       "delivery_to": "Toimitus maahan {{ country }}",
       "change_country": "Vaihda maa",
       "details_label": "Toimitustiedot",
-      "details_body": "Normaali toimitus sisältyy kelpaaviin tuotteisiin. Arvioitu toimitusaika näkyy jokaisella tuotesivulla; arviot eivät ole takuita.",
+      "details_body": "Vakiotoimitus sisältyy hintaan tuotteissa, joihin on saatavilla vakiotoimitustapa. Arvioitu toimitusaika näkyy jokaisella tuotesivulla; arviot eivät ole takuita.",
       "see_countries": "Katso toimitusmaat"
     },
     "additional_info": {
       "shipping_title": "Toimitus ja toimitus",
-      "free_shipping_label": "Ilmainen vakiotoimitus sisältyy hintaan",
+      "free_shipping_label": "Vakiotoimitus sisältyy hintaan",
       "estimated_delivery": "Arvioitu toimitus:",
       "standard_delivery_window": "12-16 päivää",
       "christmas_order_by": "Arvio: tilaa viimeistään {{ order_date }}, jotta tilaus saapuu viimeistään {{ arrive_date }}. Ei takuuta.",
@@ -361,7 +361,7 @@
       "flat_chest_note": "Taulukon rinnanleveys on mitattu vaatteen ollessa tasaisena. Kerro kahdella, niin saat koko ympärysmitan.",
       "premium_delivery_window": "Arvioitu toimitusaika näkyy jokaisella tuotesivulla; arviot eivät ole takuita.",
       "faster_shipping_prefix": "Arvioitu toimitus:",
-      "free_premium_shipping": "Ilmainen vakiotoimitus sisältyy hintaan",
+      "free_premium_shipping": "Vakiotoimitus sisältyy hintaan",
       "return_policy_title": "Palautuskäytäntö",
       "return_policy_line_1": "Sinulla on 30 päivää toimituksesta pyytää palautusta tai vaihtoa.",
       "return_policy_line_2": "Tavaroiden tulee olla käyttämättömiä, pesemättömiä, alkuperäisessä kunnossa ja alkuperäisessä pakkauksessaan ja etiketeillä.",
@@ -372,9 +372,9 @@
       "safe_payment_description": "Hyväksymme kaikki yleisimmät luotto- ja pankkikortit. Korttitietosi ovat turvassa, eikä niitä koskaan jaeta kumppaneillemme. Voit helposti hallita tallennettuja korttejasi milloin tahansa. Jos sinulla on kysyttävää tapahtumasta, ota yhteyttä korttisi myöntäjään.",
       "secure_logistics_title": "Turvallinen logistiikka",
       "secure_logistics_line_1": "Jos paketti on vaurioitunut tai kadonnut kuljetuksen aikana, ota meihin yhteyttä, jotta voimme auttaa lähetyksen tarkistamisessa.",
-      "secure_logistics_line_2": "Käytä tilauksen seurantalinkkiäsi saadaksesi viimeisimmät operaattoripäivitykset. Kansainvälisistä tilauksista voidaan periä paikalliset verot, tullit tai tullimaksut, jotka rahdinkuljettaja tai paikallinen viranomainen kerää.",
+      "secure_logistics_line_2": "Käytä tilauksen seurantalinkkiä saadaksesi uusimmat tiedot kuljetusliikkeeltä. Kansainvälisiin tilauksiin voi kohdistua paikallisia veroja, tulleja tai tullimaksuja, joita kuljetusliike tai paikallinen viranomainen perii.",
       "secure_privacy_title": "Turvallinen yksityisyys",
-      "secure_privacy_description": "Yksityisyytesi suojaaminen on meille tärkeää! Voit olla varma, että tietosi säilytetään turvassa ja tinkimättöminä. Emme myy henkilötietojasi rahasta ja käytämme tietojasi vain tietosuoja- ja evästekäytäntömme mukaisesti tarjotaksemme ja parantaaksemme palveluitamme sinulle."
+      "secure_privacy_description": "Yksityisyytesi suojaaminen on meille tärkeää! Voit olla varma, että tietosi säilytetään turvassa ja suojattuina. Emme myy henkilötietojasi rahasta ja käytämme tietojasi vain tietosuoja- ja evästekäytäntömme mukaisesti tarjotaksemme ja parantaaksemme palveluitamme sinulle."
     },
     "shipping_country": {
       "product_country": "Toimitus maahan {{ country }}",
@@ -474,7 +474,7 @@
       "caption": "Ostoskorin tuotteet",
       "remove_title": "Poista {{ title }}",
       "note": "Tilauksen erityisohjeet",
-      "checkout": "Kassa",
+      "checkout": "Siirry kassalle",
       "empty": "Ostoskorisi on tyhjä",
       "cart_error": "Ostoskorisi päivityksessä tapahtui virhe. Yritä uudelleen.",
       "cart_quantity_error_html": "Voit lisätä ostoskoriisi vain {{ quantity }} kappaletta tätä tuotetta.",
@@ -501,14 +501,14 @@
       "store_rating_prefix": "",
       "store_rating_suffix": "",
       "we_accept": "Hyväksymme",
-      "complete_the_look": "Täydennä Look",
+      "complete_the_look": "Täydennä asu",
       "you_may_also_like": "Saatat pitää myös näistä",
       "trust": {
         "secure_checkout": "Turvallinen kassa",
         "ssl_encrypted": "SSL-salattu",
         "free_shipping": "Toimitus sisältyy",
         "returns": "30 päivän palautusoikeus",
-        "secure": "Turvallinen",
+        "secure": "Turvallinen maksaminen",
         "encrypted": "Salattu",
         "free_ship": "Toimitus sisältyy"
       },
@@ -793,7 +793,7 @@
         "daddy_me_shirts_html": "<p>Selaa {{ title }}:tä ostajille, jotka etsivät nimenomaan nappeja, mekkopaitaa ja havaijilaistyylisiä isä-poika-asuja. Tämä kokoelma keskittyy kauluksiin, jotka sopivat muotokuviin, illallisiin, rantamatkoihin, häihin ja muihin hienoihin tilaisuuksiin.</p><p>Verrattuna rentoihin t-paikkoihin nämä mallit ovat rakenteellisempia ja valokuvavalmiimpia, joten ne sopivat paremmin, kun haluat yhteensopivia asuja, jotka näyttävät edelleen korkealta.</p>",
         "couples_html": "<p>Tutustu {{ title }}:iin treffi-iltojen, lomien, lomalahjojen, kihlakuvien ja arjen koordinointiin. Tämä sivu on suunniteltu ostajille, jotka haluavat useamman kuin yhden yhteensopivan topin ja tarvitsevat laajemman lähtökohdan koordinoidulle ulkoasulle.</p><p>Aloita helpoista t-paidoista tai lounge-setistä ja rakenna sitten täydellisempi asu matkan, tilaisuuden tai valokuvaushetken ympärille.</p>",
         "couples_tshirts_html": "<p>Selaa {{ title }}-sivua ostajille, jotka etsivät pariskunnille sopivia paitoja, t-paitoja ja jokapäiväisiä yhteensopivia toppeja. Nämä tyylit toimivat parhaiten, kun haluat rennon ja lahjakkaan ulkoasun matkoille, lomille, konsertteille, treffi-iltoille ja valokuville.</p><p>Käytä tätä sivua helpottaaksesi päivittäistä yhteensovittamista ja siirry sitten laajempaan pariskuntamallistoon, jos haluat täydellisemmän asun, joka on rakennettu muuhun kuin t-paidiin.</p>",
-        "christmas_tops_html": "<p>Yhteensopivat joulupaidat ja collegepaidat vanhemmille, lapsille ja sisaruksille poro-, joulupukki- ja pohjoismaisilla kuvioilla, jokaiselle oma koko.<\/p>"
+        "christmas_tops_html": "<p>Yhteensopivat joulupaidat ja collegepaidat vanhemmille, lapsille ja sisaruksille poro-, joulupukki- ja pohjoismaisilla kuvioilla, jokaiselle oma koko.</p>"
       },
       "rich_parts": {
         "new_women_outfits": {

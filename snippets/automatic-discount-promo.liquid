@@ -69,9 +69,9 @@
     when 'he'
       assign promo_offer = 'קנו 2 וקבלו 20% הנחה על הפריט השלישי'
       assign promo_next_title = 'הוסיפו עוד פריט אחד וקבלו 20% הנחה על הפריט הזול ביותר'
-      assign promo_next_body = 'ההנחה מוחלת אוטומטית בעגלה.'
+      assign promo_next_body = "ההנחה מוחלת אוטומטית בסל."
       assign promo_applied_title = 'הוחלה הנחה של 20% על הפריט השלישי'
-      assign promo_applied_body = 'ההנחה ירדה מהפריט הזול ביותר, פעם אחת בהזמנה.'
+      assign promo_applied_body = "ההנחה מנוכה מהפריט הזול ביותר, פעם אחת בהזמנה."
     when 'hi'
       assign promo_offer = '2 खरीदें, तीसरे पीस पर 20% छूट पाएं'
       assign promo_next_title = '1 और पीस जोड़ें और सबसे कम कीमत वाले पीस पर 20% छूट पाएं'
@@ -115,10 +115,10 @@
       assign promo_applied_title = 'Naliczono 20% rabatu na 3. sztukę'
       assign promo_applied_body = 'Odliczono od najtańszej sztuki, raz na zamówienie.'
     when 'pt'
-      assign promo_offer = 'Compre 2 e leve a 3ª peça com 20% off'
-      assign promo_next_title = 'Adicione mais 1 peça e ganhe 20% off na peça de menor preço'
+      assign promo_offer = "Compre 2 e leve a 3ª peça com 20% de desconto"
+      assign promo_next_title = "Adicione mais 1 peça e ganhe 20% de desconto na peça de menor preço"
       assign promo_next_body = 'Aplicado automaticamente no carrinho.'
-      assign promo_applied_title = '20% off na 3ª peça aplicado'
+      assign promo_applied_title = "20% de desconto na 3ª peça aplicado"
       assign promo_applied_body = 'Descontado da peça de menor preço, uma vez por pedido.'
     when 'ro'
       assign promo_offer = 'Cumpărați 2 și primiți 20% reducere la a 3-a piesă'
@@ -135,9 +135,9 @@
     when 'sv'
       assign promo_offer = 'Köp 2, få 20 % rabatt på det 3:e plagget'
       assign promo_next_title = 'Lägg till 1 plagg till och få 20 % rabatt på det billigaste plagget'
-      assign promo_next_body = 'Dras automatiskt i varukorgen.'
-      assign promo_applied_title = '20 % rabatt på 3:e plagget har dragits'
-      assign promo_applied_body = 'Dras från det billigaste plagget, en gång per beställning.'
+      assign promo_next_body = "Rabatten dras av automatiskt i varukorgen."
+      assign promo_applied_title = "20 % rabatt på 3:e plagget är tillämpad"
+      assign promo_applied_body = "Dras av från det billigaste plagget, en gång per beställning."
   endcase
 
   assign promo_bundle_applied = false

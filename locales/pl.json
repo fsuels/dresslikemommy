@@ -50,7 +50,7 @@
     },
     "cart": {
       "view": "Pokaż koszyk ({{ count }})",
-      "item_added": "Pozycję dodano do koszyka",
+      "item_added": "Produkt dodany do koszyka",
       "view_empty_cart": "Pokaż koszyk"
     },
     "share": {
@@ -170,7 +170,7 @@
         "load_video": "Odtwórz film {{ index }} w widoku galerii",
         "image_available": "Obraz {{ index }} jest teraz dostępny w widoku galerii"
       },
-      "view_full_details": "Pokaż kompletne dane",
+      "view_full_details": "Zobacz pełne szczegóły",
       "include_taxes": "Z wliczonym podatkiem.",
       "shipping_policy_html": "Standardowa wysyłka jest wliczona w cenę produktów w obsługiwanych krajach. Szacowany czas dostawy jest podany na każdej stronie produktu; szacunki nie są gwarancją. <a href=\"{{ link }}\">Zasady wysyłki</a>",
       "choose_options": "Wybierz opcje",
@@ -194,13 +194,13 @@
       "product_variants": "Warianty produktów",
       "select_size": "Wybierz rozmiar",
       "select_color": "Wybierz kolor",
-      "size_required_message": "Przed dodaniem do koszyka proszę wybrać rozmiar.",
+      "size_required_message": "Przed dodaniem do koszyka wybierz rozmiar.",
       "matching_set": {
-        "heading": "Zbuduj swój pasujący zestaw",
+        "heading": "Skompletuj pasujący zestaw",
         "copy": "Wybierz rozmiar dla każdej osoby. Cena za sztukę.",
         "copy_person": "Wybierz rozmiar dla każdej osoby.",
-        "empty": "Wybierz jeden rozmiar dla każdego członka rodziny, którego chcesz dodać.",
-        "add": "Dodaj wybrane elementy do koszyka",
+        "empty": "Wybierz co najmniej jeden rozmiar, aby dodać zestaw.",
+        "add": "Dodaj pasujące elementy do koszyka",
         "success": "Pasujący zestaw dodany do koszyka.",
         "error": "Nie można dodać wybranych elementów. Spróbuj ponownie."
       },
@@ -217,7 +217,7 @@
       },
       "free_shipping_short": "Darmowa wysyłka",
       "size_guide": {
-        "compare_family_sizes": "Porównaj wielkość rodziny",
+        "compare_family_sizes": "Porównaj rozmiary całej rodziny",
         "compare_all_sizes": "Porównaj wszystkie rozmiary",
         "guide_and_fit": "Przewodnik po rozmiarach i dopasowaniu",
         "your_size_details": "Dane dotyczące Twojego rozmiaru",
@@ -348,7 +348,7 @@
       "returns_damaged": "Produkt uszkodzony lub wadliwy? Skontaktuj się z obsługą w ciągu 7 dni i dołącz zdjęcia.",
       "returns_shipping": "Koszty wysyłki zwrotnej ponosi klient, chyba że produkt dotarł uszkodzony lub wadliwy.",
       "returns_full_link_label": "Zobacz pełną politykę zwrotów",
-      "security_headline": "Bezpieczny checkout",
+      "security_headline": "Bezpieczna płatność",
       "security_summary": "Szyfrowana płatność. Dostępne metody płatności są wyświetlane przy finalizacji zamówienia.",
       "security_details_label": "Płatność i prywatność"
     },
@@ -483,10 +483,10 @@
       "announcement": "Ogłoszenie",
       "menu": "Menu",
       "cart_count": {
-        "one": "{{ count }} pozycja",
-        "other": "{{ count }} pozycje(-i)",
-        "few": "{{ count }} pozycje(-i)",
-        "many": "{{ count }} pozycje(-i)"
+        "one": "{{ count }} produkt",
+        "other": "{{ count }} produktu",
+        "few": "{{ count }} produkty",
+        "many": "{{ count }} produktów"
       }
     },
     "cart": {
@@ -494,15 +494,15 @@
       "caption": "Pozycje w koszyku",
       "remove_title": "Usuń {{ title }}",
       "note": "Specjalne instrukcje do zamówienia",
-      "checkout": "Realizuj zakup",
+      "checkout": "Przejdź do kasy",
       "empty": "Twój koszyk jest pusty",
       "cart_error": "Wystąpił błąd podczas aktualizowania Twojego koszyka. Spróbuj ponownie.",
-      "cart_quantity_error_html": "Możesz dodać do koszyka tylko {{ quantity }} sztuk(i) tej pozycji.",
+      "cart_quantity_error_html": "Możesz dodać do koszyka maksymalnie {{ quantity }} szt. tego produktu.",
       "taxes_and_shipping_policy_at_checkout_html": "Podatki i rabaty są obliczane przy finalizacji zamówienia. Standardowa wysyłka jest wliczona w cenę produktów tam, gdzie dostępna jest standardowa metoda dostawy. <a href=\"{{ link }}\">Zasady wysyłki</a>",
       "taxes_included_but_shipping_at_checkout": "Podatek wliczony. Rabaty są obliczane przy finalizacji zamówienia. Standardowa wysyłka jest wliczona w cenę produktów tam, gdzie dostępna jest standardowa metoda dostawy.",
       "taxes_included_and_shipping_policy_html": "Podatek wliczony. Rabaty są obliczane przy finalizacji zamówienia. Standardowa wysyłka jest wliczona w cenę produktów tam, gdzie dostępna jest standardowa metoda dostawy. <a href=\"{{ link }}\">Zasady wysyłki</a>",
       "taxes_and_shipping_at_checkout": "Podatki i rabaty są obliczane przy finalizacji zamówienia. Standardowa wysyłka jest wliczona w cenę produktów tam, gdzie dostępna jest standardowa metoda dostawy.",
-      "update": "Aktualizuj",
+      "update": "Zaktualizuj",
       "headings": {
         "product": "Produkt",
         "price": "Cena",
@@ -514,21 +514,21 @@
         "title": "Masz już konto?",
         "paragraph_html": "<a href=\"{{ link }}\" class=\"link underlined-link\">Zaloguj się</a>, aby szybciej realizować zakupy."
       },
-      "estimated_total": "Przewidywana suma",
-      "new_estimated_total": "Nowa przewidywana suma",
+      "estimated_total": "Szacunkowa suma",
+      "new_estimated_total": "Nowa szacunkowa suma",
       "order_today_delivery": "Szacowana dostawa jest podana na stronie produktu i w koszyku. Szacunki nie są gwarancją.",
       "est_delivery": "Szacowana dostawa jest podana na stronie produktu i w koszyku. Szacunki nie są gwarancją.",
       "store_rating_prefix": "",
       "store_rating_suffix": "",
       "we_accept": "Akceptujemy",
-      "complete_the_look": "Uzupełnij wygląd",
+      "complete_the_look": "Skompletuj stylizację",
       "you_may_also_like": "Może Ci się również spodobać",
       "trust": {
         "secure_checkout": "Bezpieczna płatność",
         "ssl_encrypted": "Szyfrowane SSL",
         "free_shipping": "Wysyłka w cenie",
         "returns": "30-dniowy zwrot",
-        "secure": "Bezpieczny",
+        "secure": "Bezpieczne zakupy",
         "encrypted": "Zaszyfrowane",
         "free_ship": "Wysyłka w cenie"
       },
@@ -817,7 +817,7 @@
         "daddy_me_shirts_html": "<p>Przeglądaj {{ title }} dla kupujących, którzy szukają ubrań zapinanych na guziki, koszuli i strojów dla ojca i syna w stylu hawajskim. Ta kolekcja koncentruje się na stylizacjach z kołnierzykiem, które sprawdzają się podczas portretów, kolacji, wycieczek na plażę, wesel i innych eleganckich okazji.</p><p>W porównaniu ze zwykłymi T-shirtami te style są bardziej uporządkowane i gotowe do zdjęć, dzięki czemu lepiej pasują, gdy chcesz dopasować stroje, które nadal wyglądają szlachetnie.</p>",
         "couples_html": "<p>Przeglądaj {{ title }} na randki, wakacje, prezenty świąteczne, zdjęcia zaręczynowe i codzienną koordynację. Ta strona jest przeznaczona dla kupujących, którzy chcą więcej niż jednego pasującego topu i potrzebują szerszego punktu wyjścia dla skoordynowanego wyglądu.</p><p>Zacznij od prostych koszulek lub zestawów wypoczynkowych, a następnie stwórz pełniejszy strój nawiązujący do podróży, okazji lub momentu, w którym robisz zakupy.</p>",
         "couples_tshirts_html": "<p>Przeglądaj {{ title }} dla kupujących poszukujących pasujących koszul dla par, t-shirtów dla par i dopasowanych topów na co dzień. Te style sprawdzają się najlepiej, gdy chcesz wyglądać swobodnie i na prezent na wycieczki, wakacje, koncerty, randki i zdjęcia.</p><p>Skorzystaj z tej strony, aby łatwo dopasować je na co dzień, a następnie przejdź do szerszej kolekcji dla par, jeśli chcesz mieć pełniejszy strój zbudowany nie tylko na samych koszulkach.</p>",
-        "christmas_tops_html": "<p>Pasujące świąteczne swetry i bluzy dla rodziców, dzieci i rodzeństwa z reniferami, Mikołajem i nordyckimi wzorami, z rozmiarem wybieranym dla każdej osoby.<\/p>"
+        "christmas_tops_html": "<p>Pasujące świąteczne swetry i bluzy dla rodziców, dzieci i rodzeństwa z reniferami, Mikołajem i nordyckimi wzorami, z rozmiarem wybieranym dla każdej osoby.</p>"
       },
       "rich_parts": {
         "new_women_outfits": {
@@ -1131,7 +1131,7 @@
       "who": "Dla kogo?",
       "size": "Wybierz rozmiar",
       "color": "Wybierz kolor",
-      "piece": "Wybierz część",
+      "piece": "Wybierz element",
       "option": "Wybierz: {{ option }}"
     },
     "privacy_modal": {

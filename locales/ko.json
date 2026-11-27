@@ -49,9 +49,9 @@
       "reset": "검색어 지우기"
     },
     "cart": {
-      "view": "카트 보기({{ count }})",
-      "item_added": "카트에 추가된 품목",
-      "view_empty_cart": "카트 보기"
+      "view": "장바구니 보기({{ count }})",
+      "item_added": "상품이 장바구니에 담겼습니다",
+      "view_empty_cart": "장바구니 보기"
     },
     "share": {
       "copy_to_clipboard": "링크 복사",
@@ -118,7 +118,7 @@
   },
   "products": {
     "product": {
-      "add_to_cart": "카트에 추가",
+      "add_to_cart": "장바구니에 담기",
       "description": "설명",
       "on_sale": "할인",
       "product_variants": "제품 이형 상품",
@@ -170,7 +170,7 @@
         "image_available": "이제 갤러리 뷰에서 이미지 {{ index }} 사용 가능"
       },
       "view_full_details": "전체 세부 정보 보기",
-      "include_taxes": "세금이 포함됩니다.",
+      "include_taxes": "세금 포함",
       "shipping_policy_html": "지원되는 국가에서는 표준 배송비가 상품 가격에 포함되어 있습니다. 예상 배송일은 각 상품 페이지에 표시되며, 예상일은 보장이 아닙니다. <a href=\"{{ link }}\">배송 정책</a>",
       "choose_options": "옵션 선택하기",
       "choose_product_options": "{{ product_name }}의 옵션 선택",
@@ -197,10 +197,10 @@
         "heading": "어울리는 세트 만들기",
         "copy": "한 사람씩 사이즈를 선택하세요. 가격은 상품당입니다.",
         "copy_person": "한 사람씩 사이즈를 선택하세요.",
-        "empty": "추가하려는 각 가족 구성원에 대해 하나의 사이즈를 선택하세요.",
-        "add": "선택한 제품을 장바구니에 추가",
+        "empty": "세트를 추가하려면 사이즈를 하나 이상 선택해 주세요.",
+        "add": "어울리는 상품 장바구니에 담기",
         "success": "장바구니에 매칭 세트가 추가되었습니다.",
-        "error": "선택한 작품을 추가할 수 없습니다. 다시 시도해 주세요."
+        "error": "선택한 상품을 추가하지 못했습니다. 다시 시도해 주세요."
       },
       "occasions": {
         "title": "추천하는 상황"
@@ -248,7 +248,7 @@
       "selected_size_label": "크기: {{ size }}",
       "description_sections": {
         "details_eyebrow": "세부",
-        "highlights_heading": "당신이 그것을 좋아할 이유",
+        "highlights_heading": "이 상품을 좋아하실 이유",
         "size_chart_heading": "사이즈 차트",
         "product_details_heading": "제품 세부정보",
         "size_chart_meta": "공급업체 소스 테이블의 측정값",
@@ -470,14 +470,14 @@
       }
     },
     "cart": {
-      "title": "카트",
+      "title": "장바구니",
       "caption": "카트 품목",
       "remove_title": "{{ title }} 제거",
-      "note": "주문 특별 지침",
-      "checkout": "결제",
-      "empty": "카트가 비어 있습니다",
-      "cart_error": "카트를 업데이트하는 중 오류가 발생했습니다. 다시 시도하십시오.",
-      "cart_quantity_error_html": "카트에는 이 품목을 {{ quantity }}개만 추가할 수 있습니다.",
+      "note": "주문 요청사항",
+      "checkout": "결제하기",
+      "empty": "장바구니가 비어 있습니다",
+      "cart_error": "장바구니를 업데이트하는 중 오류가 발생했습니다. 다시 시도해 주세요.",
+      "cart_quantity_error_html": "이 상품은 장바구니에 {{ quantity }}개까지만 담을 수 있습니다.",
       "taxes_and_shipping_policy_at_checkout_html": "세금과 할인은 결제 시 계산됩니다. 일반 배송 방법을 이용할 수 있는 경우 표준 배송비는 상품 가격에 포함되어 있습니다. <a href=\"{{ link }}\">배송 정책</a>",
       "taxes_included_but_shipping_at_checkout": "세금 포함. 할인은 결제 시 계산됩니다. 일반 배송 방법을 이용할 수 있는 경우 표준 배송비는 상품 가격에 포함되어 있습니다.",
       "taxes_included_and_shipping_policy_html": "세금 포함. 할인은 결제 시 계산됩니다. 일반 배송 방법을 이용할 수 있는 경우 표준 배송비는 상품 가격에 포함되어 있습니다. <a href=\"{{ link }}\">배송 정책</a>",
@@ -491,8 +491,8 @@
       },
       "update": "업데이트",
       "login": {
-        "title": "계정이 있습니까?",
-        "paragraph_html": "더 빠르게 결제하려면 <a href=\"{{ link }}\" class=\"link underlined-link\">로그인</a>하십시오."
+        "title": "계정이 있으신가요?",
+        "paragraph_html": "더 빠르게 결제하려면 <a href=\"{{ link }}\" class=\"link underlined-link\">로그인</a>해 주세요."
       },
       "estimated_total": "예상 총액",
       "new_estimated_total": "새로운 예상 총액",
@@ -501,14 +501,14 @@
       "store_rating_prefix": "",
       "store_rating_suffix": "",
       "we_accept": "사용 가능한 결제 수단",
-      "complete_the_look": "룩을 완성해보세요",
+      "complete_the_look": "룩을 완성해 보세요",
       "you_may_also_like": "함께 살펴보세요",
       "trust": {
         "secure_checkout": "안전한 결제",
         "ssl_encrypted": "SSL 암호화됨",
         "free_shipping": "배송 포함",
         "returns": "30일 반품",
-        "secure": "안전한",
+        "secure": "안전한 결제",
         "encrypted": "암호화됨",
         "free_ship": "배송 포함"
       },
@@ -521,7 +521,7 @@
       "shipping_free": "일반 포함",
       "popular_with_families": "더 많은 매칭 상품",
       "recently_viewed": "최근 본 상품",
-      "savings_html": "<strong>{{ amount }}</strong>를 저장 중입니다.",
+      "savings_html": "<strong>{{ amount }}</strong> 절약",
       "shipping_country_reassurance": "{{ country }}(으)로 배송. 일반 배송 방법을 이용할 수 있는 경우 표준 배송비는 상품 가격에 포함되어 있습니다."
     },
     "footer": {
@@ -793,7 +793,7 @@
         "daddy_me_shirts_html": "<p>버튼 업, 드레스 셔츠, 하와이 스타일 아버지와 아들 의상을 특별히 찾는 쇼핑객을 위해 {{ title }}를 찾아보세요. 이 컬렉션은 인물 사진, 저녁 식사, 해변 여행, 결혼식 및 기타 세련된 행사에 어울리는 칼라 룩에 중점을 둡니다.</p><p>캐주얼 티셔츠에 비해 이러한 스타일은 더욱 구조화되고 사진 촬영에 적합하므로 여전히 고급스러워 보이는 어울리는 의상을 원할 때 더 잘 맞습니다.</p>",
         "couples_html": "<p>데이트 밤, 휴가, 명절 선물, 약혼 사진 및 일상 코디네이션을 위해 {{ title }}를 살펴보세요. 이 페이지는 하나 이상의 어울리는 상의를 원하고 조화로운 룩을 위한 더 넓은 출발점이 필요한 쇼핑객을 위해 설계되었습니다.</p><p>간편한 티셔츠나 라운지 세트로 시작한 다음 여행, 행사 또는 쇼핑하려는 사진 촬영 순간에 맞춰 더욱 완벽한 의상을 만들어 보세요.</p>",
         "couples_tshirts_html": "<p>커플에게 어울리는 셔츠, 커플 티셔츠, 일상에 어울리는 상의를 검색하는 쇼핑객을 위해 {{ title }}를 찾아보세요. 이러한 스타일은 여행, 휴가, 콘서트, 데이트, 사진 촬영 시 캐주얼하고 선물하기 좋은 룩을 원할 때 가장 잘 어울립니다.</p><p>쉽게 일상적인 매칭을 위해 이 페이지를 사용하고, 티셔츠보다 더 풍성한 의상을 원한다면 더 광범위한 커플 컬렉션을 살펴보세요.</p>",
-        "christmas_tops_html": "<p>순록, 산타, 노르딕 디자인의 부모, 아이, 형제자매용 크리스마스 커플 스웨터와 맨투맨을 한 사람씩 사이즈를 골라 담으세요.<\/p>"
+        "christmas_tops_html": "<p>순록, 산타, 노르딕 디자인의 부모, 아이, 형제자매용 크리스마스 커플 스웨터와 맨투맨을 한 사람씩 사이즈를 골라 담으세요.</p>"
       },
       "rich_parts": {
         "new_women_outfits": {
