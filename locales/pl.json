@@ -149,7 +149,7 @@
         "regular_price": "Cena regularna",
         "sale_price": "Cena promocyjna",
         "unit_price": "Cena jednostkowa",
-        "compare_at_price": "Porównaj w {{ price }}"
+        "compare_at_price": "Cena regularna {{ price }}"
       },
       "pickup_availability": {
         "view_store_info": "Wyświetl informacje o sklepie",
@@ -177,12 +177,12 @@
       "choose_product_options": "Wybierz opcje dla {{ product_name }}",
       "value_unavailable": "{{ option_value }} - niedostępny",
       "variant_sold_out_or_unavailable": "Wariant wyprzedany lub niedostępny",
-      "inventory_in_stock": "W magazynie",
-      "inventory_in_stock_show_count": "{{ quantity }} w magazynie",
-      "inventory_low_stock": "Niski poziom zapasów",
-      "inventory_low_stock_show_count": "Niski poziom zapasów: pozostało {{ quantity }}",
-      "inventory_out_of_stock": "Zapas wyczerpany",
-      "inventory_out_of_stock_continue_selling": "W magazynie",
+      "inventory_in_stock": "Dostępny",
+      "inventory_in_stock_show_count": "Dostępne: {{ quantity }} szt.",
+      "inventory_low_stock": "Ostatnie sztuki",
+      "inventory_low_stock_show_count": "Ostatnie sztuki: pozostało {{ quantity }}",
+      "inventory_out_of_stock": "Niedostępny",
+      "inventory_out_of_stock_continue_selling": "Dostępny",
       "sku": "SKU",
       "volume_pricing": {
         "title": "Ceny zależne od wolumenu",
@@ -208,20 +208,20 @@
         "title": "Idealne na"
       },
       "sold_separately": {
-        "title": "Zbuduj swój zestaw element po elemencie",
-        "body": "Wybierz top lub spodnie dla każdego członka rodziny. Każda część sprzedawana osobno."
+        "title": "Skompletuj stylizację element po elemencie",
+        "body": "Wybierz top lub spodnie dla każdego członka rodziny. Każdy element jest sprzedawany osobno."
       },
       "fabric": {
-        "title": "Materiał i odczucie",
-        "body_default": "Lekka, oddychająca tkanina z luźnym układaniem na ciepłą pogodę."
+        "title": "Materiał i dotyk",
+        "body_default": "Lekka, przewiewna tkanina, która swobodnie się układa w ciepłe dni."
       },
-      "free_shipping_short": "Darmowa wysyłka",
+      "free_shipping_short": "Standardowa wysyłka w cenie",
       "size_guide": {
         "compare_family_sizes": "Porównaj rozmiary całej rodziny",
         "compare_all_sizes": "Porównaj wszystkie rozmiary",
         "guide_and_fit": "Przewodnik po rozmiarach i dopasowaniu",
         "your_size_details": "Dane dotyczące Twojego rozmiaru",
-        "compare_hint": "Otwórz pełną tabelę poniżej, aby porównać pobliskie rozmiary.",
+        "compare_hint": "Otwórz pełną tabelę poniżej, aby porównać sąsiednie rozmiary.",
         "chart_units": "Jednostki tabeli rozmiarów",
         "columns": {
           "size": "Rozmiar",
@@ -229,14 +229,14 @@
           "bust_cm_in": "Biust (cm/cale)",
           "waist_cm_in": "Talia (cm/cale)",
           "hips_cm_in": "Biodra (cm/cale)",
-          "height_cm_in": "Wysokość (cm/cale)",
+          "height_cm_in": "Wzrost (cm/cale)",
           "weight_kg": "Waga (kg)",
           "age": "Wiek"
         }
       },
       "reviews": {
         "heading": "Recenzje klientów",
-        "photo_heading": "Recenzje zdjęć klientów",
+        "photo_heading": "Recenzje klientów ze zdjęciami",
         "jump_to_reviews": "Przejdź do recenzji"
       },
       "review_widget": {
@@ -253,10 +253,10 @@
         "highlights_heading": "Dlaczego to pokochasz",
         "size_chart_heading": "Tabela rozmiarów",
         "product_details_heading": "Szczegóły produktu",
-        "size_chart_meta": "Pomiary z tabeli źródłowej dostawcy",
+        "size_chart_meta": "Wymiary z tabeli rozmiarów dostawcy",
         "product_details_meta": "Ustrukturyzowane informacje o produkcie"
       },
-      "review_thanks_note": "Nasi klienci otrzymują z zamówieniem 10% kod z podziękowaniem, a my prosimy o szczere opinie, dobre lub złe."
+      "review_thanks_note": "Nasi klienci otrzymują wraz z zamówieniem kod rabatowy 10% w podziękowaniu, a my prosimy o szczere opinie – dobre lub złe."
     },
     "modal": {
       "label": "Galeria multimediów"
@@ -325,7 +325,7 @@
       "ssl_encrypted": "Szyfrowane SSL",
       "returns": "30 dni na zwrot",
       "free_shipping": "Standardowa wysyłka w cenie",
-      "trusted_since": "Dopasowane stroje na rodzinne chwile",
+      "trusted_since": "Pasujące stroje na rodzinne chwile",
       "assistance_note": "Potrzebujesz pomocy? Zazwyczaj odpowiadamy w ciągu jednego dnia roboczego."
     },
     "purchase_confidence": {
@@ -373,8 +373,8 @@
       "return_policy_title": "Polityka zwrotów",
       "return_policy_line_1": "Masz 30 dni od dostawy na złożenie wniosku o zwrot lub wymianę.",
       "return_policy_line_2": "Przedmioty muszą być nienoszone, nieprane, w oryginalnym stanie i w oryginalnym opakowaniu z dołączonymi metkami.",
-      "return_policy_line_3": "Niektóre artykuły, w tym stroje kąpielowe i bielizna intymna, nie podlegają zwrotowi ze względów higienicznych; sprzedaż ostateczna i przedmioty spersonalizowane również nie są objęte promocją.",
-      "return_policy_line_4": "Przed odesłaniem czegokolwiek zapoznaj się z zasadami zwrotów pod kątem kwalifikowalności, wysyłki zwrotnej i terminu zwrotu.",
+      "return_policy_line_3": "Niektóre artykuły, w tym stroje kąpielowe i bielizna, nie podlegają zwrotowi ze względów higienicznych; wyłączone są również produkty sprzedawane bez możliwości zwrotu oraz produkty personalizowane.",
+      "return_policy_line_4": "Zanim cokolwiek odeślesz, zapoznaj się z zasadami zwrotu pieniędzy: warunkami, wysyłką zwrotną i terminem zwrotu.",
       "shopping_security_title": "Bezpieczeństwo zakupów",
       "safe_payment_options_title": "Opcje bezpiecznych płatności",
       "safe_payment_description": "Akceptujemy wszystkie główne karty kredytowe i debetowe. Dane Twojej karty są bezpieczne i nigdy nie są udostępniane naszym partnerom. Możesz łatwo zarządzać zapisanymi kartami w dowolnym momencie. W przypadku pytań dotyczących transakcji prosimy o kontakt z wydawcą karty.",

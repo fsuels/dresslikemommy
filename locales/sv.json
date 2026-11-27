@@ -123,7 +123,7 @@
       "on_sale": "Rea",
       "quantity": {
         "label": "Antal",
-        "input_label": "Kvantitet för {{ product }}",
+        "input_label": "Antal för {{ product }}",
         "increase": "Öka antal för {{ product }}",
         "decrease": "Minska antal för {{ product }}",
         "minimum_of": "Minimum på {{ quantity }}",
@@ -140,7 +140,7 @@
         "regular_price": "Ordinarie pris",
         "sale_price": "Reapris",
         "unit_price": "Enhetspris",
-        "compare_at_price": "Jämför på {{ price }}"
+        "compare_at_price": "Ordinarie pris {{ price }}"
       },
       "share": "Dela den här produkten",
       "sold_out": "Slutsåld",
@@ -169,7 +169,7 @@
         "image_available": "Bilden {{ index }} är nu tillgänglig i gallerivisning"
       },
       "view_full_details": "Visa alla detaljer",
-      "include_taxes": "Skatt ingår.",
+      "include_taxes": "Moms ingår.",
       "shipping_policy_html": "Standardfrakt ingår i produktpriserna för länder som stöds. Beräknad leverans visas på varje produktsida; uppskattningar är inga garantier. <a href=\"{{ link }}\">Fraktpolicy</a>",
       "choose_options": "Välj alternativ",
       "choose_product_options": "Välj alternativ för {{ product_name }}",
@@ -177,11 +177,11 @@
       "variant_sold_out_or_unavailable": "Varianten är slutsåld eller inte tillgänglig",
       "inventory_in_stock": "I lager",
       "inventory_in_stock_show_count": "{{ quantity }} i lager",
-      "inventory_low_stock": "Låg lagernivå",
-      "inventory_low_stock_show_count": "Låg lagernivå: {{ quantity }} kvar",
+      "inventory_low_stock": "Få i lager",
+      "inventory_low_stock_show_count": "Få i lager: {{ quantity }} kvar",
       "inventory_out_of_stock": "Slut i lager",
       "inventory_out_of_stock_continue_selling": "I lager",
-      "sku": "Lagerhållningsenhet",
+      "sku": "Artikelnummer",
       "volume_pricing": {
         "title": "Volymprissättning",
         "note": "Volymprissättning är tillgängligt",
@@ -206,14 +206,14 @@
         "title": "Perfekt för"
       },
       "sold_separately": {
-        "title": "Bygg din look del för del",
-        "body": "Välj en topp eller byxa för varje familjemedlem. Varje del säljs separat."
+        "title": "Skapa din look plagg för plagg",
+        "body": "Välj en topp eller byxor för varje familjemedlem. Varje plagg säljs separat."
       },
       "fabric": {
         "title": "Tyg och känsla",
         "body_default": "Lätt, andningsbart tyg med ett enkelt fall för varmt väder."
       },
-      "free_shipping_short": "Fri frakt",
+      "free_shipping_short": "Standardfrakt ingår",
       "size_guide": {
         "compare_family_sizes": "Jämför storlekar för hela familjen",
         "compare_all_sizes": "Jämför alla storlekar",
@@ -223,18 +223,18 @@
         "chart_units": "Enheter i storlekstabellen",
         "columns": {
           "size": "Storlek",
-          "us_size": "US storlek",
+          "us_size": "US-storlek",
           "bust_cm_in": "Byst (cm/tum)",
           "waist_cm_in": "Midja (cm/tum)",
           "hips_cm_in": "Höfter (cm/tum)",
-          "height_cm_in": "Höjd (cm/tum)",
+          "height_cm_in": "Längd (cm/tum)",
           "weight_kg": "Vikt (kg)",
           "age": "Ålder"
         }
       },
       "reviews": {
         "heading": "Kundrecensioner",
-        "photo_heading": "Kundfotorecensioner",
+        "photo_heading": "Kundrecensioner med foton",
         "jump_to_reviews": "Hoppa till recensioner"
       },
       "review_widget": {
@@ -248,10 +248,10 @@
       "selected_size_label": "Storlek: {{ size }}",
       "description_sections": {
         "details_eyebrow": "Detaljer",
-        "highlights_heading": "Varför du kommer att älska det",
+        "highlights_heading": "Därför kommer du att älska den",
         "size_chart_heading": "Storlekstabell",
         "product_details_heading": "Produktinformation",
-        "size_chart_meta": "Mätningar från leverantörens källtabell",
+        "size_chart_meta": "Mått från leverantörens storlekstabell",
         "product_details_meta": "Strukturerad produktinformation"
       },
       "review_thanks_note": "Våra kunder får en tackkod på 10 % med sin beställning, och vi ber om ärliga recensioner, bra eller dåliga."
@@ -358,16 +358,16 @@
       "standard_delivery_window": "12-16 dagar",
       "christmas_order_by": "Uppskattning: beställ senast {{ order_date }} för leverans senast {{ arrive_date }}. Ingen garanti.",
       "christmas_order_by_other": "Beställer du till jul? Leveranstiderna varierar mellan länder, så beställ så tidigt som möjligt.",
-      "flat_chest_note": "Bröstmåtten i denna storlekstabell är mätta platt tvärs över plagget. Dubbla dem för att få måttet runt om.",
+      "flat_chest_note": "Bröstmåtten i den här storlekstabellen är uppmätta plant över plagget. Dubbla dem för att få hela omkretsen.",
       "premium_delivery_window": "Beräknad leverans visas på varje produktsida; uppskattningar är inga garantier.",
       "faster_shipping_prefix": "Beräknad leverans:",
       "free_premium_shipping": "Standardfrakt ingår",
       "return_policy_title": "Returpolicy",
-      "return_policy_line_1": "Du har 30 dagar på dig från leverans på dig att begära retur eller byte.",
-      "return_policy_line_2": "Varorna måste vara oanvända, otvättade, i originalskick och i originalförpackning med etiketter fästa.",
-      "return_policy_line_3": "Vissa föremål, inklusive badkläder och närbesvär, kan inte returneras av hygienskäl; slutförsäljning och personliga föremål är också undantagna.",
-      "return_policy_line_4": "Läs återbetalningspolicyn för kvalificering, returfrakt och tidpunkt för återbetalning innan du skickar tillbaka något.",
-      "shopping_security_title": "Shoppingsäkerhet",
+      "return_policy_line_1": "Du har 30 dagar på dig från leveransen att begära retur eller byte.",
+      "return_policy_line_2": "Varorna måste vara oanvända, otvättade, i originalskick och i originalförpackningen med etiketterna kvar.",
+      "return_policy_line_3": "Vissa varor, bland annat badkläder och underkläder, kan inte returneras av hygienskäl; varor som sålts utan returrätt och personligt anpassade varor är också undantagna.",
+      "return_policy_line_4": "Läs återbetalningspolicyn om villkor, returfrakt och när återbetalningen sker innan du skickar tillbaka något.",
+      "shopping_security_title": "Trygg handel",
       "safe_payment_options_title": "Säkra betalningsalternativ",
       "safe_payment_description": "Vi accepterar alla vanliga kredit- och betalkort. Dina kortuppgifter är säkra och delas aldrig med våra partners. Du kan enkelt hantera dina sparade kort när som helst. För eventuella transaktionsförfrågningar, kontakta din kortutgivare.",
       "secure_logistics_title": "Säker logistik",
