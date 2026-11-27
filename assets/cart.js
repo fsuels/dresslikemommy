@@ -265,7 +265,10 @@ class CartItems extends HTMLElement {
             ? trapFocus(cartDrawerWrapper, lineItem.querySelector(`[name="${name}"]`))
             : lineItem.querySelector(`[name="${name}"]`).focus();
         } else if (parsedState.item_count === 0 && cartDrawerWrapper) {
-          trapFocus(cartDrawerWrapper.querySelector('.drawer__inner-empty'), cartDrawerWrapper.querySelector('a'));
+          // Only the cart drawer has an empty state to focus; on the /cart page the
+          // element is missing and trapFocus threw, which skipped the Undo toast.
+          const drawerEmpty = cartDrawerWrapper.querySelector('.drawer__inner-empty');
+          if (drawerEmpty) trapFocus(drawerEmpty, cartDrawerWrapper.querySelector('a'));
         } else if (document.querySelector('.cart-item') && cartDrawerWrapper) {
           trapFocus(cartDrawerWrapper, document.querySelector('.cart-item__name'));
         }
