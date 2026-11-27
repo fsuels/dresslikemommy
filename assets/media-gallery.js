@@ -76,6 +76,9 @@ if (!customElements.get('media-gallery')) {
           this.fitVisibleSlide = debounce(() => {
             const slide = this.visibleSlide();
             if (!slide || this.mql.matches) return;
+            // Let the slider recount its page from the real scroll position (it can miss a
+            // programmatic scroll after a colour change and keep a stale page number).
+            this.elements.viewer.update?.();
             this.fitActiveRatio(slide);
             this.syncGalleryCounter(slide.dataset.mediaId);
           }, 100);
@@ -182,6 +185,8 @@ if (!customElements.get('media-gallery')) {
         window.setTimeout(() => {
           const sliderToScroll = viewerSlider || activeMedia.parentElement;
           if (sliderToScroll) sliderToScroll.scrollTo({ left: activeMedia.offsetLeft });
+          // Re-measure after this programmatic scroll too (a swipe made while the colour loaded).
+          if (this.fitVisibleSlide) this.fitVisibleSlide();
           if (preventScroll || !isDesktopViewport) return;
           const activeMediaRect = activeMedia.getBoundingClientRect();
           // Don't scroll if the image is already in view

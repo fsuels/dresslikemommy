@@ -39,6 +39,10 @@
         assign mobile_gallery_ratio = product_media_ratio
       endif
     endfor
+    # Colour links (?variant=) open on that colour's photo (product-media-gallery puts it first): reserve its shape.
+    if product.selected_variant and product.selected_variant.featured_media
+      assign mobile_gallery_ratio = product.selected_variant.featured_media.preview_image.aspect_ratio | default: mobile_gallery_ratio
+    endif
     assign has_family_sets_context = false
     if product_collection_handles contains 'family-sets' or product_subcategory_handle == 'family-sets'
       assign has_family_sets_context = true
