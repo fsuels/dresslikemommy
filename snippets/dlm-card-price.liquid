@@ -26,14 +26,15 @@
     assign card_price_on_sale = true
   endif
 
+  # The struck price uses the same format as the shown price (with the code where
+  # dlm-show-currency-code asks for it), so "$81.00" never sits beside "$67.00 CAD".
   if dlm_currency_code_flag == 'true'
     assign card_price_money = card_price_value | money_with_currency
+    assign card_price_compare_money = card_price_compare | money_with_currency
   else
     assign card_price_money = card_price_value | money
+    assign card_price_compare_money = card_price_compare | money
   endif
-  # The struck price omits the currency code to keep both prices on one line in a
-  # 2-column mobile grid; the emphasized price right next to it carries the code.
-  assign card_price_compare_money = card_price_compare | money
 
   assign card_price_amount_html = '<span class="dlm-card-price__amount">' | append: card_price_money | append: '</span>'
   if product.price_varies
