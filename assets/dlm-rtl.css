@@ -56,3 +56,13 @@
 [dir='rtl'] .menu-drawer__close-button .icon-arrow {
   scale: -1 1;
 }
+
+/* Text blocks that the theme pins to the left: align them to the right edge for RTL readers. */
+[dir='rtl'] .product__description {
+  text-align: right !important;
+}
+
+[dir='rtl'] .product__info-container--matching-set .product-matching-set__header,
+[dir='rtl'] .footer-block__newsletter {
+  text-align: right;
+}
