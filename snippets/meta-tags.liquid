@@ -1,6 +1,12 @@
 {%- liquid
   assign resolved_canonical_url = canonical_href | default: canonical_url | default: request.origin
   assign og_title = page_title | default: shop.name
+  if request.page_type == 'cart'
+    assign dlm_cart_title_lang = request.locale.iso_code | split: '-' | first
+    if dlm_cart_title_lang == 'de' or dlm_cart_title_lang == 'es' or dlm_cart_title_lang == 'fr' or dlm_cart_title_lang == 'cs' or dlm_cart_title_lang == 'ro'
+      assign og_title = 'sections.cart.title' | t
+    endif
+  endif
   assign og_url = resolved_canonical_url
   assign og_type = 'website'
   assign og_description = page_description | default: shop.description | default: shop.name
