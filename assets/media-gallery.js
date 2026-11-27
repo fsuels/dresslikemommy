@@ -70,6 +70,13 @@ if (!customElements.get('media-gallery')) {
           this.bindMobileSwipeHandlers();
         }
 
+        // Mobile: when photos have different shapes, the gallery height follows the active photo.
+        if (this.elements.viewer && this.hasMixedRatios()) {
+          this.elements.viewer.addEventListener('slideChanged', (event) =>
+            this.fitActiveRatio(event.detail.currentElement)
+          );
+        }
+
         if (!this.elements.thumbnails) return;
 
         this.elements.viewer.addEventListener('slideChanged', debounce(this.onSlideChanged.bind(this), 500));
@@ -160,6 +167,7 @@ if (!customElements.get('media-gallery')) {
           element.classList.remove('is-active');
         });
         activeMedia?.classList?.add('is-active');
+        this.fitActiveRatio(activeMedia);
         this.syncGalleryCounter(mediaId);
         this.syncGalleryCounterPosition();
         this.syncMobileShareButtonPosition();
@@ -182,6 +190,26 @@ if (!customElements.get('media-gallery')) {
         const activeThumbnail = this.elements.thumbnails.querySelector(`[data-target="${mediaId}"]`);
         this.setActiveThumbnail(activeThumbnail);
         this.announceLiveRegion(activeMedia, activeThumbnail.dataset.mediaPosition);
+      }
+
+      slideRatio(slide) {
+        const box = slide && slide.querySelector('.product-media-container');
+        return box ? parseFloat(box.style.getPropertyValue('--ratio')) || 0 : 0;
+      }
+
+      hasMixedRatios() {
+        const ratios = Array.from(this.elements.viewer.querySelectorAll('[data-media-id]'), (slide) =>
+          this.slideRatio(slide)
+        ).filter(Boolean);
+        return ratios.some((ratio) => Math.abs(ratio - ratios[0]) > 0.01);
+      }
+
+      // Overrides the first-paint reserve (--dlm-mobile-gallery-ratio, main-product.liquid)
+      // with the active photo's own ratio; only used by the <=749px rule.
+      fitActiveRatio(slide) {
+        const ratio = this.slideRatio(slide);
+        if (!ratio || this.mql.matches || !this.elements.viewer || !this.hasMixedRatios()) return;
+        this.elements.viewer.style.setProperty('--dlm-mobile-gallery-ratio', ratio);
       }
 
       syncMobileShareButtonPosition() {
