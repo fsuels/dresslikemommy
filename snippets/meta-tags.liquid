@@ -76,11 +76,10 @@
     assign og_lang = request.locale.iso_code | default: 'en' | downcase | split: '-' | first
     if og_lang == 'en'
       assign og_title = 'Matching Family Outfits & Mommy and Me Clothes | Dress Like Mommy'
-      assign og_description = 'Shop mommy and me dresses, mother daughter matching outfits, and family matching clothes for photos, vacations, and everyday moments.'
     else
       assign og_title = 'storefront.home_title' | t
-      assign og_description = 'storefront.home_description' | t
     endif
+    assign og_description = 'storefront.home_description' | t
   elsif request.page_type == 'product'
     assign og_type = 'product'
   elsif request.page_type == 'article'
@@ -89,9 +88,9 @@
       assign og_description = article.excerpt | default: article.content | strip_html | truncatewords: 28
     endif
   elsif request.page_type == 'blog' and blog != blank and blog.handle == 'news'
-    assign og_title = 'Style Journal'
-    if page_description == blank
-      assign og_description = 'Outfit guides, styling tips, and shopping advice for mommy and me, daddy and me, and family matching looks.'
+    assign og_title = 'storefront.journal.title' | t
+    if page_description == blank or current_tags == blank
+      assign og_description = 'storefront.journal.description' | t
     endif
   elsif request.page_type == 'password'
     assign og_url = request.origin
@@ -125,6 +124,25 @@
       assign og_description_prefix = og_description | split: 'STANDARD SHIPPING INCLUDED' | first
       assign og_description = og_description_prefix | append: 'STANDARD SHIPPING INCLUDED + EASY RETURNS.'
     endif
+  endif
+
+  comment
+    Keep the social preview sentence a sane length without cutting inside an HTML entity.
+  endcomment
+  assign og_description = og_description | strip
+  if og_description.size > 200
+    assign og_description_head = og_description | truncate: 199, ''
+    assign og_description_amp_parts = og_description_head | split: '&'
+    if og_description_amp_parts.size > 1
+      assign og_description_amp_tail = og_description_amp_parts | last
+      unless og_description_amp_tail contains ';'
+        if og_description_amp_tail.size < 10
+          assign og_description_cut = og_description_head.size | minus: og_description_amp_tail.size | minus: 1
+          assign og_description_head = og_description_head | slice: 0, og_description_cut
+        endif
+      endunless
+    endif
+    assign og_description = og_description_head | strip | append: '…'
   endif
 
   if request.page_type == 'search' or request.page_type == 'cart' or request.page_type == '404' or request.page_type == 'password'
