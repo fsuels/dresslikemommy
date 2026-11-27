@@ -25,7 +25,7 @@
     no: ['Se siden på norsk', 'Nei takk'],
     pl: ['Zobacz stronę po polsku', 'Nie, dziękuję'],
     pt: ['Ver o site em português', 'Agora não'],
-    ro: ['Vezi site-ul în limba română', 'Nu, mulțumesc'],
+    ro: ['Vedeți site-ul în limba română', 'Nu, mulțumesc'],
     ru: ['Открыть сайт на русском', 'Нет, спасибо'],
     sv: ['Visa sidan på svenska', 'Nej tack'],
   };
