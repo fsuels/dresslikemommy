@@ -257,9 +257,6 @@
                                 <dt>{{ option_label }}:</dt>
                                 <dd>
                                   {%- assign option_name_lower = option.name | downcase -%}
-                                  {%- if option_name_lower contains 'color' or option_name_lower contains 'colour' -%}
-                                    <span class="cart-item__color-swatch" style="background-color: {{ option.value | handleize }}" title="{{ option.value }}"></span>
-                                  {%- endif -%}
                                   {%- if option_name_lower contains 'size' or option_name_lower contains 'talla' or option_name_lower contains 'tamano' or option_name_lower contains 'tamaño' or option_name_lower contains 'taille' or option_name_lower contains 'pointure' -%}
                                     <span data-size-display-value="{{ option.value | escape }}">{{ option.value }}</span>
                                   {%- else -%}
