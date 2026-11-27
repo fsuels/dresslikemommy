@@ -150,16 +150,6 @@
       }
     }
 
-    /* assets/media-gallery.js sets the active photo's ratio when photo shapes differ. */
-    @media screen and (max-width: 749px) and (prefers-reduced-motion: no-preference) {
-      #MainProduct-{{ section.id }} .product__media-list .product__media-item,
-      #MainProduct-{{ section.id }} .product-media-container,
-      #MainProduct-{{ section.id }} .product-media-container .product__modal-opener,
-      #MainProduct-{{ section.id }} .product-media-container .media {
-        transition: aspect-ratio 0.2s ease;
-      }
-    }
-
     /* PDP screenshot-style hard override scoped to this product section */
     #MainProduct-{{ section.id }},
     #MainProduct-{{ section.id }}.gradient,
