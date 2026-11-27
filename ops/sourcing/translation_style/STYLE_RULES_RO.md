@@ -4,7 +4,7 @@ Pipeline = hand-top20/build.py (copy: build_ro.py, LOCS=['ro']). General rules o
 - Labels: "Fabric" Material; "Family story" "În familie"; "Print" "Model" for knitted patterns, "Imprimeu" for printed garments (sweatshirts, pajamas, dresses, swimsuits); "Design details" "Detalii de design"; "Size range" "Mărimi disponibile"; "Key Features" "Caracteristici principale"; "Photo-ready" "Perfect pentru fotografii"; "Whole-family match" "Asortate pentru toată familia"; size-chart heading "Tabel de mărimi - <articol>".
 - Family words: "mamă și fiică" only where the English is mother-daughter only; "mamă și copil" where a boy or girl fits; "tată și fiu / tată și copil" for daddy-and-me; "pentru toată familia" / "asortate pentru familie" for family sets. Size lines: mame / tați (adulți for family sets), "Copii de la X la Y ani", "Fete de la 4 la 12 ani".
 - Design names never proper nouns (no "Renul de Crăciun", "Povestea familiei", "Gata de fotografii"); use the descriptive form of the live Romanian title (pulovere de Crăciun cu reni, pulover cu pasă nordică). Names identical to the live title (Willow Mist) may stay, in „…”.
-- Terms: sweater = pulover, cardigan = cardigan, ribbed = reiat ("din tricot reiat"), yoke = platcă (Calidad V46; NOT "pasă"), smocked = smock, snowflake = fulg de nea, dots = buline, relaxed fit = croială lejeră.
+- Terms: sweater = pulover, cardigan = cardigan, ribbed = reiat ("din tricot reiat"), yoke = platcă (Calidad V46; NOT "pasă"; placket or waistband strip = bentiță, V67), smocked = smock, snowflake = fulg de nea, dots = buline, relaxed fit = croială lejeră.
 - Size-range line is natural prose ("Copii de la 4-5 la 10-12 ani; adulți de la S-M la XL-2XL"). Chest phrase: "La piept este indicată circumferința completă".
 - No calques ("momentul rochiei", "forma de vară", "look-ul de care aveți nevoie"); no added superlatives, no quality/fit/popularity/skin promises; per-piece selling line and delivery statements kept.
 - Care elements composed from the reviewed phrasebook (ro); where it does not cover the English, keep the current translated care element.
@@ -14,3 +14,11 @@ Pipeline = hand-top20/build.py (copy: build_ro.py, LOCS=['ro']). General rules o
 - Care: phrasebook ro corrected by V46 (nominal style, "cusută pe"); MW_ABLE+L_TEMP joined with "; " (comp2 ro branch).
 ## Calidad V48 additions
 - Option names as translated in the store: happy-faces "mami & fetiță" / "tati & băiat". No "moment asortat" calque: use "vă asortați", "Asortate în orice ocazie", "îmbrăcați-vă asortat". Gauze = "tifon" (not "gaza"). Fabric lines "Tricot moale din amestec de…"; decimal comma in percentages (42,9%). No English design names as subject ("Heart Button est…"), no "Potrivire/Construcție/Asortare pentru patru roluri" calques.
+## Calidad V57 additions (2026-11-27)
+- "pull-on" (pants/bottoms) = "fără închidere" ("pantaloni cu talie elastică, fără închidere"); never "fără nasturi".
+- Armhole (sisa) = "răscroiala mânecilor / răscroieli"; "ancolură" = neckline only, never armhole. Neckline = "decolteu".
+- "make every moment match" with a verb: "… și asortați-vă" (not "vă asortați"); "croială comodă", not "îngăduitoare"; "best fit" = "mărimea potrivită".
+- Care text in nominal style ("Spălare manuală…, uscare…"); printed garment wording stays in the original language in „…”.
+- Adjective agreement with the labelled item ("Ușor și aerisit" for tricot).
+## Calidad V64 additions (2026-11-27)
+- Design names taken from option values: lowercase after the first word, natural preposition ("Frunză de banan de pe coastă", "Stropi de vopsea vie"); no anglicisms; "pantaloni veseli" (agreement); "Modelul în carouri vichy…" for separate pieces.

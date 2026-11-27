@@ -498,6 +498,18 @@ EN_FIELDS = (("title", "title", False), ("body", "descriptionHtml", True))
 TR_KEYS = {"title": "title", "body_html": "body", "meta_title": "seo_title", "meta_description": "seo_description"}
 
 
+def scan_cut_search_title(name: str, meta_title: str) -> List[Dict[str, str]]:
+    """A translated search title that stops part-way through the translated product name (before ' — ')."""
+    if " — " not in name:
+        return []
+    segment = " ".join(name.split(" — ")[0].split())
+    core = " ".join(re.split(r"\s*[|–—-]\s*Dress Like", meta_title)[0].split())
+    if not core or len(core) >= len(segment) or not segment.startswith(core):
+        return []
+    return [_finding("seo_title", "cut-search-title", "search title stops part-way through the product name",
+                     core, _cell("%s => %s" % (core, segment), SNIPPET_MAX))]
+
+
 def scan_product(product: Dict, locales: Sequence[str],
                  vocabs: Optional[Dict[str, "Counter[str]"]] = None) -> List[Dict[str, str]]:
     handle = product["handle"]
@@ -520,6 +532,7 @@ def scan_product(product: Dict, locales: Sequence[str],
             value = tr.get(key)
             if value:
                 add(locale, field, scan_translation_field(locale, key, value, en_src[key], (vocabs or {}).get(locale)))
+        add(locale, "seo_title", scan_cut_search_title(tr.get("title") or "", tr.get("meta_title") or ""))
     return rows
 
 
@@ -1317,6 +1330,8 @@ def run(args: argparse.Namespace) -> int:
     rows: List[Dict[str, str]] = []
     for p in products:
         rows.extend(scan_product(p, locales, vocabs))
+    if getattr(args, "rule", ""):
+        rows = [r for r in rows if r["rule"] == args.rule]
     rows.sort(key=lambda r: (r["handle"], r["locale"] != "en", r["locale"], r["field"], r["category"], r["rule"]))
     summary = summarize(rows)
     summary.update({"products_scanned": len(products), "locales": ["en"] + list(locales)})
@@ -1339,6 +1354,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("--all-locales", action="store_true", help="scan every non-primary shop locale")
     p.add_argument("--handles", default="", help="comma list of product handles to scope the scan")
     p.add_argument("--since-hours", type=float, default=None, help="only products updated in the last N hours")
+    p.add_argument("--rule", default="", help="product scan only: keep findings of one rule, e.g. cut-search-title")
     p.add_argument("--json", action="store_true", help="machine-readable output")
     p.add_argument("--markdown", action="store_true", help="markdown table output")
     p.add_argument("--fail-on-findings", action="store_true", help="exit 1 when any finding remains")

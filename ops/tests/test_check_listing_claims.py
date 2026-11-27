@@ -227,6 +227,26 @@ INDEX = {
 }
 
 
+class CutSearchTitleTests(unittest.TestCase):
+    NAME = "Pull familial assorti à motif nordique — Noël"
+
+    def rules(self, meta_title):
+        product = {"handle": "h", "title": "", "translations": {"fr": {"title": self.NAME, "meta_title": meta_title}}}
+        return [r for r in m.scan_product(product, ["fr"]) if r["rule"] == "cut-search-title"]
+
+    def test_cut_title_flagged_with_and_without_brand(self):
+        self.assertEqual(len(self.rules("Pull familial assorti à motif | Dress Like Mommy")), 1)
+        self.assertEqual(len(self.rules("Pull familial assorti à")), 1)
+
+    def test_complete_or_different_title_not_flagged(self):
+        self.assertEqual(self.rules("Pull familial assorti à motif nordique | Dress Like Mommy"), [])
+        self.assertEqual(self.rules("Pulls de Noël pour la famille | Dress Like Mommy"), [])
+        self.assertEqual(self.rules(""), [])
+
+    def test_name_without_dash_is_skipped(self):
+        self.assertEqual(m.scan_cut_search_title("Pull familial assorti", "Pull familial"), [])
+
+
 class ContentRuleTests(unittest.TestCase):
     def test_trend_claims_flagged_and_plain_trend_word_not(self):
         found = m.scan_content_rules(["This season's hottest looks for mom.", "One of the biggest family fashion trends.",
