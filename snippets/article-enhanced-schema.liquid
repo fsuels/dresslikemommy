@@ -19,20 +19,25 @@
   assign article_schema_image_width = blank
   assign article_schema_image_height = blank
 
-  if article.image
+  # Same picture rule as the visible hero in sections/main-article.liquid: the news blog always shows the fallback snippet's image.
+  assign article_schema_use_fallback = false
+  if blog.handle == 'news' or article.image == blank
+    assign article_schema_use_fallback = true
+  endif
+  if article_schema_use_fallback == false
     assign article_schema_image_url = article.image | image_url: width: 1200 | prepend: 'https:'
     assign article_schema_image_width = 1200
     assign article_schema_image_height = 1200 | divided_by: article.image.aspect_ratio | round
   endif
 -%}
-{%- unless article.image -%}
+{%- if article_schema_use_fallback -%}
   {%- capture article_schema_image_url -%}{% render 'article-featured-image-fallback', article: article, field: 'url' %}{%- endcapture -%}
   {%- capture article_schema_image_width -%}{% render 'article-featured-image-fallback', article: article, field: 'width' %}{%- endcapture -%}
   {%- capture article_schema_image_height -%}{% render 'article-featured-image-fallback', article: article, field: 'height' %}{%- endcapture -%}
   {%- assign article_schema_image_url = article_schema_image_url | strip -%}
   {%- assign article_schema_image_width = article_schema_image_width | strip -%}
   {%- assign article_schema_image_height = article_schema_image_height | strip -%}
-{%- endunless -%}
+{%- endif -%}
 
 <script type="application/ld+json">
 {
@@ -101,7 +106,7 @@
   "wordCount": {{ word_count }},
   "timeRequired": "PT{{ read_time }}M",
   "articleSection": "Family Fashion",
-  "inLanguage": "en-US",
+  "inLanguage": {{ request.locale.iso_code | default: 'en' | json }},
   "isPartOf": {
     "@type": "Blog",
     "name": "Dress Like Mommy Style Journal",

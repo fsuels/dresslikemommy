@@ -537,62 +537,6 @@
   {% render 'article-enhanced-schema', article: article, blog: blog %}
 </article>
 
-{%- liquid
-  assign article_schema_image_url = blank
-  assign article_schema_image_width = blank
-  assign article_schema_image_height = blank
-
-  if blog.handle == 'news' or article.image == blank
-    capture article_schema_image_url
-      render 'article-featured-image-fallback', article: article, field: 'url'
-    endcapture
-    capture article_schema_image_width
-      render 'article-featured-image-fallback', article: article, field: 'width'
-    endcapture
-    capture article_schema_image_height
-      render 'article-featured-image-fallback', article: article, field: 'height'
-    endcapture
-    assign article_schema_image_url = article_schema_image_url | strip
-    assign article_schema_image_width = article_schema_image_width | strip
-    assign article_schema_image_height = article_schema_image_height | strip
-  else
-    assign article_schema_image_url = article.image | image_url: width: 1920 | prepend: 'https:'
-    assign article_schema_image_width = 1920
-    assign article_schema_image_height = 1920 | divided_by: article.image.aspect_ratio | round
-  endif
--%}
-
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    "articleBody": {{ article.content | strip_html | json }},
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": {{ request.origin | append: page.url | json }}
-    },
-    "headline": {{ article.title | json }},
-    {% if article.excerpt != blank %}
-      "description": {{ article.excerpt | strip_html | json }},
-    {% endif %}
-    {% if article_schema_image_url != blank %}
-      "image": [
-        {{ article_schema_image_url | json }}
-      ],
-    {% endif %}
-    "datePublished": {{ article.published_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
-    "dateCreated": {{ article.created_at | date: '%Y-%m-%dT%H:%M:%SZ' | json }},
-    "author": {
-      "@type": "Person",
-      "name": {{ article.author | json }}
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": {{ shop.name | json }}
-    }
-  }
-</script>
-
 {% schema %}
 {
   "name": "t:sections.main-article.name",
