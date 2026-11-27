@@ -72,9 +72,7 @@ if (!customElements.get('media-gallery')) {
 
         // Mobile: when photos have different shapes, the gallery height follows the active photo.
         if (this.elements.viewer && this.hasMixedRatios()) {
-          this.elements.viewer.addEventListener('slideChanged', (event) =>
-            this.fitActiveRatio(event.detail.currentElement)
-          );
+          this.elements.viewer.addEventListener('slideChanged', () => this.fitActiveRatio(this.visibleSlide()));
         }
 
         if (!this.elements.thumbnails) return;
@@ -167,6 +165,7 @@ if (!customElements.get('media-gallery')) {
           element.classList.remove('is-active');
         });
         activeMedia?.classList?.add('is-active');
+        this.syncSliderOrder();
         this.fitActiveRatio(activeMedia);
         this.syncGalleryCounter(mediaId);
         this.syncGalleryCounterPosition();
@@ -202,6 +201,31 @@ if (!customElements.get('media-gallery')) {
           this.slideRatio(slide)
         ).filter(Boolean);
         return ratios.some((ratio) => Math.abs(ratio - ratios[0]) > 0.01);
+      }
+
+      // A colour change reorders the slides in the DOM (global.js updateMedia); let the
+      // slider re-read them so pages, counter and slideChanged use the current order.
+      syncSliderOrder() {
+        const viewer = this.elements.viewer;
+        if (!viewer || this.mql.matches || !viewer.slider || !viewer.nextButton || !viewer.resetPages) return;
+        const domOrder = Array.from(viewer.querySelectorAll('[id^="Slide-"]'));
+        const known = Array.from(viewer.sliderItems || []);
+        if (domOrder.length !== known.length || domOrder.some((slide, i) => slide !== known[i])) viewer.resetPages();
+      }
+
+      // The slide actually in view (nearest to the slider's centre), whatever order it was built in.
+      visibleSlide() {
+        const list = this.elements.viewer && this.elements.viewer.slider;
+        if (!list) return null;
+        const center = list.getBoundingClientRect().left + list.clientWidth / 2;
+        let best = null;
+        let bestDistance = Infinity;
+        list.querySelectorAll('li[data-media-id]').forEach((slide) => {
+          const rect = slide.getBoundingClientRect();
+          const distance = Math.abs(rect.left + rect.width / 2 - center);
+          if (rect.width > 0 && distance < bestDistance) [best, bestDistance] = [slide, distance];
+        });
+        return best;
       }
 
       // Overrides the first-paint reserve (--dlm-mobile-gallery-ratio, main-product.liquid)
