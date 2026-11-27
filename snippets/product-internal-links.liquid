@@ -198,6 +198,19 @@
   if hub_handle != blank
     assign should_render_internal_links = true
   endif
+
+  # Valentine hub link on English heart-style product pages, November to 14 February
+  # (numeric month*100+day). Never on pajamas.
+  assign show_valentine_link = false
+  if internal_link_locale == 'en' and in_pajamas == false and product_collection_handles contains 'valentines-day-matching-outfits-1'
+    assign valentine_month = 'now' | date: '%m' | plus: 0
+    assign valentine_day = 'now' | date: '%d' | plus: 0
+    assign valentine_mmdd = valentine_month | times: 100 | plus: valentine_day
+    if valentine_mmdd >= 1101 or valentine_mmdd <= 214
+      assign show_valentine_link = true
+      assign should_render_internal_links = true
+    endif
+  endif
   if internal_link_locale == 'en'
     if in_matching_hawaiian_outfits or in_matching_family_vacation_outfits or in_mother_daughter_matching_dresses or in_pajamas
       assign should_render_internal_links = true
@@ -223,6 +236,9 @@
       {%- if hub_holiday_sweaters and collections['christmas-sweaters'] != blank -%}
         <p>{{ hub_holiday_prefix }}<a href="{{ collections['christmas-sweaters'].url }}">{{ hub_holiday }}</a>.</p>
       {%- endif -%}
+    {%- endif -%}
+    {%- if show_valentine_link and collections['valentines-day-matching-outfits-1'] != blank -%}
+      <p>Planning Valentine's photos? See all <a href="{{ collections['valentines-day-matching-outfits-1'].url }}">matching Valentine's Day outfits for the family</a>.</p>
     {%- endif -%}
     {%- if internal_link_locale == 'en' and in_matching_hawaiian_outfits and collections['matching-hawaiian-outfits'] != blank -%}
       <p>Part of our <a href="{{ collections['matching-hawaiian-outfits'].url }}">{{ collections['matching-hawaiian-outfits'].title | escape }}</a> collection for luaus, beach photos, and tropical vacations.</p>

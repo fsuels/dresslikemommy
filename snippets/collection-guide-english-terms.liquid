@@ -25,6 +25,13 @@
   assign cg_delivery = 'Standard shipping is included, and each product page shows its estimated delivery window.'
 -%}
 {%- case handle -%}
+  {%- when 'valentines-day-matching-outfits-1' -%}
+    {%- case field -%}
+      {%- when 'display_title' -%}Matching Valentine's Day Outfits for the Family
+      {%- when 'meta_title' -%}Matching Valentine's Outfits – Family Shirts, Mommy and Me
+      {%- when 'meta_description' -%}Matching Valentine's outfits: family heart shirts, sweatshirts and sweaters, plus mommy and me and daddy and me looks. Pick a size for each person.
+      {%- when 'lead' -%}Matching Valentine's outfits in one place: family heart T-shirts, sweatshirts and sweaters, mommy and me heart cardigans and daddy and me looks. Couples can pick two adult sizes in the family sweaters and sweatshirts. Each person is ordered separately, so choose every size with the chart on the product page.
+    {%- endcase -%}
   {%- when 'couples' -%}
     {%- case field -%}
       {%- when 'display_title' -%}Matching Couple Outfits
