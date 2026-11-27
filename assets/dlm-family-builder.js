@@ -156,13 +156,13 @@
       soldOut: '{item} ei ole enää saatavilla. Poista se.'
     },
     ro: {
-      addAnother: '+ Adaugă încă un membru al familiei',
-      listTitle: 'Lista familiei tale',
-      addAll: 'Adaugă tot în coș ({count}) · {total}',
-      remove: 'Elimină',
+      addAnother: '+ Adăugați încă un membru al familiei',
+      listTitle: 'Lista familiei dvs.',
+      addAll: 'Adăugați tot în coș ({count}) · {total}',
+      remove: 'Eliminați',
       added: 'Adăugat în lista familiei',
-      error: 'Nu s-a putut adăuga în coș. Încearcă din nou.',
-      soldOut: '{item} nu mai este disponibil. Te rugăm să îl elimini.'
+      error: 'Nu s-a putut adăuga în coș. Încercați din nou.',
+      soldOut: '{item} nu mai este disponibil. Vă rugăm să îl eliminați.'
     },
     el: {
       addAnother: '+ Προσθήκη άλλου μέλους της οικογένειας',

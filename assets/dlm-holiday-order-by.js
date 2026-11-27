@@ -101,8 +101,8 @@
       christmas: 'Tilaa viimeistään {date}, niin arvioitu toimitus on ennen joulua'
     },
     ro: {
-      halloween: 'Comandă până pe {date} pentru livrarea estimată înainte de Halloween',
-      christmas: 'Comandă până pe {date} pentru livrarea estimată înainte de Crăciun'
+      halloween: 'Comandați până pe {date} pentru livrarea estimată înainte de Halloween',
+      christmas: 'Comandați până pe {date} pentru livrarea estimată înainte de Crăciun'
     },
     el: {
       halloween: 'Παραγγείλτε έως {date} για εκτιμώμενη παράδοση πριν από το Halloween',

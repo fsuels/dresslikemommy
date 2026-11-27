@@ -166,7 +166,7 @@ test('Portuguese uses the February 14 name, Romanian copy fixes hold', () => {
   assert.equal(copy['valentines:eyebrow'].pt, 'Dia de São Valentim');
   assert.doesNotMatch(copy['winter_photos:subheading'].ro, /călduroase/);
   const holiday = read('assets/dlm-holiday-order-by.js');
-  assert.match(holiday, /christmas: 'Comandă până pe \{date\} pentru livrarea estimată înainte de Crăciun'/);
+  assert.match(holiday, /christmas: 'Comandați până pe \{date\} pentru livrarea estimată înainte de Crăciun'/);
   assert.doesNotMatch(holiday, /Comandă până \{date\}/);
 });
 
