@@ -342,7 +342,45 @@ function getOptionValue(variant, optionIndex) {
   return variant ? variant['option' + String(optionIndex + 1)] : '';
 }
 
-function formatMoney(cents, currency) {
+// Learn the store's Liquid money format (the one every rendered price uses, with
+// or without the currency code) from one variant's price_text and its cents,
+// e.g. "$55.00 CAD" for 5500 or "453,00 kr" for 45300.
+function parseMoneyFormat(text, cents) {
+  var source = String(text || '');
+  var value = Math.round(Number(cents));
+  if (!source || !(value >= 0)) return null;
+  var match = source.match(/\d(?:[\d.,'   ]*\d)?/);
+  if (!match) return null;
+  var chunk = match[0];
+  var digits = chunk.replace(/\D/g, '');
+  var decimalMatch = chunk.match(/([.,])(\d{2})$/);
+  var decimals = 0;
+  var decimalSep = '.';
+  if (decimalMatch && digits === String(value)) {
+    decimals = 2;
+    decimalSep = decimalMatch[1];
+  } else if (digits !== String(Math.round(value / 100))) {
+    return null;
+  }
+  var integerPart = decimals ? chunk.slice(0, chunk.length - 3) : chunk;
+  var thousandsMatch = integerPart.match(/[^\d]/);
+  return {
+    prefix: source.slice(0, match.index),
+    suffix: source.slice(match.index + chunk.length),
+    decimals: decimals,
+    decimalSep: decimalSep,
+    thousandsSep: thousandsMatch ? thousandsMatch[0] : decimalSep === ',' ? '.' : ',',
+  };
+}
+
+function formatMoney(cents, currency, format) {
+  if (format) {
+    var amount = Math.round(Number(cents) || 0);
+    var whole = format.decimals ? Math.floor(amount / 100) : Math.round(amount / 100);
+    var integer = String(whole).replace(/\B(?=(\d{3})+(?!\d))/g, format.thousandsSep);
+    var fraction = format.decimals ? format.decimalSep + ('0' + (amount % 100)).slice(-2) : '';
+    return format.prefix + integer + fraction + format.suffix;
+  }
   var locale = document.documentElement.getAttribute('lang') || undefined;
   try {
     return new Intl.NumberFormat(locale, {
@@ -2353,6 +2391,13 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
   var productForm = document.getElementById('product-form-' + sectionId);
   var selectedVariantInput = productForm ? productForm.querySelector('[name="id"]') : null;
   var currency = productData.currency || 'USD';
+  // Same format as the Liquid prices for the active currency (see parseMoneyFormat).
+  var sampleVariant = (productData.variants || []).find(function (variant) {
+    return typeof variant.price_text === 'string' && variant.price_text;
+  });
+  var shopMoneyFormat = sampleVariant
+    ? parseMoneyFormat(decodeMatchingPriceText(sampleVariant.price_text), sampleVariant.price)
+    : null;
 
   // ─────────────────────────────────────────────────────────────────────
   // CRO redesign May 2026 — INSTANCE MODEL (rev 2, May 11).
@@ -3865,7 +3910,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
     if (chips) {
       var readyItem = items[0];
       var readyLabel = readyItem
-        ? [readyItem.roleLabel, readyItem.sizeLabel, formatMoney(readyItem.unitPrice * readyItem.quantity, currency)].filter(Boolean).join(' - ')
+        ? [readyItem.roleLabel, readyItem.sizeLabel, formatMoney(readyItem.unitPrice * readyItem.quantity, currency, shopMoneyFormat)].filter(Boolean).join(' - ')
         : formatPieceCount(pieceCount);
       chips.innerHTML =
         '<span class="product-matching-set__chip product-matching-set__chip--ready">' +
@@ -3907,7 +3952,7 @@ function initMatchingSetBuilder(wrapper, sectionId, productData) {
       sectionId: sectionId,
       pieceCount: pieceCount || 0,
       pieceCountLabel: pieceCount ? formatPieceCount(pieceCount) : '',
-      totalText: pieceCount ? uiLabel('total', 'Total') + ' ' + formatMoney(subtotal || 0, currency) : '',
+      totalText: pieceCount ? uiLabel('total', 'Total') + ' ' + formatMoney(subtotal || 0, currency, shopMoneyFormat) : '',
       summaryText: summaryItems.join(', '),
       isReady: !!pieceCount,
     };

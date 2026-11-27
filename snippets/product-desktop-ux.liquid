@@ -225,7 +225,11 @@
 <div class="sticky-desktop-atc" data-desktop-sticky-atc aria-hidden="true">
   <div class="sticky-desktop-atc__meta">
     <span class="sticky-desktop-atc__price" data-desktop-sticky-price>
-      {{- product.selected_or_first_available_variant.price | money -}}
+      {%- if dlm_currency_code_flag == 'true' -%}
+        {{- product.selected_or_first_available_variant.price | money_with_currency -}}
+      {%- else -%}
+        {{- product.selected_or_first_available_variant.price | money -}}
+      {%- endif -%}
     </span>
     <span class="sticky-desktop-atc__size" data-desktop-sticky-size hidden></span>
   </div>

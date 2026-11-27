@@ -37,6 +37,7 @@
   Inside the drawer this sits in <form id="CartDrawer-Form">, so it uses no
   <form>, no `name` attributes and only type="button" buttons.
 {%- endcomment -%}
+{%- capture dcf_currency_code_flag -%}{%- render 'dlm-show-currency-code' -%}{%- endcapture -%}
 {%- liquid
   assign dcf_surface = surface | default: 'drawer'
   assign dcf_limit = max_products | default: 2
@@ -893,7 +894,11 @@
         if dcf_v.price > dcf_max
           assign dcf_max = dcf_v.price
         endif
-        assign dcf_money_e = dcf_v.price | money | strip_html | escape
+        if dcf_currency_code_flag == 'true'
+          assign dcf_money_e = dcf_v.price | money_with_currency | strip_html | escape
+        else
+          assign dcf_money_e = dcf_v.price | money | strip_html | escape
+        endif
         assign dcf_size_e = dcf_size | escape
         assign dcf_label_e = dcf_label | escape
         assign dcf_open = '<option value="' | append: dcf_v.id | append: '" data-money="' | append: dcf_money_e | append: '" data-size="' | append: dcf_size_e | append: '">'
@@ -932,7 +937,11 @@
       endif
 
       assign dcf_id = 'DlmCf-' | append: dcf_surface | append: '-' | append: item.product_id | append: '-' | append: dcf_role
-      assign dcf_min_money_e = dcf_min | money | strip_html | escape
+      if dcf_currency_code_flag == 'true'
+        assign dcf_min_money_e = dcf_min | money_with_currency | strip_html | escape
+      else
+        assign dcf_min_money_e = dcf_min | money | strip_html | escape
+      endif
       assign dcf_role_label_e = dcf_role_label | escape
       assign dcf_chip_label_e = dcf_chip_label | escape
       assign dcf_size_word_e = t_size | escape
