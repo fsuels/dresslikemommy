@@ -68,6 +68,10 @@
         <div class="collection-hero__description rte">{{ collection_description_content }}</div>
       {%- endif -%}
 
+      {%- if collection_handle == 'dresses' or collection_handle == 'mother-daughter-matching-dresses' -%}
+        {% render 'collection-winter-sweaters-link' %}
+      {%- endif -%}
+
       {%- unless collection_handle == 'mommy-and-me'
         or collection_handle == 'pajamas'
         or collection_handle == 'matching-outfits'

@@ -1,0 +1,19 @@
+{%- comment -%}
+  First-screen link from the dresses collections to the winter sweaters, 1 October to
+  14 February (shop date). Hidden for the southern summer storefront (AU, NZ). The label
+  is the already translated sweaters collection title.
+{%- endcomment -%}
+{%- liquid
+  assign cwsl_mmdd = 'now' | date: '%m%d' | plus: 0
+-%}
+{%- if cwsl_mmdd >= 1001 or cwsl_mmdd <= 214 -%}
+  {%- capture cwsl_southern -%}{%- render 'dlm-southern-summer' -%}{%- endcapture -%}
+  {%- assign cwsl_southern = cwsl_southern | strip -%}
+  {%- if cwsl_southern != 'true' -%}
+    {%- assign cwsl_root = routes.root_url -%}
+    {%- if cwsl_root == '/' -%}{%- assign cwsl_root = '' -%}{%- endif -%}
+    <p class="collection-hero__season-link">
+      <a class="link" href="{{ cwsl_root }}/collections/sweaters">{{ 'sections.collection_seo.display_titles.sweaters' | t }} &rarr;</a>
+    </p>
+  {%- endif -%}
+{%- endif -%}
