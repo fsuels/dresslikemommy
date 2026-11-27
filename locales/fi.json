@@ -45,7 +45,7 @@
       "previous": "Edellinen sivu"
     },
     "search": {
-      "search": "Hae",
+      "search": "Hae tuotteita",
       "reset": "Tyhjennä hakutermi"
     },
     "cart": {
@@ -366,14 +366,14 @@
       "return_policy_line_1": "Sinulla on 30 päivää toimituksesta pyytää palautusta tai vaihtoa.",
       "return_policy_line_2": "Tuotteiden on oltava käyttämättömiä, pesemättömiä, alkuperäisessä kunnossa ja alkuperäisessä pakkauksessaan, ja tuotelappujen on oltava kiinni.",
       "return_policy_line_3": "Jotkin tuotteet, kuten uima-asut ja alusvaatteet, eivät ole palautettavissa hygieniasyistä; myös lopullisena myyntinä myydyt ja personoidut tuotteet on rajattu pois.",
-      "return_policy_line_4": "Tarkista hyvityskäytännöstä kelpoisuus, palautustoimitus ja hyvitysajankohta, ennen kuin lähetät mitään takaisin.",
+      "return_policy_line_4": "Tarkista hyvityskäytännöstä ehdot, palautuskulut ja hyvityksen ajankohta ennen kuin lähetät mitään takaisin.",
       "shopping_security_title": "Ostosten turvallisuus",
       "safe_payment_options_title": "Turvalliset maksuvaihtoehdot",
       "safe_payment_description": "Hyväksymme kaikki yleisimmät luotto- ja pankkikortit. Korttitietosi ovat turvassa, eikä niitä koskaan jaeta kumppaneillemme. Voit helposti hallita tallennettuja korttejasi milloin tahansa. Jos sinulla on kysyttävää tapahtumasta, ota yhteyttä korttisi myöntäjään.",
-      "secure_logistics_title": "Turvallinen logistiikka",
+      "secure_logistics_title": "Toimitustuki",
       "secure_logistics_line_1": "Jos paketti on vaurioitunut tai kadonnut kuljetuksen aikana, ota meihin yhteyttä, jotta voimme auttaa lähetyksen tarkistamisessa.",
       "secure_logistics_line_2": "Käytä tilauksen seurantalinkkiä saadaksesi uusimmat tiedot kuljetusliikkeeltä. Kansainvälisiin tilauksiin voi kohdistua paikallisia veroja, tulleja tai tullimaksuja, joita kuljetusliike tai paikallinen viranomainen perii.",
-      "secure_privacy_title": "Turvallinen yksityisyys",
+      "secure_privacy_title": "Yksityisyyden suoja",
       "secure_privacy_description": "Yksityisyytesi suojaaminen on meille tärkeää! Voit olla varma, että tietosi säilytetään turvassa ja suojattuina. Emme myy henkilötietojasi rahasta ja käytämme tietojasi vain tietosuoja- ja evästekäytäntömme mukaisesti tarjotaksemme ja parantaaksemme palveluitamme sinulle."
     },
     "shipping_country": {
@@ -416,7 +416,7 @@
       "subtext": "404"
     },
     "search": {
-      "no_results": "Ei tuloksia haulla \"{{ terms }}\". Tarkista oikeinkirjoitus tai kokeile toista sanaa tai ilmaisua.",
+      "no_results": "Ei tuloksia haulla ”{{ terms }}”. Tarkista oikeinkirjoitus tai kokeile toista sanaa tai ilmaisua.",
       "results_with_count": {
         "one": "{{ count }} tulos",
         "other": "{{ count }} tulosta"
@@ -424,10 +424,10 @@
       "title": "Hakutulokset",
       "page": "Sivu",
       "products": "Tuotteet",
-      "search_for": "Hae kohdetta \"{{ terms }}\"",
+      "search_for": "Hae: ”{{ terms }}”",
       "results_with_count_and_term": {
-        "one": "{{ count }} tulos hakuehdolla \"{{ terms }}\"",
-        "other": "{{ count }} tulosta hakuehdolla \"{{ terms }}\""
+        "one": "{{ count }} tulos haulla ”{{ terms }}”",
+        "other": "{{ count }} tulosta haulla ”{{ terms }}”"
       },
       "results_pages_with_count": {
         "one": "{{ count }} sivu",
@@ -455,7 +455,7 @@
         "comment": "Kommentti",
         "send": "Lähetä",
         "post_success": "Kiitos, että otit yhteyttä. Palaamme asiaan mahdollisimman pian.",
-        "error_heading": "Mukauta seuraavat:",
+        "error_heading": "Korjaa seuraavat:",
         "title": "Yhteydenottolomake"
       }
     }
@@ -521,7 +521,7 @@
       "discount_invalid": "Virheellinen tai vanhentunut koodi",
       "shipping_label": "Toimitus",
       "shipping_free": "Vakio sisältyy",
-      "popular_with_families": "Lisää yhteensopivia tuotteita",
+      "popular_with_families": "Lisää samistuotteita",
       "recently_viewed": "Äskettäin katsottu",
       "savings_html": "Säästät <strong>{{ amount }}</strong>",
       "shipping_country_reassurance": "Toimitus maahan {{ country }}. Normaali toimitus sisältyy tuotteiden hintoihin, kun normaali toimitustapa on saatavilla."
@@ -565,12 +565,12 @@
     },
     "announcements": {
       "previous_announcement": "Edellinen ilmoitus",
-      "next_announcement": "Ilmoitus",
+      "next_announcement": "Seuraava ilmoitus",
       "carousel": "Karuselli",
       "announcement": "Ilmoitus",
       "announcement_bar": "Ilmoituspalkki",
       "default_promo": "OSTA 2, SAAT 3. TUOTTEEN 20 % ALENNUKSELLA | VAKIOTOIMITUS SISÄLTYY | TURVALLINEN KASSA",
-      "shipping_country_promo": "OSTA 2, SAAT 3. TUOTTEEN 20 % ALENNUKSELLA | VAKIOTOIMITUS MAALLE {{ country }} SISÄLTYY | TURVALLINEN KASSA"
+      "shipping_country_promo": "OSTA 2, SAAT 3. TUOTTEEN 20 % ALENNUKSELLA | VAKIOTOIMITUS MAAHAN {{ country }} SISÄLTYY | TURVALLINEN KASSA"
     },
     "quick_order_list": {
       "product_total": "Tuotteen välisumma",
@@ -641,15 +641,15 @@
     },
     "product_navigation": {
       "back_to_results": "Takaisin tuloksiin",
-      "back_to_context": "Takaisin {{ context }}",
-      "back_to_family_sets": "Takaisin perhesarjoihin",
+      "back_to_context": "Takaisin: {{ context }}",
+      "back_to_family_sets": "Takaisin perhesetteihin",
       "back_to_search_results": "Takaisin hakutuloksiin",
-      "view_similar_styles": "Katso samanlaisia ​​tyylejä",
-      "view_similar_styles_in": "Katso samanlaisia ​​tyylejä mallissa {{ collection }}",
-      "similar_styles": "Samanlaisia ​​tyylejä",
-      "browse_more_from": "Selaa lisää {{ collection }}:stä",
-      "browse_similar_styles": "Selaa samanlaisia ​​tyylejä",
-      "compare_collection_copy": "Käytä tätä kokoelmaa vertaillaksesi muutamia läheisiä osumia ennen kuin palaat ostoksille."
+      "view_similar_styles": "Katso samanlaisia tyylejä",
+      "view_similar_styles_in": "Katso samanlaisia tyylejä kokoelmassa {{ collection }}",
+      "similar_styles": "Samanlaisia tyylejä",
+      "browse_more_from": "Selaa lisää kokoelmasta {{ collection }}",
+      "browse_similar_styles": "Selaa samanlaisia tyylejä",
+      "compare_collection_copy": "Vertaile tässä kokoelmassa muutamaa samankaltaista mallia ennen kuin jatkat ostoksia."
     },
     "collection_navigation": {
       "collection_categories": "Kokoelman luokat",
