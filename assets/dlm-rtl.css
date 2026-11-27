@@ -1,0 +1,42 @@
+/*
+  Right-to-left fixes for Arabic (ar) and Hebrew (he).
+  Loaded only when <html dir="rtl"> is set (layout/theme.liquid), so other languages never load it.
+  Every rule is scoped under [dir='rtl'].
+*/
+
+/* Sliders and carousels compute their position from scrollLeft, which is negative in RTL
+   and breaks the counter and arrows. Keep the scroll track left-to-right; slide content stays RTL. */
+[dir='rtl'] .slider,
+[dir='rtl'] .slider-buttons,
+[dir='rtl'] .slider-counter {
+  direction: ltr;
+}
+
+[dir='rtl'] .slider > * {
+  direction: rtl;
+}
+
+/* Size charts and measurement tables keep their column order and numbers left-to-right. */
+[dir='rtl'] table {
+  direction: ltr;
+}
+
+/* Cart drawer: the close button sits at the start edge so it does not cover the title. */
+[dir='rtl'] cart-drawer .drawer__close {
+  right: auto;
+  left: 0;
+}
+
+/* Desktop header: the search pill mirrors to the right so it does not cover the cart and account icons. */
+@media screen and (min-width: 990px) {
+  [dir='rtl'] .section-header .EzfyHeaderSearch--desktop {
+    left: auto;
+    right: 32px;
+  }
+}
+
+/* Mobile menu drawer: arrows point toward the reading direction. */
+[dir='rtl'] .menu-drawer__menu-item > .icon-arrow,
+[dir='rtl'] .menu-drawer__close-button .icon-arrow {
+  scale: -1 1;
+}

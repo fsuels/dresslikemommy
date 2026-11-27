@@ -1,6 +1,12 @@
 {%- comment -%}force-sync{%- endcomment -%}
 <!doctype html>
-<html class="js" lang="{{ request.locale.iso_code }}">
+{%- liquid
+  assign dlm_rtl = false
+  if request.locale.iso_code == 'ar' or request.locale.iso_code == 'he'
+    assign dlm_rtl = true
+  endif
+-%}
+<html class="js" lang="{{ request.locale.iso_code }}"{% if dlm_rtl %} dir="rtl"{% endif %}>
 <head>
 <link rel="stylesheet" href="{{ 'component-list-social.css' | asset_url }}" media="print" onload="this.media='all'">
 <link rel="stylesheet" href="{{ 'component-list-payment.css' | asset_url }}" media="print" onload="this.media='all'">
@@ -282,6 +288,7 @@
 
 <!-- CSS Stylesheets -->
 {{ 'base.css' | asset_url | stylesheet_tag }}
+{%- if dlm_rtl -%}{{ 'dlm-rtl.css' | asset_url | stylesheet_tag }}{%- endif -%}
 {{ 'component-shipping-countries-v2.css' | asset_url | stylesheet_tag }}
 {%- if request.page_type contains 'customers' or template.directory == 'customers' -%}
   {{ 'customer.css' | asset_url | stylesheet_tag }}
